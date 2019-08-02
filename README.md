@@ -13,17 +13,17 @@ composer require
 start docker instance
 
 - docker-compose up -d
-- docker exec -it template-webserver /bin/bash
+- docker exec -it eduxa-webserver /bin/bash
 - composer install
 - cp .env.dist .env 
 - php console/yii app/setup
 
 ## Demo
 
-http://template.localhost
+http://eduxa.localhost
 
-http://backend.template.localhost
+http://backend.eduxa.localhost
 
-http://storage.template.localhost
+http://storage.eduxa.localhost
 
-http://api.template.localhost
+http://endpoints.eduxa.localhost
