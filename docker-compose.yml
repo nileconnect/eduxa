@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  webserver:
+    build: 
+      context: ./docker/bin/webserver
+    container_name: 'template-webserver'
+    restart: 'always'
+    ports:
+      - "80:80"
+      - "4431:443"
+    links: 
+      - mysql
+    volumes: 
+      - ${DOCUMENT_ROOT-./}:/var/www/html
+      - ${PHP_INI-./docker/config/php/php.ini}:/usr/local/etc/php/php.ini
+      - ${VHOSTS_DIR-./docker/config/vhosts}:/etc/apache2/sites-enabled
+      - ${LOG_DIR-./docker/logs/apache2}:/var/log/apache2
+  mysql:
+    build: ./docker/bin/mysql
+    container_name: 'template-5.7-mysql'
+    restart: 'always'
+    ports:
+      - "13306:3306"
+    volumes: 
+      - ${MYSQL_DATA_DIR-./docker/data/mysql}:/var/lib/mysql
+      - ${MYSQL_LOG_DIR-./docker/logs/mysql}:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: template
+      MYSQL_USER: template_user
+      MYSQL_PASSWORD: root
+
+#  node:
+#    build:
+#      context: ./docker/bin/node
+#      args:
+#        - NODE_VERSION=latest
+#        - PROJECT_PATH=/opt/app/
+#        - NODE_ENV=production
+#        - YARN=false
+#    restart: 'always'
+#    #command: node nodeServer/local.js
+#    ports:
+#      - "8000:8000"
+#    volumes:
+#        - ../:/opt/app
+#  phpmyadmin:
+#    image: phpmyadmin/phpmyadmin
+#    container_name: 'aseel2030-phpmyadmin'
+#    links:
+#      - mysql
+#    environment:
+#      PMA_HOST: mysql
+#      PMA_PORT: 3306
+#    ports:
+#      - '8080:8080'
+#    volumes:
+#      - /sessions
+#  redis:
+#    container_name: 'aseel2030-redis'
+#    image: redis:latest
+#    ports:
+#      - "6379:6379"

@@ -1,0 +1,107 @@
+$Gray: #85a2b2;
+$Maincolor: #455a64;
+$black: #181c22;
+$blue: #009efb;
+body {
+  font-family: "Cairo", sans-serif !important;
+  direction: rtl;
+}
+.h1,
+.h2,
+.h3,
+.h4,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Cairo", sans-serif !important;
+}
+.upload-kit .upload-kit-input,
+.upload-kit .upload-kit-item {
+  float: right;
+  margin: 10px 0 0 0;
+}
+.upload-kit .files {
+  float: right;
+}
+.sidebar .user-profile .profile-img {
+  margin-right: 30px;
+}
+.navbar-nav > li {
+  float: right;
+}
+.close {
+  float: left !important;
+}
+.pull-right {
+  float: left !important;
+}
+.pull-left {
+  float: right !important;
+}
+.table thead th a,
+.table th a {
+  color: #85a2b2;
+  float: right;
+}
+.nav-tabs {
+  padding: 0;
+}
+.nav-tabs .header .hydrated {
+  margin-right: 0;
+  margin-left: 5px;
+}
+.tree-index {
+  direction: ltr;
+  h1 {
+    direction: rtl;
+  }
+  .row {
+    .col-sm-3,
+    .col-sm-9 {
+      .kv-detail-container {
+        direction: rtl;
+      }
+    }
+  }
+}
+.kv-detail-crumbs {
+  padding-top: 10px;
+  float: right;
+  margin-right: 15px;
+}
+.checkbox input[type="checkbox"],
+label.checkbox-inline input[type="checkbox"] {
+  margin-left: 5px;
+  margin-right: 0;
+}
+.main-header .user-menu .dropdown-menu {
+  width: 340px;
+}
+
+.error img {
+  float: left;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px;
+  text-align: right;
+}
+
+.nav-tabs > li {
+  float: right;
+}
+
+.table.detail-view th {
+  text-align: right;
+}
+
+.grid-form {
+  .form-group {
+    margin-right: 0;
+    margin-left: 1%;
+  }
+}

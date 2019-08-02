@@ -1,0 +1,3 @@
+$ composer require engmohamedamer/yii2-enhanced-gii
+
+$ composer require kartik-v/yii2-grid "dev-master"
