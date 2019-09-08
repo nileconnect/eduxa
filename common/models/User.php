@@ -37,12 +37,14 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 2;
     const STATUS_DELETED = 3;
 
-    const ROLE_USER = 'user';
     const ROLE_MANAGER = 'manager';
     const ROLE_ADMINISTRATOR = 'administrator';
-    const ROLE_SCHOOL_ADMIN = 'schoolAdmin';
-    const ROLE_SCHOOL_ACTIVITY_ADMIN = 'schoolActivityAdmin';
-    const ROLE_OFFICLAL_NE_OFFICE = 'officialNEoffice';
+
+
+    const ROLE_USER = 'user';
+    const ROLE_REFERRAL_PERSON = 'referralPerson';
+    const ROLE_REFERRAL_COMPANY = 'referralCompany';
+    const ROLE_UNIVERSITY_MANAGER = 'universityManager';
 
     const EVENT_AFTER_SIGNUP = 'afterSignup';
     const EVENT_AFTER_LOGIN = 'afterLogin';

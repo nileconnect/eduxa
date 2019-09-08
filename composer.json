@@ -55,7 +55,10 @@
     "kartik-v/yii2-grid": "dev-master",
     "mootensai/yii2-enhanced-gii": "dev-master",
     "kartik-v/yii2-mpdf": "dev-master",
-    "kartik-v/yii2-tree-manager": "dev-master"
+    "kartik-v/yii2-tree-manager": "dev-master",
+    "pigochu/yii2-jquery-locationpicker": ">=0.2.0",
+    "webvimark/multilanguage": "*",
+    "newerton/yii2-fancybox-3": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",

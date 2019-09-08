@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55d8319e1e518a74403cf035c45a7046",
+    "content-hash": "fc656d465d9bc35e31532e7a160424fb",
     "packages": [
         {
             "name": "alexantr/yii2-elfinder",
@@ -129,7 +129,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:blueimp/JavaScript-Canvas-to-Blob.git",
+                "url": "https://github.com/blueimp/JavaScript-Canvas-to-Blob.git",
                 "reference": "9f3deb2e710d39c72a988559609d9dc9a319de0b"
             },
             "dist": {
@@ -188,7 +188,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:blueimp/JavaScript-Templates.git",
+                "url": "https://github.com/blueimp/JavaScript-Templates.git",
                 "reference": "da7647cb93fff2030e73a701db22c66de76a9919"
             },
             "dist": {
@@ -227,7 +227,7 @@
             "version": "4.17.47",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Eonasdan/bootstrap-datetimepicker.git",
+                "url": "git@github.com:Eonasdan/bootstrap-datetimepicker.git",
                 "reference": "25c11d79e614bc6463a87c3dd9cbf8280422e006"
             },
             "dist": {
@@ -287,6 +287,26 @@
             ]
         },
         {
+            "name": "bower-asset/jquery-locationpicker-plugin",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:Logicify/jquery-locationpicker-plugin.git",
+                "reference": "fac8658119043e830e0cbccd14b8b22bde08436b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Logicify/jquery-locationpicker-plugin/zipball/fac8658119043e830e0cbccd14b8b22bde08436b",
+                "reference": "fac8658119043e830e0cbccd14b8b22bde08436b",
+                "shasum": null
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ],
+            "time": "2017-10-09T16:28:29+00:00"
+        },
+        {
             "name": "bower-asset/jquery-ui",
             "version": "1.12.1",
             "source": {
@@ -332,7 +352,7 @@
             "version": "v1.3.2",
             "source": {
                 "type": "git",
-                "url": "git@github.com:bestiejs/punycode.js.git",
+                "url": "https://github.com/bestiejs/punycode.js.git",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "dist": {
@@ -3930,12 +3950,12 @@
             "version": "2.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/almasaeed2010/AdminLTE.git",
+                "url": "https://github.com/ColorlibHQ/AdminLTE.git",
                 "reference": "3714423a530d7fb6aa4593a19383305cd2472eb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/3714423a530d7fb6aa4593a19383305cd2472eb2",
+                "url": "https://api.github.com/repos/ColorlibHQ/AdminLTE/zipball/3714423a530d7fb6aa4593a19383305cd2472eb2",
                 "reference": "3714423a530d7fb6aa4593a19383305cd2472eb2",
                 "shasum": null
             },
@@ -4145,7 +4165,7 @@
             "version": "2.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/farbelous/bootstrap-colorpicker.git",
+                "url": "git@github.com:farbelous/bootstrap-colorpicker.git",
                 "reference": "5e3e02aba534708148af6b44eb76ea639c793d69"
             },
             "dist": {
@@ -5355,7 +5375,7 @@
             "version": "3.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinHerbots/Inputmask.git",
+                "url": "git@github.com:RobinHerbots/Inputmask.git",
                 "reference": "8d0c60f85598b56980b539053d93b0965aa70a45"
             },
             "dist": {
@@ -5416,7 +5436,7 @@
             "version": "3.0.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ionic-team/ionicons.git",
+                "url": "git@github.com:ionic-team/ionicons.git",
                 "reference": "368a069e52f08233ac2b0f769120d6ad9ecb5278"
             },
             "dist": {
@@ -5497,7 +5517,7 @@
             "version": "3.1.x-dev",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-mousewheel.git",
+                "url": "https://github.com/jquery/jquery-mousewheel.git",
                 "reference": "c559933f485ae34fed561b042e87abd245858c24"
             },
             "dist": {
@@ -5677,7 +5697,7 @@
             "version": "3.0.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/lodash/lodash.git",
+                "url": "git@github.com:lodash/lodash.git",
                 "reference": "f11f2385a63a90ab26d6e6713478994c64c634a2"
             },
             "dist": {
@@ -6034,7 +6054,7 @@
             "version": "v1.0.8",
             "source": {
                 "type": "git",
-                "url": "git@github.com:calvinmetcalf/process-nextick-args.git",
+                "url": "https://github.com/calvinmetcalf/process-nextick-args.git",
                 "reference": "07f531b2e7b3587f1c6cbce3f83054f50aa5cc97"
             },
             "dist": {
@@ -6830,6 +6850,48 @@
                 "xlsx"
             ],
             "time": "2019-03-06T21:37:06+00:00"
+        },
+        {
+            "name": "pigochu/yii2-jquery-locationpicker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pigochu/yii2-jquery-locationpicker.git",
+                "reference": "7fdc1567eb17d0993ebe0850958530f6fddfdca0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pigochu/yii2-jquery-locationpicker/zipball/7fdc1567eb17d0993ebe0850958530f6fddfdca0",
+                "reference": "7fdc1567eb17d0993ebe0850958530f6fddfdca0",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-locationpicker-plugin": ">=0.1.15"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "pigolab\\locationpicker\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pigo Chu",
+                    "email": "pigochu@gmail.com"
+                }
+            ],
+            "description": "jquery location picker widget for yii2",
+            "homepage": "https://github.com/pigochu/yii2-jquery-locationpicker",
+            "keywords": [
+                "extension",
+                "locationpicker",
+                "yii2"
+            ],
+            "time": "2018-06-27T02:16:39+00:00"
         },
         {
             "name": "psr/http-message",
@@ -8002,6 +8064,57 @@
                 "environment"
             ],
             "time": "2019-01-29T11:11:52+00:00"
+        },
+        {
+            "name": "webvimark/helpers",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webvimark/helpers.git",
+                "reference": "7bb59438d50149cec8233f3b509dd686200ea567"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webvimark/helpers/zipball/7bb59438d50149cec8233f3b509dd686200ea567",
+                "reference": "7bb59438d50149cec8233f3b509dd686200ea567",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "webvimark\\helpers\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Helpers for yii 2",
+            "time": "2016-10-03T08:50:29+00:00"
+        },
+        {
+            "name": "webvimark/multilanguage",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webvimark/multilanguage.git",
+                "reference": "2a03458a565a2e95d4b83985a0811bf87f1ba098"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webvimark/multilanguage/zipball/2a03458a565a2e95d4b83985a0811bf87f1ba098",
+                "reference": "2a03458a565a2e95d4b83985a0811bf87f1ba098",
+                "shasum": ""
+            },
+            "require": {
+                "webvimark/helpers": "^1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "webvimark\\behaviors\\multilanguage\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Multilanguage for for yii 2",
+            "time": "2016-10-05T16:01:02+00:00"
         },
         {
             "name": "yii2-starter-kit/yii2-file-kit",

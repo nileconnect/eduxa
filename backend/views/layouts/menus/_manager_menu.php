@@ -29,7 +29,6 @@ echo Menu::widget([
             'url' => '#',
             'icon' => '<i class="fa fa-users"></i>',
             'options' => ['class' => 'treeview'],
-            'active' => (Yii::$app->controller->module->id == 'user'),
             'items' => [
 
                 [
@@ -41,7 +40,7 @@ echo Menu::widget([
                 ],
 
                 [
-                    'label' => Yii::t('backend', 'Schools Rep.'),
+                    'label' => Yii::t('backend', 'Users'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=schoolAdmin'],
                     'active' => (Yii::$app->controller->id == 'user'),
@@ -49,7 +48,7 @@ echo Menu::widget([
                 ],
 
                 [
-                    'label' => Yii::t('backend', 'Schools Activity Admin'),
+                    'label' => Yii::t('backend', 'Referral - Person'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=schoolActivityAdmin'],
                     'active' => (Yii::$app->controller->id == 'user'),
@@ -60,7 +59,15 @@ echo Menu::widget([
 
 
                 [
-                    'label' => Yii::t('backend', 'National Education office official'),
+                    'label' => Yii::t('backend', 'Referral - Company'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/user/index?user_role=officialNEoffice'],
+                    'active' => (Yii::$app->controller->id == 'user'),
+                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
+                ],
+
+                [
+                    'label' => Yii::t('backend', 'University Manager'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=officialNEoffice'],
                     'active' => (Yii::$app->controller->id == 'user'),
@@ -70,17 +77,60 @@ echo Menu::widget([
 
 
 
-
-
             ],
         ],
 
+        [
+            'label' => Yii::t('backend', 'Universities'),
+            'url' => '#',
+            'icon' => '<i class="fa fa-users"></i>',
+            'options' => ['class' => 'treeview'],
+            'items' => [
 
+                [
+                    'label' => Yii::t('backend', 'University'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/university'],
+                    'active' => (Yii::$app->controller->id == 'university'),
+                ],
+
+                [
+                    'label' => Yii::t('backend', 'Program Degree'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/university-program-degree'],
+                    'active' => (Yii::$app->controller->id == 'university-program-degree'),
+                ],
+
+                [
+                    'label' => Yii::t('backend', 'Program Majors'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/university-program-majors'],
+                    'active' => (Yii::$app->controller->id == 'university-program-majors'),
+                ],
+
+
+                [
+                    'label' => Yii::t('backend', 'Program Fields'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/university-program-field'],
+                    'active' => (Yii::$app->controller->id == 'university-program-field'),
+                ],
+
+
+            ],
+       ],
 
         [
             'label' => Yii::t('backend', 'Content'),
             'options' => ['class' => 'header'],
         ],
+        [
+            'label' => Yii::t('backend', 'Countries'),
+            'url' => ['/country/index'],
+            'icon' => '<i class="fa fa-thumb-tack"></i>',
+            'active' => Yii::$app->controller->id === 'country',
+        ],
+
         [
             'label' => Yii::t('backend', 'Static pages'),
             'url' => ['/content/page/index'],
@@ -110,24 +160,42 @@ echo Menu::widget([
             ],
         ],
 
-        [
-            'label' => Yii::t('backend', 'Key-Value Storage'),
-            'url' => ['/system/key-storage/index'],
-            'icon' => '<i class="fa fa-arrows-h"></i>',
-            'active' => (Yii::$app->controller->id == 'key-storage'),
-        ],
-        [
-            'label' => Yii::t('backend', 'Cache'),
-            'url' => ['/system/cache/index'],
-            'icon' => '<i class="fa fa-refresh"></i>',
-        ],
+//        [
+//            'label' => Yii::t('backend', 'Settings'),
+//            'url' => '#',
+//            'icon' => '<i class="fa fa-users"></i>',
+//            'options' => ['class' => 'treeview'],
+//            'items' => [
+//
+//                [
+//                    'label' => Yii::t('backend', 'Countries'),
+//                    'icon' => '<i class="fa fa-users"></i>',
+//                    'url' => ['/country'],
+//                    'active' => (Yii::$app->controller->id == 'country'),
+//                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
+//                ],
+//
+//                ]
+//            ],
 
-        [
-            'label' => Yii::t('backend', 'Logs'),
-            'url' => ['/system/log/index'],
-            'icon' => '<i class="fa fa-warning"></i>',
-            'badge' => SystemLog::find()->count(),
-            'badgeBgClass' => 'label-danger',
-        ],
+//        [
+//            'label' => Yii::t('backend', 'Key-Value Storage'),
+//            'url' => ['/system/key-storage/index'],
+//            'icon' => '<i class="fa fa-arrows-h"></i>',
+//            'active' => (Yii::$app->controller->id == 'key-storage'),
+//        ],
+//        [
+//            'label' => Yii::t('backend', 'Cache'),
+//            'url' => ['/system/cache/index'],
+//            'icon' => '<i class="fa fa-refresh"></i>',
+//        ],
+//
+//        [
+//            'label' => Yii::t('backend', 'Logs'),
+//            'url' => ['/system/log/index'],
+//            'icon' => '<i class="fa fa-warning"></i>',
+//            'badge' => SystemLog::find()->count(),
+//            'badgeBgClass' => 'label-danger',
+//        ],
     ],
 ]) ?>

@@ -5,39 +5,64 @@ namespace backend\controllers;
 use Yii;
 use backend\models\City;
 use backend\models\search\CitySearch;
-use yii\web\Controller;
+use backend\controllers\BackendController;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * CityController implements the CRUD actions for City model.
  */
-class CityController extends Controller
+class CityController extends BackendController
 {
+
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index','view'],
+                        'allow' => true,
+                        'roles' => ['admin', 'superAdmin'],
+                    ],
+
+                    [
+                        'actions' => ['create', 'delete', 'update'],
+                        'allow' => true,
+                        'roles' => ['superAdmin','admin'],
+                    ]
+
                 ],
             ],
+
         ];
     }
 
+
     /**
      * Lists all City models.
+     * @param integrer $countryId Country id
      * @return mixed
      */
     public function actionIndex()
     {
+        if(isset($_REQUEST['countryId'])){
+            Yii::$app->session->set('CountryID',$_REQUEST['countryId']);
+        }
         $searchModel = new CitySearch();
+        $searchModel->country_id = Yii::$app->session->get('CountryID');
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $dataProvider->setSort([
+            'defaultOrder' => ['sort' => SORT_ASC],
+        ]);
+        $country = \backend\models\Country::findOne(Yii::$app->session->get('CountryID'));
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'country' => $country,
         ]);
     }
 
@@ -48,27 +73,27 @@ class CityController extends Controller
      */
     public function actionView($id)
     {
-        $model = $this->findModel($id);
-        $providerDistrict = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->districts,
-        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'providerDistrict' => $providerDistrict,
         ]);
     }
 
     /**
      * Creates a new City model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param integrer $countryId Country id
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new City();
+        if(isset($_REQUEST['countryId'])){
+            Yii::$app->session->set('CountryID',$_REQUEST['countryId']);
+        }
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model = new City();
+        $model->country_id = Yii::$app->session->get('CountryID');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index', 'countryId' => $model->country_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -84,14 +109,10 @@ class CityController extends Controller
      */
     public function actionUpdate($id)
     {
-        if (Yii::$app->request->post('_asnew') == '1') {
-            $model = new City();
-        }else{
-            $model = $this->findModel($id);
-        }
+        $model = $this->findModel($id);
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index', 'countryId' => $model->country_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -107,35 +128,12 @@ class CityController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteWithRelated();
-
-        return $this->redirect(['index']);
+        $model= $this->findModel($id);
+        $id= $model->country_id ;
+        $model->delete();
+        return $this->redirect(['index', 'countryId' => $id]);
     }
 
-    /**
-    * Creates a new City model by another data,
-    * so user don't need to input all field from scratch.
-    * If creation is successful, the browser will be redirected to the 'view' page.
-    *
-    * @param mixed $id
-    * @return mixed
-    */
-    public function actionSaveAsNew($id) {
-        $model = new City();
-
-        if (Yii::$app->request->post('_asnew') != '1') {
-            $model = $this->findModel($id);
-        }
-    
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('saveAsNew', [
-                'model' => $model,
-            ]);
-        }
-    }
-    
     /**
      * Finds the City model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -148,27 +146,7 @@ class CityController extends Controller
         if (($model = City::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
-        }
-    }
-    
-    /**
-    * Action to load a tabular form grid
-    * for District
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
-    public function actionAddDistrict()
-    {
-        if (Yii::$app->request->isAjax) {
-            $row = Yii::$app->request->post('District');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
-                $row[] = [];
-            return $this->renderAjax('_formDistrict', ['row' => $row]);
-        } else {
-            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 }

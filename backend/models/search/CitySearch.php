@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use backend\models\City;
 
 /**
- * backend\models\search\CitySearch represents the model behind the search form about `backend\models\City`.
+ * CitySearch represents the model behind the search form about `backend\models\City`.
  */
- class CitySearch extends City
+class CitySearch extends City
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ use backend\models\City;
     public function rules()
     {
         return [
-            [['id', 'sort'], 'integer'],
-            [['ref', 'title', 'slug'], 'safe'],
+            [['id', 'country_id'], 'integer'],
+            [['title','sort','country_id'], 'safe'],
         ];
     }
 
@@ -52,17 +52,15 @@ use backend\models\City;
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-            return $dataProvider;
+          //  return $dataProvider;
         }
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'sort' => $this->sort,
+            'country_id' => $this->country_id,
         ]);
 
-        $query->andFilterWhere(['like', 'ref', $this->ref])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'slug', $this->slug]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }
