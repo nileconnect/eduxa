@@ -19,7 +19,7 @@ use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
     <? //= $form->field($model, 'meta_description')//->widget(MultiLanguageActiveField::className(), ['inputType' => 'textArea']); ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-primary' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

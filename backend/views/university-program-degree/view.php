@@ -14,10 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="university-program-degree-view">
 
     <div class="row">
-        <div class="col-sm-9">
+        <!-- <div class="col-sm-9">
             <h2><?= Yii::t('backend', 'University Program Degree').' '. Html::encode($this->title) ?></h2>
-        </div>
-        <div class="col-sm-3" style="margin-top: 15px">
+        </div> -->
+        <div class="col-sm-3">
             
             <?= Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
             <? /*= Html::a(Yii::t('backend', 'Delete'), ['delete', 'id' => $model->id], [

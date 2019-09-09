@@ -21,7 +21,7 @@ $this->registerJs($search);
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('backend', 'Create Country'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('backend', 'Create Country'), ['create'], ['class' => 'btn btn-primary']) ?>
         <? //= Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
     <div class="search-form" style="display:none">
@@ -35,7 +35,7 @@ $this->registerJs($search);
             [
             'label' => '',
             'value' => function($model){
-                return Html::a(Yii::t('app', 'Cities'), ['city/index', 'countryId'=>$model->id], ['class'=>'btn btn-warning', 'title'=>Yii::t('app', 'Cities')]);
+                return Html::a(Yii::t('app', 'Cities'), ['city/index', 'countryId'=>$model->id], ['class'=>'btn btn-success', 'title'=>Yii::t('app', 'Cities')]);
             },
             'format' => 'raw'
         ],

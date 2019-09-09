@@ -14,12 +14,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="university-view">
 
     <div class="row">
-        <div class="col-sm-9">
+        <!-- <div class="col-sm-9">
             <h2><?= Yii::t('backend', 'University').' '. Html::encode($this->title) ?></h2>
-        </div>
-        <div class="col-sm-3" style="margin-top: 15px">
+        </div> -->
+        <div class="col-sm-3">
 <?=             
-             Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> ' . Yii::t('backend', 'PDF'), 
+             Html::a( Yii::t('backend', 'PDF'), 
                 ['pdf', 'id' => $model->id],
                 [
                     'class' => 'btn btn-danger',
