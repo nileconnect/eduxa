@@ -60,6 +60,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
     ]); ?>
     <?php NavBar::end(); ?>
 
+     <?php // echo \webvimark\behaviors\multilanguage\language_selector_widget\LanguageSelector::widget(['viewFile' => 'inline']); ?>
     <?php echo $content ?>
 
 </div>

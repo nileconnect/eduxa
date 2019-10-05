@@ -3,11 +3,15 @@
 namespace backend\controllers;
 
 
+use backend\models\University;
+use webvimark\behaviors\multilanguage\MultiLanguageHelper;
+
 /**
  * Site controller
  */
 class BackendController extends \yii\web\Controller
 {
+    public  $University;
     /**
      * @inheritdoc
      */
@@ -19,21 +23,28 @@ class BackendController extends \yii\web\Controller
             ],
         ];
     }
-
     public function init()
     {
-        parent::init();
 
-        if(\Yii::$app->user->can('salesManager') ){
+        MultiLanguageHelper::catchLanguage();
+        \Yii::$app->language ='en';
 
-        }else if(\Yii::$app->user->can('salesRepresentative')){
+        if(\Yii::$app->user->can('universityManager')){
 
-        }else{
-            // echo "fFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFff";die;
+            $universityObj = University::find()->where(['responsible_id'=>\Yii::$app->user->id])->one();
+            if($universityObj){
+                $this->University =$universityObj;
+
+            }else{
+                $this->University = null;
+
+            }
 
         }
-    }
 
+
+        parent::init();
+    }
 
 
 

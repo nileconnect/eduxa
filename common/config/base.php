@@ -157,12 +157,23 @@ $config = [
         ],
     ],
     'params' => [
+       // 'bsVersion' => '4.x', // this will set globally `bsVersion` to Bootstrap 4.x for all Krajee Extensions
+
         'adminEmail' => env('ADMIN_EMAIL'),
         'robotEmail' => env('ROBOT_EMAIL'),
         'availableLocales' => [
             'en-US' => 'English (US)',
             'ar-AR' => 'Arabic (AR)',
         ],
+
+        'mlConfig'=>[
+            'default_language'=>'ar',
+            'languages'=>[
+                'ar'=>'عربى',
+                'en'=>'English',
+            ],
+        ],
+
     ],
 ];
 

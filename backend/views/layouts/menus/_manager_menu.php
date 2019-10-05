@@ -42,7 +42,7 @@ echo Menu::widget([
                 [
                     'label' => Yii::t('backend', 'Users'),
                     'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=schoolAdmin'],
+                    'url' => ['/user/index?user_role=user'],
                     'active' => (Yii::$app->controller->id == 'user'),
                     'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
                 ],
@@ -50,7 +50,7 @@ echo Menu::widget([
                 [
                     'label' => Yii::t('backend', 'Referral - Person'),
                     'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=schoolActivityAdmin'],
+                    'url' => ['/user/index?user_role=referralPerson'],
                     'active' => (Yii::$app->controller->id == 'user'),
                     'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
                 ],
@@ -61,7 +61,7 @@ echo Menu::widget([
                 [
                     'label' => Yii::t('backend', 'Referral - Company'),
                     'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=officialNEoffice'],
+                    'url' => ['/user/index?user_role=referralCompany'],
                     'active' => (Yii::$app->controller->id == 'user'),
                     'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
                 ],
@@ -69,7 +69,7 @@ echo Menu::widget([
                 [
                     'label' => Yii::t('backend', 'University Manager'),
                     'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=officialNEoffice'],
+                    'url' => ['/user/index?user_role=universityManager'],
                     'active' => (Yii::$app->controller->id == 'user'),
                     'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
                 ],
@@ -119,6 +119,29 @@ echo Menu::widget([
 
             ],
        ],
+
+        [
+            'label' => Yii::t('backend', 'Language Schools'),
+            'url' => '#',
+            'icon' => '<i class="fa fa-users"></i>',
+            'options' => ['class' => 'treeview'],
+            'items' => [
+
+                [
+                    'label' => Yii::t('backend', 'Schools'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/schools'],
+                    'active' => (Yii::$app->controller->id == 'schools'),
+                ],
+
+                [
+                    'label' => Yii::t('backend', 'school Course Tyes'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/schools-course-types'],
+                    'active' => (Yii::$app->controller->id == 'schools-course-types'),
+                ],
+            ],
+        ],
 
         [
             'label' => Yii::t('backend', 'Content'),

@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use \backend\models\base\UniversityProgramMajors as BaseUniversityProgramMajors;
 
@@ -10,6 +11,8 @@ use \backend\models\base\UniversityProgramMajors as BaseUniversityProgramMajors;
  */
 class UniversityProgramMajors extends BaseUniversityProgramMajors
 {
+    use MultiLanguageTrait;
+
     const STATUS_OFF = 0;
     const STATUS_ON = 1;
     /**
@@ -22,7 +25,7 @@ class UniversityProgramMajors extends BaseUniversityProgramMajors
             [['title'], 'required'],
             [['created_by', 'updated_by'], 'integer'],
             [['title', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 4]
+            [['status'], 'safe']
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace backend\models\base;
 
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
@@ -90,6 +91,17 @@ class UniversityProgramField extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
+            ],
+            'mlBehavior'=>[
+                'class'    => MultiLanguageBehavior::className(),
+                'mlConfig' => [
+                    'db_table'         => 'translations_with_text',
+                    'attributes'       => ['title'],
+                    'admin_routes'     => [
+                        'university-program-field/update',
+                        'university-program-field/index',
+                    ],
+                ],
             ],
         ];
     }

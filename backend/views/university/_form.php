@@ -2,9 +2,11 @@
 
 use trntv\filekit\widget\Upload;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\web\JsExpression;
-
+use kartik\depdrop\DepDrop;
+use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\University */
@@ -67,7 +69,7 @@ use yii\web\JsExpression;
             <div class="row">
                 <div class="col-md-6">
                     <div class="well">
-                        <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title']) ?>
+                        <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MultiLanguageActiveField::className());  ?>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -82,7 +84,7 @@ use yii\web\JsExpression;
                     <div class="well">
                         <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
                             'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-                            'options' => ['placeholder' => Yii::t('backend', 'Choose Country')],
+                            'options' => ['placeholder' => Yii::t('backend', 'Choose Country') ,'id'=>'CountryId'],
                             'pluginOptions' => [
                                 'allowClear' => true
                             ],
@@ -91,14 +93,19 @@ use yii\web\JsExpression;
                 </div>
                 <div class="col-md-6">
                     <div class="well">
+                        <?php
+                        // Child # 1
+                        echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
+                            'options'=>['id'=>'subcat-id'],
+                            'pluginOptions'=>[
+                                'depends'=>['CountryId'],
+                                'placeholder'=>'Select...',
+                                'url'=>Url::to(['/helper/cities'])
+                            ]
+                        ]);
 
-                        <?= $form->field($model, 'city_id')->widget(\kartik\widgets\Select2::classname(), [
-                            'data' => \yii\helpers\ArrayHelper::map(\backend\models\City::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-                            'options' => ['placeholder' => Yii::t('backend', 'Choose City')],
-                            'pluginOptions' => [
-                                'allowClear' => true
-                            ],
-                        ]); ?>
+                        ?>
+
                     </div>
                 </div>
             </div>
@@ -123,20 +130,28 @@ use yii\web\JsExpression;
 
 
 
-    <?php echo $form->field($model, 'description')->widget(
-        \yii\imperavi\Widget::class,
-        [
-            'plugins' => ['fullscreen', 'fontcolor', 'video'],
-            'options' => [
-                'minHeight' => 400,
-                'maxHeight' => 400,
-                'buttonSource' => true,
-                'convertDivs' => false,
-                'removeEmptyTags' => true,
-                'imageUpload' => Yii::$app->urlManager->createUrl(['/file/storage/upload-imperavi']),
-            ],
-        ]
-    ) ?>
+
+    <?= $form->field($model, 'description')->textarea(['rows' => 6])->widget(MultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
+        'rows'=>3,
+        'class'=>'form-control',
+    ]]) ?>
+
+
+
+<!--    --><?php //echo $form->field($model, 'description')->widget(
+//        \yii\imperavi\Widget::class,
+//        [
+//            'plugins' => ['fullscreen', 'fontcolor', 'video'],
+//            'options' => [
+//                'minHeight' => 400,
+//                'maxHeight' => 400,
+//                'buttonSource' => true,
+//                'convertDivs' => false,
+//                'removeEmptyTags' => true,
+//                'imageUpload' => Yii::$app->urlManager->createUrl(['/file/storage/upload-imperavi']),
+//            ],
+//        ]
+//    ) ?>
 
     <?= $form->field($model, 'detailed_address')->textInput(['maxlength' => true, 'placeholder' => 'Detailed Address']) ?>
 
@@ -162,7 +177,8 @@ use yii\web\JsExpression;
 
 
 
-
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
 
     <?php
     echo \pigolab\locationpicker\LocationPickerWidget::widget([
@@ -187,7 +203,8 @@ use yii\web\JsExpression;
     ]);
     ?>
 
-
+        </div>
+    </div>
 
     <? //= $form->field($model, 'total_rating')->textInput(['placeholder' => 'Total Rating']) ?>
 
@@ -220,7 +237,7 @@ use yii\web\JsExpression;
     <?php
     $forms = [
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'UniversityAccreditedCountries')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'University Accredited Countries')),
             'content' => $this->render('_formUniversityAccreditedCountries', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->universityAccreditedCountries),
             ]),
@@ -229,18 +246,18 @@ use yii\web\JsExpression;
 
 
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'UnversityRating')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'Unversity Rating')),
             'content' => $this->render('_formUnversityRating', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->unversityRatings),
             ]),
         ],
 
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'UniversityPrograms')),
-            'content' => $this->render('_formUniversityPrograms', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->universityPrograms),
-            ]),
-        ],
+//        [
+//            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'UniversityPrograms')),
+//            'content' => $this->render('_formUniversityPrograms', [
+//                'row' => \yii\helpers\ArrayHelper::toArray($model->universityPrograms),
+//            ]),
+//        ],
 
     ];
     echo kartik\tabs\TabsX::widget([

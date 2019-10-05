@@ -11,51 +11,41 @@ use yii\behaviors\BlameableBehavior;
  *
  * @property integer $id
  * @property string $title
- * @property string $slug
- * @property integer $school_identity_number
+ * @property integer $course_type
+ * @property string $details
+ * @property integer $featured
+ * @property string $location
+ * @property string $lat
+ * @property string $lng
+ * @property string $image_base_url
+ * @property string $image_path
+ * @property integer $country_id
  * @property integer $city_id
- * @property integer $district_id
- * @property integer $stage
- * @property integer $gender
- * @property integer $category
- * @property string $email
- * @property string $admin_name
- * @property string $admin_phone
- * @property string $admin_email
- * @property string $supervisor_phone
- * @property string $owner_name
- * @property string $owner_phone
- * @property string $owner_identity
- * @property integer $owner_gender
- * @property string $owner_email
- * @property string $nour_rep_phone
- * @property integer $owner_id
+ * @property integer $min_age
+ * @property string $start_every
+ * @property string $study_time
+ * @property integer $max_students_per_class
+ * @property integer $avg_students_per_class
+ * @property integer $lessons_per_week
+ * @property double $hours_per_week
+ * @property double $accomodation_fees
+ * @property double $registeration_fees
+ * @property double $study_books_fees
+ * @property double $fees_per_week
+ * @property double $discount
+ * @property double $total_rating
+ * @property integer $status
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- * @property integer $lock
- * @property integer $deleted_by
  *
- * @property \backend\models\District $district
- * @property \backend\models\SchoolsProfile $schoolsProfile
+ * @property \backend\models\SchoolsCourseTypes $courseType
  */
 class Schools extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
-    private $_rt_softdelete;
-    private $_rt_softrestore;
-
-    public function __construct(){
-        parent::__construct();
-        $this->_rt_softdelete = [
-            'deleted_by' => 1,
-        ];
-        $this->_rt_softrestore = [
-            'deleted_by' => 0,
-        ];
-    }
 
     /**
     * This function helps \mootensai\relation\RelationTrait runs faster
@@ -64,8 +54,7 @@ class Schools extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
-            'district',
-            'schoolsProfile'
+            'courseType'
         ];
     }
 
@@ -76,11 +65,11 @@ class Schools extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['school_identity_number', 'city_id', 'district_id', 'stage', 'owner_id', 'created_by', 'updated_by', 'deleted_by'], 'integer'],
-            [['title', 'slug', 'email', 'admin_name', 'admin_phone', 'admin_email', 'supervisor_phone', 'owner_name', 'owner_phone', 'owner_identity', 'owner_email', 'nour_rep_phone', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['gender', 'category', 'owner_gender', 'lock'], 'string', 'max' => 4],
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
+            [['course_type', 'country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class', 'lessons_per_week', 'created_by', 'updated_by'], 'integer'],
+            [['details'], 'string'],
+            [['hours_per_week', 'accomodation_fees', 'registeration_fees', 'study_books_fees', 'fees_per_week', 'discount', 'total_rating'], 'number'],
+            [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path', 'start_every', 'study_time', 'created_at', 'updated_at'], 'string', 'max' => 255],
+            [['featured', 'status'], 'string', 'max' => 4]
         ];
     }
 
@@ -93,17 +82,6 @@ class Schools extends \yii\db\ActiveRecord
     }
 
     /**
-     *
-     * @return string
-     * overwrite function optimisticLock
-     * return string name of field are used to stored optimistic lock
-     *
-     */
-    public function optimisticLock() {
-        return 'lock';
-    }
-
-    /**
      * @inheritdoc
      */
     public function attributeLabels()
@@ -111,53 +89,39 @@ class Schools extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('backend', 'ID'),
             'title' => Yii::t('backend', 'Title'),
-            'slug' => Yii::t('backend', 'Slug'),
-            'school_identity_number' => Yii::t('backend', 'School Identity Number'),
+            'course_type' => Yii::t('backend', 'Course Type'),
+            'details' => Yii::t('backend', 'Details'),
+            'featured' => Yii::t('backend', 'Featured'),
+            'location' => Yii::t('backend', 'Location'),
+            'lat' => Yii::t('backend', 'Lat'),
+            'lng' => Yii::t('backend', 'Lng'),
+            'image_base_url' => Yii::t('backend', 'Image Base Url'),
+            'image_path' => Yii::t('backend', 'Image Path'),
+            'country_id' => Yii::t('backend', 'Country ID'),
             'city_id' => Yii::t('backend', 'City ID'),
-            'district_id' => Yii::t('backend', 'District ID'),
-            'stage' => Yii::t('backend', 'Stage'),
-            'gender' => Yii::t('backend', 'Gender'),
-            'category' => Yii::t('backend', 'Category'),
-            'email' => Yii::t('backend', 'Email'),
-            'admin_name' => Yii::t('backend', 'Admin Name'),
-            'admin_phone' => Yii::t('backend', 'Admin Phone'),
-            'admin_email' => Yii::t('backend', 'Admin Email'),
-            'supervisor_phone' => Yii::t('backend', 'Supervisor Phone'),
-            'owner_name' => Yii::t('backend', 'Owner Name'),
-            'owner_phone' => Yii::t('backend', 'Owner Phone'),
-            'owner_identity' => Yii::t('backend', 'Owner Identity'),
-            'owner_gender' => Yii::t('backend', 'Owner Gender'),
-            'owner_email' => Yii::t('backend', 'Owner Email'),
-            'nour_rep_phone' => Yii::t('backend', 'Nour Rep Phone'),
-            'owner_id' => Yii::t('backend', 'Owner ID'),
-            'lock' => Yii::t('backend', 'Lock'),
+            'min_age' => Yii::t('backend', 'Min Age'),
+            'start_every' => Yii::t('backend', 'Start Every'),
+            'study_time' => Yii::t('backend', 'Study Time'),
+            'max_students_per_class' => Yii::t('backend', 'Max Students Per Class'),
+            'avg_students_per_class' => Yii::t('backend', 'Avg Students Per Class'),
+            'lessons_per_week' => Yii::t('backend', 'Lessons Per Week'),
+            'hours_per_week' => Yii::t('backend', 'Hours Per Week'),
+            'accomodation_fees' => Yii::t('backend', 'Accomodation Fees'),
+            'registeration_fees' => Yii::t('backend', 'Registeration Fees'),
+            'study_books_fees' => Yii::t('backend', 'Study Books Fees'),
+            'fees_per_week' => Yii::t('backend', 'Fees Per Week'),
+            'discount' => Yii::t('backend', 'Discount'),
+            'total_rating' => Yii::t('backend', 'Total Rating'),
+            'status' => Yii::t('backend', 'Status'),
         ];
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCity()
-    {
-        return $this->hasOne(\backend\models\City::className(), ['id' => 'city_id']);
-    }
-
-
     
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDistrict()
+    public function getCourseType()
     {
-        return $this->hasOne(\backend\models\District::className(), ['id' => 'district_id']);
-    }
-        
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSchoolsProfile()
-    {
-        return $this->hasOne(\backend\models\SchoolsProfile::className(), ['schools_id' => 'id']);
+        return $this->hasOne(\backend\models\SchoolsCourseTypes::className(), ['id' => 'course_type']);
     }
     
     /**
@@ -181,27 +145,6 @@ class Schools extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * The following code shows how to apply a default condition for all queries:
-     *
-     * ```php
-     * class Customer extends ActiveRecord
-     * {
-     *     public static function find()
-     *     {
-     *         return parent::find()->where(['deleted' => false]);
-     *     }
-     * }
-     *
-     * // Use andWhere()/orWhere() to apply the default condition
-     * // SELECT FROM customer WHERE `deleted`=:deleted AND age>30
-     * $customers = Customer::find()->andWhere('age>30')->all();
-     *
-     * // Use where() to ignore the default condition
-     * // SELECT FROM customer WHERE age>30
-     * $customers = Customer::find()->where('age>30')->all();
-     * ```
-     */
 
     /**
      * @inheritdoc
@@ -209,7 +152,6 @@ class Schools extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        $query = new \backend\models\activequery\SchoolsQuery(get_called_class());
-        return $query->where(['schools.deleted_by' => 0]);
+        return new \backend\models\activequery\SchoolsQuery(get_called_class());
     }
 }

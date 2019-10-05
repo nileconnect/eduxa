@@ -36,8 +36,24 @@ return [
         'allow' => true,
         'roles' => ['manager', 'administrator'],
     ],
+    // ************  for all new subroles******************   //
+
+    [
+        'controllers' => ['sign-in','helper','site','file/storage'],
+        'allow' => true,
+        'roles' => ['universityManager'],
+    ],
 
 
+
+    //university Manager
+    [
+        'controllers' => ['university'],
+        'allow' => true,
+        'actions' => ['manager-view','manager-update'],
+
+        'roles' => ['universityManager'],
+    ],
 
 
 

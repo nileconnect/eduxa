@@ -22,12 +22,26 @@ echo TabularForm::widget([
     ],
     'attributes' => [
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions' => ['hidden'=>true]],
-        'user_id' => ['type' => TabularForm::INPUT_TEXT],
+        //'user_id' => ['type' => TabularForm::INPUT_TEXT],
         'name' => ['type' => TabularForm::INPUT_TEXT],
         'comment' => ['type' => TabularForm::INPUT_TEXTAREA],
         'rating' => ['type' => TabularForm::INPUT_TEXT],
         'status' => ['type' => TabularForm::INPUT_TEXT],
-        'ceated_at' => ['type' => TabularForm::INPUT_TEXT],
+
+        'status' => [
+            'type' => TabularForm::INPUT_WIDGET,
+            'widgetClass' => \kartik\widgets\Select2::className(),
+            'options' => [
+                'data' =>[
+                        '0'=> 'Not active',
+                        '1'=>'Active'
+                ],
+                'options' => ['placeholder' => 'Select'],
+            ],
+            'columnOptions' => ['width' => '200px']
+        ],
+
+      //  'ceated_at' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',
             'label' => '',

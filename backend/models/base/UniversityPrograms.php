@@ -2,6 +2,8 @@
 
 namespace backend\models\base;
 
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 
 /**
@@ -44,6 +46,8 @@ use Yii;
 class UniversityPrograms extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
+    use MultiLanguageTrait;
+
 
 
     /**
@@ -90,13 +94,13 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'university_id' => Yii::t('backend', 'University ID'),
+            'university_id' => Yii::t('backend', 'University'),
             'title' => Yii::t('backend', 'Title'),
-            'major_id' => Yii::t('backend', 'Major ID'),
-            'degree_id' => Yii::t('backend', 'Degree ID'),
-            'field_id' => Yii::t('backend', 'Field ID'),
-            'country_id' => Yii::t('backend', 'Country ID'),
-            'city_id' => Yii::t('backend', 'City ID'),
+            'major_id' => Yii::t('backend', 'Major'),
+            'degree_id' => Yii::t('backend', 'Degree'),
+            'field_id' => Yii::t('backend', 'Field'),
+            'country_id' => Yii::t('backend', 'Country'),
+            'city_id' => Yii::t('backend', 'City'),
             'study_start_date' => Yii::t('backend', 'Study Start Date'),
             'study_duration' => Yii::t('backend', 'Study Duration'),
             'study_method' => Yii::t('backend', 'Study Method'),
@@ -156,5 +160,22 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \backend\models\activequery\UniversityProgramsQuery(get_called_class());
+    }
+
+    public function behaviors()
+    {
+        return [
+            'mlBehavior'=>[
+                'class'    => MultiLanguageBehavior::className(),
+                'mlConfig' => [
+                    'db_table'         => 'translations_with_text',
+                    'attributes'       => ['title'],
+                    'admin_routes'     => [
+                        'university-program/update',
+                        'university-program/index',
+                    ],
+                ],
+            ],
+        ];
     }
 }

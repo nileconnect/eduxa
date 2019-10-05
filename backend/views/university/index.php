@@ -15,6 +15,23 @@ $search = "$('.search-button').click(function(){
 	return false;
 });";
 $this->registerJs($search);
+
+echo newerton\fancybox3\FancyBox::widget([
+
+    'config'=>[
+        'iframe' => [
+
+            'preload'       => false,
+            'css'=>[
+                'width'=>'500px',
+                'height'=>'250px'
+            ]
+        ],
+
+    ],
+]);
+
+
 ?>
 <div class="university-index">
 
@@ -33,11 +50,31 @@ $this->registerJs($search);
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
         'title',
+        [
+           'attribute'=>'responsible_id',
+            'format'=>'raw',
+            'value' => function ($model) {
+                $creator =   $model->responsible_id ? $model->responsible->getPublicIdentity() : 'Assign';
+
+                return '<a  data-fancybox="" data-type="iframe"   href="/university/assign?id='.$model->id.'">'.$creator.'</a>';
+
+            }
+        ],
+
+        [
+            'label'=>'Programms',
+            'format'=>'raw',
+            'value' => function ($model) {
+                return '<a   href="/university-programs?university_id='.$model->id.'">Manage </a>';
+
+            }
+        ],
+
 
         'total_rating',
         'recommended:boolean',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'yii\grid\ActionColumn','template'=>'{view} {update}'
         ],
     ]; 
     ?>

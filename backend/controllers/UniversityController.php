@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * UniversityController implements the CRUD actions for University model.
  */
-class UniversityController extends Controller
+class UniversityController extends BackendController
 {
     public function behaviors()
     {
@@ -41,11 +41,68 @@ class UniversityController extends Controller
         ]);
     }
 
+    public function actionAssign($id){
+        $this->layout = 'base';
+
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
+                'title' =>'',
+            ]);
+
+            return $this->render('assign', [
+                'model' => $model,
+                'saved'=>true
+            ]);
+        } else {
+
+            return $this->render('assign', [
+                'model' => $model,
+            ]);
+        }
+
+    }
+
+
+
     /**
      * Displays a single University model.
      * @param integer $id
      * @return mixed
      */
+
+    public function actionManagerView()
+    {
+        $model = $this->University;
+        $providerUniversityAccreditedCountries = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->universityAccreditedCountries,
+        ]);
+        $providerUniversityPhotos = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->universityPhotos,
+        ]);
+        $providerUniversityPrograms = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->universityPrograms,
+        ]);
+        $providerUniversityVideos = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->universityVideos,
+        ]);
+        $providerUnversityRating = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->unversityRatings,
+        ]);
+        return $this->render('view', [
+            'model' => $model,
+            'providerUniversityAccreditedCountries' => $providerUniversityAccreditedCountries,
+            'providerUniversityPhotos' => $providerUniversityPhotos,
+            'providerUniversityPrograms' => $providerUniversityPrograms,
+            'providerUniversityVideos' => $providerUniversityVideos,
+            'providerUnversityRating' => $providerUnversityRating,
+        ]);
+    }
+
     public function actionView($id)
     {
         $model = $this->findModel($id);
@@ -98,6 +155,20 @@ class UniversityController extends Controller
      * @param integer $id
      * @return mixed
      */
+
+    public function actionManagerUpdate()
+    {
+        $model = $this->University;
+
+        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            return $this->redirect(['manager-view']);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);

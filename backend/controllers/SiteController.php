@@ -7,7 +7,7 @@ use Yii;
 /**
  * Site controller
  */
-class SiteController extends \yii\web\Controller
+class SiteController extends BackendController
 {
     /**
      * @inheritdoc
@@ -29,9 +29,20 @@ class SiteController extends \yii\web\Controller
     }
 
 
-    public function actionDashboard(){
+    public function actionIndex(){
+        $University = $this->University;
+        if( \Yii::$app->user->can('manager') or  \Yii::$app->user->can('administrator')){
+            $view= 'index';
+        }else if(\Yii::$app->user->can('universityManager') ){
+            $view='university';
+        }else{
+            //logout
+            Yii::$app->user->logout();
+            return $this->redirect(['/sign-in/login']);
+        }
 
-        return $this->render('dashboard');
+        return $this->render($view,array('University'=>$University));
+
     }
 
 }

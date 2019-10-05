@@ -19,7 +19,7 @@ use backend\models\University;
     {
         return [
             [['id', 'no_of_ratings', 'created_by', 'updated_by'], 'integer'],
-            [['title', 'image_base_url', 'image_path', 'description', 'detailed_address', 'location', 'lat', 'lng', 'recommended', 'created_at', 'updated_at'], 'safe'],
+            [['title', 'image_base_url', 'image_path', 'description', 'detailed_address', 'location', 'lat', 'lng', 'recommended', 'created_at', 'updated_at','responsible_id'], 'safe'],
             [['total_rating'], 'number'],
         ];
     }
@@ -59,6 +59,7 @@ use backend\models\University;
         $query->andFilterWhere([
             'id' => $this->id,
             'total_rating' => $this->total_rating,
+            'responsible_id' => $this->responsible_id,
             'no_of_ratings' => $this->no_of_ratings,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,

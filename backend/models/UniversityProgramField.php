@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use \backend\models\base\UniversityProgramField as BaseUniversityProgramField;
 
@@ -10,6 +11,8 @@ use \backend\models\base\UniversityProgramField as BaseUniversityProgramField;
  */
 class UniversityProgramField extends BaseUniversityProgramField
 {
+    use MultiLanguageTrait;
+
     /**
      * @inheritdoc
      */

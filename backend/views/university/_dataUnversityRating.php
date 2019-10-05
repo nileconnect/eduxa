@@ -9,12 +9,12 @@ use yii\data\ArrayDataProvider;
     $gridColumns = [
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
-        'user_id',
+       // 'user_id',
         'name',
         'comment:ntext',
         'rating',
-        'status',
-        'created_at',
+        //'status',
+        //'created_at',
         [
             'class' => 'yii\grid\ActionColumn',
             'controller' => 'unversity-rating'

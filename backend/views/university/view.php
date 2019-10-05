@@ -8,7 +8,12 @@ use kartik\grid\GridView;
 /* @var $model backend\models\University */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'University'), 'url' => ['index']];
+if(Yii::$app->user->id == $model->responsible_id){
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'University'), 'url' => ['manager-view']];
+}else{
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'University'), 'url' => ['index']];
+
+}
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="university-view">
@@ -18,26 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
             <h2><?= Yii::t('backend', 'University').' '. Html::encode($this->title) ?></h2>
         </div> -->
         <div class="col-sm-3">
-<?=             
-             Html::a( Yii::t('backend', 'PDF'), 
-                ['pdf', 'id' => $model->id],
-                [
-                    'class' => 'btn btn-danger',
-                    'target' => '_blank',
-                    'data-toggle' => 'tooltip',
-                    'title' => Yii::t('backend', 'Will open the generated PDF file in a new window')
-                ]
-            )?>
-            
-            <?= Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <? /*= Html::a(Yii::t('backend', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => Yii::t('backend', 'Are you sure you want to delete this item?'),
-                    'method' => 'post',
-                ],
-            ])*/
+
+            <?php
+            if(Yii::$app->user->id == $model->responsible_id){
+                echo  Html::a(Yii::t('backend', 'Update'), ['manager-update'], ['class' => 'btn btn-primary']);
+            }else{
+                echo Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+
+            }
             ?>
+
         </div>
     </div>
 

@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * UniversityProgramMajorsController implements the CRUD actions for UniversityProgramMajors model.
  */
-class UniversityProgramMajorsController extends Controller
+class UniversityProgramMajorsController extends BackendController
 {
     public function behaviors()
     {

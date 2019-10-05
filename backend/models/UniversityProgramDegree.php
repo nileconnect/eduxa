@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use \backend\models\base\UniversityProgramDegree as BaseUniversityProgramDegree;
 
@@ -10,6 +11,8 @@ use \backend\models\base\UniversityProgramDegree as BaseUniversityProgramDegree;
  */
 class UniversityProgramDegree extends BaseUniversityProgramDegree
 {
+    use MultiLanguageTrait;
+
     /**
      * @inheritdoc
      */

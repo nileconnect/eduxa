@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use trntv\filekit\behaviors\UploadBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use \backend\models\base\University as BaseUniversity;
 use yii\behaviors\BlameableBehavior;
@@ -13,6 +15,8 @@ use yii\behaviors\TimestampBehavior;
  */
 class University extends BaseUniversity
 {
+    use MultiLanguageTrait;
+
     public $logo;
     public $videos;
     public $photos;
@@ -90,6 +94,19 @@ class University extends BaseUniversity
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
             ],
+
+            'mlBehavior'=>[
+                'class'    => MultiLanguageBehavior::className(),
+                'mlConfig' => [
+                    'db_table'         => 'translations_with_text',
+                    'attributes'       => ['title','description'],
+                    'admin_routes'     => [
+                        'university/update',
+                        'university/index',
+                    ],
+                ],
+            ],
+
         ];
     }
 

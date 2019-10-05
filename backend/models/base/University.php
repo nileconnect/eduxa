@@ -86,6 +86,7 @@ class University extends \yii\db\ActiveRecord
             'total_rating' => Yii::t('backend', 'Total Rating'),
             'no_of_ratings' => Yii::t('backend', 'No Of Ratings'),
             'recommended' => Yii::t('backend', 'Recommended'),
+            'responsible_id' => Yii::t('backend', 'University Manager'),
         ];
     }
 
@@ -95,6 +96,10 @@ class University extends \yii\db\ActiveRecord
         return $this->hasOne(\backend\models\Country::className(), ['id' => 'country_id']);
     }
 
+    public function getResponsible()
+    {
+        return $this->hasOne(\common\models\User::className(), ['id' => 'responsible_id']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
