@@ -649,6 +649,13 @@ label.checkbox-inline input[type="checkbox"] {
   margin-left: 10px;
 }
 
+.nav-tabs li.active {
+  background: #335aa5;
+  border-bottom: 3px solid #0f5994;
+  margin-top: -5px;
+  border-top: 0px solid #187ac7;
+}
+
 .kv-treeview-alerts .alert {
   display: none;
 }
@@ -779,10 +786,15 @@ label.checkbox-inline input[type="checkbox"] {
 
 .skin-blue .nav-tabs {
   background: #1F4184;
+  margin-top: 5px;
 }
 
 .tabs-x .nav-tabs li.active,
 .nav-tabs-custom .nav-tabs li.active {
   background: #335aa5;
+}
+
+.upload-kit-item img {
+  max-width: 200px;
 }
 /*# sourceMappingURL=style.css.map */
