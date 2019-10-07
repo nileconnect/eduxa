@@ -60,7 +60,8 @@
     "webvimark/multilanguage": "*",
     "newerton/yii2-fancybox-3": "*",
     "kartik-v/yii2-widget-depdrop": "@dev",
-    "yiisoft/yii2-bootstrap": "^2.0@dev"
+    "yiisoft/yii2-bootstrap": "^2.0@dev",
+    "kartik-v/yii2-checkbox-x": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",

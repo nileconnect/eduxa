@@ -160,6 +160,31 @@ echo Menu::widget([
             'icon' => '<i class="fa fa-thumb-tack"></i>',
             'active' => Yii::$app->controller->id === 'page',
         ],
+
+        [
+            'label' => Yii::t('backend', 'Faqs'),
+            'url' => '#',
+            'icon' => '<i class="fa fa-users"></i>',
+            'options' => ['class' => 'treeview'],
+            'items' => [
+
+                [
+                    'label' => Yii::t('backend', 'Faq categories'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/faq-cat'],
+                    'active' => (Yii::$app->controller->id == 'faq-cat'),
+                ],
+
+                [
+                    'label' => Yii::t('backend', 'Faq'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/faq'],
+                    'active' => (Yii::$app->controller->id == 'faq'),
+                ],
+            ],
+        ],
+
+
         [
             'label' => Yii::t('backend', 'Articles'),
             'url' => '#',

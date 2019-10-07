@@ -54,24 +54,15 @@ class Schools extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
-            'courseType'
+            'courseType',
+            'schoolPhotos',
+            'schoolVideos',
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
-        return [
-            [['title'], 'required'],
-            [['course_type', 'country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class', 'lessons_per_week', 'created_by', 'updated_by'], 'integer'],
-            [['details'], 'string'],
-            [['hours_per_week', 'accomodation_fees', 'registeration_fees', 'study_books_fees', 'fees_per_week', 'discount', 'total_rating'], 'number'],
-            [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path', 'start_every', 'study_time', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['featured', 'status'], 'string', 'max' => 4]
-        ];
-    }
 
     /**
      * @inheritdoc
@@ -123,28 +114,28 @@ class Schools extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\SchoolsCourseTypes::className(), ['id' => 'course_type']);
     }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchoolPhotos()
+    {
+        return $this->hasMany(\backend\models\SchoolPhotos::className(), ['school_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchoolVideos()
+    {
+        return $this->hasMany(\backend\models\SchoolVideos::className(), ['school_id' => 'id']);
+    }
     
     /**
      * @inheritdoc
      * @return array mixed
      */
-    public function behaviors()
-    {
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-                'value' => new \yii\db\Expression('NOW()'),
-            ],
-            'blameable' => [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
-        ];
-    }
-
 
     /**
      * @inheritdoc
