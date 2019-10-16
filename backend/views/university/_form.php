@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\web\JsExpression;
 use kartik\depdrop\DepDrop;
-use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
+use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\University */
@@ -69,7 +69,8 @@ use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
             <div class="row">
                 <div class="col-md-6">
                     <div class="well">
-                        <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MultiLanguageActiveField::className());  ?>
+                        <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])
+                            ->widget(MyMultiLanguageActiveField::className(['class'=>'form-control dddd']));  ?>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -131,7 +132,7 @@ use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
 
 
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6])->widget(MultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
+    <?= $form->field($model, 'description')->textarea(['rows' => 6])->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
         'rows'=>3,
         'class'=>'form-control',
     ]]) ?>
