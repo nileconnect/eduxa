@@ -8,7 +8,9 @@ use yii\web\View;
 ?>
 <?php $sid = uniqid() ?>
 
-<ul class="nav nav-tabs" role="tablist">
+
+
+<ul class="nav nav-tabs translateTabs" role="tablist">
 	<?php foreach (Yii::$app->params['mlConfig']['languages'] as $languageCode => $languageName): ?>
 
 		<li class="<?= (Yii::$app->language == $languageCode) ? 'active' : '' ?>">

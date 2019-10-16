@@ -797,4 +797,39 @@ label.checkbox-inline input[type="checkbox"] {
 .upload-kit-item img {
   max-width: 200px;
 }
+
+.translateTabs.nav-tabs {
+  background: transparent;
+  border-bottom: 0;
+  margin-top: -30px;
+}
+
+.translateTabs.nav-tabs li {
+  margin: 0 10px 0 0;
+  float: right;
+}
+
+.translateTabs.nav-tabs li.active {
+  background: transparent;
+  border-bottom: 0;
+  margin-top: 0;
+  border-top: 0;
+}
+
+.translateTabs.nav-tabs li.active a {
+  background-color: #335aa5 !important;
+  color: #fff !important;
+}
+
+.translateTabs.nav-tabs li a {
+  color: #333 !important;
+  border-radius: 20px;
+  background-color: #e8e8e8 !important;
+  padding: 5px 20px;
+  line-height: 20px;
+}
+
+.actionBtns .btn {
+  float: left;
+}
 /*# sourceMappingURL=style.css.map */
