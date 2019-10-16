@@ -838,3 +838,38 @@ label.checkbox-inline input[type="checkbox"] {
         max-width: 200px;
     }
 }
+
+.translateTabs
+{
+    &.nav-tabs{
+        background: transparent;     
+        border-bottom:0;
+        margin-top: -30px;
+        li{
+            margin:0 10px 0 0;
+            float: right;
+            &.active {
+                background: transparent;
+                border-bottom: 0;
+                margin-top: 0;
+                border-top: 0;
+                a{
+                    background-color: #335aa5 !important;
+                    color:#fff !important;
+                }
+            }
+            a{
+                color: #333 !important;
+                border-radius: 20px;
+                background-color: #e8e8e8 !important;
+                padding: 5px 20px;
+                line-height: 20px;
+            }
+        }                                                                                                                                                                                           
+    }
+}
+.actionBtns{
+    .btn{
+        float: left;
+    }
+}

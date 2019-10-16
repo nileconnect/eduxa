@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- <div class="col-sm-9">
             <h2><?= Yii::t('backend', 'University').' '. Html::encode($this->title) ?></h2>
         </div> -->
-        <div class="col-sm-3">
+        <div class="col-sm-3 actionBtns">
 
             <?php
             if(Yii::$app->user->id == $model->responsible_id){
