@@ -54,6 +54,11 @@ return [
 
         'roles' => ['universityManager'],
     ],
+    [
+        'controllers' => ['manager-university-programs'],
+        'allow' => true,
+        'roles' => ['universityManager'],
+    ],
 
 
 

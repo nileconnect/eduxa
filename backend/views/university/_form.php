@@ -183,14 +183,14 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
     <?php
     echo \pigolab\locationpicker\LocationPickerWidget::widget([
-        'key' => 'AIzaSyBA-iVIbf-TzKj-NjQE4OLfoXO3iCEJfD4',	// require , Put your google map api key
+        'key' => env('GOOGLE_MAP_KEY'), 	// require , Put your google map api key
         'options' => [
             'style' => 'width: 100%; height: 400px', // map canvas width and height
         ] ,
         'clientOptions' => [
             'location' => [
-                'latitude'  => 46.15242437752303 ,
-                'longitude' => 2.7470703125,
+                'latitude'  => $model->lat == ''? env('START_LAT') : $model->lat ,
+                'longitude' => $model->lng == ''? env('START_LNG') : $model->lng ,
             ],
             'radius'    => 300,
             'addressFormat' => 'street_number',
