@@ -48,11 +48,8 @@ class University extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
-            'country',
-            'city',
             'universityAccreditedCountries',
             'universityPhotos',
-            'universityPrograms',
             'universityVideos',
             'unversityRatings'
         ];
@@ -116,7 +113,7 @@ class University extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\UniversityAccreditedCountries::className(), ['university_id' => 'id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -124,7 +121,7 @@ class University extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\UniversityPhotos::className(), ['university_id' => 'id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -132,7 +129,7 @@ class University extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\UniversityPrograms::className(), ['university_id' => 'id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -140,7 +137,7 @@ class University extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\UniversityVideos::className(), ['university_id' => 'id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -148,7 +145,7 @@ class University extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\UniversityRating::className(), ['university_id' => 'id']);
     }
-    
+
 
 
     /**
