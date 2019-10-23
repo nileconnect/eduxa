@@ -22,12 +22,13 @@ echo TabularForm::widget([
     ],
     'attributes' => [
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions' => ['hidden'=>true]],
-        'path' => ['type' => TabularForm::INPUT_TEXT],
-        'base_url' => ['type' => TabularForm::INPUT_TEXT],
-        'type' => ['type' => TabularForm::INPUT_TEXT],
-        'size' => ['type' => TabularForm::INPUT_TEXT],
+       // 'path' => ['type' => TabularForm::INPUT_TEXT],
         'name' => ['type' => TabularForm::INPUT_TEXT],
-        'order' => ['type' => TabularForm::INPUT_TEXT],
+
+        'base_url' => ['type' => TabularForm::INPUT_TEXT],
+       // 'type' => ['type' => TabularForm::INPUT_TEXT],
+        //'size' => ['type' => TabularForm::INPUT_TEXT],
+        //'order' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',
             'label' => '',

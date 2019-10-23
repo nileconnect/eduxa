@@ -15,10 +15,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class University extends BaseUniversity
 {
-    use MultiLanguageTrait;
+        use MultiLanguageTrait;
 
     public $logo;
-    public $videos;
     public $photos;
 
     const STATUS_OFF = 0;
@@ -34,7 +33,7 @@ class University extends BaseUniversity
             [['no_of_ratings', 'created_by', 'updated_by','status','responsible_id'], 'integer'],
             [['title', 'image_base_url', 'image_path', 'detailed_address', 'location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
             [['recommended'], 'string', 'max' => 1],
-            [['logo','videos','photos'],'safe']
+            [['logo','photos'],'safe']
         ];
     }
 
@@ -63,18 +62,6 @@ class University extends BaseUniversity
                 'attribute' => 'photos',
                 'multiple' => true,
                 'uploadRelation' => 'universityPhotos',
-                'pathAttribute' => 'path',
-                'baseUrlAttribute' => 'base_url',
-                'orderAttribute' => 'order',
-                'typeAttribute' => 'type',
-                'sizeAttribute' => 'size',
-                'nameAttribute' => 'name',
-            ],
-            [
-                'class' => UploadBehavior::class,
-                'attribute' => 'videos',
-                'multiple' => true,
-                'uploadRelation' => 'universityVideos',
                 'pathAttribute' => 'path',
                 'baseUrlAttribute' => 'base_url',
                 'orderAttribute' => 'order',

@@ -145,11 +145,11 @@ $bundle = BackendAsset::register($this);
 
             <?php
             if (Yii::$app->user->can('administrator')) {
-                $this->beginContent('@app/views/layouts/_manager_menu.php');
+                $this->beginContent('@app/views/layouts/menus/_manager_menu.php');
 
                 $this->endContent();
             } elseif (Yii::$app->user->can('manager') ) {
-                $this->beginContent('@app/views/layouts/_manager_menu.php');
+                $this->beginContent('@app/views/layouts/menus/_manager_menu.php');
                 $this->endContent();
 
             } elseif (Yii::$app->user->can('universityManager') ) {

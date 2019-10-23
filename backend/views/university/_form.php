@@ -225,16 +225,6 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
 
 
-    <?php echo $form->field($model, 'videos')->widget(
-        Upload::class,
-        [
-            'url' => ['/file/storage/upload'],
-            'sortable' => true,
-            'maxFileSize' => 10000000, // 10 MiB
-            'maxNumberOfFiles' => 10,
-        ]);
-    ?>
-
     <?php
     $forms = [
         [
@@ -247,18 +237,18 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
 
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'Unversity Rating')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'University Rating')),
             'content' => $this->render('_formUnversityRating', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->unversityRatings),
             ]),
         ],
 
-//        [
-//            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'UniversityPrograms')),
-//            'content' => $this->render('_formUniversityPrograms', [
-//                'row' => \yii\helpers\ArrayHelper::toArray($model->universityPrograms),
-//            ]),
-//        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'University Videos')),
+            'content' => $this->render('_formUniversityVideos', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->universityVideos),
+            ]),
+        ],
 
     ];
     echo kartik\tabs\TabsX::widget([

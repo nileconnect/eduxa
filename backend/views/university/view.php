@@ -109,12 +109,13 @@ if($providerUniversityPhotos->totalCount){
     $gridColumnUniversityPhotos = [
         ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'visible' => false],
-                        'path',
+        'name',
+
+        //  'path',
             'base_url:url',
-            'type',
-            'size',
-            'name',
-            'order',
+           // 'type',
+         //   'size',
+          //  'order',
     ];
     echo Gridview::widget([
         'dataProvider' => $providerUniversityPhotos,
