@@ -38,14 +38,7 @@ class UniversityVideos extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
-        return [
-            [['university_id', 'path'], 'required'],
-            [['university_id', 'size', 'created_at', 'order'], 'integer'],
-            [['path', 'base_url', 'type', 'name'], 'string', 'max' => 255]
-        ];
-    }
+
 
     /**
      * @inheritdoc

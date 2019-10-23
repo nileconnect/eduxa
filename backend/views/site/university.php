@@ -30,8 +30,8 @@ if($University){
             </div>
             <div class="box-footer no-padding">
                 <ul class="nav nav-stacked">
-                <li><a href="">University Details</a></li>
-                <li><a href="">Manage University</a></li>
+                <li><a href="/university/manager-view">University Details</a></li>
+                <li><a href="/university/manager-update">Manage University</a></li>
                 
                 </ul>
             </div>
@@ -51,8 +51,8 @@ if($University){
             </div>
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                <li><a href="">Programs List</a></li>
-                <li><a href="">Manage Programs</a></li>
+                <li><a href="/manager-university-programs">Programs List</a></li>
+                <li><a href="manager-university-programs/create">Create Program</a></li>
                
               </ul>
             </div>

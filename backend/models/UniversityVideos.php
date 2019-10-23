@@ -15,12 +15,10 @@ class UniversityVideos extends BaseUniversityVideos
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
-	    [
-            [['university_id', 'path'], 'required'],
-            [['university_id', 'size', 'created_at', 'order'], 'integer'],
-            [['path', 'base_url', 'type', 'name'], 'string', 'max' => 255]
-        ]);
+        return [
+            [['university_id', 'base_url'], 'required'],
+            [['university_id', 'size', 'created_at', 'order','path', 'base_url', 'type', 'name'], 'safe'],
+            // [['path', 'base_url', 'type', 'name'], 'string', 'max' => 255]
+        ];
     }
-	
 }
