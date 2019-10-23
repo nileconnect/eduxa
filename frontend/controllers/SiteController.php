@@ -57,9 +57,6 @@ class SiteController extends FrontendController
      */
     public function actionIndex()
     {
-        echo "welcome .... ";
-        die;
-
         return $this->render('index');
     }
 

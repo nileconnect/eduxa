@@ -7,10 +7,10 @@
 
 namespace frontend\assets;
 
-use common\assets\Html5shiv;
-use yii\bootstrap\BootstrapAsset;
-use yii\web\AssetBundle;
-use yii\web\YiiAsset;
+// use common\assets\Html5shiv;
+// //use yii\bootstrap\BootstrapAsset;
+ use yii\web\AssetBundle;
+//use yii\web\YiiAsset;
 
 /**
  * Frontend application asset
@@ -20,28 +20,31 @@ class FrontendAsset extends AssetBundle
     /**
      * @var string
      */
-    public $sourcePath = '@frontend/web/bundle';
+    public $sourcePath = '@frontend/web/dist/';
 
     /**
      * @var array
      */
     public $css = [
-        'style.css',
+        'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700&display=swap',
+        'https://fonts.googleapis.com/css?family=Raleway:500,600,700&display=swap',
+        'css/style.min.css',
     ];
 
     /**
      * @var array
      */
     public $js = [
-        'app.js',
+        'js/jquery-3.4.1.min.js',
+        'js/app.js',
     ];
 
     /**
      * @var array
      */
     public $depends = [
-        YiiAsset::class,
-        BootstrapAsset::class,
-        Html5shiv::class,
+       // YiiAsset::class,
+       // BootstrapAsset::class,
+       // Html5shiv::class,
     ];
 }
