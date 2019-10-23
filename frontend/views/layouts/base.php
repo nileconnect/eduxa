@@ -40,7 +40,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 		<div class="container">
 				
 				<nav class="navbar navbar-expand-lg navbar-light">
-					<div class="navbar-brand logo"><h1><a href="index.html"><img src="img/logo.svg" alt="eduxa"></a></h1></div>
+					<div class="navbar-brand logo"><h1><a href="index.html"><img src="/dist/img/logo.svg" alt="eduxa"></a></h1></div>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
