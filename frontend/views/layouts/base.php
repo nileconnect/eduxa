@@ -26,7 +26,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 						</div>
 					</li>
 					<li class="head-lang-item dropdown">
-						<a href="javascript:void(0);" class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/icons/eng-flag.svg" alt="" /> <span class="link-text">English</span></a>
+						<a href="javascript:void(0);" class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/dist/img/icons/eng-flag.svg" alt="" /> <span class="link-text">English</span></a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 							<a class="dropdown-item" href="#">English</a>
 							<a class="dropdown-item" href="#">Arabic</a>
@@ -56,10 +56,10 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 								<a class="nav-link" href="#">About Us</a>
 							</li>
 							<li class="nav-item">
-								<a class="button button-primary" href="#">My Eduxa</a>
+								<a class="button button-primary" href="/site/myeduxa">My Eduxa</a>
 							</li>
 							<li class="nav-item">
-								<a class="button button-primary" href="#">Referral Program</a>
+								<a class="button button-primary" href="/site/signup2">Referral Program</a>
 							</li>
 						</ul>
 					</div>
@@ -73,10 +73,4 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 
 
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?php echo date('Y') ?></p>
-        <p class="pull-right"><?php echo Yii::powered() ?></p>
-    </div>
-</footer>
 <?php $this->endContent() ?>

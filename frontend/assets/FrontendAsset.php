@@ -20,7 +20,7 @@ class FrontendAsset extends AssetBundle
     /**
      * @var string
      */
-    public $sourcePath = '@frontend/web/dist/';
+    public $sourcePath = '@frontend/web/';
 
     /**
      * @var array
@@ -28,7 +28,8 @@ class FrontendAsset extends AssetBundle
     public $css = [
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700&display=swap',
         'https://fonts.googleapis.com/css?family=Raleway:500,600,700&display=swap',
-        'css/style.min.css',
+        'dist/css/style.min.css',
+        'css/style.css', // custom style
     ];
 
     /**

@@ -15,7 +15,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class University extends BaseUniversity
 {
-        use MultiLanguageTrait;
+    use MultiLanguageTrait;
 
     public $logo;
     public $photos;

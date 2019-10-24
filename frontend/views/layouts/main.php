@@ -7,11 +7,5 @@
 
 $this->beginContent('@frontend/views/layouts/base.php')
 ?>
-    <div class="container">
-
-       
-
-        <?php echo $content ?>
-
-    </div>
+    <?php echo $content ?>
 <?php $this->endContent() ?>
