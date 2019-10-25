@@ -12,42 +12,42 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 /* @var $model backend\models\University */
 /* @var $form yii\widgets\ActiveForm */
 
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
     'viewParams' => [
-        'class' => 'UniversityAccreditedCountries', 
-        'relID' => 'university-accredited-countries', 
-        'value' => \yii\helpers\Json::encode($model->universityAccreditedCountries),
+        'class' => 'UniversityCountries',
+        'relID' => 'university-countries',
+        'value' => \yii\helpers\Json::encode($model->universityCountries),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
     'viewParams' => [
-        'class' => 'UniversityPhotos', 
-        'relID' => 'university-photos', 
+        'class' => 'UniversityPhotos',
+        'relID' => 'university-photos',
         'value' => \yii\helpers\Json::encode($model->universityPhotos),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
     'viewParams' => [
-        'class' => 'UniversityPrograms', 
-        'relID' => 'university-programs', 
+        'class' => 'UniversityPrograms',
+        'relID' => 'university-programs',
         'value' => \yii\helpers\Json::encode($model->universityPrograms),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
     'viewParams' => [
-        'class' => 'UniversityVideos', 
-        'relID' => 'university-videos', 
+        'class' => 'UniversityVideos',
+        'relID' => 'university-videos',
         'value' => \yii\helpers\Json::encode($model->universityVideos),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
     'viewParams' => [
-        'class' => 'UnversityRating', 
-        'relID' => 'unversity-rating', 
+        'class' => 'UnversityRating',
+        'relID' => 'unversity-rating',
         'value' => \yii\helpers\Json::encode($model->unversityRatings),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
@@ -70,7 +70,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
                 <div class="col-md-6">
                     <div class="well">
                         <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])
-                            ->widget(MyMultiLanguageActiveField::className(['class'=>'form-control dddd']));  ?>
+                            ->widget(MyMultiLanguageActiveField::className());  ?>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -154,7 +154,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 //        ]
 //    ) ?>
 
-    <?= $form->field($model, 'detailed_address')->textInput(['maxlength' => true, 'placeholder' => 'Detailed Address']) ?>
+    <?= $form->field($model, 'detailed_address')->textInput(['maxlength' => true, 'placeholder' => 'Detailed Address'])->widget(MyMultiLanguageActiveField::className());  ?>
 
 
 
@@ -227,13 +227,13 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
     <?php
     $forms = [
+
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'University Accredited Countries')),
-            'content' => $this->render('_formUniversityAccreditedCountries', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->universityAccreditedCountries),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'UniversityCountries')),
+            'content' => $this->render('_formUniversityCountries', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->universityCountries),
             ]),
         ],
-
 
 
         [

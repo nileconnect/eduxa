@@ -167,7 +167,7 @@ $config = [
         ],
 
         'mlConfig'=>[
-            'default_language'=>'ar',
+            'default_language'=>'en',
             'languages'=>[
                 'en'=>'English',
                 'ar'=>'عربى',

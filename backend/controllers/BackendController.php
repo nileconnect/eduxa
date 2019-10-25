@@ -27,7 +27,6 @@ class BackendController extends \yii\web\Controller
     {
 
         MultiLanguageHelper::catchLanguage();
-        \Yii::$app->language ='en';
 
         if(\Yii::$app->user->can('universityManager')){
 

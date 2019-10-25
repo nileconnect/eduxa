@@ -16,6 +16,7 @@ $search = "$('.search-button').click(function(){
 });";
 $this->registerJs($search);
 
+
 echo newerton\fancybox3\FancyBox::widget([
 
     'config'=>[
@@ -23,8 +24,8 @@ echo newerton\fancybox3\FancyBox::widget([
 
             'preload'       => false,
             'css'=>[
-                'width'=>'500px',
-                'height'=>'250px'
+                'width'=>'900px',
+                'height'=>'500px'
             ]
         ],
 
@@ -45,21 +46,23 @@ echo newerton\fancybox3\FancyBox::widget([
     <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
-    <?php 
+    <?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
         'title',
+
+
         [
-           'attribute'=>'responsible_id',
-            'format'=>'raw',
-            'value' => function ($model) {
+            'attribute' => 'responsible_id',
+            'value'=>function ($model) {
                 $creator =   $model->responsible_id ? $model->responsible->getPublicIdentity() : 'Assign';
 
-                return '<a  data-fancybox="" data-type="iframe"   href="/university/assign?id='.$model->id.'">'.$creator.'</a>';
-
-            }
+                return  ' <a data-src="/university/manager?id='.$model->id.'" data-fancybox data-type="iframe" href="javascript:;" >'.$creator.'</a> ' ;
+            },
+            'format' => 'raw',
         ],
+
 
         [
             'label'=>'Programms',
@@ -76,7 +79,7 @@ echo newerton\fancybox3\FancyBox::widget([
         [
             'class' => 'yii\grid\ActionColumn','template'=>'{view} {update}'
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

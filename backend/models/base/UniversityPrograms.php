@@ -101,7 +101,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
             'field_id' => Yii::t('backend', 'Field'),
             'country_id' => Yii::t('backend', 'Country'),
             'city_id' => Yii::t('backend', 'City'),
-            'study_start_date' => Yii::t('backend', 'Study Start Date'),
+            'study_start_date' => Yii::t('backend', 'Begining Of Study'),
             'study_duration' => Yii::t('backend', 'Study Duration'),
             'study_method' => Yii::t('backend', 'Study Method'),
             'attendance_type' => Yii::t('backend', 'Attendance Type'),
@@ -119,7 +119,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
             'program_type' => Yii::t('backend', 'Program Type'),
         ];
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -127,7 +127,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\University::className(), ['id' => 'university_id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -135,7 +135,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\UniversityProgramMajors::className(), ['id' => 'major_id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -143,7 +143,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\UniversityProgramField::className(), ['id' => 'field_id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -151,7 +151,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\UniversityProgramDegree::className(), ['id' => 'degree_id']);
     }
-    
+
 
     /**
      * @inheritdoc
@@ -169,7 +169,8 @@ class UniversityPrograms extends \yii\db\ActiveRecord
                 'class'    => MultiLanguageBehavior::className(),
                 'mlConfig' => [
                     'db_table'         => 'translations_with_text',
-                    'attributes'       => ['title'],
+                    'attributes'       => ['title','study_duration','study_method','attendance_type','annual_cost','conditional_admissions','toefl'
+                                            ,'ielts','bank_statment','high_school_transcript','bachelor_degree','certificate','note1','note2'],
                     'admin_routes'     => [
                         'university-program/update',
                         'university-program/index',

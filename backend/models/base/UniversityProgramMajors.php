@@ -68,7 +68,7 @@ class UniversityProgramMajors extends \yii\db\ActiveRecord
             'status' => Yii::t('backend', 'Status'),
         ];
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -76,38 +76,7 @@ class UniversityProgramMajors extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\UniversityPrograms::className(), ['major_id' => 'id']);
     }
-    
-    /**
-     * @inheritdoc
-     * @return array mixed
-     */
-    public function behaviors()
-    {
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-                'value' => new \yii\db\Expression('NOW()'),
-            ],
-            'blameable' => [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
-            'mlBehavior'=>[
-                'class'    => MultiLanguageBehavior::className(),
-                'mlConfig' => [
-                    'db_table'         => 'translations_with_text',
-                    'attributes'       => ['title'],
-                    'admin_routes'     => [
-                        'university-program-majors/update',
-                        'university-program-majors/index',
-                    ],
-                ],
-            ],
-        ];
-    }
+
 
 
     /**

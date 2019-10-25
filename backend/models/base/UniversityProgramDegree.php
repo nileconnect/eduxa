@@ -65,7 +65,7 @@ class UniversityProgramDegree extends \yii\db\ActiveRecord
             'title' => Yii::t('backend', 'Title'),
         ];
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -73,39 +73,8 @@ class UniversityProgramDegree extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\UniversityPrograms::className(), ['degree_id' => 'id']);
     }
-    
-    /**
-     * @inheritdoc
-     * @return array mixed
-     */
-    public function behaviors()
-    {
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-                'value' => new \yii\db\Expression('NOW()'),
-            ],
-            'blameable' => [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
 
-            'mlBehavior'=>[
-                'class'    => MultiLanguageBehavior::className(),
-                'mlConfig' => [
-                    'db_table'         => 'translations_with_text',
-                    'attributes'       => ['title'],
-                    'admin_routes'     => [
-                        'university-program-degree/update',
-                        'university-program-degree/index',
-                    ],
-                ],
-            ],
-        ];
-    }
+
 
 
     /**

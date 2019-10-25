@@ -2,24 +2,24 @@
 
 namespace backend\models\base;
 
-use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
 /**
- * This is the base model class for table "university_program_field".
+ * This is the base model class for table "university_countries".
  *
  * @property integer $id
- * @property string $title
+ * @property integer $university_id
+ * @property integer $country_id
  * @property string $created_at
  * @property string $updated_at
  * @property integer $created_by
  * @property integer $updated_by
  *
- * @property \backend\models\UniversityPrograms[] $universityPrograms
+ * @property \backend\models\University $university
  */
-class UniversityProgramField extends \yii\db\ActiveRecord
+class UniversityCountries extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
@@ -31,7 +31,7 @@ class UniversityProgramField extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
-            'universityPrograms'
+            'university'
         ];
     }
 
@@ -41,9 +41,9 @@ class UniversityProgramField extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
-            [['created_by', 'updated_by'], 'integer'],
-            [['title', 'created_at', 'updated_at'], 'string', 'max' => 255]
+            [['university_id'], 'required'],
+            [['university_id', 'country_id', 'created_by', 'updated_by'], 'integer'],
+            [['created_at', 'updated_at'], 'string', 'max' => 255]
         ];
     }
 
@@ -52,7 +52,7 @@ class UniversityProgramField extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'university_program_field';
+        return 'university_countries';
     }
 
     /**
@@ -62,17 +62,27 @@ class UniversityProgramField extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'title' => Yii::t('backend', 'Title'),
+            'university_id' => Yii::t('backend', 'University ID'),
+            'country_id' => Yii::t('backend', 'Country ID'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUniversityPrograms()
+    public function getUniversity()
     {
-        return $this->hasMany(\backend\models\UniversityPrograms::className(), ['field_id' => 'id']);
+        return $this->hasOne(\backend\models\University::className(), ['id' => 'university_id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return $this->hasOne(\backend\models\Country::className(), ['id' => 'country_id']);
+    }
+
 
     /**
      * @inheritdoc
@@ -92,27 +102,16 @@ class UniversityProgramField extends \yii\db\ActiveRecord
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
             ],
-            'mlBehavior'=>[
-                'class'    => MultiLanguageBehavior::className(),
-                'mlConfig' => [
-                    'db_table'         => 'translations_with_string',
-                    'attributes'       => ['title'],
-                    'admin_routes'     => [
-                        'university-program-field/update',
-                        'university-program-field/index',
-                    ],
-                ],
-            ],
         ];
     }
 
 
     /**
      * @inheritdoc
-     * @return \backend\models\activequery\UniversityProgramFieldQuery the active query used by this AR class.
+     * @return \backend\models\activequery\UniversityCountriesQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \backend\models\activequery\UniversityProgramFieldQuery(get_called_class());
+        return new \backend\models\activequery\UniversityCountriesQuery(get_called_class());
     }
 }

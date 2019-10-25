@@ -16,7 +16,7 @@ class UniversityVideos extends BaseUniversityVideos
     public function rules()
     {
         return [
-            [['university_id', 'base_url'], 'required'],
+            [['university_id', 'base_url'], 'safe'],
             [['university_id', 'size', 'created_at', 'order','path', 'base_url', 'type', 'name'], 'safe'],
             // [['path', 'base_url', 'type', 'name'], 'string', 'max' => 255]
         ];

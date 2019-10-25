@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="row">
-<?php 
+<?php
     $gridColumn = [
         ['attribute' => 'id', 'visible' => false],
         'title',
@@ -77,10 +77,10 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
 ?>
     </div>
-    
+
     <div class="row">
 <?php
-if($providerUniversityAccreditedCountries->totalCount){
+if($providerUniversityCountries->totalCount){
     $gridColumnUniversityAccreditedCountries = [
         ['class' => 'yii\grid\SerialColumn'],
                         [
@@ -89,7 +89,7 @@ if($providerUniversityAccreditedCountries->totalCount){
             ],
     ];
     echo Gridview::widget([
-        'dataProvider' => $providerUniversityAccreditedCountries,
+        'dataProvider' => $providerUniversityCountries,
         'pjax' => true,
         'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-university-accredited-countries']],
         'panel' => [
@@ -102,7 +102,7 @@ if($providerUniversityAccreditedCountries->totalCount){
 ?>
 
     </div>
-    
+
     <div class="row">
 <?php
 if($providerUniversityPhotos->totalCount){
@@ -131,7 +131,7 @@ if($providerUniversityPhotos->totalCount){
 ?>
 
     </div>
-    
+
     <div class="row">
 <?php
 if($providerUniversityPrograms->totalCount){
@@ -184,7 +184,7 @@ if($providerUniversityPrograms->totalCount){
 ?>
 
     </div>
-    
+
     <div class="row">
 <?php
 if($providerUniversityVideos->totalCount){
@@ -212,7 +212,7 @@ if($providerUniversityVideos->totalCount){
 ?>
 
     </div>
-    
+
     <div class="row">
 <?php
 if($providerUnversityRating->totalCount){

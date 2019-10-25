@@ -4,8 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\depdrop\DepDrop;
 use yii\helpers\Url;
-use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
-
+use common\helpers\multiLang\MyMultiLanguageActiveField;
 /* @var $this yii\web\View */
 /* @var $model backend\models\UniversityPrograms */
 /* @var $form yii\widgets\ActiveForm */
@@ -35,7 +34,7 @@ use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
     <div class="row">
         <div class="col-md-6 col-sm-12">
 
-            <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title']) ?>
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MyMultiLanguageActiveField::className());  ?>
 
 
         </div>
@@ -119,19 +118,19 @@ use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'study_duration')->textInput(['maxlength' => true, 'placeholder' => 'Study Duration']) ?>
+            <?= $form->field($model, 'study_duration')->textInput(['maxlength' => true, 'placeholder' => 'Study Duration'])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'study_method')->textInput(['maxlength' => true, 'placeholder' => 'Study Method']) ?>
+            <?= $form->field($model, 'study_method')->textInput(['maxlength' => true, 'placeholder' => 'Study Method'])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'attendance_type')->textInput(['maxlength' => true, 'placeholder' => 'Attendance Type']) ?>
+            <?= $form->field($model, 'attendance_type')->textInput(['maxlength' => true, 'placeholder' => 'Attendance Type'])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
     </div>
@@ -143,32 +142,32 @@ use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'annual_cost')->textInput(['placeholder' => 'Annual Cost']) ?>
+            <?= $form->field($model, 'annual_cost')->textInput(['placeholder' => 'Annual Cost'])->widget(MyMultiLanguageActiveField::className());  ?> 
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'conditional_admissions')->textInput(['maxlength' => true, 'placeholder' => 'Conditional Admissions']) ?>
+            <?= $form->field($model, 'conditional_admissions')->textInput(['maxlength' => true, 'placeholder' => 'Conditional Admissions'])->widget(MyMultiLanguageActiveField::className());  ?>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'toefl')->textInput(['maxlength' => true, 'placeholder' => 'Toefl']) ?>
+            <?= $form->field($model, 'toefl')->textInput(['maxlength' => true, 'placeholder' => 'Toefl'])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'ielts')->textInput(['maxlength' => true, 'placeholder' => 'Ielts']) ?>
+            <?= $form->field($model, 'ielts')->textInput(['maxlength' => true, 'placeholder' => 'Ielts'])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'bank_statment')->textInput(['maxlength' => true, 'placeholder' => 'Bank Statment']) ?>
+            <?= $form->field($model, 'bank_statment')->textInput(['maxlength' => true, 'placeholder' => 'Bank Statment'])->widget(MyMultiLanguageActiveField::className());  ?>
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'high_school_transcript')->textInput(['maxlength' => true, 'placeholder' => 'High School Transcript']) ?>
+            <?= $form->field($model, 'high_school_transcript')->textInput(['maxlength' => true, 'placeholder' => 'High School Transcript'])->widget(MyMultiLanguageActiveField::className());  ?>
         </div>
     </div>
 
@@ -177,11 +176,11 @@ use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'bachelor_degree')->textInput(['maxlength' => true, 'placeholder' => 'Bachelor Degree']) ?>
+            <?= $form->field($model, 'bachelor_degree')->textInput(['maxlength' => true, 'placeholder' => 'Bachelor Degree'])->widget(MyMultiLanguageActiveField::className());  ?>
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'certificate')->textInput(['maxlength' => true, 'placeholder' => 'Certificate']) ?>
+            <?= $form->field($model, 'certificate')->textInput(['maxlength' => true, 'placeholder' => 'Certificate'])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
     </div>
@@ -190,11 +189,11 @@ use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
     <div class="row">
         <div class="col-md-6 col-sm-12">
 
-            <?= $form->field($model, 'note1')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'note1')->textarea(['rows' => 6])->widget(MyMultiLanguageActiveField::className());  ?>
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'note2')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'note2')->textarea(['rows' => 6])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
     </div>

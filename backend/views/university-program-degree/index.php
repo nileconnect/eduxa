@@ -28,15 +28,15 @@ $this->registerJs($search);
     <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
-    <?php 
+    <?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
         'title',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'yii\grid\ActionColumn','template'=>'{view} {update}'
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

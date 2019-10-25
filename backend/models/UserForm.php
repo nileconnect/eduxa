@@ -28,7 +28,7 @@ class UserForm extends Model
     {
         return [
             ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
+            //['username', 'required'],
             ['username', 'unique', 'targetClass' => User::class, 'filter' => function ($query) {
                 if (!$this->getModel()->isNewRecord) {
                     $query->andWhere(['not', ['id' => $this->getModel()->id]]);
@@ -112,7 +112,7 @@ class UserForm extends Model
         if ($this->validate()) {
             $model = $this->getModel();
             $isNewRecord = $model->getIsNewRecord();
-            $model->username = $this->username;
+            $model->username = $this->email;
             $model->email = $this->email;
             $model->status = $this->status;
             if ($this->password) {

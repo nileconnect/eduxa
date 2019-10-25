@@ -1,6 +1,5 @@
 <?php
 
-use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -8,14 +7,6 @@ use yii\widgets\ActiveForm;
 /* @var $model backend\models\UniversityProgramDegree */
 /* @var $form yii\widgets\ActiveForm */
 
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
-    'viewParams' => [
-        'class' => 'UniversityPrograms', 
-        'relID' => 'university-programs', 
-        'value' => \yii\helpers\Json::encode($model->universityPrograms),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
 ?>
 
 <div class="university-program-degree-form">
@@ -26,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MultiLanguageActiveField::className());  ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(\common\helpers\multiLang\MyMultiLanguageActiveField::className());  ?>
 
     <?php
     /*

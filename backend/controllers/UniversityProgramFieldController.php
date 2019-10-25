@@ -67,7 +67,7 @@ class UniversityProgramFieldController extends BackendController
     {
         $model = new UniversityProgramField();
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -86,7 +86,7 @@ class UniversityProgramFieldController extends BackendController
     {
         $model = $this->findModel($id);
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -108,7 +108,7 @@ class UniversityProgramFieldController extends BackendController
         return $this->redirect(['index']);
     }
 
-    
+
     /**
      * Finds the UniversityProgramField model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -124,7 +124,7 @@ class UniversityProgramFieldController extends BackendController
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
         }
     }
-    
+
     /**
     * Action to load a tabular form grid
     * for UniversityPrograms

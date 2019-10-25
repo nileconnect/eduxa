@@ -32,8 +32,7 @@ class University extends BaseUniversity
             [['total_rating'], 'number'],
             [['no_of_ratings', 'created_by', 'updated_by','status','responsible_id'], 'integer'],
             [['title', 'image_base_url', 'image_path', 'detailed_address', 'location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['recommended'], 'string', 'max' => 1],
-            [['logo','photos'],'safe']
+            [['logo','photos','country_id','city_id','recommended'],'safe']
         ];
     }
 
@@ -86,7 +85,7 @@ class University extends BaseUniversity
                 'class'    => MultiLanguageBehavior::className(),
                 'mlConfig' => [
                     'db_table'         => 'translations_with_text',
-                    'attributes'       => ['title','description'],
+                    'attributes'       => ['title','description','detailed_address'],
                     'admin_routes'     => [
                         'university/update',
                         'university/index',
@@ -96,6 +95,17 @@ class University extends BaseUniversity
 
         ];
     }
+
+    public function CalcRating()
+    {
+        $ratingCount = count($this->unversityRatings);
+        $rating_sum  = $this->unversityRatingsSum;
+        $this->no_of_ratings = $ratingCount ;
+        $this->total_rating = number_format($rating_sum/$ratingCount , 0);
+        $this->save(false);
+        return true;
+    }
+
 
 
 }
