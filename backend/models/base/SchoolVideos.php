@@ -41,7 +41,7 @@ class SchoolVideos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['school_id', 'path'], 'required'],
+            [['school_id', 'path'], 'safe'],
             [['school_id', 'size', 'created_at', 'order'], 'integer'],
             [['path', 'base_url', 'type', 'name'], 'string', 'max' => 255]
         ];
@@ -71,7 +71,7 @@ class SchoolVideos extends \yii\db\ActiveRecord
             'order' => Yii::t('backend', 'Order'),
         ];
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -79,7 +79,7 @@ class SchoolVideos extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\Schools::className(), ['id' => 'school_id']);
     }
-    
+
 
     /**
      * @inheritdoc

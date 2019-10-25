@@ -1,4 +1,4 @@
-<div class="form-group" id="add-unversity-rating">
+<div class="form-group" id="add-school-rating">
 <?php
 use kartik\grid\GridView;
 use kartik\builder\TabularForm;
@@ -14,7 +14,7 @@ $dataProvider = new ArrayDataProvider([
 ]);
 echo TabularForm::widget([
     'dataProvider' => $dataProvider,
-    'formName' => 'UnversityRating',
+    'formName' => 'SchoolRating',
     'checkboxColumn' => false,
     'actionColumn' => false,
     'attributeDefaults' => [
@@ -22,7 +22,6 @@ echo TabularForm::widget([
     ],
     'attributes' => [
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions' => ['hidden'=>true]],
-        //'user_id' => ['type' => TabularForm::INPUT_TEXT],
         'name' => ['type' => TabularForm::INPUT_TEXT],
         'comment' => ['type' => TabularForm::INPUT_TEXTAREA],
         'rating' => ['type' => TabularForm::INPUT_TEXT],
@@ -32,22 +31,21 @@ echo TabularForm::widget([
             'widgetClass' => \kartik\widgets\Select2::className(),
             'options' => [
                 'data' =>[
-                       '1'=>'Active',
-                       '0'=> 'Not active',
+                    '1'=>'Active',
+                    '0'=> 'Not active',
                 ],
                 //'options' => ['placeholder' => 'Select'],
             ],
             'columnOptions' => ['width' => '200px']
         ],
 
-      //  'ceated_at' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',
             'label' => '',
             'value' => function($model, $key) {
                 return
                     Html::hiddenInput('Children[' . $key . '][id]', (!empty($model['id'])) ? $model['id'] : "") .
-                    Html::a('<i class="glyphicon glyphicon-trash"></i>', '#', ['title' =>  Yii::t('backend', 'Delete'), 'onClick' => 'delRowUnversityRating(' . $key . '); return false;', 'id' => 'unversity-rating-del-btn']);
+                    Html::a('<i class="glyphicon glyphicon-trash"></i>', '#', ['title' =>  Yii::t('backend', 'Delete'), 'onClick' => 'delRowSchoolRating(' . $key . '); return false;', 'id' => 'school-rating-del-btn']);
             },
         ],
     ],
@@ -57,7 +55,7 @@ echo TabularForm::widget([
             'type' => GridView::TYPE_DEFAULT,
             'before' => false,
             'footer' => false,
-            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('backend', 'Add Unversity Rating'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowUnversityRating()']),
+            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('backend', 'Add School Rating'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowSchoolRating()']),
         ]
     ]
 ]);

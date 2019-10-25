@@ -2,6 +2,8 @@
 
 namespace backend\models\base;
 
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
@@ -19,6 +21,7 @@ use yii\behaviors\BlameableBehavior;
 class SchoolsCourseTypes extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
+    use MultiLanguageTrait;
 
 
     /**
@@ -74,6 +77,17 @@ class SchoolsCourseTypes extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
+            ],
+            'mlBehavior'=>[
+                'class'    => MultiLanguageBehavior::className(),
+                'mlConfig' => [
+                    'db_table'         => 'translations_with_string',
+                    'attributes'       => ['title'],
+                    'admin_routes'     => [
+                        'schools-course-types/update',
+                        'schools-course-types/index',
+                    ],
+                ],
             ],
         ];
     }

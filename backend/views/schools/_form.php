@@ -5,12 +5,28 @@ use yii\widgets\ActiveForm;
 use trntv\filekit\widget\Upload;
 use yii\web\JsExpression;
 use kartik\depdrop\DepDrop;
-use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
+use \common\helpers\multiLang\MyMultiLanguageActiveField;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Schools */
 /* @var $form yii\widgets\ActiveForm */
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'SchoolRating',
+        'relID' => 'school-rating',
+        'value' => \yii\helpers\Json::encode($model->schoolRatings),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'SchoolVideos',
+        'relID' => 'school-videos',
+        'value' => \yii\helpers\Json::encode($model->schoolVideos),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
 
 ?>
 
@@ -29,7 +45,7 @@ use yii\helpers\Url;
             <div class="row">
                 <div class="col-md-6">
                     <div class="well">
-                        <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MultiLanguageActiveField::className());  ?>
+                        <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MyMultiLanguageActiveField::className());  ?>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -56,6 +72,8 @@ use yii\helpers\Url;
                         <?php
                         // Child # 1
                         echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
+                            'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\City::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [],
+
                             'options'=>['id'=>'subcat-id'],
                             'pluginOptions'=>[
                                 'depends'=>['CountryId'],
@@ -107,7 +125,11 @@ use yii\helpers\Url;
 
 
 
-    <?= $form->field($model, 'details')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'details')->textarea(['maxlength' => 255, 'rows'=>3])
+        ->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
+            'rows'=>3,
+            'class'=>'form-control',
+        ]]) ?>
 
 
 
@@ -134,14 +156,14 @@ use yii\helpers\Url;
 
             <?php
             echo \pigolab\locationpicker\LocationPickerWidget::widget([
-                'key' => 'AIzaSyBA-iVIbf-TzKj-NjQE4OLfoXO3iCEJfD4',	// require , Put your google map api key
+                'key' => env('GOOGLE_MAP_KEY'), 	// require , Put your google map api key
                 'options' => [
                     'style' => 'width: 100%; height: 400px', // map canvas width and height
                 ] ,
                 'clientOptions' => [
                     'location' => [
-                        'latitude'  => 46.15242437752303 ,
-                        'longitude' => 2.7470703125,
+                        'latitude'  => $model->lat == ''? env('START_LAT') : $model->lat ,
+                        'longitude' => $model->lng == ''? env('START_LNG') : $model->lng ,
                     ],
                     'radius'    => 300,
                     'addressFormat' => 'street_number',
@@ -163,17 +185,17 @@ use yii\helpers\Url;
 
     <div class="row">
         <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'min_age')->textInput(['placeholder' => 'Min Age']) ?>
+            <?= $form->field($model, 'min_age')->textInput(['placeholder' => 'Min Age'])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
 
         <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'start_every')->textInput(['maxlength' => true, 'placeholder' => 'Start Every']) ?>
+            <?= $form->field($model, 'start_every')->textInput(['maxlength' => true, 'placeholder' => 'Start Every'])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
 
         <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'study_time')->textInput(['maxlength' => true, 'placeholder' => 'Study Time']) ?>
+            <?= $form->field($model, 'study_time')->textInput(['maxlength' => true, 'placeholder' => 'Study Time'])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
     </div>
@@ -246,14 +268,32 @@ use yii\helpers\Url;
 
 
 
-    <?php echo $form->field($model, 'videos')->widget(
-        Upload::class,
+    <?php
+    $forms = [
+
         [
-            'url' => ['/file/storage/upload'],
-            'sortable' => true,
-            'maxFileSize' => 10000000, // 10 MiB
-            'maxNumberOfFiles' => 10,
-        ]);
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'SchoolRating')),
+            'content' => $this->render('_formSchoolRating', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->schoolRatings),
+            ]),
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'SchoolVideos')),
+            'content' => $this->render('_formSchoolVideos', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->schoolVideos),
+            ]),
+        ],
+    ];
+    echo kartik\tabs\TabsX::widget([
+        'items' => $forms,
+        'position' => kartik\tabs\TabsX::POS_ABOVE,
+        'encodeLabels' => false,
+        'pluginOptions' => [
+            'bordered' => true,
+            'sideways' => true,
+            'enableCache' => false,
+        ],
+    ]);
     ?>
 
 

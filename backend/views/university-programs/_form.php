@@ -53,7 +53,7 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
 
 
     <div class="row">
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-6 col-sm-12">
             <?= $form->field($model, 'degree_id')->widget(\kartik\widgets\Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramDegree::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
                 'options' => ['placeholder' => Yii::t('backend', 'Choose University program degree')],
@@ -63,7 +63,7 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
             ]); ?>
         </div>
 
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-6 col-sm-12">
             <?= $form->field($model, 'field_id')->widget(\kartik\widgets\Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramField::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
                 'options' => ['placeholder' => Yii::t('backend', 'Choose University program field')],
@@ -73,10 +73,10 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
             ]); ?>
 
         </div>
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'program_type')->textInput(['placeholder' => 'Program Type']) ?>
-
-        </div>
+<!--        <div class="col-md-4 col-sm-12">-->
+<!--            --><?//= $form->field($model, 'program_type')->textInput(['placeholder' => 'Program Type']) ?>
+<!---->
+<!--        </div>-->
     </div>
 
 
@@ -98,6 +98,8 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
                 // Child # 1
                 echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
                     'options'=>['id'=>'subcat-id'],
+                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\City::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [],
+
                     'pluginOptions'=>[
                         'depends'=>['CountryId'],
                         'placeholder'=>'Select...',
@@ -142,7 +144,7 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'annual_cost')->textInput(['placeholder' => 'Annual Cost'])->widget(MyMultiLanguageActiveField::className());  ?> 
+            <?= $form->field($model, 'annual_cost')->textInput(['placeholder' => 'Annual Cost'])->widget(MyMultiLanguageActiveField::className());  ?>
         </div>
 
         <div class="col-md-6 col-sm-12">
@@ -189,11 +191,19 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
     <div class="row">
         <div class="col-md-6 col-sm-12">
 
-            <?= $form->field($model, 'note1')->textarea(['rows' => 6])->widget(MyMultiLanguageActiveField::className());  ?>
+            <?= $form->field($model, 'note1')->textarea(['maxlength' => 255, 'rows'=>3])
+                ->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
+                    'rows'=>3,
+                    'class'=>'form-control',
+                ]]) ?>
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'note2')->textarea(['rows' => 6])->widget(MyMultiLanguageActiveField::className());  ?>
+            <?= $form->field($model, 'note2')->textarea(['maxlength' => 255, 'rows'=>3])
+                ->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
+                    'rows'=>3,
+                    'class'=>'form-control',
+                ]]) ?>
 
         </div>
     </div>

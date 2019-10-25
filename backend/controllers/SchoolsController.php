@@ -49,8 +49,17 @@ class SchoolsController extends BackendController
     public function actionView($id)
     {
         $model = $this->findModel($id);
+
+        $providerSchoolRating = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->schoolRatings,
+        ]);
+        $providerSchoolVideos = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->schoolVideos,
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'providerSchoolRating' => $providerSchoolRating,
+            'providerSchoolVideos' => $providerSchoolVideos,
         ]);
     }
 
@@ -64,6 +73,7 @@ class SchoolsController extends BackendController
         $model = new Schools();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            $model->CalcRating();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -83,6 +93,8 @@ class SchoolsController extends BackendController
         $model = $this->findModel($id);
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            $model->CalcRating();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -104,7 +116,7 @@ class SchoolsController extends BackendController
         return $this->redirect(['index']);
     }
 
-    
+
     /**
      * Finds the Schools model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -120,4 +132,51 @@ class SchoolsController extends BackendController
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
         }
     }
+
+    /**
+     * Action to load a tabular form grid
+     * for SchoolRating
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddSchoolRating()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('SchoolRating');
+            if (!empty($row)) {
+                $row = array_values($row);
+            }
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formSchoolRating', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+    }
+
+    /**
+     * Action to load a tabular form grid
+     * for SchoolVideos
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddSchoolVideos()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('SchoolVideos');
+            if (!empty($row)) {
+                $row = array_values($row);
+            }
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formSchoolVideos', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+    }
+
 }

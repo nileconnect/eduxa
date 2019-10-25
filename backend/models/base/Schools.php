@@ -54,6 +54,7 @@ class Schools extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
+            'schoolRatings',
             'courseType',
             'schoolPhotos',
             'schoolVideos',
@@ -106,13 +107,26 @@ class Schools extends \yii\db\ActiveRecord
             'status' => Yii::t('backend', 'Status'),
         ];
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getCourseType()
     {
         return $this->hasOne(\backend\models\SchoolsCourseTypes::className(), ['id' => 'course_type']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchoolRatings()
+    {
+        return $this->hasMany(\backend\models\SchoolRating::className(), ['school_id' => 'id']);
+    }
+
+    public function getSchoolRatingsSum()
+    {
+        return $this->hasMany(\backend\models\SchoolRating::className(), ['school_id' => 'id'])->sum('rating');
     }
 
 
@@ -131,7 +145,7 @@ class Schools extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\SchoolVideos::className(), ['school_id' => 'id']);
     }
-    
+
     /**
      * @inheritdoc
      * @return array mixed

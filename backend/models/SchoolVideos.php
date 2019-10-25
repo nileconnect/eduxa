@@ -17,10 +17,10 @@ class SchoolVideos extends BaseSchoolVideos
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['school_id', 'path'], 'required'],
+            [['school_id', 'path'], 'safe'],
             [['school_id', 'size', 'created_at', 'order'], 'integer'],
             [['path', 'base_url', 'type', 'name'], 'string', 'max' => 255]
         ]);
     }
-	
+
 }

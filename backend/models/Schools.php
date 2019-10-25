@@ -18,7 +18,6 @@ class Schools extends BaseSchools
     use MultiLanguageTrait;
 
     public $logo;
-    public $videos;
     public $photos;
 
     const STATUS_OFF = 0;
@@ -30,12 +29,12 @@ class Schools extends BaseSchools
     {
         return [
             ['title', 'required'],
-            [['course_type', 'country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class', 'lessons_per_week', 'created_by', 'updated_by'], 'integer'],
+            [['course_type', 'country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class', 'lessons_per_week', 'created_by', 'updated_by','no_of_ratings'], 'integer'],
             [['details'], 'string'],
             [['hours_per_week', 'accomodation_fees', 'registeration_fees', 'study_books_fees', 'fees_per_week', 'discount', 'total_rating'], 'number'],
             [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path', 'start_every', 'study_time', 'created_at', 'updated_at'], 'string', 'max' => 255],
             [['featured', 'status'], 'string', 'max' => 4],
-            [['logo','videos','photos'],'safe']
+            [['logo','photos','no_of_ratings'],'safe']
         ] ;
     }
 
@@ -72,18 +71,7 @@ class Schools extends BaseSchools
                 'sizeAttribute' => 'size',
                 'nameAttribute' => 'name',
             ],
-            [
-                'class' => UploadBehavior::class,
-                'attribute' => 'videos',
-                'multiple' => true,
-                'uploadRelation' => 'schoolVideos',
-                'pathAttribute' => 'path',
-                'baseUrlAttribute' => 'base_url',
-                'orderAttribute' => 'order',
-                'typeAttribute' => 'type',
-                'sizeAttribute' => 'size',
-                'nameAttribute' => 'name',
-            ],
+
 
             'timestamp' => [
                 'class' => TimestampBehavior::className(),
@@ -101,7 +89,7 @@ class Schools extends BaseSchools
                 'class'    => MultiLanguageBehavior::className(),
                 'mlConfig' => [
                     'db_table'         => 'translations_with_text',
-                    'attributes'       => ['title','description'],
+                    'attributes'       => ['title','details','min_age','start_every','study_time'],
                     'admin_routes'     => [
                         'schools/update',
                         'schools/index',
@@ -111,6 +99,17 @@ class Schools extends BaseSchools
 
         ];
     }
+
+    public function CalcRating()
+    {
+        $ratingCount = count($this->schoolRatings);
+        $rating_sum  = $this->schoolRatingsSum;
+        $this->no_of_ratings = $ratingCount ;
+        $this->total_rating = number_format($rating_sum/$ratingCount , 0);
+        $this->save(false);
+        return true;
+    }
+
 
 
 }
