@@ -46,9 +46,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'status',
                 'format'    => 'raw',
                 'value'     => function ($model) {
-                    return News::getStatusList()[$model->status];
+                    return \backend\models\Faq::getStatusList()[$model->status];
                 },
-                'filter' => Html::activeDropDownList($searchModel, 'status', (News::getStatusList()),['class'=>'form-control',
+                'filter' => Html::activeDropDownList($searchModel, 'status', (\backend\models\Faq::getStatusList()),['class'=>'form-control',
                     'prompt' =>  Yii::t('app','Select Status') ]),
             ],
             [
