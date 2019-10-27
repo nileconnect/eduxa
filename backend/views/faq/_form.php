@@ -22,7 +22,7 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'question')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'answer')->widget(CKEditor::className()) ?>
+    <?= $form->field($model, 'answer')->textarea(['rows' => 6]) ?>
 
 
         <?=   $form->field($model, 'status')->widget(CheckboxX::classname(), [
