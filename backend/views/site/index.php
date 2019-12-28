@@ -10,6 +10,9 @@ use yii\helpers\Html;
 /*Dashboard Asset*/
 \backend\assets\DashboardAsset::register($this);
 $this->title = Yii::t('backend', 'Dashboard'); ?>
+<?php
+/*
+?>
 <!-- Info boxes -->
 <div class="row">
   <div class="col-md-3 col-sm-6 col-xs-12">
@@ -784,3 +787,5 @@ $this->title = Yii::t('backend', 'Dashboard'); ?>
     <!-- /.col -->
 </div>
 <!-- /.row -->
+
+<?php  */ ?>
