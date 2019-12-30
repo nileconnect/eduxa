@@ -29,6 +29,8 @@ echo Menu::widget([
             'url' => '#',
             'icon' => '<i class="fa fa-users"></i>',
             'options' => ['class' => 'treeview'],
+            'visible' => (Yii::$app->user->can('administrator')  ),
+
             'items' => [
 
                 [
