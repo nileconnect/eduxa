@@ -37,79 +37,79 @@ $bundle = BackendAsset::register($this);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <li id="timeline-notifications" class="dropdown notifications-menu">
-                        <a href="<?php echo Url::to(['/timeline-event/index']) ?>">
-                            <ion-icon name="text"></ion-icon>
-                            <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                            
-                        </a>
-                    </li>
-                    <!-- Notifications: style can be found in dropdown.less -->
-                    <li id="log-dropdown" class="dropdown notifications-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <ion-icon name="notifications"></ion-icon>
-                            <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                           
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header"><?php echo Yii::t('backend', 'You have {num} log items', ['num' => SystemLog::find()->count()]) ?></li>
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    <?php foreach (SystemLog::find()->orderBy(['log_time' => SORT_DESC])->limit(5)->all() as $logEntry): ?>
-                                        <li>
-                                            <a href="<?php echo Yii::$app->urlManager->createUrl(['/system/log/view', 'id' => $logEntry->id]) ?>">
-                                                <i class="fa fa-warning <?php echo $logEntry->level === Logger::LEVEL_ERROR ? 'text-red' : 'text-yellow' ?>"></i>
-                                                <?php echo $logEntry->category ?>
-                                            </a>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </li>
-                            <li class="footer">
-                                <?php echo Html::a(Yii::t('backend', 'View all'), ['/system/log/index']) ?>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <?php echo Html::a('<ion-icon name="settings"></ion-icon>', ['/system/settings']) ?>
-                    </li>
-                    <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>"
-                                 class="user-image">
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header light-blue" style="background: url(/material/img/bg/photo1.png) no-repeat;">
-                                <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>"
-                                     class="img-circle" alt="User Image"/>
-                                <p>
-                                    <?php echo Yii::$app->user->identity->username ?>
-                                    <small>
-                                        <?php echo Yii::t('backend', 'Member since {0, date, short}', Yii::$app->user->identity->created_at) ?>
-                                    </small>
-                            </li>
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
+<!--            <div class="navbar-custom-menu">-->
+<!--                <ul class="nav navbar-nav">-->
+<!--                    <li id="timeline-notifications" class="dropdown notifications-menu">-->
+<!--                        <a href="--><?php //echo Url::to(['/timeline-event/index']) ?><!--">-->
+<!--                            <ion-icon name="text"></ion-icon>-->
+<!--                            <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>-->
+<!--                            -->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <!-- Notifications: style can be found in dropdown.less -->-->
+<!--                    <li id="log-dropdown" class="dropdown notifications-menu">-->
+<!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+<!--                            <ion-icon name="notifications"></ion-icon>-->
+<!--                            <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>-->
+<!--                           -->
+<!--                        </a>-->
+<!--                        <ul class="dropdown-menu">-->
+<!--                            <li class="header">--><?php //echo Yii::t('backend', 'You have {num} log items', ['num' => SystemLog::find()->count()]) ?><!--</li>-->
+<!--                            <li>-->
+<!--                                <!-- inner menu: contains the actual data -->-->
+<!--                                <ul class="menu">-->
+<!--                                    --><?php //foreach (SystemLog::find()->orderBy(['log_time' => SORT_DESC])->limit(5)->all() as $logEntry): ?>
+<!--                                        <li>-->
+<!--                                            <a href="--><?php //echo Yii::$app->urlManager->createUrl(['/system/log/view', 'id' => $logEntry->id]) ?><!--">-->
+<!--                                                <i class="fa fa-warning --><?php //echo $logEntry->level === Logger::LEVEL_ERROR ? 'text-red' : 'text-yellow' ?><!--"></i>-->
+<!--                                                --><?php //echo $logEntry->category ?>
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--                                    --><?php //endforeach; ?>
+<!--                                </ul>-->
+<!--                            </li>-->
+<!--                            <li class="footer">-->
+<!--                                --><?php //echo Html::a(Yii::t('backend', 'View all'), ['/system/log/index']) ?>
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        --><?php //echo Html::a('<ion-icon name="settings"></ion-icon>', ['/system/settings']) ?>
+<!--                    </li>-->
+<!--                    <!-- User Account: style can be found in dropdown.less -->-->
+<!--                    <li class="dropdown user user-menu">-->
+<!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+<!--                            <img src="--><?php //echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?><!--"-->
+<!--                                 class="user-image">-->
+<!--                        </a>-->
+<!--                        <ul class="dropdown-menu">-->
+<!--                            <!-- User image -->-->
+<!--                            <li class="user-header light-blue" style="background: url(/material/img/bg/photo1.png) no-repeat;">-->
+<!--                                <img src="--><?php //echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?><!--"-->
+<!--                                     class="img-circle" alt="User Image"/>-->
+<!--                                <p>-->
+<!--                                    --><?php //echo Yii::$app->user->identity->username ?>
+<!--                                    <small>-->
+<!--                                        --><?php //echo Yii::t('backend', 'Member since {0, date, short}', Yii::$app->user->identity->created_at) ?>
+<!--                                    </small>-->
+<!--                            </li>-->
+<!--                            <!-- Menu Footer-->-->
+<!--                            <li class="user-footer">-->
+<!--<!--                                <div class="pull-left">-->-->
+<!--<!--                                    -->--><?php ////echo Html::a(Yii::t('backend', 'Profile'), ['/sign-in/profile'], ['class' => 'btn btn-default']) ?>
+<!--<!--                                </div>-->-->
 <!--                                <div class="pull-left">-->
-<!--                                    --><?php //echo Html::a(Yii::t('backend', 'Profile'), ['/sign-in/profile'], ['class' => 'btn btn-default']) ?>
+<!--                                    --><?php //echo Html::a(Yii::t('backend', 'Account'), ['/sign-in/account'], ['class' => 'btn btn-default']) ?>
 <!--                                </div>-->
-                                <div class="pull-left">
-                                    <?php echo Html::a(Yii::t('backend', 'Account'), ['/sign-in/account'], ['class' => 'btn btn-default']) ?>
-                                </div>
-                                <div class="pull-right">
-                                    <?php echo Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], ['class' => 'btn btn-default', 'data-method' => 'post']) ?>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    
-                </ul>
-            </div>
+<!--                                <div class="pull-right">-->
+<!--                                    --><?php //echo Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], ['class' => 'btn btn-default', 'data-method' => 'post']) ?>
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                    -->
+<!--                </ul>-->
+<!--            </div>-->
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
