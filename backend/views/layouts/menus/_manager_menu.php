@@ -24,61 +24,61 @@ echo Menu::widget([
             'options' => ['class' => 'header'],
         ],
 
-        [
-            'label' => Yii::t('backend', 'Users'),
-            'url' => '#',
-            'icon' => '<i class="fa fa-users"></i>',
-            'options' => ['class' => 'treeview'],
-            'items' => [
-
-                [
-                    'label' => Yii::t('backend', 'Managers'),
-                    'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=manager'],
-                    'active' => (Yii::$app->controller->id == 'user'),
-                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
-                ],
-
-                [
-                    'label' => Yii::t('backend', 'Users'),
-                    'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=user'],
-                    'active' => (Yii::$app->controller->id == 'user'),
-                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
-                ],
-
-                [
-                    'label' => Yii::t('backend', 'Referral - Person'),
-                    'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=referralPerson'],
-                    'active' => (Yii::$app->controller->id == 'user'),
-                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
-                ],
-
-
-
-
-                [
-                    'label' => Yii::t('backend', 'Referral - Company'),
-                    'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=referralCompany'],
-                    'active' => (Yii::$app->controller->id == 'user'),
-                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
-                ],
-
-                [
-                    'label' => Yii::t('backend', 'University Manager'),
-                    'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=universityManager'],
-                    'active' => (Yii::$app->controller->id == 'user'),
-                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
-                ],
-
-
-
-
-            ],
-        ],
+//        [
+//            'label' => Yii::t('backend', 'Users'),
+//            'url' => '#',
+//            'icon' => '<i class="fa fa-users"></i>',
+//            'options' => ['class' => 'treeview'],
+//            'items' => [
+//
+//                [
+//                    'label' => Yii::t('backend', 'Managers'),
+//                    'icon' => '<i class="fa fa-users"></i>',
+//                    'url' => ['/user/index?user_role=manager'],
+//                    'active' => (Yii::$app->controller->id == 'user'),
+//                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
+//                ],
+//
+//                [
+//                    'label' => Yii::t('backend', 'Users'),
+//                    'icon' => '<i class="fa fa-users"></i>',
+//                    'url' => ['/user/index?user_role=user'],
+//                    'active' => (Yii::$app->controller->id == 'user'),
+//                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
+//                ],
+//
+//                [
+//                    'label' => Yii::t('backend', 'Referral - Person'),
+//                    'icon' => '<i class="fa fa-users"></i>',
+//                    'url' => ['/user/index?user_role=referralPerson'],
+//                    'active' => (Yii::$app->controller->id == 'user'),
+//                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
+//                ],
+//
+//
+//
+//
+//                [
+//                    'label' => Yii::t('backend', 'Referral - Company'),
+//                    'icon' => '<i class="fa fa-users"></i>',
+//                    'url' => ['/user/index?user_role=referralCompany'],
+//                    'active' => (Yii::$app->controller->id == 'user'),
+//                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
+//                ],
+//
+//                [
+//                    'label' => Yii::t('backend', 'University Manager'),
+//                    'icon' => '<i class="fa fa-users"></i>',
+//                    'url' => ['/user/index?user_role=universityManager'],
+//                    'active' => (Yii::$app->controller->id == 'user'),
+//                    'visible' => (Yii::$app->user->can('administrator') or  Yii::$app->user->can('manager') ),
+//                ],
+//
+//
+//
+//
+//            ],
+//        ],
 
         [
             'label' => Yii::t('backend', 'Universities'),
@@ -143,70 +143,70 @@ echo Menu::widget([
             ],
         ],
 
-        [
-            'label' => Yii::t('backend', 'Content'),
-            'options' => ['class' => 'header'],
-        ],
-        [
-            'label' => Yii::t('backend', 'Countries'),
-            'url' => ['/country/index'],
-            'icon' => '<i class="fa fa-thumb-tack"></i>',
-            'active' => Yii::$app->controller->id === 'country',
-        ],
-
-        [
-            'label' => Yii::t('backend', 'Static pages'),
-            'url' => ['/content/page/index'],
-            'icon' => '<i class="fa fa-thumb-tack"></i>',
-            'active' => Yii::$app->controller->id === 'page',
-        ],
-
-        [
-            'label' => Yii::t('backend', 'Faqs'),
-            'url' => '#',
-            'icon' => '<i class="fa fa-users"></i>',
-            'options' => ['class' => 'treeview'],
-            'items' => [
-
-                [
-                    'label' => Yii::t('backend', 'Faq categories'),
-                    'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/faq-cat'],
-                    'active' => (Yii::$app->controller->id == 'faq-cat'),
-                ],
-
-                [
-                    'label' => Yii::t('backend', 'Faq'),
-                    'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/faq'],
-                    'active' => (Yii::$app->controller->id == 'faq'),
-                ],
-            ],
-        ],
-
-
-        [
-            'label' => Yii::t('backend', 'Articles'),
-            'url' => '#',
-            'icon' => '<i class="fa fa-files-o"></i>',
-            'options' => ['class' => 'treeview'],
-            'active' => 'content' === Yii::$app->controller->module->id &&
-                ('article' === Yii::$app->controller->id || 'category' === Yii::$app->controller->id),
-            'items' => [
-                [
-                    'label' => Yii::t('backend', 'Articles'),
-                    'url' => ['/content/article/index'],
-                    'icon' => '<i class="fa fa-file-o"></i>',
-                    'active' => Yii::$app->controller->id === 'article',
-                ],
-                [
-                    'label' => Yii::t('backend', 'Categories'),
-                    'url' => ['/content/category/index'],
-                    'icon' => '<i class="fa fa-folder-open-o"></i>',
-                    'active' => Yii::$app->controller->id === 'category',
-                ],
-            ],
-        ],
+//        [
+//            'label' => Yii::t('backend', 'Content'),
+//            'options' => ['class' => 'header'],
+//        ],
+//        [
+//            'label' => Yii::t('backend', 'Countries'),
+//            'url' => ['/country/index'],
+//            'icon' => '<i class="fa fa-thumb-tack"></i>',
+//            'active' => Yii::$app->controller->id === 'country',
+//        ],
+//
+//        [
+//            'label' => Yii::t('backend', 'Static pages'),
+//            'url' => ['/content/page/index'],
+//            'icon' => '<i class="fa fa-thumb-tack"></i>',
+//            'active' => Yii::$app->controller->id === 'page',
+//        ],
+//
+//        [
+//            'label' => Yii::t('backend', 'Faqs'),
+//            'url' => '#',
+//            'icon' => '<i class="fa fa-users"></i>',
+//            'options' => ['class' => 'treeview'],
+//            'items' => [
+//
+//                [
+//                    'label' => Yii::t('backend', 'Faq categories'),
+//                    'icon' => '<i class="fa fa-users"></i>',
+//                    'url' => ['/faq-cat'],
+//                    'active' => (Yii::$app->controller->id == 'faq-cat'),
+//                ],
+//
+//                [
+//                    'label' => Yii::t('backend', 'Faq'),
+//                    'icon' => '<i class="fa fa-users"></i>',
+//                    'url' => ['/faq'],
+//                    'active' => (Yii::$app->controller->id == 'faq'),
+//                ],
+//            ],
+//        ],
+//
+//
+//        [
+//            'label' => Yii::t('backend', 'Articles'),
+//            'url' => '#',
+//            'icon' => '<i class="fa fa-files-o"></i>',
+//            'options' => ['class' => 'treeview'],
+//            'active' => 'content' === Yii::$app->controller->module->id &&
+//                ('article' === Yii::$app->controller->id || 'category' === Yii::$app->controller->id),
+//            'items' => [
+//                [
+//                    'label' => Yii::t('backend', 'Articles'),
+//                    'url' => ['/content/article/index'],
+//                    'icon' => '<i class="fa fa-file-o"></i>',
+//                    'active' => Yii::$app->controller->id === 'article',
+//                ],
+//                [
+//                    'label' => Yii::t('backend', 'Categories'),
+//                    'url' => ['/content/category/index'],
+//                    'icon' => '<i class="fa fa-folder-open-o"></i>',
+//                    'active' => Yii::$app->controller->id === 'category',
+//                ],
+//            ],
+//        ],
 
 //        [
 //            'label' => Yii::t('backend', 'Settings'),
