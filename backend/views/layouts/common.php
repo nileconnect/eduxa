@@ -95,9 +95,9 @@ $bundle = BackendAsset::register($this);
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
-                                    <?php echo Html::a(Yii::t('backend', 'Profile'), ['/sign-in/profile'], ['class' => 'btn btn-default']) ?>
-                                </div>
+<!--                                <div class="pull-left">-->
+<!--                                    --><?php //echo Html::a(Yii::t('backend', 'Profile'), ['/sign-in/profile'], ['class' => 'btn btn-default']) ?>
+<!--                                </div>-->
                                 <div class="pull-left">
                                     <?php echo Html::a(Yii::t('backend', 'Account'), ['/sign-in/account'], ['class' => 'btn btn-default']) ?>
                                 </div>
