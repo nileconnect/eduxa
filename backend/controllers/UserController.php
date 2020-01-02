@@ -117,7 +117,7 @@ class UserController extends BackendController
     {
         $model = new UserForm();
         $profile= new UserProfile();
-
+        $profile->locale = 'en-US';
 
         $model->setScenario('create');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
