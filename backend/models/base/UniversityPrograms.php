@@ -67,17 +67,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
-        return [
-            [['university_id', 'title', 'major_id', 'degree_id'], 'required'],
-            [['university_id', 'major_id', 'degree_id', 'field_id', 'country_id', 'city_id', 'created_by', 'updated_by'], 'integer'],
-            [['annual_cost', 'total_rating'], 'number'],
-            [['note1', 'note2'], 'string'],
-            [['title', 'study_start_date', 'study_duration', 'study_method', 'attendance_type', 'conditional_admissions', 'toefl', 'ielts', 'bank_statment', 'high_school_transcript', 'bachelor_degree', 'certificate', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['program_type'], 'safe']
-        ];
-    }
+
 
     /**
      * @inheritdoc
@@ -111,12 +101,14 @@ class UniversityPrograms extends \yii\db\ActiveRecord
             'ielts' => Yii::t('backend', 'Ielts'),
             'bank_statment' => Yii::t('backend', 'Bank Statment'),
             'high_school_transcript' => Yii::t('backend', 'High School Transcript'),
-            'bachelor_degree' => Yii::t('backend', 'Bachelor Degree'),
+            'bachelor_degree' => Yii::t('backend', 'Bachelor Degree Certificate'),
             'certificate' => Yii::t('backend', 'Certificate'),
             'note1' => Yii::t('backend', 'Note1'),
             'note2' => Yii::t('backend', 'Note2'),
             'total_rating' => Yii::t('backend', 'Total Rating'),
             'program_type' => Yii::t('backend', 'Program Type'),
+            'first_submission_date' => Yii::t('backend', 'First submission date'),
+            'last_submission_date' => Yii::t('backend', 'Last submission date'),
         ];
     }
 

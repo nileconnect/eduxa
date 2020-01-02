@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\depdrop\DepDrop;
 use yii\helpers\Url;
+use kartik\date\DatePicker;
 use common\helpers\multiLang\MyMultiLanguageActiveField;
 /* @var $this yii\web\View */
 /* @var $model backend\models\UniversityPrograms */
@@ -113,13 +114,55 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
         </div>
     </div>
 
-    <div class="row">
+    <div class="row ">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'study_start_date')->textInput(['maxlength' => true, 'placeholder' => 'Study Start Date']) ?>
+            <div class="well">
+            <?php
+            echo $form->field($model, 'study_start_date')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => 'Enter Stduy start date ...'],
+                'pluginOptions' => [
+                    'autoclose'=>true,
+                    'format' => 'yyyy-mm-dd'
 
+                ]
+            ]);
+            ?>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+                <div class="well">
+            <?php
+            echo $form->field($model, 'first_submission_date')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => 'Enter First submission date ...'],
+                'pluginOptions' => [
+                    'autoclose'=>true,
+                    'format' => 'yyyy-mm-dd'
+
+                ]
+            ]);
+            ?>
+                </div>
         </div>
 
-        <div class="col-md-6 col-sm-12">
+
+    </div>
+    <div class="row ">
+        <div class="col-md-6 col-sm-12 ">
+            <div class="well">
+            <?php
+            echo $form->field($model, 'last_submission_date')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => 'Enter last submission date ...'],
+                'pluginOptions' => [
+                    'autoclose'=>true,
+                    'format' => 'yyyy-mm-dd'
+
+                ]
+            ]);
+            ?>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 well">
             <?= $form->field($model, 'study_duration')->textInput(['maxlength' => true, 'placeholder' => 'Study Duration'])->widget(MyMultiLanguageActiveField::className());  ?>
 
         </div>
@@ -178,13 +221,13 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'bachelor_degree')->textInput(['maxlength' => true, 'placeholder' => 'Bachelor Degree'])->widget(MyMultiLanguageActiveField::className());  ?>
+            <?= $form->field($model, 'bachelor_degree')->textInput(['maxlength' => true, 'placeholder' => 'Bachelor Degree certificate'])->widget(MyMultiLanguageActiveField::className());  ?>
         </div>
 
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'certificate')->textInput(['maxlength' => true, 'placeholder' => 'Certificate'])->widget(MyMultiLanguageActiveField::className());  ?>
-
-        </div>
+<!--        <div class="col-md-6 col-sm-12">-->
+<!--            --><?//= $form->field($model, 'certificate')->textInput(['maxlength' => true, 'placeholder' => 'Certificate'])->widget(MyMultiLanguageActiveField::className());  ?>
+<!---->
+<!--        </div>-->
     </div>
 
 
