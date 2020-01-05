@@ -17,17 +17,23 @@ $url=\yii\helpers\Url::to(['/helper/users-list']);
 /* @var $searchModel backend\models\search\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('backend', 'Users');
+$this->title = \common\models\User::UserRoleName( Yii::$app->session->get('UserRole') ).'s';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?php echo Html::a(Yii::t('backend', 'Create New User'), ['create'], ['class' => 'btn btn-primary']) ?>
-    </p>
+    <?php
+    if(Yii::$app->session->get('UserRole') != User::ROLE_USER){
+        ?>
+        <p>
+            <?php echo Html::a(Yii::t('backend', 'Create New').' '.\common\models\User::UserRoleName( Yii::$app->session->get('UserRole') ), ['create'], ['class' => 'btn btn-primary']) ?>
+        </p>
 
+        <?
+    }
+    ?>
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -108,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{login} {view} {update} {delete}',
+                'template' => ' {view} {update}', //{login}   {delete}
                 'buttons' => [
                     'login' => function ($url) {
                         return Html::a(

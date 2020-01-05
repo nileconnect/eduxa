@@ -2,8 +2,9 @@
 /* @var $this yii\web\View */
 /* @var $model backend\models\UserForm */
 /* @var $roles yii\rbac\Role[] */
-$this->title = Yii::t('backend', 'Create New User');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Users'), 'url' => ['index']];
+$this->title = Yii::t('backend', 'Create New').' '.\common\models\User::UserRoleName( Yii::$app->session->get('UserRole') );
+
+$this->params['breadcrumbs'][] = ['label' => \common\models\User::UserRoleName( Yii::$app->session->get('UserRole') ).'s', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-create">

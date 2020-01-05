@@ -27,14 +27,14 @@ class UserForm extends Model
     public function rules()
     {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
+            //['username', 'filter', 'filter' => 'trim'],
             //['username', 'required'],
-            ['username', 'unique', 'targetClass' => User::class, 'filter' => function ($query) {
-                if (!$this->getModel()->isNewRecord) {
-                    $query->andWhere(['not', ['id' => $this->getModel()->id]]);
-                }
-            }],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+//            ['username', 'unique', 'targetClass' => User::class, 'filter' => function ($query) {
+//                if (!$this->getModel()->isNewRecord) {
+//                    $query->andWhere(['not', ['id' => $this->getModel()->id]]);
+//                }
+//            }],
+   //         ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
@@ -77,7 +77,7 @@ class UserForm extends Model
      */
     public function setModel($model)
     {
-        $this->username = $model->username;
+        $this->username = $model->email;
         $this->email = $model->email;
         $this->status = $model->status;
         $this->model = $model;

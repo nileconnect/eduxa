@@ -4,6 +4,7 @@ namespace common\models;
 
 use common\commands\AddToTimelineCommand;
 use common\models\query\UserQuery;
+use phpDocumentor\Reflection\Types\Self_;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -333,6 +334,24 @@ class User extends ActiveRecord implements IdentityInterface
             ->where(['{{%rbac_auth_assignment}}.item_name' => $role])
             ->andWhere($andWhere)
             ->count();
+    }
+
+
+    public static function UserRoleName($role){
+        if($role == self::ROLE_MANAGER){
+            return 'Manager';
+        }else if($role == self::ROLE_USER){
+            return 'Student';
+        }else if($role == self::ROLE_REFERRAL_COMPANY){
+            return 'Company Referral';
+        }else if($role == self::ROLE_REFERRAL_PERSON){
+            return 'Referral';
+        }else if($role == self::ROLE_UNIVERSITY_MANAGER){
+           return 'University Manager';
+        }else{
+            return '';
+        }
+
     }
 
 

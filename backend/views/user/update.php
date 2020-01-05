@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $roles yii\rbac\Role[] */
 
 $this->title = Yii::t('backend', 'Update') . ' -' . $model->username;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Users'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' =>\common\models\User::UserRoleName( Yii::$app->session->get('UserRole') ).'s', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->email, 'url' => ['view', 'id' => $model->username]];
 $this->params['breadcrumbs'][] = ['label'=>Yii::t('backend', 'Update')];
 ?>

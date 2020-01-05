@@ -118,7 +118,6 @@ class UserController extends BackendController
         $model = new UserForm();
         $profile= new UserProfile();
         $profile->locale = 'en-US';
-
         $model->setScenario('create');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
@@ -215,7 +214,9 @@ class UserController extends BackendController
             $prof = new UserProfile();
             $prof->user_id=$model->getId();
         }
-        $prof->locale= 'ar-AR';
+        if(Yii::$app->session->get('UserRole') == User::ROLE_MANAGER){
+            $prof->locale = 'en-US';
+        }
         $prof->firstname = $profile->firstname ;
         $prof->lastname = $profile->lastname ;
         $prof->gender= $profile->gender;

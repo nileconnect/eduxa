@@ -41,13 +41,16 @@ echo Menu::widget([
                     'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
+
                 [
-                    'label' => Yii::t('backend', 'Users'),
+                    'label' => Yii::t('backend', 'University Manager'),
                     'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=user'],
+                    'url' => ['/user/index?user_role=universityManager'],
                     'active' => (Yii::$app->controller->id == 'user'),
                     'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
+
+
 
                 [
                     'label' => Yii::t('backend', 'Referral - Person'),
@@ -68,13 +71,15 @@ echo Menu::widget([
                     'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
+
                 [
-                    'label' => Yii::t('backend', 'University Manager'),
+                    'label' => Yii::t('backend', 'Students'),
                     'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/user/index?user_role=universityManager'],
+                    'url' => ['/user/index?user_role=user'],
                     'active' => (Yii::$app->controller->id == 'user'),
                     'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
+
 
 
 

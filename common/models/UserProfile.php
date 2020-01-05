@@ -62,12 +62,12 @@ class UserProfile extends ActiveRecord
     {
         return [
             [['user_id'], 'required'],
-            [['user_id', 'gender'], 'integer'],
+            [['user_id', 'gender','city_id','country_id'], 'integer'],
             [['gender'], 'in', 'range' => [NULL, self::GENDER_FEMALE, self::GENDER_MALE]],
-            [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url'], 'string', 'max' => 255],
+            [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url','nationality'], 'string', 'max' => 255],
             ['locale', 'default', 'value' => Yii::$app->language],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
-            ['picture', 'safe']
+            [['picture','city_id','interested_in'], 'safe']
         ];
     }
 
@@ -84,6 +84,15 @@ class UserProfile extends ActiveRecord
             'locale' => Yii::t('common', 'Locale'),
             'picture' => Yii::t('common', 'Picture'),
             'gender' => Yii::t('common', 'Gender'),
+            'nationality' => Yii::t('common', 'Nationality'),
+            'communtication_channel' => Yii::t('common', 'Best way to commuincation?'),
+            'find_us_from' => Yii::t('common', 'How did you found us?'),
+            'expected_no_of_students' => Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa'),
+            'city_id' => Yii::t('common', 'City'),
+            'country_id' => Yii::t('common', 'Country'),
+            'mobile' => Yii::t('common', 'Mobile Number'),
+            'no_of_students' => Yii::t('common', 'No. Of Previous Referrals'),
+            'students_nationalities' => Yii::t('common', 'Nationality Of Referrals'),
         ];
     }
 
