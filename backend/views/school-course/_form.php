@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use backend\models\SchoolCourse;
+use \common\helpers\multiLang\MyMultiLanguageActiveField;
 /* @var $this yii\web\View */
 /* @var $model backend\models\SchoolCourse */
 /* @var $form yii\widgets\ActiveForm */
@@ -29,7 +30,7 @@ use backend\models\SchoolCourse;
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title']) ?>
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MyMultiLanguageActiveField::className());  ?>
         </div>
 
         <div class="col-md-6 col-sm-12">
@@ -105,9 +106,18 @@ use backend\models\SchoolCourse;
         </div>
     </div>
 
-    <?= $form->field($model, 'information')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'information')->textarea(['maxlength' => 255, 'rows'=>3])
+        ->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
+            'rows'=>3,
+            'class'=>'form-control',
+        ]]) ?>
 
-    <?= $form->field($model, 'requirments')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'requirments')->textarea(['maxlength' => 255, 'rows'=>3])
+        ->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
+            'rows'=>3,
+            'class'=>'form-control',
+        ]]) ?>
+
 
 
 

@@ -2,14 +2,20 @@
 
 namespace backend\models;
 
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use \backend\models\base\SchoolCourse as BaseSchoolCourse;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "school_course".
  */
 class SchoolCourse extends BaseSchoolCourse
 {
+    use MultiLanguageTrait;
+
     /**
      * @inheritdoc
      */
@@ -52,5 +58,36 @@ class SchoolCourse extends BaseSchoolCourse
             ['status','number']
         ];
     }
+
+
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+            'blameable' => [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+
+            'mlBehavior'=>[
+                'class'    => MultiLanguageBehavior::className(),
+                'mlConfig' => [
+                    'db_table'         => 'translations_with_text',
+                    'attributes'       => ['title','information','requirments'],
+                    'admin_routes'     => [
+                        'school-course/update',
+                        'school-course/index',
+                    ],
+                ],
+            ],
+        ];
+    }
+
 
 }
