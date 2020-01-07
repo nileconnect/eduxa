@@ -88,7 +88,7 @@ echo Menu::widget([
         ],
 
         [
-            'label' => Yii::t('backend', 'Universities'),
+            'label' => Yii::t('backend', 'Manage Universities'),
             'url' => '#',
             'icon' => '<i class="fa fa-users"></i>',
             'options' => ['class' => 'treeview'],
@@ -128,7 +128,7 @@ echo Menu::widget([
        ],
 
         [
-            'label' => Yii::t('backend', 'Language Schools'),
+            'label' => Yii::t('backend', 'Manage Schools'),
             'url' => '#',
             'icon' => '<i class="fa fa-users"></i>',
             'options' => ['class' => 'treeview'],
@@ -141,12 +141,12 @@ echo Menu::widget([
                     'active' => (Yii::$app->controller->id == 'schools'),
                 ],
 
-                [
-                    'label' => Yii::t('backend', 'school Course Tyes'),
-                    'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/schools-course-types'],
-                    'active' => (Yii::$app->controller->id == 'schools-course-types'),
-                ],
+//                [
+//                    'label' => Yii::t('backend', 'school Course Tyes'),
+//                    'icon' => '<i class="fa fa-users"></i>',
+//                    'url' => ['/schools-course-types'],
+//                    'active' => (Yii::$app->controller->id == 'schools-course-types'),
+//                ],
             ],
         ],
 
