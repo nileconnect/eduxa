@@ -33,6 +33,7 @@ use yii\behaviors\BlameableBehavior;
  * @property double $study_books_fees
  * @property double $fees_per_week
  * @property double $discount
+ * @property integer $no_of_ratings
  * @property double $total_rating
  * @property integer $status
  * @property string $created_at
@@ -40,8 +41,14 @@ use yii\behaviors\BlameableBehavior;
  * @property integer $created_by
  * @property integer $updated_by
  *
- * @property \backend\models\SchoolsCourseTypes $courseType
+ * @property \backend\models\SchoolAccomodation[] $schoolAccomodations
+ * @property \backend\models\SchoolAirportPickup[] $schoolAirportPickups
+ * @property \backend\models\SchoolCourse[] $schoolCourses
+ * @property \backend\models\SchoolPhotos[] $schoolPhotos
+ * @property \backend\models\SchoolRating[] $schoolRatings
+ * @property \backend\models\SchoolVideos[] $schoolVideos
  */
+
 class Schools extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
@@ -54,8 +61,11 @@ class Schools extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
+            'schoolAccomodations',
+            'schoolAirportPickups',
+            //'schoolCourses',
+
             'schoolRatings',
-            'courseType',
             'schoolPhotos',
             'schoolVideos',
         ];
@@ -81,7 +91,6 @@ class Schools extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('backend', 'ID'),
             'title' => Yii::t('backend', 'Title'),
-            'course_type' => Yii::t('backend', 'Course Type'),
             'details' => Yii::t('backend', 'Details'),
             'featured' => Yii::t('backend', 'Featured'),
             'location' => Yii::t('backend', 'Location'),
@@ -89,32 +98,56 @@ class Schools extends \yii\db\ActiveRecord
             'lng' => Yii::t('backend', 'Lng'),
             'image_base_url' => Yii::t('backend', 'Image Base Url'),
             'image_path' => Yii::t('backend', 'Image Path'),
-            'country_id' => Yii::t('backend', 'Country ID'),
-            'city_id' => Yii::t('backend', 'City ID'),
+            'country_id' => Yii::t('backend', 'Country'),
+            'city_id' => Yii::t('backend', 'City'),
             'min_age' => Yii::t('backend', 'Min Age'),
-            'start_every' => Yii::t('backend', 'Start Every'),
             'study_time' => Yii::t('backend', 'Study Time'),
             'max_students_per_class' => Yii::t('backend', 'Max Students Per Class'),
             'avg_students_per_class' => Yii::t('backend', 'Avg Students Per Class'),
-            'lessons_per_week' => Yii::t('backend', 'Lessons Per Week'),
-            'hours_per_week' => Yii::t('backend', 'Hours Per Week'),
             'accomodation_fees' => Yii::t('backend', 'Accomodation Fees'),
             'registeration_fees' => Yii::t('backend', 'Registeration Fees'),
             'study_books_fees' => Yii::t('backend', 'Study Books Fees'),
-            'fees_per_week' => Yii::t('backend', 'Fees Per Week'),
             'discount' => Yii::t('backend', 'Discount'),
             'total_rating' => Yii::t('backend', 'Total Rating'),
             'status' => Yii::t('backend', 'Status'),
         ];
     }
 
+    public function getCountry()
+    {
+        return $this->hasOne(\backend\models\Country::className(), ['id' => 'country_id']);
+    }
+
+    public function getCity()
+    {
+        return $this->hasOne(\backend\models\City::className(), ['id' => 'city_id']);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCourseType()
+    public function getSchoolAccomodations()
     {
-        return $this->hasOne(\backend\models\SchoolsCourseTypes::className(), ['id' => 'course_type']);
+        return $this->hasMany(\backend\models\SchoolAccomodation::className(), ['school_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchoolAirportPickups()
+    {
+        return $this->hasMany(\backend\models\SchoolAirportPickup::className(), ['school_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchoolCourses()
+    {
+        return $this->hasMany(\backend\models\SchoolCourse::className(), ['school_id' => 'id']);
+    }
+
+
 
     /**
      * @return \yii\db\ActiveQuery
@@ -128,6 +161,7 @@ class Schools extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\SchoolRating::className(), ['school_id' => 'id'])->sum('rating');
     }
+
 
 
     /**

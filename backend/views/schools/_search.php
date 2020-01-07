@@ -19,14 +19,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title']) ?>
 
-    <?= $form->field($model, 'course_type')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolsCourseTypes::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-        'options' => ['placeholder' => Yii::t('backend', 'Choose Schools course types')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
-
     <?= $form->field($model, 'details')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'featured')->textInput(['placeholder' => 'Featured']) ?>

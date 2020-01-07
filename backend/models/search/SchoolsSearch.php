@@ -18,9 +18,9 @@ use backend\models\Schools;
     public function rules()
     {
         return [
-            [['id', 'course_type', 'country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class', 'lessons_per_week', 'created_by', 'updated_by'], 'integer'],
-            [['title', 'details', 'featured', 'location', 'lat', 'lng', 'image_base_url', 'image_path', 'start_every', 'study_time', 'status', 'created_at', 'updated_at'], 'safe'],
-            [['hours_per_week', 'accomodation_fees', 'registeration_fees', 'study_books_fees', 'fees_per_week', 'discount', 'total_rating'], 'number'],
+            [['id', 'country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class', 'no_of_ratings', 'created_by', 'updated_by'], 'integer'],
+            [['title', 'details', 'featured', 'location', 'lat', 'lng', 'image_base_url', 'image_path', 'has_health_insurance', 'status', 'created_at', 'updated_at'], 'safe'],
+            [['accomodation_fees', 'registeration_fees', 'study_books_fees', 'discount', 'total_rating', 'accomodation_reservation_fees', 'health_insurance_cost'], 'number'],
         ];
     }
 
@@ -58,20 +58,19 @@ use backend\models\Schools;
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'course_type' => $this->course_type,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
             'min_age' => $this->min_age,
             'max_students_per_class' => $this->max_students_per_class,
             'avg_students_per_class' => $this->avg_students_per_class,
-            'lessons_per_week' => $this->lessons_per_week,
-            'hours_per_week' => $this->hours_per_week,
             'accomodation_fees' => $this->accomodation_fees,
             'registeration_fees' => $this->registeration_fees,
             'study_books_fees' => $this->study_books_fees,
-            'fees_per_week' => $this->fees_per_week,
             'discount' => $this->discount,
+            'no_of_ratings' => $this->no_of_ratings,
             'total_rating' => $this->total_rating,
+            'accomodation_reservation_fees' => $this->accomodation_reservation_fees,
+            'health_insurance_cost' => $this->health_insurance_cost,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
         ]);
@@ -84,8 +83,7 @@ use backend\models\Schools;
             ->andFilterWhere(['like', 'lng', $this->lng])
             ->andFilterWhere(['like', 'image_base_url', $this->image_base_url])
             ->andFilterWhere(['like', 'image_path', $this->image_path])
-            ->andFilterWhere(['like', 'start_every', $this->start_every])
-            ->andFilterWhere(['like', 'study_time', $this->study_time])
+            ->andFilterWhere(['like', 'has_health_insurance', $this->has_health_insurance])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'created_at', $this->created_at])
             ->andFilterWhere(['like', 'updated_at', $this->updated_at]);

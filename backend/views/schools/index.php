@@ -17,12 +17,8 @@ $search = "$('.search-button').click(function(){
 $this->registerJs($search);
 ?>
 <div class="schools-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a(Yii::t('backend', 'Create Schools'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('backend', 'Create School'), ['create'], ['class' => 'btn btn-success']) ?>
         <?  //= Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
     <div class="search-form" style="display:none">
@@ -33,24 +29,19 @@ $this->registerJs($search);
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
         'title',
+
         [
-                'attribute' => 'course_type',
-                'label' => Yii::t('backend', 'Course Type'),
-                'value' => function($model){
-                    if ($model->courseType)
-                    {return $model->courseType->title;}
-                    else
-                    {return NULL;}
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolsCourseTypes::find()->asArray()->all(), 'id', 'title'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Schools course types', 'id' => 'grid-schools-search-course_type']
-            ],
-       // 'details:ntext',
-       // 'featured',
+            'label'=>'Courses',
+            'format'=>'raw',
+            'value' => function ($model) {
+                return '<a  class="btn btn-success" href="/school-course?school_id='.$model->id.'">Manage Courses </a>';
+
+            }
+        ],
+
+
+        // 'details:ntext',
+         'featured:boolean',
        // 'location',
         //'lat',
         //'lng',
@@ -71,9 +62,9 @@ $this->registerJs($search);
 //        'fees_per_week',
 //        'discount',
 //        'total_rating',
-        'status',
+        'status:boolean',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'yii\grid\ActionColumn','template'=>'{view} {update}'
         ],
     ]; 
     ?>

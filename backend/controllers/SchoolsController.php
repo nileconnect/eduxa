@@ -50,6 +50,18 @@ class SchoolsController extends BackendController
     {
         $model = $this->findModel($id);
 
+        $providerSchoolAccomodation = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->schoolAccomodations,
+        ]);
+        $providerSchoolAirportPickup = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->schoolAirportPickups,
+        ]);
+        $providerSchoolCourse = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->schoolCourses,
+        ]);
+        $providerSchoolPhotos = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->schoolPhotos,
+        ]);
         $providerSchoolRating = new \yii\data\ArrayDataProvider([
             'allModels' => $model->schoolRatings,
         ]);
@@ -58,6 +70,10 @@ class SchoolsController extends BackendController
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'providerSchoolAccomodation' => $providerSchoolAccomodation,
+            'providerSchoolAirportPickup' => $providerSchoolAirportPickup,
+            'providerSchoolCourse' => $providerSchoolCourse,
+            'providerSchoolPhotos' => $providerSchoolPhotos,
             'providerSchoolRating' => $providerSchoolRating,
             'providerSchoolVideos' => $providerSchoolVideos,
         ]);
@@ -128,6 +144,76 @@ class SchoolsController extends BackendController
     {
         if (($model = Schools::findOne($id)) !== null) {
             return $model;
+        } else {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+    }
+
+
+    /**
+     * Action to load a tabular form grid
+     * for SchoolAccomodation
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddSchoolAccomodation()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('SchoolAccomodation');
+            if (!empty($row)) {
+                $row = array_values($row);
+            }
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formSchoolAccomodation', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+    }
+
+    /**
+     * Action to load a tabular form grid
+     * for SchoolAirportPickup
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddSchoolAirportPickup()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('SchoolAirportPickup');
+            if (!empty($row)) {
+                $row = array_values($row);
+            }
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formSchoolAirportPickup', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+    }
+
+    /**
+     * Action to load a tabular form grid
+     * for SchoolCourse
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddSchoolCourse()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('SchoolCourse');
+            if (!empty($row)) {
+                $row = array_values($row);
+            }
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formSchoolCourse', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
         }

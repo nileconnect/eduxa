@@ -28,6 +28,31 @@ use yii\helpers\Url;
     ]
 ]);
 
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'SchoolAccomodation',
+        'relID' => 'school-accomodation',
+        'value' => \yii\helpers\Json::encode($model->schoolAccomodations),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'SchoolAirportPickup',
+        'relID' => 'school-airport-pickup',
+        'value' => \yii\helpers\Json::encode($model->schoolAirportPickups),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'SchoolCourse',
+        'relID' => 'school-course',
+        'value' => \yii\helpers\Json::encode($model->schoolCourses),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
+
 ?>
 
 <div class="schools-form">
@@ -106,22 +131,22 @@ use yii\helpers\Url;
     </div>
 
 
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'course_type')->widget(\kartik\widgets\Select2::classname(), [
-                'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolsCourseTypes::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-                'options' => ['placeholder' => Yii::t('backend', 'Choose Schools course types')],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]); ?>
-        </div>
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'discount')->textInput(['placeholder' => 'Discount']) ?>
-        </div>
-
-    </div>
-
+<!--    <div class="row">-->
+<!--        <div class="col-md-6 col-sm-12">-->
+<!--            --><?//= $form->field($model, 'course_type')->widget(\kartik\widgets\Select2::classname(), [
+//                'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolsCourseTypes::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+//                'options' => ['placeholder' => Yii::t('backend', 'Choose Schools course types')],
+//                'pluginOptions' => [
+//                    'allowClear' => true
+//                ],
+//            ]); ?>
+<!--        </div>-->
+<!--        <div class="col-md-6 col-sm-12">-->
+<!--            --><?//= $form->field($model, 'discount')->textInput(['placeholder' => 'Discount']) ?>
+<!--        </div>-->
+<!---->
+<!--    </div>-->
+<!---->
 
 
 
@@ -179,82 +204,26 @@ use yii\helpers\Url;
 
         </div>
     </div>
-
-
-
-
+<hr/>
     <div class="row">
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'min_age')->textInput(['placeholder' => 'Min Age'])->widget(MyMultiLanguageActiveField::className());  ?>
 
+        <div class="col-md-4 col-sm-12 well" >
+            <?= $form->field($model, 'has_health_insurance')->checkbox(['id'=>'insuranceIDChekc']) ?>
         </div>
 
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'start_every')->textInput(['maxlength' => true, 'placeholder' => 'Start Every'])->widget(MyMultiLanguageActiveField::className());  ?>
-
-        </div>
-
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'study_time')->textInput(['maxlength' => true, 'placeholder' => 'Study Time'])->widget(MyMultiLanguageActiveField::className());  ?>
-
+        <div class="col-md-4 col-sm-12 autoUpdate" style="display: <?= $model->has_health_insurance? "block":"none" ?>">
+            <?= $form->field($model, 'health_insurance_cost')->textInput(['placeholder' => 'Health Insurance Cost']) ?>
         </div>
     </div>
 
-
-
-
     <div class="row">
         <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'max_students_per_class')->textInput(['placeholder' => 'Max Students Per Class']) ?>
-
+            <?= $form->field($model, 'accomodation_reservation_fees')->textInput(['placeholder' => 'Accomodation Reservation Fees']) ?>
         </div>
 
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'avg_students_per_class')->textInput(['placeholder' => 'Avg Students Per Class']) ?>
-
-        </div>
-
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'lessons_per_week')->textInput(['placeholder' => 'Lessons Per Week']) ?>
-
-        </div>
     </div>
 
-
-    <div class="row">
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'hours_per_week')->textInput(['placeholder' => 'Hours Per Week']) ?>
-
-        </div>
-
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'accomodation_fees')->textInput(['placeholder' => 'Accomodation Fees']) ?>
-
-        </div>
-
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'registeration_fees')->textInput(['placeholder' => 'Registeration Fees']) ?>
-
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'study_books_fees')->textInput(['placeholder' => 'Study Books Fees']) ?>
-
-        </div>
-
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'fees_per_week')->textInput(['placeholder' => 'Fees Per Week']) ?>
-
-        </div>
-
-        <div class="col-md-4 col-sm-12">
-        </div>
-    </div>
-
-
+<hr/>
 
     <?php echo $form->field($model, 'photos')->widget(
         Upload::class,
@@ -272,13 +241,27 @@ use yii\helpers\Url;
     $forms = [
 
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'SchoolRating')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'School Accomodations')),
+            'content' => $this->render('_formSchoolAccomodation', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->schoolAccomodations),
+            ]),
+        ],
+
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'School Airport Pickup')),
+            'content' => $this->render('_formSchoolAirportPickup', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->schoolAirportPickups),
+            ]),
+        ],
+
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'School Rating')),
             'content' => $this->render('_formSchoolRating', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->schoolRatings),
             ]),
         ],
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'SchoolVideos')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'School Videos')),
             'content' => $this->render('_formSchoolVideos', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->schoolVideos),
             ]),
@@ -309,3 +292,20 @@ use yii\helpers\Url;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$script = <<< JS
+    $('#insuranceIDChekc').change(function(){
+            if(this.checked) {
+                   $('.autoUpdate').show(); 
+              }else{
+                 $('.autoUpdate').hide();
+                 $('#schools-health_insurance_cost').val('') ;
+              }
+              
+
+
+        });
+JS;
+$this->registerJs($script);
+?>

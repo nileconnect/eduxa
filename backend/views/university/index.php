@@ -58,17 +58,17 @@ echo newerton\fancybox3\FancyBox::widget([
             'value'=>function ($model) {
                 $creator =   $model->responsible_id ? $model->responsible->getPublicIdentity() : 'Assign';
 
-                return  ' <a data-src="/university/manager?id='.$model->id.'" data-fancybox data-type="iframe" href="javascript:;" >'.$creator.'</a> ' ;
+                return  ' <a class="btn btn-info" data-src="/university/manager?id='.$model->id.'" data-fancybox data-type="iframe" href="javascript:;" >'.$creator.'</a> ' ;
             },
             'format' => 'raw',
         ],
 
 
         [
-            'label'=>'Programms',
+            'label'=>'Programs',
             'format'=>'raw',
             'value' => function ($model) {
-                return '<a   href="/university-programs?university_id='.$model->id.'">Manage </a>';
+                return '<a  class="btn btn-success"  href="/university-programs?university_id='.$model->id.'">Manage Programs </a>';
 
             }
         ],

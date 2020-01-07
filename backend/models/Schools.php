@@ -22,6 +22,14 @@ class Schools extends BaseSchools
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;
+
+    const AIRPORT_ONE_WAY = 1;
+    const AIRPORT_TWO_WAY = 2;
+
+    const BOOKING_WEEKLY= 1;
+    const BOOKING_MONTHLY= 2;
+
+
     /**
      * @inheritdoc
      */
@@ -29,12 +37,12 @@ class Schools extends BaseSchools
     {
         return [
             ['title', 'required'],
-            [['course_type', 'country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class', 'lessons_per_week', 'created_by', 'updated_by','no_of_ratings'], 'integer'],
+            [['country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings'], 'integer'],
             [['details'], 'string'],
-            [['hours_per_week', 'accomodation_fees', 'registeration_fees', 'study_books_fees', 'fees_per_week', 'discount', 'total_rating'], 'number'],
-            [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path', 'start_every', 'study_time', 'created_at', 'updated_at'], 'string', 'max' => 255],
+            [['accomodation_fees', 'registeration_fees', 'study_books_fees',  'discount', 'total_rating'], 'number'],
+            [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at'], 'string', 'max' => 255],
             [['featured', 'status'], 'string', 'max' => 4],
-            [['logo','photos','no_of_ratings'],'safe']
+            [['logo','photos','no_of_ratings' ,'accomodation_reservation_fees','has_health_insurance','health_insurance_cost'],'safe']
         ] ;
     }
 
@@ -43,6 +51,20 @@ class Schools extends BaseSchools
         return [
             self::STATUS_ON =>'Active',
             self::STATUS_OFF =>'Not Active' ,
+        ];
+    }
+
+
+    public static function LisBookingCycle(){
+        return [
+            self::BOOKING_WEEKLY => Yii::t('backend','Weekly') ,
+            self::BOOKING_MONTHLY =>Yii::t('backend','Monthly')  ,
+        ];
+    }
+    public static function LisAirportWay(){
+        return [
+            self::AIRPORT_ONE_WAY => Yii::t('backend','One Way') ,
+            self::AIRPORT_TWO_WAY =>Yii::t('backend','Two Way')  ,
         ];
     }
 
@@ -89,7 +111,7 @@ class Schools extends BaseSchools
                 'class'    => MultiLanguageBehavior::className(),
                 'mlConfig' => [
                     'db_table'         => 'translations_with_text',
-                    'attributes'       => ['title','details','min_age','start_every','study_time'],
+                    'attributes'       => ['title','details'],  //,'min_age','start_every','study_time'
                     'admin_routes'     => [
                         'schools/update',
                         'schools/index',
@@ -105,7 +127,11 @@ class Schools extends BaseSchools
         $ratingCount = count($this->schoolRatings);
         $rating_sum  = $this->schoolRatingsSum;
         $this->no_of_ratings = $ratingCount ;
-        $this->total_rating = number_format($rating_sum/$ratingCount , 0);
+        if($ratingCount){
+            $this->total_rating = number_format($rating_sum/$ratingCount , 0);
+        }else{
+            $this->total_rating = 0 ;
+        }
         $this->save(false);
         return true;
     }

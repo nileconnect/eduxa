@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use kartik\grid\GridView;
+use backend\models\Schools;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Schools */
@@ -15,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= Yii::t('backend', 'Schools').' '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
 
@@ -59,36 +59,33 @@ $this->params['breadcrumbs'][] = $this->title;
             'valueColOptions'=>['style'=>'width:30%;background: #87b1d11a;text-align:center;border-radius:10px;']
         ],
         'title',
-        'status:boolean',
+        [
+            'attribute'=> 'country_id',
+            'format'=>'raw',
+            'value'=>function($data){
+                return $data->country_id ? $data->country->title : " ";
+            }
+        ],
 
         [
-            'attribute' => 'courseType.title',
-            'label' => Yii::t('backend', 'Course Type'),
+            'attribute'=> 'city_id',
+            'format'=>'raw',
+            'value'=>function($data){
+              return  $data->city_id ?  $data->city->title : '' ;
+            }
         ],
-        'discount',
+
+        'status:boolean',
+
         'total_rating',
         'no_of_ratings',
 
         'details:ntext',
-        'featured',
-        'location',
-        'lat',
-        'lng',
-        'image_base_url:url',
-        'image_path',
-        'country_id',
-        'city_id',
-        'min_age',
-        'start_every',
-        'study_time',
-        'max_students_per_class',
-        'avg_students_per_class',
-        'lessons_per_week',
-        'hours_per_week',
+        'featured:boolean',
+
         'accomodation_fees',
         'registeration_fees',
-        'study_books_fees',
-        'fees_per_week',
+
 
     ];
     echo DetailView::widget([
@@ -97,18 +94,117 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
 ?>
     </div>
+
     <div class="row">
-        <h4>SchoolsCourseTypes<?= ' '. Html::encode($this->title) ?></h4>
+        <?php
+        if($providerSchoolAirportPickup->totalCount){
+            $gridColumnSchoolAirportPickup = [
+                ['class' => 'yii\grid\SerialColumn'],
+                ['attribute' => 'id', 'visible' => false],
+                'title',
+                [
+                    'attribute'=> 'service_type',
+                    'format'=>'raw',
+                    'value'=>function($data){
+                        return  Schools::LisAirportWay()[$data->service_type];
+                    }
+                ],
+                'cost',
+            ];
+            echo Gridview::widget([
+                'dataProvider' => $providerSchoolAirportPickup,
+                'pjax' => true,
+                'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-school-airport-pickup']],
+                'panel' => [
+                    'type' => GridView::TYPE_PRIMARY,
+                    'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'School Airport Pickup')),
+                ],
+                'export' => false,
+                'columns' => $gridColumnSchoolAirportPickup
+            ]);
+        }
+        ?>
+
     </div>
-    <?php
-    $gridColumnSchoolsCourseTypes = [
-        ['attribute' => 'id', 'visible' => false],
-        'title',
-    ];
-    echo DetailView::widget([
-        'model' => $model->courseType,
-        'attributes' => $gridColumnSchoolsCourseTypes    ]);
-    ?>
+
+<!--    <div class="row">-->
+<!--        --><?php
+//        if($providerSchoolCourse->totalCount){
+//            $gridColumnSchoolCourse = [
+//                ['class' => 'yii\grid\SerialColumn'],
+//                ['attribute' => 'id', 'visible' => false],
+//                'title',
+//                'information:ntext',
+//                'requirments:ntext',
+//                'course_start_every',
+//                'lessons_per_week',
+//                'hours_per_week',
+//                'min_no_of_students_per_class',
+//                'avg_no_of_students_per_class',
+//                'min_age',
+//                'required_level',
+//                'time_of_course:datetime',
+//                'registeration_fees',
+//                'cost_per_week',
+//                'no_of_weeks',
+//                'discount',
+//                'required_attendance_duraion',
+//            ];
+//            echo Gridview::widget([
+//                'dataProvider' => $providerSchoolCourse,
+//                'pjax' => true,
+//                'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-school-course']],
+//                'panel' => [
+//                    'type' => GridView::TYPE_PRIMARY,
+//                    'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'School Course')),
+//                ],
+//                'export' => false,
+//                'columns' => $gridColumnSchoolCourse
+//            ]);
+//        }
+//        ?>
+<!---->
+<!--    </div>-->
+<!---->
+
+
+    <div class="row">
+
+        <?php
+        if($providerSchoolAccomodation->totalCount){
+            $gridColumnSchoolAccomodation = [
+                ['class' => 'yii\grid\SerialColumn'],
+                ['attribute' => 'id', 'visible' => false],
+                'title',
+                'room_size',
+                [
+                    'attribute'=> 'booking_cycle',
+                    'format'=>'raw',
+                    'value'=>function($data){
+                        return  Schools::LisBookingCycle()[$data->booking_cycle];
+                    }
+                ],
+                'min_booking_duraion',
+                'min_age',
+                'max_age',
+                'distance_from_school',
+                'cost_per_duration_unit',
+            ];
+            echo Gridview::widget([
+                'dataProvider' => $providerSchoolAccomodation,
+                'pjax' => true,
+                'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-school-accomodation']],
+                'panel' => [
+                    'type' => GridView::TYPE_PRIMARY,
+                    'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'School Accomodation')),
+                ],
+                'export' => false,
+                'columns' => $gridColumnSchoolAccomodation
+            ]);
+        }
+        ?>
+
+    </div>
 
     <div class="row">
         <?php
@@ -120,7 +216,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'name',
                 'comment:ntext',
                 'rating',
-                'status',
+                'status:boolean',
             ];
             echo Gridview::widget([
                 'dataProvider' => $providerSchoolRating,

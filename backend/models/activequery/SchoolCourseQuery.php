@@ -3,11 +3,11 @@
 namespace backend\models\activequery;
 
 /**
- * This is the ActiveQuery class for [[\backend\models\activequery\SchoolsCourseTypes]].
+ * This is the ActiveQuery class for [[\backend\models\activequery\SchoolCourse]].
  *
- * @see \backend\models\activequery\SchoolsCourseTypes
+ * @see \backend\models\activequery\SchoolCourse
  */
-class SchoolsCourseTypesQuery extends \yii\db\ActiveQuery
+class SchoolCourseQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class SchoolsCourseTypesQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \backend\models\activequery\SchoolsCourseTypes[]|array
+     * @return \backend\models\activequery\SchoolCourse[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class SchoolsCourseTypesQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \backend\models\activequery\SchoolsCourseTypes|array|null
+     * @return \backend\models\activequery\SchoolCourse|array|null
      */
     public function one($db = null)
     {
