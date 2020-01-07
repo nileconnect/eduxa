@@ -55,7 +55,8 @@ class SchoolCourse extends BaseSchoolCourse
             [['hours_per_week', 'registeration_fees', 'cost_per_week', 'discount'], 'number'],
             [['title', 'course_start_every', 'required_attendance_duraion', 'created_at', 'updated_at'], 'string', 'max' => 255],
             [['required_level', 'time_of_course'], 'string', 'max' => 4],
-            ['status','number']
+            ['status','number'],
+            [['information','requirments'],'safe']
         ];
     }
 
@@ -81,6 +82,7 @@ class SchoolCourse extends BaseSchoolCourse
                     'db_table'         => 'translations_with_text',
                     'attributes'       => ['title','information','requirments'],
                     'admin_routes'     => [
+                        'school-course/create',
                         'school-course/update',
                         'school-course/index',
                     ],

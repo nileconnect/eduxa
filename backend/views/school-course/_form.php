@@ -10,7 +10,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
 ?>
 
-<div class="school-course-form">
+<div class="schools-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
