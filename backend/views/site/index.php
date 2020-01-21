@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $name string */
@@ -10,6 +11,105 @@ use yii\helpers\Html;
 /*Dashboard Asset*/
 \backend\assets\DashboardAsset::register($this);
 $this->title = Yii::t('backend', 'Dashboard'); ?>
+
+    <!-- Info boxes -->
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box info-white">
+      <span class="info-box-icon bg-green"
+      ><ion-icon name="people"></ion-icon
+          ></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">University Managers</span>
+                    <span class="info-box-number"><?= User::CountUsers(User::ROLE_UNIVERSITY_MANAGER)?></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box info-white">
+      <span class="info-box-icon bg-black"
+      ><ion-icon name="people"></ion-icon
+          ></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Referral Persons</span>
+                    <span class="info-box-number"><?= User::CountUsers(User::ROLE_REFERRAL_PERSON)?></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box info-white">
+      <span class="info-box-icon bg-blue"
+      ><ion-icon name="people"></ion-icon
+          ></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Referral Company</span>
+                    <span class="info-box-number"><?= User::CountUsers(User::ROLE_REFERRAL_COMPANY)?></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box info-white">
+      <span class="info-box-icon bg-yellow"
+      ><ion-icon name="people"></ion-icon
+          ></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Students</span>
+                    <span class="info-box-number"><?= User::CountUsers(User::ROLE_USER)?></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box info-white">
+      <span class="info-box-icon bg-green"
+      ><ion-icon name="cart"></ion-icon
+          ></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Requests</span>
+                    <span class="info-box-number"><?= \backend\models\Requests::find()->count(); ?></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </div>
+
+    <!-- /.row -->
+
 <?php
 /*
 ?>

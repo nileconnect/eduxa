@@ -151,6 +151,20 @@ echo Menu::widget([
         ],
 
         [
+            'label' => Yii::t('backend', 'Requests'),
+            'options' => ['class' => 'header'],
+        ],
+
+        [
+            'label' => Yii::t('backend', 'Manage Requests'),
+            'icon' => '<i class="fa fa-tv"></i>',
+            'url' => ['/requests'],
+            'active' => (Yii::$app->controller->id == 'requests'),
+            'visible' => (Yii::$app->user->can('administrator')  ),
+        ],
+
+
+        [
             'label' => Yii::t('backend', 'Content'),
             'options' => ['class' => 'header'],
         ],

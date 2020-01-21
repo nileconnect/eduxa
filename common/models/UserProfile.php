@@ -40,6 +40,14 @@ class UserProfile extends ActiveRecord
         return '{{%user_profile}}';
     }
 
+    public static function ListGender(){
+        return [
+            UserProfile::GENDER_FEMALE => Yii::t('backend', 'Female'),
+            UserProfile::GENDER_MALE => Yii::t('backend', 'Male')
+
+        ];
+    }
+
     /**
      * @return array
      */
