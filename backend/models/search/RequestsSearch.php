@@ -12,6 +12,10 @@ use backend\models\Requests;
  */
  class RequestsSearch extends Requests
 {
+
+     public $creation_from_date;
+     public $creation_to_date;
+
     /**
      * @inheritdoc
      */
@@ -21,7 +25,8 @@ use backend\models\Requests;
             [['id', 'model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id', 'student_nationality_id', 'number_of_weeks'], 'integer'],
             [['model_name', 'request_by_role', 'request_notes', 'admin_notes', 'student_first_name', 'student_last_name', 'student_gender', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup', 'airport_pickup_cost', 'course_start_date', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
             [['accomodation_option_cost'], 'number'],
-            ['created_at','safe']
+            ['created_at','safe'],
+            [['creation_from_date','creation_to_date'],'safe']
         ];
     }
 
@@ -74,6 +79,15 @@ use backend\models\Requests;
         if($this->created_at){
             $query ->andFilterWhere(['>= ', 'created_at',  strtotime($this->created_at ) ]);
             $query ->andFilterWhere(['<= ', 'created_at',  strtotime($this->created_at . ' + 1 day') ]);
+        }
+
+        if($this->creation_from_date){
+            $query ->andFilterWhere(['>= ', 'created_at',  strtotime($this->creation_from_date ) ]);
+
+        }
+
+        if($this->creation_to_date){
+            $query ->andFilterWhere(['<= ', 'created_at',  strtotime($this->creation_to_date . ' + 1 day') ]);
         }
 
         $query->andFilterWhere(['like', 'model_name', $this->model_name])
