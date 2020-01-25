@@ -139,7 +139,7 @@ $this->registerJs($search);
 
         [
             'attribute' => 'created_at',
-            'format' => 'date'
+          //  'format' => 'date'
         ],
         [
             'class' => 'yii\grid\ActionColumn','template'=>'{view}'
