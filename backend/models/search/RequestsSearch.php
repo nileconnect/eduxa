@@ -21,6 +21,7 @@ use backend\models\Requests;
             [['id', 'model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id', 'student_nationality_id', 'number_of_weeks'], 'integer'],
             [['model_name', 'request_by_role', 'request_notes', 'admin_notes', 'student_first_name', 'student_last_name', 'student_gender', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup', 'airport_pickup_cost', 'course_start_date', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
             [['accomodation_option_cost'], 'number'],
+            ['created_at','safe']
         ];
     }
 
@@ -68,6 +69,10 @@ use backend\models\Requests;
             'accomodation_option_cost' => $this->accomodation_option_cost,
             'number_of_weeks' => $this->number_of_weeks,
         ]);
+
+        if ($this->created_at !== null) {
+            $query->andFilterWhere(['between', 'user.created_at', $this->created_at, $this->created_at + 3600 * 24]);
+        }
 
         $query->andFilterWhere(['like', 'model_name', $this->model_name])
             ->andFilterWhere(['like', 'request_by_role', $this->request_by_role])

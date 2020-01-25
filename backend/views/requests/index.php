@@ -135,8 +135,20 @@ $this->registerJs($search);
                 return   \backend\models\Requests::ListStatus()[$model->status];
             },
             'filter' => Html::activeDropDownList($searchModel, 'status', \backend\models\Requests::ListStatus() ,['class'=>'form-control','prompt' => 'Select']),
+        ],
 
-
+        [
+            'attribute' => 'created_at',
+            'format' => 'datetime',
+            'filter' => \trntv\yii\datetime\DateTimeWidget::widget([
+                'model' => $searchModel,
+                'attribute' => 'created_at',
+                'phpDatetimeFormat' => 'dd.MM.yyyy',
+                'momentDatetimeFormat' => 'DD.MM.YYYY',
+                'clientEvents' => [
+                    'dp.change' => new \yii\web\JsExpression('(e) => $(e.target).find("input").trigger("change.yiiGridView")')
+                ],
+            ])
         ],
         [
             'class' => 'yii\grid\ActionColumn','template'=>'{view}'
