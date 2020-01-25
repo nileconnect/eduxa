@@ -77,17 +77,17 @@ use backend\models\Requests;
 
 
         if($this->created_at){
-            $query ->andFilterWhere(['>= ', 'created_at',  strtotime($this->created_at ) ]);
-            $query ->andFilterWhere(['<= ', 'created_at',  strtotime($this->created_at . ' + 1 day') ]);
+
+            $query->andFilterWhere(['between', 'created_at', $this->created_at.' 00:00:00', $this->created_at.' 23:59:59']);
         }
 
         if($this->creation_from_date){
-            $query ->andFilterWhere(['>= ', 'created_at',  strtotime($this->creation_from_date ) ]);
+            $query ->andFilterWhere(['>= ', 'created_at',  $this->creation_from_date.' 00:00:00' ]);
 
         }
 
         if($this->creation_to_date){
-            $query ->andFilterWhere(['<= ', 'created_at',  strtotime($this->creation_to_date . ' + 1 day') ]);
+            $query ->andFilterWhere(['<= ', 'created_at',  this->creation_to_date .' 00:00:00' ]);
         }
 
         $query->andFilterWhere(['like', 'model_name', $this->model_name])
@@ -107,7 +107,7 @@ use backend\models\Requests;
             ->andFilterWhere(['like', 'updated_at', $this->updated_at])
             ->andFilterWhere(['like', 'created_by', $this->created_by])
             ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
-        echo       $query->createCommand()->getRawSql();
+       // echo       $query->createCommand()->getRawSql();
 
         return $dataProvider;
     }
