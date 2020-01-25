@@ -87,7 +87,7 @@ use backend\models\Requests;
         }
 
         if($this->creation_to_date){
-            $query ->andFilterWhere(['<= ', 'created_at',  this->creation_to_date .' 00:00:00' ]);
+            $query ->andFilterWhere(['<= ', 'created_at',  $this->creation_to_date .' 00:00:00' ]);
         }
 
         $query->andFilterWhere(['like', 'model_name', $this->model_name])
