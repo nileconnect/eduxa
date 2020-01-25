@@ -84,19 +84,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-            [
-                'attribute' => 'created_at',
-                'format' => 'datetime',
-                'filter' => DateTimeWidget::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'created_at',
-                    'phpDatetimeFormat' => 'dd.MM.yyyy',
-                    'momentDatetimeFormat' => 'DD.MM.YYYY',
-                    'clientEvents' => [
-                        'dp.change' => new JsExpression('(e) => $(e.target).find("input").trigger("change.yiiGridView")')
-                    ],
-                ])
-            ],
+//            [
+//                'attribute' => 'created_at',
+//                'format' => 'datetime',
+//                'filter' => DateTimeWidget::widget([
+//                    'model' => $searchModel,
+//                    'attribute' => 'created_at',
+//                    'phpDatetimeFormat' => 'dd.MM.yyyy',
+//                    'momentDatetimeFormat' => 'DD.MM.YYYY',
+//                    'clientEvents' => [
+//                        'dp.change' => new JsExpression('(e) => $(e.target).find("input").trigger("change.yiiGridView")')
+//                    ],
+//                ])
+//            ],
             [
                 'attribute' => 'logged_at',
                 'format' => 'datetime',
