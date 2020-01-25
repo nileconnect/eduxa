@@ -108,8 +108,8 @@ use kartik\date\DatePicker;
     <?php /* echo $form->field($model, 'status')->textInput(['placeholder' => 'Status']) */ ?>
 
     <div class="form-group">
-        <a class="btn btn-primary" href="/requests"> <?= Yii::t('backend', 'Search') ?> </a>
-        <?= Html::resetButton(Yii::t('backend', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton(Yii::t('backend', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <a class="btn btn-default" href="/requests"> <?= Yii::t('backend', 'Search') ?> </a>
     </div>
 
     <?php ActiveForm::end(); ?>
