@@ -107,6 +107,7 @@ use backend\models\Requests;
             ->andFilterWhere(['like', 'updated_at', $this->updated_at])
             ->andFilterWhere(['like', 'created_by', $this->created_by])
             ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
+        echo       $query->createCommand()->getRawSql();
 
         return $dataProvider;
     }
