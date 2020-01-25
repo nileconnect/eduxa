@@ -70,8 +70,10 @@ use backend\models\Requests;
             'number_of_weeks' => $this->number_of_weeks,
         ]);
 
-        if ($this->created_at !== null) {
-            $query->andFilterWhere(['between', 'user.created_at', $this->created_at, $this->created_at + 3600 * 24]);
+
+        if($this->created_at){
+            $query ->andFilterWhere(['>= ', 'created_at',  strtotime($this->created_at ) ]);
+            $query ->andFilterWhere(['<= ', 'created_at',  strtotime($this->created_at . ' + 1 day') ]);
         }
 
         $query->andFilterWhere(['like', 'model_name', $this->model_name])
@@ -88,7 +90,6 @@ use backend\models\Requests;
             ->andFilterWhere(['like', 'airport_pickup_cost', $this->airport_pickup_cost])
             ->andFilterWhere(['like', 'course_start_date', $this->course_start_date])
             ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'created_at', $this->created_at])
             ->andFilterWhere(['like', 'updated_at', $this->updated_at])
             ->andFilterWhere(['like', 'created_by', $this->created_by])
             ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
