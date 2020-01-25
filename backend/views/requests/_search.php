@@ -32,7 +32,7 @@ use kartik\date\DatePicker;
                 'type' => DatePicker::TYPE_RANGE,
                 'form' => $form,
                 'pluginOptions' => [
-                    'format' => 'dd-mm-yyyy',
+                    'format' => 'yyyy-mm-dd',
                     'autoclose' => true,
                 ]
             ]);
