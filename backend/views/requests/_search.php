@@ -9,7 +9,7 @@ use kartik\date\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="form-requests-search">
+<div class="form-requests-search" style="padding-left: 50px">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,7 +18,7 @@ use kartik\date\DatePicker;
 
 
     <div class="row">
-        <div class="col-md-12 col-sm-12">
+        <div class="col-md-12 col-sm-10" >
 
             <?php
 
@@ -41,15 +41,15 @@ use kartik\date\DatePicker;
         </div>
 
 
-    <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
+    <?// = $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
-    <?= $form->field($model, 'model_name')->textInput(['placeholder' => 'Model Name']) ?>
+    <?// = $form->field($model, 'model_name')->textInput(['placeholder' => 'Model Name']) ?>
 
-    <?= $form->field($model, 'model_id')->textInput(['placeholder' => 'Model']) ?>
+    <?// = $form->field($model, 'model_id')->textInput(['placeholder' => 'Model']) ?>
 
-    <?= $form->field($model, 'model_parent_id')->textInput(['placeholder' => 'Model Parent']) ?>
+    <?// = $form->field($model, 'model_parent_id')->textInput(['placeholder' => 'Model Parent']) ?>
 
-    <?= $form->field($model, 'request_by_role')->textInput(['placeholder' => 'Request By Role']) ?>
+    <?//  = $form->field($model, 'request_by_role')->textInput(['placeholder' => 'Request By Role']) ?>
 
     <?php /* echo $form->field($model, 'student_id')->textInput(['placeholder' => 'Student']) */ ?>
 
