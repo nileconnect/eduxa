@@ -109,7 +109,7 @@ use kartik\date\DatePicker;
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('backend', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <a class="btn btn-default" href="/requests"> <?= Yii::t('backend', 'Search') ?> </a>
+        <a class="btn btn-default" href="/requests"> <?= Yii::t('backend', 'Reset') ?> </a>
     </div>
 
     <?php ActiveForm::end(); ?>
