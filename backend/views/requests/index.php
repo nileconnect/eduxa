@@ -17,10 +17,10 @@ $search = "$('.search-button').click(function(){
 $this->registerJs($search);
 ?>
 <div class="requests-index">
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
     <p>
         <? // = Html::a(Yii::t('backend', 'Create Requests'), ['create'], ['class' => 'btn btn-success']) ?>
-        <? // = Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
+        <?= Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
     <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
@@ -139,16 +139,7 @@ $this->registerJs($search);
 
         [
             'attribute' => 'created_at',
-            'format' => 'datetime',
-            'filter' => \trntv\yii\datetime\DateTimeWidget::widget([
-                'model' => $searchModel,
-                'attribute' => 'created_at',
-                'phpDatetimeFormat' => 'yyyy-MM-dd', //2019-10-25
-                'momentDatetimeFormat' => 'yyyy-MM-dd',
-                'clientEvents' => [
-                    'dp.change' => new \yii\web\JsExpression('(e) => $(e.target).find("input").trigger("change.yiiGridView")')
-                ],
-            ])
+            'format' => 'date'
         ],
         [
             'class' => 'yii\grid\ActionColumn','template'=>'{view}'

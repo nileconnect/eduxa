@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\search\RequestsSearch */
@@ -14,6 +15,31 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+
+            <?php
+
+            echo '<label class="control-label"> Date Created   </label>';
+            echo DatePicker::widget([
+                'model' => $model,
+                'attribute' => 'creation_from_date',
+                'attribute2' => 'creation_to_date',
+                'options' => ['placeholder' => 'From'],
+                'options2' => ['placeholder' => 'To'],
+                'type' => DatePicker::TYPE_RANGE,
+                'form' => $form,
+                'pluginOptions' => [
+                    'format' => 'dd-mm-yyyy',
+                    'autoclose' => true,
+                ]
+            ]);
+
+            ?>
+        </div>
+
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
