@@ -31,8 +31,14 @@ $this->registerJs($search);
 
 <?php
 $gridColumn = [
-    ['class' => 'yii\grid\SerialColumn'],
-    ['attribute' => 'id', 'visible' => false],
+   // ['class' => 'yii\grid\SerialColumn'],
+
+    ['attribute' => 'id',
+        'value' =>function($model){
+            return  \backend\models\Requests::ListRequestStartNo()[$model->request_by_role] . $model->id;
+        }
+
+    ],
     [
         'attribute' => 'model_name',
         'value' => function($model){

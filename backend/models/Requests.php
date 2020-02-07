@@ -34,6 +34,15 @@ class Requests extends BaseRequests
         ];
     }
 
+    public static  function ListRequestStartNo(){
+        return [
+            self::REQUEST_BY_STUDENT => 10,
+            self::REQUEST_BY_REFERRAL_COMPANY => 30,
+            self::REQUEST_BY_REFERRAL_PERSON =>20,
+
+        ];
+    }
+
     public static  function ListRequestBy(){
         return [
             self::REQUEST_BY_STUDENT => 'Student',
