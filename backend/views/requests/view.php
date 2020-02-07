@@ -12,16 +12,22 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Requests'), 'url
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="requests-view">
-        <div class="text-center">
-            <div class="col-md-6">
-                <?php $form = \yii\bootstrap\ActiveForm::begin(); ?>
-                <?= $form->field($model, 'admin_notes')->textarea(['rows' => 6]) ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Save Admin notes', ['class' => 'btn btn-primary']) ?>
-                </div>
-                <?php \yii\bootstrap\ActiveForm::end(); ?>
+    <?php $form = \yii\bootstrap\ActiveForm::begin(); ?>
+
+    <div class="text-center">
+            <div class="col-md-3">
+                <?= $form->field($model, 'status')->dropDownList(\backend\models\Requests::ListStatus()) ?>
             </div>
-       </div>
+            <div class="col-md-6">
+                <?= $form->field($model, 'admin_notes')->textarea(['rows' => 6]) ?>
+            </div>
+        <div class="col-md-6">
+              <div class="form-group">
+                    <?= Html::submitButton('Save Changes', ['class' => 'btn btn-primary']) ?>
+                </div>
+        </div>
+    </div>
+    <?php \yii\bootstrap\ActiveForm::end(); ?>
     <div class="row">
 <?php 
     $gridColumn = [
