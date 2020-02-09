@@ -160,7 +160,7 @@ echo Menu::widget([
             'icon' => '<i class="fa fa-tv"></i>',
             'url' => ['/requests'],
             'active' => (Yii::$app->controller->id == 'requests'),
-            'visible' => (Yii::$app->user->can('administrator')  ),
+            //'visible' => (Yii::$app->user->can('administrator')  ),
         ],
 
 
