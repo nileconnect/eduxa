@@ -29,7 +29,7 @@ echo Menu::widget([
             'url' => '#',
             'icon' => '<i class="fa fa-users"></i>',
             'options' => ['class' => 'treeview'],
-            'visible' => (Yii::$app->user->can('administrator')  ),
+           // 'visible' => (Yii::$app->user->can('administrator')  ),
 
             'items' => [
 
@@ -38,7 +38,7 @@ echo Menu::widget([
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=manager'],
                     'active' => (Yii::$app->controller->id == 'user'),
-                    'visible' => (Yii::$app->user->can('administrator')  ),
+                    //'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
 
@@ -47,7 +47,7 @@ echo Menu::widget([
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=universityManager'],
                     'active' => (Yii::$app->controller->id == 'user'),
-                    'visible' => (Yii::$app->user->can('administrator')  ),
+                   // 'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
 
@@ -57,7 +57,7 @@ echo Menu::widget([
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=referralPerson'],
                     'active' => (Yii::$app->controller->id == 'user'),
-                    'visible' => (Yii::$app->user->can('administrator')  ),
+                   // 'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
 
@@ -68,7 +68,7 @@ echo Menu::widget([
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=referralCompany'],
                     'active' => (Yii::$app->controller->id == 'user'),
-                    'visible' => (Yii::$app->user->can('administrator')  ),
+                   // 'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
 
@@ -77,7 +77,7 @@ echo Menu::widget([
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=user'],
                     'active' => (Yii::$app->controller->id == 'user'),
-                    'visible' => (Yii::$app->user->can('administrator')  ),
+                   // 'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
 
