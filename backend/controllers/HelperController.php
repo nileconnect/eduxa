@@ -71,6 +71,26 @@ class HelperController extends   BackendController
     }
 
 
+    //endpoints
+    public function actionStates() {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $country_id = $parents[0];
+
+                $data = \backend\models\State::find()->where(['country_id'=>$country_id])->all();
+
+                foreach ($data as $datum) {
+                    $out[] = ['id'=>$datum->id, 'name'=>$datum->title];
+
+                }
+                return ['output'=>$out, 'selected'=>''];
+            }
+        }
+        return ['output'=>'', 'selected'=>''];
+    }
 
 
 
@@ -81,9 +101,9 @@ class HelperController extends   BackendController
         if (isset($_POST['depdrop_parents'])) {
             $parents = $_POST['depdrop_parents'];
             if ($parents != null) {
-                $country_id = $parents[0];
+                $state_id = $parents[0];
 
-                $data = \backend\models\City::find()->where(['country_id'=>$country_id])->all();
+                $data = \backend\models\Cities::find()->where(['state_id'=>$state_id])->all();
 
                 foreach ($data as $datum) {
                     $out[] = ['id'=>$datum->id, 'name'=>$datum->title];

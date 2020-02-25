@@ -85,19 +85,19 @@ class UniversityPrograms extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('backend', 'ID'),
             'university_id' => Yii::t('backend', 'University'),
-            'title' => Yii::t('backend', 'Title'),
+            'title' => Yii::t('backend', 'Program Name'),
             'major_id' => Yii::t('backend', 'Major'),
             'degree_id' => Yii::t('backend', 'Degree'),
             'field_id' => Yii::t('backend', 'Field'),
             'country_id' => Yii::t('backend', 'Country'),
-            'city_id' => Yii::t('backend', 'City'),
-            'study_start_date' => Yii::t('backend', 'Begining Of Study'),
+            'city_id' => Yii::t('backend', 'State'),
+            'study_start_date' => Yii::t('backend', 'Start Date'),
             'study_duration' => Yii::t('backend', 'Study Duration'),
-            'study_method' => Yii::t('backend', 'Study Method'),
+            'study_method' => Yii::t('backend', 'Method of study'),
             'attendance_type' => Yii::t('backend', 'Attendance Type'),
             'annual_cost' => Yii::t('backend', 'Annual Cost'),
             'conditional_admissions' => Yii::t('backend', 'Conditional Admissions'),
-            'toefl' => Yii::t('backend', 'Toefl'),
+            'toefl' => Yii::t('backend', 'TOEFL (IBT)'),
             'ielts' => Yii::t('backend', 'Ielts'),
             'bank_statment' => Yii::t('backend', 'Bank Statment'),
             'high_school_transcript' => Yii::t('backend', 'High School Transcript'),
@@ -108,7 +108,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
             'total_rating' => Yii::t('backend', 'Total Rating'),
             'program_type' => Yii::t('backend', 'Program Type'),
             'first_submission_date' => Yii::t('backend', 'First submission date'),
-            'last_submission_date' => Yii::t('backend', 'Last submission date'),
+            'last_submission_date' => Yii::t('backend', 'Last date for application'),
         ];
     }
 
@@ -118,6 +118,16 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     public function getUniversity()
     {
         return $this->hasOne(\backend\models\University::className(), ['id' => 'university_id']);
+    }
+
+    public function getCity()
+    {
+        return $this->hasOne(\backend\models\Cities::className(), ['id' => 'city_id']);
+    }
+
+    public function getState()
+    {
+        return $this->hasOne(\backend\models\State::className(), ['id' => 'state_id']);
     }
 
     /**

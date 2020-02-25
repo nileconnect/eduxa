@@ -116,7 +116,7 @@ $model->roles =Yii::$app->session->get('UserRole');
                                 <?php
                                 // Child # 1
                                 echo $form->field($profile, 'city_id')->widget(DepDrop::classname(), [
-                                    'data' =>$profile->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\City::find()->where(['country_id'=>$profile->country_id])->asArray()->all(), 'id', 'title') : [],
+                                    'data' =>$profile->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$profile->country_id])->asArray()->all(), 'id', 'title') : [],
                                     'options'=>['id'=>'subcat-id'],
                                     'pluginOptions'=>[
                                         'depends'=>['CountryId'],

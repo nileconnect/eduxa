@@ -26,28 +26,43 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title']) ?>
 
-    <?= $form->field($model, 'code')->textInput(['maxlength' => true, 'placeholder' => 'Code']) ?>
+
+
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title']) ?>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <?= $form->field($model, 'code')->textInput(['maxlength' => true, 'placeholder' => 'Code']) ?>
+        </div>
+    </div>
 
 
     <?= $form->field($model, 'intro')->textarea(['rows' => 6]) ?>
 
 
-    <?php echo $form->field($model, 'details')->widget(
-        \yii\imperavi\Widget::class,
-        [
-            'plugins' => ['fullscreen', 'fontcolor', 'video'],
-            'options' => [
-                'minHeight' => 400,
-                'maxHeight' => 400,
-                'buttonSource' => true,
-                'convertDivs' => false,
-                'removeEmptyTags' => true,
-                'imageUpload' => Yii::$app->urlManager->createUrl(['/file/storage/upload-imperavi']),
-            ],
-        ]
-    ) ?>
+    <?php echo $form->field($model, 'details')->textarea(['rows'=>20]);
+
+
+//        ->widget(
+//        \yii\imperavi\Widget::class,
+//        [
+//            'plugins' => ['fullscreen', 'fontcolor', 'video'],
+//            'options' => [
+//                'minHeight' => 400,
+//                'maxHeight' => 400,
+//                'buttonSource' => true,
+//                'convertDivs' => false,
+//                'removeEmptyTags' => true,
+//                'imageUpload' => Yii::$app->urlManager->createUrl(['/file/storage/upload-imperavi']),
+//            ],
+//        ]
+//    );
+
+    ?>
 
 
     <?php echo $form->field($model, 'image')->widget(

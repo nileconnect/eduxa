@@ -54,12 +54,13 @@ class Country extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'title' => Yii::t('backend', 'Title'),
-            'code' => Yii::t('backend', 'Code'),
+            'title' => Yii::t('backend', 'Country Name'),
+            'code' => Yii::t('backend', 'Country Code'),
             'image_base_url' => Yii::t('backend', 'Image Base Url'),
             'image_path' => Yii::t('backend', 'Image Path'),
-            'intro' => Yii::t('backend', 'Intro'),
-            'details' => Yii::t('backend', 'Details'),
+            'image' => Yii::t('backend', 'Flag'),
+            'intro' => Yii::t('backend', 'Introduction about country'),
+            'details' => Yii::t('backend', 'Why study in this country ?'),
         ];
     }
     

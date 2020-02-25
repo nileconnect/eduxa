@@ -93,8 +93,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => Yii::t('backend', 'Country'),
         ],
         [
-            'attribute' => 'city.title',
-            'label' => Yii::t('backend', 'City'),
+            'attribute' => 'states.title',
+            'label' => Yii::t('backend', 'State'),
         ],
         'location',
         'lat',

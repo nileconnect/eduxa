@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Country;
 use Yii;
 use backend\models\Faq;
 use backend\models\search\FaqSearch;
@@ -45,7 +46,12 @@ class FaqController  extends BackendController
      */
     public function actionIndex()
     {
+        if(isset($_REQUEST['countryId'])){
+            Yii::$app->session->set('countryId',$_REQUEST['countryId']);
+        }
+
         $searchModel = new FaqSearch();
+        $searchModel->country_id =  Yii::$app->session->get('countryId');
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -75,6 +81,7 @@ class FaqController  extends BackendController
     public function actionCreate()
     {
         $model = new Faq();
+        $model->country_id =  Yii::$app->session->get('countryId');
         $model->scenario ='AdminChange';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

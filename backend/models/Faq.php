@@ -11,7 +11,7 @@ use yii\behaviors\TimestampBehavior;
  * This is the model class for table "faq".
  *
  * @property int $id
- * @property int $cat_id
+ * @property int $country_id
  * @property string $question
  * @property string $answer
  * @property int $status
@@ -70,12 +70,12 @@ class Faq extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cat_id', 'question'], 'required'],
+            [['country_id', 'question'], 'required'],
             ['answer' , 'required','on'=>'AdminChange'],
-            [['cat_id', 'status', 'created_by', 'updated_by'], 'integer'],
+            [['country_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['answer'], 'string'],
             [['question', 'created_at', 'updated_at','note'], 'string', 'max' => 255],
-            [['cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => FaqCat::className(), 'targetAttribute' => ['cat_id' => 'id']],
+           // [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => FaqCat::className(), 'targetAttribute' => ['country_id' => 'id']],
         ];
     }
 
@@ -86,7 +86,7 @@ class Faq extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'cat_id' => Yii::t('app', 'Cat ID'),
+            'country_id' => Yii::t('app', 'Cat ID'),
             'question' => Yii::t('app', 'question'),
             'answer' => Yii::t('app', 'Answer'),
             'status' => Yii::t('app', 'Status'),
@@ -101,9 +101,9 @@ class Faq extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCat()
+    public function getCountry()
     {
-        return $this->hasOne(FaqCat::className(), ['id' => 'cat_id']);
+        return $this->hasOne(Country::className(), ['id' => 'country_id']);
     }
 
     public function getCreatedBy() {

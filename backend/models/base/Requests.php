@@ -39,7 +39,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $updated_by
  *
  * @property \backend\models\Country $studentCountry
- * @property \backend\models\City $studentCity
+ * @property \backend\models\State $studentCity
  * @property \backend\models\User $requester
  */
 class Requests extends \yii\db\ActiveRecord
@@ -104,7 +104,7 @@ class Requests extends \yii\db\ActiveRecord
             'student_email' => Yii::t('backend', 'Student Email'),
             'student_mobile' => Yii::t('backend', 'Student Mobile'),
             'student_country_id' => Yii::t('backend', 'Student Country'),
-            'student_city_id' => Yii::t('backend', 'Student City'),
+            'student_city_id' => Yii::t('backend', 'Student State'),
             'student_nationality_id' => Yii::t('backend', 'Student Nationality'),
             'accomodation_option' => Yii::t('backend', 'Accomodation Option'),
             'accomodation_option_cost' => Yii::t('backend', 'Accomodation Option Cost'),
@@ -158,7 +158,7 @@ class Requests extends \yii\db\ActiveRecord
      */
     public function getStudentCity()
     {
-        return $this->hasOne(\backend\models\City::className(), ['id' => 'student_city_id']);
+        return $this->hasOne(\backend\models\State::className(), ['id' => 'student_city_id']);
     }
         
     /**

@@ -3,46 +3,19 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\City;
-use backend\models\search\CitySearch;
-use backend\controllers\BackendController;
-use yii\filters\AccessControl;
+use backend\models\State;
+use backend\models\search\StateSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CityController implements the CRUD actions for City model.
+ * StatesController implements the CRUD actions for State model.
  */
-class CityController extends BackendController
+class StatesController extends BackendController
 {
 
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['index','view'],
-                        'allow' => true,
-                        'roles' => ['admin', 'superAdmin'],
-                    ],
-
-                    [
-                        'actions' => ['create', 'delete', 'update'],
-                        'allow' => true,
-                        'roles' => ['superAdmin','admin'],
-                    ]
-
-                ],
-            ],
-
-        ];
-    }
-
-
-    /**
-     * Lists all City models.
+   /**
+     * Lists all State models.
      * @param integrer $countryId Country id
      * @return mixed
      */
@@ -51,7 +24,7 @@ class CityController extends BackendController
         if(isset($_REQUEST['countryId'])){
             Yii::$app->session->set('CountryID',$_REQUEST['countryId']);
         }
-        $searchModel = new CitySearch();
+        $searchModel = new StateSearch();
         $searchModel->country_id = Yii::$app->session->get('CountryID');
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -67,7 +40,7 @@ class CityController extends BackendController
     }
 
     /**
-     * Displays a single City model.
+     * Displays a single State model.
      * @param integer $id
      * @return mixed
      */
@@ -79,18 +52,15 @@ class CityController extends BackendController
     }
 
     /**
-     * Creates a new City model.
+     * Creates a new State model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @param integrer $countryId Country id
      * @return mixed
      */
     public function actionCreate()
     {
-        if(isset($_REQUEST['countryId'])){
-            Yii::$app->session->set('CountryID',$_REQUEST['countryId']);
-        }
 
-        $model = new City();
+        $model = new State();
         $model->country_id = Yii::$app->session->get('CountryID');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index', 'countryId' => $model->country_id]);
@@ -102,7 +72,7 @@ class CityController extends BackendController
     }
 
     /**
-     * Updates an existing City model.
+     * Updates an existing State model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -121,7 +91,7 @@ class CityController extends BackendController
     }
 
     /**
-     * Deletes an existing City model.
+     * Deletes an existing State model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -135,15 +105,15 @@ class CityController extends BackendController
     }
 
     /**
-     * Finds the City model based on its primary key value.
+     * Finds the State model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return City the loaded model
+     * @return state the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = City::findOne($id)) !== null) {
+        if (($model = State::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

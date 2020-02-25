@@ -90,7 +90,7 @@ class Schools extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'title' => Yii::t('backend', 'Title'),
+            'title' => Yii::t('backend', 'School Name'),
             'details' => Yii::t('backend', 'Details'),
             'featured' => Yii::t('backend', 'Featured'),
             'location' => Yii::t('backend', 'Location'),
@@ -100,6 +100,7 @@ class Schools extends \yii\db\ActiveRecord
             'image_path' => Yii::t('backend', 'Image Path'),
             'country_id' => Yii::t('backend', 'Country'),
             'city_id' => Yii::t('backend', 'City'),
+            'state_id' => Yii::t('backend', 'State'),
             'min_age' => Yii::t('backend', 'Min Age'),
             'study_time' => Yii::t('backend', 'Study Time'),
             'max_students_per_class' => Yii::t('backend', 'Max Students Per Class'),
@@ -120,7 +121,12 @@ class Schools extends \yii\db\ActiveRecord
 
     public function getCity()
     {
-        return $this->hasOne(\backend\models\City::className(), ['id' => 'city_id']);
+        return $this->hasOne(\backend\models\Cities::className(), ['id' => 'city_id']);
+    }
+
+    public function getState()
+    {
+        return $this->hasOne(\backend\models\State::className(), ['id' => 'state_id']);
     }
 
     /**

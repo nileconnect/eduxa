@@ -99,7 +99,7 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
                 // Child # 1
                 echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
                     'options'=>['id'=>'subcat-id'],
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\City::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [],
+                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [],
 
                     'pluginOptions'=>[
                         'depends'=>['CountryId'],

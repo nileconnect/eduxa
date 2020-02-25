@@ -28,7 +28,7 @@ if(isset($saved)){
 
     <?php
         $url = \yii\helpers\Url::to(['/helper/users-list-by-role']);
-    // Get the initial city description
+    // Get the initial states description
     $assignedTo = empty($model->responsible_id) ? '' : \common\models\User::findOne($model->responsible_id)->userProfile->fullName;
 
     echo $form->field($model, 'responsible_id')->widget(\kartik\select2\Select2::classname(), [

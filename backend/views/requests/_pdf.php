@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         [
                 'attribute' => 'studentCity.title',
-                'label' => Yii::t('backend', 'Student City')
+                'label' => Yii::t('backend', 'Student State')
             ],
         'student_nationality_id',
         'accomodation_option',

@@ -96,7 +96,7 @@ class UserProfile extends ActiveRecord
             'communtication_channel' => Yii::t('common', 'Best way to commuincation?'),
             'find_us_from' => Yii::t('common', 'How did you found us?'),
             'expected_no_of_students' => Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa'),
-            'city_id' => Yii::t('common', 'City'),
+            'city_id' => Yii::t('common', 'State'),
             'country_id' => Yii::t('common', 'Country'),
             'mobile' => Yii::t('common', 'Mobile Number'),
             'no_of_students' => Yii::t('common', 'No. Of Previous Referrals'),

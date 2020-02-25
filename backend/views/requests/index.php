@@ -102,7 +102,7 @@ $gridColumn = [
     ],
     [
         'attribute' => 'student_city_id',
-        'label' => Yii::t('backend', 'Student City'),
+        'label' => Yii::t('backend', 'Student State'),
         'value' => function($model){
             if ($model->studentCity)
             {return $model->studentCity->title;}
@@ -110,11 +110,11 @@ $gridColumn = [
             {return NULL;}
         },
         'filterType' => GridView::FILTER_SELECT2,
-        'filter' => \yii\helpers\ArrayHelper::map(\backend\models\City::find()->asArray()->all(), 'id', 'title'),
+        'filter' => \yii\helpers\ArrayHelper::map(\backend\models\State::find()->asArray()->all(), 'id', 'title'),
         'filterWidgetOptions' => [
             'pluginOptions' => ['allowClear' => true],
         ],
-        'filterInputOptions' => ['placeholder' => 'City', 'id' => 'grid-requests-search-student_city_id']
+        'filterInputOptions' => ['placeholder' => 'State', 'id' => 'grid-requests-search-student_city_id']
     ],
 
     [

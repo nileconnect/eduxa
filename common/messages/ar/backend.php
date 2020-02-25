@@ -45,7 +45,7 @@ return [
     'Select Status'=>'اختر الحالة',
     'Select job type'=>'اختر النوع',
     'Select District'=>'اختر الحي',
-    'Select City'=>'اختر المدينه',
+    'Select State'=>'اختر المدينه',
     'Not Published'=>'غير منشور',
     'published'=>'منشور',
     'Select publisher'=>'اختر الناشر',
@@ -70,7 +70,7 @@ return [
     'Create New User'=>'اضافة مستخدم جديد',
     'Select'=>'اختر',
     'Cities'=>'المدن',
-    'City Title'=>'اسم المدينة',
+    'State Title'=>'اسم المدينة',
 
     'Title'=>'الاسم',
 
@@ -85,7 +85,7 @@ return [
     'Status'=>'الحالة',
     'Available'=>'متاح',
     'Description'=>'الوصف',
-    'City'=>'المدينة',
+    'State'=>'المدينة',
     'Country'=>'الدولة',
     'Address'=>'العنوان',
     'Create New User'=>'اضافة مستخدم جديد',

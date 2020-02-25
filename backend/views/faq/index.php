@@ -1,5 +1,6 @@
 <?php
 
+use backend\models\Country;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use backend\models\News;
@@ -8,7 +9,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel backend\models\FaqSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Faqs');
+$this->title = Country::findOne(Yii::$app->session->get('countryId'))->title . ' - '. Yii::t('app', 'Faqs');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="faq-index">
@@ -25,22 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'answer',
                 'value'=>function($model){
-                    return $model->answer ? substr($model->answer,0,150).'...' :'لم يتم الاجابة بعد.';
+                    return $model->answer ? substr($model->answer,0,150).'...' :'-';
                 },
                 'format'=>'raw'
 
             ],
-            [
-                'attribute' => 'cat_id',
-                'format'    => 'raw',
-                'value'     => function ($model) {
-                    return   $model->cat->title;
-                },
-                'filter' => Html::activeDropDownList($searchModel, 'cat_id',
-                    ArrayHelper::map(\backend\models\FaqCat::find()->where('status =1')->all(),'id','title'),['class'=>'form-control',
-                    'prompt' =>  Yii::t('app','Select') ]),
-            ],
-
 
             [
                 'attribute' => 'status',
@@ -54,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'created_by',
                 'value'=>function($model){
-                    return $model->created_by ? $model->createdBy->fullName : 'زائر' ;
+                    return  $model->createdBy->userProfile->fullName  ;
                 },
 
             ],

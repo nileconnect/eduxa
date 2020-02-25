@@ -63,92 +63,78 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
-
     <div class="row">
-
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="well">
-                        <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MyMultiLanguageActiveField::className());  ?>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="well">
-                        <?= $form->field($model, 'status')->dropDownList([\backend\models\University::LisStatusList()])?>
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="well">
-                        <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
-                            'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-                            'options' => ['placeholder' => Yii::t('backend', 'Choose Country') ,'id'=>'CountryId'],
-                            'pluginOptions' => [
-                                'allowClear' => true
-                            ],
-                        ]); ?>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="well">
-                        <?php
-                        // Child # 1
-                        echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                            'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\City::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [],
-
-                            'options'=>['id'=>'subcat-id'],
-                            'pluginOptions'=>[
-                                'depends'=>['CountryId'],
-                                'placeholder'=>'Select...',
-                                'url'=>Url::to(['/helper/cities'])
-                            ]
-                        ]);
-
-                        ?>
-
-                    </div>
-                </div>
+        <div class="col-md-4">
+            <div class="well">
+                <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MyMultiLanguageActiveField::className());  ?>
             </div>
         </div>
         <div class="col-md-4">
             <div class="well">
-                <?php echo $form->field($model, 'logo')->widget(
-                    Upload::class,
-                    [
-                        'url' => ['/file/storage/upload'],
-                        'maxFileSize' => 5000000, // 5 MiB
-                    ]);
-                ?>
-                <br/>
+                <?= $form->field($model, 'status')->dropDownList([\backend\models\University::LisStatusList()])?>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="well">
                 <?= $form->field($model, 'featured')->checkbox() ; ?>
-
-
             </div>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-4">
+            <div class="well">
+                <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                    'options' => ['placeholder' => Yii::t('backend', 'Choose Country') ,'id'=>'CountryId'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]); ?>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="well">
+                <?php
+                // Child # 1
+                echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
+                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [],
+                    'options'=>['id'=>'City-id'],
+                    'pluginOptions'=>[
+                        'depends'=>['CountryId'],
+                        'placeholder'=>'Select...',
+                        'url'=>Url::to(['/helper/states'])
+                    ]
+                ]);
 
-<!--    <div class="row">-->
-<!--        <div class="col-md-6 col-sm-12">-->
-<!--            --><?//= $form->field($model, 'course_type')->widget(\kartik\widgets\Select2::classname(), [
-//                'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolsCourseTypes::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-//                'options' => ['placeholder' => Yii::t('backend', 'Choose Schools course types')],
-//                'pluginOptions' => [
-//                    'allowClear' => true
-//                ],
-//            ]); ?>
-<!--        </div>-->
-<!--        <div class="col-md-6 col-sm-12">-->
-<!--            --><?//= $form->field($model, 'discount')->textInput(['placeholder' => 'Discount']) ?>
-<!--        </div>-->
-<!---->
-<!--    </div>-->
-<!---->
+                ?>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="well">
+                <?php
+                // Child # 1
+                echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
+                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->asArray()->all(), 'id', 'title') : [],
+                    'options'=>['id'=>'subcat-id'],
+                    'pluginOptions'=>[
+                        'depends'=>['City-id'],
+                        'placeholder'=>'Select...',
+                        'url'=>Url::to(['/helper/cities'])
+                    ]
+                ]);
+
+                ?>
+
+            </div>
+        </div>
+
+    </div>
 
 
+    
 
     <?= $form->field($model, 'details')->textarea(['maxlength' => 255, 'rows'=>3])
         ->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[

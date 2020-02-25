@@ -37,7 +37,7 @@ class Schools extends BaseSchools
     {
         return [
             ['title', 'required'],
-            [['country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings'], 'integer'],
+            [['country_id', 'city_id', 'state_id','min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings'], 'integer'],
             [['details'], 'string'],
             [['accomodation_fees', 'registeration_fees', 'study_books_fees',  'discount', 'total_rating'], 'number'],
             [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at'], 'string', 'max' => 255],

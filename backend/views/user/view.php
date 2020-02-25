@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            [
 //                'attribute' => 'city_id',
 //                'value' => function($model){
-//                    return $model->city_id ?  $model->city->name : '' ;
+//                    return $model->city_id ?  $model->states->name : '' ;
 //                },
 //                'format'=>'raw',
 //            ],

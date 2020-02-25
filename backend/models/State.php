@@ -13,7 +13,7 @@ use Yii;
  * @property integer $country_id
  *
  */
-class City extends \yii\db\ActiveRecord {
+class State extends \yii\db\ActiveRecord {
 
    // use \webvimark\behaviors\multilanguage\MultiLanguageTrait;
 
@@ -21,7 +21,7 @@ class City extends \yii\db\ActiveRecord {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'city';
+        return 'state';
     }
 
     public function behaviors() {
@@ -44,7 +44,7 @@ class City extends \yii\db\ActiveRecord {
 //                    'db_table' => 'translations_with_string',
 //                    'attributes' => ['title', 'slug'],
 //                    'admin_routes' => [
-//                        'city/create',
+//                        'states/create',
 //                        'CITY/update'
 //                    ],
 //                ],
@@ -92,36 +92,10 @@ class City extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Name'),
-            'sort' => Yii::t('app', 'City Sort'),
-            'country_id' => Yii::t('app', 'Country ID'),
+            'title' => Yii::t('app', 'State Name'),
+            'sort' => Yii::t('app', 'State Sort'),
+            'country_id' => Yii::t('app', 'Country'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-  /*
-    public function getDistricts() {
-        return $this->hasMany(District::className(), ['city_id' => 'id']);
-    }
-
-    public static function getAll() {
-        return \yii\helpers\ArrayHelper::map(static::find()->orderBy(['sort'=>SORT_ASC])->all(), 'id', 'title');
-    }
-
-    public static function getCityDistricts($city_id) {
-        return \yii\helpers\ArrayHelper::map(District::find()->where(['city_id'=>$city_id])->all(), 'id', 'title');
-    }
-*/
-    public static function getAllSlugs() {
-        return \yii\helpers\ArrayHelper::map(static::find()->orderBy(['sort'=>SORT_ASC])->all(), 'slug', 'title');
-    }
-
-
-    public static function AllSlugs() {
-
-        return static::find()->orderBy(['sort'=>SORT_ASC])->all() ; //\yii\helpers\ArrayHelper::map(static::find()->orderBy(['sort'=>SORT_ASC])->all(), 'slug', 'name');
     }
 
 }

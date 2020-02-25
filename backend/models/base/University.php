@@ -70,13 +70,14 @@ class University extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'title' => Yii::t('backend', 'Title'),
+            'title' => Yii::t('backend', 'University Name'),
             'image_base_url' => Yii::t('backend', 'Image Base Url'),
             'image_path' => Yii::t('backend', 'Image Path'),
             'description' => Yii::t('backend', 'Description'),
             'detailed_address' => Yii::t('backend', 'Detailed Address'),
             'location' => Yii::t('backend', 'Location'),
             'city_id' => Yii::t('backend', 'City'),
+            'state_id' => Yii::t('backend', 'State'),
             'country_id' => Yii::t('backend', 'Country'),
             'lat' => Yii::t('backend', 'Lat'),
             'lng' => Yii::t('backend', 'Lng'),
@@ -102,9 +103,13 @@ class University extends \yii\db\ActiveRecord
      */
     public function getCity()
     {
-        return $this->hasOne(\backend\models\City::className(), ['id' => 'city_id']);
+        return $this->hasOne(\backend\models\Cities::className(), ['id' => 'city_id']);
     }
 
+    public function getState()
+    {
+        return $this->hasOne(\backend\models\State::className(), ['id' => 'state_id']);
+    }
 
     public function getUniversityCountries()
     {

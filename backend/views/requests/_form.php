@@ -58,8 +58,8 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'student_city_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\backend\models\City::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-        'options' => ['placeholder' => Yii::t('backend', 'Choose City')],
+        'data' => \yii\helpers\ArrayHelper::map(\backend\models\State::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+        'options' => ['placeholder' => Yii::t('backend', 'Choose State')],
         'pluginOptions' => [
             'allowClear' => true
         ],

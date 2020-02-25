@@ -70,7 +70,7 @@ class SchoolCourse extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('backend', 'ID'),
             'school_id' => Yii::t('backend', 'School ID'),
-            'title' => Yii::t('backend', 'Title'),
+            'title' => Yii::t('backend', 'Course Name'),
             'information' => Yii::t('backend', 'Information'),
             'requirments' => Yii::t('backend', 'Requirments'),
             'course_start_every' => Yii::t('backend', 'Course Start Every'),
@@ -79,7 +79,7 @@ class SchoolCourse extends \yii\db\ActiveRecord
             'min_no_of_students_per_class' => Yii::t('backend', 'Min No Of Students Per Class'),
             'avg_no_of_students_per_class' => Yii::t('backend', 'Avg No Of Students Per Class'),
             'min_age' => Yii::t('backend', 'Min Age'),
-            'required_level' => Yii::t('backend', 'Reguired Level'),
+            'required_level' => Yii::t('backend', 'Required Level'),
             'time_of_course' => Yii::t('backend', 'Time Of Course'),
             'registeration_fees' => Yii::t('backend', 'Registeration Fees'),
             'cost_per_week' => Yii::t('backend', 'Cost Per Week'),

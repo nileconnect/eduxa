@@ -14,7 +14,7 @@ class m200105_205804_editProf extends Migration
     {
         $this->execute("
         ALTER TABLE `user_profile`
-CHANGE COLUMN `city` `city_id`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER `country_id`,
+CHANGE COLUMN `states` `city_id`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER `country_id`,
 CHANGE COLUMN `nationlaity` `nationality`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER `city_id`;
 
 

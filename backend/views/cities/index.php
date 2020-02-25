@@ -1,14 +1,14 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\CountrySearch */
+/* @var $searchModel backend\models\search\CitiesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-$this->title = Yii::t('backend', 'Country');
+$this->title = \backend\models\State::findOne(Yii::$app->session->get('stateId'))->title . ' - '. Yii::t('backend', 'Cities');
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
 	$('.search-form').toggle(1000);
@@ -16,50 +16,33 @@ $search = "$('.search-button').click(function(){
 });";
 $this->registerJs($search);
 ?>
-<div class="country-index">
+<div class="cities-index">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('backend', 'Create Country'), ['create'], ['class' => 'btn btn-primary']) ?>
-        <? //= Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
+        <?= Html::a(Yii::t('backend', 'Create City'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
     <?php 
     $gridColumn = [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'title',
-            [
-            'label' => '',
-            'value' => function($model){
-                return Html::a(Yii::t('app', 'states'), ['states/index', 'countryId'=>$model->id], ['class'=>'btn btn-success', 'title'=>Yii::t('app', 'states')]);
-            },
-            'format' => 'raw'
-        ],
-
+        ['class' => 'yii\grid\SerialColumn'],
+        ['attribute' => 'id', 'visible' => false],
+        'title',
+       // 'sort',
         [
-            'label' => '',
-            'value' => function($model){
-                return Html::a(Yii::t('app', 'Faqs'), ['faq/index', 'countryId'=>$model->id], ['class'=>'btn btn-success', 'title'=>Yii::t('app', 'FAQs')]);
-            },
-            'format' => 'raw'
+            'class' => 'yii\grid\ActionColumn',
         ],
-
-
-            [            'class' => 'yii\grid\ActionColumn','template'=>'{update} {view}'
-            ],
-        ];
-
+    ]; 
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => $gridColumn,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-country']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-cities']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),

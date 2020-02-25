@@ -53,7 +53,7 @@ CREATE TABLE `requests` (
   KEY `student_city_id` (`student_city_id`),
   KEY `requester_id` (`requester_id`),
   CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`student_country_id`) REFERENCES `country` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`student_city_id`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`student_city_id`) REFERENCES `states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `requests_ibfk_3` FOREIGN KEY (`requester_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

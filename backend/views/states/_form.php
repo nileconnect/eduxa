@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\City */
+/* @var $model backend\models\State */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

@@ -53,7 +53,7 @@ use yii\widgets\ActiveForm;
 
     <?php /* echo $form->field($model, 'country_id')->textInput(['placeholder' => 'Country']) */ ?>
 
-    <?php /* echo $form->field($model, 'city_id')->textInput(['placeholder' => 'City']) */ ?>
+    <?php /* echo $form->field($model, 'city_id')->textInput(['placeholder' => 'State']) */ ?>
 
     <?php /* echo $form->field($model, 'study_start_date')->textInput(['maxlength' => true, 'placeholder' => 'Study Start Date']) */ ?>
 

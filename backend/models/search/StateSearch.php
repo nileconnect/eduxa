@@ -5,26 +5,26 @@ namespace backend\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\FaqCat;
+use backend\models\State;
 
 /**
- * FaqCatSearch represents the model behind the search form of `backend\models\FaqCat`.
+ * StateSearch represents the model behind the search form about `backend\models\State`.
  */
-class FaqCatSearch extends FaqCat
+class StateSearch extends State
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
-            [['title'], 'safe'],//'created_at',,  'updated_at'
+            [['id', 'country_id'], 'integer'],
+            [['title','sort','country_id'], 'safe'],
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function scenarios()
     {
@@ -41,9 +41,7 @@ class FaqCatSearch extends FaqCat
      */
     public function search($params)
     {
-        $query = FaqCat::find();
-
-        // add conditions that should always apply here
+        $query = State::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,18 +52,15 @@ class FaqCatSearch extends FaqCat
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-            return $dataProvider;
+          //  return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'status' => $this->status,
+            'country_id' => $this->country_id,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'created_at', $this->created_at])
-            ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

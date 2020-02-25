@@ -61,6 +61,18 @@ class UniversityController extends BackendController
         ]);
     }
 
+    public function actionMedia()
+    {
+        $searchModel = new UniversitySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('media', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
     public function actionAssign($id){
         $this->layout = 'base';
 

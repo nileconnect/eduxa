@@ -93,7 +93,7 @@ CREATE TABLE `article_category` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `city`
+-- Table structure for `states`
 -- ----------------------------
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
@@ -107,7 +107,7 @@ CREATE TABLE `city` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of city
+-- Records of states
 -- ----------------------------
 INSERT INTO `city` VALUES ('1', 'Alex', '3', '', null, null);
 INSERT INTO `city` VALUES ('2', 'cairo', '3', '', null, null);

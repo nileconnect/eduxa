@@ -3,11 +3,11 @@
 namespace backend\models\activequery;
 
 /**
- * This is the ActiveQuery class for [[\backend\models\activequery\City]].
+ * This is the ActiveQuery class for [[\backend\models\activequery\Cities]].
  *
- * @see \backend\models\activequery\City
+ * @see \backend\models\activequery\Cities
  */
-class CityQuery extends \yii\db\ActiveQuery
+class CitiesQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class CityQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \backend\models\activequery\City[]|array
+     * @return \backend\models\activequery\Cities[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class CityQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \backend\models\activequery\City|array|null
+     * @return \backend\models\activequery\Cities|array|null
      */
     public function one($db = null)
     {

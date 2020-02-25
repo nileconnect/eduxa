@@ -12,7 +12,7 @@ use Yii;
  * @property string $title
  * @property string $slug
  *
- * @property \backend\models\City $city
+ * @property \backend\models\State $states
  * @property \backend\models\Schools[] $schools
  */
 class District extends \yii\db\ActiveRecord
@@ -27,7 +27,7 @@ class District extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
-            'city',
+            'states',
             'schools'
         ];
     }
@@ -59,7 +59,7 @@ class District extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'city_id' => Yii::t('backend', 'City ID'),
+            'city_id' => Yii::t('backend', 'State ID'),
             'title' => Yii::t('backend', 'Title'),
             'slug' => Yii::t('backend', 'Slug'),
         ];
@@ -70,7 +70,7 @@ class District extends \yii\db\ActiveRecord
      */
     public function getCity()
     {
-        return $this->hasOne(\backend\models\City::className(), ['id' => 'city_id']);
+        return $this->hasOne(\backend\models\State::className(), ['id' => 'city_id']);
     }
         
     /**

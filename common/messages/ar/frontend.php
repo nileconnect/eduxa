@@ -166,7 +166,7 @@ return [
     'Leave it empty if you do not want to change' => 'لا تريد تغيير كلمة المرور؟ أتركها فارغة',
     'Mobile' => 'التليفون',
     'Country' => 'الدولة',
-    'City' => 'المدينة',
+    'State' => 'المدينة',
     'save' => 'حفظ',
     'Account details' => 'بيانات الحساب',
     'First Name' => 'الاسم الاول',

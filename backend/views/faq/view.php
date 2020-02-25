@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\Faq */
 
 $this->title = $model->question;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Faqs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' =>  \backend\models\Country::findOne(Yii::$app->session->get('countryId'))->title .' - Faqs' , 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="faq-view">
@@ -29,13 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            [
-                    'attribute'=>'cat_id',
-                    'value'=>function($model){
-                            return $model->cat->title ;
-                    },
-
-            ],
             'question',
             [
                 'attribute'=>'answer',
@@ -48,14 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'created_by',
                 'value'=>function($model){
-                    return $model->created_by ? $model->createdBy->fullName : 'زائر' ;
+                    return $model->createdBy->userProfile->fullName ;
                 },
 
             ],
             [
                 'attribute'=>'updatedBy',
                 'value'=>function($model){
-                    return $model->updatedBy->fullName ;
+                    return $model->updatedBy->userProfile->fullName ;
                 },
 
             ],

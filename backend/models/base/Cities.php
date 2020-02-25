@@ -5,17 +5,16 @@ namespace backend\models\base;
 use Yii;
 
 /**
- * This is the base model class for table "city".
+ * This is the base model class for table "cities".
  *
  * @property integer $id
- * @property string $ref
+ * @property integer $state_id
  * @property string $title
- * @property string $slug
  * @property integer $sort
  *
- * @property \backend\models\District[] $districts
+ * @property \backend\models\State $state
  */
-class City extends \yii\db\ActiveRecord
+class Cities extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
@@ -27,7 +26,7 @@ class City extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
-            'districts'
+            'state'
         ];
     }
 
@@ -37,9 +36,9 @@ class City extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
-            [['sort'], 'integer'],
-            [['ref', 'title', 'slug'], 'string', 'max' => 255]
+            [['state_id', 'title'], 'required'],
+            [['state_id', 'sort'], 'integer'],
+            [['title'], 'string', 'max' => 255]
         ];
     }
 
@@ -48,7 +47,7 @@ class City extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'city';
+        return 'cities';
     }
 
     /**
@@ -58,9 +57,8 @@ class City extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'ref' => Yii::t('backend', 'Ref'),
+            'state_id' => Yii::t('backend', 'State ID'),
             'title' => Yii::t('backend', 'Title'),
-            'slug' => Yii::t('backend', 'Slug'),
             'sort' => Yii::t('backend', 'Sort'),
         ];
     }
@@ -68,18 +66,18 @@ class City extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDistricts()
+    public function getState()
     {
-        return $this->hasMany(\backend\models\District::className(), ['city_id' => 'id']);
+        return $this->hasOne(\backend\models\State::className(), ['id' => 'state_id']);
     }
     
 
     /**
      * @inheritdoc
-     * @return \backend\models\activequery\CityQuery the active query used by this AR class.
+     * @return \backend\models\activequery\CitiesQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \backend\models\activequery\CityQuery(get_called_class());
+        return new \backend\models\activequery\CitiesQuery(get_called_class());
     }
 }

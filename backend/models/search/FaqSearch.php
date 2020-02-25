@@ -18,7 +18,7 @@ class FaqSearch extends Faq
     public function rules()
     {
         return [
-            [['id', 'cat_id', 'status',  'updated_by'], 'integer'], //'created_by',
+            [['id', 'country_id', 'status',  'updated_by'], 'integer'], //'created_by',
             [['question', 'answer'], 'safe'], //, 'created_at', 'updated_at'
         ];
     }
@@ -61,7 +61,7 @@ class FaqSearch extends Faq
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'cat_id' => $this->cat_id,
+            'country_id' => $this->country_id,
             'status' => $this->status,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,

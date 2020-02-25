@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
     <?php /* echo $form->field($model, 'country_id')->textInput(['placeholder' => 'Country']) */ ?>
 
-    <?php /* echo $form->field($model, 'city_id')->textInput(['placeholder' => 'City']) */ ?>
+    <?php /* echo $form->field($model, 'city_id')->textInput(['placeholder' => 'State']) */ ?>
 
     <?php /* echo $form->field($model, 'min_age')->textInput(['placeholder' => 'Min Age']) */ ?>
 

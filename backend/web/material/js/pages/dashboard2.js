@@ -199,7 +199,7 @@ $(function () {
       }
     },
     markers          : [
-      { latLng: [41.90, 12.45], name: 'Vatican City' },
+      { latLng: [41.90, 12.45], name: 'Vatican State' },
       { latLng: [43.73, 7.41], name: 'Monaco' },
       { latLng: [-0.52, 166.93], name: 'Nauru' },
       { latLng: [-8.51, 179.21], name: 'Tuvalu' },
