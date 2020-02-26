@@ -134,7 +134,7 @@ use yii\helpers\Url;
     </div>
 
 
-    
+
 
     <?= $form->field($model, 'details')->textarea(['maxlength' => 255, 'rows'=>3])
         ->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
