@@ -200,7 +200,6 @@ $bundle = BackendAsset::register($this);
 
     <footer class="main-footer">
         <strong>&copy; My Company <?php echo date('Y') ?></strong>
-        <div class="pull-right"><?php echo Yii::powered() ?></div>
   </footer>
 </div><!-- ./wrapper -->
 
