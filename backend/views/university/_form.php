@@ -20,30 +20,9 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
-    'viewParams' => [
-        'class' => 'UniversityPhotos',
-        'relID' => 'university-photos',
-        'value' => \yii\helpers\Json::encode($model->universityPhotos),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
-    'viewParams' => [
-        'class' => 'UniversityPrograms',
-        'relID' => 'university-programs',
-        'value' => \yii\helpers\Json::encode($model->universityPrograms),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
-    'viewParams' => [
-        'class' => 'UniversityVideos',
-        'relID' => 'university-videos',
-        'value' => \yii\helpers\Json::encode($model->universityVideos),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
+
+
+
 \mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
     'viewParams' => [
         'class' => 'UnversityRating',
@@ -219,19 +198,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
     <? //= $form->field($model, 'no_of_ratings')->textInput(['placeholder' => 'No Of Ratings']) ?>
 
 
-
-    <?php echo $form->field($model, 'photos')->widget(
-        Upload::class,
-        [
-            'url' => ['/file/storage/upload'],
-            'sortable' => true,
-            'maxFileSize' => 10000000, // 10 MiB
-            'maxNumberOfFiles' => 10,
-        ]);
-    ?>
-
-
-
+<br/>
     <?php
     $forms = [
 
@@ -247,13 +214,6 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'University Rating')),
             'content' => $this->render('_formUnversityRating', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->unversityRatings),
-            ]),
-        ],
-
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'University Videos')),
-            'content' => $this->render('_formUniversityVideos', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->universityVideos),
             ]),
         ],
 

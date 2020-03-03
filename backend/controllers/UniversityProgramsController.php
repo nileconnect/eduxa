@@ -71,6 +71,11 @@ class UniversityProgramsController extends BackendController
     {
         $model = new UniversityPrograms();
         $model->university_id = Yii::$app->session->get('universityId');
+        $universityObj = University::find()->where(['id'=>$model->university_id])->one();
+
+        $model->country_id = $universityObj->country_id;
+        $model->city_id = $universityObj->city_id;
+        $model->state_id = $universityObj->state_id;
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -91,6 +96,10 @@ class UniversityProgramsController extends BackendController
     {
         $model = $this->findModel($id);
         $model->university_id = Yii::$app->session->get('universityId');
+        $universityObj = University::find()->where(['id'=>$model->university_id])->one();
+        $model->country_id = $universityObj->country_id;
+        $model->city_id = $universityObj->city_id;
+        $model->state_id = $universityObj->state_id;
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);

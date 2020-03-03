@@ -23,13 +23,26 @@ class UniversityProgramMajors extends BaseUniversityProgramMajors
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
-	    [
+        return [
             [['title'], 'required'],
             [['created_by', 'updated_by'], 'integer'],
             [['title', 'created_at', 'updated_at'], 'string', 'max' => 255],
             [['status'], 'safe']
-        ]);
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('backend', 'ID'),
+            'title' => Yii::t('backend', 'Title'),
+            'status' => Yii::t('backend', 'Status'),
+        ];
+    }
+
+    public function getUniversityPrograms()
+    {
+        return $this->hasMany(\backend\models\UniversityPrograms::className(), ['major_id' => 'id']);
     }
 
     public static function StatusList(){

@@ -44,58 +44,5 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
 ?>
     </div>
-    
-    <div class="row">
-<?php
-if($providerUniversityPrograms->totalCount){
-    $gridColumnUniversityPrograms = [
-        ['class' => 'yii\grid\SerialColumn'],
-            ['attribute' => 'id', 'visible' => false],
-            [
-                'attribute' => 'university.title',
-                'label' => Yii::t('backend', 'University')
-            ],
-            'title',
-                        [
-                'attribute' => 'degree.title',
-                'label' => Yii::t('backend', 'Degree')
-            ],
-            [
-                'attribute' => 'field.title',
-                'label' => Yii::t('backend', 'Field')
-            ],
-            'country_id',
-            'city_id',
-            'study_start_date',
-            'study_duration',
-            'study_method',
-            'attendance_type',
-            'annual_cost',
-            'conditional_admissions',
-            'toefl',
-            'ielts',
-            'bank_statment',
-            'high_school_transcript',
-            'bachelor_degree',
-            'certificate',
-            'note1:ntext',
-            'note2:ntext',
-            'total_rating',
-            'program_type',
-    ];
-    echo Gridview::widget([
-        'dataProvider' => $providerUniversityPrograms,
-        'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-university-programs']],
-        'panel' => [
-            'type' => GridView::TYPE_PRIMARY,
-            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'University Programs')),
-        ],
-        'export' => false,
-        'columns' => $gridColumnUniversityPrograms
-    ]);
-}
-?>
 
-    </div>
 </div>

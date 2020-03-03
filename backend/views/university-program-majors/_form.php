@@ -17,8 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(\common\helpers\multiLang\MyMultiLanguageActiveField::className());  ?>
-
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(\common\helpers\multiLang\MyMultiLanguageActiveField::className());  ?>
+        </div>
+    </div>
     <? //= $form->field($model, 'status')->textInput(['placeholder' => 'Status']) ?>
 
     <?php /*

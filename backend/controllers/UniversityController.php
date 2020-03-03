@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\UniversityVidC;
 use backend\models\UserForm;
 use common\models\User;
 use common\models\UserProfile;
@@ -63,14 +64,106 @@ class UniversityController extends BackendController
 
     public function actionMedia()
     {
+       // $this->layout ='base';
+
         $searchModel = new UniversitySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->mediaSearch(Yii::$app->request->queryParams);
+
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'title',
+                'unversity_logo' => [
+                    'asc' => ['image_path' => SORT_ASC],
+                    'desc' => ['image_path' => SORT_DESC],
+                    'label' => 'Logo',
+                    'default' => SORT_ASC
+                ],
+               'imagesCount' => [
+                    'asc' => ['imagesCount' => SORT_ASC],
+                    'desc' => ['imagesCount' => SORT_DESC],
+                    'label' => 'imagesCount',
+                    'default' => SORT_ASC
+                ],
+
+                'videosCount' => [
+                    'asc' => ['videosCount' => SORT_ASC],
+                    'desc' => ['videosCount' => SORT_DESC],
+                    'label' => 'videosCount',
+                    'default' => SORT_ASC
+                ],
+            ]
+        ]);
+
+
 
         return $this->render('media', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+    public function actionUpdateLogo($id)
+    {
+        $this->layout ='base';
+        $model = $this->findModel($id);
+        $saved= false;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
+                'title' =>'',
+            ]);
+            $saved= true;
+        }
+        return $this->render('forms/logo', [
+            'model' => $model,
+            'saved'=>$saved
+        ]);
+    }
+
+    public function actionUpdatePictures($id)
+    {
+        $this->layout ='base';
+        $model = $this->findModel($id);
+        $saved= false;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
+                'title' =>'',
+            ]);
+            $saved= true;
+        }
+        return $this->render('forms/pictures', [
+            'model' => $model,
+            'saved'=>$saved
+        ]);
+    }
+
+    public function actionUpdateVideos($id)
+    {
+        $this->layout ='base';
+
+        $model = UniversityVidC::findOne($id);
+        if(! $model) throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        $saved= false;
+
+        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
+                'title' =>'',
+            ]);
+            $saved= true;
+        }
+        return $this->render('forms/videos', [
+            'model' => $model,
+            'saved'=>$saved
+        ]);
+    }
+
 
 
     public function actionAssign($id){
@@ -376,7 +469,7 @@ class UniversityController extends BackendController
             $row = Yii::$app->request->post('UniversityVideos');
             if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
-            return $this->renderAjax('_formUniversityVideos', ['row' => $row]);
+            return $this->renderAjax('forms/_formUniversityVideos', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
         }

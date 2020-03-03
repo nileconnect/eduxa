@@ -2,8 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\depdrop\DepDrop;
-use yii\helpers\Url;
 use kartik\date\DatePicker;
 use common\helpers\multiLang\MyMultiLanguageActiveField;
 /* @var $this yii\web\View */
@@ -80,39 +78,6 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
 <!--        </div>-->
     </div>
 
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="well">
-                <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->orderBy('id')->all(), 'id', 'title'),
-                    'options' => ['placeholder' => Yii::t('backend', 'Choose Country') ,'id'=>'CountryId'],
-                    'pluginOptions' => [
-                        'allowClear' => true
-                    ],
-                ]); ?>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="well">
-                <?php
-                // Child # 1
-                echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                    'options'=>['id'=>'subcat-id'],
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [],
-
-                    'pluginOptions'=>[
-                        'depends'=>['CountryId'],
-                        'placeholder'=>'Select...',
-                        'url'=>Url::to(['/helper/cities'])
-                    ]
-                ]);
-
-                ?>
-
-            </div>
-        </div>
-    </div>
 
     <div class="row ">
         <div class="col-md-6 col-sm-12">

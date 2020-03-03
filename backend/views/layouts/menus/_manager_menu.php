@@ -101,35 +101,43 @@ echo Menu::widget([
                     'active' => (Yii::$app->controller->id == 'university'),
                 ],
 
-                [
-                    'label' => Yii::t('backend', 'Program Degree'),
-                    'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/university-program-degree'],
-                    'active' => (Yii::$app->controller->id == 'university-program-degree'),
-                ],
 
                 [
-                    'label' => Yii::t('backend', 'Program Majors'),
+                    'label' => Yii::t('backend', 'University Media'),
                     'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/university-program-majors'],
-                    'active' => (Yii::$app->controller->id == 'university-program-majors'),
+                    'url' => ['/university/media'],
+                    'active' => (Yii::$app->controller->id == 'university'),
                 ],
-
-
                 [
-                    'label' => Yii::t('backend', 'Program Fields'),
+                    'label' => Yii::t('backend', 'Programs Lookups'),
+                    'url' => '#',
                     'icon' => '<i class="fa fa-users"></i>',
-                    'url' => ['/university-program-field'],
-                    'active' => (Yii::$app->controller->id == 'university-program-field'),
+                    'options' => ['class' => 'treeview'],
+                    'items' => [
+                        [
+                            'label' => Yii::t('backend', 'Program Degree'),
+                            'icon' => '<i class="fa fa-users"></i>',
+                            'url' => ['/university-program-degree'],
+                            'active' => (Yii::$app->controller->id == 'university-program-degree'),
+                        ],
+                        [
+                            'label' => Yii::t('backend', 'Program Majors'),
+                            'icon' => '<i class="fa fa-users"></i>',
+                            'url' => ['/university-program-majors'],
+                            'active' => (Yii::$app->controller->id == 'university-program-majors'),
+                        ],
+                        [
+                            'label' => Yii::t('backend', 'Program Fields'),
+                            'icon' => '<i class="fa fa-users"></i>',
+                            'url' => ['/university-program-field'],
+                            'active' => (Yii::$app->controller->id == 'university-program-field'),
+                        ],
+                    ]
                 ],
 
 
-//                [
-//                    'label' => Yii::t('backend', 'Media'),
-//                    'icon' => '<i class="fa fa-users"></i>',
-//                    'url' => ['/university/media'],
-//                    'active' => (Yii::$app->controller->id == 'university'),
-//                ],
+
+
 
 
             ],

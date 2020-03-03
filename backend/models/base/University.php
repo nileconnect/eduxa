@@ -2,6 +2,9 @@
 
 namespace backend\models\base;
 
+use trntv\filekit\behaviors\UploadBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
@@ -38,22 +41,15 @@ use yii\behaviors\BlameableBehavior;
  */
 class University extends \yii\db\ActiveRecord
 {
+    use MultiLanguageTrait;
+
     use \mootensai\relation\RelationTrait;
 
+    public $logo;
+    public $photos;
 
-    /**
-    * This function helps \mootensai\relation\RelationTrait runs faster
-    * @return array relation names of this model
-    */
-    public function relationNames()
-    {
-        return [
-            'universityCountries',
-            'universityPhotos',
-            'universityVideos',
-            'unversityRatings'
-        ];
-    }
+    const STATUS_OFF = 0;
+    const STATUS_ON = 1;
 
     /**
      * @inheritdoc
@@ -62,6 +58,102 @@ class University extends \yii\db\ActiveRecord
     {
         return 'university';
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['description'], 'string'],
+            [['total_rating'], 'number'],
+            [['no_of_ratings', 'created_by', 'updated_by','status','responsible_id'], 'integer'],
+            [['title', 'image_base_url', 'image_path', 'detailed_address', 'location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
+            [['logo','photos','country_id','city_id','recommended'],'safe']
+        ];
+    }
+
+    public static function LisStatusList(){
+        return [
+            self::STATUS_ON =>'Active',
+            self::STATUS_OFF =>'Not Active' ,
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     * @return array mixed
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => UploadBehavior::class,
+                'attribute' => 'logo',
+                'pathAttribute' => 'image_path',
+                'baseUrlAttribute' => 'image_base_url',
+            ],
+            [
+                'class' => UploadBehavior::class,
+                'attribute' => 'photos',
+                'multiple' => true,
+                'uploadRelation' => 'universityPhotos',
+                'pathAttribute' => 'path',
+                'baseUrlAttribute' => 'base_url',
+                'orderAttribute' => 'order',
+                'typeAttribute' => 'type',
+                'sizeAttribute' => 'size',
+                'nameAttribute' => 'name',
+            ],
+
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+            'blameable' => [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+
+            'mlBehavior'=>[
+                'class'    => MultiLanguageBehavior::className(),
+                'mlConfig' => [
+                    'db_table'         => 'translations_with_text',
+                    'attributes'       => ['title','description','detailed_address'],
+                    'admin_routes'     => [
+                        'university/update',
+                        'university/index',
+                    ],
+                ],
+            ],
+
+        ];
+    }
+
+    public function CalcRating()
+    {
+        $ratingCount = count($this->unversityRatings);
+        if($ratingCount < 1) return true  ;
+
+        $rating_sum  = $this->unversityRatingsSum;
+        $this->no_of_ratings = $ratingCount ;
+        $this->total_rating = number_format($rating_sum/$ratingCount , 0);
+        $this->save(false);
+        return true;
+    }
+
+
+    public function getLogoImage(){
+        if($this->image_path){
+            return $this->image_base_url.$this->image_path ;
+        }else{
+            return   Yii::getAlias('@frontendUrl').'/img/no-logo.png' ;
+        }
+    }
+
 
     /**
      * @inheritdoc

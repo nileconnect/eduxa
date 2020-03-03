@@ -21,10 +21,9 @@ echo newerton\fancybox3\FancyBox::widget([
 
     'config'=>[
         'iframe' => [
-
-            'preload'       => false,
+            'preload'       => true,
             'css'=>[
-                'width'=>'900px',
+                'width'=>'800px',
                 'height'=>'500px'
             ]
         ],
@@ -34,6 +33,16 @@ echo newerton\fancybox3\FancyBox::widget([
 
 
 ?>
+
+
+<style>
+    .tileMe li {
+        display: inline;
+        float: left;
+        padding: 3px;
+    }
+
+</style>
 <div class="university-index">
 
     <?php
@@ -41,11 +50,66 @@ echo newerton\fancybox3\FancyBox::widget([
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
         'title',
+        [
+            'attribute'=>'unversity_logo',
+            'value'=>function($model){
+                return '<a  data-fancybox="" data-type="iframe"   data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "400px" , "height" : "400px" }}}\'  href="/university/update-logo?id='.$model->id.'">
+            <i class="fa fa-edit" style="font-size:36px"></i></a><br/>
+           <a href="'.$model->logoImage.'" data-fancybox  data-caption="'.$model->title .' - Logo"> <img src="'.$model->logoImage.'" width="90px" height="90px" /></a><br/>' ;
+            },
+            'format'=>'raw',
+
+            'filter' => Html::activeDropDownList($searchModel, 'unversity_logo', [ 1 =>'Has Logo' , 2=>'Has No Logo'],['class'=>'form-control',
+                'prompt' =>  Yii::t('backend','Select .. ') ]),
+        ],
+
+        [
+            'label'=>'Pictures',
+            'attribute'=>'imagesCount',
+            'value'=>function($model){
+                $str='<p><a  data-fancybox="" data-type="iframe"  data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "800px" , "height" : "500px" }}}\'  href="/university/update-pictures?id='.$model->id.'"><i class="fa fa-edit" style="font-size:36px"></i></a></p>';
+                        if($model->universityPhotos){
+                            $str.= '
+                                <ul class="tileMe">';
+                            foreach ($model->universityPhotos as $universityPhoto) {
+                                $str.= '<li>
+                                        <a href="'.$universityPhoto->base_url.$universityPhoto->path.'" data-fancybox="images" data-caption="'.$model->title .' - Media">
+                                                    <img src="'.$universityPhoto->base_url.$universityPhoto->path.' " alt=""  width="90px" height="90px" />
+                                        </a>
+                                      </li>';
+                            }
+                            $str.= '</ul>';
+                        }
+                return  $str .'<br/>' ;
+            },
+            'format'=>'raw',
+            'contentOptions'=>[ 'style'=>'width: 400px']
+        ],
 
 
         [
-            'class' => 'yii\grid\ActionColumn','template'=>'{view} {update}'
+            'label'=>'Videos',
+            'attribute'=>'videosCount',
+            'value'=>function($model){
+                $str='<a  data-fancybox="" data-type="iframe"   data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "800px" , "height" : "600px" }}}\'  href="/university/update-videos?id='.$model->id.'"><i class="fa fa-edit" style="font-size:36px"></i></a>';
+                if($model->universityVideos){
+                    $str.= ' <ul>';
+                    foreach ($model->universityVideos as $universityVideo) {
+                        $str.= '<li>'. $universityVideo->base_url .'</li>';
+                    }
+                    $str.= '</ul>';
+                }
+                return  $str.'<br/>
+                    ' ;
+            },
+            'format'=>'raw'
         ],
+
+
+
+//        [
+//            'class' => 'yii\grid\ActionColumn','template'=>'{view} {update}'
+//        ],
     ];
     ?>
     <?= GridView::widget([

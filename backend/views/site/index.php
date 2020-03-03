@@ -10,7 +10,11 @@ use common\models\User;
 
 /*Dashboard Asset*/
 \backend\assets\DashboardAsset::register($this);
-$this->title = Yii::t('backend', 'Dashboard'); ?>
+$this->title = Yii::t('backend', 'Dashboard');
+?>
+
+
+
 
     <!-- Info boxes -->
     <div class="row">

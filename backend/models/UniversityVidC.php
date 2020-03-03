@@ -13,26 +13,21 @@ use yii\behaviors\TimestampBehavior;
 /**
  * This is the model class for table "university".
  */
-class University extends BaseUniversity
+class UniversityVidC extends BaseUniversity
 {
     use MultiLanguageTrait;
 
     use \mootensai\relation\RelationTrait;
 
-
     /**
      * This function helps \mootensai\relation\RelationTrait runs faster
      * @return array relation names of this model
      */
+
     public function relationNames()
     {
         return [
-            'universityCountries',
-            'unversityRatings'
+             'universityVideos',
         ];
     }
-
-
-
-
 }
