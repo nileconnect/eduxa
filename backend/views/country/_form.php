@@ -3,6 +3,7 @@
 use trntv\filekit\widget\Upload;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Country */
@@ -27,27 +28,56 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
 
-
-
-
     <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title']) ?>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="well">
+                        <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])
+                            ->widget(MyMultiLanguageActiveField::className());  ?>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="well">
+                        <?= $form->field($model, 'code')->textInput(['maxlength' => true, 'placeholder' => 'Code']) ?>
+                    </div>
+                </div>
+            </div>
         </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <?php echo $form->field($model, 'image')->widget(
+                        Upload::class,
+                        [
+                            'url' => ['/file/storage/upload'],
+                            'maxFileSize' => 5000000, // 5 MiB
+                        ]);
+                    ?>
+                </div>
+            </div>
 
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'code')->textInput(['maxlength' => true, 'placeholder' => 'Code']) ?>
-        </div>
-    </div>
+  </div>
 
 
-    <?= $form->field($model, 'intro')->textarea(['rows' => 6]) ?>
 
 
-    <?php echo $form->field($model, 'details')->textarea(['rows'=>20]);
 
+    <?
+    echo $form->field($model, 'intro')->textarea()->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
+        'rows'=>4,
+        'class'=>'form-control',
+    ]]) ?>
 
-//        ->widget(
+    <?php
+
+    echo $form->field($model, 'details')->textarea()->widget(MyMultiLanguageActiveField::className(), ['inputType' => 'textArea', 'inputOptions' => [
+        'rows' => 6,
+        'class' => 'form-control',
+    ]])
+
+    //        ->widget(
 //        \yii\imperavi\Widget::class,
 //        [
 //            'plugins' => ['fullscreen', 'fontcolor', 'video'],
@@ -65,13 +95,7 @@ use yii\widgets\ActiveForm;
     ?>
 
 
-    <?php echo $form->field($model, 'image')->widget(
-        Upload::class,
-        [
-            'url' => ['/file/storage/upload'],
-            'maxFileSize' => 5000000, // 5 MiB
-        ]);
-    ?>
+
 
     <?php echo $form->field($model, 'attachments')->widget(
         Upload::class,

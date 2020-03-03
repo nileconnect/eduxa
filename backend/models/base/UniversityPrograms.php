@@ -109,6 +109,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
             'program_type' => Yii::t('backend', 'Program Type'),
             'first_submission_date' => Yii::t('backend', 'First submission date'),
             'last_submission_date' => Yii::t('backend', 'Last date for application'),
+
         ];
     }
 

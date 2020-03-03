@@ -189,7 +189,7 @@ if (YII_ENV_PROD) {
 if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
-        'class' => yii\gii\Module::class
+        'class' => yii\gii\Module::class,
     ];
 
     $config['components']['cache'] = [

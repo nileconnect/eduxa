@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
+use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\State */
@@ -13,7 +13,20 @@ use webvimark\behaviors\multilanguage\input_widget\MultiLanguageActiveField;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])
+                ->widget(MyMultiLanguageActiveField::className());  ?>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+        </div>
+    </div>
+
+
+
     <? //= $form->field($model, 'sort')->textInput(['maxlength' => true]) ?>
     <? //= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
     <? //= $form->field($model, 'meta_description')//->widget(MultiLanguageActiveField::className(), ['inputType' => 'textArea']); ?>

@@ -5,12 +5,12 @@ use yii\widgets\ActiveForm;
 use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Cities */
+/* @var $model backend\models\UniversityProgrameMethodOfStudy */
 /* @var $form yii\widgets\ActiveForm */
 
 ?>
 
-<div class="cities-form">
+<div class="university-programe-method-of-study-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -30,7 +30,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
         <div class="col-md-4 col-sm-12">
         </div>
     </div>
-    <? //= $form->field($model, 'sort')->textInput(['placeholder' => 'Sort']) ?>
+    <? //= $form->field($model, 'status')->textInput(['placeholder' => 'Status']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -115,22 +115,53 @@ echo Menu::widget([
                     'options' => ['class' => 'treeview'],
                     'items' => [
                         [
-                            'label' => Yii::t('backend', 'Program Degree'),
+                            'label' => Yii::t('backend', 'Degree'),
                             'icon' => '<i class="fa fa-users"></i>',
                             'url' => ['/university-program-degree'],
                             'active' => (Yii::$app->controller->id == 'university-program-degree'),
                         ],
                         [
-                            'label' => Yii::t('backend', 'Program Majors'),
+                            'label' => Yii::t('backend', 'Majors'),
                             'icon' => '<i class="fa fa-users"></i>',
                             'url' => ['/university-program-majors'],
                             'active' => (Yii::$app->controller->id == 'university-program-majors'),
                         ],
                         [
-                            'label' => Yii::t('backend', 'Program Fields'),
+                            'label' => Yii::t('backend', 'Fields'),
                             'icon' => '<i class="fa fa-users"></i>',
                             'url' => ['/university-program-field'],
                             'active' => (Yii::$app->controller->id == 'university-program-field'),
+                        ],
+
+                        [
+                            'label' => Yii::t('backend', 'Medium of study'),
+                            'icon' => '<i class="fa fa-users"></i>',
+                            'url' => ['/university-program-medium-of-study'],
+                            'active' => (Yii::$app->controller->id == 'university-program-medium-of-study'),
+                        ],
+                         [
+                            'label' => Yii::t('backend', 'Conditional admission'),
+                            'icon' => '<i class="fa fa-users"></i>',
+                            'url' => ['/university-programe-conditional-admission'],
+                            'active' => (Yii::$app->controller->id == 'university-programe-conditional-admission'),
+                        ],
+                        [
+                            'label' => Yii::t('backend', 'Format'),
+                            'icon' => '<i class="fa fa-users"></i>',
+                            'url' => ['/university-programe-format'],
+                            'active' => (Yii::$app->controller->id == 'university-programe-format'),
+                        ],
+                        [
+                            'label' => Yii::t('backend', 'Method of Study'),
+                            'icon' => '<i class="fa fa-users"></i>',
+                            'url' => ['/university-programe-method-of-study'],
+                            'active' => (Yii::$app->controller->id == 'university-programe-method-of-study'),
+                        ],
+                        [
+                            'label' => Yii::t('backend', 'ILETS'),
+                            'icon' => '<i class="fa fa-users"></i>',
+                            'url' => ['/university-programe-ilets'],
+                            'active' => (Yii::$app->controller->id == 'university-programe-ilets'),
                         ],
                     ]
                 ],

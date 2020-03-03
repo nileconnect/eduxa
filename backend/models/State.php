@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 
 /**
@@ -15,7 +17,7 @@ use Yii;
  */
 class State extends \yii\db\ActiveRecord {
 
-   // use \webvimark\behaviors\multilanguage\MultiLanguageTrait;
+    use MultiLanguageTrait;
 
     /**
      * @inheritdoc
@@ -26,51 +28,19 @@ class State extends \yii\db\ActiveRecord {
 
     public function behaviors() {
         return [
-//            'slug' => [
-//                'class' => 'Zelenin\yii\behaviors\Slug',
-//                'slugAttribute' => 'slug',
-//                'attribute' => 'title',
-//                // optional params
-//                'ensureUnique' => true,
-//                //'replacement' => '-',
-//                'lowercase' => true,
-//                'immutable' => true,
-//                // If intl extension is enabled, see http://userguide.icu-project.org/transforms/general.
-//                // 'transliterateOptions' => 'Russian-Latin/BGN; Any-Latin; Latin-ASCII; NFD; [:Nonspacing Mark:] Remove; NFC;'
-//            ],
-//            'mlBehavior' => [
-//                'class' => \webvimark\behaviors\multilanguage\MultiLanguageBehavior::className(),
-//                'mlConfig' => [
-//                    'db_table' => 'translations_with_string',
-//                    'attributes' => ['title', 'slug'],
-//                    'admin_routes' => [
-//                        'states/create',
-//                        'CITY/update'
-//                    ],
-//                ],
-//            ],
+
+            'mlBehavior'=>[
+                'class'    => MultiLanguageBehavior::className(),
+                'mlConfig' => [
+                    'db_table'         => 'translations_with_text',
+                    'attributes'       => ['title'],
+                    'admin_routes'     => [
+                        'state/update',
+                        'state/index',
+                    ],
+                ],
+            ],
         ];
-    }
-
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            // Place your custom code here
-            $string = $this->slug;
-            //Lower case everything
-            $string = strtolower($string);
-            //Make alphanumeric (removes all other characters)
-            // $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
-            //Clean up multiple dashes or whitespaces
-            $string = preg_replace("/[\s-]+/", " ", $string);
-            //Convert whitespaces and underscore to dash
-            $string = preg_replace("/[\s_]/", "-", $string);
-            $this->slug =$string;
-
-            return true;
-        } else {
-            return false;
-        }
     }
 
 

@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use \backend\models\base\Cities as BaseCities;
 
@@ -10,6 +12,8 @@ use \backend\models\base\Cities as BaseCities;
  */
 class Cities extends BaseCities
 {
+
+
     /**
      * @inheritdoc
      */
@@ -22,5 +26,7 @@ class Cities extends BaseCities
             [['title'], 'string', 'max' => 255]
         ]);
     }
+
+
 	
 }

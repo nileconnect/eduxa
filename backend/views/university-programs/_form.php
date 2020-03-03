@@ -35,20 +35,35 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
 
             <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MyMultiLanguageActiveField::className());  ?>
 
-
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'major_id')->widget(\kartik\widgets\Select2::classname(), [
-                'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMajors::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-                'options' => ['placeholder' => Yii::t('backend', 'Choose University program majors')],
+
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+        <?= $form->field($model, 'major_id')->widget(\kartik\widgets\Select2::classname(), [
+            'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMajors::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+            'options' => ['placeholder' => Yii::t('backend', 'Choose University program majors')],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]); ?>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <?= $form->field($model, 'medium_of_study')->widget(\kartik\widgets\Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMediumOfStudy::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                'options' => ['placeholder' => Yii::t('backend', 'Choose Medium of study')],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
             ]); ?>
         </div>
     </div>
-
 
 
     <div class="row">
@@ -94,86 +109,149 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
             ?>
             </div>
         </div>
-        <div class="col-md-6 col-sm-12">
-                <div class="well">
-            <?php
-            echo $form->field($model, 'first_submission_date')->widget(DatePicker::classname(), [
-                'options' => ['placeholder' => 'Enter First submission date ...'],
-                'pluginOptions' => [
-                    'autoclose'=>true,
-                    'format' => 'yyyy-mm-dd'
-
-                ]
-            ]);
-            ?>
+        <div class="col-md-6 col-sm-12 well">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <?= $form->field($model, 'study_duration_no')->textInput();  ?>
                 </div>
-        </div>
 
+                <div class="col-md-6 col-sm-12">
+                    <?= $form->field($model, 'study_duration')->dropDownList(['1'=>'Day' , '2'=>'Week' , '3'=>'Month'])  ?>
+                </div>
+            </div>
+
+
+
+
+        </div>
 
     </div>
     <div class="row ">
+        <div class="col-md-6 col-sm-12">
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <?php
+                        echo $form->field($model, 'first_submission_date')->widget(DatePicker::classname(), [
+                            'options' => ['placeholder' => 'Enter First submission date ...'],
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'yyyy-mm-dd'
+
+                            ]
+                        ]);
+                        ?>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <?php
+                        echo $form->field($model, 'first_submission_date_active')->checkbox(['label'=>'Active']);
+
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-md-6 col-sm-12 ">
             <div class="well">
-            <?php
-            echo $form->field($model, 'last_submission_date')->widget(DatePicker::classname(), [
-                'options' => ['placeholder' => 'Enter last submission date ...'],
-                'pluginOptions' => [
-                    'autoclose'=>true,
-                    'format' => 'yyyy-mm-dd'
 
-                ]
-            ]);
-            ?>
+           <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <?php
+                    echo $form->field($model, 'last_submission_date')->widget(DatePicker::classname(), [
+                        'options' => ['placeholder' => 'Enter last submission date ...'],
+                        'pluginOptions' => [
+                            'autoclose'=>true,
+                            'format' => 'yyyy-mm-dd'
+
+                        ]
+                    ]);
+                    ?>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <?php
+                    echo $form->field($model, 'last_submission_date_active')->checkbox(['label'=>'Active']);
+
+                    ?>
+                </div>
+            </div>
+
+
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-12 well">
-            <?= $form->field($model, 'study_duration')->textInput(['maxlength' => true, 'placeholder' => 'Study Duration'])->widget(MyMultiLanguageActiveField::className());  ?>
 
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <?= $form->field($model, 'study_method')->widget(\kartik\widgets\Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgrameMethodOfStudy::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                'options' => ['placeholder' => Yii::t('backend', 'Choose Method of Study')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
+
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+
+            <?= $form->field($model, 'program_format')->widget(\kartik\widgets\Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgrameFormat::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                'options' => ['placeholder' => Yii::t('backend', 'Choose Program format')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
+
+            <? //= $form->field($model, 'attendance_type')->textInput(['maxlength' => true, 'placeholder' => 'Attendance Type'])->widget(MyMultiLanguageActiveField::className());  ?>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <?= $form->field($model, 'conditional_admissions')->widget(\kartik\widgets\Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgrameConditionalAdmission::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                'options' => ['placeholder' => Yii::t('backend', 'Choose conditional admissions')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
+
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <?= $form->field($model, 'ielts')->widget(\kartik\widgets\Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgrameIlets::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                'options' => ['placeholder' => Yii::t('backend', 'Choose IELTS')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'study_method')->textInput(['maxlength' => true, 'placeholder' => 'Study Method'])->widget(MyMultiLanguageActiveField::className());  ?>
+            <?= $form->field($model, 'bank_statment')->textInput(['maxlength' => true, 'placeholder' => 'Bank Statment']);  ?>
 
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'attendance_type')->textInput(['maxlength' => true, 'placeholder' => 'Attendance Type'])->widget(MyMultiLanguageActiveField::className());  ?>
-
+            <?= $form->field($model, 'annual_cost')->textInput(['placeholder' => 'Annual Cost']);  ?>
         </div>
     </div>
 
 
-
-
-
-
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'annual_cost')->textInput(['placeholder' => 'Annual Cost'])->widget(MyMultiLanguageActiveField::className());  ?>
-        </div>
-
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'conditional_admissions')->textInput(['maxlength' => true, 'placeholder' => 'Conditional Admissions'])->widget(MyMultiLanguageActiveField::className());  ?>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <?= $form->field($model, 'toefl')->textInput(['maxlength' => true, 'placeholder' => 'Toefl'])->widget(MyMultiLanguageActiveField::className());  ?>
 
-        </div>
-
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'ielts')->textInput(['maxlength' => true, 'placeholder' => 'Ielts'])->widget(MyMultiLanguageActiveField::className());  ?>
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'bank_statment')->textInput(['maxlength' => true, 'placeholder' => 'Bank Statment'])->widget(MyMultiLanguageActiveField::className());  ?>
         </div>
 
         <div class="col-md-6 col-sm-12">

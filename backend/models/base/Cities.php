@@ -2,6 +2,8 @@
 
 namespace backend\models\base;
 
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 
 /**
@@ -18,7 +20,7 @@ class Cities extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
-
+    use MultiLanguageTrait;
     /**
     * This function helps \mootensai\relation\RelationTrait runs faster
     * @return array relation names of this model
@@ -79,5 +81,23 @@ class Cities extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \backend\models\activequery\CitiesQuery(get_called_class());
+    }
+
+    public function behaviors() {
+        return [
+
+            'mlBehavior'=>[
+                'class'    => MultiLanguageBehavior::className(),
+                'mlConfig' => [
+                    'db_table'         => 'translations_with_text',
+                    'attributes'       => ['title'],
+                    'admin_routes'     => [
+                        'cities/update',
+                        'cities/index',
+                        'cities/create',
+                    ],
+                ],
+            ],
+        ];
     }
 }

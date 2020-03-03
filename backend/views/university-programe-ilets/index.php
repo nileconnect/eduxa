@@ -1,41 +1,38 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\search\UniversityProgramMajorsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-$this->title = Yii::t('backend', 'Program Majors');
+$this->title = Yii::t('backend', 'Program Ilets');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="university-program-majors-index">
+<div class="university-programe-ilets-index">
 
 
     <p>
-        <?= Html::a(Yii::t('backend', 'Create Program Majors'), ['create'], ['class' => 'btn btn-primary']) ?>
-        <? //= Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
+        <?= Html::a(Yii::t('backend', 'Create Program Ilets'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php 
+<?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
         'title',
         //'status',
         [
-            'class' => 'yii\grid\ActionColumn','template'=>'{view} {update}'
-        ],
+            'class' => 'yii\grid\ActionColumn',
+        'template'=>'{view} {update}'
+              ],
     ]; 
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => $gridColumn,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-university-program-majors']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-university-programe-ilets']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),

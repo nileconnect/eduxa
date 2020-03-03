@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use trntv\filekit\behaviors\UploadBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use \backend\models\base\Country as BaseCountry;
 use yii\behaviors\BlameableBehavior;
@@ -14,6 +16,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class Country extends BaseCountry
 {
+
+    use MultiLanguageTrait;
+
     public  $image;
     public $attachments;
 
@@ -43,6 +48,18 @@ class Country extends BaseCountry
                 'attribute' => 'image',
                 'pathAttribute' => 'image_path',
                 'baseUrlAttribute' => 'image_base_url',
+            ],
+
+            'mlBehavior'=>[
+                'class'    => MultiLanguageBehavior::className(),
+                'mlConfig' => [
+                    'db_table'         => 'translations_with_text',
+                    'attributes'       => ['title','intro','details'],
+                    'admin_routes'     => [
+                        'country/update',
+                        'country/index',
+                    ],
+                ],
             ],
         ];
     }
