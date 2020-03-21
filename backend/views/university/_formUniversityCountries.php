@@ -29,7 +29,7 @@ echo TabularForm::widget([
             'type' => TabularForm::INPUT_WIDGET,
             'widgetClass' => \kartik\widgets\Select2::className(),
             'options' => [
-                'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->orderBy('title')->asArray()->all(), 'id', 'title'),
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('title')->asArray()->all(), 'id', 'title'),
                 'options' => ['placeholder' => Yii::t('backend', 'Choose Country')],
             ],
             'columnOptions' => ['width' => '200px']

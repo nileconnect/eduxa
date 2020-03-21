@@ -116,8 +116,10 @@ echo newerton\fancybox3\FancyBox::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => $gridColumn,
+        'export'=>false,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-university']],
+        'toggleData'=>false,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-invoice']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),

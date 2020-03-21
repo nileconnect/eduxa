@@ -1,67 +1,54 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\CountrySearch */
+/* @var $searchModel backend\models\search\UniversityNextToSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-$this->title = Yii::t('backend', 'Country');
+$this->title = Yii::t('backend', 'University Next To');
 $this->params['breadcrumbs'][] = $this->title;
-$search = "$('.search-button').click(function(){
-	$('.search-form').toggle(1000);
-	return false;
-});";
-$this->registerJs($search);
 ?>
-<div class="country-index">
+<div class="university-next-to-index">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('backend', 'Create Country'), ['create'], ['class' => 'btn btn-primary']) ?>
-        <? //= Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
+        <?= Html::a(Yii::t('backend', 'Create University Next To'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <div class="search-form" style="display:none">
-        <?=  $this->render('_search', ['model' => $searchModel]); ?>
-    </div>
+
     <?php 
     $gridColumn = [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'title',
-            [
-            'label' => '',
-            'value' => function($model){
-                return Html::a(Yii::t('app', 'states'), ['states/index', 'countryId'=>$model->id], ['class'=>'btn btn-success', 'title'=>Yii::t('app', 'states')]);
-            },
-            'format' => 'raw'
-        ],
-
+        ['class' => 'yii\grid\SerialColumn'],
+        ['attribute' => 'id', 'visible' => false],
+//        [
+//                'attribute' => 'university_id',
+//                'label' => Yii::t('backend', 'University'),
+//                'value' => function($model){
+//                    return $model->university->title;
+//                },
+//                'filterType' => GridView::FILTER_SELECT2,
+//                'filter' => \yii\helpers\ArrayHelper::map(\backend\models\University::find()->asArray()->all(), 'id', 'title'),
+//                'filterWidgetOptions' => [
+//                    'pluginOptions' => ['allowClear' => true],
+//                ],
+//                'filterInputOptions' => ['placeholder' => 'University', 'id' => 'grid-university-next-to-search-university_id']
+//            ],
+        'title',
         [
-            'label' => '',
-            'value' => function($model){
-                return Html::a(Yii::t('app', 'Faqs'), ['faq/index', 'countryId'=>$model->id], ['class'=>'btn btn-success', 'title'=>Yii::t('app', 'FAQs')]);
-            },
-            'format' => 'raw'
-        ],
-        'status:boolean',
-
-
-
-        [            'class' => 'yii\grid\ActionColumn','template'=>'{update} {view}'
-            ],
-        ];
-
+            'class' => 'yii\grid\ActionColumn',
+        'template'=>'{view} {update}'
+              ],
+    ]; 
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => $gridColumn,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-country']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-university-next-to']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),

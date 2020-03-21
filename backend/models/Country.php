@@ -69,7 +69,7 @@ class Country extends BaseCountry
         return [
             [['intro', 'details'], 'string'],
             [['title', 'code', 'image_base_url', 'image_path'], 'string', 'max' => 255],
-            [['image','attachments'],'safe']
+            [['image','attachments','status'],'safe']
         ];
     }
 	

@@ -103,7 +103,7 @@ $model->roles =Yii::$app->session->get('UserRole');
                         <div class="col-md-6">
                             <div class="well">
                                 <?= $form->field($profile, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
-                                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),
                                     'options' => ['placeholder' => Yii::t('backend', 'Choose Country') ,'id'=>'CountryId'],
                                     'pluginOptions' => [
                                         'allowClear' => true

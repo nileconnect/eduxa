@@ -69,7 +69,8 @@ class University extends \yii\db\ActiveRecord
             [['total_rating'], 'number'],
             [['no_of_ratings', 'created_by', 'updated_by','status','responsible_id'], 'integer'],
             [['title', 'image_base_url', 'image_path', 'detailed_address', 'location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['logo','photos','country_id','city_id','recommended'],'safe']
+            [['logo','photos','country_id','city_id','recommended'],'safe'],
+            [['next_to','currency_id'],'integer']
         ];
     }
 
@@ -176,6 +177,8 @@ class University extends \yii\db\ActiveRecord
             'total_rating' => Yii::t('backend', 'Total Rating'),
             'no_of_ratings' => Yii::t('backend', 'No Of Ratings'),
             'recommended' => Yii::t('backend', 'Recommended'),
+            'next_to' => Yii::t('backend', 'University next to '),
+            'currency_id' => Yii::t('backend', 'University Currency'),
             'responsible_id' => Yii::t('backend', 'University Manager'),
         ];
     }

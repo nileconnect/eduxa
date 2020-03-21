@@ -109,6 +109,12 @@ echo Menu::widget([
                     'active' => (Yii::$app->controller->id == 'university'),
                 ],
                 [
+                    'label' => Yii::t('backend', 'University Next To'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/university-next-to'],
+                    'active' => (Yii::$app->controller->id == 'university-next-to'),
+                ],
+                [
                     'label' => Yii::t('backend', 'Programs Lookups'),
                     'url' => '#',
                     'icon' => '<i class="fa fa-users"></i>',

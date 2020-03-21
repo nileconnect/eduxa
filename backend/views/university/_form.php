@@ -67,7 +67,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
                 <div class="col-md-4">
                     <div class="well">
                         <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
-                            'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                            'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),
                             'options' => ['placeholder' => Yii::t('backend', 'Choose Country') ,'id'=>'CountryId'],
                             'pluginOptions' => [
                                 'allowClear' => true
@@ -167,7 +167,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
     <div class="row">
         <div class="col-md-6 col-sm-12">
 
-    <?php
+            <?php
     echo \pigolab\locationpicker\LocationPickerWidget::widget([
         'key' => env('GOOGLE_MAP_KEY'), 	// require , Put your google map api key
         'options' => [
@@ -190,6 +190,15 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
     ]);
     ?>
 
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <?php
+            $CurrencyArr = \yii\helpers\ArrayHelper::map(\backend\models\Currency::find()->all(), 'id', 'currency_code');
+            $NextToArr = \yii\helpers\ArrayHelper::map(\backend\models\UniversityNextTo::find()->all(), 'id', 'title');
+            echo $form->field($model, 'currency_id')->dropDownList($CurrencyArr, [ 'prompt' => 'Select Currency ']);
+            echo $form->field($model, 'next_to')->dropDownList($NextToArr, [ 'prompt' => 'Select Next To ']);
+            ?>
         </div>
     </div>
 

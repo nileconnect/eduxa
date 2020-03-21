@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\models;
+namespace backend\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Country;
+use backend\models\UniversityNextTo;
 
 /**
- * backend\models\CountrySearch represents the model behind the search form about `backend\models\Country`.
+ * backend\models\search\UniversityNextToSearch represents the model behind the search form about `backend\models\UniversityNextTo`.
  */
- class CountrySearch extends Country
+ class UniversityNextToSearch extends UniversityNextTo
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ use backend\models\Country;
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['title', 'code', 'image_base_url', 'image_path', 'intro', 'details','status'], 'safe'],
+            [['id', 'university_id'], 'integer'],
+            [['title', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ use backend\models\Country;
      */
     public function search($params)
     {
-        $query = Country::find();
+        $query = UniversityNextTo::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,15 +57,12 @@ use backend\models\Country;
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'status' => $this->status,
+            'university_id' => $this->university_id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'code', $this->code])
-            ->andFilterWhere(['like', 'image_base_url', $this->image_base_url])
-            ->andFilterWhere(['like', 'image_path', $this->image_path])
-            ->andFilterWhere(['like', 'intro', $this->intro])
-            ->andFilterWhere(['like', 'details', $this->details]);
+            ->andFilterWhere(['like', 'created_at', $this->created_at])
+            ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
 
         return $dataProvider;
     }
