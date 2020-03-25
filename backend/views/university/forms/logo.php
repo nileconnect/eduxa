@@ -22,6 +22,26 @@ if($saved){
 
 ?>
 
+<style>
+.form-group{
+    text-align:center !important;  
+}
+.form-group .control-label{
+        font-size: 18px !important;
+    margin-bottom: 15px !important;
+    font-weight: bold !important;
+    }
+    .upload-kit ul{
+        float:none !important;
+    }
+    .upload-kit ul li{
+        float:none !important;
+    }
+    .upload-kit-input{
+        float: none !important;
+    width: 100% !important;
+    }
+</style>
 <div class="university-form">
 
     <?php $form = ActiveForm::begin(); ?>
