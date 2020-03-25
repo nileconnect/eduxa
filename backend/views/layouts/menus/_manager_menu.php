@@ -145,6 +145,14 @@ echo Menu::widget([
                             'url' => ['/university-program-medium-of-study'],
                             'active' => (Yii::$app->controller->id == 'university-program-medium-of-study'),
                         ],
+
+                        [
+                            'label' => Yii::t('backend', 'Language of study'),
+                            'icon' => '<i class="fa fa-users"></i>',
+                            'url' => ['/university-lang-of-study'],
+                            'active' => (Yii::$app->controller->id == 'university-lang-of-study'),
+                        ],
+
                          [
                             'label' => Yii::t('backend', 'Conditional admission'),
                             'icon' => '<i class="fa fa-users"></i>',

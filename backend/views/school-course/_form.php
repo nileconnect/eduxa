@@ -12,6 +12,11 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
 <div class="schools-form">
 
+    <?php
+    $this->beginContent('@app/views/public/multi-lang.php');
+    $this->endContent();
+    ?>
+
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->errorSummary($model); ?>

@@ -12,6 +12,11 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
 
 <div class="university-programs-form">
 
+    <?php
+    $this->beginContent('@app/views/public/multi-lang.php');
+    $this->endContent();
+    ?>
+
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->errorSummary($model); ?>
@@ -238,6 +243,7 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
+            <div class="well">
             <?php
             echo $form->field($model, 'bank_statment')->widget(\kartik\number\NumberControl::classname(), [
                 'maskedInputOptions' => [
@@ -257,10 +263,12 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
             ]);
 
             ?>
+            </div>
 
         </div>
 
         <div class="col-md-6 col-sm-12">
+            <div class="well">
 
             <?php
             echo $form->field($model, 'annual_cost')->widget(\kartik\number\NumberControl::classname(), [
@@ -281,6 +289,7 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
             ]);
 
             ?>
+            </div>
         </div>
     </div>
 

@@ -54,7 +54,7 @@ echo newerton\fancybox3\FancyBox::widget([
             'attribute'=>'unversity_logo',
             'value'=>function($model){
                 return '<a class="uploadBtn" data-fancybox="" data-type="iframe"   data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "400px" , "height" : "400px" }}}\'  href="/university/update-logo?id='.$model->id.'">
-                <i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Upload Image</span></a><br/>
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Upload Logo</span></a><br/>
            <a href="'.$model->logoImage.'" data-fancybox  data-caption="'.$model->title .' - Logo"> <img src="'.$model->logoImage.'" width="90px" height="90px" /></a><br/>' ;
             },
             'format'=>'raw',
@@ -67,7 +67,7 @@ echo newerton\fancybox3\FancyBox::widget([
             'label'=>'Pictures',
             'attribute'=>'imagesCount',
             'value'=>function($model){
-                $str='<p><a class="uploadBtn" data-fancybox="" data-type="iframe"  data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "800px" , "height" : "500px" }}}\'  href="/university/update-pictures?id='.$model->id.'"><i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Upload Image</span></a></p>';
+                $str='<p><a class="uploadBtn" data-fancybox="" data-type="iframe"  data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "800px" , "height" : "500px" }}}\'  href="/university/update-pictures?id='.$model->id.'"><i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Upload Images</span></a></p>';
                         if($model->universityPhotos){
                             $str.= '
                                 <ul class="tileMe">';
@@ -91,7 +91,7 @@ echo newerton\fancybox3\FancyBox::widget([
             'label'=>'Videos',
             'attribute'=>'videosCount',
             'value'=>function($model){
-                $str='<a class="uploadBtn" data-fancybox="" data-type="iframe" data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "800px" , "height" : "600px" }}}\'  href="/university/update-videos?id='.$model->id.'"><i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Upload Image</span></a>';
+                $str='<a class="uploadBtn" data-fancybox="" data-type="iframe" data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "800px" , "height" : "600px" }}}\'  href="/university/update-videos?id='.$model->id.'"><i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Manage Videos</span></a>';
                 if($model->universityVideos){
                     $str.= ' <ul>';
                     foreach ($model->universityVideos as $universityVideo) {

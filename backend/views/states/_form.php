@@ -12,7 +12,10 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 <div class="city-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <?php
+    $this->beginContent('@app/views/public/multi-lang.php');
+    $this->endContent();
+    ?>
 
     <div class="row">
         <div class="col-md-8 col-sm-12">

@@ -12,6 +12,11 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
 <div class="university-programe-method-of-study-form">
 
+    <?php
+    $this->beginContent('@app/views/public/multi-lang.php');
+    $this->endContent();
+    ?>
+
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->errorSummary($model); ?>
