@@ -189,6 +189,12 @@ class University extends \yii\db\ActiveRecord
         return $this->hasOne(\backend\models\Country::className(), ['id' => 'country_id']);
     }
 
+    public function getCurrency()
+    {
+        return $this->hasOne(\backend\models\Currency::className(), ['id' => 'currency_id']);
+    }
+
+
     public function getResponsible()
     {
         return $this->hasOne(\common\models\User::className(), ['id' => 'responsible_id']);

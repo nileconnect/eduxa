@@ -191,12 +191,20 @@ if($providerUniversityVideos->totalCount){
     $gridColumnUniversityVideos = [
         ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'visible' => false],
-                        'path',
-            'base_url:url',
-            'type',
-            'size',
-            'name',
-            'order',
+        'name',
+        [
+                'attribute'=>'base_url',
+                'label'=>'Video Link',
+                 'value'=>function($model){
+                    return $model->base_url ;
+                 },
+            'format'=>'raw'
+        ],
+
+        //     'path',
+        //    'type',
+       //     'size',
+         //   'order',
     ];
     echo Gridview::widget([
         'dataProvider' => $providerUniversityVideos,
@@ -219,7 +227,7 @@ if($providerUnversityRating->totalCount){
     $gridColumnUnversityRating = [
         ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'visible' => false],
-                        'user_id',
+                    //    'user_id',
             'name',
             'comment:ntext',
             'rating',

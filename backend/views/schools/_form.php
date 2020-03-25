@@ -143,6 +143,7 @@ use yii\helpers\Url;
         ]]) ?>
 
 
+    <?= $form->field($model, 'detailed_address')->textInput() ?>
 
 
     <div class="row">

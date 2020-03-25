@@ -40,9 +40,9 @@ class Schools extends BaseSchools
             [['country_id', 'city_id', 'state_id','min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings'], 'integer'],
             [['details'], 'string'],
             [['accomodation_fees', 'registeration_fees', 'study_books_fees',  'discount', 'total_rating'], 'number'],
-            [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at'], 'string', 'max' => 255],
+            [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at','detailed_address'], 'string', 'max' => 255],
             [['featured', 'status'], 'string', 'max' => 4],
-            [['logo','photos','no_of_ratings' ,'accomodation_reservation_fees','has_health_insurance','health_insurance_cost'],'safe']
+            [['logo','photos','no_of_ratings' ,'accomodation_reservation_fees','has_health_insurance','health_insurance_cost','detailed_address'],'safe']
         ] ;
     }
 

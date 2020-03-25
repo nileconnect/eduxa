@@ -238,19 +238,56 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'bank_statment')->textInput(['maxlength' => true, 'placeholder' => 'Bank Statment']);  ?>
+            <?php
+            echo $form->field($model, 'bank_statment')->widget(\kartik\number\NumberControl::classname(), [
+                'maskedInputOptions' => [
+                   // 'prefix' => $model->university->currency->currency_code,
+                    'suffix' => ' '. $model->university->currency->currency_code,
+                    'allowMinus' => false
+                ],
+                'options' =>  [
+                    'type' => 'text',
+                    'label'=>'<label>Saved Value: </label>',
+                    'class' => 'kv-saved',
+                    'readonly' => true,
+                    'tabindex' => 1000
+                ],
+                'displayOptions' => ['class' => 'form-control kv-monospace'],
+                'saveInputContainer' => ['class' => 'kv-saved-cont']
+            ]);
+
+            ?>
 
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'annual_cost')->textInput(['placeholder' => 'Annual Cost']);  ?>
+
+            <?php
+            echo $form->field($model, 'annual_cost')->widget(\kartik\number\NumberControl::classname(), [
+                'maskedInputOptions' => [
+                    // 'prefix' => $model->university->currency->currency_code,
+                    'suffix' => ' '. $model->university->currency->currency_code,
+                    'allowMinus' => false
+                ],
+                'options' =>  [
+                    'type' => 'text',
+                    'label'=>'<label>Saved Value: </label>',
+                    'class' => 'kv-saved',
+                    'readonly' => true,
+                    'tabindex' => 1000
+                ],
+                'displayOptions' => ['class' => 'form-control kv-monospace'],
+                'saveInputContainer' => ['class' => 'kv-saved-cont']
+            ]);
+
+            ?>
         </div>
     </div>
 
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'toefl')->textInput(['maxlength' => true, 'placeholder' => 'Toefl'])->widget(MyMultiLanguageActiveField::className());  ?>
+            <?= $form->field($model, 'toefl')->textInput(['maxlength' => true, 'placeholder' => 'Toefl']);  ?>
 
         </div>
 
