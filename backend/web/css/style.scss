@@ -446,6 +446,10 @@ Table Cell
             color: #2f3d4a !important;
             font-size: 15px;
         }
+        &.uploadBtn i.fa {
+            color: #fff !important;
+            margin-right: 5px;
+        }
     }
 }
 
@@ -703,7 +707,7 @@ label.checkbox-inline input[type="checkbox"] {
     margin-left: 10px;
 }
 
-.nav-tabs li.active{
+.nav-tabs li.active {
     background: #335aa5;
     border-bottom: 3px solid #0f5994;
     margin-top: -5px;
@@ -833,43 +837,44 @@ label.checkbox-inline input[type="checkbox"] {
 .nav-tabs-custom .nav-tabs li.active {
     background: #335aa5;
 }
-.upload-kit-item{
-    img{
+
+.upload-kit-item {
+    img {
         max-width: 200px;
     }
 }
 
-.translateTabs
-{
-    &.nav-tabs{
-        background: transparent;     
-        border-bottom:0;
+.translateTabs {
+    &.nav-tabs {
+        background: transparent;
+        border-bottom: 0;
         margin-top: -30px;
-        li{
-            margin:0 10px 0 0;
+        li {
+            margin: 0 10px 0 0;
             float: right;
             &.active {
                 background: transparent;
                 border-bottom: 0;
                 margin-top: 0;
                 border-top: 0;
-                a{
+                a {
                     background-color: #335aa5 !important;
-                    color:#fff !important;
+                    color: #fff !important;
                 }
             }
-            a{
+            a {
                 color: #333 !important;
                 border-radius: 20px;
                 background-color: #e8e8e8 !important;
                 padding: 5px 20px;
                 line-height: 20px;
             }
-        }                                                                                                                                                                                           
+        }
     }
 }
-.actionBtns{
-    .btn{
+
+.actionBtns {
+    .btn {
         float: left;
     }
 }
