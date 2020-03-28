@@ -17,6 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="col-sm-3" style="margin-top: 15px">
                 <?= Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('backend', 'Add New'), ['create'], ['class' => 'btn btn-success']) ?>
+
         </div>
     </div>
 
