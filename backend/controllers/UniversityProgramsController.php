@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\base\University;
+use backend\models\UniversityProgStartdate;
 use Yii;
 use backend\models\UniversityPrograms;
 use backend\models\search\UniversityProgramsSearch;
@@ -70,6 +71,7 @@ class UniversityProgramsController extends BackendController
     public function actionCreate()
     {
         $model = new UniversityPrograms();
+        $modelStartDates = new UniversityProgStartdate();
         $model->university_id = Yii::$app->session->get('universityId');
         $universityObj = University::find()->where(['id'=>$model->university_id])->one();
 
@@ -78,10 +80,16 @@ class UniversityProgramsController extends BackendController
         $model->state_id = $universityObj->state_id;
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+
+            $modelStartDates->load(Yii::$app->request->post());
+            $modelStartDates->university_prog_id = $model->id;
+            $modelStartDates->save(false);
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'modelStartDates'=>$modelStartDates
             ]);
         }
     }
@@ -95,6 +103,7 @@ class UniversityProgramsController extends BackendController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $modelStartDates= UniversityProgStartdate::find()->where(['university_prog_id'=>$id])->one();
         $model->university_id = Yii::$app->session->get('universityId');
         $universityObj = University::find()->where(['id'=>$model->university_id])->one();
         $model->country_id = $universityObj->country_id;
@@ -102,10 +111,14 @@ class UniversityProgramsController extends BackendController
         $model->state_id = $universityObj->state_id;
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            $modelStartDates->load(Yii::$app->request->post());
+            $modelStartDates->save(false);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'modelStartDates'=>$modelStartDates
+
             ]);
         }
     }
@@ -139,4 +152,5 @@ class UniversityProgramsController extends BackendController
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
         }
     }
+
 }

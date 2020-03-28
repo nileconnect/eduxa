@@ -9,20 +9,19 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
 /**
- * This is the base model class for table "university_lang_of_study".
+ * This is the base model class for table "school_next_to".
  *
  * @property integer $id
+ * @property integer $school_id
  * @property string $title
- * @property integer $status
  * @property string $created_at
  * @property string $updated_at
- * @property integer $created_by
- * @property integer $updated_by
+ *
+ * @property \backend\models\Schools $school
  */
-class UniversityLangOfStudy extends \yii\db\ActiveRecord
+class SchoolNextTo extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
-
     use MultiLanguageTrait;
 
 
@@ -30,9 +29,20 @@ class UniversityLangOfStudy extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function rules()
+    {
+        return [
+            [['school_id'], 'integer'],
+            [['title', 'created_at', 'updated_at'], 'string', 'max' => 255]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public static function tableName()
     {
-        return 'university_lang_of_study';
+        return 'school_next_to';
     }
 
     /**
@@ -42,11 +52,19 @@ class UniversityLangOfStudy extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
+            'school_id' => Yii::t('backend', 'School ID'),
             'title' => Yii::t('backend', 'Title'),
-            'status' => Yii::t('backend', 'Status'),
         ];
     }
-
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchool()
+    {
+        return $this->hasOne(\backend\models\Schools::className(), ['id' => 'school_id']);
+    }
+    
     /**
      * @inheritdoc
      * @return array mixed
@@ -60,19 +78,15 @@ class UniversityLangOfStudy extends \yii\db\ActiveRecord
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
             ],
-            'blameable' => [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
+
             'mlBehavior'=>[
                 'class'    => MultiLanguageBehavior::className(),
                 'mlConfig' => [
-                    'db_table'         => 'translations_with_string',
+                    'db_table'         => 'translations_with_text',
                     'attributes'       => ['title'],
                     'admin_routes'     => [
-                        'university-lang-of-study/update',
-                        'university-lang-of-study/index',
+                        'school-next-to/update',
+                        'school-next-to/index',
                     ],
                 ],
             ],
@@ -82,10 +96,10 @@ class UniversityLangOfStudy extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \backend\models\activequery\UniversityLangOfStudyQuery the active query used by this AR class.
+     * @return \backend\models\activequery\SchoolNextToQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \backend\models\activequery\UniversityLangOfStudyQuery(get_called_class());
+        return new \backend\models\activequery\SchoolNextToQuery(get_called_class());
     }
 }

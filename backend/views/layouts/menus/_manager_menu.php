@@ -98,7 +98,7 @@ echo Menu::widget([
                     'label' => Yii::t('backend', 'University'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/university'],
-                    'active' => (Yii::$app->controller->id == 'university'),
+                    'active' => (Yii::$app->controller->id == 'university' && Yii::$app->controller->action->id == 'index'),
                 ],
 
 
@@ -106,7 +106,7 @@ echo Menu::widget([
                     'label' => Yii::t('backend', 'University Media'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/university/media'],
-                    'active' => (Yii::$app->controller->id == 'university'),
+                    'active' => (Yii::$app->controller->id == 'university' && Yii::$app->controller->action->id == 'media' ),
                 ],
                 [
                     'label' => Yii::t('backend', 'University Next To'),
@@ -199,7 +199,32 @@ echo Menu::widget([
                     'label' => Yii::t('backend', 'Schools'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/schools'],
-                    'active' => (Yii::$app->controller->id == 'schools'),
+                    'active' => (Yii::$app->controller->id == 'schools' && Yii::$app->controller->action->id == 'index'),
+                ],
+                [
+                    'label' => Yii::t('backend', 'Schools Media'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/schools/media'],
+                    'active' => (Yii::$app->controller->id == 'schools' && Yii::$app->controller->action->id == 'media'),
+                ],
+
+                [
+                    'label' => Yii::t('backend', 'Schools room category'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/school-room-category'],
+                    'active' => (Yii::$app->controller->id == 'school-room-category'),
+                ],
+                [
+                    'label' => Yii::t('backend', 'Schools Next To'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/school-next-to'],
+                    'active' => (Yii::$app->controller->id == 'school-next-to'),
+                ],
+                [
+                    'label' => Yii::t('backend', 'Schools facilities'),
+                    'icon' => '<i class="fa fa-users"></i>',
+                    'url' => ['/school-facilities'],
+                    'active' => (Yii::$app->controller->id == 'school-facilities'),
                 ],
 
 //                [

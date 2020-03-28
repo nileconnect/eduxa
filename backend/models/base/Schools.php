@@ -66,8 +66,8 @@ class Schools extends \yii\db\ActiveRecord
             //'schoolCourses',
 
             'schoolRatings',
-            'schoolPhotos',
-            'schoolVideos',
+//            'schoolPhotos',
+//            'schoolVideos',
         ];
     }
 
@@ -111,6 +111,7 @@ class Schools extends \yii\db\ActiveRecord
             'discount' => Yii::t('backend', 'Discount'),
             'total_rating' => Yii::t('backend', 'Total Rating'),
             'status' => Yii::t('backend', 'Status'),
+            'currency_id' => Yii::t('backend', 'Currency'),
         ];
     }
 

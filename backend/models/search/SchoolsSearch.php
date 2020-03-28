@@ -12,6 +12,10 @@ use backend\models\Schools;
  */
  class SchoolsSearch extends Schools
 {
+
+     public $school_logo;
+     public $imagesCount;
+     public $videosCount;
     /**
      * @inheritdoc
      */
@@ -21,6 +25,7 @@ use backend\models\Schools;
             [['id', 'country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class', 'no_of_ratings', 'created_by', 'updated_by'], 'integer'],
             [['title', 'details', 'featured', 'location', 'lat', 'lng', 'image_base_url', 'image_path', 'has_health_insurance', 'status', 'created_at', 'updated_at'], 'safe'],
             [['accomodation_fees', 'registeration_fees', 'study_books_fees', 'discount', 'total_rating', 'accomodation_reservation_fees', 'health_insurance_cost'], 'number'],
+            [['school_logo','imagesCount','videosCount'] , 'safe']
         ];
     }
 
@@ -90,4 +95,57 @@ use backend\models\Schools;
 
         return $dataProvider;
     }
+
+     public function mediaSearch($params)
+     {
+         $query = Schools::find();
+         $query ->select([
+             '{{schools}}.*', // select all customer fields
+             'COUNT({{school_photos}}.id)  AS imagesCount', // calculate orders count
+             'COUNT({{school_videos}}.id) AS videosCount', // calculate orders count
+         ]);
+
+         $query->joinWith('schoolPhotos');
+         $query->joinWith('schoolVideos');
+         $query->groupBy('{{schools}}.id');
+
+
+         $dataProvider = new ActiveDataProvider([
+             'query' => $query,
+         ]);
+
+         $this->load($params);
+
+         if (!$this->validate()) {
+             // uncomment the following line if you do not want to return any records when validation fails
+             // $query->where('0=1');
+             // return $dataProvider;
+         }
+
+
+         if($this->school_logo == 1){
+             $query->andWhere(['not', ['image_path' => null]]);
+
+         }else if($this->school_logo == 2 ){
+             $query->andWhere(['is', 'image_path', null]);
+
+         }else{}
+
+         if (!empty($this->imagesCount)) {
+             $query->andFilterHaving([
+                 'imagesCount' => $this->imagesCount,
+             ]);
+         }
+
+         if (!empty($this->videosCount)) {
+             $query->andFilterHaving([
+                 'videosCount' => $this->videosCount,
+             ]);
+         }
+
+
+         //  echo $this->unversity_logo;
+         // echo $query->createCommand()->getRawSql();  die;
+         return $dataProvider;
+     }
 }

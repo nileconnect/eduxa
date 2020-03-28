@@ -23,7 +23,40 @@ echo TabularForm::widget([
     'attributes' => [
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions' => ['hidden'=>true]],
         'title' => ['type' => TabularForm::INPUT_TEXT],
-        'room_size' => ['type' => TabularForm::INPUT_TEXT],
+
+        'fees' => ['type' => TabularForm::INPUT_TEXT , 'label'=>'Accommodation reg. Fees',
+            'options'=>['type' => 'number' ,'step'=>'number']
+        ],
+
+        'facility_id' => [
+            'label' => 'Facilities',
+            'type' => TabularForm::INPUT_WIDGET,
+            'widgetClass' => \kartik\widgets\Select2::className(),
+            'options' => [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolFacilities::find()->all() , 'id','title'),
+                'options' => ['placeholder' => Yii::t('common', 'Choose ..')],
+            ],
+            'columnOptions' => ['width' => '200px']
+        ],
+
+
+
+        'room_cat_id' => [
+            'label' => 'Room Category',
+            'type' => TabularForm::INPUT_WIDGET,
+            'widgetClass' => \kartik\widgets\Select2::className(),
+            'options' => [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolRoomCategory::find()->all() , 'id','title'),
+                'options' => ['placeholder' => Yii::t('common', 'Choose ..')],
+            ],
+            'columnOptions' => ['width' => '200px']
+        ],
+
+        'special_diet' => ['type' => TabularForm::INPUT_TEXT , 'label'=>'Special diet',
+            'options'=>['type' => 'number' ,'step'=>'number']
+        ],
+
+        // 'room_size' => ['type' => TabularForm::INPUT_TEXT],
         'booking_cycle' => [
             'label' => 'Booking Cycle (Weekly / Monthly)',
             'type' => TabularForm::INPUT_WIDGET,
@@ -41,9 +74,9 @@ echo TabularForm::widget([
         ],
 
 
-        'min_age' => ['type' => TabularForm::INPUT_TEXT , 'label'=>'Minimum Age',
-            'options'=>['type' => 'number' ,'step'=>'number']
-        ],
+//        'min_age' => ['type' => TabularForm::INPUT_TEXT , 'label'=>'Minimum Age',
+//            'options'=>['type' => 'number' ,'step'=>'number']
+//        ],
 
         'max_age' => ['type' => TabularForm::INPUT_TEXT , 'label'=>'Maximum Age',
             'options'=>['type' => 'number' ,'step'=>'number']
@@ -52,7 +85,10 @@ echo TabularForm::widget([
         'distance_from_school' => ['type' => TabularForm::INPUT_TEXT , 'label'=>'Distance from school (Minutes)',
             'options'=>['type' => 'number' ,'step'=>'number']
         ],
-        'cost_per_duration_unit' => ['type' => TabularForm::INPUT_TEXT],
+
+        'cost_per_duration_unit' => ['type' => TabularForm::INPUT_TEXT , 'label'=>'Cost per Duration',
+            'options'=>['type' => 'number' ,'step'=>'number']
+        ],
         'del' => [
             'type' => 'raw',
             'label' => '',

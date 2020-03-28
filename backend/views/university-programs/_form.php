@@ -8,8 +8,26 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
 /* @var $model backend\models\UniversityPrograms */
 /* @var $form yii\widgets\ActiveForm */
 
-?>
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'UniversityProgStartdate',
+        'relID' => 'university-prog-startdate',
+        'value' => \yii\helpers\Json::encode($model->universityProgStartdates),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
 
+?>
+<style>
+    ul.MyMenu > li {
+        display: inline-block;
+        margin-right: 38px;
+        /* You can also add some margins here to make it look prettier */
+        zoom:1;
+        *display:inline;
+        /* this fix is needed for IE7- */
+    }
+</style>
 <div class="university-programs-form">
 
     <?php
@@ -22,6 +40,11 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
     <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
+
+
+
+
+
 
 <!--    <div class="row">-->
 <!--        <div class="col-md-6 col-sm-12">-->
@@ -44,6 +67,13 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
 
         <div class="col-md-6 col-sm-12">
 
+            <?= $form->field($model, 'lang_of_study')->widget(\kartik\widgets\Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityLangOfStudy::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                'options' => ['placeholder' => Yii::t('backend', 'Choose Language')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
         </div>
     </div>
 
@@ -102,16 +132,23 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
     <div class="row ">
         <div class="col-md-6 col-sm-12">
             <div class="well">
-            <?php
-            echo $form->field($model, 'study_start_date')->widget(DatePicker::classname(), [
-                'options' => ['placeholder' => 'Enter Stduy start date ...'],
-                'pluginOptions' => [
-                    'autoclose'=>true,
-                    'format' => 'yyyy-mm-dd'
-
-                ]
-            ]);
-            ?>
+               Start Date
+                <ul class="MyMenu">
+                   <li><?= $form->field($modelStartDates, 'm_1')->checkbox(); ?></li>
+                   <li><?= $form->field($modelStartDates, 'm_2')->checkbox(); ?></li>
+                   <li><?= $form->field($modelStartDates, 'm_3')->checkbox(); ?></li>
+                   <li><?= $form->field($modelStartDates, 'm_4')->checkbox(); ?></li>
+                   <li><?= $form->field($modelStartDates, 'm_5')->checkbox(); ?></li>
+                   <li><?= $form->field($modelStartDates, 'm_6')->checkbox(); ?></li>
+               </ul>
+                <ul class="MyMenu">
+                    <li><?= $form->field($modelStartDates, 'm_7')->checkbox(); ?></li>
+                    <li><?= $form->field($modelStartDates, 'm_8')->checkbox(); ?></li>
+                    <li><?= $form->field($modelStartDates, 'm_9')->checkbox(); ?></li>
+                    <li><?= $form->field($modelStartDates, 'm_10')->checkbox(); ?></li>
+                    <li><?= $form->field($modelStartDates, 'm_11')->checkbox(); ?></li>
+                    <li><?= $form->field($modelStartDates, 'm_12')->checkbox(); ?></li>
+                </ul>
             </div>
         </div>
         <div class="col-md-6 col-sm-12 well">

@@ -37,12 +37,12 @@ class Schools extends BaseSchools
     {
         return [
             ['title', 'required'],
-            [['country_id', 'city_id', 'state_id','min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings'], 'integer'],
+            [['country_id', 'city_id', 'state_id','min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings','currency_id','next_to'], 'integer'],
             [['details'], 'string'],
             [['accomodation_fees', 'registeration_fees', 'study_books_fees',  'discount', 'total_rating'], 'number'],
             [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at','detailed_address'], 'string', 'max' => 255],
-            [['featured', 'status'], 'string', 'max' => 4],
-            [['logo','photos','no_of_ratings' ,'accomodation_reservation_fees','has_health_insurance','health_insurance_cost','detailed_address'],'safe']
+            [['featured', 'status'], 'safe'],
+            [['logo','photos','no_of_ratings' ,'accomodation_reservation_fees','has_health_insurance','health_insurance_cost','detailed_address','currency_id','next_to'],'safe']
         ] ;
     }
 
@@ -136,6 +136,14 @@ class Schools extends BaseSchools
         return true;
     }
 
+
+    public function getLogoImage(){
+        if($this->image_path){
+            return $this->image_base_url.$this->image_path ;
+        }else{
+            return   Yii::getAlias('@frontendUrl').'/img/no-logo.png' ;
+        }
+    }
 
 
 }

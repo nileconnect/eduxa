@@ -19,14 +19,7 @@ use yii\helpers\Url;
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
-    'viewParams' => [
-        'class' => 'SchoolVideos',
-        'relID' => 'school-videos',
-        'value' => \yii\helpers\Json::encode($model->schoolVideos),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
+
 
 \mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
     'viewParams' => [
@@ -41,14 +34,6 @@ use yii\helpers\Url;
         'class' => 'SchoolAirportPickup',
         'relID' => 'school-airport-pickup',
         'value' => \yii\helpers\Json::encode($model->schoolAirportPickups),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
-    'viewParams' => [
-        'class' => 'SchoolCourse',
-        'relID' => 'school-course',
-        'value' => \yii\helpers\Json::encode($model->schoolCourses),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
@@ -193,38 +178,29 @@ use yii\helpers\Url;
             ?>
 
         </div>
+
+        <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12">
+                <?php
+                $CurrencyArr = \yii\helpers\ArrayHelper::map(\backend\models\Currency::find()->all(), 'id', 'currency_code');
+                $NextToArr = \yii\helpers\ArrayHelper::map(\backend\models\SchoolNextTo::find()->all(), 'id', 'title');
+                echo $form->field($model, 'currency_id')->dropDownList($CurrencyArr, [ 'prompt' => 'Select Currency ']);
+                echo $form->field($model, 'next_to')->dropDownList($NextToArr, [ 'prompt' => 'Select Next To ']);
+
+                echo $form->field($model, 'has_health_insurance')->checkbox(['id' => 'insuranceIDChekc'])
+
+                ?>
+                <div class="col-md-6 col-sm-12 autoUpdate" style="display: <?= $model->has_health_insurance? "block":"none" ?>">
+                    <?= $form->field($model, 'health_insurance_cost')->textInput(['placeholder' => 'Health Insurance Cost']) ?>
+                </div>
+
+            </div>
+        </div>
     </div>
 <hr/>
-    <div class="row">
 
-        <div class="col-md-4 col-sm-12 well" >
-            <?= $form->field($model, 'has_health_insurance')->checkbox(['id'=>'insuranceIDChekc']) ?>
-        </div>
-
-        <div class="col-md-4 col-sm-12 autoUpdate" style="display: <?= $model->has_health_insurance? "block":"none" ?>">
-            <?= $form->field($model, 'health_insurance_cost')->textInput(['placeholder' => 'Health Insurance Cost']) ?>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 col-sm-12">
-            <?= $form->field($model, 'accomodation_reservation_fees')->textInput(['placeholder' => 'Accomodation Reservation Fees']) ?>
-        </div>
-
-    </div>
 
 <hr/>
-
-    <?php echo $form->field($model, 'photos')->widget(
-        Upload::class,
-        [
-            'url' => ['/file/storage/upload'],
-            'sortable' => true,
-            'maxFileSize' => 10000000, // 10 MiB
-            'maxNumberOfFiles' => 10,
-        ]);
-    ?>
-
 
 
     <?php
@@ -250,12 +226,7 @@ use yii\helpers\Url;
                 'row' => \yii\helpers\ArrayHelper::toArray($model->schoolRatings),
             ]),
         ],
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'School Videos')),
-            'content' => $this->render('_formSchoolVideos', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->schoolVideos),
-            ]),
-        ],
+
     ];
     echo kartik\tabs\TabsX::widget([
         'items' => $forms,

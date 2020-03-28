@@ -57,6 +57,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
+            'universityProgStartdates',
             'university',
             'major',
             'field',
@@ -105,6 +106,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
             'certificate' => Yii::t('backend', 'Certificate'),
             'note1' => Yii::t('backend', 'Note1'),
             'note2' => Yii::t('backend', 'Note2'),
+            'lang_of_study' => Yii::t('backend', 'Language of study'),
             'total_rating' => Yii::t('backend', 'Total Rating'),
             'program_type' => Yii::t('backend', 'Program Type'),
             'first_submission_date' => Yii::t('backend', 'First submission date'),
@@ -120,6 +122,12 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\University::className(), ['id' => 'university_id']);
     }
+
+    public function getUniversityProgStartdates()
+    {
+        return $this->hasMany(\backend\models\UniversityProgStartdate::className(), ['university_prog_id' => 'id']);
+    }
+
 
     public function getCity()
     {

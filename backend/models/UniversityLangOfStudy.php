@@ -15,13 +15,12 @@ class UniversityLangOfStudy extends BaseUniversityLangOfStudy
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
-	    [
+        return [
             [['title'], 'required'],
             [['created_by', 'updated_by'], 'integer'],
             [['title', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 4]
-        ]);
+            [['status'], 'safe']
+        ];
     }
 	
 }
