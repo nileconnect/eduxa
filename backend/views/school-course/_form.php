@@ -8,6 +8,32 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 /* @var $model backend\models\SchoolCourse */
 /* @var $form yii\widgets\ActiveForm */
 
+
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'SchoolCourseSessionCost',
+        'relID' => 'school-course-session-cost',
+        'value' => \yii\helpers\Json::encode($model->schoolCourseSessionCosts),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'SchoolCourseStartDate',
+        'relID' => 'school-course-start-date',
+        'value' => \yii\helpers\Json::encode($model->schoolCourseStartDates),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'SchoolCourseWeekCost',
+        'relID' => 'school-course-week-cost',
+        'value' => \yii\helpers\Json::encode($model->schoolCourseWeekCosts),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
+
 ?>
 
 <div class="schools-form">
@@ -39,58 +65,80 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'status')->dropDownList([\backend\models\University::LisStatusList()])?>
+            <?= $form->field($model, 'status')->dropDownList(\backend\models\University::LisStatusList(),[ 'prompt' => 'Select ..'])?>
         </div>
     </div>
 
 
     <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'course_start_every')->dropDownList([MyWeekDays()]) ?>
-        </div>
-
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'required_level')->dropDownList([ SchoolCourse::ListLevels()]) ?>
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-4 col-sm-12">
             <?= $form->field($model, 'min_age')->textInput(['placeholder' => 'Min Age']) ?>
         </div>
 
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'registeration_fees')->textInput(['placeholder' => 'Registeration Fees']) ?>
+        <div class="col-md-4 col-sm-12">
+            <?= $form->field($model, 'required_level')->dropDownList(SchoolCourse::ListLevels(),[ 'prompt' => 'Select Level']) ?>
         </div>
+        <div class="col-md-4 col-sm-12">
+           <?= $form->field($model, 'time_of_course')->dropDownList( SchoolCourse::ListCourseTime(),[ 'prompt' => 'Select ..']) ?>
+        </div>
+
     </div>
-
-
 
     <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'time_of_course')->dropDownList([ SchoolCourse::ListCourseTime()]) ?>
+        <div class="col-md-4 col-sm-12">
+            <div class="well">
+            <?php
+            echo $form->field($model, 'study_books_fees')->widget(\kartik\number\NumberControl::classname(), [
+                'maskedInputOptions' => [
+                    // 'prefix' => $model->university->currency->currency_code,
+                    'suffix' => ' '. $model->school->currency->currency_code,
+                    'allowMinus' => false
+                ],
+                'options' =>  [
+                    'type' => 'text',
+                    'label'=>'<label>Saved Value: </label>',
+                    'class' => 'kv-saved',
+                    'readonly' => true,
+                    'tabindex' => 1000
+                ],
+                'displayOptions' => ['class' => 'form-control kv-monospace'],
+                'saveInputContainer' => ['class' => 'kv-saved-cont']
+            ]);
+
+            ?>
+            </div>
         </div>
 
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'required_attendance_duraion')->textInput(['maxlength' => true, 'placeholder' => 'Required Attendance Duraion']) ?>
+        <div class="col-md-4 col-sm-12">
+            <div class="well">
+            <?php
+             echo $form->field($model, 'registeration_fees')->widget(\kartik\number\NumberControl::classname(), [
+                'maskedInputOptions' => [
+                    // 'prefix' => $model->university->currency->currency_code,
+                    'suffix' => ' '. $model->school->currency->currency_code,
+                    'allowMinus' => false
+                ],
+                'options' =>  [
+                    'type' => 'text',
+                    'label'=>'<label>Saved Value: </label>',
+                    'class' => 'kv-saved',
+                    'readonly' => true,
+                    'tabindex' => 1000
+                ],
+                'displayOptions' => ['class' => 'form-control kv-monospace'],
+                'saveInputContainer' => ['class' => 'kv-saved-cont']
+            ]);
+             ?>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            <div class="well">
+              <?= $form->field($model, 'discount')->textInput(['placeholder' => 'Discount']) ?>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'no_of_weeks')->textInput(['placeholder' => 'No Of Weeks']) ?>
-        </div>
 
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'cost_per_week')->textInput(['placeholder' => 'Cost Per Week']) ?>
-        </div>
-
-        <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'discount')->textInput(['placeholder' => 'Discount']) ?>
-        </div>
-
-    </div>
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
@@ -98,12 +146,33 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
         </div>
 
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'hours_per_week')->textInput(['placeholder' => 'Hours Per Week']) ?>
+            <?= $form->field($model, 'lesson_duration')->textInput(['placeholder' => 'Lessons Duration']) ?>
         </div>
     </div>
+
+
+
+
+<!--    <div class="row">-->
+<!--        <div class="col-md-6 col-sm-12">-->
+<!--            --><?//= $form->field($model, 'no_of_weeks')->textInput(['placeholder' => 'No Of Weeks']) ?>
+<!--        </div>-->
+<!---->
+<!--        <div class="col-md-6 col-sm-12">-->
+<!--            --><?//= $form->field($model, 'cost_per_week')->textInput(['placeholder' => 'Cost Per Week']) ?>
+<!--        </div>-->
+<!---->
+<!--        <div class="col-md-6 col-sm-12">-->
+<!--            --><?//= $form->field($model, 'required_attendance_duraion')->textInput(['maxlength' => true, 'placeholder' => 'Required Attendance Duraion']) ?>
+<!---->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
+
+
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'min_no_of_students_per_class')->textInput(['placeholder' => 'Min No Of Students Per Class']) ?>
+            <?= $form->field($model, 'max_no_of_students_per_class')->textInput(['placeholder' => 'Max No Of Students Per Class']) ?>
         </div>
 
         <div class="col-md-6 col-sm-12">
@@ -123,6 +192,43 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             'class'=>'form-control',
         ]]) ?>
 
+    <?php
+    $forms = [
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'Course Start Dates')),
+            'content' => $this->render('_formSchoolCourseStartDate', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->schoolCourseStartDates),
+            ]),
+        ],
+
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'Course Cost Per Week')),
+            'content' => $this->render('_formSchoolCourseWeekCost', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->schoolCourseWeekCosts),
+            ]),
+        ],
+
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('backend', 'Course Cost Per Session')),
+            'content' => $this->render('_formSchoolCourseSessionCost', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->schoolCourseSessionCosts),
+            ]),
+        ],
+
+
+    ];
+    echo kartik\tabs\TabsX::widget([
+        'items' => $forms,
+        'position' => kartik\tabs\TabsX::POS_ABOVE,
+        'encodeLabels' => false,
+        'pluginOptions' => [
+            'bordered' => true,
+            'sideways' => true,
+            'enableCache' => false,
+        ],
+    ]);
+
+    ?>
 
 
 

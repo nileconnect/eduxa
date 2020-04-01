@@ -50,24 +50,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 return  SchoolCourse::ListLevels()[$model->required_level];
             },
         ],
-        [
-            'attribute'=>'course_start_every',
-            'format'=>'raw',
-            'value'=>function($model){
-                return  MyWeekDays()[$model->course_start_every];
-            },
-        ],
-        'lessons_per_week',
-        'hours_per_week',
-        'min_no_of_students_per_class',
+
+
+        'max_no_of_students_per_class',
         'avg_no_of_students_per_class',
         'min_age',
         'time_of_course:datetime',
         'registeration_fees',
-        'cost_per_week',
-        'no_of_weeks',
         'discount',
-        'required_attendance_duraion',
         'information:ntext',
         'requirments:ntext',
     ];

@@ -115,6 +115,11 @@ class Schools extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getCurrency()
+    {
+        return $this->hasOne(\backend\models\Currency::className(), ['id' => 'currency_id']);
+    }
+
     public function getCountry()
     {
         return $this->hasOne(\backend\models\Country::className(), ['id' => 'country_id']);

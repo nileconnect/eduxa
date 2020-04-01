@@ -18,9 +18,9 @@ use backend\models\SchoolCourse;
     public function rules()
     {
         return [
-            [['id', 'school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'no_of_weeks', 'created_by', 'updated_by'], 'integer'],
-            [['title', 'information', 'requirments', 'course_start_every', 'required_level', 'time_of_course', 'required_attendance_duraion', 'created_at', 'updated_at','status'], 'safe'],
-            [['hours_per_week', 'registeration_fees', 'cost_per_week', 'discount'], 'number'],
+            [['id', 'school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by'], 'integer'],
+            [['title', 'information', 'requirments',  'required_level', 'time_of_course', 'created_at', 'updated_at','status'], 'safe'],
+            [[ 'registeration_fees', 'discount'], 'number'],
         ];
     }
 
@@ -60,13 +60,10 @@ use backend\models\SchoolCourse;
             'id' => $this->id,
             'school_id' => $this->school_id,
             'lessons_per_week' => $this->lessons_per_week,
-            'hours_per_week' => $this->hours_per_week,
             'min_no_of_students_per_class' => $this->min_no_of_students_per_class,
             'avg_no_of_students_per_class' => $this->avg_no_of_students_per_class,
             'min_age' => $this->min_age,
             'registeration_fees' => $this->registeration_fees,
-            'cost_per_week' => $this->cost_per_week,
-            'no_of_weeks' => $this->no_of_weeks,
             'discount' => $this->discount,
             'status' => $this->status,
             'created_by' => $this->created_by,
@@ -76,10 +73,8 @@ use backend\models\SchoolCourse;
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'information', $this->information])
             ->andFilterWhere(['like', 'requirments', $this->requirments])
-            ->andFilterWhere(['like', 'course_start_every', $this->course_start_every])
             ->andFilterWhere(['like', 'required_level', $this->required_level])
             ->andFilterWhere(['like', 'time_of_course', $this->time_of_course])
-            ->andFilterWhere(['like', 'required_attendance_duraion', $this->required_attendance_duraion])
             ->andFilterWhere(['like', 'created_at', $this->created_at])
             ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
 

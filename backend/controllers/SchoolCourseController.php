@@ -119,6 +119,68 @@ class SchoolCourseController extends BackendController
         return $this->redirect(['index']);
     }
 
+
+    public function actionAddSchoolCourseSessionCost()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('SchoolCourseSessionCost');
+            if (!empty($row)) {
+                $row = array_values($row);
+            }
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formSchoolCourseSessionCost', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+    }
+
+    /**
+     * Action to load a tabular form grid
+     * for SchoolCourseStartDate
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddSchoolCourseStartDate()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('SchoolCourseStartDate');
+            if (!empty($row)) {
+                $row = array_values($row);
+            }
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formSchoolCourseStartDate', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+    }
+
+    /**
+     * Action to load a tabular form grid
+     * for SchoolCourseWeekCost
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddSchoolCourseWeekCost()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('SchoolCourseWeekCost');
+            if (!empty($row)) {
+                $row = array_values($row);
+            }
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formSchoolCourseWeekCost', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+    }
+
     
     /**
      * Finds the SchoolCourse model based on its primary key value.

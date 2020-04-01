@@ -49,14 +49,14 @@ class SchoolCourse extends BaseSchoolCourse
     public function rules()
     {
         return [
-            [['school_id', 'title', 'information', 'cost_per_week'], 'required'],
-            [['school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'no_of_weeks', 'created_by', 'updated_by'], 'integer'],
+            [['school_id', 'title', 'information'], 'required'],
+            [['school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by','max_no_of_students_per_class'], 'integer'],
             [['information', 'requirments'], 'string'],
-            [['hours_per_week', 'registeration_fees', 'cost_per_week', 'discount'], 'number'],
-            [['title', 'course_start_every', 'required_attendance_duraion', 'created_at', 'updated_at'], 'string', 'max' => 255],
+            [[ 'registeration_fees', 'discount','lesson_duration','study_books_fees'], 'number'],
+            [['title',   'created_at', 'updated_at'], 'string', 'max' => 255],
             [['required_level', 'time_of_course'], 'string', 'max' => 4],
             ['status','number'],
-            [['information','requirments'],'safe']
+            [['information','requirments','lesson_duration','study_books_fees'],'safe']
         ];
     }
 
