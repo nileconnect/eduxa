@@ -43,18 +43,10 @@ $this->registerJs($search);
 //                'filterInputOptions' => ['placeholder' => 'Schools', 'id' => 'grid-school-course-search-school_id']
 //            ],
         'title',
-        [
-            'attribute'=>'course_start_every',
-            'format'=>'raw',
-            'value'=>function($model){
-                return  MyWeekDays()[$model->course_start_every];
-            },
-            'filter' => Html::activeDropDownList($searchModel, 'course_start_every',  MyWeekDays() ,['class'=>'form-control','prompt' => 'Select']),
-        ],
+
       //  'information:ntext',
       //  'requirments:ntext',
         'lessons_per_week',
-        'hours_per_week',
         //'min_no_of_students_per_class',
         //'avg_no_of_students_per_class',
        // 'min_age',
@@ -70,8 +62,7 @@ $this->registerJs($search);
         ],
        // 'time_of_course:datetime',
        // 'registeration_fees',
-        'cost_per_week',
-        'no_of_weeks',
+
         'discount',
         'status:boolean',
        // 'required_attendance_duraion',
