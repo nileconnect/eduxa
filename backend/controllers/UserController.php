@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\search\UserSearch;
+use backend\models\StudentModel;
 use backend\models\UserForm;
 use common\models\User;
 use common\models\UserProfile;
@@ -150,7 +151,6 @@ class UserController extends BackendController
     {
         $model = new UserForm();
         $model->setModel($this->findModel($id));
-
         $profile= $model->getModel()->userProfile;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -189,6 +189,56 @@ class UserController extends BackendController
 
         return $this->redirect(['index']);
     }
+
+
+    /**
+     * Action to load a tabular form grid
+     * for StudentCertificate
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddStudentCertificate()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('StudentCertificate');
+            if (!empty($row)) {
+                $row = array_values($row);
+            }
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formStudentCertificate', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+    }
+
+    /**
+     * Action to load a tabular form grid
+     * for StudentTestResults
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddStudentTestResults()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('StudentTestResults');
+            if (!empty($row)) {
+                $row = array_values($row);
+            }
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formStudentTestResults', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+    }
+
+
+
 
 
     protected function findModel($id)

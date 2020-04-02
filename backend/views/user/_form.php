@@ -17,6 +17,23 @@ use yii\web\JsExpression;
 
 $model->roles =Yii::$app->session->get('UserRole');
 
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'StudentCertificate',
+        'relID' => 'student-certificate',
+        'value' => \yii\helpers\Json::encode($userModel->studentCertificates),
+        'isNewRecord' => ($userModel->isNewRecord) ? 1 : 0
+    ]
+]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,
+    'viewParams' => [
+        'class' => 'StudentTestResults',
+        'relID' => 'student-test-results',
+        'value' => \yii\helpers\Json::encode($userModel->studentTestResults),
+        'isNewRecord' => ($userModel->isNewRecord) ? 1 : 0
+    ]
+]);
+
 ?>
     <div class="schools-form  innerForms">
 
@@ -46,6 +63,25 @@ $model->roles =Yii::$app->session->get('UserRole');
                         <?php echo Yii::t('backend', 'Profile Data') ?>
                     </a>
                 </li>
+                <?php
+                if(   $model->getModel()->id  > 0 &&  User::IsRole($model->getModel()->id , User::ROLE_USER)){
+                   ?>
+
+                    <li>
+                        <a href="#tab_4-4" data-toggle="tab" aria-expanded="false">
+                            <?php echo Yii::t('backend', 'Certificates') ?>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#tab_5-5" data-toggle="tab" aria-expanded="false">
+                            <?php echo Yii::t('backend', 'Test Results') ?>
+                        </a>
+                    </li>
+                    <?
+                }
+
+                ?>
 
             </ul>
             <div class="tab-content">
@@ -195,13 +231,22 @@ $model->roles =Yii::$app->session->get('UserRole');
 
 
                 </div>
+                <div class="tab-pane" id="tab_4-4">
+                    <h2> No Certificate has been addedd</h2>
+
+                </div>
+
+
+                <div class="tab-pane" id="tab_5-5">
+
+                    <h2> No Test Results has been addedd</h2>
+
 
 
 
                 </div>
 
-
-
+                </div>
         </div>
         <div class="form-group row">
             <?php echo Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

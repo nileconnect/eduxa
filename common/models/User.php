@@ -355,4 +355,15 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
 
+    public static function IsRole($userID,$role){
+        $roles = ArrayHelper::getColumn( Yii::$app->authManager->getRolesByUser($userID ),'name');
+        $currentRole=   array_keys($roles)[0];
+        if($currentRole == $role){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 }
