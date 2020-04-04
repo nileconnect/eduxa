@@ -26,8 +26,14 @@ $this->registerJs($search);
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
 
-
 </div>
+<div class="requests-index">
+<?=Html::beginForm(['requests/index'],'post');?>
+Change Requests Status :
+<?=Html::dropDownList('action','', \backend\models\Requests::ListStatus() ,['class'=>'dropdown',])?>
+<?=Html::submitButton('Update Requests', ['class' => 'btn btn-info',]);?>
+</div>
+
 
 <?php
 $gridColumn = [
@@ -139,6 +145,10 @@ $gridColumn = [
     //    'course_start_date',
     //     'number_of_weeks',
     [
+        'attribute' => 'created_at',
+        //  'format' => 'date'
+    ],
+    [
         'attribute'=>'status',
         'format'=>'raw',
         'value'=>function($model){
@@ -147,16 +157,45 @@ $gridColumn = [
         'filter' => Html::activeDropDownList($searchModel, 'status', \backend\models\Requests::ListStatus() ,['class'=>'form-control','prompt' => 'Select']),
     ],
 
+
+
     [
-        'attribute' => 'created_at',
-        //  'format' => 'date'
+        'class' => '\kartik\grid\CheckboxColumn',
+        'rowSelectedClass' => GridView::TYPE_INFO,
+        'name' => 'Expedientes_Seleccionados',
+
     ],
     [
         'class' => 'yii\grid\ActionColumn','template'=>'{view}'
     ],
 ];
+
+$gridColumnExport=[
+        'request_notes' ,
+        'admin_notes',
+        [
+            'attribute'=>'student_gender',
+            'value'=>function($model){
+                return  \common\models\UserProfile::ListGender()[$model->student_gender];
+            },
+            'format'=>'raw'
+        ],
+        'student_mobile',
+        'student_email' ,
+        'accomodation_option',
+        'accomodation_option_cost',
+        'airport_pickup',
+        'airport_pickup_cost',
+        'course_start_date',
+        'number_of_weeks',
+
+    ]+$gridColumn
 ?>
-<?= GridView::widget([
+
+
+<?php
+
+echo GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => $gridColumn,
@@ -171,7 +210,7 @@ $gridColumn = [
         '{export}',
         ExportMenu::widget([
             'dataProvider' => $dataProvider,
-            'columns' => $gridColumn,
+            'columns' => $gridColumnExport,
             'target' => ExportMenu::TARGET_BLANK,
             'fontAwesome' => true,
             'dropdownOptions' => [
@@ -183,4 +222,13 @@ $gridColumn = [
             ],
         ]) ,
     ],
-]); ?>
+]);
+
+$this->registerJs(
+    "$('#myButton').on('click', function() {  var keys = $('#grid').yiiGridView('getSelectedRows');  alert('Button eee!'+ keys); });"
+);
+
+
+
+?>
+

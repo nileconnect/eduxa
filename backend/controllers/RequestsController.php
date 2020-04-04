@@ -32,6 +32,24 @@ class RequestsController extends Controller
      */
     public function actionIndex()
     {
+
+        if(Yii::$app->request->post()){
+            $action=Yii::$app->request->post('action');
+            $selection=(array)Yii::$app->request->post('Expedientes_Seleccionados');//typecasting
+                foreach($selection as $id){
+                    $e=Requests::findOne((int)$id);//make a typecasting
+                    $e->status = $action ;
+                    $e->save(false);
+                }
+
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
+                'title' =>'',
+            ]);
+        }
+
+
         $searchModel = new RequestsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
