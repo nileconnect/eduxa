@@ -94,7 +94,7 @@ $model->roles =Yii::$app->session->get('UserRole');
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
-                            <?php echo $form->field($model, 'email') ?>
+                            <?php echo $form->field($model, 'email')->textInput(['disabled'=>true]) ?>
                         </div>
 
                         <div class="col-md-4 col-sm-12">
@@ -103,11 +103,11 @@ $model->roles =Yii::$app->session->get('UserRole');
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
-                            <?php echo $form->field($profile, 'firstname') ?>
+                            <?php echo $form->field($profile, 'firstname')->textInput(['disabled'=>true])  ?>
                         </div>
 
                         <div class="col-md-4 col-sm-12">
-                            <?php echo $form->field($profile, 'lastname') ?>
+                            <?php echo $form->field($profile, 'lastname')->textInput(['disabled'=>true])  ?>
                         </div>
                         <div class="col-md-4 col-sm-12">
 
@@ -212,18 +212,25 @@ $model->roles =Yii::$app->session->get('UserRole');
                     <div style=" display: <?= $model->roles == User::ROLE_USER ? 'block':'none'?>">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
-                                <?php  echo $form->field($profile, 'nationality')->textInput() ?>
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <?php  echo $form->field($profile, 'interested_in')->textInput() ?>
+                                <?php  echo $form->field($profile, 'nationality')->textInput(['disabled'=>true]) ?>
                             </div>
 
                             <div class="col-md-4 col-sm-12">
-                                <?php  echo $form->field($profile, 'find_us_from')->textInput() ?>
+                                <?php  echo $form->field($profile, 'find_us_from')->textInput(['disabled'=>true]) ?>
                             </div>
 
                             <div class="col-md-4 col-sm-12">
-                                <?php  echo $form->field($profile, 'communtication_channel')->textInput() ?>
+                                <?php  echo $form->field($profile, 'communtication_channel')->textInput(['disabled'=>true]) ?>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group field-userprofile-nationality has-success">
+
+                                <label class="control-label" for="userprofile-nationality">Interested In :</label>
+                                <?php
+                                if($profile->interested_in_schools) echo " Language School";
+                                if($profile->interested_in_university) echo " University Education";
+                                ?>
+                                </div>
                             </div>
 
                         </div>

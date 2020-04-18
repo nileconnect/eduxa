@@ -11,7 +11,15 @@ return [
         ['pattern' => 'page/<slug>', 'route' => 'page/view'],
 
         // Articles
-        ['pattern' => 'article/index', 'route' => 'article/index'],
+        ['pattern' => 'referral-signup', 'route' => 'user/sign-in/signup-referral'],
+
+        ['pattern' => 'login', 'route' => 'user/sign-in/login'],
+        ['pattern' => 'signup', 'route' => 'user/sign-in/signup'],
+        ['pattern' => 'logout', 'route' => 'user/sign-in/logout'],
+        ['pattern' => 'reset-password', 'route' => 'user/sign-in/request-password-reset'],
+
+
+
         ['pattern' => 'article/attachment-download', 'route' => 'article/attachment-download'],
         ['pattern' => 'article/<slug>', 'route' => 'article/view'],
 

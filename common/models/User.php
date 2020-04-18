@@ -248,7 +248,7 @@ class User extends ActiveRecord implements IdentityInterface
      * Creates user profile and application event
      * @param array $profileData
      */
-    public function afterSignup(array $profileData = [])
+    public function afterSignup(array $profileData = [],$role=User::ROLE_USER)
     {
         $this->refresh();
         Yii::$app->commandBus->handle(new AddToTimelineCommand([
@@ -267,8 +267,9 @@ class User extends ActiveRecord implements IdentityInterface
         $this->trigger(self::EVENT_AFTER_SIGNUP);
         // Default role
         $auth = Yii::$app->authManager;
-        $auth->assign($auth->getRole(User::ROLE_USER), $this->getId());
+        $auth->assign($auth->getRole($role), $this->getId());
     }
+
 
     /**
      * @return string

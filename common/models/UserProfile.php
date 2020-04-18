@@ -48,6 +48,25 @@ class UserProfile extends ActiveRecord
         ];
     }
 
+    public static function ListFindUs(){
+        return [
+            1 => Yii::t('common', 'Search Engine'),
+            2 => Yii::t('common', 'Recommended by friend/colleague'),
+            3 => Yii::t('common', 'Eduxa was mentioned in a Newspaper'),
+            4 => Yii::t('common', 'Eduxa was mentioned in a blog')
+
+        ];
+    }
+
+    public static function ListCommunicateChannels(){
+        return [
+            1 => Yii::t('common', 'By Emails'),
+            2 => Yii::t('common', 'By Mobile'),
+            3 => Yii::t('common', 'By SMS'),
+
+        ];
+    }
+
     /**
      * @return array
      */
@@ -75,7 +94,7 @@ class UserProfile extends ActiveRecord
             [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url','nationality'], 'string', 'max' => 255],
             ['locale', 'default', 'value' => Yii::$app->language],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
-            [['picture','city_id','interested_in'], 'safe']
+            [['picture','city_id','interested_in_university','interested_in_schools'], 'safe']
         ];
     }
 
@@ -100,6 +119,8 @@ class UserProfile extends ActiveRecord
             'country_id' => Yii::t('common', 'Country'),
             'mobile' => Yii::t('common', 'Mobile Number'),
             'no_of_students' => Yii::t('common', 'No. Of Previous Referrals'),
+            'interested_in_university' => Yii::t('common', 'University Education'),
+            'interested_in_schools' => Yii::t('common', 'Language School'),
             'students_nationalities' => Yii::t('common', 'Nationality Of Referrals'),
         ];
     }

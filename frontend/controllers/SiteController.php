@@ -16,7 +16,7 @@ use yii\web\Response;
 /**
  * Site controller
  */
-class SiteController extends FrontendController
+class SiteController extends Controller
 {
     /**
      * @return array
@@ -57,6 +57,7 @@ class SiteController extends FrontendController
      */
     public function actionIndex()
     {
+        $this->layout = 'landingLayout';
         return $this->render('index');
     }
 
@@ -120,32 +121,4 @@ class SiteController extends FrontendController
 
         return $content;
     }
-
-
-    /****************************other pages */
-    public function actionMyeduxa()
-    {
-        return $this->render('myeduxa');
-    }
-    public function actionSignup()
-    {
-        return $this->render('signup');
-    }
-    public function actionSignup2()
-    {
-        return $this->render('signup2');
-    }
-    public function actionProfile_info()
-    {
-        return $this->render('profile_info');
-    }
-    public function actionEducation_info()
-    {
-        return $this->render('education_info');
-    }
-    public function actionMy_requests()
-    {
-        return $this->render('my_requests');
-    }
-   
 }
