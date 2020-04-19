@@ -23,7 +23,7 @@ return [
     ''=>'',
     ''=>'',
     ''=>'',
-    ''=>'',
+    'Profile'=>'الملف الشخصى',
     'Child data has been saved successfully'=>'تم حفظ بيانات الابن بنجاح',
     ''=>'',
     'Full Name'=>'الاسم بالكامل',
