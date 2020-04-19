@@ -33,11 +33,11 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                             <?php echo \common\helpers\multiLang\myLanguageSelector::widget(['viewFile'=>'dropDown']);?>
 
 
-<!--                            <a href="javascript:void(0);" class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/icons/eng-flag.svg" alt="" /> <span class="link-text">English</span></a>-->
-<!--                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">-->
-<!--                                <a class="dropdown-item" href="#">English</a>-->
-<!--                                <a class="dropdown-item" href="#">Arabic</a>-->
-<!--                            </div>-->
+                            <a href="javascript:void(0);" class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/icons/eng-flag.svg" alt="" /> <span class="link-text">English</span></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">English</a>
+                                <a class="dropdown-item" href="#">Arabic</a>
+                            </div>
                         </li>
                     </ul>
                 </div>

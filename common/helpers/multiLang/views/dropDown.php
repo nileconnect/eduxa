@@ -20,7 +20,7 @@ use yii\web\View;
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 				<?= $useFullLanguageName ? @$languages[Yii::$app->language] : Yii::$app->language ?>
-				<span class="caret">ddddddddddddddddddd</span></a>
+				<span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu">
 				<?php foreach ($languages as $langCode => $langName): ?>
 					<?php $langName = $useFullLanguageName ? $langName : $langCode ?>
