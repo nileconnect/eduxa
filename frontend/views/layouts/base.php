@@ -30,6 +30,9 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                             </div>
                         </li>
                         <li class="head-lang-item dropdown">
+                            <?php //echo \webvimark\behaviors\multilanguage\language_selector_widget\LanguageSelector::widget(['viewFile'=>'dropDown']);?>
+
+
                             <a href="javascript:void(0);" class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/icons/eng-flag.svg" alt="" /> <span class="link-text">English</span></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="#">English</a>
