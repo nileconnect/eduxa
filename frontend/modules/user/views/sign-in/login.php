@@ -9,6 +9,10 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('frontend', 'Login');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+
+
+
 <div class="site-login">
     <h1><?php echo Html::encode($this->title) ?></h1>
 
