@@ -15,24 +15,23 @@ use yii\web\View;
 ?>
 
 <?php if ( $forBootstrapNavbar ): ?>
+	<a href="javascript:void(0);" class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/icons/eng-flag.svg" alt="" /> <span class="link-text"><?= $useFullLanguageName ? @$languages[Yii::$app->language] : Yii::$app->language ?></span></a>
+		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+			<!-- <a class="dropdown-item" href="#">English</a>
+			<a class="dropdown-item" href="#">Arabic</a> -->
 
-	<ul class="nav navbar-nav <?= $wrapperClass ?>">
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-				<?= $useFullLanguageName ? @$languages[Yii::$app->language] : Yii::$app->language ?>
-				<span class="caret"></span></a>
-			<ul class="dropdown-menu" role="menu">
-				<?php foreach ($languages as $langCode => $langName): ?>
+			<?php foreach ($languages as $langCode => $langName): ?>
 					<?php $langName = $useFullLanguageName ? $langName : $langCode ?>
 					<?php if ( $langCode != Yii::$app->language ): ?>
-						<li><?= Html::a($langName, MultiLanguageHelper::createMultilanguageReturnUrl($langCode)) ?></li>
-
+						<?= Html::a($langName, MultiLanguageHelper::createMultilanguageReturnUrl($langCode) , ['class' => 'dropdown-item'] ) ?>
 					<?php endif; ?>
 
 				<?php endforeach ?>
-			</ul>
-		</li>
-	</ul>
+
+		</div>
+	
+	
+	
 
 <?php else: ?>
 	<div class='<?= $wrapperClass; ?>'>
