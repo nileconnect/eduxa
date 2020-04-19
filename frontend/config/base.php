@@ -7,6 +7,7 @@ return [
         'cache' => require(__DIR__ . '/_cache.php'),
     ],
     'params' => [
-         'bsVersion' => '4.x', // this will set globally `bsVersion` to Bootstrap 4.x for all Krajee Extensions
+        'bsDependencyEnabled' => false,
+         //'bsVersion' => '4.x', // this will set globally `bsVersion` to Bootstrap 4.x for all Krajee Extensions
     ],
 ];
