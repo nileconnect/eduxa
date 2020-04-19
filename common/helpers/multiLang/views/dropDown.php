@@ -16,7 +16,7 @@ use yii\web\View;
 
 <?php if ( $forBootstrapNavbar ): ?>
 	<a href="javascript:void(0);" class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="/img/icons/<?= Yii::$app->language=='en'?'eng':'ar'  ?>-flag.svg" alt="" />
+          <img src="/img/icons/<?= Yii::$app->language=='en'?'eng':'sa'  ?>-flag.svg" alt="" />
         <span class="link-text"><?= $useFullLanguageName ? @$languages[Yii::$app->language] : Yii::$app->language ?></span></a>
 		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 			<!-- <a class="dropdown-item" href="#">English</a>
