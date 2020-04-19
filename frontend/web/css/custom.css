@@ -1,0 +1,19 @@
+.select2-container--krajee .select2-selection--single {
+    height: 40px;
+    border-radius: 0;
+}
+
+.select2-container--krajee .select2-selection--single .select2-selection__arrow {
+    border-left: 1px solid #dad8d8;
+    height: 38px;
+    width: 28px;
+}
+
+.auth-content .help-block {
+    color: crimson;
+}
+
+.auth-content .auth-form .form-group .form-check-group .form-check {
+    margin-right: 12px;
+    padding-left: 0;
+}
