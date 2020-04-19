@@ -29,6 +29,7 @@ class FrontendAsset extends AssetBundle
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700&display=swap',
         'https://fonts.googleapis.com/css?family=Raleway:500,600,700&display=swap',
         'css/style.css',
+        'css/custom.css',
     ];
 
     /**

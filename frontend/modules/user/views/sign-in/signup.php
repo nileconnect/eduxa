@@ -116,7 +116,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                         <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                         <?php
                         // Child # 1
                         echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
