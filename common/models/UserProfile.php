@@ -2,6 +2,9 @@
 
 namespace common\models;
 
+use backend\models\Cities;
+use backend\models\Country;
+use backend\models\State;
 use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
 use yii\db\ActiveRecord;
@@ -89,12 +92,15 @@ class UserProfile extends ActiveRecord
     {
         return [
             [['user_id'], 'required'],
-            [['user_id', 'gender','city_id','country_id','no_of_students'], 'integer'],
+            [['user_id', 'gender','country_id','state_id','city_id','no_of_students'], 'integer'],
             [['gender'], 'in', 'range' => [NULL, self::GENDER_FEMALE, self::GENDER_MALE]],
-            [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url','nationality'], 'string', 'max' => 255],
+            [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url','nationality','students_nationalities'], 'string', 'max' => 255],
             ['locale', 'default', 'value' => Yii::$app->language],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
-            [['picture','city_id','interested_in_university','interested_in_schools'], 'safe']
+            [['picture','city_id','interested_in_university','interested_in_schools','students_nationalities'], 'safe'],
+            ['mobile','number'],
+            [['find_us_from','no_of_students','expected_no_of_students',],'integer']
+
         ];
     }
 
@@ -115,7 +121,8 @@ class UserProfile extends ActiveRecord
             'communtication_channel' => Yii::t('common', 'Best way to commuincation?'),
             'find_us_from' => Yii::t('common', 'How did you found us?'),
             'expected_no_of_students' => Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa'),
-            'city_id' => Yii::t('common', 'State'),
+            'city_id' => Yii::t('common', 'City'),
+            'state_id' => Yii::t('common', 'State'),
             'country_id' => Yii::t('common', 'Country'),
             'mobile' => Yii::t('common', 'Mobile Number'),
             'no_of_students' => Yii::t('common', 'No. Of Previous Referrals'),
@@ -133,6 +140,20 @@ class UserProfile extends ActiveRecord
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
+    }
+
+    public function getState()
+    {
+        return $this->hasOne(State::class, ['id' => 'state_id']);
+    }
+
+    public function getCity()
+    {
+        return $this->hasOne(Cities::class, ['id' => 'city_id']);
+    }
     /**
      * @return null|string
      */

@@ -24,11 +24,13 @@
                 <a class="button button-primary" href="/referral-signup">Referral Program</a>
             </li>
             <? }else{
-              ?>
-              <li class="nav-item">
-                  <a class="button button-primary" href="/dashboard">My Eduxa</a>
-              </li>
-              <?
+
+              if ( Yii::$app->user->can(\common\models\User::ROLE_USER) ){
+               echo '<li class="nav-item"> <a class="button button-primary" href="/dashboard">My Eduxa</a> </li>';
+              }else{
+                  echo '<li class="nav-item"> <a class="button button-primary" href="/referral-dashboard">Referral Program</a> </li>';
+
+              }
           }?>
 
 

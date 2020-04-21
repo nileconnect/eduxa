@@ -74,7 +74,7 @@ class ReferralSignupForm extends Model
                 }")
             ],
             ['password_confirm', 'compare', 'compareAttribute' => 'password', 'skipOnEmpty' => false],
-            [['no_of_students','expected_no_of_students'],'integer'],
+            [['no_of_students','expected_no_of_students','country_id','state_id','city_id'],'integer'],
 
             ['mobile','number'],
             [['students_nationalities'],'string','max'=>255]
@@ -127,19 +127,21 @@ class ReferralSignupForm extends Model
             };
             $profileData['firstname']=$this->firstname;
             $profileData['lastname']=$this->lastname;
-            $profileData['gender']=$this->gender;
+            $profileData['mobile']=$this->mobile;
+
             $profileData['country_id']=$this->country_id;
             $profileData['state_id']=$this->state_id;
             $profileData['city_id']=$this->city_id;
-            $profileData['nationality']=$this->nationality;
+
+            $profileData['no_of_students']=$this->no_of_students;
+            $profileData['students_nationalities']=$this->students_nationalities;
             $profileData['find_us_from']=$this->find_us_from;
-            $profileData['communtication_channel']=$this->communtication_channel;
-            $profileData['interested_in_university']=$this->interested_in_university;
-            $profileData['interested_in_schools']=$this->interested_in_schools;
-            $profileData['mobile']=$this->mobile;
+            $profileData['students_nationalities']=$this->students_nationalities;
+            $profileData['expected_no_of_students']=$this->expected_no_of_students;
 
 
-            $user->afterSignup($profileData);
+
+            $user->afterSignup($profileData,User::ROLE_REFERRAL_PERSON);
             if ($shouldBeActivated) {
                 $token = UserToken::create(
                     $user->id,
