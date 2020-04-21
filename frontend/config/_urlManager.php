@@ -11,7 +11,7 @@ return [
         ['pattern' => 'page/<slug>', 'route' => 'page/view'],
 
         // Articles
-        ['pattern' => 'referral-signup', 'route' => 'user/sign-in/signup-referral'],
+        ['pattern' => 'referral-signup', 'route' => 'user/sign-in/referral-signup'],
 
         ['pattern' => 'login', 'route' => 'user/sign-in/login'],
         ['pattern' => 'signup', 'route' => 'user/sign-in/signup'],
@@ -23,9 +23,5 @@ return [
         ['pattern' => 'article/attachment-download', 'route' => 'article/attachment-download'],
         ['pattern' => 'article/<slug>', 'route' => 'article/view'],
 
-        // Sitemap
-        ['pattern' => 'sitemap.xml', 'route' => 'site/sitemap', 'defaults' => ['format' => Sitemap::FORMAT_XML]],
-        ['pattern' => 'sitemap.txt', 'route' => 'site/sitemap', 'defaults' => ['format' => Sitemap::FORMAT_TXT]],
-        ['pattern' => 'sitemap.xml.gz', 'route' => 'site/sitemap', 'defaults' => ['format' => Sitemap::FORMAT_XML, 'gzip' => true]],
     ]
 ];

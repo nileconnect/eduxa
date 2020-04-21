@@ -7,6 +7,7 @@ use common\models\User;
 use common\models\UserToken;
 use frontend\modules\user\models\LoginForm;
 use frontend\modules\user\models\PasswordResetRequestForm;
+use frontend\modules\user\models\ReferralSignupForm;
 use frontend\modules\user\models\ResetPasswordForm;
 use frontend\modules\user\models\SignupForm;
 use Yii;
@@ -54,7 +55,7 @@ class SignInController extends \yii\web\Controller
                 'rules' => [
                     [
                         'actions' => [
-                            'signup', 'login', 'login-by-pass', 'request-password-reset', 'reset-password', 'oauth', 'activation'
+                            'signup','referral-signup', 'login', 'login-by-pass', 'request-password-reset', 'reset-password', 'oauth', 'activation'
                         ],
                         'allow' => true,
                         'roles' => ['?']
@@ -163,6 +164,36 @@ class SignInController extends \yii\web\Controller
         }
 
         return $this->render('signup', [
+            'model' => $model
+        ]);
+    }
+
+
+    /**
+     * @return string|Response
+     */
+    public function actionReferralSignup()
+    {
+        $model = new ReferralSignupForm();
+        if ($model->load(Yii::$app->request->post())) {
+            $user = $model->signup();
+            if ($user) {
+                if ($model->shouldBeActivated()) {
+                    Yii::$app->getSession()->setFlash('alert', [
+                        'body' => Yii::t(
+                            'frontend',
+                            'Your account has been successfully created. Check your email for further instructions.'
+                        ),
+                        'options' => ['class' => 'alert-success']
+                    ]);
+                } else {
+                    Yii::$app->getUser()->login($user);
+                }
+                return $this->goHome();
+            }
+        }
+
+        return $this->render('referral-signup', [
             'model' => $model
         ]);
     }

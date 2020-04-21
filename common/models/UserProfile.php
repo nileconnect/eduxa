@@ -89,7 +89,7 @@ class UserProfile extends ActiveRecord
     {
         return [
             [['user_id'], 'required'],
-            [['user_id', 'gender','city_id','country_id'], 'integer'],
+            [['user_id', 'gender','city_id','country_id','no_of_students'], 'integer'],
             [['gender'], 'in', 'range' => [NULL, self::GENDER_FEMALE, self::GENDER_MALE]],
             [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url','nationality'], 'string', 'max' => 255],
             ['locale', 'default', 'value' => Yii::$app->language],

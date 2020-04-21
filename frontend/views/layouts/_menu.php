@@ -21,7 +21,7 @@
                 <a class="button button-primary" href="/login">My Eduxa</a>
             </li>
             <li class="nav-item">
-                <a class="button button-primary" href="#">Referral Program</a>
+                <a class="button button-primary" href="/referral-signup">Referral Program</a>
             </li>
             <? }else{
               ?>
