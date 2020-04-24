@@ -43,6 +43,9 @@ class ReferralSignupForm extends Model
     public $no_of_students;
     public $students_nationalities;
     public $expected_no_of_students;
+    public $job_title;
+    public $telephone_no;
+    public $company_name;
 
     /**
      * @inheritdoc
@@ -76,8 +79,10 @@ class ReferralSignupForm extends Model
             ['password_confirm', 'compare', 'compareAttribute' => 'password', 'skipOnEmpty' => false],
             [['no_of_students','expected_no_of_students','country_id','state_id','city_id'],'integer'],
 
-            ['mobile','number'],
-            [['students_nationalities'],'string','max'=>255]
+            [['mobile','telephone_no'],'number'],
+            [['students_nationalities'],'string','max'=>255],
+            [['job_title','company_name'],'string'],
+            [['job_title','company_name','telephone_no'],'required' ,'on'=>'RefCompany'],
         ];
     }
 
@@ -101,6 +106,8 @@ class ReferralSignupForm extends Model
             'expected_no_of_students' => Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa'),
             'no_of_students' => Yii::t('common', 'No. Of Previous Referrals'),
             'students_nationalities' => Yii::t('common', 'Nationality Of Referrals'),
+            'telephone_no' => Yii::t('common', 'Telephone Number'),
+            'job_title' => Yii::t('common', 'Job Title'),
 
 
 
@@ -114,7 +121,7 @@ class ReferralSignupForm extends Model
      * @return User|null the saved model or null if saving fails
      * @throws Exception
      */
-    public function signup()
+    public function signup($role= User::ROLE_REFERRAL_PERSON)
     {
         if ($this->validate()) {
             $shouldBeActivated = $this->shouldBeActivated();
@@ -139,9 +146,14 @@ class ReferralSignupForm extends Model
             $profileData['students_nationalities']=$this->students_nationalities;
             $profileData['expected_no_of_students']=$this->expected_no_of_students;
 
+            $profileData['telephone_no']=$this->telephone_no;
+            $profileData['job_title']=$this->job_title;
+            $profileData['company_name']=$this->company_name;
 
 
-            $user->afterSignup($profileData,User::ROLE_REFERRAL_PERSON);
+
+
+            $user->afterSignup($profileData,$role);
             if ($shouldBeActivated) {
                 $token = UserToken::create(
                     $user->id,

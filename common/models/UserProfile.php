@@ -94,12 +94,13 @@ class UserProfile extends ActiveRecord
             [['user_id'], 'required'],
             [['user_id', 'gender','country_id','state_id','city_id','no_of_students'], 'integer'],
             [['gender'], 'in', 'range' => [NULL, self::GENDER_FEMALE, self::GENDER_MALE]],
-            [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url','nationality','students_nationalities'], 'string', 'max' => 255],
+            [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url','nationality','students_nationalities','job_title'], 'string', 'max' => 255],
             ['locale', 'default', 'value' => Yii::$app->language],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
             [['picture','city_id','interested_in_university','interested_in_schools','students_nationalities'], 'safe'],
             ['mobile','number'],
-            [['find_us_from','no_of_students','expected_no_of_students',],'integer']
+            [['find_us_from','no_of_students','expected_no_of_students',],'integer'],
+            [['job_title','company_name'],'string'],
 
         ];
     }
@@ -125,6 +126,9 @@ class UserProfile extends ActiveRecord
             'state_id' => Yii::t('common', 'State'),
             'country_id' => Yii::t('common', 'Country'),
             'mobile' => Yii::t('common', 'Mobile Number'),
+            'telephone_no' => Yii::t('common', 'Telephone Number'),
+            'job_title' => Yii::t('common', 'Job Title'),
+            'company_name' => Yii::t('common', 'Company Name'),
             'no_of_students' => Yii::t('common', 'No. Of Previous Referrals'),
             'interested_in_university' => Yii::t('common', 'University Education'),
             'interested_in_schools' => Yii::t('common', 'Language School'),
