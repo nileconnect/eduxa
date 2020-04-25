@@ -4,6 +4,15 @@ use yii\helpers\Html;
 /* @var $content string */
 
 \frontend\assets\FrontendAsset::register($this);
+
+// if(Yii::$app->language=='ar'){
+   // \frontend\assets\FrontendAssetAr::register($this);
+// }else{
+//     
+// }
+
+
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

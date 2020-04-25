@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h2 class="title"><?= Yii::t('frontend', 'Signup'); ?></h2>
                     <div class="tab-pills">
 
-                        <ul class="nav nav-pills">
+                        <ul class="nav nav-pills" id="myTab">
                             <li class="nav-item">
                                 <a class="nav-link active" id="sign-individual-tab" data-toggle="tab" href="#tabIndividual" role="tab" aria-controls="undergraduate" aria-selected="true"><i class="fas fa-user"></i> individual referral</a>
                             </li>
@@ -314,3 +314,31 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 </div>
+
+
+<?php
+$script = <<< JS
+    // LINK TO TABS
+$(document).ready(() => {
+  var url = window.location.href;
+  if (url.indexOf("#") > 0){
+      
+    var activeTab = url.substring(url.indexOf("#") + 1);
+   
+    $('#myTab li a[href="#'+activeTab+'"]').tab('show')
+  }
+
+  $('a[role="tab"]').on("click", function() {
+    var newUrl;
+    const hash = $(this).attr("href");
+      newUrl = url.split("#")[0] + hash;
+    history.replaceState(null, null, newUrl);
+  });
+});
+
+JS;
+$this->registerJs($script);
+?>
+<script>
+
+</script>
