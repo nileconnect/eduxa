@@ -21,16 +21,16 @@ class SiteController extends FrontendController
     /**
      * @return array
      */
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => PageCache::class,
-                'only' => ['sitemap'],
-                'duration' => Time::SECONDS_IN_AN_HOUR,
-            ]
-        ];
-    }
+//    public function behaviors()
+//    {
+//        return [
+//            [
+//                'class' => PageCache::class,
+//                'only' => ['sitemap'],
+//                'duration' => Time::SECONDS_IN_AN_HOUR,
+//            ]
+//        ];
+//    }
 
     /**
      * @inheritdoc
@@ -45,10 +45,10 @@ class SiteController extends FrontendController
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null
             ],
-            'set-locale' => [
-                'class' => 'common\actions\SetLocaleAction',
-                'locales' => array_keys(Yii::$app->params['availableLocales'])
-            ]
+//            'set-locale' => [
+//                'class' => 'common\actions\SetLocaleAction',
+//                'locales' => array_keys(Yii::$app->params['availableLocales'])
+//            ]
         ];
     }
 
