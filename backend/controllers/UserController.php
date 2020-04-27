@@ -69,6 +69,9 @@ class UserController extends BackendController
 
         $searchModel->user_role = Yii::$app->session->get('UserRole');
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->setSort([
+            'defaultOrder' => [ 'id'=>SORT_DESC ],
+        ]);
 
 
         return $this->render('index', [

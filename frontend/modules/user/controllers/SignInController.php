@@ -180,7 +180,7 @@ class SignInController extends \yii\web\Controller
 
 
 
-        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->post()['signup-referral'] ) {
+        if ($model->load(Yii::$app->request->post()) &&  isset(Yii::$app->request->post()['signup-referral']) ) {
             $user = $model->signup();
             if ($user) {
                 if ($model->shouldBeActivated()) {

@@ -9,6 +9,7 @@ use common\models\User;
 $this->title = $model->getPublicIdentity();
 $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="user-view">
 
@@ -83,6 +84,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format'=>'raw',
             ],
+
+            [
+                'attribute' => 'find_us_from',
+                'value' => function($model){
+                    return   \common\models\UserProfile::ListFindUs() [$model->find_us_from]  ;
+                },
+                'format'=>'raw',
+                //'visible'=>,
+            ],
 // ///////////////////////////////////////////////////
             [
                 'attribute' => 'no_of_students',
@@ -90,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->no_of_students  ;
                 },
                 'format'=>'raw',
-                //'visible'=>,
+                'visible'=> ! User::IsRole($model->id , User::ROLE_USER),
             ],
 
             [
@@ -99,7 +109,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->expected_no_of_students  ;
                 },
                 'format'=>'raw',
-                //'visible'=>,
+                'visible'=> ! User::IsRole($model->id , User::ROLE_USER),
             ],
             [
                 'attribute' => 'students_nationalities',
@@ -107,10 +117,58 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->students_nationalities  ;
                 },
                 'format'=>'raw',
-                //'visible'=>,
+                'visible'=> ! User::IsRole($model->id , User::ROLE_USER),
             ],
 
 // ////////////////////////////////////
+
+            [
+                'attribute' => 'job_title',
+                'value' => function($model){
+                    return $model->job_title  ;
+                },
+                'format'=>'raw',
+                'visible'=> User::IsRole($model->id , User::ROLE_REFERRAL_COMPANY),
+            ],
+            [
+                'attribute' => 'company_name',
+                'value' => function($model){
+                    return $model->company_name  ;
+                },
+                'format'=>'raw',
+                'visible'=>  User::IsRole($model->id , User::ROLE_REFERRAL_COMPANY),
+            ],
+
+            [
+                'attribute' => 'telephone_no',
+                'value' => function($model){
+                    return $model->telephone_no  ;
+                },
+                'format'=>'raw',
+                'visible'=> User::IsRole($model->id , User::ROLE_REFERRAL_COMPANY),
+            ],
+
+
+// ////////////////////////////////////
+
+            [
+                'label' => 'Interested in schools?',
+                'attribute' => 'interested_in_schools',
+                'value' => function($model){
+                    return $model->interested_in_schools ? 'Yes': 'No'  ;
+                },
+                'format'=>'raw',
+                'visible'=>  User::IsRole($model->id , User::ROLE_USER),
+            ],
+            [
+                'label' => 'Interested in universities ?',
+                'attribute' => 'interested_in_university',
+                'value' => function($model){
+                    return $model->interested_in_university? 'Yes': 'No'  ;
+                },
+                'format'=>'raw',
+                'visible'=>  User::IsRole($model->id , User::ROLE_USER),
+            ],
 
             [
                 'attribute' => 'communtication_channel',
@@ -118,33 +176,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->communtication_channel  ;
                 },
                 'format'=>'raw',
-                //'visible'=>,
-            ],
-            [
-                'attribute' => 'find_us_from',
-                'value' => function($model){
-                    return $model->find_us_from  ;
-                },
-                'format'=>'raw',
-                //'visible'=>,
-            ],
-
-            //**************************//
-            [
-                'attribute' => 'interested_in_schools',
-                'value' => function($model){
-                    return $model->interested_in_schools  ;
-                },
-                'format'=>'raw',
-                //'visible'=>,
-            ],
-            [
-                'attribute' => 'interested_in_university',
-                'value' => function($model){
-                    return $model->interested_in_university  ;
-                },
-                'format'=>'raw',
-                //'visible'=>,
+                'visible'=>  User::IsRole($model->id , User::ROLE_USER),
             ],
 
 
