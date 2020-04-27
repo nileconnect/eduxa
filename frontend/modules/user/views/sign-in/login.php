@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="container">
             <div class="row">
                 <div class="col-sm-9">
-                    <h2 class="title">Sign in</h2>
+                    <h2 class="title"><?= Yii::t('common','Sign in') ?></h2>
 
                     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
                         <div class="form-group">
@@ -37,18 +37,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ->label(Yii::t('common','Password') ,['class'=>'label-control']);?>
                         </div>
                         <div class="form-group">
-                            <a href="/reset-password" class="fr">Forget your password?</a>
+                            <a href="/reset-password" class="fr"><?= Yii::t('common','Forget your password?') ?></a>
                             <div class="form-check">
                                 <?php echo $form->field($model, 'rememberMe')->checkbox() ?>
-<!--                                <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
-<!--                                <label class="form-check-label" for="exampleCheck1">Remember Me</label>-->
+
                             </div>
                         </div>
                         <div class="form-group mtxlg">
-                            <button type="submit" class="button button-primary button-wide text-large">Login</button>
+                            <button type="submit" class="button button-primary button-wide text-large"><?= Yii::t('common','Login') ?></button>
                         </div>
                         <div class="form-group mtmd">
-                            <div class="text-large">Don’t have an account? <a href="/signup">Create an Account Now!</a></div>
+                            <div class="text-large"><?= Yii::t('common','Don’t have an account?') ?> <a href="/signup"><?= Yii::t('common','Create an Account Now!') ?></a></div>
                         </div>
                     <?php ActiveForm::end(); ?>
                 </div>

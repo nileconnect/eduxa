@@ -34,10 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <ul class="nav nav-pills" id="myTab">
                             <li class="nav-item">
-                                <a class="nav-link active" id="sign-individual-tab" data-toggle="tab" href="#tabIndividual" role="tab" aria-controls="undergraduate" aria-selected="true"><i class="fas fa-user"></i> individual referral</a>
+                                <a class="nav-link active" id="sign-individual-tab" data-toggle="tab" href="#tabIndividual" role="tab" aria-controls="undergraduate" aria-selected="true"><i class="fas fa-user"></i> <?= Yii::t('frontend', 'individual referral'); ?></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="company-referral-tab" data-toggle="tab" href="#tabCompanyReferral" role="tab" aria-controls="graduate" aria-selected="true"><i class="fas fa-users"></i> Company referral</a>
+                                <a class="nav-link" id="company-referral-tab" data-toggle="tab" href="#tabCompanyReferral" role="tab" aria-controls="graduate" aria-selected="true"><i class="fas fa-users"></i> <?= Yii::t('frontend', 'Company referral'); ?></a>
                             </li>
                         </ul>
 
@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="col-sm-6">
                                         <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
                                             'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),
-                                            'options' => ['placeholder' => Yii::t('backend', 'Choose Country') ,'id'=>'CountryId'],
+                                            'options' => ['placeholder' => Yii::t('common', 'Choose Country') ,'id'=>'CountryId'],
                                             'pluginOptions' => [
                                                 'allowClear' => true
                                             ],
@@ -131,12 +131,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <?php echo $form->field($model, 'no_of_students')->textInput(['placeholder'=>Yii::t('common','No. Of Previous Referrals')])
-                                            ->label(Yii::t('common','No. Of Previous Referrals') ,['class'=>'label-control']);
+                                            ->label(Yii::t('frontend','No. Of Previous Referrals') ,['class'=>'label-control']);
                                         ?>
                                     </div>
                                     <div class="col-sm-6">
                                         <?php echo $form->field($model, 'students_nationalities')->textInput(['placeholder'=>Yii::t('common','Nationality Of Referrals')])
-                                            ->label(Yii::t('common','Nationality Of Referrals') ,['class'=>'label-control']);
+                                            ->label(Yii::t('frontend','Nationality Of Referrals') ,['class'=>'label-control']);
                                         ?>
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                                 <?php echo $form->field($model, 'expected_no_of_students')->textInput(['placeholder'=>Yii::t('common','Expected No. Of Students To Apply For By Eduxa')])
-                                    ->label(Yii::t('common','Expected No. Of Students To Apply For By Eduxa') ,['class'=>'label-control']);
+                                    ->label(Yii::t('frontend','Expected No. Of Students To Apply For By Eduxa') ,['class'=>'label-control']);
                                 ?>
 
 
@@ -269,12 +269,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <?php echo $form->field($modelCompany, 'no_of_students')->textInput(['placeholder'=>Yii::t('common','No. Of Previous Referrals')])
-                                            ->label(Yii::t('common','No. Of Previous Referrals') ,['class'=>'label-control']);
+                                            ->label(Yii::t('frontend','No. Of Previous Referrals') ,['class'=>'label-control']);
                                         ?>
                                     </div>
                                     <div class="col-sm-6">
                                         <?php echo $form->field($modelCompany, 'students_nationalities')->textInput(['placeholder'=>Yii::t('common','Nationality Of Referrals')])
-                                            ->label(Yii::t('common','Nationality Of Referrals') ,['class'=>'label-control']);
+                                            ->label(Yii::t('frontend','Nationality Of Referrals') ,['class'=>'label-control']);
                                         ?>
                                     </div>
                                 </div>
@@ -288,7 +288,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                                 <?php echo $form->field($modelCompany, 'expected_no_of_students')->textInput(['placeholder'=>Yii::t('common','Expected No. Of Students To Apply For By Eduxa')])
-                                    ->label(Yii::t('common','Expected No. Of Students To Apply For By Eduxa') ,['class'=>'label-control']);
+                                    ->label(Yii::t('frontend','Expected No. Of Students To Apply For By Eduxa') ,['class'=>'label-control']);
                                 ?>
 
 

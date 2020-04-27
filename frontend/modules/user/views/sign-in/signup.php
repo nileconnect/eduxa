@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="col-sm-6">
                                 <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
                                     'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),
-                                    'options' => ['placeholder' => Yii::t('backend', 'Choose Country') ,'id'=>'CountryId'],
+                                    'options' => ['placeholder' => Yii::t('common', 'Choose Country') ,'id'=>'CountryId'],
                                     'pluginOptions' => [
                                         'allowClear' => true
                                     ],
@@ -132,13 +132,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php
                         echo $form->field($model ,'find_us_from')->dropDownList(\common\models\UserProfile::ListFindUs() ,
                             ['prompt'=>Yii::t('common','Select')])
-                            ->label(Yii::t('common','How did you found us?') ,['class'=>'label-control']);
+                            ->label(Yii::t('frontend','How did you found us?') ,['class'=>'label-control']);
                         ?>
 
                     <?php
                         echo $form->field($model ,'communtication_channel')->dropDownList(\common\models\UserProfile::ListCommunicateChannels() ,
                             ['prompt'=>Yii::t('common','Select')])
-                            ->label(Yii::t('common','Best way to commuincation?') ,['class'=>'label-control']);
+                            ->label(Yii::t('frontend','Best way to commuincation?') ,['class'=>'label-control']);
                         ?>
 
                         <div class="form-group">
