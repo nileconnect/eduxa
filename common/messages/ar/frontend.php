@@ -22,7 +22,7 @@ return [
     ''=>'',
     ''=>'',
     ''=>'',
-    ''=>'',
+    'Site Frontend'=>'واجهه الموقع',
     'Profile'=>'الملف الشخصى',
     'Child data has been saved successfully'=>'تم حفظ بيانات الابن بنجاح',
     ''=>'',
