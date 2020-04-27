@@ -3,13 +3,13 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-\frontend\assets\FrontendAsset::register($this);
 
-// if(Yii::$app->language=='ar'){
-   // \frontend\assets\FrontendAssetAr::register($this);
-// }else{
-//     
-// }
+
+if(Yii::$app->language=='ar'){
+   \frontend\assets\FrontendAssetAr::register($this);
+}else{
+    \frontend\assets\FrontendAsset::register($this);
+}
 
 
 

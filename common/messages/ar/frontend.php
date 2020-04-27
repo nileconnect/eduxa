@@ -208,6 +208,7 @@ return [
     'Click here to enter your code' => 'اضغط لاستخدام كود الخصم',
     'Proceed to payment' => 'إتمام عملية الدفع',
     'Data has been successfully update' => 'تم تحديث البيانات بنجاح',
+    'Universities' => 'جامعات',
     '' => '',
     '' => '',
     '' => '',
