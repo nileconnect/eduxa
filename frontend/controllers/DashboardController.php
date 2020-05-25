@@ -26,5 +26,13 @@ class DashboardController extends FrontendController
     {
         return $this->render('index');
     }
+    public function actionEducation()
+    {
+        return $this->render('education');
+    }
+    public function actionRequests()
+    {
+        return $this->render('requests');
+    }
 
 }
