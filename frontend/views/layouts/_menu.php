@@ -6,30 +6,33 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Universities <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#"><?= Yii::t('frontend','Universities') ?> <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Language Schools</a>
+                <a class="nav-link" href="#"><?= Yii::t('frontend','Language Schools') ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
+                <a class="nav-link" href="#"><?= Yii::t('frontend','About Us') ?></a>
             </li>
 
           <?php
           if(Yii::$app->user->isGuest){?>
             <li class="nav-item">
-                <a class="button button-primary" href="/login">My Eduxa</a>
+                <a class="button button-primary" href="/login"><?= Yii::t('frontend','My Eduxa') ?></a>
             </li>
             <li class="nav-item">
-                <a class="button button-primary" href="/referral-signup">Referral Program</a>
+                <a class="button button-primary" href="/referral-signup"><?= Yii::t('frontend','Referral Program') ?></a>
             </li>
             <? }else{
 
               if ( Yii::$app->user->can(\common\models\User::ROLE_USER) ){
-               echo '<li class="nav-item"> <a class="button button-primary" href="/dashboard">My Eduxa</a> </li>';
-              }else{
-                  echo '<li class="nav-item"> <a class="button button-primary" href="/referral-dashboard">Referral Program</a> </li>';
-
+                ?>
+               <li class="nav-item"> <a class="button button-primary" href="/dashboard"><?= Yii::t('frontend','My Eduxa') ?></a> </li>
+               <?php
+               }else{
+                ?>
+                  <li class="nav-item"> <a class="button button-primary" href="/referral-dashboard"><?= Yii::t('frontend','Referral Program') ?></a> </li>
+                  <?php
               }
           }?>
 
