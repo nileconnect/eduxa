@@ -143,6 +143,11 @@ class UserProfile extends ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
+    public function getProfileNationality()
+    {
+        return $this->hasOne(Country::class, ['id' => 'nationality']);
+    }
+
 
     public function getCountry()
     {
@@ -173,7 +178,7 @@ class UserProfile extends ActiveRecord
      * @param null $default
      * @return bool|null|string
      */
-    public function getAvatar($default = null)
+    public function getAvatar($default = '/img/avatars/default-avatar.png')
     {
         return $this->avatar_path
             ? Yii::getAlias($this->avatar_base_url . '/' . $this->avatar_path)

@@ -17,9 +17,13 @@ class StudentTestResults extends BaseStudentTestResults
     {
         return array_replace_recursive(parent::rules(),
 	    [
+            [['user_id', 'test_date','score','test_name'], 'required'],
+
             [['user_id', 'country_id'], 'integer'],
+            ['test_date', 'number' , 'max'=>date('Y')],
+
             [['score'], 'number'],
-            [['test_name', 'test_date', 'created_at', 'updated_at'], 'string', 'max' => 255]
+            [['test_name',  'created_at', 'updated_at'], 'string', 'max' => 255]
         ]);
     }
 	

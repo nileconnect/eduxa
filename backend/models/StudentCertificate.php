@@ -17,8 +17,12 @@ class StudentCertificate extends BaseStudentCertificate
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['user_id', 'year', 'country_id'], 'integer'],
-            [['certificate_name', 'grade', 'university_or_school', 'created_at', 'updated_at'], 'string', 'max' => 255]
+            [['user_id', 'year','grade','university_or_school', 'country_id'], 'required'],
+            ['year', 'number' , 'max'=>date('Y')],
+            [['user_id',  'country_id'], 'integer'],
+            [['certificate_name', 'grade', 'university_or_school', 'created_at', 'updated_at'], 'string', 'max' => 255],
+
+
         ]);
     }
 	

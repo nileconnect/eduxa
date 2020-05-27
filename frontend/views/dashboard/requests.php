@@ -1,54 +1,13 @@
 <main class="content">
 
-	<section class="section bg-white">
-		<div class="container">
-			
-			<div class="profile_info">
-				<div class="profile_basic_info">
-					<figure>
-						<a href="#" class="edit_profile_info"><i class="fas fa-pencil-alt"></i></a>
-						<img class="avatar" src="img/avatars/default-avatar.png" alt="">
-					</figure>
-					<div>
-						<h3>Mukhtar Ali</h3>
-						<div class="text-muted text-large">Cairo, Egypt</div>
-						<div class="text-muted text-large"><a href="mailto:info@mokhtarali.com">info@mokhtarali.com</a></div>
-						<div class="text-muted text-large"><a href="tel:+2 011 XX XXX XXX">+2 011 XX XXX XXX</a></div>
-					</div>
-				</div>
-				<div class="profile_info_complation">
-					<div class="profile_complete_progress">
-						<div class="progress">
-						  	<div class="progress-bar progress-bar-yellow" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-						</div>
-						<div class="text-right mrsm text-muted"><small><?php echo Yii::t('frontend','Your Profile is'); ?> 40% <?php echo Yii::t('frontend','complete'); ?></small></div>
-					</div>
-					<div class="edit_profile_complation">
-						<a href="#"><i class="fas fa-edit"></i></a>
-					</div>
-				</div>
-			</div>
+    <?php
 
-		</div>
-	</section>
+    $this->beginContent('@frontend/views/dashboard/_profile_data.php');
+    $this->endContent() ;
 
-	<div class="profile-nav bg-white">
-		<div class="container">
-			
-			<ul class="nav nav-pills regular border-white">
-			  <li class="nav-item">
-			    <a class="nav-link active" href="/dashboard"><?php echo Yii::t('frontend','Profile Info'); ?></a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="/dashboard/education"><?php echo Yii::t('frontend','Education Info'); ?></a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" href="/dashboard/requests"><?php echo Yii::t('frontend','My Requests'); ?></a>
-			  </li>
-			</ul>
-
-		</div>
-	</div>
+    $this->beginContent('@frontend/views/dashboard/_profile_menu.php');
+    $this->endContent() ;
+    ?>
 
 
 	<section class="section">
@@ -62,7 +21,7 @@
 					<div class="item">
 						<header class="item-header">
 							<figure>
-								<img src="img/destinations/3.jpg" alt="">
+								<img src="/img/destinations/3.jpg" alt="">
 							</figure>
 							<div class="item-content">
 								<div class="item-name">
@@ -120,7 +79,7 @@
 					<div class="item">
 						<header class="item-header">
 							<figure>
-								<img src="img/destinations/1.jpg" alt="">
+								<img src="/img/destinations/1.jpg" alt="">
 							</figure>
 							<div class="item-content">
 								<div class="item-name">

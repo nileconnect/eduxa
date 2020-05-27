@@ -2,6 +2,7 @@
 
 namespace backend\models\base;
 
+use backend\models\Country;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -67,7 +68,7 @@ class StudentCertificate extends \yii\db\ActiveRecord
             'year' => Yii::t('backend', 'Year'),
             'grade' => Yii::t('backend', 'Grade'),
             'university_or_school' => Yii::t('backend', 'University Or School'),
-            'country_id' => Yii::t('backend', 'Country ID'),
+            'country_id' => Yii::t('backend', 'Country'),
         ];
     }
     
@@ -93,6 +94,11 @@ class StudentCertificate extends \yii\db\ActiveRecord
                 'value' => new \yii\db\Expression('NOW()'),
             ],
         ];
+    }
+
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
 
 

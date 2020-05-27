@@ -366,5 +366,22 @@ class User extends ActiveRecord implements IdentityInterface
         }
     }
 
+    //relations
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStudentCertificates()
+    {
+        return $this->hasMany(\backend\models\StudentCertificate::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStudentTestResults()
+    {
+        return $this->hasMany(\backend\models\StudentTestResults::className(), ['user_id' => 'id']);
+    }
 
 }
