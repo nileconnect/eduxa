@@ -270,30 +270,39 @@ echo Menu::widget([
 
         ],
 
-        [
-            'label' => Yii::t('backend', 'Articles'),
-            'url' => '#',
-            'icon' => '<i class="fa fa-files-o"></i>',
-            'options' => ['class' => 'treeview'],
-            'visible' => (Yii::$app->user->can('administrator')  ),
+//        [
+//            'label' => Yii::t('backend', 'Articles'),
+//            'url' => '#',
+//            'icon' => '<i class="fa fa-files-o"></i>',
+//            'options' => ['class' => 'treeview'],
+//            'visible' => (Yii::$app->user->can('administrator')  ),
+//
+//            'active' => 'content' === Yii::$app->controller->module->id &&
+//                ('article' === Yii::$app->controller->id || 'category' === Yii::$app->controller->id),
+//            'items' => [
+//                [
+//                    'label' => Yii::t('backend', 'Articles'),
+//                    'url' => ['/content/article/index'],
+//                    'icon' => '<i class="fa fa-file-o"></i>',
+//                    'active' => Yii::$app->controller->id === 'article',
+//                ],
+//                [
+//                    'label' => Yii::t('backend', 'Categories'),
+//                    'url' => ['/content/category/index'],
+//                    'icon' => '<i class="fa fa-folder-open-o"></i>',
+//                    'active' => Yii::$app->controller->id === 'category',
+//                ],
+//            ],
+//        ],
 
-            'active' => 'content' === Yii::$app->controller->module->id &&
-                ('article' === Yii::$app->controller->id || 'category' === Yii::$app->controller->id),
-            'items' => [
-                [
-                    'label' => Yii::t('backend', 'Articles'),
-                    'url' => ['/content/article/index'],
-                    'icon' => '<i class="fa fa-file-o"></i>',
-                    'active' => Yii::$app->controller->id === 'article',
-                ],
-                [
-                    'label' => Yii::t('backend', 'Categories'),
-                    'url' => ['/content/category/index'],
-                    'icon' => '<i class="fa fa-folder-open-o"></i>',
-                    'active' => Yii::$app->controller->id === 'category',
-                ],
-            ],
+
+        [
+            'label' => Yii::t('backend', 'Settings'),
+            'url' => ['/system/key-storage/index'],
+            'icon' => '<i class="fa fa-arrows-h"></i>',
+            'active' => (Yii::$app->controller->id == 'key-storage'),
         ],
+
 
 //        [
 //            'label' => Yii::t('backend', 'Settings'),

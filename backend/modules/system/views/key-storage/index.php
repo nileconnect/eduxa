@@ -9,25 +9,25 @@ use yii\grid\GridView;
  * @var $model        common\models\KeyStorageItem
  */
 
-$this->title = Yii::t('backend', 'Key Storage Items');
+$this->title = Yii::t('backend', 'Website Settings');
 
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="box box-success collapsed-box">
-    <div class="box-header with-border">
-        <h3 class="box-title"><?php echo Yii::t('backend', 'Create {modelClass}', ['modelClass' => 'Key Storage Item']) ?></h3>
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-        </div>
-    </div>
-    <div class="box-body">
-        <?php echo $this->render('_form', [
-            'model' => $model,
-        ]) ?>
-    </div>
-</div>
+<!--<div class="box box-success collapsed-box">-->
+<!--    <div class="box-header with-border">-->
+<!--        <h3 class="box-title">--><?php //echo Yii::t('backend', 'Create {modelClass}', ['modelClass' => 'Key Storage Item']) ?><!--</h3>-->
+<!--        <div class="box-tools pull-right">-->
+<!--            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="box-body">-->
+<!--        --><?php //echo $this->render('_form', [
+//            'model' => $model,
+//        ]) ?>
+<!--    </div>-->
+<!--</div>-->
 
 <?php echo GridView::widget([
     'dataProvider' => $dataProvider,
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         [
             'class' => 'yii\grid\ActionColumn',
-            'template' => '{update} {delete}',
+            'template' => '{update} ',   //{delete}
         ],
     ],
 ]); ?>

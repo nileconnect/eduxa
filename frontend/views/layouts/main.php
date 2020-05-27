@@ -42,10 +42,16 @@ if(Yii::$app->session->hasFlash('alert')){
                             I was always somebody who felt quite sorry for myself, what I had not got compared to my friends, how much of a struggle my life seemed to be compared to others. I was caught up in a web of negativity
                         </p>
                         <ul class="socials">
-                            <li><a class="so_facebook" href=""><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a class="so_twiiter" href=""><i class="fab fa-twitter"></i></a></li>
-                            <li><a class="so_instegram" href=""><i class="fab fa-instagram"></i></a></li>
-                            <li><a class="so_linkedin" href=""><i class="fab fa-linkedin-in"></i></a></li>
+                            <?php
+                            if(  Yii::$app->keyStorage->get('facebook') ) echo '<li><a class="so_facebook" href="'.Yii::$app->keyStorage->get('facebook').'"><i class="fab fa-facebook-f"></i></a></li>';
+                            if(  Yii::$app->keyStorage->get('twitter') ) echo '<li><a class="so_twiiter" href="'.Yii::$app->keyStorage->get('twitter').'"><i class="fab fa-twitter"></i></a></li>';
+                            if(  Yii::$app->keyStorage->get('instagram') ) echo '<li><a class="so_instegram" href="'.Yii::$app->keyStorage->get('instagram').'"><i class="fab fa-instagram"></i></a></li>';
+                            if(  Yii::$app->keyStorage->get('linkedin') ) echo '<li><a class="so_linkedin" href="'.Yii::$app->keyStorage->get('linkedin').'"><i class="fab fa-linkedin-in"></i></a></li>';
+                            ?>
+
+
+
+
                         </ul>
                     </div>
                     <div class="col-sm-4">
@@ -83,7 +89,7 @@ if(Yii::$app->session->hasFlash('alert')){
             </div>
         </div>
         <div class="container">
-            <div class="copyright">© Copyrights 2019. All rights reserved</div>
+            <div class="copyright">© Copyrights <?= date('Y')?>. All rights reserved</div>
         </div>
     </footer>
 

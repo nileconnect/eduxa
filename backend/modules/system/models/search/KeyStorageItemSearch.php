@@ -18,6 +18,7 @@ class KeyStorageItemSearch extends KeyStorageItem
     {
         return [
             [['key', 'value'], 'string'],
+            ['status','integer']
         ];
     }
 
@@ -39,7 +40,7 @@ class KeyStorageItemSearch extends KeyStorageItem
      */
     public function search($params)
     {
-        $query = KeyStorageItem::find();
+        $query = KeyStorageItem::find()->where(['status'=>1]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

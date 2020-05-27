@@ -16,7 +16,7 @@ use yii\helpers\Html;
     'enableAjaxValidation' => true,
 ]) ?>
 
-<?php echo $form->field($model, 'key')->textInput() ?>
+<?php echo $form->field($model, 'key')->textInput(['readonly'=>'true']) ?>
 
 <?php echo $form->field($model, 'value')->textInput() ?>
 

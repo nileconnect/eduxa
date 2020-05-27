@@ -18,8 +18,11 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
             <div class="container">
                 <div class="header-strip-content">
                     <ul class="head-info unstyled">
-                        <li><a href="mailto:info@eduxa.com"><small class="mrxs"><i class="far fa-envelope"></i></small> <span class="link-text">info@eduxa.com</span></a></li>
-                        <li><a href="tel:+966-xxx-xxx-xxx"><small class="mrxs"><i class="fas fa-phone"></i></small> <span class="link-text">+966-xxx-xxx-xxx</span></a></li>
+                        <li><a href="mailto:<?= Yii::$app->keyStorage->get('email')?>">
+                                <small class="mrxs"><i class="far fa-envelope"></i></small> <span class="link-text">
+                                    <?= Yii::$app->keyStorage->get('email')?></span></a>
+                        </li>
+                        <li><a href="tel:<?= Yii::$app->keyStorage->get('phone')?>"><small class="mrxs"><i class="fas fa-phone"></i></small> <span class="link-text"><?= Yii::$app->keyStorage->get('phone')?></span></a></li>
                     </ul>
                     <ul class="head-lang unstyled">
                         <li class="head-currency-item dropdown">

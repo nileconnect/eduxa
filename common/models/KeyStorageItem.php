@@ -39,7 +39,7 @@ class KeyStorageItem extends ActiveRecord
         return [
             [['key', 'value'], 'required'],
             [['key'], 'string', 'max' => 128],
-            [['value', 'comment'], 'safe'],
+            [['value', 'comment','status'], 'safe'],
             [['key'], 'unique']
         ];
     }
