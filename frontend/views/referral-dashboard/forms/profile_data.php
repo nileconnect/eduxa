@@ -4,6 +4,7 @@ use yii\helpers\Url;
 
 use yii\widgets\ActiveForm;
 use kartik\depdrop\DepDrop;
+use common\models\User;
 if($saved){
     $this->registerJs("$(function() {
           parent.jQuery.fancybox.getInstance().close();
@@ -57,6 +58,12 @@ if($saved){
 
     <div class="row">
         <div class="col-sm-6">
+
+            <?php echo $form->field($model->getModel('profile'), 'telephone_no')->textInput(['placeholder'=>Yii::t('common','Telephone Number')])
+                ->label(Yii::t('common','Telephone Number') ,['class'=>'label-control']);
+            ?>
+        </div>
+        <div class="col-sm-6">
             <?= $form->field($model->getModel('profile'), 'country_id')->widget(\kartik\widgets\Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),
                 'options' => ['placeholder' => Yii::t('common', 'Choose Country') ,'id'=>'CountryId'],
@@ -65,6 +72,9 @@ if($saved){
                 ],
             ]); ?>
         </div>
+
+    </div>
+    <div class="row">
         <div class="col-sm-6">
             <?php
             // Child # 1
@@ -80,8 +90,7 @@ if($saved){
 
             ?>
         </div>
-    </div>
-    <div class="row">
+
         <div class="col-sm-6">
             <?php
             // Child # 1
@@ -97,39 +106,37 @@ if($saved){
 
             ?>
         </div>
-        <div class="col-sm-6">
-            <?php echo $form->field($model->getModel('profile'), 'nationality')->textInput(['placeholder'=>Yii::t('common','Nationality')])
-                ->label(Yii::t('common','Nationality') ,['class'=>'label-control']);
+
+
+    </div>
+
+    <div class="row">
+        <?php
+        if(User::IsRole($model->getModel('profile')->user_id , User::ROLE_REFERRAL_COMPANY)){
             ?>
+            <div class="col-sm-6">
+                <?php echo $form->field($model->getModel('profile'), 'job_title')->textInput(['placeholder'=>Yii::t('common','Job Title')])
+                    ->label(Yii::t('common','Job Title') ,['class'=>'label-control']); ?>
+            </div>
+            <div class="col-sm-6">
+                <?php echo $form->field($model->getModel('profile'), 'company_name')->textInput(['placeholder'=>Yii::t('common','Company Name')])
+                    ->label(Yii::t('common','Company Name') ,['class'=>'label-control']); ?>
+            </div>
+            <?
+        }
+        ?>
+        <div class="col-sm-12">
+            <?php echo $form->field($model->getModel('profile'), 'expected_no_of_students')->textInput(['placeholder'=>Yii::t('common','Expected No. Of Students To Apply For By Eduxa')])
+                ->label(Yii::t('frontend','Expected No. Of Students To Apply For By Eduxa') ,['class'=>'label-control']);
+            ?>
+
         </div>
     </div>
 
-    <?php
-    echo $form->field($model->getModel('profile') ,'communtication_channel')->dropDownList(\common\models\UserProfile::ListCommunicateChannels() ,
-        ['prompt'=>Yii::t('common','Select')])
-        ->label(Yii::t('frontend','Best way to commuincation?') ,['class'=>'label-control']);
-    ?>
-
-    <div class="form-group">
-        <label for="" id="" class="label-control"><?= Yii::t('frontend', 'What are you interested in?'); ?> </label>
-        <div class="form-check-group">
-
-            <div class="form-check">
-                <?php
-                echo $form->field($model->getModel('profile') ,'interested_in_university')->checkbox();
-                ?>
-            </div>
-            <div class="form-check">
-                <?php  echo $form->field($model->getModel('profile') ,'interested_in_schools')->checkbox(); ?>
-
-            </div>
-        </div>
-    </div>
 
 
     <h2><?php echo Yii::t('frontend', 'Account Settings') ?></h2>
 
-    <?php echo $form->field($model->getModel('account'), 'email') ?>
     <div class="row">
         <div class="col-sm-6">
              <?php echo $form->field($model->getModel('account'), 'password')->passwordInput() ?>

@@ -33,10 +33,18 @@ $this->endContent() ;
 							<span><?php echo Yii::t('frontend','Mobile Number'); ?> : </span>
 							<span class="text-muted"><?= $profile->mobile ?></span>
 						</div>
-						<div class="text-large">
-							<span><?php echo Yii::t('frontend','Nationality'); ?> : </span>
-							<span class="text-muted"><?= $profile ->profileNationality->title?></span>
-						</div>
+
+				        <?php
+                        if($profile->telephone_no){
+                            ?>
+
+                            <div class="text-large">
+                                <span><?php echo Yii::t('frontend','telephone_no'); ?> : </span>
+                                <span class="text-muted"><?= $profile ->telephone_no?></span>
+                            </div>
+                            <?
+                        }
+                        ?>
 					</div>
 					<div class="col-sm-6">
 						<div class="text-large">
@@ -52,26 +60,13 @@ $this->endContent() ;
 							<span class="text-muted"><?= $profile->city->title?></span>
 						</div>
 						<div class="text-large">
-							<span><?php echo Yii::t('frontend','Best way of communication'); ?> : </span>
-							<span class="text-muted"><?= \common\models\UserProfile::ListCommunicateChannels()[$profile->communtication_channel]?></span>
+							<span><?php echo Yii::t('common', 'No. Of Previous Referrals'); ?> : </span>
+							<span class="text-muted"><?=$profile->no_of_students?></span>
+
 						</div>
 						<div class="text-large">
-							<span><?php echo Yii::t('frontend','Intersted In'); ?> : </span>
-
-                            <?php if($profile->interested_in_university){
-                                ?>
-                                <span class="text-muted">University Education</span> ,
-
-                                <?
-                            }
-                            ?>
-                            <?php if($profile->interested_in_schools){
-                                ?>
-                                <span class="text-muted">Language School</span>
-
-                                <?
-                            }
-                            ?>
+							<span><?php echo Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa'); ?> : </span>
+                            <span class="text-muted"><?=$profile->expected_no_of_students?></span>
 						</div>
 					</div>
 				</div>
