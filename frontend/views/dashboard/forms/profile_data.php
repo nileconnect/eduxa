@@ -127,7 +127,7 @@ if($saved){
     </div>
 
 
-    <h2><?php echo Yii::t('frontend', 'Account Settings') ?></h2>
+    <h2 class="title title-sm"><?php echo Yii::t('frontend', 'Account Settings') ?></h2>
 
     <?php echo $form->field($model->getModel('account'), 'email') ?>
     <div class="row">
