@@ -12,15 +12,23 @@ use backend\models\UniversityPrograms;
  */
  class UniversityProgramsSearch extends UniversityPrograms
 {
+    public $university_title ;
+    public $university_country ;
+    public $university_nextTo ;
+    public $university_total_rating ;
+
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'university_id', 'major_id', 'degree_id', 'field_id', 'country_id', 'city_id', 'created_by', 'updated_by'], 'integer'],
-            [['title', 'study_start_date', 'study_duration', 'study_method', 'attendance_type', 'conditional_admissions', 'toefl', 'ielts', 'bank_statment', 'high_school_transcript', 'bachelor_degree', 'certificate', 'note1', 'note2', 'created_at', 'updated_at', 'program_type'], 'safe'],
-            [['annual_cost', 'total_rating'], 'number'],
+            [['id', 'university_id', 'major_id', 'degree_id', 'field_id', 'country_id','state_id', 'city_id', 'created_by', 'updated_by','university_country','university_nextTo'], 'integer'],
+            [['title', 'study_start_date', 'study_duration', 'study_method', 'attendance_type', 'conditional_admissions', 'toefl',
+                'ielts', 'bank_statment', 'high_school_transcript', 'bachelor_degree', 'certificate', 'note1', 'note2', 'created_at', 'updated_at', 'program_type'], 'safe'],
+            [['annual_cost', 'total_rating','university_total_rating'], 'number'],
+            [['university_country','university_title','university_total_rating','university_nextTo'],'safe']
         ];
     }
 

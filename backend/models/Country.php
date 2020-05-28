@@ -67,6 +67,7 @@ class Country extends BaseCountry
     public function rules()
     {
         return [
+            [['title', 'code'], 'required'],
             [['intro', 'details'], 'string'],
             [['title', 'code', 'image_base_url', 'image_path'], 'string', 'max' => 255],
             [['image','attachments','status','top_destination'],'safe']
