@@ -104,8 +104,10 @@ class ReferralDashboardController extends FrontendController
         if ($profile->load(Yii::$app->request->post()) && $profile->save()) {
             $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
-                'options' => ['class' => 'alert-success'],
-                'body' => Yii::t('backend', 'Data Saved Successfully')]);
+                'type' =>'success',
+                'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
+                'title' =>'',
+            ]);
         }
         return $this->render('forms/_avatar', [
             'profile' => $profile,
