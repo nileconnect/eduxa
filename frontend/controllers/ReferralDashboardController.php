@@ -80,17 +80,14 @@ class ReferralDashboardController extends FrontendController
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $locale = $model->getModel('profile')->locale;
-            Yii::$app->session->setFlash('forceUpdateLocale');
-            Yii::$app->session->setFlash('alert', [
-                'options' => ['class' => 'alert-success'],
-                'body' => Yii::t('frontend', 'Your account has been successfully saved', [], $locale)
-            ]);
-            $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
-                'options' => ['class' => 'alert-success'],
-                'body' => Yii::t('backend', 'Data Saved Successfully')]);
+                'type' =>'success',
+                'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
+                'title' =>'',
+            ]);
 
-            //   return $this->refresh();
+            $saved= 1;
+             //   return $this->refresh();
 
         }
         return $this->render('forms/profile_data', [

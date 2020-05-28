@@ -59,10 +59,15 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
         </div>
             <div class="col-md-4">
                 <div class="well">
+
+
+
                     <?php echo $form->field($model, 'image')->widget(
                         Upload::class,
                         [
                             'url' => ['/file/storage/upload'],
+                             'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(gif|jpeg|png)$/i'),
+                            'uploadPath' => 'country/flags' , // optional, for storing files in storage subfolder
                             'maxFileSize' => 5000000, // 5 MiB
                         ]);
                     ?>

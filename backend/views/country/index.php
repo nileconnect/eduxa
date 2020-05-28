@@ -47,11 +47,43 @@ $this->registerJs($search);
             },
             'format' => 'raw'
         ],
-        'status:boolean',
 
+        [
+            'class'=>'kartik\grid\EditableColumn',
+            'attribute'=>'status',
+            'editableOptions'=>[
+                'header'=>'Status',
+                'inputType'=>\kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                'data'=>['1'=>'Yes' , '0'=>'No'],
+                'formOptions' => [
+                    'action' => \yii\helpers\Url::to(['/country/update-item'])
+                ]
+            ],
+            'value'=>function($model){
+                return $model->status ? 'Yes' :'No';
+            },
+            'filter' => Html::activeDropDownList($searchModel, 'status', ['1'=>'Yes' , '0'=>'No'] ,['class'=>'form-control','prompt' =>  'Select']),
 
+        ],
+        [
+            'class'=>'kartik\grid\EditableColumn',
+            'attribute'=>'top_destination',
+            'editableOptions'=>[
+                'header'=>'Top Destination',
+                'inputType'=>\kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                'data'=>['1'=>'Yes' , '0'=>'No'],
+                'formOptions' => [
+                    'action' => \yii\helpers\Url::to(['/country/update-item'])
+                ]
+            ],
+            'value'=>function($model){
+                return $model->top_destination ? 'Yes' :'No';
+            },
+             'filter' => Html::activeDropDownList($searchModel, 'top_destination', ['1'=>'Yes' , '0'=>'No'] ,['class'=>'form-control','prompt' =>  'Select']),
 
-        [            'class' => 'yii\grid\ActionColumn','template'=>'{update} {view}'
+        ],
+            [
+                    'class' => 'yii\grid\ActionColumn','template'=>'{update} {view}'
             ],
         ];
 

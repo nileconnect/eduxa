@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use backend\models\Country;
 use cheatsheet\Time;
 use common\sitemap\UrlsIterator;
 use frontend\models\ContactForm;
@@ -24,7 +25,8 @@ class UniversitiesController extends FrontendController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $countries = Country::find()->where(['status'=>1 , 'top_destination'=>1])->all();
+        return $this->render('index' ,['countries'=>$countries]);
     }
 
 }
