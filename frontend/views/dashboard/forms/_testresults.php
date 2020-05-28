@@ -20,7 +20,7 @@ if($saved){
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
-    <h2><?php echo Yii::t('frontend', 'Test Results') ?></h2>
+    <h2 class="title title-sm"><?php echo Yii::t('frontend', 'Test Results') ?></h2>
 
     <?php
     //    echo $form->field($model, 'picture')->widget(
@@ -53,7 +53,7 @@ if($saved){
 
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'button button-wide button-primary' : 'button button-wide button-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
