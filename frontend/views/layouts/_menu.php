@@ -39,6 +39,8 @@
                           <?= Yii::t('frontend','Referral Program') ?>
                       </a>
                   </li>
+                  <li class="nav-item">
+                   <a class="button button-primary" href="/logout"><?= Yii::t('frontend','Log Out') ?></a> </li>
                   <?php
               }
           }?>
