@@ -19,7 +19,7 @@ use backend\models\Country;
     {
         return [
             [['id'], 'integer'],
-            [['title', 'code', 'image_base_url', 'image_path', 'intro', 'details','status'], 'safe'],
+            [['title', 'code', 'image_base_url', 'image_path', 'intro', 'details','status','top_destination'], 'safe'],
         ];
     }
 
@@ -58,6 +58,7 @@ use backend\models\Country;
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
+            'top_destination' => $this->top_destination,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

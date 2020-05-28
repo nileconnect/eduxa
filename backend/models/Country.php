@@ -69,8 +69,15 @@ class Country extends BaseCountry
         return [
             [['intro', 'details'], 'string'],
             [['title', 'code', 'image_base_url', 'image_path'], 'string', 'max' => 255],
-            [['image','attachments','status'],'safe']
+            [['image','attachments','status','top_destination'],'safe']
         ];
     }
-	
+
+
+    public function getFlag($default = '/img/destinations/england.jpg')
+    {
+        return $this->image_path
+            ? Yii::getAlias($this->image_base_url . '/' . $this->image_path)
+            : $default;
+    }
 }
