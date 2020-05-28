@@ -29,6 +29,8 @@
                 ?>
                <li class="nav-item <?php if(Yii::$app->controller->id == 'dashboard' && Yii::$app->controller->action->id == 'index') echo 'active';?> ">
                    <a class="button button-primary" href="/dashboard"><?= Yii::t('frontend','My Eduxa') ?></a> </li>
+                   <li class="nav-item">
+                   <a class="button button-primary" href="/logout"><?= Yii::t('frontend','Log Out') ?></a> </li>
                <?php
                }else{
                 ?>

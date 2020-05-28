@@ -9,11 +9,11 @@
     width: 28px;
 }
 
-.auth-content .help-block {
+.help-block {
     color: crimson;
 }
 
-.auth-content .auth-form .form-group .form-check-group .form-check {
+.form-group .form-check-group .form-check {
     margin-right: 12px;
     padding-left: 0;
 }

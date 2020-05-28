@@ -25,6 +25,7 @@ if(Yii::$app->session->hasFlash('alert')){
     ]);
 }
 
+
 ?>
 
     <main class="content">

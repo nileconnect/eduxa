@@ -56,7 +56,7 @@ if($saved){
     </div>
 
     <div class="form-group" style="text-align: center">
-        <?= Html::submitButton( Yii::t('backend', 'Update'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton( Yii::t('backend', 'Update'), ['class' => 'button button-wide button-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

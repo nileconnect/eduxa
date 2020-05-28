@@ -34,11 +34,11 @@ echo newerton\fancybox3\FancyBox::widget([
                 <div>
                     <h3><?= $profile->fullName?></h3>
                     <div class="text-muted text-large"><?= $profile->country->title; ?>, <?= $profile->state->title; ?>, <?= $profile->city->title; ?></div>
-                    <div class="text-muted text-large"><a href="mailto:<?= $user->email ;?>"><?= $user->email ;?></a></div>
+                    <div class="text-muted text-large"><a href="mailto:<?= $user->email ;?>" style="    word-break: break-all;"><?= $user->email ;?></a></div>
                     <div class="text-muted text-large"><a href="tel:<?= $profile->mobile ;?>"><?= $profile->mobile ;?></a></div>
                 </div>
             </div>
-            <div class="profile_info_complation">
+            <div class="profile_info_complation"> 
                 <div class="profile_complete_progress">
                     <div class="progress">
                         <div class="progress-bar progress-bar-yellow" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>

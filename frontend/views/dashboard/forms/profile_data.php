@@ -18,7 +18,7 @@ if($saved){
 <div class="modal-body">
     <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-    <h2><?php echo Yii::t('frontend', 'Profile settings') ?></h2>
+    <h2 class="title title-sm"><?php echo Yii::t('frontend', 'Profile settings') ?></h2>
 
     <?php
 //    echo $form->field($model->getModel('profile'), 'picture')->widget(
@@ -140,7 +140,7 @@ if($saved){
     </div>
 
     <div class="form-group">
-        <?php echo Html::submitButton(Yii::t('frontend', 'Update'), ['class' => 'btn btn-primary']) ?>
+        <?php echo Html::submitButton(Yii::t('frontend', 'Update'), ['class' => 'button button-wide button-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
