@@ -27,61 +27,34 @@
             </div>
         </div>
     </header>
-    <footer class="item-footer">
-        <div>
-            <div class="item-label">Programm Name</div>
-            <div>Aerospace Engineering</div>
-            <div><small>Master: 2 Years</small></div>
-        </div>
-        <div>
-            <div class="item-label">Start Date</div>
-            <div>30 Jane 2018</div>
-        </div>
-        <div>
-            <div class="item-label">Annual Cost</div>
-            <div ><span class="original-price">25,700,00</span> <span class="currency">USD</span></div>
-            <div ><span class="converted-price">50,650,00</span> <span class="currency">LE</span></div>
-        </div>
-        <div>
-            <a href="#" class="button btn-block button-primary">Additional Info</a>
-        </div>
-    </footer>
-    <footer class="item-footer">
-        <div>
-            <div class="item-label">Programm Name</div>
-            <div>Aerospace Engineering</div>
-            <div><small>Master: 2 Years</small></div>
-        </div>
-        <div>
-            <div class="item-label">Start Date</div>
-            <div>30 Jane 2018</div>
-        </div>
-        <div>
-            <div class="item-label">Annual Cost</div>
-            <div ><span class="original-price">25,700,00</span> <span class="currency">USD</span></div>
-            <div ><span class="converted-price">50,650,00</span> <span class="currency">LE</span></div>
-        </div>
-        <div>
-            <a href="#" class="button btn-block button-primary">Additional Info</a>
-        </div>
-    </footer>
-    <footer class="item-footer">
-        <div>
-            <div class="item-label">Programm Name</div>
-            <div>Aerospace Engineering</div>
-            <div><small>Master: 2 Years</small></div>
-        </div>
-        <div>
-            <div class="item-label">Start Date</div>
-            <div>30 Jane 2018</div>
-        </div>
-        <div>
-            <div class="item-label">Annual Cost</div>
-            <div ><span class="original-price">25,700,00</span> <span class="currency">USD</span></div>
-            <div ><span class="converted-price">50,650,00</span> <span class="currency">LE</span></div>
-        </div>
-        <div>
-            <a href="#" class="button btn-block button-primary">Additional Info</a>
-        </div>
-    </footer>
+
+    <?php
+    if($university->universityLatestProgramsList){
+        foreach ($university->universityLatestProgramsList as $item) {
+            ?>
+            <footer class="item-footer">
+                <div>
+                    <div class="item-label">Programm Name</div>
+                    <div><?= $item->title ?></div>
+                    <div><small><?= $item->major->title ?>: <?= $item->study_duration_no ?> <?= \backend\models\University::listPeriods()[$item->study_duration] ?></small></div>
+                </div>
+                <div>
+                    <div class="item-label">Start Date</div>
+                    <div><?= $item->first_submission_date ?></div>
+                </div>
+                <div>
+                    <div class="item-label">Annual Cost</div>
+                    <div ><span class="original-price"><?= $item->annual_cost ?></span>
+                        <span class="currency"><?= $university->currency->currency_code ?></span>
+                    </div>
+                </div>
+                <div>
+                    <a href="#" class="button btn-block button-primary">Additional Info</a>
+                </div>
+            </footer>
+            <?
+        }
+    }
+    ?>
+
 </div>

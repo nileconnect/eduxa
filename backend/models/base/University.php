@@ -242,6 +242,11 @@ class University extends \yii\db\ActiveRecord
         return $program ;
     }
 
+    public function getUniversityLatestProgramsList($limit=3)
+    {
+        $program =  UniversityPrograms::find()->where(['university_id'=>$this->id ])->orderBy(['id'=>SORT_DESC])->limit($limit)->all();//,'status'=>1
+        return $program ;
+    }
 
 
     /**
