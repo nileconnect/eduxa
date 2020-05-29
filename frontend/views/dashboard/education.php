@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-sm-12">
 
-                                <a class="button button-wide button-primary" style="float:right"  data-fancybox="" data-type="iframe"
+                                <a class="button button-wide button-primary pull-right"  data-fancybox="" data-type="iframe"
                                    data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "600px" , "height" : "400px" }}}'
                                    href="/dashboard/certificate?id=<?= $userCertificate->id ?>">
                                     Edit
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <a class="button button-wide button-primary" style="float:right"  data-fancybox="" data-type="iframe"
+                                <a class="button button-wide button-primary pull-right"  data-fancybox="" data-type="iframe"
                                    data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "600px" , "height" : "300px" }}}'
                                    href="/dashboard/test-result?id=<?= $userTest->id ?>">
                                     Edit

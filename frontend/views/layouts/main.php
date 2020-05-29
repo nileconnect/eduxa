@@ -16,7 +16,7 @@ if(Yii::$app->session->hasFlash('alert')){
         'body' => \yii\helpers\ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
         'showSeparator' => false,
         'pluginOptions' => [
-            'showProgressbar' => true,
+            'showProgressbar' => false,
             'placement' => [
                 'from' => 'bottom',
                 'align' => 'center',

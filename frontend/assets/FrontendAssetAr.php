@@ -29,7 +29,9 @@ class FrontendAssetAr extends AssetBundle
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700&display=swap',
         'https://fonts.googleapis.com/css?family=Raleway:500,600,700&display=swap',
         'css/style-reverse.min.css',
+        'https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap',
         'css/custom.css',
+        'css/customAr.css',
     ];
 
     /**
