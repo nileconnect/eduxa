@@ -66,7 +66,7 @@ class University extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['currency_id','title'],'required'],
+            [['currency_id','title','next_to'],'required'],
             [['description','slug'], 'string'],
             [['total_rating'], 'number'],
             [['no_of_ratings', 'created_by', 'updated_by','status','responsible_id'], 'integer'],
