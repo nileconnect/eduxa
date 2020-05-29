@@ -27,7 +27,8 @@ use kartik\depdrop\DepDrop;
         <div class="form-group-row">
             <div class="form-group has-search">
                 <span class="fa fa-search form-control-feedback"></span>
-                <input type="text" class="form-control" placeholder="Search" name="UniversityProgramsSearch[university_title]">
+                <?= $form->field($model,'university_title')->textInput(['placeholder'=>'Search'])->label(false)?>
+<!--                <input type="text" class="form-control" placeholder="Search" name="UniversityProgramsSearch[university_title]">-->
             </div>
         </div>
         <div class="form-group-row">
@@ -71,16 +72,14 @@ use kartik\depdrop\DepDrop;
                 ])->label(false); ?>
             </div>
             <div class="form-group">
-                <div class="select-wrapper">
-                    <select class="form-control" name="UniversityProgramsSearch[university_total_rating]">
-                        <option value="">University rating</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="4">5</option>
-                    </select>
-                </div>
+                <?= $form->field($model, 'university_total_rating')->widget(\kartik\widgets\Select2::classname(), [
+                    'data' =>['1'=>'1' , '2'=>'2' ,'3'=>'3' ,'4'=>'4' ,'5'=>'5'],
+                    'options' => ['placeholder' => Yii::t('backend', 'University rating')],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ])->label(false); ?>
+
             </div>
 
 

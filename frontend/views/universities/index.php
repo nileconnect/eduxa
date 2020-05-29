@@ -70,25 +70,34 @@ if($countries){
                                 </div>
                             </div>
                         </header>
-                        <footer class="item-footer">
-                            <div>
-                                <div class="item-label">Programm Name</div>
-                                <div>Aerospace Engineering</div>
-                                <div><small>Master: 2 Years</small></div>
-                            </div>
-                            <div>
-                                <div class="item-label">Start Date</div>
-                                <div>30 Jane 2018</div>
-                            </div>
-                            <div>
-                                <div class="item-label">Annual Cost</div>
-                                <div ><span class="original-price">25,700,00</span><span class="sale-on">27.00</span> <span class="currency">USD</span></div>
-                                <div ><span class="converted-price">50,650,00</span> <span class="sale-on">27.00</span> <span class="currency">LE</span></div>
-                            </div>
-                            <div>
-                                <a href="#" class="button btn-block button-primary">Additional Info</a>
-                            </div>
-                        </footer>
+                        <?php
+                        $lastProg = $university->universityLatestProgram;
+                        if($lastProg){
+                            ?>
+                            <footer class="item-footer">
+                                <div>
+                                    <div class="item-label">Programm Name</div>
+                                    <div><?= $lastProg->title ?></div>
+                                    <div><small><?= $lastProg->major->title ?>: <?= $lastProg->study_duration_no ?> <?= \backend\models\University::listPeriods()[$lastProg->study_duration] ?></small></div>
+                                </div>
+                                <div>
+                                    <div class="item-label">Start Date</div>
+                                    <div><?= $lastProg->first_submission_date ?></div>
+                                </div>
+                                <div>
+                                    <div class="item-label">Annual Cost</div>
+                                    <div ><span class="original-price"><?= $lastProg->annual_cost ?></span>
+                                        <span class="currency"><?= $university->currency->currency_code ?></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="#" class="button btn-block button-primary">Additional Info</a>
+                                </div>
+                            </footer>
+                            <?
+                        }
+                        ?>
+
                     </div>
                     <?
                 }

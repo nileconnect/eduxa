@@ -36,14 +36,10 @@ class UniversitiesController extends FrontendController
 
     public function actionSearch()
     {
-        $countries = Country::find()->where(['status'=>1 , 'top_destination'=>1])->all();
-        $universities = University::find()->where(['status'=>1 , 'recommended'=>1])->all();
-
         $searchModel = new UniversityProgramsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->CustomSearch(Yii::$app->request->queryParams);
 
-
-        return $this->render('search' ,['countries'=>$countries , 'universities'=>$universities ,'searchModel'=>$searchModel]);
+        return $this->render('search' ,[ 'searchModel'=>$searchModel,'dataProvider'=>$dataProvider]);
     }
 
 

@@ -236,6 +236,14 @@ class University extends \yii\db\ActiveRecord
         return $this->hasMany(\backend\models\UniversityPrograms::className(), ['university_id' => 'id']);
     }
 
+    public function getUniversityLatestProgram()
+    {
+        $program =  UniversityPrograms::find()->where(['university_id'=>$this->id ])->orderBy(['id'=>SORT_DESC])->limit(1)->one();//,'status'=>1
+        return $program ;
+    }
+
+
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -266,4 +274,10 @@ class University extends \yii\db\ActiveRecord
     {
         return new \backend\models\activequery\UniversityQuery(get_called_class());
     }
+
+    public static function listPeriods(){
+
+        return  ['1'=>'Day' , '2'=>'Week' , '3'=>'Month'];
+    }
+
 }
