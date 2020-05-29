@@ -3,6 +3,8 @@
 namespace frontend\controllers;
 
 use backend\models\Country;
+use backend\models\search\UniversityProgramsSearch;
+use backend\models\University;
 use cheatsheet\Time;
 use common\sitemap\UrlsIterator;
 use frontend\models\ContactForm;
@@ -26,7 +28,24 @@ class UniversitiesController extends FrontendController
     public function actionIndex()
     {
         $countries = Country::find()->where(['status'=>1 , 'top_destination'=>1])->all();
-        return $this->render('index' ,['countries'=>$countries]);
+        $universities = University::find()->where(['status'=>1 , 'recommended'=>1])->all();
+
+        $searchModel = new UniversityProgramsSearch();
+        return $this->render('index' ,['countries'=>$countries , 'universities'=>$universities ,'searchModel'=>$searchModel]);
+    }
+
+    public function actionSearch()
+    {
+        $searchModel = new UniversityProgramsSearch();
+        $dataProvider = $searchModel->CustomSearch(Yii::$app->request->queryParams);
+
+        return $this->render('search' ,[ 'searchModel'=>$searchModel,'dataProvider'=>$dataProvider]);
+    }
+
+
+    public function actionCountry($slug){
+        $countries=$universities = '';
+        return $this->render('country' ,['countries'=>$countries , 'universities'=>$universities]);
     }
 
 }

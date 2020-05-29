@@ -69,7 +69,7 @@ class University extends \yii\db\ActiveRecord
             [['total_rating'], 'number'],
             [['no_of_ratings', 'created_by', 'updated_by','status','responsible_id'], 'integer'],
             [['title', 'image_base_url', 'image_path', 'detailed_address', 'location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['logo','photos','country_id','city_id','recommended'],'safe'],
+            [['logo','photos','country_id','city_id','state_id','recommended'],'safe'],
             [['next_to','currency_id'],'integer']
         ];
     }
@@ -188,17 +188,6 @@ class University extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\Country::className(), ['id' => 'country_id']);
     }
-
-    public function getCurrency()
-    {
-        return $this->hasOne(\backend\models\Currency::className(), ['id' => 'currency_id']);
-    }
-
-
-    public function getResponsible()
-    {
-        return $this->hasOne(\common\models\User::className(), ['id' => 'responsible_id']);
-    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -211,6 +200,19 @@ class University extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\State::className(), ['id' => 'state_id']);
     }
+
+
+    public function getCurrency()
+    {
+        return $this->hasOne(\backend\models\Currency::className(), ['id' => 'currency_id']);
+    }
+
+
+    public function getResponsible()
+    {
+        return $this->hasOne(\common\models\User::className(), ['id' => 'responsible_id']);
+    }
+
 
     public function getUniversityCountries()
     {
@@ -233,6 +235,19 @@ class University extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\UniversityPrograms::className(), ['university_id' => 'id']);
     }
+
+    public function getUniversityLatestProgram()
+    {
+        $program =  UniversityPrograms::find()->where(['university_id'=>$this->id ])->orderBy(['id'=>SORT_DESC])->limit(1)->one();//,'status'=>1
+        return $program ;
+    }
+
+    public function getUniversityLatestProgramsList($limit=3)
+    {
+        $program =  UniversityPrograms::find()->where(['university_id'=>$this->id ])->orderBy(['id'=>SORT_DESC])->limit($limit)->all();//,'status'=>1
+        return $program ;
+    }
+
 
     /**
      * @return \yii\db\ActiveQuery
@@ -264,4 +279,10 @@ class University extends \yii\db\ActiveRecord
     {
         return new \backend\models\activequery\UniversityQuery(get_called_class());
     }
+
+    public static function listPeriods(){
+
+        return  ['1'=>'Day' , '2'=>'Week' , '3'=>'Month'];
+    }
+
 }

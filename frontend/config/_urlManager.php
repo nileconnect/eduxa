@@ -18,6 +18,8 @@ return [
         ['pattern' => 'logout', 'route' => 'user/sign-in/logout'],
         ['pattern' => 'reset-password', 'route' => 'user/sign-in/request-password-reset'],
 
+        //universities
+        ['pattern' => 'universities/country/<slug>', 'route' => 'universities/country'],
 
 
         ['pattern' => 'article/attachment-download', 'route' => 'article/attachment-download'],
