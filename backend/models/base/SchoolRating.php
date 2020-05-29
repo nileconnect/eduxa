@@ -50,7 +50,7 @@ class SchoolRating extends \yii\db\ActiveRecord
             [['comment'], 'string'],
             [['rating'], 'number'],
             [['name', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 4]
+ [['status'], 'integer']
         ];
     }
 

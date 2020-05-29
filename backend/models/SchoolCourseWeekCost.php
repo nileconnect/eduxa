@@ -20,7 +20,7 @@ class SchoolCourseWeekCost extends BaseSchoolCourseWeekCost
             [['school_course_id', 'min_no_of_weeks'], 'required'],
             [['school_course_id', 'min_no_of_weeks', 'max_no_of_weeks'], 'integer'],
             [['cost'], 'number'],
-            [['status'], 'string', 'max' => 4]
+ [['status'], 'integer']
         ]);
     }
 	

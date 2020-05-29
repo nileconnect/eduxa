@@ -44,7 +44,7 @@ class Currency extends \yii\db\ActiveRecord
             [['conversion_rate'], 'number'],
             [['created_by', 'updated_by'], 'integer'],
             [['currency', 'currency_code', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 4]
+ [['status'], 'integer']
         ];
     }
 

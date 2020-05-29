@@ -18,9 +18,8 @@ class Currency extends BaseCurrency
         return array_replace_recursive(parent::rules(),
 	    [
             [['conversion_rate'], 'number'],
-            [['created_by', 'updated_by'], 'integer'],
+            [['created_by', 'updated_by','status'], 'integer'],
             [['currency', 'currency_code', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 4]
         ]);
     }
 	

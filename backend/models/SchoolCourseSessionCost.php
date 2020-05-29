@@ -18,9 +18,8 @@ class SchoolCourseSessionCost extends BaseSchoolCourseSessionCost
         return array_replace_recursive(parent::rules(),
 	    [
             [['school_course_id', 'weeks_per_session'], 'required'],
-            [['school_course_id', 'weeks_per_session', 'no_of_sessions'], 'integer'],
+            [['school_course_id', 'weeks_per_session', 'no_of_sessions','status'], 'integer'],
             [['session_cost', 'week_cost'], 'number'],
-            [['status'], 'string', 'max' => 4]
         ]);
     }
 	
