@@ -48,4 +48,10 @@ class UniversitiesController extends FrontendController
         return $this->render('country' ,['countries'=>$countries , 'universities'=>$universities]);
     }
 
+    public function actionView(){
+
+        return $this->render('view');
+    }
+
+
 }

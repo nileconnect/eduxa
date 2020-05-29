@@ -100,7 +100,7 @@ use kartik\depdrop\DepDrop;
                 <?php
                 // Child # 1
                 echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [],
+                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [''=>Yii::t('common','State')],
                     'options'=>['id'=>'City-id'],
                     'pluginOptions'=>[
                         'depends'=>['CountryId'],
@@ -115,7 +115,7 @@ use kartik\depdrop\DepDrop;
                 <?php
                 // Child # 1
                 echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->asArray()->all(), 'id', 'title') : [],
+                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->asArray()->all(), 'id', 'title') : [''=>Yii::t('common','City')],
                     'options'=>['id'=>'subcat-id'],
                     'pluginOptions'=>[
                         'depends'=>['City-id'],
