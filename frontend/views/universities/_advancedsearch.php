@@ -96,7 +96,7 @@ use kartik\depdrop\DepDrop;
                     ],
                 ])->label(false); ?>
             </div>
-            <div class="form-group">
+            
                 <?php
                 // Child # 1
                 echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
@@ -107,11 +107,10 @@ use kartik\depdrop\DepDrop;
                         'placeholder'=>Yii::t('common', 'State'),
                         'url'=>Url::to(['/helper/states'])
                     ]
-                ])->label(false); ?>
+                ])->label(false); 
 
                 ?>
-            </div>
-            <div class="form-group">
+            
                 <?php
                 // Child # 1
                 echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
@@ -122,10 +121,11 @@ use kartik\depdrop\DepDrop;
                         'placeholder'=>Yii::t('common', 'City'),
                         'url'=>Url::to(['/helper/cities'])
                     ]
-                ])->label(false); ?>
-
+                ])->label(false); 
                 ?>
-            </div>
+
+                
+          
             <div class="form-group">
                 <?= $form->field($model, 'university_nextTo')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityNextTo::find()->orderBy('id')->asArray()->all(), 'id', 'title'),

@@ -69,7 +69,7 @@
 										</div>
 									</div>
 									<div class="col-sm-12">
-										<a href="#" class="button button-wide button-primary" style="float:right" >Edit</a>
+										<a href="#" class="button button-wide button-primary pull-right"  >Edit</a>
 									</div>
 								</div>
 							</div>
@@ -127,7 +127,7 @@
 										</div>
 									</div>
 									<div class="col-sm-12">
-										<a href="#" class="button button-wide button-primary" style="float:right" >Edit</a>
+										<a href="#" class="button button-wide button-primary pull-right" >Edit</a>
 									</div>
 								</div>
 							</div>
