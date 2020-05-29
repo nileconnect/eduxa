@@ -104,6 +104,7 @@ class UniversityProgramsController extends BackendController
     {
         $model = $this->findModel($id);
         $modelStartDates= UniversityProgStartdate::find()->where(['university_prog_id'=>$id])->one();
+
         $model->university_id = Yii::$app->session->get('universityId');
         $universityObj = University::find()->where(['id'=>$model->university_id])->one();
         $model->country_id = $universityObj->country_id;
@@ -112,7 +113,10 @@ class UniversityProgramsController extends BackendController
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             $modelStartDates->load(Yii::$app->request->post());
-            $modelStartDates->save(false);
+            if(!$modelStartDates->save()){
+
+                var_dump($modelStartDates->errors); die;
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

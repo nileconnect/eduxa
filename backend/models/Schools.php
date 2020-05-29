@@ -8,6 +8,7 @@ use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use \backend\models\base\Schools as BaseSchools;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -38,7 +39,7 @@ class Schools extends BaseSchools
         return [
             ['title', 'required'],
             [['country_id', 'city_id', 'state_id','min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings','currency_id','next_to'], 'integer'],
-            [['details'], 'string'],
+            [['details','slug'], 'string'],
             [['accomodation_fees', 'registeration_fees', 'study_books_fees',  'discount', 'total_rating'], 'number'],
             [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at','detailed_address'], 'string', 'max' => 255],
             [['featured', 'status'], 'safe'],
@@ -75,6 +76,11 @@ class Schools extends BaseSchools
     public function behaviors()
     {
         return [
+            [
+                'class' => SluggableBehavior::class,
+                'attribute' => 'title',
+                'immutable' => true,
+            ],
             [
                 'class' => UploadBehavior::class,
                 'attribute' => 'logo',

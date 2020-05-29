@@ -5,6 +5,7 @@ namespace backend\models\base;
 use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
 use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the base model class for table "university_programs".
@@ -57,7 +58,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
-            'universityProgStartdates',
+            //'universityProgStartdates',
             'university',
             'major',
             'field',
@@ -163,7 +164,28 @@ class UniversityPrograms extends \yii\db\ActiveRecord
         return $this->hasOne(\backend\models\UniversityProgramDegree::className(), ['id' => 'degree_id']);
     }
 
+    public function getMethodOfStudy()
+    {
+        return $this->hasOne(\backend\models\UniversityProgrameMethodOfStudy::className(), ['id' => 'study_method']);
+    }
 
+    public function getFormatOfProg()
+    {
+        return $this->hasOne(\backend\models\UniversityProgrameFormat::className(), ['id' => 'program_format']);
+    }
+    public function getConditionalAdm()
+    {
+        return $this->hasOne(\backend\models\UniversityProgrameConditionalAdmission::className(), ['id' => 'conditional_admissions']);
+    }
+
+    public function getStudyLang()
+    {
+        return $this->hasOne(\backend\models\UniversityLangOfStudy::className(), ['id' => 'lang_of_study']);
+    }
+    public function getProgIelts()
+    {
+        return $this->hasOne(\backend\models\UniversityProgrameIlets::className(), ['id' => 'ielts']);
+    }
     /**
      * @inheritdoc
      * @return \backend\models\activequery\UniversityProgramsQuery the active query used by this AR class.
@@ -176,6 +198,13 @@ class UniversityPrograms extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+
+            [
+                'class' => SluggableBehavior::class,
+                'attribute' => 'title',
+                'immutable' => true,
+            ],
+
             'mlBehavior'=>[
                 'class'    => MultiLanguageBehavior::className(),
                 'mlConfig' => [

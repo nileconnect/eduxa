@@ -20,6 +20,11 @@ return [
 
         //universities
         ['pattern' => 'universities/country/<slug>', 'route' => 'universities/country'],
+        ['pattern' => 'university/<slug>', 'route' => 'universities/view'],
+
+
+        //universities programs
+        ['pattern' => 'university/program/<slug>', 'route' => 'universities/program'],
 
 
         ['pattern' => 'article/attachment-download', 'route' => 'article/attachment-download'],

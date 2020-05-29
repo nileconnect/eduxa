@@ -132,7 +132,7 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
     <div class="row ">
         <div class="col-md-6 col-sm-12">
             <div class="well">
-               Start Date
+               Start Dates
                 <ul class="MyMenu">
                    <li><?= $form->field($modelStartDates, 'm_1')->checkbox(); ?></li>
                    <li><?= $form->field($modelStartDates, 'm_2')->checkbox(); ?></li>

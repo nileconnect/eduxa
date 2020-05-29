@@ -6,6 +6,7 @@ use trntv\filekit\behaviors\UploadBehavior;
 use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
 use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
@@ -65,7 +66,8 @@ class University extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description'], 'string'],
+            [['currency_id','title'],'required'],
+            [['description','slug'], 'string'],
             [['total_rating'], 'number'],
             [['no_of_ratings', 'created_by', 'updated_by','status','responsible_id'], 'integer'],
             [['title', 'image_base_url', 'image_path', 'detailed_address', 'location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
@@ -88,6 +90,11 @@ class University extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+            [
+                'class' => SluggableBehavior::class,
+                'attribute' => 'title',
+                'immutable' => true,
+            ],
             [
                 'class' => UploadBehavior::class,
                 'attribute' => 'logo',
