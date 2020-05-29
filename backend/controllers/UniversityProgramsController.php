@@ -104,6 +104,11 @@ class UniversityProgramsController extends BackendController
     {
         $model = $this->findModel($id);
         $modelStartDates= UniversityProgStartdate::find()->where(['university_prog_id'=>$id])->one();
+        if(! $modelStartDates){
+            $modelStartDates = new UniversityProgStartdate();
+            $modelStartDates->university_prog_id = $id;
+            $modelStartDates->save(false);
+        }
 
         $model->university_id = Yii::$app->session->get('universityId');
         $universityObj = University::find()->where(['id'=>$model->university_id])->one();
