@@ -177,14 +177,25 @@ $config = [
     ],
 ];
 
-if (YII_ENV_PROD) {
-    $config['components']['log']['targets']['email'] = [
-        'class' => yii\log\EmailTarget::class,
-        'except' => ['yii\web\HttpException:*'],
-        'levels' => ['error', 'warning'],
-        'message' => ['from' => env('ROBOT_EMAIL'), 'to' => env('ADMIN_EMAIL')]
-    ];
-}
+//always send emails
+$config['components']['mailer']['transport'] = [
+    'class' => 'Swift_SmtpTransport',
+    'host' => env('SMTP_HOST'),
+    'port' => env('SMTP_PORT'),
+    'username' => env('SMTP_USER'),
+    'password' => env('SMTP_PASS'),
+    'encryption' => env('SMTP_ENC'),
+];
+
+
+//if (YII_ENV_PROD) {
+//    $config['components']['log']['targets']['email'] = [
+//        'class' => yii\log\EmailTarget::class,
+//        'except' => ['yii\web\HttpException:*'],
+//        'levels' => ['error', 'warning'],
+//        'message' => ['from' => env('ROBOT_EMAIL'), 'to' => env('ADMIN_EMAIL')]
+//    ];
+//}
 
 if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
@@ -195,11 +206,7 @@ if (YII_ENV_DEV) {
     $config['components']['cache'] = [
         'class' => yii\caching\DummyCache::class
     ];
-    $config['components']['mailer']['transport'] = [
-        'class' => 'Swift_SmtpTransport',
-        'host' => env('SMTP_HOST'),
-        'port' => env('SMTP_PORT'),
-    ];
+
 }
 
 return $config;

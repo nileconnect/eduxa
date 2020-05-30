@@ -199,7 +199,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'communtication_channel',
                             'value' => function($model){
-                                return $model->communtication_channel  ;
+                                return  \common\models\UserProfile::ListCommunicateChannels()[$model->communtication_channel]  ;
                             },
                             'format'=>'raw',
                             'visible'=>  User::IsRole($model->id , User::ROLE_USER),
@@ -211,11 +211,91 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <div class="tab-pane" id="tab_4-4">
-                <h2> No Certificate has been addedd</h2>
+
+                <?php
+                if($model->studentCertificates){
+                    foreach ($model->studentCertificates as $userCertificate) {
+                        ?>
+                        <div class="row mtmd bg-white pllg prlg ptlg pblg shadow-sm" style="background-color: white">
+
+                            <div class="col-sm-6">
+                                <div class="text-large">
+                                    <span>Certificate : </span>
+                                    <span class="text-muted"><?= $userCertificate->certificate_name?></span>
+                                </div>
+                                <div class="text-large">
+                                    <span>Grade : </span>
+                                    <span class="text-muted"><?= $userCertificate->grade?></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="text-large">
+                                    <span>Year Of Graduation :</span>
+                                    <span class="text-muted"><?= $userCertificate->year?></span>
+                                </div>
+                                <div class="text-large">
+                                    <span>University or School : </span>
+                                    <span class="text-muted"><?= $userCertificate->university_or_school ?></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-large">
+                                    <span>Country : </span>
+                                    <span class="text-muted"><?= $userCertificate->country->title?></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr/>
+                        <?
+                    }
+                }else{
+                    ?>
+                    <h2> No Certificate has been added</h2>
+                    <?
+                }
+                ?>
+
+
+
             </div>
 
             <div class="tab-pane" id="tab_5-5">
-                <h2> No Test Results has been addedd</h2>
+
+                <?php
+                if($model->studentTestResults){
+                    foreach ($model->studentTestResults as $userTest) {
+                        ?>
+                        <div class="row " style="background-color: white">
+                            <div class="col-sm-6">
+                                <div class="text-large">
+                                    <span>Test Name : </span>
+                                    <span class="text-muted"><?= $userTest->test_name ?></span>
+                                </div>
+                                <div class="text-large">
+                                    <span>score : </span>
+                                    <span class="text-muted"><?= $userTest->score ?></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="text-large">
+                                    <span>Test Date :</span>
+                                    <span class="text-muted"><?= $userTest->test_date ?></span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <?
+                    }
+                }else{
+                    ?>
+                    <h2> No Test Results has been added</h2>
+                    <?
+                }
+                ?>
+
             </div>
 
 

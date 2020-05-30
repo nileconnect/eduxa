@@ -35,7 +35,7 @@ $this->endContent() ;
 						</div>
 						<div class="text-large">
 							<span><?php echo Yii::t('frontend','Nationality'); ?> : </span>
-							<span class="text-muted"><?= $profile ->profileNationality->title?></span>
+							<span class="text-muted"><?= $profile ->nationality?></span>
 						</div>
 					</div>
 					<div class="col-sm-6">

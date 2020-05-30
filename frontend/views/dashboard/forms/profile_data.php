@@ -129,7 +129,7 @@ if($saved){
 
     <h2 class="title title-sm"><?php echo Yii::t('frontend', 'Account Settings') ?></h2>
 
-    <?php echo $form->field($model->getModel('account'), 'email') ?>
+    <?php // echo $form->field($model->getModel('account'), 'email') ?>
     <div class="row">
         <div class="col-sm-6">
              <?php echo $form->field($model->getModel('account'), 'password')->passwordInput() ?>

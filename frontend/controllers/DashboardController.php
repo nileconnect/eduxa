@@ -115,6 +115,7 @@ class DashboardController extends FrontendController
                 'title' =>'',
             ]);
         }
+        //var_dump($profile->errors); die;
         return $this->render('forms/_avatar', [
             'profile' => $profile,
             'saved'=>$saved

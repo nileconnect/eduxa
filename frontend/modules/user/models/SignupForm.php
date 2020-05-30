@@ -62,7 +62,7 @@ class SignupForm extends Model
             [['firstname','lastname','gender','email','mobile','nationality','find_us_from','communtication_channel','password','password_confirm',
                 'country_id','city_id','state_id'
                 ], 'required'],
-
+            ['nationality','string', 'min' => 2, 'max' => 60],
             [ ['firstname' ,'lastname'], 'string', 'min' => 2, 'max' => 15],
 
             ['email', 'filter', 'filter' => 'trim'],
@@ -133,6 +133,7 @@ class SignupForm extends Model
             $user->status = $shouldBeActivated ? User::STATUS_NOT_ACTIVE : User::STATUS_ACTIVE;
             $user->setPassword($this->password);
             if (!$user->save()) {
+                var_dump($user->errors);die;
                 throw new Exception("User couldn't be  saved");
             };
             $profileData['firstname']=$this->firstname;

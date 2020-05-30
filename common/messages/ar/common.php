@@ -139,7 +139,7 @@ return [
     'Username' => 'اسم المستخدم',
     'Value' => 'القيمه',
 
-    //signup
+    //signup && signin
     'Google' => 'جوجل',
     'Facebook' => 'فيسبوك',
     'Twitter' => 'تويتر',
@@ -155,7 +155,7 @@ return [
     'Confirm Password'=>'تأكيد كلمة المرور',
     'University Education' => 'الجامعات',
     'Language School' => 'المدارس',
-    '' => '',
+    'Sign in' => 'تسجيل الدخول',
     '' => '',
     '' => '',
 

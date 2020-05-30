@@ -20,10 +20,13 @@ class StudentTestResults extends BaseStudentTestResults
             [['user_id', 'test_date','score','test_name'], 'required'],
 
             [['user_id', 'country_id'], 'integer'],
-            ['test_date', 'number' , 'max'=>date('Y')],
+            ['test_date', 'number' ,'min'=>1950, 'max'=>date('Y')],
 
             [['score'], 'number'],
-            [['test_name',  'created_at', 'updated_at'], 'string', 'max' => 255]
+            [['created_at', 'updated_at'], 'string', 'max' => 255],
+
+            [['test_name'], 'string','min'=>2, 'max' => 30],
+
         ]);
     }
 	

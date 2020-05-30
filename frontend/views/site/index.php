@@ -20,7 +20,7 @@ $this->title = Yii::$app->name;
                     <h4 class="big-text mtmd shadow-sm"><?= Yii::t('frontend','Check out our Exclusive offers') ?></h4>
 
                     <div class="mtmd">
-                        <a href="#" class="button button-white button-wide text-large"><?= Yii::t('frontend','Universities Offers') ?></a>
+                        <a href="/universities" class="button button-white button-wide text-large"><?= Yii::t('frontend','Universities Offers') ?></a>
                         <a href="#" class="button button-white button-wide text-large"><?= Yii::t('frontend','Language Schools Offers') ?></a>
                     </div>
                 </div>
@@ -34,7 +34,7 @@ $this->title = Yii::$app->name;
                     <h4 class="big-text mtmd shadow-sm"><?= Yii::t('frontend','Check out our Exclusive offers') ?></h4>
 
                     <div class="mtmd">
-                        <a href="#" class="button button-white button-wide text-large"><?= Yii::t('frontend','Universities Offers') ?></a>
+                        <a href="/universities" class="button button-white button-wide text-large"><?= Yii::t('frontend','Universities Offers') ?></a>
                         <a href="#" class="button button-white button-wide text-large"><?= Yii::t('frontend','Language Schools Offers') ?></a>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ $this->title = Yii::$app->name;
                     <h4 class="big-text mtmd shadow-sm"><?= Yii::t('frontend','Check out our Exclusive offers') ?></h4>
 
                     <div class="mtmd">
-                        <a href="#" class="button button-white button-wide text-large"><?= Yii::t('frontend','Universities Offers') ?></a>
+                        <a href="/universities" class="button button-white button-wide text-large"><?= Yii::t('frontend','Universities Offers') ?></a>
                         <a href="#" class="button button-white button-wide text-large"><?= Yii::t('frontend','Language Schools Offers') ?></a>
                     </div>
                 </div>
