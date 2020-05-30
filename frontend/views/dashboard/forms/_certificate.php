@@ -20,7 +20,7 @@ if($saved){
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
-    <h2 class="title title-sm"><?php echo Yii::t('frontend', 'Certificate details') ?></h2>
+    <h2 class="title title-sm"><?php echo Yii::t('frontend', 'Certificate Details') ?></h2>
 
     <?php
     //    echo $form->field($model, 'picture')->widget(
@@ -32,12 +32,12 @@ if($saved){
     ?>
     <div class="row">
         <div class="col-sm-6">
-            <?php echo $form->field($model, 'certificate_name')->textInput(['placeholder'=>Yii::t('common','Certificate Name')])
-                ->label(Yii::t('common','Certificate Name') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($model, 'certificate_name')->textInput(['placeholder'=>Yii::t('frontend','Certificate Name')])
+                ->label(Yii::t('frontend','Certificate Name') ,['class'=>'label-control']); ?>
         </div>
         <div class="col-sm-6">
-            <?php echo $form->field($model, 'year')->textInput(['placeholder'=>Yii::t('common','Year')])
-                ->label(Yii::t('common','Year') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($model, 'year')->textInput(['placeholder'=>Yii::t('frontend','Year Of Graduation')])
+                ->label(Yii::t('frontend','Year Of Graduation') ,['class'=>'label-control']); ?>
         </div>
 
 
@@ -45,12 +45,12 @@ if($saved){
 
     <div class="row">
         <div class="col-sm-6">
-                <?php echo $form->field($model, 'grade')->textInput(['placeholder'=>Yii::t('common','Grade')])
-                    ->label(Yii::t('common','Grade') ,['class'=>'label-control']); ?>
+                <?php echo $form->field($model, 'grade')->textInput(['placeholder'=>Yii::t('frontend','Grade')])
+                    ->label(Yii::t('frontend','Grade') ,['class'=>'label-control']); ?>
         </div>
         <div class="col-sm-6">
-            <?php echo $form->field($model, 'university_or_school')->textInput(['placeholder'=>Yii::t('common','University or School')])
-                ->label(Yii::t('common','University or School') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($model, 'university_or_school')->textInput(['placeholder'=>Yii::t('frontend','University or School')])
+                ->label(Yii::t('frontend','University or School') ,['class'=>'label-control']); ?>
         </div>
     </div>
 

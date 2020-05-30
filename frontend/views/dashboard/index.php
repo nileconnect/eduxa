@@ -26,7 +26,7 @@ $this->endContent() ;
 							<span class="text-muted"><?= $user->email?></span>
 						</div>
 						<div class="text-large">
-							<span><?php echo Yii::t('frontend','Gender'); ?> : </span>
+							<span><?php echo Yii::t('common','Gender'); ?> : </span>
 							<span class="text-muted"><?= \common\models\UserProfile::ListGender()[ $profile->gender]?></span>
 						</div>
 						<div class="text-large">
@@ -34,7 +34,7 @@ $this->endContent() ;
 							<span class="text-muted"><?= $profile->mobile ?></span>
 						</div>
 						<div class="text-large">
-							<span><?php echo Yii::t('frontend','Nationality'); ?> : </span>
+							<span><?php echo Yii::t('common','Nationality'); ?> : </span>
 							<span class="text-muted"><?= $profile ->nationality?></span>
 						</div>
 					</div>
@@ -52,11 +52,11 @@ $this->endContent() ;
 							<span class="text-muted"><?= $profile->city->title?></span>
 						</div>
 						<div class="text-large">
-							<span><?php echo Yii::t('frontend','Best way of communication'); ?> : </span>
+							<span><?php echo Yii::t('common','Best way of communication'); ?> : </span>
 							<span class="text-muted"><?= \common\models\UserProfile::ListCommunicateChannels()[$profile->communtication_channel]?></span>
 						</div>
 						<div class="text-large">
-							<span><?php echo Yii::t('frontend','Intersted In'); ?> : </span>
+							<span><?php echo Yii::t('common','Intersted In'); ?> : </span>
 
                             <?php if($profile->interested_in_university){
                                 ?>

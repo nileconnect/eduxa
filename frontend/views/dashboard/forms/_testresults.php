@@ -32,12 +32,12 @@ if($saved){
     ?>
     <div class="row">
         <div class="col-sm-6">
-            <?php echo $form->field($model, 'test_name')->textInput(['placeholder'=>Yii::t('common','Test Name')])
-                ->label(Yii::t('common','Test Name') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($model, 'test_name')->textInput(['placeholder'=>Yii::t('frontend','Test Name')])
+                ->label(Yii::t('frontend','Test Name') ,['class'=>'label-control']); ?>
         </div>
         <div class="col-sm-6">
-            <?php echo $form->field($model, 'test_date')->textInput(['placeholder'=>Yii::t('common','Test Date')])
-                ->label(Yii::t('common','Test Date') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($model, 'test_date')->textInput(['placeholder'=>Yii::t('frontend','Test Date')])
+                ->label(Yii::t('frontend','Test Date') ,['class'=>'label-control']); ?>
         </div>
 
 
@@ -45,8 +45,8 @@ if($saved){
 
     <div class="row">
         <div class="col-sm-6">
-                <?php echo $form->field($model, 'score')->textInput(['placeholder'=>Yii::t('common','Score')])
-                    ->label(Yii::t('common','Score') ,['class'=>'label-control']); ?>
+                <?php echo $form->field($model, 'score')->textInput(['placeholder'=>Yii::t('frontend','Score')])
+                    ->label(Yii::t('frontend','Score') ,['class'=>'label-control']); ?>
         </div>
 
     </div>

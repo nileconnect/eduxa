@@ -15,7 +15,7 @@
 
 
 				
-				<h2 class="title title-sm"><i class="fas fa-graduation-cap"></i> Certificates</h2>
+				<h2 class="title title-sm"><i class="fas fa-graduation-cap"></i> <?php echo Yii::t('frontend','Certificates'); ?></h2>
 
 				<?php
                 if($user->studentCertificates){
@@ -24,28 +24,28 @@
                         <div class="row mtmd bg-white pllg prlg ptlg pblg shadow-sm">
                             <div class="col-sm-6">
                                 <div class="text-large">
-                                    <span>Certificate : </span>
+                                    <span><?php echo Yii::t('frontend','Certificate'); ?> : </span>
                                     <span class="text-muted"><?= $userCertificate->certificate_name?></span>
                                 </div>
                                 <div class="text-large">
-                                    <span>Grade : </span>
+                                    <span><?php echo Yii::t('frontend','Grade'); ?> : </span>
                                     <span class="text-muted"><?= $userCertificate->grade?></span>
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="text-large">
-                                    <span>Year Of Graduation :</span>
+                                    <span><?php echo Yii::t('frontend','Year Of Graduation'); ?> :</span>
                                     <span class="text-muted"><?= $userCertificate->year?></span>
                                 </div>
                                 <div class="text-large">
-                                    <span>University or School : </span>
+                                    <span><?php echo Yii::t('frontend','University or School'); ?> : </span>
                                     <span class="text-muted"><?= $userCertificate->university_or_school ?></span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-large">
-                                    <span>Country : </span>
+                                    <span><?php echo Yii::t('frontend','Country'); ?> : </span>
                                     <span class="text-muted"><?= $userCertificate->country->title?></span>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                                 <a class="button button-wide button-primary pull-right"  data-fancybox="" data-type="iframe"
                                    data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "600px" , "height" : "400px" }}}'
                                    href="/dashboard/certificate?id=<?= $userCertificate->id ?>">
-                                    Edit
+								   <?php echo Yii::t('common','Edit'); ?>
                                 </a>
 
                             </div>
@@ -68,7 +68,7 @@
                     <a class="button button-wide button-primary" data-fancybox="" data-type="iframe"
                        data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "600px" , "height" : "400px" }}}'
                        href="/dashboard/certificate">
-                    Add Certificate
+					   <?php echo Yii::t('frontend','Add Certificate'); ?>
                     </a>
 				</div>
 
@@ -76,7 +76,7 @@
 
 				<div class="mtlg">
 				
-				<h2 class="title title-sm"><i class="fas fa-graduation-cap"></i> Test Results</h2>
+				<h2 class="title title-sm"><i class="fas fa-graduation-cap"></i> <?php echo Yii::t('frontend','Test Results'); ?></h2>
 
                     <?php
                     if($user->studentTestResults){
@@ -85,18 +85,18 @@
                         <div class="row mtmd bg-white pllg prlg ptlg pblg shadow-sm">
                             <div class="col-sm-6">
                                 <div class="text-large">
-                                    <span>Test Name : </span>
+                                    <span><?php echo Yii::t('frontend','Test Name'); ?> : </span>
                                     <span class="text-muted"><?= $userTest->test_name ?></span>
                                 </div>
                                 <div class="text-large">
-                                    <span>score : </span>
+                                    <span><?php echo Yii::t('frontend','Score'); ?> : </span>
                                     <span class="text-muted"><?= $userTest->score ?></span>
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="text-large">
-                                    <span>Test Date :</span>
+                                    <span><?php echo Yii::t('frontend','Test Date'); ?> :</span>
                                     <span class="text-muted"><?= $userTest->test_date ?></span>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                                 <a class="button button-wide button-primary pull-right"  data-fancybox="" data-type="iframe"
                                    data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "600px" , "height" : "300px" }}}'
                                    href="/dashboard/test-result?id=<?= $userTest->id ?>">
-                                    Edit
+								   <?php echo Yii::t('common','Edit'); ?>
                                 </a>
                             </div>
 
@@ -118,7 +118,7 @@
                         <a class="button button-wide button-primary" data-fancybox="" data-type="iframe"
                            data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "600px" , "height" : "400px" }}}'
                            href="/dashboard/test-results">
-                            Add Test Results
+						   <?php echo Yii::t('frontend','Add Test Results'); ?>
                         </a>
                     </div>
 
@@ -136,7 +136,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Add Certificate</h5>
+        <h5 class="modal-title text-primary" id="exampleModalCenterTitle"><?php echo Yii::t('frontend','Certificates'); ?>Add Certificate</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -145,13 +145,13 @@
         <div class="row">
         	<div class="col-sm-6">
         		<div class="form-group">
-        			<label for="" class="label-control">Certificate Name</label>
+        			<label for="" class="label-control"><?php echo Yii::t('frontend','Certificates'); ?>Certificate Name</label>
         			<input type="text" name="" class="form-control" placeholder="">
         		</div>
         	</div>
         	<div class="col-sm-6">
         		<div class="form-group">
-        			<label for="" class="label-control">Year</label>
+        			<label for="" class="label-control"><?php echo Yii::t('frontend','Certificates'); ?>Year</label>
         			<div class="select-wrapper">
         				<select name="" id="" class="form-control">
         					<option value="1">2000</option>
@@ -167,7 +167,7 @@
         <div class="row">
         	<div class="col-sm-6">
         		<div class="form-group">
-        			<label for="" class="label-control">Grade</label>
+        			<label for="" class="label-control"><?php echo Yii::t('frontend','Certificates'); ?>Grade</label>
         			<input type="text" name="" class="form-control" placeholder="">
         		</div>
         	</div>
