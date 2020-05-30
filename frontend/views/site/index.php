@@ -1,7 +1,3 @@
-<?php
-/* @var $this yii\web\View */
-$this->title = Yii::$app->name;
-?>
 
 <section class="slider">
     <ul class="flaoted-socials">

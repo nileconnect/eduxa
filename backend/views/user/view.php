@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use common\models\User;
+use yii\bootstrap\ActiveForm;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
 
@@ -11,6 +13,20 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Users'), 'url' =
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
+
+<?php $form = ActiveForm::begin() ?>
+<div class="tab-pane" id="tab_2-2">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <?php echo $form->field($model, 'status')->dropDownList(User::statuses()) ?>
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <?php echo Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+    </div>
+</div>
+<?php ActiveForm::end() ?>
 <div class="user-view">
 
     <p>

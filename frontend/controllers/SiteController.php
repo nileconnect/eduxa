@@ -59,6 +59,11 @@ class SiteController extends FrontendController
      */
     public function actionIndex()
     {
+
+        $seotitle=$title= 'Eduxa';
+        $this->AllTags($seotitle);
+        \Yii::$app->view->title= $title;
+
         $this->layout = 'landingLayout';
         return $this->render('index');
     }

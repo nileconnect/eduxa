@@ -50,6 +50,11 @@ class DashboardController extends FrontendController
      */
     public function actionIndex()
     {
+        $seotitle=$title= 'Eduxa - User Profile';
+        $this->AllTags($seotitle);
+        \Yii::$app->view->title= $title;
+
+
         $user =Yii::$app->user->identity ;
         $profile =Yii::$app->user->identity->userProfile ;
 

@@ -58,6 +58,14 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        if(Yii::$app->user->can('user')){
+            return $this->redirect('/dashboard');
+        }else{
+            return $this->redirect('/referral-dashboard');
+
+        }
+
+
         $accountForm = new AccountForm();
         $accountForm->setUser(Yii::$app->user->identity);
 
