@@ -105,7 +105,7 @@ use yii\helpers\Url;
                 <?php
                 // Child # 1
                 echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->asArray()->all(), 'id', 'title') : [],
+                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->state_id])->asArray()->all(), 'id', 'title') : [],
                     'options'=>['id'=>'subcat-id'],
                     'pluginOptions'=>[
                         'depends'=>['City-id'],
