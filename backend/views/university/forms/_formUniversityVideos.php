@@ -12,6 +12,12 @@ $dataProvider = new ArrayDataProvider([
         'pageSize' => -1
     ]
 ]);
+
+?>
+
+    <h5 style="color: darkseagreen"><i>Please upload videos to youtube and add links here</i></h5>
+    <?
+
 echo TabularForm::widget([
     'dataProvider' => $dataProvider,
     'formName' => 'UniversityVideos',
@@ -25,7 +31,10 @@ echo TabularForm::widget([
        // 'path' => ['type' => TabularForm::INPUT_TEXT],
         'name' => ['type' => TabularForm::INPUT_TEXT],
 
-        'base_url' => ['type' => TabularForm::INPUT_TEXT],
+        'base_url' => [
+                'type' => TabularForm::INPUT_TEXT,
+               'options'=>['type' => 'url' ,'placeholder'=>'https://www.youtube.com/watch?v=XXXXXX' ]//'pattern'=>'https://www.youtube.com/watch?v=
+            ],
        // 'type' => ['type' => TabularForm::INPUT_TEXT],
         //'size' => ['type' => TabularForm::INPUT_TEXT],
         //'order' => ['type' => TabularForm::INPUT_TEXT],

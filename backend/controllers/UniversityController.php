@@ -151,9 +151,16 @@ class UniversityController extends BackendController
         $saved= false;
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            $extraMessage = '';
+            foreach ($model->universityVideos as $universityVideo) {
+                if(! $this->validateYoutube($universityVideo->base_url)){
+                   $universityVideo->delete();
+                   $extraMessage = ' -  but some videos are not valid urls';
+                }
+            }
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
-                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
+                'body' => \Yii::t('hr', 'Data has been updated Successfully'.$extraMessage) ,
                 'title' =>'',
             ]);
             $saved= true;
@@ -165,6 +172,17 @@ class UniversityController extends BackendController
     }
 
 
+    public function validateYoutube($yt_url)
+    {
+        // $yt_url = "https://www.youtube.com/watch?v=cCO2tPGa-dM";
+        $url_parsed_arr = parse_url($yt_url);
+        if ($url_parsed_arr['host'] == "www.youtube.com" && $url_parsed_arr['path'] == "/watch" && substr($url_parsed_arr['query'], 0, 2) == "v=" && substr($url_parsed_arr['query'], 2) != "") {
+            return true;
+        } else {
+            return false;
+
+        }
+    }
 
     public function actionAssign($id){
         $this->layout = 'base';
