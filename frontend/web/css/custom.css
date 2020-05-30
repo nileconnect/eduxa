@@ -31,7 +31,7 @@
     width: 30%;
     display: inline-block;
     margin: 0 1%;
-    padding: .9rem 1.6rem;
+    padding: .9rem 0;
 }
 
 .contList {
@@ -43,5 +43,5 @@
     width: 30%;
     display: inline-block;
     margin: 0 1%;
-    padding: .9rem 1.6rem;
+    padding: .9rem 0;
 }
