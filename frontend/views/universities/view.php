@@ -164,7 +164,8 @@
                                         ?>
                                         <div class="col-sm-6 mbsm">
                                             <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="<?= $universityVideo->base_url?>" allowfullscreen></iframe>
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $universityVideo->base_url?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    
                                             </div>
                                         </div>
                                         <?

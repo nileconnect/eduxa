@@ -84,7 +84,7 @@ if($saved){
             // Child # 1
             echo $form->field($model->getModel('profile'), 'state_id')->widget(DepDrop::classname(), [
                 'data' =>$model->getModel('profile')->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->getModel('profile')->country_id])->asArray()->all(), 'id', 'title') : [],
-                'options'=>['id'=>'City-id'],
+                'options'=>['id'=>'State-id'],
                 'pluginOptions'=>[
                     'depends'=>['CountryId'],
                     'placeholder'=>'Select...',
@@ -99,10 +99,10 @@ if($saved){
             <?php
             // Child # 1
             echo $form->field($model->getModel('profile'), 'city_id')->widget(DepDrop::classname(), [
-                'data' =>$model->getModel('profile')->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->getModel('profile')->city_id])->asArray()->all(), 'id', 'title') : [],
+                'data' =>$model->getModel('profile')->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->getModel('profile')->state_id])->asArray()->all(), 'id', 'title') : [],
                 'options'=>['id'=>'subcat-id'],
                 'pluginOptions'=>[
-                    'depends'=>['City-id'],
+                    'depends'=>['State-id'],
                     'placeholder'=>'Select...',
                     'url'=>Url::to(['/helper/cities'])
                 ]

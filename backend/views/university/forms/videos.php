@@ -42,6 +42,7 @@ if($saved){
 
     <div class="col-md-4">
         <div class="well">
+
             <?php
             $forms = [
 
@@ -53,6 +54,7 @@ if($saved){
                 ],
 
             ];
+
             echo kartik\tabs\TabsX::widget([
                 'items' => $forms,
                 'position' => kartik\tabs\TabsX::POS_ABOVE,

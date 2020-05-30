@@ -87,7 +87,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
                         // Child # 1
                         echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
                             'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [],
-                            'options'=>['id'=>'City-id'],
+                            'options'=>['id'=>'State-id'],
                             'pluginOptions'=>[
                                 'depends'=>['CountryId'],
                                 'placeholder'=>'Select...',
@@ -104,10 +104,10 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
                         <?php
                         // Child # 1
                         echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                            'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->asArray()->all(), 'id', 'title') : [],
+                            'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->state_id])->asArray()->all(), 'id', 'title') : [],
                             'options'=>['id'=>'subcat-id'],
                             'pluginOptions'=>[
-                                'depends'=>['City-id'],
+                                'depends'=>['State-id'],
                                 'placeholder'=>'Select...',
                                 'url'=>Url::to(['/helper/cities'])
                             ]
