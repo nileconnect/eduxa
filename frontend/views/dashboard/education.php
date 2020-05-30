@@ -102,7 +102,7 @@
                             </div>
                             <div class="col-sm-12">
                                 <a class="button button-wide button-primary pull-right"  data-fancybox="" data-type="iframe"
-                                   data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "600px" , "height" : "300px" }}}'
+                                   data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "600px" , "height" : "400px" }}}'
                                    href="/dashboard/test-results?id=<?= $userTest->id ?>">
 								   <?php echo Yii::t('common','Edit'); ?>
                                 </a>

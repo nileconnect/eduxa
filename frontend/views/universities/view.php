@@ -52,10 +52,10 @@
         <div class="university-tabs">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="majors-tab" data-toggle="tab" href="#tabMajors" role="tab" aria-controls="majors" aria-selected="true">Majors (<?= count($universityMajors)?>)</a>
+                    <a class="nav-link active" id="majors-tab" data-toggle="tab" href="#tabMajors" role="tab" aria-controls="majors" aria-selected="true"><?php echo Yii::t('frontend','Majors'); ?> (<?= count($universityMajors)?>)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="programs-tab" data-toggle="tab" href="#tabPrograms" role="tab" aria-controls="programs" aria-selected="false">Programs (<?= count($universityObj->universityPrograms)?>)</a>
+                    <a class="nav-link" id="programs-tab" data-toggle="tab" href="#tabPrograms" role="tab" aria-controls="programs" aria-selected="false"><?php echo Yii::t('frontend','Programs'); ?> (<?= count($universityObj->universityPrograms)?>)</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -97,7 +97,7 @@
 <section class="section">
     <div class="container">
 
-        <h2 class="title title-sm title-black">Accredited by the following</h2>
+        <h2 class="title title-sm title-black"><?php echo Yii::t('frontend','Accredited by the following'); ?></h2>
         <div class="bg-white pllg ptlg pblg prlg b-all">
             <ul>
             <?php
@@ -126,10 +126,10 @@
                 <div class="university-tabs">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true">Images</a>
+                            <a class="nav-link active" id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true"><?php echo Yii::t('common','Images'); ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false">Videos</a>
+                            <a class="nav-link" id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false"><?php echo Yii::t('common','Videos'); ?></a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -181,7 +181,7 @@
 
             <div class="col-sm-6">
                 <div>
-                    <h2 class="title title-sm title-black">Location on Map</h2>
+                    <h2 class="title title-sm title-black"><?php echo Yii::t('common','Location on Map'); ?></h2>
                     <div>
                         <div class="map-wrapper">
                             <iframe src="https://maps.google.com/maps?q=<?= $universityObj->lat?>,<?= $universityObj->lng?>&hl=es;z=14&amp;output=embed"
