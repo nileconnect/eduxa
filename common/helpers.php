@@ -76,3 +76,15 @@ function MyWeekDays(){
     ];
 
 }
+
+function MyYoutubeVideoID( $data )
+{
+    // IF 11 CHARS
+    if( strlen($data) == 11 )
+    {
+        return $data;
+    }
+
+    preg_match( "/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/", $data, $matches);
+    return isset($matches[2]) ? $matches[2] : false;
+}
