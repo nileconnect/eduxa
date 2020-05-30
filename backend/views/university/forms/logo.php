@@ -52,10 +52,20 @@ if($saved){
 
     <div class="col-md-4">
         <div class="well">
+<!--            --><?php //echo $form->field($model, 'logo')->widget(
+//                Upload::class,
+//                [
+//                    'url' => ['/file/storage/upload'],
+//                    'maxFileSize' => 5000000, // 5 MiB
+//                ]);
+//            ?>
+
             <?php echo $form->field($model, 'logo')->widget(
                 Upload::class,
                 [
-                    'url' => ['/file/storage/upload'],
+                    'url' => ['/university/avatar-upload'],
+                    'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(gif|jpeg|png)$/i'),
+                    'uploadPath' => '/university/'.$model->id.'/logo' , // optional, for storing files in storage subfolder
                     'maxFileSize' => 5000000, // 5 MiB
                 ]);
             ?>

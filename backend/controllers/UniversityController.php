@@ -6,6 +6,7 @@ use backend\models\UniversityVidC;
 use backend\models\UserForm;
 use common\models\User;
 use common\models\UserProfile;
+use Intervention\Image\ImageManagerStatic;
 use trntv\filekit\actions\DeleteAction;
 use trntv\filekit\actions\UploadAction;
 use Yii;
@@ -32,14 +33,29 @@ class UniversityController extends BackendController
         ];
     }
 
+
     public function actions()
     {
         return [
-
             'avatar-upload' => [
                 'class' => UploadAction::class,
                 'deleteRoute' => 'avatar-delete',
                 'on afterSave' => function ($event) {
+                    /* @var $file \League\Flysystem\File */
+                    $file = $event->file;
+                    $img = ImageManagerStatic::make($file->read())->fit(400, 300);
+                    $file->put($img->encode());
+                }
+            ],
+
+            'media-upload' => [
+                'class' => UploadAction::class,
+                'deleteRoute' => 'avatar-delete',
+                'on afterSave' => function ($event) {
+                    /* @var $file \League\Flysystem\File */
+                    $file = $event->file;
+                    $img = ImageManagerStatic::make($file->read())->fit(600, 600);
+                    $file->put($img->encode());
                 }
             ],
             'avatar-delete' => [
@@ -47,7 +63,7 @@ class UniversityController extends BackendController
             ]
         ];
     }
-    /**
+       /**
      * Lists all University models.
      * @return mixed
      */

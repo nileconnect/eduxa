@@ -60,8 +60,6 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             <div class="col-md-4">
                 <div class="well">
 
-
-
                     <?php echo $form->field($model, 'image')->widget(
                         Upload::class,
                         [

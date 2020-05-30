@@ -32,13 +32,25 @@ if($saved){
 
     <div class="col-md-4">
         <div class="well">
+<!--            --><?php //echo $form->field($model, 'photos')->widget(
+//                Upload::class,
+//                [
+//                    'url' => ['/file/storage/upload'],
+//                    'sortable' => true,
+//                    'maxFileSize' => 10000000, // 10 MiB
+//                    'maxNumberOfFiles' => 6,
+//                ]);
+//            ?>
+
             <?php echo $form->field($model, 'photos')->widget(
                 Upload::class,
                 [
-                    'url' => ['/file/storage/upload'],
-                    'sortable' => true,
+                    'url' => ['/university/media-upload'],
+                    'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(gif|jpeg|png)$/i'),
+                    'uploadPath' => '/university/'.$model->id.'/media' , // optional, for storing files in storage subfolder
                     'maxFileSize' => 10000000, // 10 MiB
                     'maxNumberOfFiles' => 6,
+
                 ]);
             ?>
 
