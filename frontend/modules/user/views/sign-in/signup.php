@@ -15,7 +15,12 @@ $this->title = Yii::t('frontend', 'Signup');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<style>
 
+.select2.select2-container{
+    direction: rtl !important;
+}
+</style>
 <div class="auth-content">
     <div class="auth-info" style="background-image: url('img/auth.jpg');">
         <?php
