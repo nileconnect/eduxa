@@ -87,6 +87,11 @@ class UserController extends BackendController
      */
     public function actionView($id)
     {
+        $model = User::find()->where(['id'=>$id])->one();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
