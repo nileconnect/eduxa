@@ -87,7 +87,8 @@ class SignupForm extends Model
             ['password_confirm', 'compare', 'compareAttribute' => 'password', 'skipOnEmpty' => false],
 
 
-            ['mobile','number']
+            ['mobile','number'],
+            [['interested_in_university','interested_in_schools'],'integer'],
         ];
     }
 
