@@ -53,7 +53,11 @@ class ReferralSignupForm extends Model
     public function rules()
     {
         return [
-            [ ['firstname' ,'lastname'], 'string', 'min' => 2, 'max' => 255],
+            [['firstname','lastname','email','mobile','find_us_from','password','password_confirm',
+                'country_id','city_id','state_id'
+            ], 'required'],
+
+            [ ['firstname' ,'lastname'], 'string', 'min' => 2, 'max' => 15],
 
             ['email', 'filter', 'filter' => 'trim'],
             [['firstname','lastname','email','mobile','find_us_from','no_of_students','expected_no_of_students','students_nationalities'], 'required'],
@@ -63,8 +67,7 @@ class ReferralSignupForm extends Model
                 'message' => Yii::t('frontend', 'This email address has already been taken.')
             ],
 
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            [['password','password_confirm'], 'string', 'min' => 8 , 'max'=>15],
 
             [
                 'password_confirm',
@@ -108,10 +111,6 @@ class ReferralSignupForm extends Model
             'students_nationalities' => Yii::t('common', 'Nationality Of Referrals'),
             'telephone_no' => Yii::t('common', 'Telephone Number'),
             'job_title' => Yii::t('common', 'Job Title'),
-
-
-
-
         ];
     }
 

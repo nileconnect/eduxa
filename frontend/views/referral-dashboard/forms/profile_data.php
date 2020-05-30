@@ -57,12 +57,16 @@ if($saved){
 
 
     <div class="row">
+        <?php
+        if(User::IsRole($model->getModel('profile')->user_id , User::ROLE_REFERRAL_COMPANY)){
+        ?>
         <div class="col-sm-6">
 
             <?php echo $form->field($model->getModel('profile'), 'telephone_no')->textInput(['placeholder'=>Yii::t('common','Telephone Number')])
                 ->label(Yii::t('common','Telephone Number') ,['class'=>'label-control']);
             ?>
         </div>
+        <? } ?>
         <div class="col-sm-6">
             <?= $form->field($model->getModel('profile'), 'country_id')->widget(\kartik\widgets\Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),

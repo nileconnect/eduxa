@@ -25,14 +25,21 @@ $this->endContent() ;
 							<span><?php echo Yii::t('frontend','Email'); ?> : </span>
 							<span class="text-muted"><?= $user->email?></span>
 						</div>
-						<div class="text-large">
-							<span><?php echo Yii::t('frontend','Gender'); ?> : </span>
-							<span class="text-muted"><?= \common\models\UserProfile::ListGender()[ $profile->gender]?></span>
-						</div>
+
+
+<!--						<div class="text-large">-->
+<!--							<span>--><?php //echo Yii::t('frontend','Gender'); ?><!-- : </span>-->
+<!--							<span class="text-muted">--><?//= \common\models\UserProfile::ListGender()[ $profile->gender]?><!--</span>-->
+<!--						</div>-->
 						<div class="text-large">
 							<span><?php echo Yii::t('frontend','Mobile Number'); ?> : </span>
 							<span class="text-muted"><?= $profile->mobile ?></span>
 						</div>
+                        <div class="text-large">
+                            <span><?php echo Yii::t('common', 'No. Of Previous Referrals'); ?> : </span>
+                            <span class="text-muted"><?=$profile->no_of_students?></span>
+
+                        </div>
 
 				        <?php
                         if($profile->telephone_no){
@@ -59,11 +66,7 @@ $this->endContent() ;
 							<span><?php echo Yii::t('frontend','City'); ?> : </span>
 							<span class="text-muted"><?= $profile->city->title?></span>
 						</div>
-						<div class="text-large">
-							<span><?php echo Yii::t('common', 'No. Of Previous Referrals'); ?> : </span>
-							<span class="text-muted"><?=$profile->no_of_students?></span>
 
-						</div>
 						<div class="text-large">
 							<span><?php echo Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa'); ?> : </span>
                             <span class="text-muted"><?=$profile->expected_no_of_students?></span>
