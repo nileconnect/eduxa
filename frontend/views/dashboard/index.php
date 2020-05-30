@@ -40,15 +40,15 @@ $this->endContent() ;
 					</div>
 					<div class="col-sm-6">
 						<div class="text-large">
-							<span><?php echo Yii::t('frontend','County'); ?> : </span>
+							<span><?php echo Yii::t('common','Country'); ?> : </span>
 							<span class="text-muted"><?= $profile->country->title?></span>
 						</div>
                         <div class="text-large">
-                            <span><?php echo Yii::t('frontend','State'); ?> : </span>
+                            <span><?php echo Yii::t('common','State'); ?> : </span>
                             <span class="text-muted"><?= $profile->state->title?></span>
                         </div>
 						<div class="text-large">
-							<span><?php echo Yii::t('frontend','City'); ?> : </span>
+							<span><?php echo Yii::t('common','City'); ?> : </span>
 							<span class="text-muted"><?= $profile->city->title?></span>
 						</div>
 						<div class="text-large">
