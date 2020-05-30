@@ -52,11 +52,14 @@ class UserProfile extends ActiveRecord
     }
 
     public static function ListFindUs(){
+        //Google, Facebook, Twitter,Instagram,print advertising,word of mouth.
         return [
-            1 => Yii::t('common', 'Search Engine'),
-            2 => Yii::t('common', 'Recommended by friend/colleague'),
-            3 => Yii::t('common', 'Eduxa was mentioned in a Newspaper'),
-            4 => Yii::t('common', 'Eduxa was mentioned in a blog')
+            1 => Yii::t('common', 'Google'),
+            2 => Yii::t('common', 'Facebook'),
+            3 => Yii::t('common', 'Twitter'),
+            4 => Yii::t('common', 'Instagram'),
+            5 => Yii::t('common', 'print advertising'),
+            6 => Yii::t('common', 'word of mouth'),
 
         ];
     }
@@ -65,7 +68,7 @@ class UserProfile extends ActiveRecord
         return [
             1 => Yii::t('common', 'By Emails'),
             2 => Yii::t('common', 'By Mobile'),
-            3 => Yii::t('common', 'By SMS'),
+            3 => Yii::t('common', 'By Whatsapp or SMS'),
 
         ];
     }

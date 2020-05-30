@@ -76,10 +76,7 @@ return [
      'Select'=>'اختر',
      'Mobile'=>'الجوال',
      'Profile Type'=>'نوع الحساب',
-     'State'=>'المدينة',
-     'District'=>'الحى',
-     'Country'=>'الدولة',
-     'Confirm Password'=>'تأكيد كلمة المرور',
+
     //****************************//
     'API access token' => '',
     'Expire At' => 'تنتهى فى ',
@@ -141,4 +138,26 @@ return [
     'User ID' => 'رقم المستخدم',
     'Username' => 'اسم المستخدم',
     'Value' => 'القيمه',
+
+    //signup
+    'Google' => 'جوجل',
+    'Facebook' => 'فيسبوك',
+    'Twitter' => 'تويتر',
+    'Instagram' => 'انستجرام',
+    'print advertising' => 'اعلانات مطبوعه',
+    'word of mouth' => 'نقلا عن اخرين',
+    'By Whatsapp or SMS' => 'واتس او رسائل قصيره',
+    'By Mobile' => 'موبايل',
+    'By Emails' => 'بريد الكترونى',
+    'City' => 'المدينه',
+    'State'=>'العاصمة',
+    'Country'=>'الدولة',
+    'Confirm Password'=>'تأكيد كلمة المرور',
+    'University Education' => 'الجامعات',
+    'Language School' => 'المدارس',
+    '' => '',
+    '' => '',
+    '' => '',
+
+
 ];

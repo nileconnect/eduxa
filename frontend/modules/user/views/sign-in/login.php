@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         </div>
                         <div class="form-group">
-                            <?php echo $form->field($model, 'password')->passwordInput()
+                            <?php echo $form->field($model, 'password')->passwordInput(['placeholder'=>Yii::t('common','Password')])
                                 ->label(Yii::t('common','Password') ,['class'=>'label-control']);?>
                         </div>
                         <div class="form-group">

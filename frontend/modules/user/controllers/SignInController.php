@@ -10,6 +10,7 @@ use frontend\modules\user\models\PasswordResetRequestForm;
 use frontend\modules\user\models\ReferralSignupForm;
 use frontend\modules\user\models\ResetPasswordForm;
 use frontend\modules\user\models\SignupForm;
+use webvimark\behaviors\multilanguage\MultiLanguageHelper;
 use Yii;
 use yii\authclient\AuthAction;
 use yii\base\Exception;
@@ -26,10 +27,15 @@ use yii\widgets\ActiveForm;
 /**
  * Class SignInController
  * @package frontend\modules\user\controllers
- * @author Eugene Terentev <eugene@terentev.net>
  */
 class SignInController extends \yii\web\Controller
 {
+
+    public function init()
+    {
+        MultiLanguageHelper::catchLanguage();
+        parent::init();
+    }
 
     /**
      * @return array

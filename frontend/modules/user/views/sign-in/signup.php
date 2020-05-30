@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'options'=>['id'=>'City-id'],
                                     'pluginOptions'=>[
                                         'depends'=>['CountryId'],
-                                        'placeholder'=>'Select...',
+                                        'placeholder'=>Yii::t('common', 'Select'),
                                         'url'=>Url::to(['/helper/states'])
                                     ]
                                 ]);
@@ -106,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'options'=>['id'=>'subcat-id'],
                             'pluginOptions'=>[
                                 'depends'=>['City-id'],
-                                'placeholder'=>'Select...',
+                                'placeholder'=>Yii::t('common', 'Select'),
                                 'url'=>Url::to(['/helper/cities'])
                             ]
                         ]);

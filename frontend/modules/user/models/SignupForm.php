@@ -58,18 +58,21 @@ class SignupForm extends Model
 //                'message' => Yii::t('frontend', 'This username has already been taken.')
 //            ],
 //            ['username', 'string', 'min' => 2, 'max' => 255],
-            [ ['firstname' ,'lastname'], 'string', 'min' => 2, 'max' => 255],
+
+            [['firstname','lastname','gender','email','mobile','nationality','find_us_from','communtication_channel','password','password_confirm',
+                'country_id','city_id','state_id'
+                ], 'required'],
+
+            [ ['firstname' ,'lastname'], 'string', 'min' => 2, 'max' => 15],
 
             ['email', 'filter', 'filter' => 'trim'],
-            [['firstname','lastname','gender','email','mobile','nationality','find_us_from','communtication_channel'], 'required'],
             ['email', 'email'],
             ['email', 'unique',
                 'targetClass' => '\common\models\User',
                 'message' => Yii::t('frontend', 'This email address has already been taken.')
             ],
 
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            [['password','password_confirm'], 'string', 'min' => 8 , 'max'=>15],
 
             [
                 'password_confirm',
