@@ -94,7 +94,7 @@ class UserProfile extends ActiveRecord
     public function rules()
     {
         return [
-            [['firstname','lastname','email','mobile','country_id','city_id','state_id'
+            [['firstname','lastname','mobile','country_id','city_id','state_id'
             ], 'required'],
             //'gender',
             ['nationality','string', 'min' => 2, 'max' => 60],
