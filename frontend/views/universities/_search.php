@@ -31,7 +31,6 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="form-group-row">
                 <div class="form-group">
-
                         <?= $form->field($model, 'degree_id')->widget(\kartik\widgets\Select2::classname(), [
                             'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramDegree::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
                             'options' => ['placeholder' => Yii::t('backend', 'Degree Level')],
@@ -40,13 +39,6 @@ use yii\widgets\ActiveForm;
                                 'class'=>'select-wrapper'
                             ],
                         ])->label(false); ?>
-<!--                        <select class="form-control" name="">-->
-<!--                            <option value="">Degree Level</option>-->
-<!--                            <option value="1">1</option>-->
-<!--                            <option value="2">2</option>-->
-<!--                            <option value="3">3</option>-->
-<!--                        </select>-->
-
                 </div>
                 <div class="form-group">
                     <?= $form->field($model, 'field_id')->widget(\kartik\widgets\Select2::classname(), [

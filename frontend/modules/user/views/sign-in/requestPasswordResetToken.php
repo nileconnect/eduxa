@@ -9,15 +9,7 @@ use yii\widgets\ActiveForm;
 $this->title =  Yii::t('frontend', 'Request password reset');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-request-password-reset">
-    <h1></h1>
 
-    <div class="row">
-        <div class="col-lg-5">
-           
-        </div>
-    </div>
-</div>
 <div class="auth-content">
     <div class="auth-info" style="background-image: url('/img/auth.jpg');">
      <?php
@@ -39,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                
                     <div class="form-group mtxlg">
-                        <button type="submit" class="button button-primary button-wide text-large"><?= Yii::t('common','Login') ?></button>
+                        <button type="submit" class="button button-primary button-wide text-large"><?= Yii::t('common','Submit') ?></button>
                     </div>
                     <?php ActiveForm::end(); ?>
                        
