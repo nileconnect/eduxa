@@ -77,4 +77,21 @@ class UniversitiesController extends FrontendController
         return $this->render('program' , ['programObj'=>$programObj,'universityObj'=>$universityObj ,'programStartDates'=>$programStartDates,'programsInSameMajor'=>$programsInSameMajor]);
     }
 
+    public function actionProgramApply($slug){
+         $programObj= UniversityPrograms::find()->where(['slug'=>$slug])->one();
+        if(!$programObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+
+        $universityObj = $programObj->university;
+
+        $programStartDates = UniversityProgStartdate::find()->where(['university_prog_id'=>$programObj->id ])->one();
+
+        $programsInSameMajor = UniversityPrograms::find()
+            ->where(['major_id'=>$programObj->major_id])
+            ->andWhere(['<>','id', $programObj->id])
+            ->limit(5)->all();
+
+        return $this->render('program-apply' , ['programObj'=>$programObj,'universityObj'=>$universityObj ,'programStartDates'=>$programStartDates,'programsInSameMajor'=>$programsInSameMajor]);
+    }
+
+
 }

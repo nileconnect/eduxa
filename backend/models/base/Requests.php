@@ -25,6 +25,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $student_mobile
  * @property integer $student_country_id
  * @property integer $student_city_id
+ * @property integer $student_state_id
  * @property integer $student_nationality_id
  * @property string $accomodation_option
  * @property double $accomodation_option_cost
@@ -67,8 +68,8 @@ class Requests extends \yii\db\ActiveRecord
     {
         return [
             [['model_id', 'requester_id', 'status'], 'required'],
-            [['model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id', 'student_nationality_id', 'number_of_weeks'], 'integer'],
-            [['request_notes', 'admin_notes'], 'string'],
+            [['model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id', 'student_state_id','number_of_weeks'], 'integer'],
+            [['request_notes', 'admin_notes', 'student_nationality_id'], 'string'],
             [['accomodation_option_cost'], 'number'],
             [['model_name', 'request_by_role', 'student_gender', 'status'], 'string', 'max' => 4],
             [['student_first_name', 'student_last_name', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup', 'airport_pickup_cost', 'course_start_date', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'string', 'max' => 255]
@@ -167,6 +168,18 @@ class Requests extends \yii\db\ActiveRecord
     public function getRequester()
     {
         return $this->hasOne(\common\models\User::className(), ['id' => 'requester_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUniversity()
+    {
+        return $this->hasOne(\backend\models\University::className(), ['id' => 'model_parent_id']);
+    }
+    public function getProgram()
+    {
+        return $this->hasOne(\backend\models\UniversityPrograms::className(), ['id' => 'model_id']);
     }
     
     /**

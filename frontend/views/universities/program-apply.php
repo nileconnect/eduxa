@@ -11,32 +11,8 @@
 <section class="section">
     <div class="container">
         <div class="row">
-            <div class="col-sm-5">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <?php
-                        $firstslid= 'active';
-                        foreach ($universityObj->universityPhotos as $universityPhoto) {
-                            ?>
-                            <div class="carousel-item <?=$firstslid?>">
-                                <img class="d-block w-100" src="<?= $universityPhoto->base_url.$universityPhoto->path?>" alt="<?= $universityObj->title ?>">
-                            </div>
-                            <?
-                            $firstslid='';
-                        }
-                        ?>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-7">
+
+            <div class="container">
                 <h3 class="text-primary"><?= $universityObj->title ?>: <?= $programObj->title ?> <span>(<?= $programObj->major->title ?>)</span></h3>
                 <h5>
                     <div class="rating fr">
@@ -51,7 +27,7 @@
                     <?= $universityObj->description ?>
                 </div>
                 <div class="mtxlg">
-                    <a href="/program-apply/<?= $programObj->slug ?>" class="button button-wide button-primary">Apply Now</a>
+                    <a href="/dashboard/requests/<?= $programObj->slug ?>" class="button button-wide button-primary">Apply Now</a>
                 </div>
             </div>
 
@@ -174,7 +150,7 @@
                 </table>
 
                 <div class="mtlg">
-                    <a href="/program-apply/<?= $programObj->slug ?>" class="button btn-block button-wide button-primary text-large">Apply Now</a>
+                    <a href="/dashboard/requests/<?= $programObj->slug ?>" class="button btn-block button-wide button-primary text-large">Submit</a>
                 </div>
             </div>
         </div>
@@ -182,26 +158,3 @@
 
     </div>
 </section>
-<?php
-
-if($programsInSameMajor){
-?>
-<section class="section  mtlg">
-    <div class="container">
-        <h1 class="title text-center">Programs in the same major</h1>
-
-        <div class="universities universities-row">
-            <?php
-                foreach ($programsInSameMajor as $prog) {
-                    $university = $prog->university ;
-                    echo $this->render('_universityWithOneProg', ['university' => $university ,'lastProg'=>$prog]);
-                }
-
-            ?>
-
-
-        </div>
-
-    </div>
-</section>
-<?php } ?>
