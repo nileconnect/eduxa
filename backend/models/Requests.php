@@ -26,11 +26,11 @@ class Requests extends BaseRequests
 
     public static  function ListStatus(){
         return [
-            self::STATUS_PENDING => 'Pending',
-            self::STATUS_UNDER_PROCESS => "Under Process",
-            self::STATUS_APPROVED => "Approved",
-            self::STATUS_FINISHED => "Finished",
-            self::STATUS_CANCELED => "Canceled",
+            self::STATUS_PENDING => Yii::t('common','Pending'),
+            self::STATUS_UNDER_PROCESS =>Yii::t('common',"Under Process"),
+            self::STATUS_APPROVED =>Yii::t('common',"Approved"),
+            self::STATUS_FINISHED =>Yii::t('common',"Finished"),
+            self::STATUS_CANCELED =>Yii::t('common',"Canceled"),
         ];
     }
 
@@ -46,8 +46,8 @@ class Requests extends BaseRequests
     public static  function ListRequestBy(){
         return [
             self::REQUEST_BY_STUDENT => 'Student',
-            self::REQUEST_BY_REFERRAL_COMPANY => "Referral Company",
-            self::REQUEST_BY_REFERRAL_PERSON => "Referral Person",
+            self::REQUEST_BY_REFERRAL_COMPANY =>Yii::t('common',"Referral Company"),
+            self::REQUEST_BY_REFERRAL_PERSON =>Yii::t('common',"Referral Person"),
 
         ];
     }
@@ -55,8 +55,12 @@ class Requests extends BaseRequests
     public static  function ListModelNames(){
         return [
             self::MODEL_NAME_COURSE => 'School Course',
-            self::MODEL_NAME_PROGRAM => "Programe",
+            self::MODEL_NAME_PROGRAM =>Yii::t('common',"Programe"),
         ];
+    }
+
+    public function generateRequestId(){
+        return $this->id ;
     }
 
 
@@ -68,9 +72,9 @@ class Requests extends BaseRequests
     {
         return [
             [['model_id', 'requester_id', 'status'], 'required'],
-            [['model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id', 'student_nationality_id',
-                'request_by_role','number_of_weeks','status','model_name','student_gender'], 'integer'],
-            [['request_notes', 'admin_notes'], 'string'],
+            [['model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id',
+                'request_by_role','number_of_weeks','status','model_name','student_gender','student_state_id'], 'integer'],
+            [['request_notes', 'student_nationality_id', 'admin_notes'], 'string'],
             [['accomodation_option_cost'], 'number'],
             [['student_first_name', 'student_last_name', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup', 'airport_pickup_cost', 'course_start_date', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'string', 'max' => 255]
         ];

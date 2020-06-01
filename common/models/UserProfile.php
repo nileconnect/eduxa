@@ -34,6 +34,10 @@ class UserProfile extends ActiveRecord
      * @var
      */
     public $picture;
+    /**
+     * @var mixed|null
+     */
+    private $requests;
 
     /**
      * @inheritdoc
@@ -170,6 +174,11 @@ class UserProfile extends ActiveRecord
     public function getCity()
     {
         return $this->hasOne(Cities::class, ['id' => 'city_id']);
+    }
+
+    public function getRequests()
+    {
+        return $this->hasMany(\backend\models\Requests::className(), ['requester_id' => 'id']);
     }
     /**
      * @return null|string

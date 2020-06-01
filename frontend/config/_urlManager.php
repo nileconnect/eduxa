@@ -25,6 +25,11 @@ return [
 
         //universities programs
         ['pattern' => 'university/program/<slug>', 'route' => 'universities/program'],
+        ['pattern' => 'program-apply/<slug>', 'route' => 'universities/program-apply'],
+
+        //dashboard
+        ['pattern' => 'dashboard/requests/<slug>', 'route' => 'dashboard/requests'],
+
 
 
         ['pattern' => 'article/attachment-download', 'route' => 'article/attachment-download'],
