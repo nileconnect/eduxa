@@ -24,16 +24,18 @@
                     if($requests){
                         foreach ($requests as $request) {
                             if($request->model_name = Requests::MODEL_NAME_PROGRAM){
+                                $program =$request->program;
+                                $university =$request->university;
                                 ?>
 
                                 <div class="item">
                                     <header class="item-header">
                                         <figure>
-                                            <img src="<?= $request->university->logoImage?>" alt="">
+                                            <img src="<?= $university->logoImage?>" alt="<?= $program->title?>" width="310px" height="193px">
                                         </figure>
                                         <div class="item-content">
                                             <div class="item-name">
-                                                <span><?= $request->program->title?></span>
+                                                <span><?= $program->title?></span>
                                                 <div class="status">
                                                     <span class="status-text text-primary"><?= Requests::ListStatus()[$request->status]?></span>
                                                     <span class="status-number">#<?= $request->generateRequestId(); ?></span>
@@ -44,41 +46,54 @@
                                                     <div class="mtsm">
                                                         <div>
                                                             <span>Start Day : </span>
-                                                            <span class="text-muted">20/06/2019</span>
+                                                            <span class="text-muted"><?= $program->first_submission_date?></span>
                                                         </div>
                                                         <div>
                                                             <span>Reservation Duration : </span>
-                                                            <span class="text-muted">3 Weeks</span>
+                                                            <span class="text-muted">
+                                                                <?= $program->study_duration_no ?>
+                                                                <?= \backend\models\University::listPeriods()[$program->study_duration] ?></span>
                                                         </div>
                                                         <div>
                                                             <span>Country : </span>
-                                                            <span class="text-muted">Egypt</span>
+                                                            <span class="text-muted"><?= $university->country->title?></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>State : </span>
+                                                            <span class="text-muted"><?= $university->state->title?></span>
                                                         </div>
                                                         <div>
                                                             <span>City : </span>
-                                                            <span class="text-muted">Cairo</span>
+                                                            <span class="text-muted"><?= $university->city->title?></span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="mtsm">
                                                         <div>
-                                                            <span>Accommodation Types : </span>
-                                                            <span class="text-muted">Motel</span>
+                                                            <span>Major : </span>
+                                                            <span class="text-muted"><?= $program->major->title ?></span>
                                                         </div>
                                                         <div>
-                                                            <span>Airport Transportaion : </span>
-                                                            <span class="text-muted">Yes</span>
+                                                            <span>Degree : </span>
+                                                            <span class="text-muted"><?= $program->degree->title ?></span>
                                                         </div>
                                                         <div>
-                                                            <span>Medical Insurance : </span>
-                                                            <span class="text-muted">No</span>
+                                                            <span>Field : </span>
+                                                            <span class="text-muted"><?= $program->field->title ?></span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-12">
-                                                    <a href="#" class="button button-wide button-primary pull-right" >Edit</a>
-                                                </div>
+                                                <?php
+                                                if($request->status == Requests::STATUS_PENDING){
+                                                  ?>
+                                                    <div class="col-sm-12">
+                                                        <a href="#" class="button button-wide button-primary pull-right" >Cancel</a>
+                                                    </div>
+                                                    <?
+                                                }
+                                                ?>
+
                                             </div>
                                         </div>
                                     </header>
@@ -90,68 +105,7 @@
                     }
 
                     ?>
-
-
-					<div class="item">
-						<header class="item-header">
-							<figure>
-								<img src="/img/destinations/3.jpg" alt="">
-							</figure>
-							<div class="item-content">
-								<div class="item-name">
-									<span>University Name</span>
-									<div class="status">
-										<span class="status-text text-primary">Panding</span>
-										<span class="status-number">#546132</span>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="mtsm">
-											<div>
-												<span>Start Day : </span>
-												<span class="text-muted">20/06/2019</span>
-											</div>
-											<div>
-												<span>Reservation Duration : </span>
-												<span class="text-muted">3 Weeks</span>
-											</div>
-											<div>
-												<span>Country : </span>
-												<span class="text-muted">Egypt</span>
-											</div>
-											<div>
-												<span>City : </span>
-												<span class="text-muted">Cairo</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="mtsm">
-											<div>
-												<span>Accommodation Types : </span>
-												<span class="text-muted">Motel</span>
-											</div>
-											<div>
-												<span>Airport Transportaion : </span>
-												<span class="text-muted">Yes</span>
-											</div>
-											<div>
-												<span>Medical Insurance : </span>
-												<span class="text-muted">No</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-12">
-										<a href="#" class="button button-wide button-primary pull-right"  >Edit</a>
-									</div>
-								</div>
-							</div>
-						</header>
-					</div>
-
-
-				</div>
+                </div>
 			</div>
 
 		</div>

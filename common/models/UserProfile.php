@@ -178,7 +178,7 @@ class UserProfile extends ActiveRecord
 
     public function getRequests()
     {
-        return $this->hasMany(\backend\models\Requests::className(), ['requester_id' => 'id']);
+        return $this->hasMany(\backend\models\Requests::className(), ['requester_id' => 'user_id']);
     }
     /**
      * @return null|string
