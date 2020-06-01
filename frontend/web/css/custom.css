@@ -21,3 +21,27 @@
 .pull-right {
     float: right;
 }
+
+.majorsList {
+    list-style: none;
+    padding: 0;
+}
+
+.majorsList li {
+    width: 30%;
+    display: inline-block;
+    margin: 0 1%;
+    padding: .9rem 0;
+}
+
+.contList {
+    list-style: none;
+    padding: 0;
+}
+
+.contList li {
+    width: 30%;
+    display: inline-block;
+    margin: 0 1%;
+    padding: .9rem 0;
+}

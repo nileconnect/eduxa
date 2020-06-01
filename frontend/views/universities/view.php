@@ -60,12 +60,12 @@
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="tabMajors" role="tabpanel" aria-labelledby="majors-tab">
-                    <ul>
+                    <ul class="majorsList">
                         <?php
                         if($universityMajors){
                             foreach ($universityMajors as $major) {
                                 ?>
-                                <li><strong><?= $major->title ?></strong> </li>
+                                <li>- <?= $major->title ?> </li>
 
                                 <?
                             }
@@ -74,12 +74,12 @@
                     </ul>
                 </div>
                 <div class="tab-pane fade" id="tabPrograms" role="tabpanel" aria-labelledby="programs-tab">
-                    <ul>
+                    <ul class="majorsList">
                     <?php
                      if($universityObj->universityPrograms){
                          foreach ($universityObj->universityPrograms as $universityProgram) {
                              ?>
-                             <li><strong><?= $universityProgram->title ?></strong> </li>
+                             <li>- <?= $universityProgram->title ?> </li>
 
                              <?
                          }
@@ -99,7 +99,7 @@
 
         <h2 class="title title-sm title-black"><?php echo Yii::t('frontend','Accredited by the following'); ?></h2>
         <div class="bg-white pllg ptlg pblg prlg b-all">
-            <ul>
+            <ul  class="contList">
             <?php
             if($universityObj->universityCountries){
                 foreach ($universityObj->universityCountries as $country) {
