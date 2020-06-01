@@ -11,7 +11,7 @@ use yii\widgets\ListView;
 
 <section class="section">
     <div class="container">
-        <h2 class="title title-sm" style="color:#C5C5DA;"><?= $dataProvider->getTotalCount() ?> University matched your search results</h2>
+        <h2 class="title title-sm" style="color:#C5C5DA;"><?= $dataProvider->getTotalCount() ?> <?= Yii::t('frontend','University matched your search results') ?></h2>
 
         <div class="universities universities-row">
             <?php

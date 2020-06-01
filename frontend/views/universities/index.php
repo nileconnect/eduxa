@@ -11,7 +11,7 @@ if($countries){
 ?>
 <section class="section top-destinations">
     <div class="container">
-        <h1 class="title text-center">Top Destinations</h1>
+        <h1 class="title text-center"><?= Yii::t('frontend','Top Destinations') ?></h1>
 
         <div class="mtlg">
             <ul data-slider="slick" data-slick='{"slidesToShow": 4, "slidesToScroll": 1, "responsive": [{"breakpoint": 768, "settings": { "slidesToShow": 1 }}, {"breakpoint": 480,"settings": {"slidesToShow": 1} }]}'>
@@ -41,7 +41,7 @@ if($countries){
 
 <section class="section  mtlg">
     <div class="container">
-        <h1 class="title text-center">Recommended options by our advisors</h1>
+        <h1 class="title text-center"><?= Yii::t('frontend','Recommended options by our advisors') ?></h1>
 
         <div class="universities universities-row">
             <?php

@@ -15,8 +15,8 @@ use kartik\depdrop\DepDrop;
 <div class="search-form after-jumbotron">
     <div class="container">
         <div class="text-white">
-            <h2>Are you interested in studying abroad?</h2>
-            <h5>Find, Review and Apply to the best universities in the world</h5>
+            <h2><?= Yii::t('frontend','Are you interested in studying abroad?') ?></h2>
+            <h5><?= Yii::t('frontend','Find, Review and Apply to the best universities in the world') ?></h5>
         </div>
         <?php $form = ActiveForm::begin([
             'action' => ['/universities/search'],
@@ -27,7 +27,7 @@ use kartik\depdrop\DepDrop;
         <div class="form-group-row">
             <div class="form-group has-search">
                 <span class="fa fa-search form-control-feedback"></span>
-                <?= $form->field($model,'university_title')->textInput(['placeholder'=>'Search'])->label(false)?>
+                <?= $form->field($model,'university_title')->textInput(['placeholder'=>Yii::t('frontend','Search')])->label(false)?>
 <!--                <input type="text" class="form-control" placeholder="Search" name="UniversityProgramsSearch[university_title]">-->
             </div>
         </div>
@@ -35,7 +35,7 @@ use kartik\depdrop\DepDrop;
             <div class="form-group">
                 <?= $form->field($model, 'degree_id')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramDegree::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-                    'options' => ['placeholder' => Yii::t('backend', 'Degree Level')],
+                    'options' => ['placeholder' => Yii::t('frontend', 'Degree Level')],
                     'pluginOptions' => [
                         'allowClear' => true,
                         'class'=>'select-wrapper'
@@ -45,7 +45,7 @@ use kartik\depdrop\DepDrop;
             <div class="form-group">
                 <?= $form->field($model, 'field_id')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramField::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-                    'options' => ['placeholder' => Yii::t('backend', 'Field')],
+                    'options' => ['placeholder' => Yii::t('frontend', 'Field')],
                     'pluginOptions' => [
                         'allowClear' => true,
                         'class'=>'select-wrapper'
@@ -55,7 +55,7 @@ use kartik\depdrop\DepDrop;
             <div class="form-group">
                 <?= $form->field($model, 'major_id')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMajors::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-                    'options' => ['placeholder' => Yii::t('backend', 'Major')],
+                    'options' => ['placeholder' => Yii::t('frontend', 'Major')],
                     'pluginOptions' => [
                         'allowClear' => true
                     ],
@@ -65,7 +65,7 @@ use kartik\depdrop\DepDrop;
             <div class="form-group">
                 <?= $form->field($model, 'university_id')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => \yii\helpers\ArrayHelper::map(\backend\models\University::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),
-                    'options' => ['placeholder' => Yii::t('backend', 'University')],
+                    'options' => ['placeholder' => Yii::t('frontend', 'University')],
                     'pluginOptions' => [
                         'allowClear' => true
                     ],
@@ -74,7 +74,7 @@ use kartik\depdrop\DepDrop;
             <div class="form-group">
                 <?= $form->field($model, 'university_total_rating')->widget(\kartik\widgets\Select2::classname(), [
                     'data' =>['1'=>'1' , '2'=>'2' ,'3'=>'3' ,'4'=>'4' ,'5'=>'5'],
-                    'options' => ['placeholder' => Yii::t('backend', 'University rating')],
+                    'options' => ['placeholder' => Yii::t('frontend', 'University rating')],
                     'pluginOptions' => [
                         'allowClear' => true
                     ],
@@ -129,7 +129,7 @@ use kartik\depdrop\DepDrop;
             <div class="form-group">
                 <?= $form->field($model, 'university_nextTo')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityNextTo::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-                    'options' => ['placeholder' => Yii::t('backend', 'University next to')],
+                    'options' => ['placeholder' => Yii::t('frontend', 'University next to')],
                     'pluginOptions' => [
                         'allowClear' => true
                     ],
@@ -138,7 +138,7 @@ use kartik\depdrop\DepDrop;
             </div>
 
             <div class="form-group">
-                <button type="submit" class="button btn-block button-accent">Search</button>
+                <button type="submit" class="button btn-block button-accent"><?= Yii::t('frontend','Search') ?></button>
             </div><form action="" method="" class="inline mtmd shadow-sm">
 
         </div>
