@@ -17,6 +17,7 @@ use Sitemaped\Sitemap;
 use trntv\filekit\actions\DeleteAction;
 use trntv\filekit\actions\UploadAction;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\PageCache;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -29,6 +30,23 @@ use yii\web\Response;
 class DashboardController extends FrontendController
 {
 
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@']
+                    ]
+                ]
+            ]
+        ];
+    }
     public function actions()
     {
         return [
@@ -118,6 +136,34 @@ class DashboardController extends FrontendController
         $requests = $profile->requests;
 
         return $this->render('requests',['requests'=>$requests]);
+    }
+
+    public function actionCancelRequest($slug=null)
+    {
+        $profile =Yii::$app->user->identity->userProfile ;
+
+        if($slug){
+            $programObj= UniversityPrograms::find()->where(['slug'=>$slug])->one();
+            if(!$programObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+            //check for old requests
+            $requestObj = Requests::find()->where(['model_name'=>Requests::MODEL_NAME_PROGRAM , 'model_id'=>$programObj->id ,'requester_id'=>$profile->user_id])->one();
+            if($requestObj && $requestObj->status == Requests::STATUS_PENDING){
+                $requestObj->delete();
+                Yii::$app->getSession()->setFlash('alert', [
+                    'type' =>'warning',
+                    'body' => \Yii::t('frontend', 'You have Canceled your request') ,
+                    'title' =>'',
+                ]);
+            }else{
+                $requestObj->delete();
+                Yii::$app->getSession()->setFlash('alert', [
+                    'type' =>'warning',
+                    'body' => \Yii::t('frontend', 'You can no cancel this  request') ,
+                    'title' =>'',
+                ]);
+            }
+        }
+       return $this->redirect(['/dashboard/requests']);
     }
 
     // Modals Functions

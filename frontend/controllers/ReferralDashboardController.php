@@ -15,6 +15,7 @@ use Sitemaped\Sitemap;
 use trntv\filekit\actions\DeleteAction;
 use trntv\filekit\actions\UploadAction;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\PageCache;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -26,6 +27,23 @@ use yii\web\Response;
 class ReferralDashboardController extends FrontendController
 {
 
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@']
+                    ]
+                ]
+            ]
+        ];
+    }
 
     public function actions()
     {

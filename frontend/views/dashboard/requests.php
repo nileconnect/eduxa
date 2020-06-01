@@ -88,7 +88,7 @@
                                                 if($request->status == Requests::STATUS_PENDING){
                                                   ?>
                                                     <div class="col-sm-12">
-                                                        <a href="#" class="button button-wide button-primary pull-right" >Cancel</a>
+                                                        <a href="/dashboard/cancel-request/<?= $program->slug ?>" class="button button-wide button-primary pull-right" >Cancel</a>
                                                     </div>
                                                     <?
                                                 }

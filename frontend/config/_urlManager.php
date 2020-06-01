@@ -29,6 +29,7 @@ return [
 
         //dashboard
         ['pattern' => 'dashboard/requests/<slug>', 'route' => 'dashboard/requests'],
+        ['pattern' => 'dashboard/cancel-request/<slug>', 'route' => 'dashboard/cancel-request'],
 
 
 
