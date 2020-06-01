@@ -2,7 +2,7 @@
 if($programStartDates){
     ?>
     <tr>
-        <td>Start Dates</td>
+        <td><?= Yii::t('frontend','Start Dates') ?></td>
         <td>
             <?php
 

@@ -27,7 +27,7 @@
                     <?= $universityObj->description ?>
                 </div>
                 <div class="mtxlg">
-                    <a href="/dashboard/requests/<?= $programObj->slug ?>" class="button button-wide button-primary">Apply Now</a>
+                    <a href="/dashboard/requests/<?= $programObj->slug ?>" class="button button-wide button-primary"><?= Yii::t('frontend','Apply Now') ?></a>
                 </div>
             </div>
 
@@ -41,19 +41,19 @@
 
         <div class="row">
             <div class="col-sm-6 mbxlg">
-                <h2 class="title title-sm title-black">Program requirements</h2>
+                <h2 class="title title-sm title-black"><?= Yii::t('frontend','Program requirements') ?></h2>
                 <table class="table wide-cell text-large bg-white b-all shadow-sm">
                     <tbody>
                     <tr>
-                        <td>Degree</td>
+                        <td><?= Yii::t('frontend','Degree') ?></td>
                         <td><span class="text-primary"><?= $programObj->degree->title ?></span></td>
                     </tr>
                     <tr>
-                        <td>Program Name</td>
+                        <td><?= Yii::t('frontend','Program Name') ?></td>
                         <td><span class="text-primary"><?= $programObj->title ?></span></td>
                     </tr>
                     <tr>
-                        <td>University</td>
+                        <td><?= Yii::t('frontend','University') ?></td>
                         <td><span class="text-primary"><?= $universityObj->title ?></span></td>
                     </tr>
 
@@ -61,7 +61,7 @@
                     if($programObj->first_submission_date_active){
                         ?>
                         <tr>
-                            <td>First Submission date</td>
+                            <td><?= Yii::t('frontend','First Submission date') ?></td>
                             <td>
                                 <div><span class="text-primary"><?= $programObj->first_submission_date?></span></div>
                             </td>
@@ -73,7 +73,7 @@
                     if($programObj->last_submission_date){
                         ?>
                         <tr>
-                            <td>Last date for application</td>
+                            <td><?= Yii::t('frontend','Last date for application') ?></td>
                             <td>
                                 <div><span class="text-primary"><?= $programObj->last_submission_date?></span></div>
                             </td>
@@ -89,19 +89,19 @@
 
 
                     <tr>
-                        <td>Study method</td>
+                        <td><?= Yii::t('frontend','Study method') ?></td>
                         <td><span class="text-primary"><?= $programObj->methodOfStudy->title?></span></td>
                     </tr>
                     <tr>
-                        <td>Program format</td>
+                        <td><?= Yii::t('frontend','Program format') ?></td>
                         <td><span class="text-primary"><?= $programObj->formatOfProg->title?></span></td>
                     </tr>
                     <tr>
-                        <td>Annual cost</td>
+                        <td><?= Yii::t('frontend','Annual cost') ?></td>
                         <td><span class="text-primary"><?= $programObj->annual_cost?> <span><?= $universityObj->currency->currency_code?></span></span></td>
                     </tr>
                     <tr>
-                        <td>Conditional admission</td>
+                        <td><?= Yii::t('frontend','Conditional admission') ?></td>
                         <td><span class="text-primary"><?= $programObj->conditionalAdm->title ?></span></td>
                     </tr>
                     </tbody>
@@ -112,11 +112,11 @@
                 <h2 class="title title-sm title-black">.</h2>
                 <table class="table bg-white b-all shadow-sm">
                     <tr>
-                        <td>Study duration</td>
+                        <td><?= Yii::t('frontend','Study duration') ?></td>
                         <td><span class="text-primary"><?= $programObj->study_duration_no ?> </span><span><?= \backend\models\University::listPeriods()[$programObj->study_duration] ?></span></td>
                     </tr>
                     <tr>
-                        <td>Study language</td>
+                        <td><?= Yii::t('frontend','Study language') ?></td>
                         <td><span class="text-primary"><?= $programObj->studyLang->title ; ?></span></td>
                     </tr>
                     <tr>
@@ -128,29 +128,29 @@
                         <td><span class="text-primary"><?=  $programObj->progIelts->title ?></span></td>
                     </tr>
                     <tr>
-                        <td>Bank statment</td>
+                        <td><?= Yii::t('frontend','Bank statment') ?></td>
                         <td><span class="text-primary"><?= $programObj->bank_statment?>  <?= $universityObj->currency->currency_code ?></span></td>
                     </tr>
                     <tr>
-                        <td>High school transcript</td>
+                        <td><?= Yii::t('frontend','High school transcript') ?></td>
                         <td><span class="text-primary"><?= $programObj->high_school_transcript ?></td>
                     </tr>
                     <tr>
-                        <td>Bachelor degree certificate</td>
+                        <td><?= Yii::t('frontend','Bachelor degree certificate') ?></td>
                         <td><span class="text-primary"><?= $programObj->bachelor_degree ?></span></td>
                     </tr>
                     <tr>
-                        <td>Note 1</td>
+                        <td><?= Yii::t('frontend','Note 1') ?></td>
                         <td><span class="text-primary"><?= $programObj->note1 ?></span></td>
                     </tr>
                     <tr>
-                        <td>Note 2</td>
+                        <td><?= Yii::t('frontend','Note 2') ?></td>
                         <td><span class="text-primary"><?= $programObj->note1 ?> </span></td>
                     </tr>
                 </table>
 
                 <div class="mtlg">
-                    <a href="/dashboard/requests/<?= $programObj->slug ?>" class="button btn-block button-wide button-primary text-large">Submit</a>
+                    <a href="/dashboard/requests/<?= $programObj->slug ?>" class="button btn-block button-wide button-primary text-large"><?= Yii::t('frontend','Submit') ?></a>
                 </div>
             </div>
         </div>

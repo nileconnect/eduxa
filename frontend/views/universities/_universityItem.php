@@ -36,22 +36,23 @@
             ?>
             <footer class="item-footer">
                 <div>
-                    <div class="item-label">Programm Name</div>
+
+                    <div class="item-label"><?= Yii::t('frontend','Programm Name') ?></div>
                     <div><?= $item->title ?></div>
                     <div><small><?= $item->major->title ?>: <?= $item->study_duration_no ?> <?= \backend\models\University::listPeriods()[$item->study_duration] ?></small></div>
                 </div>
                 <div>
-                    <div class="item-label">Start Date</div>
+                    <div class="item-label"><?= Yii::t('frontend','Start Date') ?></div>
                     <div><?= $item->first_submission_date ?></div>
                 </div>
                 <div>
-                    <div class="item-label">Annual Cost</div>
+                    <div class="item-label"><?= Yii::t('frontend','Annual Cost') ?></div>
                     <div ><span class="original-price"><?= $item->annual_cost ?></span>
                         <span class="currency"><?= $university->currency->currency_code ?></span>
                     </div>
                 </div>
                 <div>
-                    <a href="/university/program/<?= $item->slug ;?>" class="button btn-block button-primary">Additional Info</a>
+                    <a href="/university/program/<?= $item->slug ;?>" class="button btn-block button-primary"><?= Yii::t('frontend','Additional Info') ?></a>
                 </div>
             </footer>
             <?
