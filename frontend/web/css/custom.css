@@ -45,3 +45,8 @@
     margin: 0 1%;
     padding: .9rem 0;
 }
+
+.search-form.after-jumbotron {
+    z-index: 1000;
+    position: relative;
+}
