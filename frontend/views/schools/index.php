@@ -45,10 +45,10 @@ if($countries){
 
         <div class="universities universities-row">
             <?php
-            if($universities){
-                foreach ($universities as $university) {
-                    $lastProg = null ; //$university->universityLatestProgram;
-                    echo $this->render('_schoolWithOneCourse', ['university' => $university ,'lastProg'=>$lastProg]);
+            if($schools){
+                foreach ($schools as $school) {
+                    $lastCourse = $school->schoolLatestCourse;
+                    echo $this->render('_schoolWithOneCourse', ['school' => $school ,'lastCourse'=>$lastCourse]);
                 }
             }
             ?>

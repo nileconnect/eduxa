@@ -7,6 +7,7 @@ use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use \backend\models\base\SchoolCourse as BaseSchoolCourse;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -51,7 +52,7 @@ class SchoolCourse extends BaseSchoolCourse
         return [
             [['school_id', 'title', 'information'], 'required'],
             [['school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by','max_no_of_students_per_class'], 'integer'],
-            [['information', 'requirments'], 'string'],
+            [['information', 'requirments','slug'], 'string'],
             [[ 'registeration_fees', 'discount','lesson_duration','study_books_fees'], 'number'],
             [['title',   'created_at', 'updated_at'], 'string', 'max' => 255],
             [['required_level', 'time_of_course'], 'string', 'max' => 4],
@@ -64,6 +65,11 @@ class SchoolCourse extends BaseSchoolCourse
     public function behaviors()
     {
         return [
+            [
+                'class' => SluggableBehavior::class,
+                'attribute' => 'title',
+                'immutable' => true,
+            ],
             'timestamp' => [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
@@ -89,6 +95,13 @@ class SchoolCourse extends BaseSchoolCourse
                 ],
             ],
         ];
+    }
+
+
+    public function getMinimumPrice(){
+        $price=0;
+        $price = SchoolCourseWeekCost::find()->where(['school_course_id'=>$this->id])->min('cost');
+        return $price;
     }
 
 

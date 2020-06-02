@@ -12,13 +12,14 @@ use backend\models\SchoolCourse;
  */
  class SchoolCourseSearch extends SchoolCourse
 {
+    public  $country_id ;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by'], 'integer'],
+            [['id', 'school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by','country_id'], 'integer'],
             [['title', 'information', 'requirments',  'required_level', 'time_of_course', 'created_at', 'updated_at','status'], 'safe'],
             [[ 'registeration_fees', 'discount'], 'number'],
         ];

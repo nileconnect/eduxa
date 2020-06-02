@@ -288,7 +288,8 @@ return [
     'Programs in the same major' => 'برامج في نفس التخصص',
     'Start Dates' => 'تواريخ البدء',
     '' => '',
-    '' => '',
+    // schools
+    'Find, Review and Apply to the best schools in the world' => '',
     '' => '',
     '' => '',
     '' => '',

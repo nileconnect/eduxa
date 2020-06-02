@@ -10,8 +10,8 @@
             <div class="item-name">
                 <a href="/university/<?= $university->slug?>"><span> <?= $university->title ?></span></a>
                 <div class="rating">
-                    <div class="jq_rating jq-stars" data-options='{"initialRating":<?= $university->total_rating ?>, "readOnly":true, "starSize":19}'></div>
-                    <span class="text-muted">(<?= $university->no_of_ratings ?>)</span>
+                    <div class="jq_rating jq-stars" data-options='{"initialRating":<?= $university->total_rating?:1; ?>, "readOnly":true, "starSize":19}'></div>
+                    <span class="text-muted">(<?= $university->no_of_ratings?:1; ?>)</span>
                 </div>
             </div>
             <div class="item-location"><img src="<?=  $university->country->flag ?>" width="16px" height="12px" alt="">

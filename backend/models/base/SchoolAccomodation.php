@@ -10,10 +10,8 @@ use Yii;
  * @property integer $id
  * @property integer $school_id
  * @property string $title
- * @property string $room_size
  * @property integer $booking_cycle
  * @property integer $min_booking_duraion
- * @property integer $min_age
  * @property integer $max_age
  * @property double $distance_from_school
  * @property double $cost_per_duration_unit

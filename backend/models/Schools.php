@@ -37,8 +37,9 @@ class Schools extends BaseSchools
     public function rules()
     {
         return [
-            ['title', 'required'],
-            [['country_id', 'city_id', 'state_id','min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings','currency_id','next_to'], 'integer'],
+            [['title','country_id', 'city_id', 'state_id','currency_id','lat','lng'], 'required'],
+            [['country_id', 'city_id', 'state_id','min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings',
+                'currency_id','next_to'], 'integer'],
             [['details','slug'], 'string'],
             [['accomodation_fees', 'registeration_fees', 'study_books_fees',  'discount', 'total_rating'], 'number'],
             [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at','detailed_address'], 'string', 'max' => 255],
@@ -150,6 +151,7 @@ class Schools extends BaseSchools
             return   Yii::getAlias('@frontendUrl').'/img/no-logo.png' ;
         }
     }
+
 
 
 }

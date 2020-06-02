@@ -197,6 +197,13 @@ class Schools extends \yii\db\ActiveRecord
      * @return array mixed
      */
 
+    public function getSchoolLatestCourse()
+    {
+        $program =  \backend\models\SchoolCourse::find()->where(['school_id'=>$this->id ])->orderBy(['id'=>SORT_DESC])->limit(1)->one();//,'status'=>1
+        return $program ;
+    }
+
+
     /**
      * @inheritdoc
      * @return \backend\models\activequery\SchoolsQuery the active query used by this AR class.

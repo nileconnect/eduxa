@@ -34,10 +34,10 @@ class SchoolsController extends FrontendController
     public function actionIndex()
     {
         $countries = Country::find()->where(['status'=>1 , 'top_destination'=>1])->all();
-        $universities = Schools::find()->where(['status'=>1 , 'featured'=>1])->all();
+        $schools = Schools::find()->where(['status'=>1 , 'featured'=>1])->all();
 
         $searchModel = new SchoolCourseSearch();
-        return $this->render('index' ,['countries'=>$countries , 'universities'=>$universities ,'searchModel'=>$searchModel]);
+        return $this->render('index' ,['countries'=>$countries , 'schools'=>$schools ,'searchModel'=>$searchModel]);
     }
 
     public function actionSearch()

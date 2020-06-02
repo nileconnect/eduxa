@@ -176,7 +176,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'yii\grid\SerialColumn'],
                 ['attribute' => 'id', 'visible' => false],
                 'title',
-                'room_size',
                 [
                     'attribute'=> 'booking_cycle',
                     'format'=>'raw',
@@ -185,7 +184,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 ],
                 'min_booking_duraion',
-                'min_age',
                 'max_age',
                 'distance_from_school',
                 'cost_per_duration_unit',
