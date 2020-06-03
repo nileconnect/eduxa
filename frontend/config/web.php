@@ -5,6 +5,10 @@ $config = [
     'defaultRoute' => 'site/index',
     'bootstrap' => ['maintenance'],
     'modules' => [
+        'rest' => [
+            'class' => 'frontend\modules\rest\Module',
+        ],
+
         'user' => [
             'class' => frontend\modules\user\Module::class,
             'shouldBeActivated' => false,

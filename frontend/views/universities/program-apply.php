@@ -30,7 +30,13 @@ use \common\models\User;
                     <?= $universityObj->description ?>
                 </div>
                 <?php
-                if(Yii::$app->user->isGuest || (!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ) ){
+                if(Yii::$app->user->isGuest){
+                    ?>
+                      <div class="mtxlg">
+                        <a href="/login" class="button button-wide button-primary"><?= Yii::t('frontend','Apply Now') ?></a>
+                    </div>
+                <?
+                }else if(!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ){
                     ?>
                     <div class="mtxlg">
                         <a href="/dashboard/requests/<?= $programObj->slug ?>" class="button button-wide button-primary"><?= Yii::t('frontend','Apply Now') ?></a>
