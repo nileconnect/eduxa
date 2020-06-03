@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use backend\models\base\SchoolCourse;
 use backend\models\base\UniversityPrograms;
 use backend\models\Country;
 use backend\models\Schools;
@@ -55,28 +56,21 @@ class SchoolsController extends FrontendController
     }
 
     public function actionView($slug){
-         $universityObj= University::find()->where(['slug'=>$slug])->one();
-         if(!$universityObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+         $schoolObj= Schools::find()->where(['slug'=>$slug])->one();
+         if(!$schoolObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
 
-         $universityMajors = UniversityProgramMajors::find()->where('id in (select  DISTINCT major_id   from university_programs where university_id='.$universityObj->id.')')->all();
+        // $schoolCourses = UniversityProgramMajors::find()->where('id in (select  DISTINCT major_id   from university_programs where university_id='.$universityObj->id.')')->all();
 
-        return $this->render('view' ,['universityObj'=>$universityObj ,'universityMajors'=>$universityMajors]);
+        return $this->render('view' ,['schoolObj'=>$schoolObj ]);
     }
 
-    public function actionProgram($slug){
-        $programObj= UniversityPrograms::find()->where(['slug'=>$slug])->one();
-        if(!$programObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+    public function actionCourse($slug){
+        $courseObj= SchoolCourse::find()->where(['slug'=>$slug])->one();
+        if(!$courseObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
 
-        $universityObj = $programObj->university;
+        $schoolObj = $courseObj->school;
 
-        $programStartDates = UniversityProgStartdate::find()->where(['university_prog_id'=>$programObj->id ])->one();
-
-        $programsInSameMajor = UniversityPrograms::find()
-            ->where(['major_id'=>$programObj->major_id])
-            ->andWhere(['<>','id', $programObj->id])
-            ->limit(5)->all();
-
-        return $this->render('program' , ['programObj'=>$programObj,'universityObj'=>$universityObj ,'programStartDates'=>$programStartDates,'programsInSameMajor'=>$programsInSameMajor]);
+        return $this->render('course' , ['courseObj'=>$courseObj,'schoolObj'=>$schoolObj]);
     }
 
     public function actionProgramApply($slug){

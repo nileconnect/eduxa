@@ -6,10 +6,10 @@
                     <div class="carousel-inner">
                         <?php
                         $firstslid= 'active';
-                        foreach ($universityObj->universityPhotos as $universityPhoto) {
+                        foreach ($schoolObj->schoolPhotos as $schoolPhoto) {
                             ?>
                             <div class="carousel-item <?=$firstslid?>">
-                                <img class="d-block w-100" src="<?= $universityPhoto->base_url.$universityPhoto->path?>" alt="<?= $universityObj->title ?>">
+                                <img class="d-block w-100" src="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" alt="<?= $schoolObj->title ?>">
                             </div>
                             <?
                             $firstslid='';
@@ -28,17 +28,17 @@
                 </div>
             </div>
             <div class="col-sm-7">
-                <h2 class="text-primary"><?= $universityObj->title ?></h2>
+                <h2 class="text-primary"><?= $schoolObj->title ?></h2>
                 <h5>
                     <div class="rating fr">
-                        <div class="jq_rating jq-stars" data-options='{"initialRating":<?= $universityObj->total_rating ?:1; ?>, "readOnly":true, "starSize":19}'></div>
-                        <span class="text-muted">(<?= $universityObj->no_of_ratings?:1 ?>)</span>
+                        <div class="jq_rating jq-stars" data-options='{"initialRating":<?= $schoolObj->total_rating ?:1; ?>, "readOnly":true, "starSize":19}'></div>
+                        <span class="text-muted">(<?= $schoolObj->no_of_ratings?:1 ?>)</span>
                     </div>
-                    <div class="item-location text-muted"><img src="<?= $universityObj->country->flag ?>" alt="" width="16px" height="12px">
-                        <?= $universityObj->country->title .' - '.$universityObj->state->title .' - '. $universityObj->city->title  ?>
+                    <div class="item-location text-muted"><img src="<?= $schoolObj->country->flag ?>" alt="" width="16px" height="12px">
+                        <?= $schoolObj->country->title .' - '.$schoolObj->state->title .' - '. $schoolObj->city->title  ?>
                 </h5>
                 <div class="mtlg">
-                    <?= $universityObj->description ?>
+                    <?= $schoolObj->details ?>
                 </div>
             </div>
 
@@ -52,34 +52,18 @@
         <div class="university-tabs">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="majors-tab" data-toggle="tab" href="#tabMajors" role="tab" aria-controls="majors" aria-selected="true"><?php echo Yii::t('frontend','Majors'); ?> (<?= count($universityMajors)?>)</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="programs-tab" data-toggle="tab" href="#tabPrograms" role="tab" aria-controls="programs" aria-selected="false"><?php echo Yii::t('frontend','Programs'); ?> (<?= count($universityObj->universityPrograms)?>)</a>
+                    <a class="nav-link" id="programs-tab" data-toggle="tab" href="#tabPrograms" role="tab" aria-controls="programs" aria-selected="false"><?php echo Yii::t('frontend','Courses'); ?> (<?= count($schoolObj->schoolCourses)?>)</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="tabMajors" role="tabpanel" aria-labelledby="majors-tab">
-                    <ul class="majorsList">
-                        <?php
-                        if($universityMajors){
-                            foreach ($universityMajors as $major) {
-                                ?>
-                                <li>- <?= $major->title ?> </li>
 
-                                <?
-                            }
-                        }
-                        ?>
-                    </ul>
-                </div>
-                <div class="tab-pane fade" id="tabPrograms" role="tabpanel" aria-labelledby="programs-tab">
+                <div class="tab-pane fade show active" id="tabPrograms" role="tabpanel" aria-labelledby="programs-tab">
                     <ul class="majorsList">
                     <?php
-                     if($universityObj->universityPrograms){
-                         foreach ($universityObj->universityPrograms as $universityProgram) {
+                     if($schoolObj->schoolCourses){
+                         foreach ($schoolObj->schoolCourses as $schoolCourse) {
                              ?>
-                             <li>- <a href="/university/program/<?= $universityProgram->slug ;?>"><?= $universityProgram->title ?></a> </li>
+                             <li>- <a href="/school/course/<?= $schoolCourse->slug ;?>"><?= $schoolCourse->title ?></a> </li>
 
                              <?
                          }
@@ -93,29 +77,6 @@
     </div>
 </section>
 
-
-<section class="section">
-    <div class="container">
-
-        <h2 class="title title-sm title-black"><?php echo Yii::t('frontend','Accredited by the following'); ?></h2>
-        <div class="bg-white pllg ptlg pblg prlg b-all">
-            <ul  class="contList">
-            <?php
-            if($universityObj->universityCountries){
-                foreach ($universityObj->universityCountries as $country) {
-                    ?>
-                    <li>
-                        <span class="text-large"><img width="16px" height="12px"  class="mrxs" src="<?= $country->country->flag ?>" alt=""> <?= $country->country->title ?></span>
-                   </li>
-
-                    <?
-                }
-            }
-            ?>
-            </ul>
-        </div>
-    </div>
-</section>
 
 
 <section class="section">
@@ -138,13 +99,13 @@
 
                                 <?php
                                 $firstslid= 'active';
-                                foreach ($universityObj->universityPhotos as $universityPhoto) {
+                                foreach ($schoolObj->schoolPhotos as $schoolPhoto) {
                                     ?>
                                     <div class="col-sm-6">
                                         <figure class="img">
-                                            <a class="img-galley" href="<?= $universityPhoto->base_url.$universityPhoto->path?>" data-lightbox="img-gallery-set"
+                                            <a class="img-galley" href="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" data-lightbox="img-gallery-set"
                                                data-title="Click the right half of the image to move forward.">
-                                                <img src="<?= $universityPhoto->base_url.$universityPhoto->path?>" alt="<?= $universityObj->title ?>">
+                                                <img src="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" alt="<?= $schoolObj->title ?>">
                                             </a>
                                         </figure>
                                     </div>
@@ -159,12 +120,12 @@
                         <div class="tab-pane fade" id="tabVideos" role="tabpanel" aria-labelledby="videos-tab">
                             <div class="row">
                                 <?php
-                                if($universityObj->universityVideos){
-                                    foreach ($universityObj->universityVideos as $universityVideo) {
+                                if($schoolObj->schoolVideos){
+                                    foreach ($schoolObj->schoolVideos as $schoolVideo) {
                                         ?>
                                         <div class="col-sm-6 mbsm">
                                             <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($universityVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($schoolVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                                     
                                             </div>
                                         </div>
@@ -185,7 +146,7 @@
                     <h2 class="title title-sm title-black"><?php echo Yii::t('common','Location on Map'); ?></h2>
                     <div>
                         <div class="map-wrapper">
-                            <iframe src="https://maps.google.com/maps?q=<?= $universityObj->lat?>,<?= $universityObj->lng?>&hl=es;z=14&amp;output=embed"
+                            <iframe src="https://maps.google.com/maps?q=<?= $schoolObj->lat?>,<?= $schoolObj->lng?>&hl=es;z=14&amp;output=embed"
                                     width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
                     </div>
