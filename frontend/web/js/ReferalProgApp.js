@@ -202,14 +202,26 @@ var app = new Vue({
 
         },
         submitReferal() {
-            $.ajax({
-                "url": Api + "referral/add-request",
-                "method": "POST",
-                "data": "'students':" + this.StudentsList,
-                success: res => {
-                    console.log(res)
+            if (this.StudentsList == "") {
+                console.log("empty")
+            } else {
+                var data = {
+                    'students': this.StudentsList
                 }
-            });
+                $.ajax({
+                    "url": Api + "referral/add-request",
+                    "method": "POST",
+                    "data": data,
+                    success: res => {
+                        console.log(res)
+                        if (res.success == true) {
+                            $(".successMsg").addClass("show")
+
+                        }
+                    }
+                });
+            }
+
         }
     }
 })

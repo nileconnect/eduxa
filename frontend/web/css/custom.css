@@ -50,3 +50,31 @@
     z-index: 1000;
     position: relative;
 }
+
+.successMsg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #fff;
+    z-index: 10000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.successMsg.show {
+    display: flex;
+}
+
+.successMsg img {
+    width: 135px;
+    margin-bottom: 20px;
+}
+
+.successMsg h3 {
+    font-size: 2.2rem;
+    font-weight: 100;
+}

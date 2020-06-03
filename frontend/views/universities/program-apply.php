@@ -62,7 +62,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     <section class="section" >
         <div class="container">
 
-            <h3 class="text-primary"><i class="far fa-user"></i> Student Information</h3>
+            <h3 class="text-primary"><i class="far fa-user"></i> <?= Yii::t('frontend','Student Information')?></h3>
 
             <div class="ptxlg pbxlg plxlg prxlg bg-white shadow-sm mtmd">
                 
@@ -75,19 +75,19 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="firstName" class="label-control">First Name</label>
-                            <input type="text" class="form-control" name="" placeholder="write first name" id="firstName" v-model="firstName">
+                            <label for="firstName" class="label-control"><?= Yii::t('frontend','First Name')?></label>
+                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write first name')?>" id="firstName" v-model="firstName">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="lastName" class="label-control">Last Name</label>
-                            <input type="text" class="form-control" name="" placeholder="write last name" id="lastName" v-model="lastName">
+                            <label for="lastName" class="label-control"><?= Yii::t('frontend','Last Name')?></label>
+                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write last name')?>" id="lastName" v-model="lastName">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="gender" class="label-control">Gendr</label>
+                            <label for="gender" class="label-control"><?= Yii::t('frontend','Gender')?></label>
                             <div class="select-wrapper">
                                 <select name="" id="gender" class="form-control"  v-model="gender">
                                     <option value="male">Male</option>
@@ -101,19 +101,19 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="row mtsm">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="email" class="label-control">Email</label>
-                            <input type="email" class="form-control" name="" placeholder="write your email" id="email"  v-model="email">
+                            <label for="email" class="label-control"><?= Yii::t('frontend','Email')?></label>
+                            <input type="email" class="form-control" name="" placeholder="<?= Yii::t('frontend','write your email')?>" id="email"  v-model="email">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="mobile" class="label-control">Mobile Number</label>
-                            <input type="text" class="form-control" name="" placeholder="write your mobile number" id="mobile"  v-model="mobile">
+                            <label for="mobile" class="label-control"><?= Yii::t('frontend','Mobile Number')?></label>
+                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write your mobile number')?>" id="mobile"  v-model="mobile">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="country" class="label-control">Country</label>
+                            <label for="country" class="label-control"><?= Yii::t('frontend','Country')?></label>
                             <v-select v-model="selectedCountry"  label="title" :options="Countries" @input="SelectCountry"
                             >
                             </v-select>
@@ -124,7 +124,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="row mtsm">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="city" class="label-control">City</label>
+                            <label for="city" class="label-control"><?= Yii::t('common','City')?></label>
                             <v-select v-model="selectedCity"  label="title" :options="Cities" @input="SelectCity"
                             >
                             </v-select>
@@ -132,7 +132,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="city" class="label-control">State</label>
+                            <label for="city" class="label-control"><?= Yii::t('common','State')?></label>
                             <v-select v-model="selectedState"  label="title" :options="States" @input="SelectState"
                             >
                             </v-select>
@@ -140,15 +140,15 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="nationality" class="label-control">Nationality</label>
-                            <input type="text" class="form-control" name="" placeholder="nationality" id="nationality"  v-model="nationality">
+                            <label for="nationality" class="label-control"><?= Yii::t('frontend','Nationality')?></label>
+                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','Nationality')?>" id="nationality"  v-model="nationality">
                         </div>
                     </div>
                 </div>
 
                 <div class="row mtsm">
                     <div class="col-sm-3">
-                        <a href="javascript:void(0)" class="button button-primary btn-block" @click="addStudent()">Add Student</a>
+                        <a href="javascript:void(0)" class="button button-primary btn-block" @click="addStudent()"><?= Yii::t('frontend','Add Student')?></a>
                     </div>
                 </div>
                 </form>
@@ -160,16 +160,16 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
             <div class="row ptlg pblg prlg pllg bg-white shadow-sm mtlg" v-for="stud in StudentsList">
                 <div class="col-sm-6">
-                    <div class="text-large">Name:&nbsp;&nbsp; <span class="text-muted">{{stud.firstName}} {{stud.lastName}}</span></div>
-                    <div class="text-large">Gender:&nbsp;&nbsp; <span class="text-muted">{{stud.gender}}</span></div>
-                    <div class="text-large">Mobile Number:&nbsp;&nbsp; <span class="text-muted">{{stud.mobile}}</span></div>
-                    <div class="text-large">Nationality:&nbsp;&nbsp; <span class="text-muted">{{stud.nationality}}</span></div>
+                    <div class="text-large"><?= Yii::t('frontend','Name')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.firstName}} {{stud.lastName}}</span></div>
+                    <div class="text-large"><?= Yii::t('frontend','Gender')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.gender}}</span></div>
+                    <div class="text-large"><?= Yii::t('frontend','Mobile Number')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.mobile}}</span></div>
+                    <div class="text-large"><?= Yii::t('frontend','Nationality')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.nationality}}</span></div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="text-large">E-Mail:&nbsp;&nbsp; <span class="text-muted"><a href="mailto:mr.ahmedsaeed1@gmail.com">{{stud.email}}</a></span></div>
-                    <div class="text-large">Country:&nbsp;&nbsp; <span class="text-muted">{{stud.countryTitle}}</span></div>
-                    <div class="text-large">City:&nbsp;&nbsp; <span class="text-muted">{{stud.cityTitle}}</span></div>
-                    <div class="text-large">State:&nbsp;&nbsp; <span class="text-muted">{{stud.stateTitle}}</span></div>
+                    <div class="text-large"><?= Yii::t('frontend','Email')?>:&nbsp;&nbsp; <span class="text-muted"><a href="mailto:mr.ahmedsaeed1@gmail.com">{{stud.email}}</a></span></div>
+                    <div class="text-large"><?= Yii::t('common','Country')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.countryTitle}}</span></div>
+                    <div class="text-large"><?= Yii::t('common','City')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.cityTitle}}</span></div>
+                    <div class="text-large"><?= Yii::t('common','State')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.stateTitle}}</span></div>
                 </div>
             </div>
 
@@ -309,7 +309,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 ?>
                     <div class="mtlg">
                         <a href="javascript:void(0)" class="button btn-block button-wide button-primary text-large" @click="submitReferal()">
-                            referral submit
+                        <?= Yii::t('frontend','Submit')?>
                         </a>
                     </div>
 
@@ -326,5 +326,13 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
     </div>
 </section>
+
+
+<div class="successMsg">
+    <img src="/img/success.png">
+    <h3><?= Yii::t('frontend','Your Request Success')   ?></h3>
+    <p><?= Yii::t('frontend','Your Request Successfully Submited, Please check your profile.')   ?></p>
+    <a class="button button-primary" href="/referral-dashboard/requests"><?= Yii::t('frontend','Referral Program')   ?></a>
+</div>
 
 </div>
