@@ -22,10 +22,18 @@ return [
         ['pattern' => 'universities/country/<slug>', 'route' => 'universities/country'],
         ['pattern' => 'university/<slug>', 'route' => 'universities/view'],
 
-
         //universities programs
         ['pattern' => 'university/program/<slug>', 'route' => 'universities/program'],
         ['pattern' => 'program-apply/<slug>', 'route' => 'universities/program-apply'],
+
+
+        //Schools
+        ['pattern' => 'school/country/<slug>', 'route' => 'schools/country'],
+        ['pattern' => 'school/<slug>', 'route' => 'schools/view'],
+        //school courses
+        ['pattern' => 'school/course/<slug>', 'route' => 'schools/course'],
+
+
 
         //dashboard
         ['pattern' => 'dashboard/requests/<slug>', 'route' => 'dashboard/requests'],

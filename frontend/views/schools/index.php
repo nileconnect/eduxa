@@ -21,7 +21,7 @@ if($countries){
 
                         <li>
                             <figure>
-                                <a href="/universities/country/<?= $country->code?>">
+                                <a href="/school/country/<?= $country->code?>">
                                     <img src="<?= $country->flag ?>" alt="<?= $country->title ?>" width="270px" height="270px" />
                                     <figcaption>
                                         <span class="country-name"><?= $country->title ?></span>
