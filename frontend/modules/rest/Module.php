@@ -18,9 +18,9 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-        Yii::$app->user->identityClass = 'frontend\modules\rest\models\ApiUserIdentity';
-        Yii::$app->user->enableSession = false;
-        Yii::$app->user->loginUrl = null;
+//        Yii::$app->user->identityClass = 'frontend\modules\rest\models\ApiUserIdentity';
+//        Yii::$app->user->enableSession = false;
+//        Yii::$app->user->loginUrl = null;
 
         // you can daclare handler as function in you module and pass it as parameter here
         \Yii::$app->response->on(Response::EVENT_BEFORE_SEND,
