@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
             <div class="form-group-row">
                 <div class="form-group">
                         <?= $form->field($model, 'degree_id')->widget(\kartik\widgets\Select2::classname(), [
-                            'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramDegree::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                            'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramDegree::find()->orderBy('id')->all(), 'id', 'title'),
                             'options' => ['placeholder' => Yii::t('frontend', 'Degree Level')],
                             'pluginOptions' => [
                                 'allowClear' => true,
@@ -43,7 +43,7 @@ use yii\widgets\ActiveForm;
                 </div>
                 <div class="form-group">
                     <?= $form->field($model, 'field_id')->widget(\kartik\widgets\Select2::classname(), [
-                        'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramField::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                        'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramField::find()->orderBy('id')->all(), 'id', 'title'),
                         'options' => ['placeholder' => Yii::t('frontend', 'Field')],
                         'pluginOptions' => [
                             'allowClear' => true,
@@ -53,7 +53,7 @@ use yii\widgets\ActiveForm;
                 </div>
                 <div class="form-group">
                     <?= $form->field($model, 'major_id')->widget(\kartik\widgets\Select2::classname(), [
-                        'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMajors::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                        'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMajors::find()->orderBy('id')->all(), 'id', 'title'),
                         'options' => ['placeholder' => Yii::t('frontend', 'Major')],
                         'pluginOptions' => [
                             'allowClear' => true
@@ -62,7 +62,7 @@ use yii\widgets\ActiveForm;
                 </div>
                 <div class="form-group">
                     <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
-                        'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),
+                        'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->all(), 'id', 'title'),
                         'options' => ['placeholder' => Yii::t('frontend', 'Country')],
                         'pluginOptions' => [
                             'allowClear' => true

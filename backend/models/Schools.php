@@ -135,7 +135,7 @@ class Schools extends BaseSchools
         $rating_sum  = $this->schoolRatingsSum;
         $this->no_of_ratings = $ratingCount ;
         if($ratingCount){
-            $this->total_rating = number_format($rating_sum/$ratingCount , 0);
+            $this->total_rating = number_format($rating_sum/$ratingCount , 1);
         }else{
             $this->total_rating = 0 ;
         }
