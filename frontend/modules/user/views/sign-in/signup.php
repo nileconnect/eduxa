@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-sm-6">
                                 <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
-                                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),
+                                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->all(), 'id', 'title'),
                                     'options' => ['placeholder' => Yii::t('common', 'Choose Country') ,'id'=>'CountryId'],
                                     'pluginOptions' => [
                                         'allowClear' => true
@@ -90,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php
                                 // Child # 1
                                 echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
-                                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [],
+                                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->all(), 'id', 'title') : [],
                                     'options'=>['id'=>'City-id'],
                                     'pluginOptions'=>[
                                         'depends'=>['CountryId'],
@@ -107,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php
                         // Child # 1
                         echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                            'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->asArray()->all(), 'id', 'title') : [],
+                            'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->all(), 'id', 'title') : [],
                             'options'=>['id'=>'subcat-id'],
                             'pluginOptions'=>[
                                 'depends'=>['City-id'],

@@ -11,7 +11,7 @@ use yii\web\Controller;
 /**
  * SchoolsController implements the CRUD actions for Schools model.
  */
-class HelperController extends   Controller
+class HelperController extends   FrontendController
 {
     //endpoints
     public function actionStates() {

@@ -40,8 +40,8 @@
                 <h3 class="text-primary"><?= $universityObj->title ?>: <?= $programObj->title ?> <span>(<?= $programObj->major->title ?>)</span></h3>
                 <h5>
                     <div class="rating fr">
-                        <div class="jq_rating jq-stars" data-options='{"initialRating":4.8, "readOnly":true, "starSize":19}'></div>
-                        <span class="text-muted">(628)</span>
+                        <div class="jq_rating jq-stars" data-options='{"initialRating":<?= $universityObj->total_rating?:1 ?>, "readOnly":true, "starSize":19}'></div>
+                        <span class="text-muted">(<?= $universityObj->no_of_ratings?:1 ?>)</span>
                     </div>
                     <div class="item-location text-muted"><img src="<?= $universityObj->country->flag ?>" alt="" width="16px" height="12px">
                         <?= $universityObj->country->title .' - '.$universityObj->state->title .' - '. $universityObj->city->title  ?>

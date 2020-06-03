@@ -34,7 +34,7 @@ use kartik\depdrop\DepDrop;
         <div class="form-group-row">
             <div class="form-group">
                 <?= $form->field($model, 'degree_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramDegree::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramDegree::find()->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('frontend', 'Degree Level')],
                     'pluginOptions' => [
                         'allowClear' => true,
@@ -44,7 +44,7 @@ use kartik\depdrop\DepDrop;
             </div>
             <div class="form-group">
                 <?= $form->field($model, 'field_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramField::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramField::find()->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('frontend', 'Field')],
                     'pluginOptions' => [
                         'allowClear' => true,
@@ -54,7 +54,7 @@ use kartik\depdrop\DepDrop;
             </div>
             <div class="form-group">
                 <?= $form->field($model, 'major_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMajors::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMajors::find()->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('frontend', 'Major')],
                     'pluginOptions' => [
                         'allowClear' => true
@@ -64,7 +64,7 @@ use kartik\depdrop\DepDrop;
 
             <div class="form-group">
                 <?= $form->field($model, 'university_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\University::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\University::find()->where(['status'=>1])->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('frontend', 'University')],
                     'pluginOptions' => [
                         'allowClear' => true
@@ -89,7 +89,7 @@ use kartik\depdrop\DepDrop;
 
             <div class="form-group">
                 <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->asArray()->all(), 'id', 'title'),
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('common', 'Country') ,'id'=>'CountryId'],
                     'pluginOptions' => [
                         'allowClear' => true
@@ -100,7 +100,7 @@ use kartik\depdrop\DepDrop;
                 <?php
                 // Child # 1
                 echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->asArray()->all(), 'id', 'title') : [''=>Yii::t('common','State')],
+                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->all(), 'id', 'title') : [''=>Yii::t('common','State')],
                     'options'=>['id'=>'City-id'],
                     'pluginOptions'=>[
                         'depends'=>['CountryId'],
@@ -114,7 +114,7 @@ use kartik\depdrop\DepDrop;
                 <?php
                 // Child # 1
                 echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->asArray()->all(), 'id', 'title') : [''=>Yii::t('common','City')],
+                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->all(), 'id', 'title') : [''=>Yii::t('common','City')],
                     'options'=>['id'=>'subcat-id'],
                     'pluginOptions'=>[
                         'depends'=>['City-id'],
@@ -128,7 +128,7 @@ use kartik\depdrop\DepDrop;
           
             <div class="form-group">
                 <?= $form->field($model, 'university_nextTo')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityNextTo::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityNextTo::find()->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('frontend', 'University next to')],
                     'pluginOptions' => [
                         'allowClear' => true

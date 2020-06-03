@@ -148,7 +148,7 @@ class University extends \yii\db\ActiveRecord
 
         $rating_sum  = $this->unversityRatingsSum;
         $this->no_of_ratings = $ratingCount ;
-        $this->total_rating = number_format($rating_sum/$ratingCount , 0);
+        $this->total_rating = number_format($rating_sum/$ratingCount , 1);
         $this->save(false);
         return true;
     }
