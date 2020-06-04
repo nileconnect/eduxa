@@ -5,6 +5,8 @@ use \common\models\User;
 \frontend\assets\ProgramAsset::register($this);
 
 ?>
+<?php echo Yii::$app->language ; ?>
+<?php echo $programObj->slug ; ?>
 <nav aria-label="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">

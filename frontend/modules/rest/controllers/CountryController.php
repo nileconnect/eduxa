@@ -21,7 +21,9 @@ class CountryController extends ApiController
     public function actionIndex(){
 
         $params= \Yii::$app->request->get();
-
+        if($params['filter']['lang']){
+            \Yii::$app->language = $params['filter']['lang'] ;
+        }
         $query= $this->modelClass::find();
 
         $activeData = new ActiveDataProvider([

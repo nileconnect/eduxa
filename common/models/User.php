@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use backend\models\Requests;
 use common\commands\AddToTimelineCommand;
 use common\models\query\UserQuery;
 use phpDocumentor\Reflection\Types\Self_;
@@ -364,6 +365,16 @@ class User extends ActiveRecord implements IdentityInterface
         }else{
             return false;
         }
+    }
+
+    public static function GetRequesterRole($userId){
+        if(self::IsRole($userId,self::ROLE_REFERRAL_PERSON)){
+            return  Requests::REQUEST_BY_REFERRAL_PERSON;
+        }
+        if(self::IsRole($userId,self::ROLE_REFERRAL_COMPANY)){
+            return  Requests::REQUEST_BY_REFERRAL_COMPANY;
+        }
+        return  Requests::REQUEST_BY_STUDENT;
     }
 
     //relations

@@ -17,6 +17,9 @@ class CitiesController extends ApiController
     public function actionIndex(){
 
         $params= \Yii::$app->request->get()['filter'];
+        if($params['lang']){
+            \Yii::$app->language = $params['lang'] ;
+        }
         $query= $this->modelClass::find();
         $query->andwhere(['state_id'=>$params['state_id']]);
 

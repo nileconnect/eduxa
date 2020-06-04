@@ -4,7 +4,11 @@ namespace frontend\modules\rest\controllers;
 
 use api\helpers\ResponseHelper;
 use api\resources\User;
+use backend\models\base\UniversityPrograms;
+use backend\models\Requests;
+use common\models\UserProfile;
 use yii\rest\Controller;
+use yii\web\NotFoundHttpException;
 
 class ReferralController  extends  Controller
 {
@@ -12,86 +16,52 @@ class ReferralController  extends  Controller
 
     public function actionAddRequest()
     {
+       if(! \Yii::$app->user->identity->getId()){
+           return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
+       }
+        $user = User::findOne(['id' => \Yii::$app->user->identity->getId()]);
+        if(User::IsRole($user->id , User::ROLE_USER) ){
+            return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
+        }
+        $profile = $user->userProfile;
         $params = json_decode(file_get_contents("php://input") ,true);
-
         if($params){  // logged in and valid role
             $students = $params['students'];
-            foreach ($students as $param) {
-                echo $param['firstName'] . ' '. $param['lastName'] . ' '. $param['gender'] . ' '. $param['countryId'] . ' '
-                    . $param['stateId'] . ' '. $param['cityId'] . ' '. $param['email'] . ' '. $param['mobile'] . ' '. $param['nationality'] . '<br/> ';
-            }
-        }
-
-        return ResponseHelper::sendSuccessResponse();
-       // return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not Found']);
-
-
-
-//        $user = User::findOne(['id' => \Yii::$app->user->identity->getId()]);
-//        $profile = $user->userProfile;
-
-        var_dump($user); die;
-
-        if (isset($params['invitationId'])) {
-            $invitationObj = Invitation::findOne(['id' => $params['invitationId'] ,'status'=>Invitation::STATUS_NEW] );
-
-            if($invitationObj && ($invitationObj->parent_phone == $user->username) ){
-
-                //update invitation object
-                $invitationObj->status= Invitation::STATUS_ACCEPTED;
-                $invitationObj->parent_id= $profile->user_id;
-                if(!$invitationObj->save()){
-                    var_dump( $invitationObj->errors);
-                    die;
-                }
-                $message= "Parent ".$invitationObj->parent->userProfile->fullName." has accepted your connection request ";//Invitation has been accepted';
-                $messageToSave= "Parent **".$invitationObj->parent->userProfile->fullName."** has accepted your connection request ";//Invitation has been accepted';
-                if ($invitationObj) {
-                    //record notification and send to trainer
-                    $notificationObj = new Notifications();
-                    $notificationObj->from = $user->id;
-                    $notificationObj->to = $invitationObj->trainer_id;
-                    $notificationObj->topic = Notifications::TOPIC_PARENT_ACCEPT_INVITATION ;
-                    $notificationObj->message = $messageToSave;
-                    $notificationObj->model = 'Invitation';
-                    $notificationObj->model_id = $invitationObj->id;
-                    $notificationObj->save();
-
-                    //send notify
-
-                    //send push notification
-                    PushNotification::instance()->sendTrainerAcceptInviteNotification($invitationObj->trainer->userProfile->device_token, $message,$user->id);
-                    $TrainerPhone =myClearPhone($invitationObj->trainer->username);
-
-                    //SMS::send( $TrainerPhone, $message,$invitationObj->parent_phone_prefix);
-
-                    if(isset($params['notificationId'])){
-                        Notifications::findOne(['id'=>$params['notificationId']])->delete();
-                    }
-                    return ResponseHelper::sendSuccessResponse();
-
-                } else {
-
-                    return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not Found']);
-
-
-                }
-
-
-
+            if($params['slug']) {
+                $programObj = UniversityPrograms::find()->where(['slug' => $params['slug']])->one();
+                if (!$programObj) return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
             }else{
-                return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'invalid invitation']);
+                return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
+            }
+           foreach ($students as $param) {
+//                echo $param['firstName'] . ' '. $param['lastName'] . ' '. $param['gender'] . ' '. $param['countryId'] . ' '
+//                    . $param['stateId'] . ' '. $param['cityId'] . ' '. $param['email'] . ' '. $param['mobile'] . ' '. $param['nationality'] . '<br/> ';
+
+               $requestObj =new Requests();
+               $requestObj->model_name = Requests::MODEL_NAME_PROGRAM;
+               $requestObj->model_id = $programObj->id ;
+               $requestObj->model_parent_id = $programObj->university->id;
+               $requestObj->request_by_role = \common\models\User::GetRequesterRole($profile->user_id);
+               $requestObj->student_id = '';
+               $requestObj->requester_id = $profile->user_id;
+               $requestObj->student_first_name = $param['firstName'];
+               $requestObj->student_last_name = $param['lastName'];
+               $requestObj->student_gender = $param['gender'] =="male"?UserProfile::GENDER_MALE : UserProfile::GENDER_FEMALE ;
+               $requestObj->student_email = $param['email'];
+               $requestObj->student_country_id = $param['countryId'];
+               $requestObj->student_city_id = $param['cityId'];
+               $requestObj->student_state_id = $param['stateId'];
+               $requestObj->student_mobile = $param['mobile'];
+               $requestObj->student_nationality_id = $param['nationality'];
+               $requestObj->status = Requests::STATUS_PENDING;
+               if(! $requestObj->save()){
+                   return ResponseHelper::sendFailedResponse(['MESSAGE'=> $requestObj->errors]);
+                }
+
 
             }
-
-
-
-
-        } else {
-           return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'invalid invitation']);
-
-
         }
+        return ResponseHelper::sendSuccessResponse();
 
     }
 
