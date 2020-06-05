@@ -9,13 +9,13 @@ use backend\models\SchoolCourse;
 
     <header class="item-header">
         <figure>
-            <a href="/university/<?= $school->slug?>">
+            <a href="/school/<?= $school->slug?>">
             <img src="<?= $school->logoImage?>" alt="<?= $school->title ?>" height="193px" width="310px">
             </a>
         </figure>
         <div class="item-content">
             <div class="item-name">
-                <a href="/university/<?= $school->slug?>">  <span><?= $school->title ?></span></a>
+                <a href="/school/<?= $school->slug?>">  <span><?= $school->title ?></span></a>
                 <div class="rating">
                     <div class="jq_rating jq-stars" data-options='{"initialRating":<?= $school->total_rating?:1 ?>, "readOnly":true, "starSize":19}'></div>
                     <span class="text-muted">(<?= $school->no_of_ratings?:1 ?>)</span>
@@ -36,26 +36,32 @@ use backend\models\SchoolCourse;
             ?>
             <footer class="item-footer">
                 <div>
-
                     <div class="item-label"><?= Yii::t('frontend','Course Name') ?></div>
                     <div><?= $item->title ?></div>
                     <div><small> <?=  SchoolCourse::ListLevels()[$item->required_level] ?></small></div>
                 </div>
+
                 <div>
-                    <div class="item-label"><?= Yii::t('frontend','Start Date') ?></div>
-                    <div><?= $item->first_submission_date ?></div>
+                    <div class="item-label">Lessons/week</div>
+                    <div><?= $item->lessons_per_week ?></div>
                 </div>
                 <div>
-                    <div class="item-label"><?= Yii::t('frontend','Annual Cost') ?></div>
-                    <div ><span class="original-price"><?= $item->annual_cost ?></span>
+                    <div class="item-label">Study Time</div>
+                    <div><?= SchoolCourse::ListCourseTime()[$item->time_of_course] ?></div>
+                </div>
+
+                <div>
+                    <div class="item-label"><?= Yii::t('frontend','Best price') ?></div>
+                    <div ><span class="original-price"><?= $min_price ?></span>
                         <span class="currency"><?= $school->currency->currency_code ?></span>
                     </div>
+
                     <?php
-                    echo \common\helpers\MyCurrencySwitcher::checkCurrency($school->currency->currency_code ,$item->annual_cost );
+                    echo \common\helpers\MyCurrencySwitcher::checkCurrency($school->currency->currency_code ,$min_price );
                     ?>
                 </div>
                 <div>
-                    <a href="/university/program/<?= $item->slug ;?>" class="button btn-block button-primary"><?= Yii::t('frontend','Additional Info') ?></a>
+                    <a href="/school/course/<?= $item->slug ;?>" class="button btn-block button-primary"><?= Yii::t('frontend','Additional Info') ?></a>
                 </div>
             </footer>
             <?

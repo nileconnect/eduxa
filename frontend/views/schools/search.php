@@ -5,7 +5,7 @@ use yii\widgets\ListView;
     <div class="img-layer" style="background-image: url('/img/banners/banner1.jpg');"></div>
 </div>
 
-<?php  //echo $this->render('_advancedsearch', ['model' => $searchModel]); ?>
+<?php  echo $this->render('_advancedsearch', ['model' => $searchModel]); ?>
 
 
 

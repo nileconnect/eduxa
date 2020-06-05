@@ -15,13 +15,18 @@ use backend\models\SchoolCourse;
  class SchoolCourseSearch extends SchoolCourse
 {
     public  $country_id ;
+    public  $state_id ;
+    public  $city_id ;
+    public $school_total_rating;
+    public $school_nextTo;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by','country_id'], 'integer'],
+            [['id', 'school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by',
+                'country_id','state_id', 'city_id','school_total_rating','school_nextTo'], 'integer'],
             [['title', 'information', 'requirments',  'required_level', 'time_of_course', 'created_at', 'updated_at','status'], 'safe'],
             [[ 'registeration_fees', 'discount'], 'number'],
         ];
@@ -101,10 +106,26 @@ use backend\models\SchoolCourse;
              // $query->where('0=1');
              //  return $dataProvider;
          }
+         $query->andFilterWhere([
+             'schools.id' => $this->school_id,
+             'schools.country_id' => $this->country_id,
+             'schools.state_id' => $this->state_id,
+             'schools.city_id' => $this->city_id,
+             'schools.next_to' => $this->school_nextTo,
 
-//         $query
-//             ->andFilterWhere(['like', 'schools.title', $this->university_title])
-//             ->andFilterWhere(['>=', 'schools.total_rating', $this->university_total_rating]);
+             'school_course.required_level' => $this->required_level,
+             'school_course.time_of_course' => $this->time_of_course,
+         ]);
+
+
+         if($this->title){
+             $query->andFilterWhere(['or',
+                 ['like','school_course.title',$this->title],
+                 ['like','schools.title',$this->title]]);
+         }
+
+
+         $query ->andFilterWhere(['>=', 'schools.total_rating', $this->school_total_rating]);
 
          $query->groupBy(['schools.id']);
 
