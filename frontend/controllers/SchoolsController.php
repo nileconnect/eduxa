@@ -43,7 +43,7 @@ class SchoolsController extends FrontendController
 
     public function actionSearch()
     {
-        $searchModel = new UniversityProgramsSearch();
+        $searchModel = new SchoolCourseSearch();
         $dataProvider = $searchModel->CustomSearch(Yii::$app->request->queryParams);
 
         return $this->render('search' ,[ 'searchModel'=>$searchModel,'dataProvider'=>$dataProvider]);

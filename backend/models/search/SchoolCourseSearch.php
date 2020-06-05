@@ -2,6 +2,8 @@
 
 namespace backend\models\search;
 
+use backend\models\Schools;
+use backend\models\University;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -81,4 +83,32 @@ use backend\models\SchoolCourse;
 
         return $dataProvider;
     }
+
+
+     public function CustomSearch($params)
+     {
+
+         $query = Schools::find();
+         $query->innerJoinWith('schoolCourses', false);
+         $dataProvider = new ActiveDataProvider([
+             'query' => $query,
+         ]);
+
+         $this->load($params);
+
+         if (!$this->validate()) {
+             // uncomment the following line if you do not want to return any records when validation fails
+             // $query->where('0=1');
+             //  return $dataProvider;
+         }
+
+//         $query
+//             ->andFilterWhere(['like', 'schools.title', $this->university_title])
+//             ->andFilterWhere(['>=', 'schools.total_rating', $this->university_total_rating]);
+
+         $query->groupBy(['schools.id']);
+
+         return $dataProvider;
+
+     }
 }

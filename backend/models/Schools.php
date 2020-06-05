@@ -152,6 +152,10 @@ class Schools extends BaseSchools
         }
     }
 
-
+    public function getSchoolLatestCoursesList($limit=3)
+    {
+        $courses =  SchoolCourse::find()->where(['school_id'=>$this->id ])->orderBy(['id'=>SORT_DESC])->limit($limit)->all();//,'status'=>1
+        return $courses ;
+    }
 
 }
