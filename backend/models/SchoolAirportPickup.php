@@ -24,5 +24,9 @@ class SchoolAirportPickup extends BaseSchoolAirportPickup
             [['service_type'], 'string', 'max' => 4]
         ]);
     }
+
+    public static function AirePorPickuptList(){
+      return   [\backend\models\Schools::AIRPORT_ONE_WAY =>'One Way', \backend\models\Schools::AIRPORT_TWO_WAY => 'Two Way'];
+    }
 	
 }
