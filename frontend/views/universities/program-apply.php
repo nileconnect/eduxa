@@ -5,8 +5,7 @@ use \common\models\User;
 \frontend\assets\ProgramAsset::register($this);
 
 ?>
-<?php echo Yii::$app->language ; ?>
-<?php echo $programObj->slug ; ?>
+
 <nav aria-label="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">
@@ -16,7 +15,8 @@ use \common\models\User;
     </div>
 </nav>
 
-<div id="ReferalProgApp">
+
+<div id="ReferalProgApp" data-lang="<?php echo Yii::$app->language ; ?>" data-slug="<?php echo $programObj->slug ; ?>">
 <section class="section">
     <div class="container">
         <div class="row">

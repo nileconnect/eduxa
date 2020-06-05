@@ -23,7 +23,8 @@ var app = new Vue({
             cityTitle: "",
             stateId: "",
             stateTitle: "",
-            lang: "ar",
+            lang: $("#ReferalProgApp").attr("data-lang"),
+            slug: $("#ReferalProgApp").attr("data-slug"),
             firstName: "",
             lastName: "",
             gender: "",
@@ -206,6 +207,7 @@ var app = new Vue({
                 console.log("empty")
             } else {
                 var data = {
+                    "slug": this.slug,
                     'students': this.StudentsList
                 }
                 $.ajax({
