@@ -1,6 +1,8 @@
 <?php
 use \common\models\User;
 use backend\models\SchoolCourse;
+
+\frontend\assets\CourcesAsset::register($this);
 ?>
 <nav aria-label="breadcrumb">
     <div class="container">
@@ -11,7 +13,7 @@ use backend\models\SchoolCourse;
     </div>
 </nav>
 
-
+<div id="courcesApp" data-lang="<?php echo Yii::$app->language ; ?>" data-SchoolId="<?php echo $courseObj->school_id ; ?>">
 <section class="section">
     <div class="container">
         <div class="row">
@@ -224,16 +226,16 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="bg-white shadow-sm b-all mtmd">
                     <div class="pllg prlg pblg ptlg">
                         <div class="select-wrapper">
-                            <select name="" id="" class="form-control">
+                            <select name="" id="" class="form-control" v-on:change="selectAccommodation($event)">
                                 <option>Accommodation options</option>
-                                <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
+
+                                <option v-for="(acco,$index) in accomodtion" :value="$index" >{{acco.title}}</option>
+                                
                             </select>
                         </div>
                         
                     </div>
-                    <table class="table text-large wide-cell">
+                    <table class="table text-large wide-cell" id="accoTable" style="">
                         <tbody>
                             <tr>
                                 <td><?= Yii::t('frontend' , 'Accommodation Registration Fees')?></td>
@@ -329,10 +331,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             </td>
                             <td><span class="text-primary">50 USD</span></td>
                         </tr>
-<!--                        <tr>-->
-<!--                            <td>--><?//= Yii::t('frontend' , 'Accomodation fees')?><!--</td>-->
-<!--                            <td><span class="text-primary">--><?//= $courseObj->avg_no_of_students_per_class; ?><!-- USD</span></td>-->
-<!--                        </tr>-->
+
                         <tr>
                             <td><?= Yii::t('frontend' , 'Registeration fees')?></td>
                             <td><span class="text-primary"><?= $courseObj->registeration_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
@@ -359,54 +358,57 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     </div>
 </section>
 <section class="section">
-		<div class="container">
-			<h2 class="title text-center"><?= Yii::t('frontend' , 'Other courses in Language Academy')?> </h2>
+    <div class="container">
+        <h2 class="title text-center"><?= Yii::t('frontend' , 'Other courses in Language Academy')?> </h2>
 
-			<div class="universities universities-row">
+        <div class="universities universities-row">
 
-				<div class="item">
-					<header class="item-header">
-						<figure>
-							<span class="cut-off">15%</span>
-							<img src="img/destinations/1.jpg" alt="">
-						</figure>
-						<div class="item-content">
-							<div class="item-name">
-								<span>Language Academy - General English</span>
-								<div class="rating">
-									
-									<span class="text-muted">(628)</span>
-								</div>
-							</div>
-							<div class="item-location"><img src="img/flags/fr.png" alt=""> Auburn - Alabama - USA</div>
-							<div class="item-body">
-								Living in today’s metropolitan world of cellular phones, mobile computers and other high-tech gadgets is not just hectic but very impersonal. We make money and then invest our time and effort in making more money. 
-							</div>
-						</div>
-					</header>
-					<footer class="item-footer">
-						<div>
-							<div class="item-label"><?= Yii::t('frontend' , 'Hours/week')?></div>
-							<div>22 hrs</div>
-						</div>
-						<div>
-							<div class="item-label"><?= Yii::t('frontend' , 'Study Time')?></div>
-							<div>Morning</div>
-						</div>
-						<div>
-                            <div class="item-label"><?= Yii::t('frontend' , 'Best price')?></div>
-							<div><span class="original-price">150</span><span class="sale-on">27.00</span> <span class="currency"><?= $schoolObj->currency->currency_code?></span></div>
-						<div><span class="converted-price">2500</span> <span class="sale-on">27.00</span> <span class="currency">LE</span></div>
-						</div>
-						<div>
-							<a href="#" class="button btn-block button-primary"><?= Yii::t('frontend' , 'Additional Info')?></a>
-						</div>
-					</footer>
-				</div>
+            <div class="item">
+                <header class="item-header">
+                    <figure>
+                        <span class="cut-off">15%</span>
+                        <img src="img/destinations/1.jpg" alt="">
+                    </figure>
+                    <div class="item-content">
+                        <div class="item-name">
+                            <span>Language Academy - General English</span>
+                            <div class="rating">
+                                
+                                <span class="text-muted">(628)</span>
+                            </div>
+                        </div>
+                        <div class="item-location"><img src="img/flags/fr.png" alt=""> Auburn - Alabama - USA</div>
+                        <div class="item-body">
+                            Living in today’s metropolitan world of cellular phones, mobile computers and other high-tech gadgets is not just hectic but very impersonal. We make money and then invest our time and effort in making more money. 
+                        </div>
+                    </div>
+                </header>
+                <footer class="item-footer">
+                    <div>
+                        <div class="item-label"><?= Yii::t('frontend' , 'Hours/week')?></div>
+                        <div>22 hrs</div>
+                    </div>
+                    <div>
+                        <div class="item-label"><?= Yii::t('frontend' , 'Study Time')?></div>
+                        <div>Morning</div>
+                    </div>
+                    <div>
+                        <div class="item-label"><?= Yii::t('frontend' , 'Best price')?></div>
+                        <div><span class="original-price">150</span><span class="sale-on">27.00</span> <span class="currency"><?= $schoolObj->currency->currency_code?></span></div>
+                    <div><span class="converted-price">2500</span> <span class="sale-on">27.00</span> <span class="currency">LE</span></div>
+                    </div>
+                    <div>
+                        <a href="#" class="button btn-block button-primary"><?= Yii::t('frontend' , 'Additional Info')?></a>
+                    </div>
+                </footer>
+            </div>
 
-				
+            
 
-			</div>
+        </div>
 
-		</div>
-	</section>
+    </div>
+</section>
+
+</div>
+
