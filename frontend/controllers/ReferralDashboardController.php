@@ -76,7 +76,10 @@ class ReferralDashboardController extends FrontendController
     }
     public function actionRequests()
     {
-        return $this->render('requests');
+        $profile =Yii::$app->user->identity->userProfile ;
+        $requests = $profile->requests;
+
+        return $this->render('requests',['requests'=>$requests]);
     }
 
     // Modals Functions

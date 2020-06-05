@@ -24,7 +24,7 @@ class ReferralController  extends  Controller
             return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
         }
         $profile = $user->userProfile;
-        $params = json_decode(file_get_contents("php://input") ,true);
+        $params =  \Yii::$app->request->post() ; // json_decode(file_get_contents("php://input") ,true);
         if($params){  // logged in and valid role
             $students = $params['students'];
             if($params['slug']) {
@@ -60,8 +60,12 @@ class ReferralController  extends  Controller
 
 
             }
+            return ResponseHelper::sendSuccessResponse();
+        }else{
+            return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Missing Data']);
+
         }
-        return ResponseHelper::sendSuccessResponse();
+
 
     }
 
