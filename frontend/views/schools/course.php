@@ -28,7 +28,7 @@ use backend\models\SchoolCourse;
                     </div>
                 </h5>
                 <div class="mtlg">
-                    <?= $schoolObj->details ?>
+                    <?= $courseObj->information ; ?>
                 </div>
                 <?php
                 if(Yii::$app->user->isGuest){
@@ -53,7 +53,7 @@ use backend\models\SchoolCourse;
 
         <div class="ptlg pblg prlg pllg bg-white b-all text-large">
             <p>
-                Conversations can be a tricky business. Sometimes, decoding what is said with what is meant is difficult at best. However, communication is a necessary tool in todays world. And it’s not only speaking that can be difficult, but trying to interpret body language, and other language barriers are just a few of the obstacles barring effective communication. It’s often been the case were one party completely miscommunicates to another due to a misunderstanding between parties. 
+                <?= $courseObj->requirments ; ?>
             </p>
         </div>
     </div>
