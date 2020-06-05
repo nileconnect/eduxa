@@ -182,36 +182,36 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <tbody>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Minimum age')?></td>
-                            <td><span class="text-primary">26 Years</span></td>
+                            <td><span class="text-primary"><?= $courseObj->min_age; ?> Years</span></td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Required Level')?></td>
                             <td>
-                                <div class="text-primary">25 Augest 2019</div>
+                                <div class="text-primary"><?=  SchoolCourse::ListLevels()[$courseObj->required_level] ?></div>
                             </td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Time Of Course')?></td>
                             <td>
-                                <div class="text-primary">25 Augest 2019</div>
+                                <div class="text-primary"><?= SchoolCourse::ListCourseTime()[$courseObj->time_of_course] ?></div>
                             </td>
                         </tr>
                         
                         <tr>
                             <td><?= Yii::t('frontend' , 'Lessons/Week')?></td>
-                            <td><span class="text-primary">22</span></td>
+                            <td><span class="text-primary"><?= $courseObj->lessons_per_week; ?> </span></td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Lesson Duration')?></td>
-                            <td><span class="text-primary">22</span></td>
+                            <td><span class="text-primary"><?= $courseObj->lesson_duration; ?></span></td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Max No Of Students Per Class')?></td>
-                            <td><span class="text-primary">19</span></td>
+                            <td><span class="text-primary"><?= $courseObj->min_no_of_students_per_class; ?></span></td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Avg No Of Students Per Class')?></td>
-                            <td><span class="text-primary">10</span></td>
+                            <td><span class="text-primary"><?= $courseObj->avg_no_of_students_per_class; ?></span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -327,22 +327,22 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             </td>
                             <td><span class="text-primary">50 USD</span></td>
                         </tr>
-                        <tr>
-                            <td><?= Yii::t('frontend' , 'Accomodation fees')?></td>
-                            <td><span class="text-primary">20 USD</span></td>
-                        </tr>
+<!--                        <tr>-->
+<!--                            <td>--><?//= Yii::t('frontend' , 'Accomodation fees')?><!--</td>-->
+<!--                            <td><span class="text-primary">--><?//= $courseObj->avg_no_of_students_per_class; ?><!-- USD</span></td>-->
+<!--                        </tr>-->
                         <tr>
                             <td><?= Yii::t('frontend' , 'Registeration fees')?></td>
-                            <td><span class="text-primary">20 USD</span></td>
+                            <td><span class="text-primary"><?= $courseObj->registeration_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Study books fees')?></td>
-                            <td><span class="text-primary">20 USD</span></td>
+                            <td><span class="text-primary"><?= $courseObj->study_books_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2" class="bg-primary text-center"><h3>Total: 240 USD</h3></td>
+                            <td colspan="2" class="bg-primary text-center"><h3>Total: 240 <?= $schoolObj->currency->currency_code?></h3></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -392,7 +392,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 						</div>
 						<div>
 							<div class="item-label">Best price</div>
-							<div><span class="original-price">150</span><span class="sale-on">27.00</span> <span class="currency">USD</span></div>
+							<div><span class="original-price">150</span><span class="sale-on">27.00</span> <span class="currency"><?= $schoolObj->currency->currency_code?></span></div>
 							<div><span class="converted-price">2500</span> <span class="sale-on">27.00</span> <span class="currency">LE</span></div>
 						</div>
 						<div>

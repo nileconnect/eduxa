@@ -41,10 +41,11 @@ class SchoolAccomodation extends \yii\db\ActiveRecord
     {
         return [
             [['school_id', 'title', 'cost_per_duration_unit'], 'required'],
-            [['school_id', 'min_booking_duraion', 'max_age','room_cat_id','special_diet'], 'integer'],
+            [['school_id', 'min_booking_duraion', 'max_age','room_cat_id','special_diet','facility_id'], 'integer'],
             [['distance_from_school', 'cost_per_duration_unit','special_diet','fees'], 'number'],
             [['title'], 'string', 'max' => 255],
-            [['booking_cycle'], 'string', 'max' => 4]
+            [['booking_cycle'], 'string', 'max' => 4],
+            ['special_diet','safe']
         ];
     }
 
@@ -80,7 +81,17 @@ class SchoolAccomodation extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\Schools::className(), ['id' => 'school_id']);
     }
-    
+
+    public function getFacility()
+    {
+        return $this->hasOne(\backend\models\SchoolFacilities::className(), ['id' => 'facility_id']);
+    }
+
+
+    public function getRoom()
+    {
+        return $this->hasOne(\backend\models\SchoolRoomCategory::className(), ['id' => 'room_cat_id']);
+    }
 
     /**
      * @inheritdoc

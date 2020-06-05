@@ -24,5 +24,10 @@ class SchoolAccomodation extends BaseSchoolAccomodation
             [['booking_cycle'], 'string', 'max' => 4]
         ]);
     }
-	
+
+    public  static function  BookingCycleList(){
+        return [\backend\models\Schools::BOOKING_WEEKLY =>'Weekly', \backend\models\Schools::BOOKING_MONTHLY=> 'Monthly'];
+    }
+
+
 }
