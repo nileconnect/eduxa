@@ -4,8 +4,10 @@ namespace frontend\controllers;
 
 use cheatsheet\Time;
 use common\commands\SendEmailCommand;
+use common\helpers\MyCurrencySwitcher;
 use common\sitemap\UrlsIterator;
 use frontend\models\ContactForm;
+use imanilchaudhari\CurrencyConverter\CurrencyConverter;
 use Sitemaped\Element\Urlset\Urlset;
 use Sitemaped\Sitemap;
 use Yii;
@@ -33,6 +35,16 @@ class SiteController extends FrontendController
 //            ]
 //        ];
 //    }
+
+
+    public function actionCalc()
+    {
+
+       echo  MyCurrencySwitcher::Convert('USD','SAR',555);
+       die;
+
+    }
+
 
     /**
      * @inheritdoc

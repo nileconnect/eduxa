@@ -25,13 +25,11 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                         <li><a href="tel:<?= Yii::$app->keyStorage->get('phone')?>"><small class="mrxs"><i class="fas fa-phone"></i></small> <span class="link-text"><?= Yii::$app->keyStorage->get('phone')?></span></a></li>
                     </ul>
                     <ul class="head-lang unstyled">
-                        <li class="head-currency-item dropdown">
-                            <a href="javascript:void(0);" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USD</a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">EGP</a>
-                                <a class="dropdown-item" href="#">USD</a>
-                            </div>
-                        </li>
+                        <?php
+                        $this->beginContent('@frontend/views/layouts/widgets/currency.php');
+                        $this->endContent() ;
+                        ?>
+
                         <li class="head-lang-item dropdown">
                             <?php echo \common\helpers\multiLang\myLanguageSelector::widget(['viewFile'=>'dropDown']);?>
 

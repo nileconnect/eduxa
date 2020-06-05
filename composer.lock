@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e0b4ac96b9c9ade4dcf1c60ef2a16e8",
+    "content-hash": "ac12f12ebb876b39b3e80c2c16454d50",
     "packages": [
         {
             "name": "alexantr/yii2-elfinder",
@@ -113,14 +113,13 @@
             "version": "v1.4.8",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ajaxorg/ace-builds.git",
+                "url": "git@github.com:ajaxorg/ace-builds.git",
                 "reference": "a279fe5367ed15a2c2f3fca96fccd1fe0681a547"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/ajaxorg/ace-builds/zipball/a279fe5367ed15a2c2f3fca96fccd1fe0681a547",
-                "reference": "a279fe5367ed15a2c2f3fca96fccd1fe0681a547",
-                "shasum": null
+                "reference": "a279fe5367ed15a2c2f3fca96fccd1fe0681a547"
             },
             "type": "bower-asset",
             "license": [
@@ -138,8 +137,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/blueimp/JavaScript-Canvas-to-Blob/zipball/12747b0d2ebddaadba40e542c799fd2810918cf8",
-                "reference": "12747b0d2ebddaadba40e542c799fd2810918cf8",
-                "shasum": null
+                "reference": "12747b0d2ebddaadba40e542c799fd2810918cf8"
             },
             "type": "bower-asset",
             "time": "2019-12-22T08:16:19+00:00"
@@ -155,8 +153,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/blueimp/jQuery-File-Upload/zipball/bb52d3493d725175fcf5554da034a317aaaea0e2",
-                "reference": "bb52d3493d725175fcf5554da034a317aaaea0e2",
-                "shasum": null
+                "reference": "bb52d3493d725175fcf5554da034a317aaaea0e2"
             },
             "require": {
                 "bower-asset/blueimp-canvas-to-blob": ">=2.1.1",
@@ -180,8 +177,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/blueimp/JavaScript-Load-Image/zipball/d088785e5bc7d5d861ad7f3d80f27f50b367b451",
-                "reference": "d088785e5bc7d5d861ad7f3d80f27f50b367b451",
-                "shasum": null
+                "reference": "d088785e5bc7d5d861ad7f3d80f27f50b367b451"
             },
             "type": "bower-asset",
             "time": "2019-12-22T08:05:46+00:00"
@@ -197,8 +193,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/blueimp/JavaScript-Templates/zipball/0b02d7d7e3c36b62c0f43ae08e3a9dae489fbbca",
-                "reference": "0b02d7d7e3c36b62c0f43ae08e3a9dae489fbbca",
-                "shasum": null
+                "reference": "0b02d7d7e3c36b62c0f43ae08e3a9dae489fbbca"
             },
             "type": "bower-asset",
             "time": "2019-11-03T01:24:45+00:00"
@@ -214,8 +209,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/twbs/bootstrap/zipball/68b0d231a13201eb14acd3dc84e51543d16e5f7e",
-                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e",
-                "shasum": null
+                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "require": {
                 "bower-asset/jquery": ">=1.9.1,<4.0"
@@ -236,8 +230,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/Eonasdan/bootstrap-datetimepicker/zipball/25c11d79e614bc6463a87c3dd9cbf8280422e006",
-                "reference": "25c11d79e614bc6463a87c3dd9cbf8280422e006",
-                "shasum": null
+                "reference": "25c11d79e614bc6463a87c3dd9cbf8280422e006"
             },
             "require": {
                 "bower-asset/jquery": ">=1.8.3",
@@ -253,14 +246,13 @@
             "version": "v3.3.5",
             "source": {
                 "type": "git",
-                "url": "git@github.com:fancyapps/fancyBox.git",
+                "url": "https://github.com/fancyapps/fancybox.git",
                 "reference": "059c44062a033665cb635364320713cbc52de651"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fancyapps/fancyBox/zipball/059c44062a033665cb635364320713cbc52de651",
-                "reference": "059c44062a033665cb635364320713cbc52de651",
-                "shasum": null
+                "url": "https://api.github.com/repos/fancyapps/fancybox/zipball/059c44062a033665cb635364320713cbc52de651",
+                "reference": "059c44062a033665cb635364320713cbc52de651"
             },
             "require": {
                 "bower-asset/jquery": ">=1.9.0"
@@ -275,14 +267,13 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "url": "https://github.com/RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/RobinHerbots/Inputmask/zipball/5e670ad62f50c738388d4dcec78d2888505ad77b",
-                "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b",
-                "shasum": null
+                "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "require": {
                 "bower-asset/jquery": ">=1.7"
@@ -303,8 +294,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
-                "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
-                "shasum": null
+                "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
             "type": "bower-asset",
             "license": [
@@ -322,8 +312,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/Logicify/jquery-locationpicker-plugin/zipball/fac8658119043e830e0cbccd14b8b22bde08436b",
-                "reference": "fac8658119043e830e0cbccd14b8b22bde08436b",
-                "shasum": null
+                "reference": "fac8658119043e830e0cbccd14b8b22bde08436b"
             },
             "type": "bower-asset",
             "license": [
@@ -342,8 +331,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/components/jqueryui/zipball/44ecf3794cc56b65954cc19737234a3119d036cc",
-                "reference": "44ecf3794cc56b65954cc19737234a3119d036cc",
-                "shasum": null
+                "reference": "44ecf3794cc56b65954cc19737234a3119d036cc"
             },
             "require": {
                 "bower-asset/jquery": ">=1.6"
@@ -364,8 +352,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/moment/moment/zipball/96d0d6791ab495859d09a868803d31a55c917de1",
-                "reference": "96d0d6791ab495859d09a868803d31a55c917de1",
-                "shasum": null
+                "reference": "96d0d6791ab495859d09a868803d31a55c917de1"
             },
             "type": "bower-asset",
             "license": [
@@ -383,8 +370,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/bestiejs/punycode.js/zipball/38c8d3131a82567bfef18da09f7f4db68c84f8a3",
-                "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3",
-                "shasum": null
+                "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "type": "bower-asset"
         },
@@ -399,8 +385,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/aef7b953107264f00234902a3880eb50dafc48be",
-                "reference": "aef7b953107264f00234902a3880eb50dafc48be",
-                "shasum": null
+                "reference": "aef7b953107264f00234902a3880eb50dafc48be"
             },
             "require": {
                 "bower-asset/jquery": ">=1.8"
@@ -869,6 +854,47 @@
                 "url"
             ],
             "time": "2020-02-12T23:13:46+00:00"
+        },
+        {
+            "name": "imanilchaudhari/yii2-currency-converter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imanilchaudhari/yii2-currency-converter.git",
+                "reference": "fccfd608fa83f2da2394ea897b366f875ad64f37"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imanilchaudhari/yii2-currency-converter/zipball/fccfd608fa83f2da2394ea897b366f875ad64f37",
+                "reference": "fccfd608fa83f2da2394ea897b366f875ad64f37",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "imanilchaudhari\\CurrencyConverter\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anil Chaudhari",
+                    "email": "imanilchaudhari@gmail.com"
+                }
+            ],
+            "description": "This extension will help to find out current currency conversion rate. This extension uses Yahoo's currency conversion API",
+            "keywords": [
+                "extension",
+                "yii2"
+            ],
+            "time": "2018-04-08T05:59:29+00:00"
         },
         {
             "name": "intervention/image",
@@ -4429,14 +4455,13 @@
             "version": "v2.4.0-alpha1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ColorlibHQ/AdminLTE.git",
+                "url": "git@github.com:ColorlibHQ/AdminLTE.git",
                 "reference": "37c8bbb01998db487382e9d62cfb398511167f3a"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/ColorlibHQ/AdminLTE/zipball/37c8bbb01998db487382e9d62cfb398511167f3a",
-                "reference": "37c8bbb01998db487382e9d62cfb398511167f3a",
-                "shasum": null
+                "reference": "37c8bbb01998db487382e9d62cfb398511167f3a"
             },
             "type": "npm-asset",
             "license": [
@@ -4448,9 +4473,7 @@
             "version": "4.4.1",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.4.1.tgz",
-                "reference": null,
-                "shasum": null
+                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.4.1.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -4462,9 +4485,7 @@
             "version": "0.8.3",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/flot/-/flot-0.8.3.tgz",
-                "reference": null,
-                "shasum": null
+                "url": "https://registry.npmjs.org/flot/-/flot-0.8.3.tgz"
             },
             "type": "npm-asset"
         },
@@ -4473,9 +4494,7 @@
             "version": "4.7.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/font-awesome/-/font-awesome-4.7.0.tgz",
-                "reference": null,
-                "shasum": null
+                "url": "https://registry.npmjs.org/font-awesome/-/font-awesome-4.7.0.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -4487,9 +4506,7 @@
             "version": "3.7.3",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/html5shiv/-/html5shiv-3.7.3.tgz",
-                "reference": null,
-                "shasum": null
+                "url": "https://registry.npmjs.org/html5shiv/-/html5shiv-3.7.3.tgz"
             },
             "type": "npm-asset"
         },
@@ -4504,8 +4521,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery/zipball/90fed4b453a5becdb7f173d9e3c1492390a1441f",
-                "reference": "90fed4b453a5becdb7f173d9e3c1492390a1441f",
-                "shasum": null
+                "reference": "90fed4b453a5becdb7f173d9e3c1492390a1441f"
             },
             "type": "npm-asset",
             "license": [
@@ -4517,9 +4533,7 @@
             "version": "1.3.8",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/jquery-slimscroll/-/jquery-slimscroll-1.3.8.tgz",
-                "reference": null,
-                "shasum": null
+                "url": "https://registry.npmjs.org/jquery-slimscroll/-/jquery-slimscroll-1.3.8.tgz"
             },
             "require": {
                 "npm-asset/jquery": ">=1.7"
@@ -9381,5 +9395,6 @@
         "php": ">=7.1.0",
         "ext-intl": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

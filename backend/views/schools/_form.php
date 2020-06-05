@@ -182,7 +182,7 @@ use yii\helpers\Url;
         <div class="col-md-6 col-sm-12">
             <div class="col-md-6 col-sm-12">
                 <?php
-                $CurrencyArr = \yii\helpers\ArrayHelper::map(\backend\models\Currency::find()->all(), 'id', 'currency_code');
+                $CurrencyArr = \yii\helpers\ArrayHelper::map(\backend\models\Currency::find()->where(['status'=>1])->all(), 'id', 'currency_code');
                 $NextToArr = \yii\helpers\ArrayHelper::map(\backend\models\SchoolNextTo::find()->all(), 'id', 'title');
                 echo $form->field($model, 'currency_id')->dropDownList($CurrencyArr, [ 'prompt' => 'Select Currency ']);
                 echo $form->field($model, 'next_to')->dropDownList($NextToArr, [ 'prompt' => 'Select Next To ']);

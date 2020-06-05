@@ -27,6 +27,7 @@ use backend\models\SchoolCourse;
     </header>
     <?php
     if($lastCourse){
+        $min_price = $lastCourse->minimumPrice;
         ?>
         <footer class="item-footer">
             <div>
@@ -46,12 +47,16 @@ use backend\models\SchoolCourse;
 
              <div>
                 <div class="item-label"><?= Yii::t('frontend','Best price') ?></div>
-                <div ><span class="original-price"><?= $lastCourse->minimumPrice ?></span>
+                <div ><span class="original-price"><?= $min_price ?></span>
                     <span class="currency"><?= $school->currency->currency_code ?></span>
                 </div>
+
+                 <?php
+                 echo \common\helpers\MyCurrencySwitcher::checkCurrency($school->currency->currency_code ,$min_price );
+                 ?>
             </div>
             <div>
-                <a href="/school/program/<?= $lastCourse->slug ;?>" class="button btn-block button-primary"><?= Yii::t('frontend','Additional Info') ?></a>
+                <a href="/school/course/<?= $lastCourse->slug ;?>" class="button btn-block button-primary"><?= Yii::t('frontend','Additional Info') ?></a>
             </div>
         </footer>
         <?

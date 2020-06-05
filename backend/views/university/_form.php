@@ -200,7 +200,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
         <div class="col-md-6 col-sm-12">
             <?php
-            $CurrencyArr = \yii\helpers\ArrayHelper::map(\backend\models\Currency::find()->all(), 'id', 'currency_code');
+            $CurrencyArr = \yii\helpers\ArrayHelper::map(\backend\models\Currency::find()->where(['status'=>1])->all(), 'id', 'currency_code');
             $NextToArr = \yii\helpers\ArrayHelper::map(\backend\models\UniversityNextTo::find()->all(), 'id', 'title');
             echo $form->field($model, 'currency_id')->dropDownList($CurrencyArr, [ 'prompt' => 'Select Currency ']);
             echo $form->field($model, 'next_to')->dropDownList($NextToArr, [ 'prompt' => 'Select Next To ']);

@@ -2,6 +2,7 @@
 
 
 namespace frontend\controllers;
+use common\helpers\MyCurrencySwitcher;
 use webvimark\behaviors\multilanguage\MultiLanguageHelper;
 use yii\web\Controller;
 
@@ -15,6 +16,7 @@ class FrontendController extends Controller
     public function init()
     {
         MultiLanguageHelper::catchLanguage();
+        MyCurrencySwitcher::catchCurrency();
         parent::init();
     }
 

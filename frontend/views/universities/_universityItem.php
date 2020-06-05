@@ -50,6 +50,9 @@
                     <div ><span class="original-price"><?= $item->annual_cost ?></span>
                         <span class="currency"><?= $university->currency->currency_code ?></span>
                     </div>
+                    <?php
+                    echo \common\helpers\MyCurrencySwitcher::checkCurrency($university->currency->currency_code ,$item->annual_cost );
+                    ?>
                 </div>
                 <div>
                     <a href="/university/program/<?= $item->slug ;?>" class="button btn-block button-primary"><?= Yii::t('frontend','Additional Info') ?></a>
