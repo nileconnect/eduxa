@@ -13,7 +13,7 @@ use backend\models\SchoolCourse;
     </div>
 </nav>
 
-<div id="courcesApp" data-lang="<?php echo Yii::$app->language ; ?>" data-SchoolId="<?php echo $courseObj->school_id ; ?>">
+<div id="courcesApp" data-lang="<?php echo Yii::$app->language ; ?>" data-SchoolId="<?php echo $courseObj->school_id ; ?>" data-CourseID="<?php echo $courseObj->id; ?>">
 <section class="section">
     <div class="container">
         <div class="row">
@@ -235,40 +235,40 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </div>
                         
                     </div>
-                    <table class="table text-large wide-cell" id="accoTable" style="">
+                    <table class="table text-large wide-cell" id="accoTable" style="display:none">
                         <tbody>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.reg_fees">
                                 <td><?= Yii::t('frontend' , 'Accommodation Registration Fees')?></td>
-                                <td><span class="text-primary">Standard</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.reg_fees}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.facility">
                                 <td><?= Yii::t('frontend' , 'Facilities')?></td>
-                                <td><span class="text-primary">Standard</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.facility}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.room">
                                 <td><?= Yii::t('frontend' , 'Room Category')?></td>
-                                <td><span class="text-primary">26 Years</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.room}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.special_diet">
                                 <td><?= Yii::t('frontend' , 'Special diet')?></td>
-                                <td><span class="text-primary">250 Meters Away</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.special_diet}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.booking_cycle">
                                 <td><?= Yii::t('frontend' , 'Booking Cycle')?></td>
-                                <td><span class="text-primary">250 Meters Away</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.booking_cycle}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.min_booking_duraion">
                                 <td><?= Yii::t('frontend' , 'Minimum Booking duration')?></td>
-                                <td><span class="text-primary">250 Meters Away</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.min_booking_duraion}}</span></td>
                             </tr>
                             
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.distance_from_school">
                                 <td><?= Yii::t('frontend' , 'Distance from school (Minutes)')?></td>
-                                <td><span class="text-primary">250 Meters Away</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.distance_from_school}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.cost_per_duration_unit">
                                 <td><?= Yii::t('frontend' , 'Cost per Duration')?></td>
-                                <td><span class="text-primary">250 Meters Away</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.cost_per_duration_unit}}</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -284,50 +284,42 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 <div class="select-wrapper">
                                     <select name="" id="" class="form-control">
                                         <option>Start Date</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        <option v-for="date in StartDates" :value="date.id">{{date.course_date}}</option>
+                                        
                                     </select>
                                 </div>
                             </td>
-                            <td><span class="text-primary">50 USD</span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
+                                
+                            </td>
+                            <td ><span class="text-primary" v-if="CourseDurations">{{CourseDurations}} USD</span></td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="select-wrapper">
-                                    <select name="" id="" class="form-control">
-                                        <option>Course Duration</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-                            </td>
-                            <td><span class="text-primary">50 USD</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="select-wrapper">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="" class="form-control" @change="SelectAirport($event)">
                                         <option>Airport pickup</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        <option v-for="(airport,$index) in airports" :value="$index">{{airport.title}} - {{airport.service_type}}</option>
+                                        
                                     </select>
                                 </div>
                             </td>
-                            <td><span class="text-primary">50 USD</span></td>
+                            <td><span class="text-primary" v-if="SelectedAirport.cost">{{SelectedAirport.cost}} USD</span></td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="select-wrapper">
-                                    <select name="" id="" class="form-control">
-                                        <option>Health Insurence</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
+                                
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="<?= $schoolObj->health_insurance_cost ?>" id="defaultCheck1" @change="GetHealth($event)">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Health Insurence
+                                    </label>
                                 </div>
+                                
                             </td>
                             <td><span class="text-primary">50 USD</span></td>
                         </tr>
