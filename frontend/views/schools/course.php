@@ -47,6 +47,17 @@ use backend\models\SchoolCourse;
         </div>
     </div>
 </section>
+<section class="section">
+    <div class="container">
+        <h2 class="title title-black title-sm"><?= Yii::t('frontend' , 'Course Requirments')?></h2>
+
+        <div class="ptlg pblg prlg pllg bg-white b-all text-large">
+            <p>
+                Conversations can be a tricky business. Sometimes, decoding what is said with what is meant is difficult at best. However, communication is a necessary tool in todays world. And it’s not only speaking that can be difficult, but trying to interpret body language, and other language barriers are just a few of the obstacles barring effective communication. It’s often been the case were one party completely miscommunicates to another due to a misunderstanding between parties. 
+            </p>
+        </div>
+    </div>
+</section>
 <?php
 if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
     ?>
@@ -159,17 +170,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
 
 
-<section class="section">
-		<div class="container">
-			<h2 class="title title-black title-sm"><?= Yii::t('frontend' , 'Course Requirments')?></h2>
 
-			<div class="ptlg pblg prlg pllg bg-white b-all text-large">
-				<p>
-					Conversations can be a tricky business. Sometimes, decoding what is said with what is meant is difficult at best. However, communication is a necessary tool in todays world. And it’s not only speaking that can be difficult, but trying to interpret body language, and other language barriers are just a few of the obstacles barring effective communication. It’s often been the case were one party completely miscommunicates to another due to a misunderstanding between parties. 
-				</p>
-			</div>
-		</div>
-	</section>
 
 
 <section class="section">
