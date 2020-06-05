@@ -21,6 +21,8 @@ return [
     ''=>'',
     ''=>'',
     ''=>'',
+    //search schools
+    'Schools matched your search results'=>'',
     ''=>'',
     'Site Frontend'=>'واجهه الموقع',
     'Profile'=>'الملف الشخصى',
