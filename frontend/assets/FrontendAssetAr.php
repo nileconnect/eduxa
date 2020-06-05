@@ -39,7 +39,7 @@ class FrontendAssetAr extends AssetBundle
      */
     public $js = [
        // 'js/jquery-3.4.1.min.js',
-        'js/app.js',
+        'js/appAr.js',
     ];
 
     /**

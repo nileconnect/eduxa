@@ -7041,7 +7041,7 @@
                 respondTo: 'window',
                 responsive: null,
                 rows: 1,
-                rtl: false,
+                rtl: true,
                 slide: '',
                 slidesPerRow: 1,
                 slidesToShow: 1,
@@ -10871,32 +10871,85 @@
 
 /*! http://mths.be/placeholder v2.0.7 by @mathias */
 ;
-(function(h, j, e) { var a = "placeholder" in j.createElement("input"); var f = "placeholder" in j.createElement("textarea"); var k = e.fn; var d = e.valHooks; var b = e.propHooks; var m; var l; if (a && f) { l = k.placeholder = function() { return this };
-        l.input = l.textarea = true } else { l = k.placeholder = function() { var n = this;
-            n.filter((a ? "textarea" : ":input") + "[placeholder]").not(".placeholder").bind({ "focus.placeholder": c, "blur.placeholder": g }).data("placeholder-enabled", true).trigger("blur.placeholder"); return n };
+(function(h, j, e) {
+    var a = "placeholder" in j.createElement("input");
+    var f = "placeholder" in j.createElement("textarea");
+    var k = e.fn;
+    var d = e.valHooks;
+    var b = e.propHooks;
+    var m;
+    var l;
+    if (a && f) {
+        l = k.placeholder = function() { return this };
+        l.input = l.textarea = true
+    } else {
+        l = k.placeholder = function() {
+            var n = this;
+            n.filter((a ? "textarea" : ":input") + "[placeholder]").not(".placeholder").bind({ "focus.placeholder": c, "blur.placeholder": g }).data("placeholder-enabled", true).trigger("blur.placeholder");
+            return n
+        };
         l.input = a;
         l.textarea = f;
-        m = { get: function(o) { var n = e(o); var p = n.data("placeholder-password"); if (p) { return p[0].value } return n.data("placeholder-enabled") && n.hasClass("placeholder") ? "" : o.value }, set: function(o, q) { var n = e(o); var p = n.data("placeholder-password"); if (p) { return p[0].value = q } if (!n.data("placeholder-enabled")) { return o.value = q } if (q == "") { o.value = q; if (o != j.activeElement) { g.call(o) } } else { if (n.hasClass("placeholder")) { c.call(o, true, q) || (o.value = q) } else { o.value = q } } return n } }; if (!a) { d.input = m;
-            b.value = m } if (!f) { d.textarea = m;
-            b.value = m }
-        e(function() { e(j).delegate("form", "submit.placeholder", function() { var n = e(".placeholder", this).each(c);
-                setTimeout(function() { n.each(g) }, 10) }) });
-        e(h).bind("beforeunload.placeholder", function() { e(".placeholder").each(function() { this.value = "" }) }) }
+        m = { get: function(o) { var n = e(o); var p = n.data("placeholder-password"); if (p) { return p[0].value } return n.data("placeholder-enabled") && n.hasClass("placeholder") ? "" : o.value }, set: function(o, q) { var n = e(o); var p = n.data("placeholder-password"); if (p) { return p[0].value = q } if (!n.data("placeholder-enabled")) { return o.value = q } if (q == "") { o.value = q; if (o != j.activeElement) { g.call(o) } } else { if (n.hasClass("placeholder")) { c.call(o, true, q) || (o.value = q) } else { o.value = q } } return n } };
+        if (!a) {
+            d.input = m;
+            b.value = m
+        }
+        if (!f) {
+            d.textarea = m;
+            b.value = m
+        }
+        e(function() {
+            e(j).delegate("form", "submit.placeholder", function() {
+                var n = e(".placeholder", this).each(c);
+                setTimeout(function() { n.each(g) }, 10)
+            })
+        });
+        e(h).bind("beforeunload.placeholder", function() { e(".placeholder").each(function() { this.value = "" }) })
+    }
 
-    function i(o) { var n = {}; var p = /^jQuery\d+$/;
-        e.each(o.attributes, function(r, q) { if (q.specified && !p.test(q.name)) { n[q.name] = q.value } }); return n }
+    function i(o) {
+        var n = {};
+        var p = /^jQuery\d+$/;
+        e.each(o.attributes, function(r, q) { if (q.specified && !p.test(q.name)) { n[q.name] = q.value } });
+        return n
+    }
 
-    function c(o, p) { var n = this; var q = e(n); if (n.value == q.attr("placeholder") && q.hasClass("placeholder")) { if (q.data("placeholder-password")) { q = q.hide().next().show().attr("id", q.removeAttr("id").data("placeholder-id")); if (o === true) { return q[0].value = p }
-                q.focus() } else { n.value = "";
+    function c(o, p) {
+        var n = this;
+        var q = e(n);
+        if (n.value == q.attr("placeholder") && q.hasClass("placeholder")) {
+            if (q.data("placeholder-password")) {
+                q = q.hide().next().show().attr("id", q.removeAttr("id").data("placeholder-id"));
+                if (o === true) { return q[0].value = p }
+                q.focus()
+            } else {
+                n.value = "";
                 q.removeClass("placeholder");
-                n == j.activeElement && n.select() } } }
+                n == j.activeElement && n.select()
+            }
+        }
+    }
 
-    function g() { var r; var n = this; var q = e(n); var p = this.id; if (n.value == "") { if (n.type == "password") { if (!q.data("placeholder-textinput")) { try { r = q.clone().attr({ type: "text" }) } catch (o) { r = e("<input>").attr(e.extend(i(this), { type: "text" })) }
+    function g() {
+        var r;
+        var n = this;
+        var q = e(n);
+        var p = this.id;
+        if (n.value == "") {
+            if (n.type == "password") {
+                if (!q.data("placeholder-textinput")) {
+                    try { r = q.clone().attr({ type: "text" }) } catch (o) { r = e("<input>").attr(e.extend(i(this), { type: "text" })) }
                     r.removeAttr("name").data({ "placeholder-password": q, "placeholder-id": p }).bind("focus.placeholder", c);
-                    q.data({ "placeholder-textinput": r, "placeholder-id": p }).before(r) }
-                q = q.removeAttr("id").hide().prev().attr("id", p).show() }
+                    q.data({ "placeholder-textinput": r, "placeholder-id": p }).before(r)
+                }
+                q = q.removeAttr("id").hide().prev().attr("id", p).show()
+            }
             q.addClass("placeholder");
-            q[0].value = q.attr("placeholder") } else { q.removeClass("placeholder") } } }(this, document, jQuery));
+            q[0].value = q.attr("placeholder")
+        } else { q.removeClass("placeholder") }
+    }
+}(this, document, jQuery));
 
 /* Modernizr 2.6.2 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-touch-cssclasses-teststyles-prefixes
@@ -10911,7 +10964,8 @@ window.Modernizr = function(a, b, c) {
 
     function z(a, b) { return !!~("" + a).indexOf(b) }
 
-    function A(a, b, d) { for (var e in a) { var f = b[a[e]]; if (f !== c) return d === !1 ? a[e] : y(f, "function") ? f.bind(d || b) : f } return !1 } var d = "2.6.2",
+    function A(a, b, d) { for (var e in a) { var f = b[a[e]]; if (f !== c) return d === !1 ? a[e] : y(f, "function") ? f.bind(d || b) : f } return !1 }
+    var d = "2.6.2",
         e = {},
         f = !0,
         g = b.documentElement,
@@ -10925,18 +10979,44 @@ window.Modernizr = function(a, b, c) {
         p = {},
         q = [],
         r = q.slice,
-        s, t = function(a, c, d, e) { var f, i, j, k, l = b.createElement("div"),
+        s, t = function(a, c, d, e) {
+            var f, i, j, k, l = b.createElement("div"),
                 m = b.body,
-                n = m || b.createElement("body"); if (parseInt(d, 10))
-                while (d--) j = b.createElement("div"), j.id = e ? e[d] : h + (d + 1), l.appendChild(j); return f = ["&#173;", '<style id="s', h, '">', a, "</style>"].join(""), l.id = h, (m ? l : n).innerHTML += f, n.appendChild(l), m || (n.style.background = "", n.style.overflow = "hidden", k = g.style.overflow, g.style.overflow = "hidden", g.appendChild(n)), i = c(l, a), m ? l.parentNode.removeChild(l) : (n.parentNode.removeChild(n), g.style.overflow = k), !!i },
+                n = m || b.createElement("body");
+            if (parseInt(d, 10))
+                while (d--) j = b.createElement("div"), j.id = e ? e[d] : h + (d + 1), l.appendChild(j);
+            return f = ["&#173;", '<style id="s', h, '">', a, "</style>"].join(""), l.id = h, (m ? l : n).innerHTML += f, n.appendChild(l), m || (n.style.background = "", n.style.overflow = "hidden", k = g.style.overflow, g.style.overflow = "hidden", g.appendChild(n)), i = c(l, a), m ? l.parentNode.removeChild(l) : (n.parentNode.removeChild(n), g.style.overflow = k), !!i
+        },
         u = {}.hasOwnProperty,
-        v;!y(u, "undefined") && !y(u.call, "undefined") ? v = function(a, b) { return u.call(a, b) } : v = function(a, b) { return b in a && y(a.constructor.prototype[b], "undefined") }, Function.prototype.bind || (Function.prototype.bind = function(b) { var c = this; if (typeof c != "function") throw new TypeError; var d = r.call(arguments, 1),
-            e = function() { if (this instanceof e) { var a = function() {};
-                    a.prototype = c.prototype; var f = new a,
-                        g = c.apply(f, d.concat(r.call(arguments))); return Object(g) === g ? g : f } return c.apply(b, d.concat(r.call(arguments))) }; return e }), n.touch = function() { var c; return "ontouchstart" in a || a.DocumentTouch && b instanceof DocumentTouch ? c = !0 : t(["@media (", m.join("touch-enabled),("), h, ")", "{#modernizr{top:9px;position:absolute}}"].join(""), function(a) { c = a.offsetTop === 9 }), c }; for (var B in n) v(n, B) && (s = B.toLowerCase(), e[s] = n[B](), q.push((e[s] ? "" : "no-") + s)); return e.addTest = function(a, b) { if (typeof a == "object")
+        v;
+    !y(u, "undefined") && !y(u.call, "undefined") ? v = function(a, b) { return u.call(a, b) } : v = function(a, b) { return b in a && y(a.constructor.prototype[b], "undefined") }, Function.prototype.bind || (Function.prototype.bind = function(b) {
+        var c = this;
+        if (typeof c != "function") throw new TypeError;
+        var d = r.call(arguments, 1),
+            e = function() {
+                if (this instanceof e) {
+                    var a = function() {};
+                    a.prototype = c.prototype;
+                    var f = new a,
+                        g = c.apply(f, d.concat(r.call(arguments)));
+                    return Object(g) === g ? g : f
+                }
+                return c.apply(b, d.concat(r.call(arguments)))
+            };
+        return e
+    }), n.touch = function() { var c; return "ontouchstart" in a || a.DocumentTouch && b instanceof DocumentTouch ? c = !0 : t(["@media (", m.join("touch-enabled),("), h, ")", "{#modernizr{top:9px;position:absolute}}"].join(""), function(a) { c = a.offsetTop === 9 }), c };
+    for (var B in n) v(n, B) && (s = B.toLowerCase(), e[s] = n[B](), q.push((e[s] ? "" : "no-") + s));
+    return e.addTest = function(a, b) {
+        if (typeof a == "object")
             for (var d in a) v(a, d) && e.addTest(d, a[d]);
-        else { a = a.toLowerCase(); if (e[a] !== c) return e;
-            b = typeof b == "function" ? b() : b, typeof f != "undefined" && f && (g.className += " " + (b ? "" : "no-") + a), e[a] = b } return e }, w(""), i = k = null, e._version = d, e._prefixes = m, e.testStyles = t, g.className = g.className.replace(/(^|\s)no-js(\s|$)/, "$1$2") + (f ? " js " + q.join(" ") : ""), e }(this, this.document);
+        else {
+            a = a.toLowerCase();
+            if (e[a] !== c) return e;
+            b = typeof b == "function" ? b() : b, typeof f != "undefined" && f && (g.className += " " + (b ? "" : "no-") + a), e[a] = b
+        }
+        return e
+    }, w(""), i = k = null, e._version = d, e._prefixes = m, e.testStyles = t, g.className = g.className.replace(/(^|\s)no-js(\s|$)/, "$1$2") + (f ? " js " + q.join(" ") : ""), e
+}(this, this.document);
 Modernizr.addTest('android', function() { return !!navigator.userAgent.match(/Android/i) });
 Modernizr.addTest('chrome', function() { return !!navigator.userAgent.match(/Chrome/i) });
 Modernizr.addTest('firefox', function() { return !!navigator.userAgent.match(/Firefox/i) });

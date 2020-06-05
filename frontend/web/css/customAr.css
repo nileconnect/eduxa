@@ -13,12 +13,6 @@ h6 {
     font-family: 'Tajawal', sans-serif;
 }
 
-.slider,
-.slides,
-.slider .slides .slide {
-    direction: ltr;
-}
-
 .pull-right {
     float: left;
 }
