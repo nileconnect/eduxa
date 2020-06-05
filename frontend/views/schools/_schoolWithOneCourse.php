@@ -37,11 +37,11 @@ use backend\models\SchoolCourse;
             </div>
 
             <div>
-                <div class="item-label">Lessons/week</div>
+                <div class="item-label"><?= Yii::t('frontend','Lessons/week') ?></div>
                 <div><?= $lastCourse->lessons_per_week ?></div>
             </div>
             <div>
-                <div class="item-label">Study Time</div>
+                <div class="item-label"><?= Yii::t('frontend','Study Time') ?></div>
                 <div><?= SchoolCourse::ListCourseTime()[$lastCourse->time_of_course] ?></div>
             </div>
 

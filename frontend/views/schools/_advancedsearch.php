@@ -17,7 +17,7 @@ use backend\models\SchoolCourse;
     <div class="container">
         <div class="text-white">
             <h2><?= Yii::t('frontend','Are you interested in studying abroad?') ?></h2>
-            <h5><?= Yii::t('frontend','Find, Review and Apply to the best Schools in the world') ?></h5>
+            <h5><?= Yii::t('frontend','Find, Review and Apply to the best schools in the world') ?></h5>
         </div>
         <?php $form = ActiveForm::begin([
             'action' => ['/schools/search'],
