@@ -6,6 +6,7 @@ use api\helpers\ResponseHelper;
 use api\resources\User;
 use backend\models\base\UniversityPrograms;
 use backend\models\Requests;
+use backend\models\SchoolCourseStartDate;
 use common\models\UserProfile;
 use yii\rest\Controller;
 use yii\web\NotFoundHttpException;
@@ -13,7 +14,28 @@ use yii\web\NotFoundHttpException;
 class CourseController  extends  Controller
 {
 
-    public function actionAccommodation(){
+    public function actionStartDates(){
+        $params= \Yii::$app->request->get();
+        if($params['filter']['lang']){
+            \Yii::$app->language = $params['filter']['lang'] ;
+        }
+        $course_id =  $params['filter']['course_id'];
+        if(!$course_id)  return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
+        $courseStartDates = SchoolCourseStartDate::find()->where(['school_course_id'=>$course_id])->asArray()->all();
+        return ResponseHelper::sendSuccessResponse(['items'=>$courseStartDates]);
+
+    }
+
+    public function actionDurationCost(){
+        $params= \Yii::$app->request->get();
+        if($params['filter']['lang']){
+            \Yii::$app->language = $params['filter']['lang'] ;
+        }
+        $course_id =  $params['filter']['course_id'];
+        $no_of_weeks =  $params['filter']['no_of_weeks'];
+        if(!$course_id or !$no_of_weeks )  return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
+
+        return ResponseHelper::sendSuccessResponse(['cost'=>555]);
 
     }
 
