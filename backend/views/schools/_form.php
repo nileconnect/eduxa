@@ -126,7 +126,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'details')->textarea(['maxlength' => 255, 'rows'=>3])
         ->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
-            'rows'=>3,
+            'rows'=>5,
             'class'=>'form-control',
         ]]) ?>
 
