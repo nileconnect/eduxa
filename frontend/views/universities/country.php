@@ -51,7 +51,7 @@
                                         <?= $university->country->title .' - '.$university->state->title .' - '. $university->city->title  ?>
                                     </div>
                                     <div class="item-body">
-                                        <?= $university->description ; ?>
+                                        <?= substr(0,600,$university->description) ; ?>
                                     </div>
                                     <div class="mtmd"><a href="/university/<?= $university->slug?>">Read More <i class="fas fa-angle-double-right"></i></a></div>
                                 </div>
