@@ -296,7 +296,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 <input type="text" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
                                 
                             </td>
-                            <td ><span class="text-primary" v-if="CourseDurations">{{CourseDurations}} USD</span></td>
+                            <td ><span class="text-primary" v-if="CourseDurations">{{CourseDurations}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                         <tr>
                             <td>
@@ -308,7 +308,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                     </select>
                                 </div>
                             </td>
-                            <td><span class="text-primary" v-if="SelectedAirport.cost">{{SelectedAirport.cost}} USD</span></td>
+                            <td><span class="text-primary" v-if="SelectedAirport.cost">{{SelectedAirport.cost}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                         <tr>
                             <td>
@@ -321,21 +321,21 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 </div>
                                 
                             </td>
-                            <td><span class="text-primary">50 USD</span></td>
+                            <td><span class="text-primary" v-if="SelectedHealth">{{SelectedHealth}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
 
                         <tr>
                             <td><?= Yii::t('frontend' , 'Registeration fees')?></td>
-                            <td><span class="text-primary"><?= $courseObj->registeration_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
+                            <td><span class="text-primary" id="regFees" data-value="<?= $courseObj->registeration_fees; ?>"><?= $courseObj->registeration_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Study books fees')?></td>
-                            <td><span class="text-primary"><?= $courseObj->study_books_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
+                            <td><span class="text-primary" id="bookFees" data-value="<?= $courseObj->study_books_fees; ?>"><?= $courseObj->study_books_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2" class="bg-primary text-center"><h3><?= Yii::t('frontend' , 'Total')?>: 240 <?= $schoolObj->currency->currency_code?></h3></td>
+                            <td colspan="2" class="bg-primary text-center"><h3><?= Yii::t('frontend' , 'Total')?>: {{ total }} <?= $schoolObj->currency->currency_code?></h3></td>
 
                         </tr>
                     </tfoot>

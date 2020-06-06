@@ -5,14 +5,18 @@ var app = new Vue({
         return {
             accomodtion: [],
             Selectedaccomodtion: {},
+            accomodtionFees: "",
             airports: {},
             StartDates: {},
             SelectedAirport: {},
             CourseDurations: "",
+            SelectedHealth: "",
             lang: $("#courcesApp").attr("data-lang"),
             SchoolID: $("#courcesApp").attr("data-SchoolId"),
             CourseID: $("#courcesApp").attr("data-CourseID"),
-
+            regFees: $("#regFees").attr("data-value"),
+            bookFees: $("#bookFees").attr("data-value"),
+            totals: "",
         }
 
     },
@@ -53,6 +57,8 @@ var app = new Vue({
             var index = event.target.value
             this.Selectedaccomodtion = this.accomodtion[index]
             $("#accoTable").show()
+            this.accomodtionFees = this.Selectedaccomodtion.cost_per_duration_unit
+            console.log(this.accomodtionFees)
 
         },
         SelectAirport(event) {
@@ -72,7 +78,20 @@ var app = new Vue({
         },
         //Get Health Insurance
         GetHealth(event) {
-            console.log(event.target.value)
+            if (event.srcElement.checked) {
+                // console.log(event.target.value)
+                this.SelectedHealth = event.target.value
+            } else {
+                this.SelectedHealth = ""
+            }
+
         }
+    },
+    computed: {
+        total: function() {
+            return Number(this.regFees) + Number(this.bookFees) + Number(this.SelectedHealth) + Number(this.SelectedAirport.cost) + Number(this.CourseDurations) + Number(this.accomodtionFees);
+
+        }
+
     }
 })
