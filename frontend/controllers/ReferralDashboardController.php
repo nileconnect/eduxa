@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use backend\models\base\UniversityPrograms;
+use backend\models\Requests;
 use backend\models\StudentCertificate;
 use backend\models\StudentTestResults;
 use cheatsheet\Time;
@@ -19,6 +21,7 @@ use yii\filters\AccessControl;
 use yii\filters\PageCache;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 /**
@@ -134,6 +137,34 @@ class ReferralDashboardController extends FrontendController
             'profile' => $profile,
             'saved'=>$saved
         ]);
+    }
+
+
+    public function actionCancelRequest($slug=null)
+    {
+        $profile =Yii::$app->user->identity->userProfile ;
+
+        if($slug){
+            $programObj= UniversityPrograms::find()->where(['slug'=>$slug])->one();
+            if(!$programObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+            //check for old requests
+            $requestObj = Requests::find()->where(['model_name'=>Requests::MODEL_NAME_PROGRAM , 'model_id'=>$programObj->id ,'requester_id'=>$profile->user_id])->one();
+            if($requestObj && $requestObj->status == Requests::STATUS_PENDING){
+                $requestObj->delete();
+                Yii::$app->getSession()->setFlash('alert', [
+                    'type' =>'warning',
+                    'body' => \Yii::t('frontend', 'You have Canceled your request') ,
+                    'title' =>'',
+                ]);
+            }else{
+                Yii::$app->getSession()->setFlash('alert', [
+                    'type' =>'warning',
+                    'body' => \Yii::t('frontend', 'You can no cancel this  request') ,
+                    'title' =>'',
+                ]);
+            }
+        }
+        return $this->redirect(['/referral-dashboard/requests']);
     }
 
 }

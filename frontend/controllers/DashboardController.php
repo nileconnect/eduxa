@@ -155,7 +155,6 @@ class DashboardController extends FrontendController
                     'title' =>'',
                 ]);
             }else{
-                $requestObj->delete();
                 Yii::$app->getSession()->setFlash('alert', [
                     'type' =>'warning',
                     'body' => \Yii::t('frontend', 'You can no cancel this  request') ,

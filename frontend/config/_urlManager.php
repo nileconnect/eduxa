@@ -43,6 +43,9 @@ return [
         ['pattern' => 'dashboard/cancel-request/<slug>', 'route' => 'dashboard/cancel-request'],
 
 
+        ['pattern' => 'referral-dashboard/cancel-request/<slug>', 'route' => 'referral-dashboard/cancel-request'],
+
+
 
         ['pattern' => 'article/attachment-download', 'route' => 'article/attachment-download'],
         ['pattern' => 'article/<slug>', 'route' => 'article/view'],
