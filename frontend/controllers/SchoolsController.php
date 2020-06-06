@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use backend\models\base\SchoolCourse;
 use backend\models\base\UniversityPrograms;
 use backend\models\Country;
+use backend\models\Faq;
 use backend\models\Schools;
 use backend\models\search\SchoolCourseSearch;
 use backend\models\search\UniversityProgramsSearch;
@@ -51,8 +52,11 @@ class SchoolsController extends FrontendController
 
 
     public function actionCountry($slug){
-        $countries=$universities = '';
-        return $this->render('country' ,['countries'=>$countries , 'universities'=>$universities]);
+        $countryObj= Country::find()->where(['code'=>$slug])->one();
+        if(!$countryObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        $faqs = Faq::find()->where(['status'=>1 , 'country_id'=>$countryObj->id])->all();
+
+        return $this->render('country' ,['countryObj'=>$countryObj , 'faqs'=>$faqs]);
     }
 
     public function actionView($slug){

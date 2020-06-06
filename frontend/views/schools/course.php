@@ -10,7 +10,7 @@ use backend\models\SchoolCourse;
         </ol>
     </div>
 </nav>
-
+<?= $schoolObj->health_insurance_cost ?>
 
 <section class="section">
     <div class="container">
@@ -339,7 +339,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Study books fees')?></td>
-                            <td><span class="text-primary"><?= $courseObj->study_books_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
+                                <td><span class="text-primary"><?= $courseObj->study_books_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                     </tbody>
                     <tfoot>
