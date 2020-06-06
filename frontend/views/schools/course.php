@@ -1,6 +1,8 @@
 <?php
 use \common\models\User;
 use backend\models\SchoolCourse;
+
+\frontend\assets\CourcesAsset::register($this);
 ?>
 <nav aria-label="breadcrumb">
     <div class="container">
@@ -10,8 +12,8 @@ use backend\models\SchoolCourse;
         </ol>
     </div>
 </nav>
-<?= $schoolObj->health_insurance_cost ?>
 
+<div id="courcesApp" data-lang="<?php echo Yii::$app->language ; ?>" data-SchoolId="<?php echo $courseObj->school_id ; ?>" data-CourseID="<?php echo $courseObj->id; ?>">
 <section class="section">
     <div class="container">
         <div class="row">
@@ -224,49 +226,49 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="bg-white shadow-sm b-all mtmd">
                     <div class="pllg prlg pblg ptlg">
                         <div class="select-wrapper">
-                            <select name="" id="" class="form-control">
+                            <select name="" id="" class="form-control" v-on:change="selectAccommodation($event)">
                                 <option>Accommodation options</option>
-                                <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
+
+                                <option v-for="(acco,$index) in accomodtion" :value="$index" >{{acco.title}}</option>
+                                
                             </select>
                         </div>
                         
                     </div>
-                    <table class="table text-large wide-cell">
+                    <table class="table text-large wide-cell" id="accoTable" style="display:none">
                         <tbody>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.reg_fees">
                                 <td><?= Yii::t('frontend' , 'Accommodation Registration Fees')?></td>
-                                <td><span class="text-primary">Standard</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.reg_fees}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.facility">
                                 <td><?= Yii::t('frontend' , 'Facilities')?></td>
-                                <td><span class="text-primary">Standard</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.facility}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.room">
                                 <td><?= Yii::t('frontend' , 'Room Category')?></td>
-                                <td><span class="text-primary">26 Years</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.room}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.special_diet">
                                 <td><?= Yii::t('frontend' , 'Special diet')?></td>
-                                <td><span class="text-primary">250 Meters Away</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.special_diet}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.booking_cycle">
                                 <td><?= Yii::t('frontend' , 'Booking Cycle')?></td>
-                                <td><span class="text-primary">250 Meters Away</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.booking_cycle}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.min_booking_duraion">
                                 <td><?= Yii::t('frontend' , 'Minimum Booking duration')?></td>
-                                <td><span class="text-primary">250 Meters Away</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.min_booking_duraion}}</span></td>
                             </tr>
                             
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.distance_from_school">
                                 <td><?= Yii::t('frontend' , 'Distance from school (Minutes)')?></td>
-                                <td><span class="text-primary">250 Meters Away</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.distance_from_school}}</span></td>
                             </tr>
-                            <tr>
+                            <tr v-if="Selectedaccomodtion.cost_per_duration_unit">
                                 <td><?= Yii::t('frontend' , 'Cost per Duration')?></td>
-                                <td><span class="text-primary">250 Meters Away</span></td>
+                                <td><span class="text-primary">{{Selectedaccomodtion.cost_per_duration_unit}}</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -282,69 +284,59 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 <div class="select-wrapper">
                                     <select name="" id="" class="form-control">
                                         <option>Start Date</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        <option v-for="date in StartDates" :value="date.id">{{date.course_date}}</option>
+                                        
                                     </select>
                                 </div>
                             </td>
-                            <td><span class="text-primary">50 USD</span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
+                                
+                            </td>
+                            <td ><span class="text-primary" v-if="CourseDurations">{{CourseDurations}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="select-wrapper">
-                                    <select name="" id="" class="form-control">
-                                        <option>Course Duration</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-                            </td>
-                            <td><span class="text-primary">50 USD</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="select-wrapper">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="" class="form-control" @change="SelectAirport($event)">
                                         <option>Airport pickup</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        <option v-for="(airport,$index) in airports" :value="$index">{{airport.title}} - {{airport.service_type}}</option>
+                                        
                                     </select>
                                 </div>
                             </td>
-                            <td><span class="text-primary">50 USD</span></td>
+                            <td><span class="text-primary" v-if="SelectedAirport.cost">{{SelectedAirport.cost}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="select-wrapper">
-                                    <select name="" id="" class="form-control">
-                                        <option>Health Insurence</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
+                                
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="<?= $schoolObj->health_insurance_cost ?>" id="defaultCheck1" @change="GetHealth($event)">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Health Insurence
+                                    </label>
                                 </div>
+                                
                             </td>
-                            <td><span class="text-primary">50 USD</span></td>
+                            <td><span class="text-primary" v-if="SelectedHealth">{{SelectedHealth}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
-<!--                        <tr>-->
-<!--                            <td>--><?//= Yii::t('frontend' , 'Accomodation fees')?><!--</td>-->
-<!--                            <td><span class="text-primary">--><?//= $courseObj->avg_no_of_students_per_class; ?><!-- USD</span></td>-->
-<!--                        </tr>-->
+
                         <tr>
                             <td><?= Yii::t('frontend' , 'Registeration fees')?></td>
-                            <td><span class="text-primary"><?= $courseObj->registeration_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
+                            <td><span class="text-primary" id="regFees" data-value="<?= $courseObj->registeration_fees; ?>"><?= $courseObj->registeration_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Study books fees')?></td>
-                                <td><span class="text-primary"><?= $courseObj->study_books_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
+
+                            <td><span class="text-primary" id="bookFees" data-value="<?= $courseObj->study_books_fees; ?>"><?= $courseObj->study_books_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2" class="bg-primary text-center"><h3><?= Yii::t('frontend' , 'Total')?>: 240 <?= $schoolObj->currency->currency_code?></h3></td>
+                            <td colspan="2" class="bg-primary text-center"><h3><?= Yii::t('frontend' , 'Total')?>: {{ total }} <?= $schoolObj->currency->currency_code?></h3></td>
 
                         </tr>
                     </tfoot>
@@ -359,54 +351,57 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     </div>
 </section>
 <section class="section">
-		<div class="container">
-			<h2 class="title text-center"><?= Yii::t('frontend' , 'Other courses in Language Academy')?> </h2>
+    <div class="container">
+        <h2 class="title text-center"><?= Yii::t('frontend' , 'Other courses in Language Academy')?> </h2>
 
-			<div class="universities universities-row">
+        <div class="universities universities-row">
 
-				<div class="item">
-					<header class="item-header">
-						<figure>
-							<span class="cut-off">15%</span>
-							<img src="img/destinations/1.jpg" alt="">
-						</figure>
-						<div class="item-content">
-							<div class="item-name">
-								<span>Language Academy - General English</span>
-								<div class="rating">
-									
-									<span class="text-muted">(628)</span>
-								</div>
-							</div>
-							<div class="item-location"><img src="img/flags/fr.png" alt=""> Auburn - Alabama - USA</div>
-							<div class="item-body">
-								Living in today’s metropolitan world of cellular phones, mobile computers and other high-tech gadgets is not just hectic but very impersonal. We make money and then invest our time and effort in making more money. 
-							</div>
-						</div>
-					</header>
-					<footer class="item-footer">
-						<div>
-							<div class="item-label"><?= Yii::t('frontend' , 'Hours/week')?></div>
-							<div>22 hrs</div>
-						</div>
-						<div>
-							<div class="item-label"><?= Yii::t('frontend' , 'Study Time')?></div>
-							<div>Morning</div>
-						</div>
-						<div>
-                            <div class="item-label"><?= Yii::t('frontend' , 'Best price')?></div>
-							<div><span class="original-price">150</span><span class="sale-on">27.00</span> <span class="currency"><?= $schoolObj->currency->currency_code?></span></div>
-						<div><span class="converted-price">2500</span> <span class="sale-on">27.00</span> <span class="currency">LE</span></div>
-						</div>
-						<div>
-							<a href="#" class="button btn-block button-primary"><?= Yii::t('frontend' , 'Additional Info')?></a>
-						</div>
-					</footer>
-				</div>
+            <div class="item">
+                <header class="item-header">
+                    <figure>
+                        <span class="cut-off">15%</span>
+                        <img src="img/destinations/1.jpg" alt="">
+                    </figure>
+                    <div class="item-content">
+                        <div class="item-name">
+                            <span>Language Academy - General English</span>
+                            <div class="rating">
+                                
+                                <span class="text-muted">(628)</span>
+                            </div>
+                        </div>
+                        <div class="item-location"><img src="img/flags/fr.png" alt=""> Auburn - Alabama - USA</div>
+                        <div class="item-body">
+                            Living in today’s metropolitan world of cellular phones, mobile computers and other high-tech gadgets is not just hectic but very impersonal. We make money and then invest our time and effort in making more money. 
+                        </div>
+                    </div>
+                </header>
+                <footer class="item-footer">
+                    <div>
+                        <div class="item-label"><?= Yii::t('frontend' , 'Hours/week')?></div>
+                        <div>22 hrs</div>
+                    </div>
+                    <div>
+                        <div class="item-label"><?= Yii::t('frontend' , 'Study Time')?></div>
+                        <div>Morning</div>
+                    </div>
+                    <div>
+                        <div class="item-label"><?= Yii::t('frontend' , 'Best price')?></div>
+                        <div><span class="original-price">150</span><span class="sale-on">27.00</span> <span class="currency"><?= $schoolObj->currency->currency_code?></span></div>
+                    <div><span class="converted-price">2500</span> <span class="sale-on">27.00</span> <span class="currency">LE</span></div>
+                    </div>
+                    <div>
+                        <a href="#" class="button btn-block button-primary"><?= Yii::t('frontend' , 'Additional Info')?></a>
+                    </div>
+                </footer>
+            </div>
 
-				
+            
 
-			</div>
+        </div>
 
-		</div>
-	</section>
+    </div>
+</section>
+
+</div>
+

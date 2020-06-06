@@ -15,7 +15,7 @@ use yii\web\YiiAsset;
 /**
  * Frontend application asset
  */
-class ProgramAsset extends AssetBundle
+class CourcesAsset extends AssetBundle
 {
     /**
      * @var string
@@ -36,7 +36,7 @@ class ProgramAsset extends AssetBundle
        'https://cdn.jsdelivr.net/npm/vue',
        'https://unpkg.com/vue-select@3.0.0',
        'js/Apps/Api.js',
-       'js/Apps/ReferalProgApp.js'
+       'js/Apps/CourcesApp.js'
     ];
 
     /**
