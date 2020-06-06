@@ -60,17 +60,16 @@ if(Yii::$app->session->hasFlash('alert')){
                             <div class="col-6 mtmd">
                                 <h3>Quick Links</h3>
                                 <ul>
-                                    <li><a href="">Universities</a></li>
-                                    <li><a href="">Language Schools</a></li>
+                                    <li><a href="/universities">Universities</a></li>
+                                    <li><a href="/schools">Language Schools</a></li>
                                     <li><a href="">How We Work</a></li>
-                                    <li><a href="">About Us</a></li>
+                                    <li><a href="/about">About Us</a></li>
                                 </ul>
                             </div>
                             <div class="col-6 mtmd">
                                 <h3>Resources</h3>
                                 <ul>
                                     <li><a href="">Contact</a></li>
-                                    <li><a href="">FAQ</a></li>
                                     <li><a href="">Terms & Policy</a></li>
                                     <li><a href="">Privacy</a></li>
                                 </ul>

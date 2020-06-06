@@ -25,4 +25,10 @@ class PageController extends Controller
         $viewFile = $model->view ?: 'view';
         return $this->render($viewFile, ['model' => $model]);
     }
+
+
+    public function actionAbout(){
+
+        return $this->render('about');
+    }
 }
