@@ -9,7 +9,6 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('frontend', 'Login');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="auth-content">
     <div class="auth-info" style="background-image: url('/img/auth.jpg');">
      <?php
@@ -28,13 +27,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
                         <div class="form-group">
-                            <?php echo $form->field($model, 'identity')->textInput(['placeholder'=>Yii::t('common','Email Address')])
-                                ->label(Yii::t('common','Email Address') ,['class'=>'label-control']); ?>
-
+                            <div>
+                                <span><i class="far fa-envelope"></i></span>
+                                <?php echo $form->field($model, 'identity')->textInput(['placeholder'=>Yii::t('common','write your email address')])
+                                ->label(Yii::t('common','E-Mail Address') ,['class'=>'label-control']); ?>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <?php echo $form->field($model, 'password')->passwordInput(['placeholder'=>Yii::t('common','Password')])
+                            <div>
+                                <span><i class="fas fa-unlock-alt"></i></span>
+                                <?php echo $form->field($model, 'password')->passwordInput(['placeholder'=>Yii::t('common','****************')])
                                 ->label(Yii::t('common','Password') ,['class'=>'label-control']);?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <a href="/reset-password" class="fr"><?= Yii::t('common','Forget your password?') ?></a>
