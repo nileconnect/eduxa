@@ -74,7 +74,16 @@ class SchoolCourseController extends BackendController
         $schoolObj= Schools::find()->where(['id'=>Yii::$app->session->get('schoolId')])->one();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
+                'title' =>'',
+            ]);
+
+            $this->CalcWeekCost($model);
+
+            return $this->redirect(['index']); // 'id' => $model->id
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -96,13 +105,36 @@ class SchoolCourseController extends BackendController
         $schoolObj= Schools::find()->where(['id'=>$model->school_id])->one();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
+                'title' =>'',
+            ]);
+
+            $this->CalcWeekCost($model);
+
+
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
                 'schoolObj' => $schoolObj,
 
             ]);
+        }
+    }
+
+
+    public function CalcWeekCost($model){
+
+        if($model->schoolCourseSessionCosts){
+            foreach ($model->schoolCourseSessionCosts as $item) {
+                if(!$item->week_cost){
+                    $item->week_cost= floor($item->session_cost/$item->session_cost);
+                    $item->save(false);
+
+                }
+            }
         }
     }
 

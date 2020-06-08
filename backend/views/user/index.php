@@ -25,14 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?php
-//    if(Yii::$app->session->get('UserRole') != User::ROLE_USER){
-//        ?>
-<!--        <p>-->
-<!--            --><?php //echo Html::a(Yii::t('backend', 'Create New').' '.\common\models\User::UserRoleName( Yii::$app->session->get('UserRole') ), ['create'], ['class' => 'btn btn-primary']) ?>
-<!--        </p>-->
-<!---->
-<!--        --><?//
-//    }
+    if(Yii::$app->session->get('UserRole') == User::ROLE_USER){
+        ?>
+        <p>
+            <?php echo Html::a(Yii::t('backend', 'Create New').' '.\common\models\User::UserRoleName( Yii::$app->session->get('UserRole') ), ['create'], ['class' => 'btn btn-primary']) ?>
+        </p>
+
+        <?
+    }
     ?>
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,

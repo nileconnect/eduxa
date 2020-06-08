@@ -51,7 +51,8 @@ class SchoolCourse extends BaseSchoolCourse
     {
         return [
             [['school_id', 'title', 'information'], 'required'],
-            [['school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by','max_no_of_students_per_class'], 'integer'],
+            [['school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by',
+                'updated_by','max_no_of_students_per_class','pricing_method'], 'integer'],
             [['information', 'requirments','slug'], 'string'],
             [[ 'registeration_fees', 'discount','lesson_duration','study_books_fees'], 'number'],
             [['title',   'created_at', 'updated_at'], 'string', 'max' => 255],

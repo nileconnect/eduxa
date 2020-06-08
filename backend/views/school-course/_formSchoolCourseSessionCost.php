@@ -6,6 +6,11 @@ use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
+$arWeeksNo = [];
+for($i=1 ; $i<53 ;$i++){
+    $arWeeksNo[$i] = $i;
+}
+
 $dataProvider = new ArrayDataProvider([
     'allModels' => $row,
     'pagination' => [
@@ -22,10 +27,19 @@ echo TabularForm::widget([
     ],
     'attributes' => [
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions' => ['hidden'=>true]],
-        'weeks_per_session' => ['type' => TabularForm::INPUT_TEXT],
+        'weeks_per_session' => [
+            'type' => TabularForm::INPUT_WIDGET,
+            'widgetClass' => \kartik\widgets\Select2::className(),
+            'options' => [
+                'data' =>$arWeeksNo,
+                //'options' => ['placeholder' => 'Select'],
+            ],
+            'columnOptions' => ['width' => '200px']
+        ],
+
         'no_of_sessions' => ['type' => TabularForm::INPUT_TEXT],
         'session_cost' => ['label'=>'Price/Session','type' => TabularForm::INPUT_TEXT],
-        'week_cost' => ['label'=>'Price/Week', 'type' => TabularForm::INPUT_TEXT],
+        'week_cost' => ['label'=>'Price/Week', 'type' => TabularForm::INPUT_TEXT ,'options'=>['placeholder'=>'if empty/will be calculated']],
         'status' => [
             'type' => TabularForm::INPUT_WIDGET,
             'widgetClass' => \kartik\widgets\Select2::className(),
