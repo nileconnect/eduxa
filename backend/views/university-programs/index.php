@@ -106,9 +106,9 @@ $this->registerJs($search);
 //        'total_rating',
 //        'program_type',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'yii\grid\ActionColumn','template'=>'{update}   {delete}'
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

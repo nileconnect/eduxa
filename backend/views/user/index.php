@@ -38,7 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'options' => [
-            'class' => 'grid-view table-responsive'
+            'class' => 'grid-view table-responsive',
+
         ],
         'columns' => [
             //'id',
