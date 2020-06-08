@@ -179,6 +179,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             <?= $form->field($model, 'avg_no_of_students_per_class')->textInput(['placeholder' => 'Avg No Of Students Per Class']) ?>
         </div>
     </div>
+    
 
     <?= $form->field($model, 'information')->textarea(['maxlength' => 255, 'rows'=>3])
         ->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'textArea', 'inputOptions'=>[
@@ -191,6 +192,17 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             'rows'=>3,
             'class'=>'form-control',
         ]]) ?>
+
+    <div class="row" style="margin-bottom:30px;">
+        <div class="col-md-12">
+            <div style="display:inline-block">Course cost per weeks</div>
+            <div class="material-switch" style="margin: 0 20px; display:inline-block">
+                <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>
+                <label for="someSwitchOptionDefault" class="label-default"></label>
+            </div>
+            <div style="display:inline-block">Course cost per Session</div>
+        </div>
+    </div>
 
     <?php
     $forms = [
