@@ -38,7 +38,7 @@ echo Menu::widget([
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=manager'],
                     'active' => (Yii::$app->controller->id == 'user'),
-                    //'visible' => (Yii::$app->user->can('administrator')  ),
+                    'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
 

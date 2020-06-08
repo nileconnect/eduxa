@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?php
-    if(Yii::$app->session->get('UserRole') == User::ROLE_USER){
+    if(Yii::$app->session->get('UserRole') == User::ROLE_MANAGER && Yii::$app->user->can('administrator')){
         ?>
         <p>
             <?php echo Html::a(Yii::t('backend', 'Create New').' '.\common\models\User::UserRoleName( Yii::$app->session->get('UserRole') ), ['create'], ['class' => 'btn btn-primary']) ?>

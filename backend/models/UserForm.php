@@ -107,7 +107,7 @@ class UserForm extends Model
      * @return User|null the saved model or null if saving fails
      * @throws Exception
      */
-    public function save()
+    public function save($role= null)
     {
         if ($this->validate()) {
             $model = $this->getModel();
@@ -126,7 +126,13 @@ class UserForm extends Model
             }
             $auth = Yii::$app->authManager;
             $auth->revokeAll($model->getId());
-            $auth->assign( $auth->getRole($this->roles) , $model->getId());
+            if($role){
+                $auth->assign( $auth->getRole($role), $model->getId());
+
+            }else{
+                $auth->assign( $auth->getRole($this->roles) , $model->getId());
+
+            }
 
 //            if ($this->roles && is_array($this->roles)) {
 //                foreach ($this->roles as $role) {
