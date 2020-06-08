@@ -67,6 +67,15 @@ class UserController extends BackendController
             Yii::$app->session->set('UserRole',$_REQUEST['user_role']);
         }
 
+        if(!Yii::$app->user->can('administrator') && Yii::$app->session->get('UserRole')== "manager" ){
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('backend', 'You are not allowed') ,
+                'title' =>'',
+            ]);
+            return $this->redirect('/');
+        }
+
         $searchModel->user_role = Yii::$app->session->get('UserRole');
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->setSort([
@@ -124,11 +133,21 @@ class UserController extends BackendController
      */
     public function actionCreate()
     {
+        if(!Yii::$app->user->can('administrator')){
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('backend', 'You are not allowed') ,
+                'title' =>'',
+            ]);
+            return $this->redirect('index');
+        }
         $model = new UserForm();
         $profile= new UserProfile();
         $profile->locale = 'en-US';
         $model->setScenario('create');
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model->status = User::STATUS_ACTIVE;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save(User::ROLE_MANAGER)) {
 
             $profile->load(Yii::$app->request->post());
             $this->UpdateUserRelatedTbls($model,$profile);
@@ -140,7 +159,7 @@ class UserController extends BackendController
             ]);
 
 
-            return $this->redirect(['index?user_role='.$model->roles]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -173,7 +192,7 @@ class UserController extends BackendController
                 'title' =>'',
             ]);
 
-            return $this->redirect(['index?user_role='.$model->roles]);
+            return $this->redirect(['index']);
         }
 
 

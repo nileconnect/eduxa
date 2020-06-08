@@ -52,17 +52,17 @@ $model->roles =Yii::$app->session->get('UserRole');
                         <?php echo Yii::t('backend', 'Main Details') ?>
                     </a>
                 </li>
-                <li>
-                    <a href="#tab_2-2" data-toggle="tab" aria-expanded="false">
-                        <?php echo Yii::t('backend', 'Permissions') ?>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#tab_3-3" data-toggle="tab" aria-expanded="false">
-                        <?php echo Yii::t('backend', 'Profile Data') ?>
-                    </a>
-                </li>
+<!--                <li>-->
+<!--                    <a href="#tab_2-2" data-toggle="tab" aria-expanded="false">-->
+<!--                        --><?php //echo Yii::t('backend', 'Permissions') ?>
+<!--                    </a>-->
+<!--                </li>-->
+<!---->
+<!--                <li>-->
+<!--                    <a href="#tab_3-3" data-toggle="tab" aria-expanded="false">-->
+<!--                        --><?php //echo Yii::t('backend', 'Profile Data') ?>
+<!--                    </a>-->
+<!--                </li>-->
                 <?php
                 if(   $model->getModel()->id  > 0 &&  User::IsRole($model->getModel()->id , User::ROLE_USER)){
                    ?>
@@ -94,7 +94,7 @@ $model->roles =Yii::$app->session->get('UserRole');
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
-                            <?php echo $form->field($model, 'email')->textInput(['disabled'=>true]) ?>
+                            <?php echo $form->field($model, 'email')->textInput() ?>
                         </div>
 
                         <div class="col-md-4 col-sm-12">
@@ -103,11 +103,11 @@ $model->roles =Yii::$app->session->get('UserRole');
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
-                            <?php echo $form->field($profile, 'firstname')->textInput(['disabled'=>true])  ?>
+                            <?php echo $form->field($profile, 'firstname')->textInput()  ?>
                         </div>
 
                         <div class="col-md-4 col-sm-12">
-                            <?php echo $form->field($profile, 'lastname')->textInput(['disabled'=>true])  ?>
+                            <?php echo $form->field($profile, 'lastname')->textInput()  ?>
                         </div>
                         <div class="col-md-4 col-sm-12">
 
@@ -121,7 +121,7 @@ $model->roles =Yii::$app->session->get('UserRole');
 
 
                 </div>
-
+                <? /* ?>
                 <div class="tab-pane" id="tab_2-2">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
@@ -129,7 +129,10 @@ $model->roles =Yii::$app->session->get('UserRole');
                         </div>
 
                         <div class="col-md-6 col-sm-12">
-                            <?php echo $form->field($model, 'status')->dropDownList(User::statuses()) ?>
+                            <?php
+                            //echo $form->field($model, 'status')->dropDownList(User::statuses());
+                            echo $form->field($model, 'status')->hiddenInput();
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -238,6 +241,7 @@ $model->roles =Yii::$app->session->get('UserRole');
 
 
                 </div>
+ <? */ ?>
                 <div class="tab-pane" id="tab_4-4">
                     <h2> No Certificate has been addedd</h2>
 
