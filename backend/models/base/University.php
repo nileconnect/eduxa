@@ -66,11 +66,17 @@ class University extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['currency_id','title','next_to'],'required'],
+
+
+            [['currency_id','title','next_to','title','country_id','city_id','state_id'],'required'],
+            [['title'], 'string', 'max' => 50 ,'min'=>2],
+            [['description'], 'string', 'max' => 5000 ,'min'=>2],
+            [['detailed_address'], 'string', 'max' => 2000 ,'min'=>2],
+
             [['description','slug'], 'string'],
             [['total_rating'], 'number'],
             [['no_of_ratings', 'created_by', 'updated_by','status','responsible_id'], 'integer'],
-            [['title', 'image_base_url', 'image_path', 'detailed_address', 'location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
+            [[ 'image_base_url', 'image_path','location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
             [['logo','photos','country_id','city_id','state_id','recommended'],'safe'],
             [['next_to','currency_id'],'integer']
         ];

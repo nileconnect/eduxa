@@ -238,11 +238,15 @@ class UniversityController extends BackendController
             $profile= $model->getModel()->userProfile;
         }else{
             $profile = new UserProfile();
+            $profile->user_id =$id;
         }
         $model->roles = User::ROLE_UNIVERSITY_MANAGER;
         $saved = false;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $profile->load(Yii::$app->request->post());
+
+        $profile->load(Yii::$app->request->post());
+        $profile->country_id= $profile->state_id =$profile->city_id = 1;
+        if ($model->load(Yii::$app->request->post())  && $profile->validate() && $model->save()) {
+
             $this->UpdateUserRelatedTbls($model,$profile);
             University::updateAll(['responsible_id'=>$profile->user_id],['id'=>$id]);
             $university = University::findOne(['id'=>$id]);
@@ -252,7 +256,7 @@ class UniversityController extends BackendController
             }
             $saved = true;
         }else{
-           // return var_dump($model->errors);
+             //var_dump($profile->errors); die;
         }
 
         return $this->render('manager', [
