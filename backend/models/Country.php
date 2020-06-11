@@ -22,6 +22,10 @@ class Country extends BaseCountry
     public  $image;
     public $attachments;
 
+    //for import
+    public $state;
+    public $city;
+
     /**
      * @inheritdoc
      */

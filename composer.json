@@ -67,7 +67,9 @@
     "kartik-v/yii2-widget-growl": "*",
     "kartik-v/yii2-number": "dev-master",
     "kartik-v/yii2-editable": "@dev",
-    "imanilchaudhari/yii2-currency-converter": "*"
+    "imanilchaudhari/yii2-currency-converter": "*",
+    "ruskid/yii2-csv-importer": "dev-master",
+    "lucasguo/yii2-import": "*"
 
   },
   "require-dev": {
