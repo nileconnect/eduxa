@@ -939,3 +939,24 @@ label.checkbox-inline input[type="checkbox"] {
     background: inherit;
     left: 20px;
 }
+
+.content-header>.breadcrumb {
+    float: none;
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 7px 5px;
+    position: relative;
+    top: 0;
+    right: 10px;
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    margin-left: 6px;
+}
+
+.tabs-x .table,
+.nav-tabs-custom .table {
+    background: #f9f9f9;
+}
