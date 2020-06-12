@@ -46,6 +46,8 @@ class University extends \yii\db\ActiveRecord
 
     use \mootensai\relation\RelationTrait;
 
+    const SCENARIO_IMPORT= 'import';
+
     public $logo;
     public $photos;
 
@@ -78,7 +80,8 @@ class University extends \yii\db\ActiveRecord
             [['no_of_ratings', 'created_by', 'updated_by','status','responsible_id'], 'integer'],
             [[ 'image_base_url', 'image_path','location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
             [['logo','photos','country_id','city_id','state_id','recommended'],'safe'],
-            [['next_to','currency_id'],'integer']
+            [['next_to','currency_id'],'integer'],
+            [['next_to','currency_id'],'integer','on'=>'import']
         ];
     }
 
