@@ -15,17 +15,38 @@ $search = "$('.search-button').click(function(){
 	return false;
 });";
 $this->registerJs($search);
+echo newerton\fancybox3\FancyBox::widget([
+
+    'config'=>[
+        'iframe' => [
+            'preload'       => true,
+            'css'=>[
+                'width'=>'800px',
+                'height'=>'500px'
+            ]
+        ],
+
+    ],
+]);
 ?>
 <div class="country-index">
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
+      <p>
         <?= Html::a(Yii::t('backend', 'Create Country'), ['create'], ['class' => 'btn btn-primary']) ?>
-        <? //= Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
+        <?= Html::a(Yii::t('backend', 'Import Data'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
     <div class="search-form" style="display:none">
-        <?=  $this->render('_search', ['model' => $searchModel]); ?>
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <a class="uploadBtn" data-fancybox="" data-type="iframe"   data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "900px" , "height" : "400px" }}}'
+                   href="/import/countries">
+                    <i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Import Countries</span></a><br/>
+
+            </div>
+        </div>
+
+
+
+
     </div>
     <?php 
     $gridColumn = [

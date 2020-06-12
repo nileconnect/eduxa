@@ -46,7 +46,7 @@ class UserForm extends Model
             }],
 
             ['password', 'required', 'on' => 'create'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 8 ,'max'=>15],
 
             [['status'], 'integer'],
             ['roles', 'string'],

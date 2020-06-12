@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\base\University;
+use backend\models\Requests;
 use backend\models\UniversityProgStartdate;
 use Yii;
 use backend\models\UniversityPrograms;
@@ -32,7 +33,7 @@ class UniversityProgramsController extends BackendController
      * Lists all UniversityPrograms models.
      * @return mixed
      */
-    public function actionIndex($university_id)
+    public function actionIndex($university_id = null)
     {
         if(isset($_REQUEST['university_id'])){
             Yii::$app->session->set('universityId',$_REQUEST['university_id']);
@@ -85,7 +86,13 @@ class UniversityProgramsController extends BackendController
             $modelStartDates->university_prog_id = $model->id;
             $modelStartDates->save(false);
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('backend', 'Data has been saved Successfully') ,
+                'title' =>'',
+            ]);
+
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -122,7 +129,15 @@ class UniversityProgramsController extends BackendController
 
                 var_dump($modelStartDates->errors); die;
             }
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('backend', 'Data has been saved Successfully') ,
+                'title' =>'',
+            ]);
+
+            return $this->redirect(['index']);
+
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -140,7 +155,30 @@ class UniversityProgramsController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteWithRelated();
+        $model = $this->findModel($id);
+        $requests = Requests::find()->where(
+            ['model_name'=>Requests::MODEL_NAME_PROGRAM , 'model_id'=>$model->id ]
+        )->all();
+
+        if($requests){
+
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'warning',
+                'body' => \Yii::t('backend', 'Can not delete this program as some students applied on it') ,
+                'title' =>'',
+            ]);
+
+        }else{
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('backend', 'Programs has been deleted.') ,
+                'title' =>'',
+            ]);
+
+            $model->deleteWithRelated();
+
+        }
+
 
         return $this->redirect(['index']);
     }

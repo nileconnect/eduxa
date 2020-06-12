@@ -212,8 +212,8 @@ class UniversityPrograms extends \yii\db\ActiveRecord
                     'attributes'       => ['title','study_duration','study_method','attendance_type','annual_cost','conditional_admissions','toefl'
                                             ,'ielts','bank_statment','high_school_transcript','bachelor_degree','certificate','note1','note2'],
                     'admin_routes'     => [
-                        'university-program/update',
-                        'university-program/index',
+                        'university-programs/update',
+                        'university-programs/index',
                     ],
                 ],
             ],

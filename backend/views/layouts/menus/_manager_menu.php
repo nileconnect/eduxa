@@ -37,7 +37,7 @@ echo Menu::widget([
                     'label' => Yii::t('backend', 'Managers'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=manager'],
-                    'active' => (Yii::$app->controller->id == 'user'),
+                    'active' => (Yii::$app->controller->id == 'user' && $_REQUEST['user_role'] == 'manager'),
                     'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
@@ -46,7 +46,7 @@ echo Menu::widget([
                     'label' => Yii::t('backend', 'University Manager'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=universityManager'],
-                    'active' => (Yii::$app->controller->id == 'user'),
+                    'active' => (Yii::$app->controller->id == 'user'  && $_REQUEST['user_role'] == 'universityManager'),
                    // 'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
@@ -56,7 +56,7 @@ echo Menu::widget([
                     'label' => Yii::t('backend', 'Referral - Person'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=referralPerson'],
-                    'active' => (Yii::$app->controller->id == 'user'),
+                    'active' => (Yii::$app->controller->id == 'user' && $_REQUEST['user_role'] == 'referralPerson') ,
                    // 'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
@@ -67,7 +67,7 @@ echo Menu::widget([
                     'label' => Yii::t('backend', 'Referral - Company'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=referralCompany'],
-                    'active' => (Yii::$app->controller->id == 'user'),
+                    'active' => (Yii::$app->controller->id == 'user' && $_REQUEST['user_role'] == 'referralCompany'),
                    // 'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 
@@ -76,7 +76,7 @@ echo Menu::widget([
                     'label' => Yii::t('backend', 'Students'),
                     'icon' => '<i class="fa fa-users"></i>',
                     'url' => ['/user/index?user_role=user'],
-                    'active' => (Yii::$app->controller->id == 'user'),
+                    'active' => (Yii::$app->controller->id == 'user' && $_REQUEST['user_role'] == 'user'),
                    // 'visible' => (Yii::$app->user->can('administrator')  ),
                 ],
 

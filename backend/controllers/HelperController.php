@@ -23,15 +23,17 @@ class HelperController extends   BackendController
 {
     //Users
     public function actionUsersList($q = null, $id = null) {
+        $role = Yii::$app->session->get('UserRole');
         $q = preg_replace('/\s+/', '', $q);
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $out = ['results' => ['id' => '', 'text' => '']];
         if (!is_null($q)) {
             //$users= User::find()
             $query = new Query();
-            $query->select(' CONCAT_WS(" ", `firstname`, `lastname`) as text, {{%user_profile}}.user_id as id')
-                ->from('{{%user_profile}}')
-                ->where('CONCAT( `firstname`, `lastname`) LIKE  \'%'.$q.'%\'  ')
+            $query->select(' CONCAT_WS(" ", `firstname`, `lastname`) as text, user_profile.user_id as id')
+                ->from('user_profile')
+                ->join('LEFT JOIN','rbac_auth_assignment','rbac_auth_assignment.user_id = user_profile.user_id ')
+                ->where('CONCAT( `firstname`, `lastname`) LIKE  \'%'.$q.'%\'   and rbac_auth_assignment.item_name ="'.$role.'" ' )
                 ->limit(20);
 
             $command = $query->createCommand();

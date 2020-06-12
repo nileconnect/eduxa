@@ -99,14 +99,15 @@ class UserProfile extends ActiveRecord
     {
         return [
             [['firstname','lastname','mobile','country_id','city_id','state_id'
-            ], 'required'],
+            ], 'required' ],
             //'gender',
             ['nationality','string', 'min' => 2, 'max' => 60],
+            [['firstname','lastname'],'string', 'min' => 2, 'max' => 15],
 
             [['user_id'], 'required'],
             [['user_id', 'gender','country_id','state_id','city_id','no_of_students','communtication_channel'], 'integer'],
             [['gender'], 'in', 'range' => [NULL, self::GENDER_FEMALE, self::GENDER_MALE]],
-            [['firstname', 'middlename', 'lastname', 'avatar_path', 'avatar_base_url','nationality','students_nationalities','job_title'], 'string', 'max' => 255],
+            [[ 'avatar_path', 'avatar_base_url','nationality','students_nationalities','job_title'], 'string', 'max' => 255],
             ['locale', 'default', 'value' => Yii::$app->language =='en' ? 'en-US' : 'ar-AR'],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
             [['picture','city_id','interested_in_university','interested_in_schools','students_nationalities','communtication_channel'], 'safe'],
