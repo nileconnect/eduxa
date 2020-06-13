@@ -68,8 +68,7 @@
     "kartik-v/yii2-number": "dev-master",
     "kartik-v/yii2-editable": "@dev",
     "imanilchaudhari/yii2-currency-converter": "*",
-    "gevman/yii2-excel-import": "*",
-    "rmrevin/yii2-fontawesome": "~3.5"
+    "gevman/yii2-excel-import": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",

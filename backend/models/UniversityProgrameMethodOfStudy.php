@@ -19,7 +19,9 @@ class UniversityProgrameMethodOfStudy extends BaseUniversityProgrameMethodOfStud
 	    [
             [['title'], 'required'],
             [['created_by', 'updated_by'], 'integer'],
-            [['title', 'created_at', 'updated_at'], 'string', 'max' => 255],
+            [[ 'created_at', 'updated_at'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 50 ,'min'=>2],
+
             [['status'], 'safe']
         ]);
     }

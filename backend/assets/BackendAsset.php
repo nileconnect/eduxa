@@ -50,6 +50,7 @@ class BackendAsset extends AssetBundle
     public $depends = [
         YiiAsset::class,
         AdminLte::class,
-        Html5shiv::class
+        Html5shiv::class,
+
     ];
 }

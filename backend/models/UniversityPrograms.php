@@ -31,7 +31,23 @@ class UniversityPrograms extends BaseUniversityPrograms
             [[ 'study_start_date','attendance_type',
                  'certificate', 'created_at', 'updated_at'], 'string', 'max' => 255],
             [['program_type','last_submission_date','first_submission_date','lang_of_study','university_id'], 'safe'],
-            ['last_submission_date','safe','on'=>'import']
+            ['last_submission_date','safe','on'=>'import'],
+
+            ['last_submission_date', 'compareDates'],
+
         ];
     }
+
+
+    public function compareDates()
+    {
+       $last_submission_date = strtotime($this->last_submission_date);
+       $first_submission_date = strtotime($this->first_submission_date);
+        if (!$this->hasErrors() && $last_submission_date < $first_submission_date) {
+           $this->addError('last_submission_date', 'End date is not valid.');
+        }
+    }
+
 }
+
+

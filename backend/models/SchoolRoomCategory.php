@@ -18,7 +18,9 @@ class SchoolRoomCategory extends BaseSchoolRoomCategory
         return array_replace_recursive(parent::rules(),
 	    [
             [['school_id'], 'integer'],
-            [['title', 'created_at', 'updated_at'], 'string', 'max' => 255]
+            [[ 'created_at', 'updated_at'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 50 ,'min'=>2],
+
         ]);
     }
 	
