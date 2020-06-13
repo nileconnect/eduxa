@@ -21,36 +21,42 @@ if($saved){
 }
 
 ?>
-
-
-<?php
-if(Yii::$app->session->hasFlash('alert')){
-    echo \kartik\growl\Growl::widget([
-        'type' => \yii\helpers\ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'type'), //Growl::TYPE_SUCCESS,// ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'type'), //
-        'icon' => 'glyphicon glyphicon-ok-sign',
-        //'title' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'title'),
-        'showSeparator' => true,
-        'body' => \yii\helpers\ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
-        'showSeparator' => false,
-        'pluginOptions' => [
-            'showProgressbar' => true,
-            'placement' => [
-                'from' => 'bottom',
-                'align' => 'center',
+<div class="row">
+    <div class="col-md-12 text-center" style="padding-top:50px">
+    <?php
+    if(Yii::$app->session->hasFlash('alert')){
+        echo \kartik\growl\Growl::widget([
+            'type' => \yii\helpers\ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'type'), //Growl::TYPE_SUCCESS,// ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'type'), //
+            'icon' => 'glyphicon glyphicon-ok-sign',
+            //'title' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'title'),
+            'showSeparator' => true,
+            'body' => \yii\helpers\ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+            'showSeparator' => false,
+            'pluginOptions' => [
+                'showProgressbar' => true,
+                'placement' => [
+                    'from' => 'bottom',
+                    'align' => 'center',
+                ]
             ]
-        ]
-    ]);
-}
-?>
-<div><span>Sample File</span> <a target="_blank" href="/samples/<?= $filename?>">Download</a></div>
+        ]);
+    }
+    ?>
+    <div><span>Download Sample File:</span> <a target="_blank" href="/samples/<?= $filename?>">Download</a></div>
 
-<?php
- $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-    <?= $form->field($model, 'file')->fileInput() ?>
+    <div><span>- OR -</span></div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+    <div><span>Upload new file</span></div>
+    <?php
+    $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+        <?= $form->field($model, 'file')->fileInput() ?>
+        
+
+        <div class="form-group">
+            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+        </div>
+    <?php ActiveForm::end();
+    ?>
     </div>
-<?php ActiveForm::end();
-?>
+</div>
 

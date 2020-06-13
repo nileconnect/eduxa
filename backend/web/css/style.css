@@ -980,3 +980,13 @@ label.checkbox-inline input[type="checkbox"] {
 .form-group .tab-content {
     padding: 0;
 }
+
+.field-fileuploadhelper-file .control-label {
+    width: 150px;
+    height: 150px;
+    line-height: 150px !important;
+    border: 2px dashed #696969;
+    border-radius: 8px;
+    margin-bottom: 20px !important;
+    cursor: pointer !important;
+}
