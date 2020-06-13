@@ -22,9 +22,8 @@ class Country extends BaseCountry
     public  $image;
     public $attachments;
 
-    //for import
-    public $state;
-    public $city;
+    const SCENARIO_IMPORT= 'import';
+
 
     /**
      * @inheritdoc
@@ -72,6 +71,9 @@ class Country extends BaseCountry
     {
         return [
             [['title', 'code'], 'required'],
+            [['title', 'code'], 'unique'],
+            [['title', 'code'], 'unique','on'=>'import'],
+
             [['intro', 'details'], 'string'],
             [['title', 'code', 'image_base_url', 'image_path'], 'string', 'max' => 255],
             [['image','attachments','status','top_destination'],'safe']

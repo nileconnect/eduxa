@@ -49,7 +49,7 @@ echo newerton\fancybox3\FancyBox::widget([
             <div class="col-md-4 col-sm-12">
                 <a class="uploadBtn" data-fancybox="" data-type="iframe"   data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "900px" , "height" : "400px" }}}'
                    href="/import/universities">
-                    <i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Import Countries</span></a><br/>
+                    <i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Import Universities</span></a><br/>
 
             </div>
         </div>

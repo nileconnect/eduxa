@@ -41,8 +41,9 @@ if(Yii::$app->session->hasFlash('alert')){
         ]
     ]);
 }
-
 ?>
+<div><span>Sample File</span> <a target="_blank" href="/samples/<?= $filename?>">Download</a></div>
+
 <?php
  $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <?= $form->field($model, 'file')->fileInput() ?>

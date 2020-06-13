@@ -42,6 +42,13 @@ echo newerton\fancybox3\FancyBox::widget([
                     <i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Import Countries</span></a><br/>
 
             </div>
+
+            <div class="col-md-4 col-sm-12">
+                <a class="uploadBtn" data-fancybox="" data-type="iframe"   data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "900px" , "height" : "400px" }}}'
+                   href="/import/states-cities">
+                    <i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Import States -Cities</span></a><br/>
+
+            </div>
         </div>
     </div>
     <?php 
@@ -49,6 +56,7 @@ echo newerton\fancybox3\FancyBox::widget([
             ['class' => 'yii\grid\SerialColumn'],
 
             'title',
+            'code',
             [
             'label' => '',
             'value' => function($model){

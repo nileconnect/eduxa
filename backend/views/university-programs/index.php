@@ -15,6 +15,24 @@ $search = "$('.search-button').click(function(){
 	return false;
 });";
 $this->registerJs($search);
+
+
+
+echo newerton\fancybox3\FancyBox::widget([
+
+    'config'=>[
+        'iframe' => [
+
+            'preload'       => false,
+            'css'=>[
+                'width'=>'900px',
+                'height'=>'500px'
+            ]
+        ],
+
+    ],
+]);
+
 ?>
 <div class="university-programs-index">
 
@@ -22,11 +40,20 @@ $this->registerJs($search);
 
     <p>
         <?= Html::a(Yii::t('backend', 'Create University Programs'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?  //= Html::a(Yii::t('backend', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
+        <?= Html::a(Yii::t('backend', 'Import Data'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
+
     <div class="search-form" style="display:none">
-        <?=  $this->render('_search', ['model' => $searchModel]); ?>
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <a class="uploadBtn" data-fancybox="" data-type="iframe"   data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "900px" , "height" : "400px" }}}'
+                   href="/import/universities-programs?university_id=<?= $universityObj->id ?>">
+                    <i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Import University Programs</span></a><br/>
+
+            </div>
+        </div>
     </div>
+
     <?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],

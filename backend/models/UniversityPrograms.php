@@ -10,6 +10,9 @@ use \backend\models\base\UniversityPrograms as BaseUniversityPrograms;
  */
 class UniversityPrograms extends BaseUniversityPrograms
 {
+
+    const SCENARIO_IMPORT= 'import';
+
     /**
      * @inheritdoc
      */
@@ -21,13 +24,14 @@ class UniversityPrograms extends BaseUniversityPrograms
 
             [['title','high_school_transcript', 'bachelor_degree'], 'string', 'max' => 30,'min'=>2],
 
-            [['university_id', 'major_id', 'degree_id', 'field_id', 'country_id', 'city_id', 'created_by', 'updated_by',
-                'last_submission_date_active','medium_of_study','program_format','lang_of_study'], 'integer'],
+            [[ 'major_id', 'degree_id', 'field_id', 'country_id', 'city_id', 'created_by', 'updated_by',
+                'last_submission_date_active','medium_of_study','program_format','lang_of_study', 'study_method','conditional_admissions',  'study_duration',  'ielts'], 'integer'],
             [['annual_cost', 'total_rating','annual_cost','bank_statment','toefl','study_duration_no'], 'number'],
             [['note1', 'note2','slug'], 'string'],
-            [[ 'study_start_date', 'study_duration', 'study_method', 'attendance_type', 'conditional_admissions',  'ielts',
+            [[ 'study_start_date','attendance_type',
                  'certificate', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['program_type','last_submission_date','first_submission_date','lang_of_study'], 'safe']
+            [['program_type','last_submission_date','first_submission_date','lang_of_study','university_id'], 'safe'],
+            ['last_submission_date','safe','on'=>'import']
         ];
     }
 }
