@@ -33,7 +33,7 @@ class ProgramAsset extends AssetBundle
      * @var array
      */
     public $js = [
-       'https://cdn.jsdelivr.net/npm/vue',
+       'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',
        'https://unpkg.com/vue-select@3.0.0',
        'js/Apps/Api.js',
        'js/Apps/ReferalProgApp.js'

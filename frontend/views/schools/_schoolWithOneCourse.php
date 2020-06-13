@@ -5,13 +5,13 @@ use backend\models\SchoolCourse;
     <header class="item-header">
         <figure>
             <!--                                <span class="cut-off">15%</span>-->
-            <a href="/school/<?= $school->slug?>">
+            <a href="/school/<?= $school->slug?>"> 
                 <img src="<?= $school->logoImage?>" alt="<?= $school->title ?>" height="193px" width="310px">
             </a>
         </figure>
         <div class="item-content">
             <div class="item-name">
-                <a href="/school/<?= $school->slug?>"><span> <?= $school->title ?></span></a>
+                <a href="/school/<?= $school->slug?>"><span> <?= $school->title ?> - <?= $lastCourse->title ?></span></a>
                 <div class="rating">
                     <div class="jq_rating jq-stars" data-options='{"initialRating":<?= $school->total_rating?:1; ?>, "readOnly":true, "starSize":19}'></div>
                     <span class="text-muted">(<?= $school->no_of_ratings?:1 ?>)</span>
@@ -30,11 +30,11 @@ use backend\models\SchoolCourse;
         $min_price = $lastCourse->minimumPrice;
         ?>
         <footer class="item-footer">
-            <div>
+            <!-- <div>
                 <div class="item-label"><?= Yii::t('frontend','Course Name') ?></div>
-                <div><?= $lastCourse->title ?></div>
+                <div></div>
                 <div><small> <?=  SchoolCourse::ListLevels()[$lastCourse->required_level] ?></small></div>
-            </div>
+            </div> -->
 
             <div>
                 <div class="item-label"><?= Yii::t('frontend','Lessons/week') ?></div>

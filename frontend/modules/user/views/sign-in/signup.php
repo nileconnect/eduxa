@@ -39,11 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
                         <div class="row">
                             <div class="col-sm-6">
-                                <?php echo $form->field($model, 'firstname')->textInput(['placeholder'=>Yii::t('common','First Name')])
+                                <?php echo $form->field($model, 'firstname')->textInput(['placeholder'=>Yii::t('common','your first name')])
                                 ->label(Yii::t('common','First Name') ,['class'=>'label-control']); ?>
                             </div>
                             <div class="col-sm-6">
-                                <?php echo $form->field($model, 'lastname')->textInput(['placeholder'=>Yii::t('common','Last Name')])
+                                <?php echo $form->field($model, 'lastname')->textInput(['placeholder'=>Yii::t('common','your last name')])
                                     ->label(Yii::t('common','Last Name') ,['class'=>'label-control']); ?>
                             </div>
                         </div>
@@ -59,19 +59,19 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <?php echo $form->field($model, 'email')->textInput(['placeholder'=>Yii::t('common','Email Address')])
-                                        ->label(Yii::t('common','Email Address') ,['class'=>'label-control']); ?>
+                                    <?php echo $form->field($model, 'email')->textInput(['placeholder'=>Yii::t('common','write your email address')])
+                                        ->label(Yii::t('common','E-Mail Address') ,['class'=>'label-control']); ?>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-6">
-                                <?php echo $form->field($model, 'password')->passwordInput()
+                                <?php echo $form->field($model, 'password')->passwordInput(['placeholder'=>Yii::t('common','******************')])
                                     ->label(Yii::t('common','Password') ,['class'=>'label-control']);?>
                             </div>
                             <div class="col-sm-6">
-                                <?php echo $form->field($model, 'password_confirm')->passwordInput()
+                                <?php echo $form->field($model, 'password_confirm')->passwordInput(['placeholder'=>Yii::t('common','******************')])
                                     ->label(Yii::t('common','Confirm Password') ,['class'=>'label-control']);?>
                             </div>
                         </div>
@@ -123,11 +123,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="row">
                             <div class="col-sm-6">
-                                <?php echo $form->field($model, 'mobile')->textInput(['placeholder'=>Yii::t('common','Mobile Number')])
+                                <?php echo $form->field($model, 'mobile')->textInput(['placeholder'=>Yii::t('common','your phone number')])
                                     ->label(Yii::t('common','Mobile Number') ,['class'=>'label-control']); ?>
                             </div>
                             <div class="col-sm-6">
-                                <?php echo $form->field($model, 'nationality')->textInput(['placeholder'=>Yii::t('common','Nationality')])
+                                <?php echo $form->field($model, 'nationality')->textInput(['placeholder'=>Yii::t('common','your Nationality')])
                                     ->label(Yii::t('common','Nationality') ,['class'=>'label-control']);
                                 ?>
                             </div>
@@ -135,13 +135,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <?php
                         echo $form->field($model ,'find_us_from')->dropDownList(\common\models\UserProfile::ListFindUs() ,
-                            ['prompt'=>Yii::t('common','Select')])
+                            ['prompt'=>Yii::t('common','--where--')])
                             ->label(Yii::t('frontend','How did you found us?') ,['class'=>'label-control']);
                         ?>
 
                     <?php
                         echo $form->field($model ,'communtication_channel')->dropDownList(\common\models\UserProfile::ListCommunicateChannels() ,
-                            ['prompt'=>Yii::t('common','Select')])
+                            ['prompt'=>Yii::t('common','--How--')])
                             ->label(Yii::t('frontend','Best way to commuincation?') ,['class'=>'label-control']);
                         ?>
 

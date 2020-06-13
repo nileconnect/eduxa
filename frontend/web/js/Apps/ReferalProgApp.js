@@ -195,6 +195,9 @@ var app = new Vue({
 
 
         },
+        deleteStudent(index) {
+            this.StudentsList.splice(index, 1)
+        },
         submitReferal() {
             if (this.StudentsList == "") {
                 console.log("empty")

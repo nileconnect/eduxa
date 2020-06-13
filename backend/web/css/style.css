@@ -563,6 +563,10 @@ label.checkbox-inline input[type="checkbox"] {
     min-height: 500px;
 }
 
+.tab-pane .table-responsive {
+    min-height: auto !important;
+}
+
 .form-group {
     margin: 0;
 }
@@ -938,4 +942,41 @@ label.checkbox-inline input[type="checkbox"] {
 .material-switch>input[type="checkbox"]:checked+label::after {
     background: inherit;
     left: 20px;
+}
+
+.content-header>.breadcrumb {
+    float: none;
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 7px 5px;
+    position: relative;
+    top: 0;
+    right: 10px;
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    margin-left: 6px;
+}
+
+.tabs-x .table,
+.nav-tabs-custom .table {
+    background: #f9f9f9;
+}
+
+.sidebar-menu.tree .treeview .fa-angle-left:before {
+    content: "\f105" !important;
+}
+
+.form-group label.control-label {
+    font-weight: 600;
+}
+
+.upload-kit-input.error {
+    margin-top: 0 !important;
+}
+
+.form-group .tab-content {
+    padding: 0;
 }

@@ -90,3 +90,25 @@
 .auth-content .auth-form .form-group .form-check {
     padding: 0;
 }
+
+.select2-container--krajee .select2-selection--single {
+    padding: 6px 60px 6px 12px;
+}
+
+.select2-container--krajee .select2-selection--single .select2-selection__clear {
+    right: 2rem;
+}
+
+.deleteStudent {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .majorsList li,
+    .contList li {
+        width: 100%;
+    }
+}
