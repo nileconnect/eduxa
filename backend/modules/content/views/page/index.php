@@ -27,18 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
     'columns' => [
         [
-            'attribute' => 'id',
-        ],
-        [
-            'attribute' => 'slug',
-        ],
-        [
             'attribute' => 'title',
             'value' => function ($model) {
                 return Html::a($model->title, ['update', 'id' => $model->id]);
             },
             'format' => 'raw',
         ],
+        [
+            'attribute' => 'slug',
+        ],
+
         [
             'class' => EnumColumn::class,
             'attribute' => 'status',
