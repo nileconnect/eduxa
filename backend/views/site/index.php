@@ -21,9 +21,9 @@ $this->title = Yii::t('backend', 'Dashboard');
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box info-white">
-      <span class="info-box-icon bg-green"
-      ><ion-icon name="people"></ion-icon
-          ></span>
+                <span class="info-box-icon bg-green">
+                <i class="fa fa-user-secret"></i>
+                </span>
 
                 <div class="info-box-content">
                     <span class="info-box-text">University Managers</span>
@@ -98,9 +98,7 @@ $this->title = Yii::t('backend', 'Dashboard');
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box info-white">
-      <span class="info-box-icon bg-green"
-      ><ion-icon name="cart"></ion-icon
-          ></span>
+                <span class="info-box-icon bg-green"><i class="fa fa-tv"></i></span>
 
                 <div class="info-box-content">
                     <span class="info-box-text">Requests</span>
