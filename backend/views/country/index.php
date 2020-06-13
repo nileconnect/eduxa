@@ -43,10 +43,6 @@ echo newerton\fancybox3\FancyBox::widget([
 
             </div>
         </div>
-
-
-
-
     </div>
     <?php 
     $gridColumn = [

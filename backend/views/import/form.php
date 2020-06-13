@@ -22,27 +22,27 @@ if($saved){
 
 ?>
 
-<style>
-    .form-group{
-        text-align:center !important;
-    }
-    .form-group .control-label{
-        font-size: 18px !important;
-        margin-bottom: 15px !important;
-        font-weight: bold !important;
-    }
-    .upload-kit ul{
-        float:none !important;
-    }
-    .upload-kit ul li{
-        float:none !important;
-    }
-    .upload-kit-input{
-        float: none !important;
-        width: 100% !important;
-    }
-</style>
 
+<?php
+if(Yii::$app->session->hasFlash('alert')){
+    echo \kartik\growl\Growl::widget([
+        'type' => \yii\helpers\ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'type'), //Growl::TYPE_SUCCESS,// ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'type'), //
+        'icon' => 'glyphicon glyphicon-ok-sign',
+        //'title' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'title'),
+        'showSeparator' => true,
+        'body' => \yii\helpers\ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+        'showSeparator' => false,
+        'pluginOptions' => [
+            'showProgressbar' => true,
+            'placement' => [
+                'from' => 'bottom',
+                'align' => 'center',
+            ]
+        ]
+    ]);
+}
+
+?>
 <?php
  $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <?= $form->field($model, 'file')->fileInput() ?>
