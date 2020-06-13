@@ -99,6 +99,13 @@
     right: 2rem;
 }
 
+.deleteStudent {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 18px;
+}
+
 @media (max-width: 768px) {
     .majorsList li,
     .contList li {
