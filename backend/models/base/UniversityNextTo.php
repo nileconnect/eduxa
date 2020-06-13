@@ -84,8 +84,8 @@ class UniversityNextTo extends \yii\db\ActiveRecord
                     'db_table'         => 'translations_with_text',
                     'attributes'       => ['title'],
                     'admin_routes'     => [
-                        'university-next-to/create/update',
-                        'university-next-to/create/index',
+                        'university-next-to/update',
+                        'university-next-to/create',
                     ],
                 ],
             ],
