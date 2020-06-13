@@ -15,11 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="schools-view">
 
     <div class="row">
-        <div class="col-sm-9">
-        </div>
-        <div class="col-sm-3" style="margin-top: 15px">
+        <div class="col-sm-9" style="margin-bottom: 15px">
+        <?= Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 
-            <?= Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        </div>
+        <div class="col-sm-3">
+
             <? /*= Html::a(Yii::t('backend', 'Delete'), ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [

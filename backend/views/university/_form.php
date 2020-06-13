@@ -57,13 +57,13 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="well">
+                    <div class="well" style="height: 143px;">
                         <?= $form->field($model, 'status')->dropDownList([\backend\models\University::LisStatusList()])?>
 
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="well">
+                    <div class="well" style="height: 143px;">
                         <?= $form->field($model, 'recommended')->checkbox() ?>
                     </div>
                 </div>

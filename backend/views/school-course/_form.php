@@ -133,7 +133,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
         </div>
 
         <div class="col-md-4 col-sm-12">
-            <div class="well">
+            <div class="well" style="height: 150px;">
               <?= $form->field($model, 'discount')->textInput(['placeholder' => 'Discount']) ?>
             </div>
         </div>

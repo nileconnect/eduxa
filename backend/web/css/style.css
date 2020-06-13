@@ -563,6 +563,10 @@ label.checkbox-inline input[type="checkbox"] {
     min-height: 500px;
 }
 
+.tab-pane .table-responsive {
+    min-height: auto !important;
+}
+
 .form-group {
     margin: 0;
 }
@@ -959,4 +963,20 @@ label.checkbox-inline input[type="checkbox"] {
 .tabs-x .table,
 .nav-tabs-custom .table {
     background: #f9f9f9;
+}
+
+.sidebar-menu.tree .treeview .fa-angle-left:before {
+    content: "\f105" !important;
+}
+
+.form-group label.control-label {
+    font-weight: 600;
+}
+
+.upload-kit-input.error {
+    margin-top: 0 !important;
+}
+
+.form-group .tab-content {
+    padding: 0;
 }

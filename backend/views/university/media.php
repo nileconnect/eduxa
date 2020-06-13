@@ -53,7 +53,7 @@ echo newerton\fancybox3\FancyBox::widget([
         [
             'attribute'=>'unversity_logo',
             'value'=>function($model){
-                return '<a class="uploadBtn" data-fancybox="" data-type="iframe"   data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "400px" , "height" : "400px" }}}\'  href="/university/update-logo?id='.$model->id.'">
+                return '<a class="uploadBtn" data-fancybox="" data-type="iframe"   data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "600px" , "height" : "400px" }}}\'  href="/university/update-logo?id='.$model->id.'">
                 <i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Upload Logo</span></a><br/>
            <a href="'.$model->logoImage.'" data-fancybox  data-caption="'.$model->title .' - Logo"> <img src="'.$model->logoImage.'" width="90px" height="90px" /></a><br/>' ;
             },
