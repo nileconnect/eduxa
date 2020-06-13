@@ -990,3 +990,13 @@ label.checkbox-inline input[type="checkbox"] {
     margin-bottom: 20px !important;
     cursor: pointer !important;
 }
+
+.upload-kit .upload-kit-input,
+.upload-kit .upload-kit-item {
+    width: 150px;
+    margin: auto;
+}
+
+.upload-kit .upload-kit-item.image>img {
+    width: 100% !important;
+}
