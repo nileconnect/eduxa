@@ -35,7 +35,7 @@ echo Menu::widget([
 
                 [
                     'label' => Yii::t('backend', 'Managers'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-user-secret"></i>',
                     'url' => ['/user/index?user_role=manager'],
                     'active' => (Yii::$app->controller->id == 'user' && $_REQUEST['user_role'] == 'manager'),
                     'visible' => (Yii::$app->user->can('administrator')  ),
@@ -44,7 +44,7 @@ echo Menu::widget([
 
                 [
                     'label' => Yii::t('backend', 'University Manager'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-user-circle-o"></i>',
                     'url' => ['/user/index?user_role=universityManager'],
                     'active' => (Yii::$app->controller->id == 'user'  && $_REQUEST['user_role'] == 'universityManager'),
                    // 'visible' => (Yii::$app->user->can('administrator')  ),
@@ -54,7 +54,7 @@ echo Menu::widget([
 
                 [
                     'label' => Yii::t('backend', 'Referral - Person'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-user"></i>',
                     'url' => ['/user/index?user_role=referralPerson'],
                     'active' => (Yii::$app->controller->id == 'user' && $_REQUEST['user_role'] == 'referralPerson') ,
                    // 'visible' => (Yii::$app->user->can('administrator')  ),
@@ -65,7 +65,7 @@ echo Menu::widget([
 
                 [
                     'label' => Yii::t('backend', 'Referral - Company'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-user"></i>',
                     'url' => ['/user/index?user_role=referralCompany'],
                     'active' => (Yii::$app->controller->id == 'user' && $_REQUEST['user_role'] == 'referralCompany'),
                    // 'visible' => (Yii::$app->user->can('administrator')  ),
@@ -74,7 +74,7 @@ echo Menu::widget([
 
                 [
                     'label' => Yii::t('backend', 'Students'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-user"></i>',
                     'url' => ['/user/index?user_role=user'],
                     'active' => (Yii::$app->controller->id == 'user' && $_REQUEST['user_role'] == 'user'),
                    // 'visible' => (Yii::$app->user->can('administrator')  ),
@@ -90,13 +90,13 @@ echo Menu::widget([
         [
             'label' => Yii::t('backend', 'Manage Universities'),
             'url' => '#',
-            'icon' => '<i class="fa fa-users"></i>',
+            'icon' => '<i class="fa fa-university"></i>',
             'options' => ['class' => 'treeview'],
             'items' => [
 
                 [
                     'label' => Yii::t('backend', 'University'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-university"></i>',
                     'url' => ['/university'],
                     'active' => (Yii::$app->controller->id == 'university' && Yii::$app->controller->action->id == 'index'),
                 ],
@@ -104,76 +104,76 @@ echo Menu::widget([
 
                 [
                     'label' => Yii::t('backend', 'University Media'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-file-image-o"></i>',
                     'url' => ['/university/media'],
                     'active' => (Yii::$app->controller->id == 'university' && Yii::$app->controller->action->id == 'media' ),
                 ],
                 [
                     'label' => Yii::t('backend', 'University Next To'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-university"></i>',
                     'url' => ['/university-next-to'],
                     'active' => (Yii::$app->controller->id == 'university-next-to'),
                 ],
                 [
                     'label' => Yii::t('backend', 'Programs Lookups'),
                     'url' => '#',
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-mortar-board"></i>',
                     'options' => ['class' => 'treeview'],
                     'items' => [
                         [
                             'label' => Yii::t('backend', 'Degree'),
-                            'icon' => '<i class="fa fa-users"></i>',
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
                             'url' => ['/university-program-degree'],
                             'active' => (Yii::$app->controller->id == 'university-program-degree'),
                         ],
                         [
                             'label' => Yii::t('backend', 'Majors'),
-                            'icon' => '<i class="fa fa-users"></i>',
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
                             'url' => ['/university-program-majors'],
                             'active' => (Yii::$app->controller->id == 'university-program-majors'),
                         ],
                         [
                             'label' => Yii::t('backend', 'Fields'),
-                            'icon' => '<i class="fa fa-users"></i>',
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
                             'url' => ['/university-program-field'],
                             'active' => (Yii::$app->controller->id == 'university-program-field'),
                         ],
 
                         [
                             'label' => Yii::t('backend', 'Medium of study'),
-                            'icon' => '<i class="fa fa-users"></i>',
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
                             'url' => ['/university-program-medium-of-study'],
                             'active' => (Yii::$app->controller->id == 'university-program-medium-of-study'),
                         ],
 
                         [
                             'label' => Yii::t('backend', 'Language of study'),
-                            'icon' => '<i class="fa fa-users"></i>',
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
                             'url' => ['/university-lang-of-study'],
                             'active' => (Yii::$app->controller->id == 'university-lang-of-study'),
                         ],
 
                          [
                             'label' => Yii::t('backend', 'Conditional admission'),
-                            'icon' => '<i class="fa fa-users"></i>',
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
                             'url' => ['/university-programe-conditional-admission'],
                             'active' => (Yii::$app->controller->id == 'university-programe-conditional-admission'),
                         ],
                         [
                             'label' => Yii::t('backend', 'Format'),
-                            'icon' => '<i class="fa fa-users"></i>',
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
                             'url' => ['/university-programe-format'],
                             'active' => (Yii::$app->controller->id == 'university-programe-format'),
                         ],
                         [
                             'label' => Yii::t('backend', 'Method of Study'),
-                            'icon' => '<i class="fa fa-users"></i>',
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
                             'url' => ['/university-programe-method-of-study'],
                             'active' => (Yii::$app->controller->id == 'university-programe-method-of-study'),
                         ],
                         [
                             'label' => Yii::t('backend', 'ILETS'),
-                            'icon' => '<i class="fa fa-users"></i>',
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
                             'url' => ['/university-programe-ilets'],
                             'active' => (Yii::$app->controller->id == 'university-programe-ilets'),
                         ],
@@ -191,38 +191,38 @@ echo Menu::widget([
         [
             'label' => Yii::t('backend', 'Manage Schools'),
             'url' => '#',
-            'icon' => '<i class="fa fa-users"></i>',
+            'icon' => '<i class="fa fa-building-o"></i>',
             'options' => ['class' => 'treeview'],
             'items' => [
 
                 [
                     'label' => Yii::t('backend', 'Schools'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-building-o"></i>',
                     'url' => ['/schools'],
                     'active' => (Yii::$app->controller->id == 'schools' && Yii::$app->controller->action->id == 'index'),
                 ],
                 [
                     'label' => Yii::t('backend', 'Schools Media'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-file-image-o"></i>',
                     'url' => ['/schools/media'],
                     'active' => (Yii::$app->controller->id == 'schools' && Yii::$app->controller->action->id == 'media'),
                 ],
 
                 [
                     'label' => Yii::t('backend', 'Schools room category'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-building-o"></i>',
                     'url' => ['/school-room-category'],
                     'active' => (Yii::$app->controller->id == 'school-room-category'),
                 ],
                 [
                     'label' => Yii::t('backend', 'Schools Next To'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-building-o"></i>',
                     'url' => ['/school-next-to'],
                     'active' => (Yii::$app->controller->id == 'school-next-to'),
                 ],
                 [
                     'label' => Yii::t('backend', 'Schools facilities'),
-                    'icon' => '<i class="fa fa-users"></i>',
+                    'icon' => '<i class="fa fa-building-o"></i>',
                     'url' => ['/school-facilities'],
                     'active' => (Yii::$app->controller->id == 'school-facilities'),
                 ],
@@ -257,14 +257,14 @@ echo Menu::widget([
         [
             'label' => Yii::t('backend', 'Countries'),
             'url' => ['/country/index'],
-            'icon' => '<i class="fa fa-thumb-tack"></i>',
+            'icon' => '<i class="fa fa-globe"></i>',
             'active' => Yii::$app->controller->id === 'country',
         ],
 
         [
             'label' => Yii::t('backend', 'Static pages'),
             'url' => ['/content/page/index'],
-            'icon' => '<i class="fa fa-thumb-tack"></i>',
+            'icon' => '<i class="fa fa-file-o"></i>',
             'active' => Yii::$app->controller->id === 'page',
             'visible' => (Yii::$app->user->can('administrator')  ),
 
@@ -299,7 +299,7 @@ echo Menu::widget([
         [
             'label' => Yii::t('backend', 'Settings'),
             'url' => ['/system/key-storage/index'],
-            'icon' => '<i class="fa fa-arrows-h"></i>',
+            'icon' => '<i class="fa fa-cogs"></i>',
             'active' => (Yii::$app->controller->id == 'key-storage'),
         ],
 
