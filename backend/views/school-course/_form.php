@@ -225,10 +225,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             <?= 
                 $form->field($model, 'cost_type')
                 ->dropDownList(
-                    [
-                        '1'=> Yii::t('backend','Cost Per Week'),
-                        '2'=> Yii::t('backend','Cost Per Session')
-                    ]
+                    SchoolCourse::costType()
                 );
             ?>
         </div>

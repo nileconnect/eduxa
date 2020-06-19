@@ -30,6 +30,9 @@ class SchoolCourse extends BaseSchoolCourse
     const COURSE_TIME_MORNING = 1;
     const COURSE_TIME_EVENING = 2;
 
+    const COST_PER_WEEK = 1;
+    const COST_PER_SESSION = 2;
+
 
 
     public static function ListLevels(){
@@ -44,6 +47,13 @@ class SchoolCourse extends BaseSchoolCourse
         return [
             self::COURSE_TIME_MORNING => Yii::t('backend','Morning') ,
             self::COURSE_TIME_EVENING =>Yii::t('backend','Evening')  ,
+        ];
+    }
+
+    public static function costType(){
+        return [
+            self::COST_PER_WEEK => Yii::t('backend','Cost Per Week') ,
+            self::COST_PER_SESSION => Yii::t('backend','Cost Per Session'),
         ];
     }
 

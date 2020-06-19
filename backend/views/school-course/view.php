@@ -59,7 +59,12 @@ $this->params['breadcrumbs'][] = $this->title;
             },
         ],
 
-
+        [
+            'attribute'=>'cost_type',
+            'value'=>function($model){
+                return  SchoolCourse::costType()[$model->cost_type];
+            },
+        ],
         'max_no_of_students_per_class',
         'avg_no_of_students_per_class',
         'min_age',
