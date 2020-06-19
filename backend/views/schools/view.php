@@ -40,7 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute'=>'logo',
             'displayOnly'=>true,
             'value'=>
-                "<img style='max-height:50px;' src='".$model->image_base_url.$model->image_path ."' width='120' /> <a href='download?file=$model->image_path' style='
+                "<img style='max-height:50px;' src='".$model->logoImage ."' width='120' />
+       <a href='download?file=$model->logoImage' style='
                                                     background: #03A9F4;
                                                     max-height:50px;
                                                     padding: 13px;
