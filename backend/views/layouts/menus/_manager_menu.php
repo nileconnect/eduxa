@@ -233,6 +233,26 @@ echo Menu::widget([
 //                    'url' => ['/schools-course-types'],
 //                    'active' => (Yii::$app->controller->id == 'schools-course-types'),
 //                ],
+                [
+                    'label' => Yii::t('backend', 'School Lookups'),
+                    'url' => '#',
+                    'icon' => '<i class="fa fa-mortar-board"></i>',
+                    'options' => ['class' => 'treeview'],
+                    'items' => [
+                        [
+                            'label' => Yii::t('backend', 'Course Type'),
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
+                            'url' => ['/school-course-type'],
+                            'active' => (Yii::$app->controller->id == 'school-course-type'),
+                        ],
+                        [
+                            'label' => Yii::t('backend', 'Study Language'),
+                            'icon' => '<i class="fa fa-mortar-board"></i>',
+                            'url' => ['/school-course-study-language'],
+                            'active' => (Yii::$app->controller->id == 'school-course-study-language'),
+                        ],
+                    ]
+                ],
             ],
         ],
 

@@ -30,6 +30,9 @@ class SchoolCourse extends BaseSchoolCourse
     const COURSE_TIME_MORNING = 1;
     const COURSE_TIME_EVENING = 2;
 
+    const COST_PER_WEEK = 1;
+    const COST_PER_SESSION = 2;
+
 
 
     public static function ListLevels(){
@@ -47,12 +50,21 @@ class SchoolCourse extends BaseSchoolCourse
         ];
     }
 
+    public static function costType(){
+        return [
+            self::COST_PER_WEEK => Yii::t('backend','Cost Per Week') ,
+            self::COST_PER_SESSION => Yii::t('backend','Cost Per Session'),
+        ];
+    }
+
     public function rules()
     {
         return [
-            [['school_id', 'title', 'information'], 'required'],
+            [['school_id', 'title', 'information','school_course_type_id','school_course_study_language_id','cost_type'],
+            'required'],
             [['school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by',
-                'updated_by','max_no_of_students_per_class','pricing_method'], 'integer'],
+                'updated_by','max_no_of_students_per_class','pricing_method','school_course_type_id','school_course_study_language_id','cost_type'],
+                'integer'],
             [['information', 'requirments','slug'], 'string'],
             [[ 'registeration_fees', 'discount','lesson_duration','study_books_fees'], 'number'],
             [['title',   'created_at', 'updated_at'], 'string', 'max' => 255],

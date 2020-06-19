@@ -103,7 +103,7 @@ class SchoolCourseController extends BackendController
     {
         $model = $this->findModel($id);
         $schoolObj= Schools::find()->where(['id'=>$model->school_id])->one();
-
+        // return var_dump(Yii::$app->request->post());
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
