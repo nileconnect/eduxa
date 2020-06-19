@@ -41,6 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => Yii::t('backend', 'School'),
         ],
         'title',
+        [
+            'attribute' => 'schoolCourseType.title',
+            'label' => Yii::t('backend', 'Cource Type'),
+        ],
+        [
+            'attribute' => 'schoolCourseStudyLanguage.title',
+            'label' => Yii::t('backend', 'Study Language'),
+        ],
         'status:boolean',
 
         [

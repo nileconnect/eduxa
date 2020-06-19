@@ -67,6 +67,32 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
         <div class="col-md-6 col-sm-12">
             <?= $form->field($model, 'status')->dropDownList(\backend\models\University::LisStatusList(),[ 'prompt' => 'Select ..'])?>
         </div>
+        
+        <div class="col-md-6 col-sm-12">
+    
+            <?= $form->field($model, 'school_course_type_id')->widget(\kartik\widgets\Select2::classname(), [
+                'data' =>
+                \yii\helpers\ArrayHelper::map(\backend\models\SchoolCourseType::find()->orderBy('id')->asArray()->all(),
+                'id', 'title'),
+                'options' => ['placeholder' => Yii::t('backend', 'Choose Type')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
+        </div>
+        
+        <div class="col-md-6 col-sm-12">
+    
+            <?= $form->field($model, 'school_course_study_language_id')->widget(\kartik\widgets\Select2::classname(), [
+                'data' =>
+                \yii\helpers\ArrayHelper::map(\backend\models\SchoolCourseStudyLanguage::find()->orderBy('id')->asArray()->all(),
+                'id', 'title'),
+                'options' => ['placeholder' => Yii::t('backend', 'Choose Language')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
+        </div>
     </div>
 
 
@@ -193,7 +219,21 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             'class'=>'form-control',
         ]]) ?>
 
-    <div class="row" style="margin-bottom:30px;">
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <?= 
+                $form->field($model, 'cost_type')
+                ->dropDownList(
+                    [
+                        '1'=> Yii::t('backend','Cost Per Week'),
+                        '2'=> Yii::t('backend','Cost Per Session')
+                    ]
+                );
+            ?>
+        </div>
+    </div>
+    <!-- <div class="row" style="margin-bottom:30px;">
         <div class="col-md-12">
             <div style="display:inline-block">Course cost per weeks</div>
             <div class="material-switch" style="margin: 0 20px; display:inline-block">
@@ -202,7 +242,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             </div>
             <div style="display:inline-block">Course cost per Session</div>
         </div>
-    </div>
+    </div> -->
 
     <?php
     $forms = [

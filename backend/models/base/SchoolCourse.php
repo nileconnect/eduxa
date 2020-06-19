@@ -14,6 +14,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $title
  * @property string $information
  * @property string $requirments
+ * @property integer $cost_type 
  * @property integer $lessons_per_week
  * @property integer $min_no_of_students_per_class
  * @property integer $avg_no_of_students_per_class
@@ -85,6 +86,9 @@ class SchoolCourse extends \yii\db\ActiveRecord
            // 'no_of_weeks' => Yii::t('backend', 'No Of Weeks'),
             'discount' => Yii::t('backend', 'Discount'),
             //'required_attendance_duraion' => Yii::t('backend', 'Required Attendance Duraion'),
+            'school_course_type_id'=> Yii::t('backend', 'Course Type'),
+            'school_course_study_language_id'=> Yii::t('backend', 'Study Language'),
+            'cost_type'=> Yii::t('backend', 'Cost Type'),
         ];
     }
     
@@ -94,6 +98,17 @@ class SchoolCourse extends \yii\db\ActiveRecord
     public function getSchool()
     {
         return $this->hasOne(\backend\models\Schools::className(), ['id' => 'school_id']);
+    }
+
+    public function getSchoolCourseType()
+    {
+        return $this->hasOne(\backend\models\SchoolCourseType::className(), ['id' => 'school_course_type_id']);
+    }
+
+    public function getSchoolCourseStudyLanguage()
+    {
+        return $this->hasOne(\backend\models\SchoolCourseStudyLanguage::className(), ['id' =>
+        'school_course_study_language_id']);
     }
     
     /**
