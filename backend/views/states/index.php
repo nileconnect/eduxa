@@ -36,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
            // 'sort',
            // 'slug',
-            ['class' => 'yii\grid\ActionColumn'],
+            [                    'class' => 'yii\grid\ActionColumn','template'=>'{update} {view}'
+            ],
         ],
     ]); ?>
 

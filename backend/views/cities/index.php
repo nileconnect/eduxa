@@ -33,7 +33,7 @@ $this->registerJs($search);
         'title',
        // 'sort',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'yii\grid\ActionColumn','template'=>'{update} {view}'
         ],
     ]; 
     ?>
