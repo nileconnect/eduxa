@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * SchoolCourseStudyLanguageController implements the CRUD actions for SchoolCourseStudyLanguage model.
  */
-class SchoolCourseStudyLanguageController extends Controller
+class SchoolCourseStudyLanguageController extends BackendController
 {
     public function behaviors()
     {
