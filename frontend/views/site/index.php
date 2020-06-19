@@ -33,7 +33,7 @@
                         <a href="/universities" class="button button-white button-wide text-large"><?= Yii::t('frontend','Universities Offers') ?></a>
                         <a href="/schools" class="button button-white button-wide text-large"><?= Yii::t('frontend','Language Schools Offers') ?></a>
                     </div>
-                </div>/etc
+                </div>
             </div>
         </div>
 
