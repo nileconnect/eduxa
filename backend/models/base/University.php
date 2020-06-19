@@ -70,7 +70,7 @@ class University extends \yii\db\ActiveRecord
         return [
 
 
-            [['currency_id','title','next_to','title','country_id','city_id','state_id'],'required'],
+            [['currency_id','title','next_to','title','country_id','city_id','state_id','description','detailed_address'],'required'],
             [['title'], 'string', 'max' => 50 ,'min'=>2],
             [['description'], 'string', 'max' => 5000 ,'min'=>2],
             [['detailed_address'], 'string', 'max' => 2000 ,'min'=>2],
