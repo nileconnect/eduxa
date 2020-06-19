@@ -19,7 +19,7 @@ class SchoolNextTo extends BaseSchoolNextTo
 	    [
             [['school_id'], 'integer'],
             [[ 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['title'], 'string', 'max' => 50 ,'min'=>2],
+            [['title'], 'string', 'max' => 30 ,'min'=>2],
 
         ]);
     }
