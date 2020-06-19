@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\State */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Cities'), 'url' => ['index', 'countryId'=>$model->country_id]];
+$this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Title'), 'url' => ['index', 'countryId'=>$model->country_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="city-view">
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'name',
+            'title',
          //   'country_id',
         ],
     ]) ?>

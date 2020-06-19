@@ -249,6 +249,39 @@ echo Menu::widget([
             //'visible' => (Yii::$app->user->can('administrator')  ),
         ],
 
+        [
+            'label' => Yii::t('backend', 'Reports'),
+            'url' => '#',
+            'icon' => '<i class="fa fa-building-o"></i>',
+            'options' => ['class' => 'treeview'],
+            // 'visible' => (Yii::$app->user->can('administrator')  ),
+
+            'items' => [
+                [
+                    'label' => Yii::t('backend', 'General statistics'),
+                    'icon' => '<i class="fa fa-building-o"></i>',
+                    'url' => ['/reports/general'],
+                    'active' => (Yii::$app->controller->id == 'reports' && Yii::$app->controller->action->id == 'general'),
+                    'visible' => (Yii::$app->user->can('administrator')  ),
+                ],
+                [
+                    'label' => Yii::t('backend', 'Users'),
+                    'icon' => '<i class="fa fa-building-o"></i>',
+                    'url' => ['/reports/users'],
+                    'active' => (Yii::$app->controller->id == 'reports' && Yii::$app->controller->action->id == 'users'),
+                    'visible' => (Yii::$app->user->can('administrator')  ),
+                ],
+                [
+                    'label' => Yii::t('backend', 'Requests'),
+                    'icon' => '<i class="fa fa-building-o"></i>',
+                    'url' => ['/reports/requests'],
+                    'active' => (Yii::$app->controller->id == 'reports' && Yii::$app->controller->action->id == 'requests'),
+                    'visible' => (Yii::$app->user->can('administrator')  ),
+                ],
+
+            ],
+        ],
+
 
         [
             'label' => Yii::t('backend', 'Content'),

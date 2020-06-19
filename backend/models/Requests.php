@@ -55,7 +55,7 @@ class Requests extends BaseRequests
     public static  function ListModelNames(){
         return [
             self::MODEL_NAME_COURSE => 'School Course',
-            self::MODEL_NAME_PROGRAM =>Yii::t('common',"Programe"),
+            self::MODEL_NAME_PROGRAM =>Yii::t('common',"Program"),
         ];
     }
 

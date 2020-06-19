@@ -71,6 +71,8 @@ class Faq extends \yii\db\ActiveRecord
     {
         return [
             [['country_id', 'question'], 'required'],
+            ['status', 'default', 'value' => 0],
+
             ['answer' , 'required','on'=>'AdminChange'],
             [['country_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['answer'], 'string'],
