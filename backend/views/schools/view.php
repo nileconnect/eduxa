@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'displayOnly'=>true,
             'value'=>
                 "<img style='max-height:50px;' src='".$model->logoImage ."' width='120' />
-       <a href='download?file=$model->logoImage' style='
+       <a target='_blank' href='$model->logoImage' style='
                                                     background: #03A9F4;
                                                     max-height:50px;
                                                     padding: 13px;
