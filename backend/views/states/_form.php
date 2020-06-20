@@ -19,6 +19,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
 
     <div class="row">
         <div class="col-md-8 col-sm-12">
+            <?= $form->errorSummary($model); ?>
 
             <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])
                 ->widget(MyMultiLanguageActiveField::className());  ?>

@@ -13,6 +13,7 @@ use mihaildev\ckeditor\CKEditor;
 <div class="faq-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'question')->textInput(['maxlength' => true]) ?>
 

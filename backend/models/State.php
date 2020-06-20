@@ -35,8 +35,9 @@ class State extends \yii\db\ActiveRecord {
                     'db_table'         => 'translations_with_text',
                     'attributes'       => ['title'],
                     'admin_routes'     => [
-                        'state/update',
-                        'state/index',
+                        'states/update',
+                        'states/index',
+                        'states/view',
                     ],
                 ],
             ],
@@ -49,10 +50,11 @@ class State extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
+            [['title'], 'required'],
             [['title'], 'unique'],
             [['country_id','sort'], 'integer'],
             [['meta_description','sort'],'safe'],
-            [['title', 'slug'], 'string', 'max' => 255]
+            [['title','slug'], 'string', 'max' => 50,'min'=>2],
         ];
     }
 

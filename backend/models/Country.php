@@ -19,7 +19,7 @@ class Country extends BaseCountry
 
     use MultiLanguageTrait;
 
-    public  $image;
+    public $image;
     public $attachments;
 
     const SCENARIO_IMPORT= 'import';
@@ -70,12 +70,13 @@ class Country extends BaseCountry
     public function rules()
     {
         return [
-            [['title', 'code'], 'required'],
+            [['title', 'code','image','attachments','intro','details'], 'required'],
+            [['title', 'code'], 'string', 'max' => 50,'min'=>2],
+            [['intro'], 'string', 'max' => 5000,'min'=>2],
+            [['details'], 'string', 'max' => 2000,'min'=>2],
             [['title', 'code'], 'unique'],
             [['title', 'code'], 'unique','on'=>'import'],
-
-            [['intro', 'details'], 'string'],
-            [['title', 'code', 'image_base_url', 'image_path'], 'string', 'max' => 255],
+            [['image_base_url', 'image_path'], 'string', 'max' => 255],
             [['image','attachments','status','top_destination'],'safe']
         ];
     }

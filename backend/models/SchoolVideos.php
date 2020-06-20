@@ -19,7 +19,9 @@ class SchoolVideos extends BaseSchoolVideos
 	    [
             [['school_id', 'path'], 'safe'],
             [['school_id', 'size', 'created_at', 'order'], 'integer'],
-            [['path', 'base_url', 'type', 'name'], 'string', 'max' => 255]
+            [['path', 'base_url', 'type', 'name'], 'string', 'max' => 255],
+            ['base_url', 'match', 'pattern' => '/^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/' ,'message'=>Yii::t('common','Enter valid youtube link')],
+
         ]);
     }
 

@@ -51,6 +51,7 @@ use backend\models\Schools;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['id' => SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -143,6 +144,7 @@ use backend\models\Schools;
              ]);
          }
 
+        $query->andFilterWhere(['like', 'schools.title', trim($this->title)]);
 
          //  echo $this->unversity_logo;
          // echo $query->createCommand()->getRawSql();  die;

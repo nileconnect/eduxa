@@ -68,7 +68,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'max_no_of_students_per_class',
         'avg_no_of_students_per_class',
         'min_age',
-        'time_of_course:datetime',
+        [
+            'attribute'=>'time_of_course',
+            'value'=>function($model){
+                return  SchoolCourse::ListCourseTime()[$model->time_of_course];
+            },
+        ],
         'registeration_fees',
         'discount',
         'information:ntext',

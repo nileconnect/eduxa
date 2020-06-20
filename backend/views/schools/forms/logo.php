@@ -57,6 +57,7 @@ if($saved){
                 [
                     'url' => ['/file/storage/upload'],
                     'maxFileSize' => 5000000, // 5 MiB
+                    'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(jpe?g|png)$/i'), 
                 ]);
             ?>
         </div>

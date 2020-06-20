@@ -38,6 +38,7 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->errorSummary($model); ?>
+    <?php $form->errorSummary($modelStartDates); ?>
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 

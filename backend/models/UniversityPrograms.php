@@ -20,7 +20,7 @@ class UniversityPrograms extends BaseUniversityPrograms
     {
         return [
             [['university_id', 'title', 'major_id', 'degree_id','lang_of_study','medium_of_study','degree_id','field_id','high_school_transcript','bachelor_degree'
-            ,'study_duration','study_duration_no','study_method','program_format','conditional_admissions','ielts','bank_statment','annual_cost','toefl'], 'required'],
+            ,'study_duration','study_duration_no','study_method','program_format','conditional_admissions','ielts','bank_statment','annual_cost','toefl','first_submission_date','last_submission_date'], 'required'],
 
             [['title','high_school_transcript', 'bachelor_degree'], 'string', 'max' => 30,'min'=>2],
 
@@ -33,6 +33,9 @@ class UniversityPrograms extends BaseUniversityPrograms
             [['program_type','last_submission_date','first_submission_date','lang_of_study','university_id'], 'safe'],
             ['last_submission_date','safe','on'=>'import'],
 
+            ['first_submission_date','compare', 'compareValue' => date('Y-m-d'), 'operator' => '>=', 
+                'enableClientValidation' =>true],
+            // ['first_submission_date', 'checkNotLastDate'],
             ['last_submission_date', 'compareDates'],
 
         ];

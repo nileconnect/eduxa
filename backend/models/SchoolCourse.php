@@ -60,17 +60,24 @@ class SchoolCourse extends BaseSchoolCourse
     public function rules()
     {
         return [
-            [['school_id', 'title', 'information','school_course_type_id','school_course_study_language_id','cost_type'],
+            [['school_id', 'title','school_course_type_id','school_course_study_language_id','cost_type','status'
+            ,'min_age','required_level','time_of_course','study_books_fees','registeration_fees','discount','lessons_per_week',
+            'lesson_duration','max_no_of_students_per_class','information','requirments','avg_no_of_students_per_class'],
             'required'],
-            [['school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by',
-                'updated_by','max_no_of_students_per_class','pricing_method','school_course_type_id','school_course_study_language_id','cost_type'],
+            [['school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'min_age', 'created_by',
+                'updated_by','pricing_method','school_course_type_id','school_course_study_language_id','cost_type'],
                 'integer'],
             [['information', 'requirments','slug'], 'string'],
-            [[ 'registeration_fees', 'discount','lesson_duration','study_books_fees'], 'number'],
-            [['title',   'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['required_level', 'time_of_course'], 'string', 'max' => 4],
+            [['title'], 'string', 'max' => 50, 'min'=>2],
+            [['lesson_duration'], 'string', 'max' => 50, 'min'=>1],
+            [['information','requirments'], 'string', 'max' => 5000, 'min'=>1],
+            
+            ['min_age', 'compare', 'compareValue' => 999, 'operator' => '<=', 'type' => 'number'],
+            [['min_age','study_books_fees','registeration_fees','discount','lessons_per_week','max_no_of_students_per_class',
+                'avg_no_of_students_per_class'],'number','min'=>1],
+
             ['status','number'],
-            [['information','requirments','lesson_duration','study_books_fees'],'safe']
+            [['information','requirments','study_books_fees'],'safe']
         ];
     }
 

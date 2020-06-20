@@ -80,9 +80,9 @@ class UniversityProgramsController extends BackendController
         $model->city_id = $universityObj->city_id;
         $model->state_id = $universityObj->state_id;
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+        $modelStartDates->load(Yii::$app->request->post());
 
-            $modelStartDates->load(Yii::$app->request->post());
+        if ($model->loadAll(Yii::$app->request->post()) && $modelStartDates->validate() &&  $model->saveAll()) {
             $modelStartDates->university_prog_id = $model->id;
             $modelStartDates->save(false);
 
@@ -123,10 +123,9 @@ class UniversityProgramsController extends BackendController
         $model->city_id = $universityObj->city_id;
         $model->state_id = $universityObj->state_id;
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            $modelStartDates->load(Yii::$app->request->post());
+        $modelStartDates->load(Yii::$app->request->post());
+        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll() and $modelStartDates->validate()) {
             if(!$modelStartDates->save()){
-
                 var_dump($modelStartDates->errors); die;
             }
 

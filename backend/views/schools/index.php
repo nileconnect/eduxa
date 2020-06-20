@@ -64,7 +64,8 @@ $this->registerJs($search);
 //        'total_rating',
         'status:boolean',
         [
-            'class' => 'yii\grid\ActionColumn','template'=>'{view} {update}'
+            'class' => 'yii\grid\ActionColumn',
+            // 'template'=>'{view} {update}'
         ],
     ]; 
     ?>

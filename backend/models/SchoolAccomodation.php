@@ -15,14 +15,20 @@ class SchoolAccomodation extends BaseSchoolAccomodation
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
+        return 
 	    [
-            [['school_id', 'title', 'cost_per_duration_unit'], 'required'],
+            [['school_id', 'title', 'fees','facility_id','room_cat_id','special_diet'
+            ,'booking_cycle','min_booking_duraion','max_age','distance_from_school','cost_per_duration_unit'], 'required'],
             [['school_id', 'min_booking_duraion', 'max_age','room_cat_id','special_diet'], 'integer'],
-            [['distance_from_school', 'cost_per_duration_unit','special_diet','fees'], 'number'],
-            [['title'], 'string', 'max' => 30 ,'min'=>2],
+            [['distance_from_school', 'cost_per_duration_unit','special_diet','fees','min_booking_duraion'], 'number'],
+            [['title'], 'string', 'max' => 30 ,'min'=>1],
+            ['fees', 'compare', 'compareValue' => 999999, 'operator' => '<=', 'type' => 'number'],
+            [['min_booking_duraion','max_age'], 'compare', 'compareValue' => 999, 'operator' => '<=', 'type' => 'number'],
+            [['distance_from_school','cost_per_duration_unit'], 'compare', 'compareValue' => 9999, 'operator' => '<=', 'type' => 'number'],
+            [['min_booking_duraion','max_age','fees','distance_from_school','cost_per_duration_unit'], 'number','min'=>1],
+
             [['booking_cycle'], 'string', 'max' => 4]
-        ]);
+        ];
     }
 
     public  static function  BookingCycleList(){

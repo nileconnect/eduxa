@@ -27,7 +27,7 @@ class Cities extends BaseCities
             [['state_id', 'title'], 'required'],
             [['state_id', 'sort'], 'integer'],
             [['state_id', 'sort'], 'integer','on'=>'import'],
-            [['title'], 'string', 'max' => 255]
+            [['title'], 'string', 'max' => 50,'min'=>2],
         ]);
     }
 

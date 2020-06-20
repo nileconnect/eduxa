@@ -65,6 +65,8 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
                         [
                             'url' => ['/file/storage/upload'],
                             'maxFileSize' => 5000000, // 5 MiB
+                            'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(gif|jpeg|png)$/i'),
+
                         ]);
                     ?>
 

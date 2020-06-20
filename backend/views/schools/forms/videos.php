@@ -33,10 +33,11 @@ if($saved){
 ?>
 
 <div class="university-form">
-
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->errorSummary($model); ?>
+    <div style="padding-left: 20px;padding-top: 10px">
+        <?= $form->errorSummary($model); ?>
+    </div>
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 

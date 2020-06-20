@@ -1,3 +1,9 @@
+<style type="text/css">
+    .table .select2-container--krajee .select2-selection{
+        background: #ffffff;
+        border: 1px solid #e4dede;
+    }
+</style>
 <div class="form-group" id="add-school-accomodation">
 <?php
 use kartik\grid\GridView;
@@ -22,7 +28,9 @@ echo TabularForm::widget([
     ],
     'attributes' => [
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions' => ['hidden'=>true]],
-        'title' => ['type' => TabularForm::INPUT_TEXT],
+        'title' => ['type' => TabularForm::INPUT_TEXT ,
+                    'options'=>['style'=>'min-width: 150px;']
+                ],
 
         'fees' => ['type' => TabularForm::INPUT_TEXT , 'label'=>'Accommodation reg. Fees',
             'options'=>['type' => 'number' ,'step'=>'number']

@@ -85,8 +85,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'details:ntext',
         'featured:boolean',
 
-        'accomodation_fees',
-        'registeration_fees',
+        // 'accomodation_fees',
+        // 'registeration_fees',
 
 
     ];

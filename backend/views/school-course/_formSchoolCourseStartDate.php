@@ -30,7 +30,9 @@ echo TabularForm::widget([
             'widgetClass' => \kartik\date\DatePicker::className(),
             'options' => [
                 'pluginOptions' => [
+                    'autoclose'=>true,
                     'format' => 'dd-mm-yyyy',
+                    'startDate'=> date('d-m-Y'),
                     'todayHighlight' => true
                 ]
             ],

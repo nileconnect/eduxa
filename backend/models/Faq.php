@@ -72,11 +72,11 @@ class Faq extends \yii\db\ActiveRecord
         return [
             [['country_id', 'question'], 'required'],
             ['status', 'default', 'value' => 0],
-
+            [['answer', 'question'], 'string', 'max' => 500,'min'=>2],
             ['answer' , 'required','on'=>'AdminChange'],
             [['country_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['answer'], 'string'],
-            [['question', 'created_at', 'updated_at','note'], 'string', 'max' => 255],
+            [['created_at', 'updated_at','note'], 'string', 'max' => 255],
            // [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => FaqCat::className(), 'targetAttribute' => ['country_id' => 'id']],
         ];
     }

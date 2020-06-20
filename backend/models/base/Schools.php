@@ -92,7 +92,7 @@ class Schools extends \yii\db\ActiveRecord
             'id' => Yii::t('backend', 'ID'),
             'title' => Yii::t('backend', 'School Name'),
             'details' => Yii::t('backend', 'Details'),
-            'featured' => Yii::t('backend', 'Featured'),
+            'featured' => Yii::t('backend', 'Recommended'),
             'location' => Yii::t('backend', 'Location'),
             'lat' => Yii::t('backend', 'Lat'),
             'lng' => Yii::t('backend', 'Lng'),

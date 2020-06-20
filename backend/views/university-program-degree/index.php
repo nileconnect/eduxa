@@ -34,7 +34,8 @@ $this->registerJs($search);
         ['attribute' => 'id', 'visible' => false],
         'title',
         [
-            'class' => 'yii\grid\ActionColumn','template'=>'{view} {update}'
+            'class' => 'yii\grid\ActionColumn',
+            // 'template'=>'{view} {update}'
         ],
     ];
     ?>

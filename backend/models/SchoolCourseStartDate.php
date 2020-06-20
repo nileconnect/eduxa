@@ -15,12 +15,14 @@ class SchoolCourseStartDate extends BaseSchoolCourseStartDate
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
+        return 
 	    [
             [['school_course_id', 'course_date'], 'required'],
             [['school_course_id'], 'integer'],
-            [['course_date'], 'string', 'max' => 255]
-        ]);
+            [['course_date'], 'string', 'max' => 255],
+            ['course_date','compare', 'compareValue' => date('Y-m-d'), 'operator' => '>=', 
+                'enableClientValidation' =>true],
+        ];
     }
 	
 }

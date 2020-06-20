@@ -42,7 +42,12 @@ class Schools extends BaseSchools
                 'currency_id','next_to'], 'integer'],
             [['details','slug'], 'string'],
             [['accomodation_fees', 'registeration_fees', 'study_books_fees',  'discount', 'total_rating'], 'number'],
-            [['title', 'location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at','detailed_address'], 'string', 'max' => 255],
+            [['location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 50],
+            [['details'], 'string', 'max' => 5000],
+            [['detailed_address'], 'string', 'max' => 2000],
+            [['title','details','detailed_address'], 'string', 'min' => 2],
+
             [['featured', 'status'], 'safe'],
             [['logo','photos','no_of_ratings' ,'accomodation_reservation_fees','has_health_insurance','health_insurance_cost','detailed_address','currency_id','next_to'],'safe']
         ] ;
