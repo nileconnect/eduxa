@@ -223,10 +223,11 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <?= 
-                $form->field($model, 'cost_type')
-                ->dropDownList(
-                    SchoolCourse::costType()
-                );
+                $form->field($model, 'cost_type')->radioList(SchoolCourse::costType());
+                // $form->field($model, 'cost_type')
+                // ->dropDownList(
+                //     SchoolCourse::costType()
+                // );
             ?>
         </div>
     </div>

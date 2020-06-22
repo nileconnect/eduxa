@@ -33,6 +33,24 @@ use backend\models\SchoolCourse;
         </div>
         <div class="form-group-row">
             <div class="form-group">
+                <?= $form->field($model, 'school_course_type_id')->widget(\kartik\widgets\Select2::classname(), [
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolCourseType::find()->orderBy('id')->all(), 'id', 'title'),
+                    'options' => ['placeholder' => Yii::t('frontend', 'Course Type')],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ])->label(false); ?>
+            </div>
+            <div class="form-group">
+                <?= $form->field($model, 'school_course_study_language_id')->widget(\kartik\widgets\Select2::classname(), [
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolCourseStudyLanguage::find()->orderBy('id')->all(), 'id', 'title'),
+                    'options' => ['placeholder' => Yii::t('frontend', 'Study Language')],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ])->label(false); ?>
+            </div>
+            <div class="form-group">
                 <?= $form->field($model, 'required_level')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => SchoolCourse::ListLevels(),
                     'options' => ['placeholder' => Yii::t('frontend', 'Required Level')],

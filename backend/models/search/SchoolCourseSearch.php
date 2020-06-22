@@ -19,6 +19,8 @@ use backend\models\SchoolCourse;
     public  $city_id ;
     public $school_total_rating;
     public $school_nextTo;
+    public $school_course_type_id;
+    public $school_course_study_language_id;
     /**
      * @inheritdoc
      */
@@ -26,7 +28,8 @@ use backend\models\SchoolCourse;
     {
         return [
             [['id', 'school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by',
-                'country_id','state_id', 'city_id','school_total_rating','school_nextTo'], 'integer'],
+                'country_id','state_id',
+                'city_id','school_total_rating','school_nextTo','school_course_study_language_id','school_course_type_id'], 'integer'],
             [['title', 'information', 'requirments',  'required_level', 'time_of_course', 'created_at', 'updated_at','status'], 'safe'],
             [[ 'registeration_fees', 'discount'], 'number'],
         ];
@@ -113,6 +116,9 @@ use backend\models\SchoolCourse;
              'schools.city_id' => $this->city_id,
              'schools.next_to' => $this->school_nextTo,
 
+             'school_course.school_course_type_id' => $this->school_course_type_id,
+             'school_course.school_course_study_language_id' => $this->school_course_study_language_id,
+             
              'school_course.required_level' => $this->required_level,
              'school_course.time_of_course' => $this->time_of_course,
          ]);
