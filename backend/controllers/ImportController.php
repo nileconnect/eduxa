@@ -226,6 +226,12 @@ class ImportController extends BackendController
                         },
                     ],
                     [
+                        'attribute' => 'title_ar',
+                        'value' => function ($row) {
+                            return strval($row[0]);
+                        },
+                    ],
+                    [
                         'attribute' => 'country_id',
                         'value' => function ($row) {
                             $countryObj= Country::find()->where(['code'=>strval($row[1])])->one();
@@ -257,6 +263,12 @@ class ImportController extends BackendController
                     ],
                     [
                         'attribute' => 'description',
+                        'value' => function ($row) {
+                            return strval($row[4]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'description_ar',
                         'value' => function ($row) {
                             return strval($row[4]);
                         },
@@ -302,38 +314,39 @@ class ImportController extends BackendController
                         },
                     ],
 
-//                    [
-//                        'attribute' => 'country',
-//                        'value' => function ($row) {
-//                            return strval($row[4]);
-//                        },
-//                    ],
+                //    [
+                //        'attribute' => 'country',
+                //        'value' => function ($row) {
+                //            return strval($row[4]);
+                //        },
+                //    ],
 
-//                    [
-//                        'attribute' => 'photos',
-//                        'value' => function ($row) {
-//                            $photos = [];
-//                            foreach (StringHelper::explode(strval($row[11]), ',', true, true) as $photo) {
-//                                if (filter_var($photo, FILTER_VALIDATE_URL)) {
-//                                    $file = @file_get_contents($photo);
-//                                    if ($file) {
-//                                        $filename = md5($file) . '.jpg';
-//                                        file_put_contents(Yii::getAlias("@webroot/gallery/$filename"), $file);
-//                                        $photos[] = $filename;
-//                                    }
-//                                } else {
-//                                    $photos[] = $photo;
-//                                }
-//                            }
-//
-//                            return implode(',', $photos);
-//                        }
-//                    ],
+                //    [
+                //        'attribute' => 'photos',
+                //        'value' => function ($row) {
+                //            $photos = [];
+                //            foreach (StringHelper::explode(strval($row[11]), ',', true, true) as $photo) {
+                //                if (filter_var($photo, FILTER_VALIDATE_URL)) {
+                //                    $file = @file_get_contents($photo);
+                //                    if ($file) {
+                //                        $filename = md5($file) . '.jpg';
+                //                        file_put_contents(Yii::getAlias("@webroot/gallery/$filename"), $file);
+                //                        $photos[] = $filename;
+                //                    }
+                //                } else {
+                //                    $photos[] = $photo;
+                //                }
+                //            }
+
+                //            return implode(',', $photos);
+                //        }
+                //    ],
 
                 ],
 
             ]);
 
+            // return var_dump($importer->getModels());
             if (!$importer->validate()) {
                 foreach($importer->getErrors() as $rowNumber => $errors) {
                    $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
@@ -364,7 +377,7 @@ class ImportController extends BackendController
             }
 
         }
-
+        return var_dump('done');
         return $this->render('form',['model'=>$model,
             'saved'=>$saved,
             'filename'=>'Universities.xlsx'

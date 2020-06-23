@@ -50,6 +50,8 @@ class University extends \yii\db\ActiveRecord
 
     public $logo;
     public $photos;
+    public $title_ar;
+    public $description_ar;
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;
@@ -68,10 +70,8 @@ class University extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-
-
-            [['currency_id','title','next_to','title','country_id','city_id','state_id','description','detailed_address'],'required'],
-            [['title'], 'string', 'max' => 50 ,'min'=>2],
+            // [['currency_id','title','next_to','title','country_id','city_id','state_id','description','detailed_address'],'required'],
+            [['title','title_ar','description_ar'], 'string', 'max' => 50 ,'min'=>2],
             [['description'], 'string', 'max' => 5000 ,'min'=>2],
             [['detailed_address'], 'string', 'max' => 2000 ,'min'=>2],
 
