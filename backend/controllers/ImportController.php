@@ -64,12 +64,12 @@ class ImportController extends BackendController
                                 if(!$stateObj){
                                     $stateObj = new State();
                                     $stateObj->title = strval($row[1]);
-                                    $stateObj->country_id = $country->id;
-                                    $stateObj->save();
+                                    $stateObj->title_ar = strval($row[1]);
+                                    $stateObj->country_id = $country->id; 
+                                    $stateObj->slug = str_replace(' ','-',strval($row[1]));
+                                    $stateObj->save(false);
                                 }
-
                                 return $stateObj->id;
-
                             }else{
                                 return '';
                             }
@@ -81,8 +81,14 @@ class ImportController extends BackendController
                             return strval($row[2]);
                         },
                     ],
-
+                    [
+                        'attribute' => 'title_ar',
+                        'value' => function ($row) {
+                            return strval($row[2]);
+                        },
                     ],
+
+                ],
 
             ]);
 
@@ -133,11 +139,17 @@ class ImportController extends BackendController
             $importer = new \Gevman\Yii2Excel\Importer([
                 'filePath' => $uploadFile->tempName,
                 'activeRecord' => Country::class,
-                'scenario' => Country::SCENARIO_IMPORT,
+                'scenario' => 'import',
                 'skipFirstRow' => true,
                 'fields' => [
                     [
                         'attribute' => 'title',
+                        'value' => function ($row) {
+                            return strval($row[0]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'title_ar',
                         'value' => function ($row) {
                             return strval($row[0]);
                         },
@@ -156,6 +168,12 @@ class ImportController extends BackendController
                             return strval($row[2]);
                         },
                     ],
+                    [
+                        'attribute' => 'intro_ar',
+                        'value' => function ($row) {
+                            return strval($row[2]);
+                        },
+                    ],
 
                     [
                         'attribute' => 'details',
@@ -163,10 +181,16 @@ class ImportController extends BackendController
                             return strval($row[3]);
                         },
                     ],
+                    [
+                        'attribute' => 'details_ar',
+                        'value' => function ($row) {
+                            return strval($row[3]);
+                        },
+                    ],
                 ],
 
             ]);
-
+            // return var_dump( $importer->getModels());
             if (!$importer->validate()) {
                 foreach($importer->getErrors() as $rowNumber => $errors) {
                     $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
@@ -377,7 +401,6 @@ class ImportController extends BackendController
             }
 
         }
-        return var_dump('done');
         return $this->render('form',['model'=>$model,
             'saved'=>$saved,
             'filename'=>'Universities.xlsx'
@@ -616,26 +639,26 @@ class ImportController extends BackendController
                         },
                     ],
 
-//                    [
-//                        'attribute' => 'photos',
-//                        'value' => function ($row) {
-//                            $photos = [];
-//                            foreach (StringHelper::explode(strval($row[11]), ',', true, true) as $photo) {
-//                                if (filter_var($photo, FILTER_VALIDATE_URL)) {
-//                                    $file = @file_get_contents($photo);
-//                                    if ($file) {
-//                                        $filename = md5($file) . '.jpg';
-//                                        file_put_contents(Yii::getAlias("@webroot/gallery/$filename"), $file);
-//                                        $photos[] = $filename;
-//                                    }
-//                                } else {
-//                                    $photos[] = $photo;
-//                                }
-//                            }
-//
-//                            return implode(',', $photos);
-//                        }
-//                    ],
+                //    [
+                //        'attribute' => 'photos',
+                //        'value' => function ($row) {
+                //            $photos = [];
+                //            foreach (StringHelper::explode(strval($row[11]), ',', true, true) as $photo) {
+                //                if (filter_var($photo, FILTER_VALIDATE_URL)) {
+                //                    $file = @file_get_contents($photo);
+                //                    if ($file) {
+                //                        $filename = md5($file) . '.jpg';
+                //                        file_put_contents(Yii::getAlias("@webroot/gallery/$filename"), $file);
+                //                        $photos[] = $filename;
+                //                    }
+                //                } else {
+                //                    $photos[] = $photo;
+                //                }
+                //            }
+
+                //            return implode(',', $photos);
+                //        }
+                //    ],
 
                 ],
 

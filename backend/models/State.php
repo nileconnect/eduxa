@@ -19,6 +19,7 @@ class State extends \yii\db\ActiveRecord {
 
     use MultiLanguageTrait;
 
+    public $title_ar;
     /**
      * @inheritdoc
      */
@@ -53,7 +54,7 @@ class State extends \yii\db\ActiveRecord {
             [['title'], 'required'],
             [['title'], 'unique'],
             [['country_id','sort'], 'integer'],
-            [['meta_description','sort'],'safe'],
+            [['meta_description','sort','title_ar'],'safe'],
             [['title','slug'], 'string', 'max' => 50,'min'=>2],
         ];
     }

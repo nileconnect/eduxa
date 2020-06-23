@@ -50,8 +50,10 @@ class University extends \yii\db\ActiveRecord
 
     public $logo;
     public $photos;
+    
     public $title_ar;
     public $description_ar;
+    public $detailed_address_ar;
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;
@@ -70,7 +72,7 @@ class University extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            // [['currency_id','title','next_to','title','country_id','city_id','state_id','description','detailed_address'],'required'],
+            [['currency_id','title','next_to','title','country_id','city_id','state_id','description','detailed_address'],'required'],
             [['title','title_ar','description_ar'], 'string', 'max' => 50 ,'min'=>2],
             [['description'], 'string', 'max' => 5000 ,'min'=>2],
             [['detailed_address'], 'string', 'max' => 2000 ,'min'=>2],
@@ -79,7 +81,7 @@ class University extends \yii\db\ActiveRecord
             [['total_rating'], 'number'],
             [['no_of_ratings', 'created_by', 'updated_by','status','responsible_id'], 'integer'],
             [[ 'image_base_url', 'image_path','location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['logo','photos','country_id','city_id','state_id','recommended'],'safe'],
+            [['logo','photos','country_id','city_id','state_id','recommended','title_ar'],'safe'],
             [['next_to','currency_id'],'integer'],
             [['next_to','currency_id'],'integer','on'=>'import']
         ];
