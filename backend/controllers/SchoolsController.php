@@ -236,8 +236,7 @@ class SchoolsController extends BackendController
         if($model->schoolCourses){
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'danger',
-                'body' => \Yii::t('backend', 'You can not be allowed to deleting '. $model->title .' because it is
-                related to courses.') ,
+                'body' => \Yii::t('backend', 'You are not allowed to delete '. $model->title .' because it is has courses you need to delete first.') ,
                 'title' =>'',
             ]);
         }else{
