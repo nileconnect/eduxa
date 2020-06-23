@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Requests;
 use backend\models\Schools;
 use Yii;
 use backend\models\SchoolCourse;
@@ -146,7 +147,24 @@ class SchoolCourseController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteWithRelated();
+        //check if it has requests
+        $requests = Requests::find()->where(['item_name'=>Requests::MODEL_NAME_COURSE , 'model_id'=>$id])->all();
+        if(count($requests)){
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'danger',
+                'body' => \Yii::t('backend', 'Can not delete this Course as some students applied on it') ,
+                'title' =>'',
+            ]);
+        }else{
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('backend', 'Course has been deleted.') ,
+                'title' =>'',
+            ]);
+
+            $this->findModel($id)->deleteWithRelated();
+
+        }
 
         return $this->redirect(['index']);
     }
