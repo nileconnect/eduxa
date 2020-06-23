@@ -304,6 +304,12 @@ class ImportController extends BackendController
                         },
                     ],
                     [
+                        'attribute' => 'detailed_address_ar',
+                        'value' => function ($row) {
+                            return strval($row[5]);
+                        },
+                    ],
+                    [
                         'attribute' => 'lat',
                             'value' => function ($row) {
                                 return strval($row[6]);
