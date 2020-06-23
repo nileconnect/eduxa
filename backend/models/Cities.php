@@ -16,7 +16,7 @@ class Cities extends BaseCities
     const SCENARIO_IMPORT= 'import';
     //for import
     public $county;
-
+    public $title_ar;
     /**
      * @inheritdoc
      */
@@ -28,6 +28,7 @@ class Cities extends BaseCities
             [['state_id', 'sort'], 'integer'],
             [['state_id', 'sort'], 'integer','on'=>'import'],
             [['title'], 'string', 'max' => 50,'min'=>2],
+            [['title_ar'],'safe'],
         ]);
     }
 

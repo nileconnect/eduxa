@@ -22,6 +22,10 @@ class Country extends BaseCountry
     public $image;
     public $attachments;
 
+    public $title_ar;
+    public $intro_ar;
+    public $details_ar;
+
     const SCENARIO_IMPORT= 'import';
 
 
@@ -70,6 +74,7 @@ class Country extends BaseCountry
     public function rules()
     {
         return [
+            [['title', 'code','intro','details'], 'required', 'on' => self::SCENARIO_IMPORT],
             [['title', 'code','image','attachments','intro','details'], 'required'],
             [['title', 'code'], 'string', 'max' => 50,'min'=>2],
             [['intro'], 'string', 'max' => 5000,'min'=>2],
@@ -77,7 +82,7 @@ class Country extends BaseCountry
             [['title', 'code'], 'unique'],
             [['title', 'code'], 'unique','on'=>'import'],
             [['image_base_url', 'image_path'], 'string', 'max' => 255],
-            [['image','attachments','status','top_destination'],'safe']
+            [['image','attachments','status','top_destination','title_ar','intro_ar','details_ar'],'safe']
         ];
     }
 
