@@ -64,7 +64,7 @@ class ImportController extends BackendController
                                 if(!$stateObj){
                                     $stateObj = new State();
                                     $stateObj->title = strval($row[1]);
-                                    $stateObj->title_ar = strval($row[1]);
+                                    $stateObj->title_ar = strval($row[2]);
                                     $stateObj->country_id = $country->id; 
                                     $stateObj->slug = str_replace(' ','-',strval($row[1]));
                                     $stateObj->save(false);
@@ -78,13 +78,13 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'title',
                         'value' => function ($row) {
-                            return strval($row[2]);
+                            return strval($row[3]);
                         },
                     ],
                     [
                         'attribute' => 'title_ar',
                         'value' => function ($row) {
-                            return strval($row[2]);
+                            return strval($row[4]);
                         },
                     ],
 
@@ -151,40 +151,40 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'title_ar',
                         'value' => function ($row) {
-                            return strval($row[0]);
+                            return strval($row[1]);
                         },
                     ],
 
                     [
                         'attribute' => 'code',
                         'value' => function ($row) {
-                            return strval($row[1]);
+                            return strval($row[2]);
                         },
                     ],
 
                     [
                         'attribute' => 'intro',
                         'value' => function ($row) {
-                            return strval($row[2]);
+                            return strval($row[3]);
                         },
                     ],
                     [
                         'attribute' => 'intro_ar',
                         'value' => function ($row) {
-                            return strval($row[2]);
+                            return strval($row[4]);
                         },
                     ],
 
                     [
                         'attribute' => 'details',
                         'value' => function ($row) {
-                            return strval($row[3]);
+                            return strval($row[5]);
                         },
                     ],
                     [
                         'attribute' => 'details_ar',
                         'value' => function ($row) {
-                            return strval($row[3]);
+                            return strval($row[6]);
                         },
                     ],
                 ],
@@ -252,13 +252,13 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'title_ar',
                         'value' => function ($row) {
-                            return strval($row[0]);
+                            return strval($row[1]);
                         },
                     ],
                     [
                         'attribute' => 'country_id',
                         'value' => function ($row) {
-                            $countryObj= Country::find()->where(['code'=>strval($row[1])])->one();
+                            $countryObj= Country::find()->where(['code'=>strval($row[2])])->one();
                             if($countryObj){
                                 return  $countryObj->id ;
                             }
@@ -268,7 +268,7 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'state_id',
                         'value' => function ($row) {
-                            $stateObj= State::find()->where(['title'=>strval($row[2])])->one();
+                            $stateObj= State::find()->where(['title'=>strval($row[3])])->one();
                             if($stateObj){
                                 return  $stateObj->id ;
                             }
@@ -278,7 +278,7 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'city_id',
                         'value' => function ($row) {
-                            $cityObj= Cities::find()->where(['title'=>strval($row[3])])->one();
+                            $cityObj= Cities::find()->where(['title'=>strval($row[4])])->one();
                             if($cityObj){
                                 return  $cityObj->id ;
                             }
@@ -288,43 +288,43 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'description',
                         'value' => function ($row) {
-                            return strval($row[4]);
+                            return strval($row[5]);
                         },
                     ],
                     [
                         'attribute' => 'description_ar',
                         'value' => function ($row) {
-                            return strval($row[4]);
+                            return strval($row[6]);
                         },
                     ],
                     [
                         'attribute' => 'detailed_address',
                         'value' => function ($row) {
-                            return strval($row[5]);
+                            return strval($row[7]);
                         },
                     ],
                     [
                         'attribute' => 'detailed_address_ar',
                         'value' => function ($row) {
-                            return strval($row[5]);
+                            return strval($row[8]);
                         },
                     ],
                     [
                         'attribute' => 'lat',
                             'value' => function ($row) {
-                                return strval($row[6]);
+                                return strval($row[9]);
                             },
                     ],
                     [
                         'attribute' => 'lng',
                         'value' => function ($row) {
-                            return strval($row[7]);
+                            return strval($row[10]);
                         },
                     ],
                     [
                         'attribute' => 'currency_id',
                         'value' => function ($row ) {
-                            $currencyObj= Currency::find()->where(['currency_code'=>strval($row[8])])->one();
+                            $currencyObj= Currency::find()->where(['currency_code'=>strval($row[11])])->one();
                             if($currencyObj){
                                 return  $currencyObj->id ;
                             }
@@ -334,7 +334,7 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'next_to',
                         'value' => function ($row) {
-                            $nextToObj= UniversityNextTo::find()->where(['title'=>strval($row[9])])->one();
+                            $nextToObj= UniversityNextTo::find()->where(['title'=>strval($row[12])])->one();
                             if(!$nextToObj){
                                 $nextToObj = new UniversityNextTo();
                                 $nextToObj->title = strval($row[9]);
