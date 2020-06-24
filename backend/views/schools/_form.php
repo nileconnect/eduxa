@@ -53,7 +53,7 @@ use yii\helpers\Url;
 
     <div class="row">
         <div class="col-md-4">
-            <div class="well">
+            <div class="well" style="height: 143px;">
                 <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => 'Title'])->widget(MyMultiLanguageActiveField::className());  ?>
             </div>
         </div>
