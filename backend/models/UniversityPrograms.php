@@ -13,6 +13,11 @@ class UniversityPrograms extends BaseUniversityPrograms
 
     const SCENARIO_IMPORT= 'import';
 
+    public $title_ar;
+    public $high_school_transcript_ar;
+    public $bachelor_degree_ar;
+    public $note1_ar;
+    public $note2_ar;
     /**
      * @inheritdoc
      */
@@ -30,7 +35,8 @@ class UniversityPrograms extends BaseUniversityPrograms
             [['note1', 'note2','slug'], 'string'],
             [[ 'study_start_date','attendance_type',
                  'certificate', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['program_type','last_submission_date','first_submission_date','lang_of_study','university_id'], 'safe'],
+            [['program_type','last_submission_date','first_submission_date','lang_of_study','university_id','title_ar','high_school_transcript_ar'
+            ,'bachelor_degree_ar','note1_ar','note2_ar'], 'safe'],
             ['last_submission_date','safe','on'=>'import'],
 
             ['first_submission_date','compare', 'compareValue' => date('Y-m-d'), 'operator' => '>=', 
