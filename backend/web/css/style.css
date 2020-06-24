@@ -994,7 +994,7 @@ label.checkbox-inline input[type="checkbox"] {
 .upload-kit .upload-kit-input,
 .upload-kit .upload-kit-item {
     width: 150px;
-    margin: 0 10px 10px 0;
+    margin: 0 auto 10px auto;
 }
 
 .upload-kit .upload-kit-item.image>img {
