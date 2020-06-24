@@ -98,8 +98,8 @@ use backend\models\University;
          $query = University::find();
          $query ->select([
              '{{university}}.*', // select all customer fields
-             'COUNT({{university_photos}}.id)  AS imagesCount', // calculate orders count
-             'COUNT({{university_videos}}.id) AS videosCount', // calculate orders count
+             'COUNT({{university_photos}}.id)  AS imagesCount', // calculate photos count
+             'COUNT({{university_videos}}.id) AS videosCount', // calculate videos count
          ]);
 
          $query->joinWith('universityPhotos');
@@ -161,7 +161,7 @@ use backend\models\University;
              ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
 
          //  echo $this->unversity_logo;
-        // echo $query->createCommand()->getRawSql();  die;
+         echo $query->createCommand()->getRawSql();  die;
          return $dataProvider;
      }
 }
