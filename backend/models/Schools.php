@@ -30,7 +30,11 @@ class Schools extends BaseSchools
     const BOOKING_WEEKLY= 1;
     const BOOKING_MONTHLY= 2;
 
+    const SCENARIO_IMPORT = 'import';
 
+    public $title_ar;
+    public $details_ar;
+    public $detailed_address_ar;
     /**
      * @inheritdoc
      */
@@ -47,8 +51,8 @@ class Schools extends BaseSchools
             [['details'], 'string', 'max' => 5000],
             [['detailed_address'], 'string', 'max' => 2000],
             [['title','details','detailed_address'], 'string', 'min' => 2],
-
-            [['featured', 'status'], 'safe'],
+            ['title_ar','safe','on'=>'import'],
+            [['featured', 'status','title_ar','details_ar','detailed_address_ar'], 'safe'],
             [['logo','photos','no_of_ratings' ,'accomodation_reservation_fees','has_health_insurance','health_insurance_cost','detailed_address','currency_id','next_to'],'safe']
         ] ;
     }
@@ -123,7 +127,7 @@ class Schools extends BaseSchools
                 'class'    => MultiLanguageBehavior::className(),
                 'mlConfig' => [
                     'db_table'         => 'translations_with_text',
-                    'attributes'       => ['title','details'],  //,'min_age','start_every','study_time'
+                    'attributes'       => ['title','details','detailed_address'],  //,'min_age','start_every','study_time'
                     'admin_routes'     => [
                         'schools/update',
                         'schools/index',

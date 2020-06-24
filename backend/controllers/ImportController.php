@@ -7,8 +7,10 @@ use backend\models\Country;
 use backend\models\Currency;
 use backend\models\State;
 use backend\models\University;
+use backend\models\Schools;
 use backend\models\UniversityLangOfStudy;
 use backend\models\UniversityNextTo;
+use backend\models\SchoolNextTo;
 use backend\models\UniversityProgramDegree;
 use backend\models\UniversityProgrameConditionalAdmission;
 use backend\models\UniversityProgrameFormat;
@@ -699,6 +701,175 @@ class ImportController extends BackendController
             'saved'=>$saved,
             'filename'=>'Universitie-Programs.xlsx'
 
+        ]);
+    }
+
+    public function actionSchools()
+    {
+        $errors = '';
+        $saved= false;
+        $model = new FileUploadHelper();
+        if ($model->load(Yii::$app->request->post())) {
+            $uploadFile = UploadedFile::getInstance($model, 'file');
+
+            $importer = new \Gevman\Yii2Excel\Importer([
+                'filePath' => $uploadFile->tempName,
+                'activeRecord' => Schools::class,
+                'scenario' => Schools::SCENARIO_IMPORT,
+                'skipFirstRow' => true,
+                'fields' => [
+                    [
+                        'attribute' => 'title',
+                        'value' => function ($row) {
+                            return strval($row[0]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'title_ar',
+                        'value' => function ($row) {
+                            return strval($row[1]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'value' => function ($row) {
+                            return strval($row[2])=="Yes" ? 1 : 0;
+                        },
+                    ],
+                    [
+                        'attribute' => 'featured',
+                        'value' => function ($row) {
+                            return strval($row[3])=="Yes" ? 1 : 0;
+                        },
+                    ],
+                    [
+                        'attribute' => 'country_id',
+                        'value' => function ($row) {
+                            $countryObj= Country::find()->where(['code'=>strval($row[4])])->one();
+                            if ($countryObj) {
+                                return  $countryObj->id ;
+                            }
+                            return '';
+                        },
+                    ],
+                    [
+                        'attribute' => 'state_id',
+                        'value' => function ($row) {
+                            $stateObj= State::find()->where(['title'=>strval($row[5])])->one();
+                            if ($stateObj) {
+                                return  $stateObj->id ;
+                            }
+                            return '';
+                        },
+                    ],
+                    [
+                        'attribute' => 'city_id',
+                        'value' => function ($row) {
+                            $cityObj= Cities::find()->where(['title'=>strval($row[6])])->one();
+                            if ($cityObj) {
+                                return  $cityObj->id ;
+                            }
+                            return '';
+                        },
+                    ],
+                    [
+                        'attribute' => 'details',
+                        'value' => function ($row) {
+                            return strval($row[7]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'details_ar',
+                        'value' => function ($row) {
+                            return strval($row[8]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'detailed_address',
+                        'value' => function ($row) {
+                            return strval($row[9]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'detailed_address_ar',
+                        'value' => function ($row) {
+                            return strval($row[10]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'location',
+                            'value' => function ($row) {
+                                return strval($row[11]);
+                            },
+                    ],
+                    [
+                        'attribute' => 'lat',
+                            'value' => function ($row) {
+                                return strval($row[12]);
+                            },
+                    ],
+                    [
+                        'attribute' => 'lng',
+                        'value' => function ($row) {
+                            return strval($row[13]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'currency_id',
+                        'value' => function ($row) {
+                            $currencyObj= Currency::find()->where(['currency_code'=>strval($row[14])])->one();
+                            if ($currencyObj) {
+                                return  $currencyObj->id ;
+                            }
+                            return '';
+                        },
+                    ],
+                    [
+                        'attribute' => 'next_to',
+                        'value' => function ($row) {
+                            $nextToObj= SchoolNextTo::find()->where(['title'=>strval($row[15])])->one();
+                            if (!$nextToObj) {
+                                $nextToObj = new SchoolNextTo();
+                                $nextToObj->title = strval($row[15]);
+                                $nextToObj->save();
+                            }
+                            return  $nextToObj->id ;
+                        },
+                    ],
+                ],
+
+            ]);
+
+            // return var_dump($importer->getModels());
+            if (!$importer->validate()) {
+                foreach ($importer->getErrors() as $rowNumber => $errors) {
+                    $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
+                }
+                Yii::$app->getSession()->setFlash('alert', [
+                    'type' =>'warning',
+                    'body' => \Yii::t('hr', 'please check the attached file for errors -  '.$errors) ,
+                    'title' =>'',
+                ]);
+            } else {
+                if (! $importer->save()) {
+                    Yii::$app->getSession()->setFlash('alert', [
+                       'type' =>'success',
+                       'body' => \Yii::t('hr', 'please check the attached file for errors ') ,
+                       'title' =>'',
+                   ]);
+                } else {
+                    $saved= true;
+                    Yii::$app->getSession()->setFlash('alert', [
+                       'type' =>'success',
+                       'body' => \Yii::t('hr', 'Data has been imported successfully') ,
+                       'title' =>'',
+                   ]);
+                }
+            }
+        }
+        return $this->render('form', ['model'=>$model,
+            'saved'=>$saved,
+            'filename'=>'Schools.xlsx'
         ]);
     }
 }

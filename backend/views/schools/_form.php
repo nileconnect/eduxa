@@ -131,7 +131,9 @@ use yii\helpers\Url;
         ]]) ?>
 
 
-    <?= $form->field($model, 'detailed_address')->textInput() ?>
+    <?= $form->field($model, 'detailed_address')->textInput()->widget(MyMultiLanguageActiveField::className(), ['inputType'=>'text', 'inputOptions'=>[
+            'class'=>'form-control',
+        ]]) ?>
 
 
     <div class="row">
