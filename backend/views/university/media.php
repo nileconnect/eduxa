@@ -91,15 +91,15 @@ echo newerton\fancybox3\FancyBox::widget([
             'label'=>'Videos',
             'attribute'=>'videosCount',
             'value'=>function($model){
-                $str='<a class="uploadBtn" data-fancybox="" data-type="iframe" data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "800px" , "height" : "600px" }}}\'  href="/university/update-videos?id='.$model->id.'"><i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Manage Videos</span></a>';
+                $str2='<a class="uploadBtn" data-fancybox="" data-type="iframe" data-options=\'{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "800px" , "height" : "600px" }}}\'  href="/university/update-videos?id='.$model->id.'"><i class="fa fa-cloud-upload" aria-hidden="true"></i><span>Manage Videos</span></a>';
                 if($model->universityVideos){
-                    $str.= ' <ul>';
+                    $str2.= ' <ul>';
                     foreach ($model->universityVideos as $universityVideo) {
-                        $str.= '<li>'. $universityVideo->base_url .'</li>';
+                        $str2.= '<li>'. $universityVideo->base_url .'</li>';
                     }
-                    $str.= '</ul>';
+                    $str2.= '</ul>';
                 }
-                return  $str.'<br/>
+                return  $str2.'<br/>
                     ' ;
             },
             'format'=>'raw'
