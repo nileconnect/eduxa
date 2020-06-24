@@ -8,6 +8,9 @@ use backend\models\Currency;
 use backend\models\State;
 use backend\models\University;
 use backend\models\Schools;
+use backend\models\SchoolCourse;
+use backend\models\SchoolCourseType;  
+use backend\models\SchoolCourseStudyLanguage;
 use backend\models\UniversityLangOfStudy;
 use backend\models\UniversityNextTo;
 use backend\models\SchoolNextTo;
@@ -870,6 +873,201 @@ class ImportController extends BackendController
         return $this->render('form', ['model'=>$model,
             'saved'=>$saved,
             'filename'=>'Schools.xlsx'
+        ]);
+    }
+
+    public function actionSchoolsCourses()
+    {
+        $errors = '';
+        $saved= false;
+        $model = new FileUploadHelper();
+        if ($model->load(Yii::$app->request->post())) {
+            $uploadFile = UploadedFile::getInstance($model, 'file');
+
+            $importer = new \Gevman\Yii2Excel\Importer([
+                'filePath' => $uploadFile->tempName,
+                'activeRecord' => SchoolCourse::class,
+                'scenario' => SchoolCourse::SCENARIO_IMPORT,
+                'skipFirstRow' => true,
+                'fields' => [
+                    [
+                        'attribute' => 'school_id',
+                        'value' => function ($row) {
+                            return Yii::$app->session->get('schoolId');
+                        },
+                    ],
+                    [
+                        'attribute' => 'title',
+                        'value' => function ($row) {
+                            return strval($row[0]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'title_ar',
+                        'value' => function ($row) {
+                            return strval($row[1]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'value' => function ($row) {
+                            return strval($row[2])=="Yes" ? 1 : 0;
+                        },
+                    ],
+                    [
+                        'attribute' => 'school_course_type_id',
+                        'value' => function ($row) {
+                            $typeObj= SchoolCourseType::find()->where(['title'=>strval($row[3])])->one();
+                            if ($typeObj) {
+                                return  $typeObj->id ;
+                            }
+                            return '';
+                        },
+                    ],
+                    [
+                        'attribute' => 'school_course_study_language_id',
+                        'value' => function ($row) {
+                            $langObj= SchoolCourseStudyLanguage::find()->where(['title'=>strval($row[4])])->one();
+                            if ($langObj) {
+                                return  $langObj->id ;
+                            }
+                            return '';
+                        },
+                    ],
+                    [
+                        'attribute' => 'min_age',
+                        'value' => function ($row) {
+                            return strval($row[5]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'required_level',
+                        'value' => function ($row) {
+                            $value = $row[6];
+                            if($value = 'Beginner'){
+                                return SchoolCourse::COURSE_TYPE_BEGINNER;
+                            }elseif ($value = 'Intermediate') {
+                                return SchoolCourse::COURSE_TYPE_INTERMEDIATE;
+                            }
+                            return SchoolCourse::COURSE_TYPE_PROFESSIONAL;
+                        },
+                    ],
+                    [
+                        'attribute' => 'time_of_course',
+                        'value' => function ($row) {
+                            $value = $row[7];
+                            if($value = 'Morning'){
+                                return SchoolCourse::COURSE_TIME_MORNING;
+                            }
+                            return SchoolCourse::COURSE_TIME_EVENING;
+                        },
+                    ],
+                    [
+                        'attribute' => 'study_books_fees',
+                        'value' => function ($row) {
+                            return strval($row[8]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'registeration_fees',
+                        'value' => function ($row) {
+                            return strval($row[9]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'discount',
+                        'value' => function ($row) {
+                            return strval($row[10]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'lessons_per_week',
+                        'value' => function ($row) {
+                            return strval($row[11]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'lesson_duration',
+                        'value' => function ($row) {
+                            return strval($row[12]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'max_no_of_students_per_class',
+                        'value' => function ($row) {
+                            return strval($row[13]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'avg_no_of_students_per_class',
+                        'value' => function ($row) {
+                            return strval($row[14]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'information',
+                        'value' => function ($row) {
+                            return strval($row[15]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'information_ar',
+                        'value' => function ($row) {
+                            return strval($row[16]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'requirments',
+                        'value' => function ($row) {
+                            return strval($row[17]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'requirments_ar',
+                        'value' => function ($row) {
+                            return strval($row[18]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'cost_type',
+                        'value' => function ($row) {
+                            return strval($row[19])=="Yes" ? 2 : 1;
+                        },
+                    ],
+                ],
+
+            ]);
+
+            // return var_dump($importer->getModels());
+            if (!$importer->validate()) {
+                foreach ($importer->getErrors() as $rowNumber => $errors) {
+                    $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
+                }
+                Yii::$app->getSession()->setFlash('alert', [
+                    'type' =>'warning',
+                    'body' => \Yii::t('hr', 'please check the attached file for errors -  '.$errors) ,
+                    'title' =>'',
+                ]);
+            } else {
+                if (! $importer->save()) {
+                    Yii::$app->getSession()->setFlash('alert', [
+                       'type' =>'success',
+                       'body' => \Yii::t('hr', 'please check the attached file for errors ') ,
+                       'title' =>'',
+                   ]);
+                } else {
+                    $saved= true;
+                    Yii::$app->getSession()->setFlash('alert', [
+                       'type' =>'success',
+                       'body' => \Yii::t('hr', 'Data has been imported successfully') ,
+                       'title' =>'',
+                   ]);
+                }
+            }
+        }
+        return $this->render('form', ['model'=>$model,
+            'saved'=>$saved,
+            'filename'=>'SchoolCourse.xlsx'
         ]);
     }
 }

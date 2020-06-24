@@ -33,7 +33,11 @@ class SchoolCourse extends BaseSchoolCourse
     const COST_PER_WEEK = 1;
     const COST_PER_SESSION = 2;
 
+    const SCENARIO_IMPORT = 'import';
 
+    public $title_ar;
+    public $information_ar;
+    public $requirments_ar;
 
     public static function ListLevels(){
         return [
@@ -75,9 +79,9 @@ class SchoolCourse extends BaseSchoolCourse
             ['min_age', 'compare', 'compareValue' => 999, 'operator' => '<=', 'type' => 'number'],
             [['min_age','study_books_fees','registeration_fees','discount','lessons_per_week','max_no_of_students_per_class',
                 'avg_no_of_students_per_class'],'number','min'=>1],
-
+            ['title_ar','safe','on'=>self::SCENARIO_IMPORT],
             ['status','number'],
-            [['information','requirments','study_books_fees'],'safe']
+            [['information','requirments','study_books_fees','title_ar','information_ar','requirments_ar'],'safe']
         ];
     }
 
