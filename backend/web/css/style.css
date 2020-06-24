@@ -994,9 +994,22 @@ label.checkbox-inline input[type="checkbox"] {
 .upload-kit .upload-kit-input,
 .upload-kit .upload-kit-item {
     width: 150px;
-    margin: auto;
+    margin: 0 10px 10px 0;
 }
 
 .upload-kit .upload-kit-item.image>img {
     width: 100% !important;
+}
+
+.error-summary {
+    background: #F44336;
+    padding: 20px;
+    margin: 15px;
+    color: #fff;
+}
+
+.form-group select {
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+    appearance: auto;
 }

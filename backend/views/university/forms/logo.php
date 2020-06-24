@@ -39,7 +39,7 @@ if($saved){
     }
     .upload-kit-input{
         float: none !important;
-    width: 100% !important;
+    
     }
 </style>
 <div class="university-form">
