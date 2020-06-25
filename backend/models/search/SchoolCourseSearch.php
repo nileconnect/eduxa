@@ -2,10 +2,10 @@
 
 namespace backend\models\search;
 
-use backend\models\Schools;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\SchoolCourse;
+use yii\db\Expression;
 
 /**
  * backend\models\search\SchoolCourseSearch represents the model behind the search form about `backend\models\SchoolCourse`.
@@ -132,4 +132,23 @@ use backend\models\SchoolCourse;
         //  return var_dump($query->createCommand()->sql);
          return $dataProvider;
      }
+
+
+    public function listInFront(){
+        $query = SchoolCourse::find()->limit(20);
+         $query->innerJoinWith('school', false);
+         $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+         ]);
+
+         $query->andFilterWhere([
+             'schools.featured'=> 1,
+             'schools.status'=> 1,
+             'school_course.status'=> 1,
+         ]);
+
+        $query->orderBy(new Expression('rand()'));
+        //  return var_dump($query->createCommand()->sql);
+         return $dataProvider;
+    }
  }

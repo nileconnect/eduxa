@@ -26,6 +26,7 @@ use backend\models\SchoolCourse;
             </div>
         </div>
     </header>
+    <?php $min_price = $course->minimumPrice; ?>
     <footer class="item-footer">
         <div>
             <div class="item-label">Lessons/week</div>
