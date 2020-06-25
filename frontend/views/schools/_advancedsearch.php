@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use kartik\depdrop\DepDrop;
@@ -42,16 +41,6 @@ use backend\models\SchoolCourse;
                 ])->label(false); ?>
             </div>
             <div class="form-group">
-                <?= $form->field($model, 'school_course_type_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolCourseType::find()->orderBy('id')->all(), 'id', 'title'),
-                    'options' => ['placeholder' => Yii::t('frontend', 'Course Type')],
-                    'pluginOptions' => [
-                        'allowClear' => true
-                    ],
-                ])->label(false); ?>
-            </div>
-            
-            <div class="form-group">
                 <?= $form->field($model, 'required_level')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => SchoolCourse::ListLevels(),
                     'options' => ['placeholder' => Yii::t('frontend', 'Required Level')],
@@ -62,15 +51,70 @@ use backend\models\SchoolCourse;
                 ])->label(false); ?>
             </div>
             <div class="form-group">
-                <?= $form->field($model, 'time_of_course')->widget(\kartik\widgets\Select2::classname(), [
+                <?= $form->field($model, 'school_course_type_id')->widget(\kartik\widgets\Select2::classname(), [
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolCourseType::find()->orderBy('id')->all(), 'id', 'title'),
+                    'options' => ['placeholder' => Yii::t('frontend', 'Course Type')],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ])->label(false); ?>
+            </div>
+            
+            
+            <!-- <div class="form-group">
+                <?php  
+                /*
+                $form->field($model, 'time_of_course')->widget(\kartik\widgets\Select2::classname(), [
                     'data' =>SchoolCourse::ListCourseTime(),
                     'options' => ['placeholder' => Yii::t('frontend', 'Course Time')],
                     'pluginOptions' => [
                         'allowClear' => true,
                         'class'=>'select-wrapper'
                     ],
+                ])->label(false);
+                */
+                ?>
+            </div> -->
+
+            <div class="form-group">
+                <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->all(), 'id', 'title'),
+                    'options' => ['placeholder' => Yii::t('common', 'Country') ,'id'=>'CountryId'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
                 ])->label(false); ?>
             </div>
+            
+            <?php
+            // Child # 1
+            echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
+                'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->all(), 'id', 'title') : [''=>Yii::t('common','State')],
+                'options'=>['id'=>'City-id'],
+                'pluginOptions'=>[
+                    'depends'=>['CountryId'],
+                    'placeholder'=>Yii::t('common', 'State'),
+                    'url'=>Url::to(['/helper/states'])
+                ]
+            ])->label(false); 
+
+            ?>
+        
+            <?php
+            // Child # 1
+            echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
+                'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->state_id])->all(), 'id', 'title') : [''=>Yii::t('common','City')],
+                'options'=>['id'=>'subcat-id'],
+                'pluginOptions'=>[
+                    'depends'=>['City-id'],
+                    'placeholder'=>Yii::t('common', 'City'),
+                    'url'=>Url::to(['/helper/cities'])
+                ]
+            ])->label(false); 
+            ?>
+
+        </div>
+        <div class="form-group-row">
 
             <div class="form-group">
                 <?= $form->field($model, 'school_id')->widget(\kartik\widgets\Select2::classname(), [
@@ -80,6 +124,17 @@ use backend\models\SchoolCourse;
                         'allowClear' => true
                     ],
                 ])->label(false); ?>
+            </div>
+
+            <div class="form-group">
+                <?= $form->field($model, 'school_nextTo')->widget(\kartik\widgets\Select2::classname(), [
+                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolNextTo::find()->orderBy('id')->all(), 'id', 'title'),
+                    'options' => ['placeholder' => Yii::t('frontend', 'School next to')],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ])->label(false); ?>
+
             </div>
 
             <div class="form-group">
@@ -93,58 +148,18 @@ use backend\models\SchoolCourse;
 
             </div>
 
-        </div>
-        <div class="form-group-row">
-
             <div class="form-group">
-                <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->all(), 'id', 'title'),
-                    'options' => ['placeholder' => Yii::t('common', 'Country') ,'id'=>'CountryId'],
+                <?= $form->field($model, 'featured')->widget(\kartik\widgets\Select2::classname(), [
+                    'data' =>['1'=>'Recommended','0'=>'Not Recommended'],
+                    'options' => ['placeholder' => Yii::t('frontend', 'Sort')],
                     'pluginOptions' => [
                         'allowClear' => true
                     ],
                 ])->label(false); ?>
+
             </div>
-            
-                <?php
-                // Child # 1
-                echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->all(), 'id', 'title') : [''=>Yii::t('common','State')],
-                    'options'=>['id'=>'City-id'],
-                    'pluginOptions'=>[
-                        'depends'=>['CountryId'],
-                        'placeholder'=>Yii::t('common', 'State'),
-                        'url'=>Url::to(['/helper/states'])
-                    ]
-                ])->label(false); 
-
-                ?>
-            
-                <?php
-                // Child # 1
-                echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->state_id])->all(), 'id', 'title') : [''=>Yii::t('common','City')],
-                    'options'=>['id'=>'subcat-id'],
-                    'pluginOptions'=>[
-                        'depends'=>['City-id'],
-                        'placeholder'=>Yii::t('common', 'City'),
-                        'url'=>Url::to(['/helper/cities'])
-                    ]
-                ])->label(false); 
-                ?>
-
-                
           
-            <div class="form-group">
-                <?= $form->field($model, 'school_nextTo')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolNextTo::find()->orderBy('id')->all(), 'id', 'title'),
-                    'options' => ['placeholder' => Yii::t('frontend', 'School next to')],
-                    'pluginOptions' => [
-                        'allowClear' => true
-                    ],
-                ])->label(false); ?>
-
-            </div>
+            
 
             <div class="form-group">
                 <button type="submit" class="button btn-block button-accent"><?= Yii::t('frontend','Search') ?></button>
