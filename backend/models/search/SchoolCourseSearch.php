@@ -149,6 +149,6 @@ use yii\db\Expression;
 
         $query->orderBy(new Expression('rand()'));
         //  return var_dump($query->createCommand()->sql);
-         return $dataProvider;
+         return $dataProvider->getModels();
     }
  }

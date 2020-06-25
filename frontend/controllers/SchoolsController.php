@@ -30,7 +30,7 @@ class SchoolsController extends FrontendController
         // $schools = Schools::find()->where(['status'=>1 , 'featured'=>1])->all();
 
         $listSchools = new SchoolCourseSearch();
-        $courses = $listSchools->listInFront()->getModels();
+        $courses = $listSchools->listInFront();
         // return var_dump($courses[0]->school->title);
         $searchModel = new SchoolCourseSearch();
         return $this->render('index' ,['countries'=>$countries , 'courses'=>$courses ,'searchModel'=>$searchModel]);
