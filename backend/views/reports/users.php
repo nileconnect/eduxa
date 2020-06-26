@@ -215,7 +215,7 @@ echo GridView::widget([
     'dataProvider' => $dataProvider,
     // 'filterModel' => $searchModel,
     'options' => [
-        'class' => 'grid-view table-responsive',
+        'class' => 'grid-view ',
     ],
     'columns' => $gridColumns,
 ]);?>

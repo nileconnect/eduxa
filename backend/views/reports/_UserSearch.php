@@ -13,8 +13,11 @@ use yii\bootstrap\ActiveForm;
 <style>
 .radio input[type=radio], label.radio-inline input[type=radio] {
     opacity: 1;
-    height: 10px;
-    width: 10px;
+    height: 15px;
+    width: 15px;
+}
+.radio, .checkbox {
+    display: inline-block;
 }
 </style>
 
@@ -64,7 +67,7 @@ use yii\bootstrap\ActiveForm;
     </div>
 
     <div class="row" >
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-12 col-sm-12">
             <?=$form->field($model, 'period')->radioList([
                 ''=>'All',
                 '1'=>'Month',

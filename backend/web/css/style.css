@@ -1013,3 +1013,19 @@ label.checkbox-inline input[type="checkbox"] {
     -moz-appearance: auto;
     appearance: auto;
 }
+
+.kv-container-from.form-control,
+.kv-container-to.form-control {
+    background: #f9f9f9;
+    border: 1px solid #e2e2e2;
+    height: 40px;
+    background-image: none !important;
+    padding: 0;
+}
+
+.kv-container-from.form-control .form-control,
+.kv-container-to.form-control .form-control {
+    background-image: none !important;
+    text-align: left;
+    padding: 0 15px;
+}
