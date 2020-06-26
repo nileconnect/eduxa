@@ -387,6 +387,11 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasMany(\backend\models\StudentCertificate::className(), ['user_id' => 'id']);
     }
 
+    public function getLastCertificate()
+    {
+        return $this->hasOne(\backend\models\StudentCertificate::className(), ['user_id' => 'id'])->orderBy('year DESC');
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

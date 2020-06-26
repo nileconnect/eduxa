@@ -45,7 +45,7 @@ class Requests extends BaseRequests
 
     public static  function ListRequestBy(){
         return [
-            self::REQUEST_BY_STUDENT => 'Student',
+            self::REQUEST_BY_STUDENT => Yii::t('common','Student'),
             self::REQUEST_BY_REFERRAL_COMPANY =>Yii::t('common',"Referral Company"),
             self::REQUEST_BY_REFERRAL_PERSON =>Yii::t('common',"Referral Person"),
 

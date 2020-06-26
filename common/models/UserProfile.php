@@ -2,12 +2,14 @@
 
 namespace common\models;
 
-use backend\models\Cities;
-use backend\models\Country;
-use backend\models\State;
-use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
 use yii\db\ActiveRecord;
+use backend\models\State;
+use backend\models\Cities;
+use backend\models\Country;
+use backend\models\Schools;
+use backend\models\University;
+use trntv\filekit\behaviors\UploadBehavior;
 
 /**
  * This is the model class for table "user_profile".
@@ -175,6 +177,16 @@ class UserProfile extends ActiveRecord
     public function getCity()
     {
         return $this->hasOne(Cities::class, ['id' => 'city_id']);
+    }
+
+    public function getInterestedUniversity()
+    {
+        return $this->hasOne(University::class, ['id' => 'interested_in_university']);
+    }
+
+    public function getInterestedSchool()
+    {
+        return $this->hasOne(Schools::class, ['id' => 'interested_in_schools']);
     }
 
     public function getRequests()
