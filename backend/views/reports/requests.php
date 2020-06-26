@@ -140,26 +140,27 @@ $gridColumn = [
     // ],
 ];
 
-$gridColumnExport = [
-    'request_notes',
-    'admin_notes',
-    [
-        'attribute' => 'student_gender',
-        'value' => function ($model) {
-            return \common\models\UserProfile::ListGender()[$model->student_gender];
-        },
-        'format' => 'raw',
-    ],
-    'student_mobile',
-    'student_email',
-    'accomodation_option',
-    'accomodation_option_cost',
-    'airport_pickup',
-    'airport_pickup_cost',
-    'course_start_date',
-    'number_of_weeks',
+// [
+//     'request_notes',
+//     'admin_notes',
+//     [
+//         'attribute' => 'student_gender',
+//         'value' => function ($model) {
+//             return \common\models\UserProfile::ListGender()[$model->student_gender];
+//         },
+//         'format' => 'raw',
+//     ],
+//     'student_mobile',
+//     'student_email',
+//     'accomodation_option',
+//     'accomodation_option_cost',
+//     'airport_pickup',
+//     'airport_pickup_cost',
+//     'course_start_date',
+//     'number_of_weeks',
 
-] + $gridColumn
+// ] +
+$gridColumnExport = ['request_notes', 'admin_notes'] + $gridColumn
 ?>
 
 
