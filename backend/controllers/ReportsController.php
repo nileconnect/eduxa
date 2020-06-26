@@ -2,10 +2,15 @@
 
 namespace backend\controllers;
 
-use backend\models\School;
-use backend\models\search\RequestsSearch;
-use backend\models\search\UserSearch;
 use Yii;
+use common\models\User;
+use backend\models\School;
+use backend\models\Schools;
+use backend\models\University;
+use backend\models\search\UserSearch;
+use backend\models\UniversityPrograms;
+use backend\models\search\RequestsSearch;
+use backend\models\UniversityProgramMajors;
 
 /**
  * SchoolsController implements the CRUD actions for Schools model.
@@ -15,8 +20,21 @@ class ReportsController extends BackendController
 
     public function actionGeneral()
     {
+        $universityCount = University::find()->count();
+        $universityProgramMajorsCount = UniversityProgramMajors::find()->count();
+        $universityProgramsCount = UniversityPrograms::find()->count();
+        $schoolsCount = Schools::find()->count();
 
-        return $this->render('general');
+        // users types count
+        $studentsCount = User::findByRole('user');
+        $referralPersonCount = User::findByRole('referralPerson');
+        $referralCompanyCount = User::findByRole('referralCompany');
+        // return $universityCount;
+        return $this->render('general',
+            compact('universityCount', 'universityProgramMajorsCount',
+                'universityProgramsCount', 'schoolsCount','studentsCount','referralPersonCount','referralCompanyCount'
+            )
+        );
     }
 
     public function actionUsers()

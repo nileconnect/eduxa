@@ -18,7 +18,7 @@ use yii\bootstrap\ActiveForm;
 }
 </style>
 
-<div class="user-search">
+<div class="form-users-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['users'],
@@ -64,7 +64,7 @@ use yii\bootstrap\ActiveForm;
     </div>
 
     <div class="row" >
-        <div class="col-md-2 col-sm-12">
+        <div class="col-md-4 col-sm-12">
             <?=$form->field($model, 'period')->radioList([
                 ''=>'All',
                 '1'=>'Month',
