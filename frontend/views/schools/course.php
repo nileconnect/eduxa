@@ -209,15 +209,10 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
         </div>
     </section>
 
-    <?php
+ <?php
 }
 
 ?>
-
-
-
-
-
 
 <section class="section">
     <div class="container">
@@ -420,7 +415,6 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
     </div>
 </section>
-
 <section class="section">
     <div class="container">
         
@@ -446,8 +440,6 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
     </div>
 </section>
-
-
 <section class="section">
     <div class="container">
 
@@ -525,7 +517,6 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
     </div>
 </section>
-
 <section class="section">
     <div class="container">
         <h2 class="title text-center">Other courses in Language Academy </h2>
