@@ -105,8 +105,23 @@ $gridColumn = [
     ],
 
     [
+        'attribute' => 'accomodation_option',
+        'label' => Yii::t('backend', 'Accomodation'),
+        'value' => function ($model) {
+            return $model->accomodation_option;
+        },
+    ],
+    [
+        'attribute' => 'airport_pickup',
+        'label' => Yii::t('backend', 'Airport'),
+        'value' => function ($model) {
+            return $model->airport_pickup;
+        },
+    ],
+
+    [
         'attribute' => 'created_at',
-        //  'format' => 'date'
+         'format' => 'date'
     ],
     [
         'attribute' => 'status',
@@ -120,9 +135,9 @@ $gridColumn = [
     //     'rowSelectedClass' => GridView::TYPE_INFO,
     //     'name' => 'Expedientes_Seleccionados',
     // ],
-    [
-        'class' => 'yii\grid\ActionColumn', 'template' => '{view}',
-    ],
+    // [
+    //     'class' => 'yii\grid\ActionColumn', 'template' => '{view}',
+    // ],
 ];
 
 $gridColumnExport = [

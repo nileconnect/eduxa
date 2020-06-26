@@ -50,6 +50,18 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 
+    <div class="row" >
+        <div class="col-md-4 col-sm-12">
+            <?=$form->field($model, 'period')->radioList([
+                ''=>'All',
+                '1'=>'Month',
+                '2'=>'2 Months',
+                '3'=>'6 Months',
+                '4'=>'Year',
+            ])?>
+        </div>
+    </div>
+
 
     <div class="form-group">
         <?=Html::submitButton(Yii::t('backend', 'Search'), ['class' => 'btn btn-primary'])?>

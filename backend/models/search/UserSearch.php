@@ -87,6 +87,8 @@ class UserSearch extends User
             $query->andFilterWhere(['between', 'user.created_at', \strtotime($this->creation_from_date), \strtotime($this->creation_to_date)]);
         }
 
+        
+
         if(!empty($this->period)){
             if($this->period == 1 ){ // month
                 $query->andFilterWhere(['between', 'user.created_at', strtotime('today - 30 days'), \time()]);
@@ -97,15 +99,18 @@ class UserSearch extends User
             }elseif($this->period == 4){
                 $query->andFilterWhere(['between', 'user.created_at', strtotime('today - 1 year'), \time()]);
             }
+        }else{
+            if ($this->created_at !== null) {
+                $query->andFilterWhere(['between', 'user.created_at', $this->created_at, $this->created_at + 3600 * 24]);
+            }
+
+            if ($this->updated_at !== null) {
+                $query->andFilterWhere(['between', 'user.updated_at', $this->updated_at, $this->updated_at + 3600 * 24]);
+            }
         }
 
-        if ($this->created_at !== null) {
-            $query->andFilterWhere(['between', 'user.created_at', $this->created_at, $this->created_at + 3600 * 24]);
-        }
 
-        if ($this->updated_at !== null) {
-            $query->andFilterWhere(['between', 'user.updated_at', $this->updated_at, $this->updated_at + 3600 * 24]);
-        }
+        
 
         if ($this->logged_at !== null) {
             $query->andFilterWhere(['between', 'user.logged_at', $this->logged_at, $this->logged_at + 3600 * 24]);

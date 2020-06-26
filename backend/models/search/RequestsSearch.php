@@ -14,6 +14,7 @@ class RequestsSearch extends Requests
 
     public $creation_from_date;
     public $creation_to_date;
+    public $period;
 
     /**
      * @inheritdoc
@@ -25,7 +26,7 @@ class RequestsSearch extends Requests
             [['model_name', 'request_by_role', 'request_notes', 'admin_notes', 'student_first_name', 'student_last_name', 'student_gender', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup', 'airport_pickup_cost', 'course_start_date', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
             [['accomodation_option_cost'], 'number'],
             ['created_at', 'safe'],
-            [['creation_from_date', 'creation_to_date'], 'safe'],
+            [['creation_from_date', 'creation_to_date', 'period'], 'safe'],
         ];
     }
 
@@ -74,18 +75,30 @@ class RequestsSearch extends Requests
             'number_of_weeks' => $this->number_of_weeks,
         ]);
 
-        if ($this->created_at) {
+        if (!empty($this->period)) {
+            if ($this->period == 1) { // month
+                $query->andFilterWhere(['between', 'created_at', date('Y-m-d',strtotime('today - 30 days')), date('Y-m-d',strtotime("+1 day"))]);
+            } elseif ($this->period == 2) {
+                $query->andFilterWhere(['between', 'created_at', date('Y-m-d',strtotime('today - 3 months')), date('Y-m-d',strtotime("+1 day"))]);
+            } elseif ($this->period == 3) {
+                $query->andFilterWhere(['between', 'created_at', date('Y-m-d',strtotime('today - 6 months')), date('Y-m-d',strtotime("+1 day"))]);
+            } elseif ($this->period == 4) {
+                $query->andFilterWhere(['between', 'created_at', date('Y-m-d',strtotime('today - 1 year')), date('Y-m-d',strtotime("+1 day"))]);
+            }
+        } else {
+            if ($this->created_at) {
 
-            $query->andFilterWhere(['between', 'created_at', $this->created_at . ' 00:00:00', $this->created_at . ' 23:59:59']);
-        }
+                $query->andFilterWhere(['between', 'created_at', $this->created_at . ' 00:00:00', $this->created_at . ' 23:59:59']);
+            }
 
-        if ($this->creation_from_date) {
-            $query->andFilterWhere(['>= ', 'created_at', $this->creation_from_date . ' 00:00:00']);
+            if ($this->creation_from_date) {
+                $query->andFilterWhere(['>= ', 'created_at', $this->creation_from_date . ' 00:00:00']);
 
-        }
+            }
 
-        if ($this->creation_to_date) {
-            $query->andFilterWhere(['<= ', 'created_at', $this->creation_to_date . ' 23:59:59']);
+            if ($this->creation_to_date) {
+                $query->andFilterWhere(['<= ', 'created_at', $this->creation_to_date . ' 23:59:59']);
+            }
         }
 
         $query->andFilterWhere(['like', 'model_name', $this->model_name])
@@ -105,7 +118,7 @@ class RequestsSearch extends Requests
             ->andFilterWhere(['like', 'updated_at', $this->updated_at])
             ->andFilterWhere(['like', 'created_by', $this->created_by])
             ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
-        // echo $query->createCommand()->getRawSql();  
+        // echo $query->createCommand()->getRawSql();
 
         return $dataProvider;
     }
