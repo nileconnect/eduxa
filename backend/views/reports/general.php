@@ -52,6 +52,10 @@ $this->title = 'Statistic';
             <td>no. of Schools</td>
             <td><?= $schoolsCount ?></td>
         </tr>
+        <tr>
+            <td>no. of Courses</td>
+            <td><?= $coursesCount ?></td>
+        </tr>
     </table>
 </div>
 <!-- /.box -->
