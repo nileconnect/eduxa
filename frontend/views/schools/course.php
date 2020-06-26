@@ -3,6 +3,7 @@ use \common\models\User;
 use backend\models\SchoolCourse;
 
 \frontend\assets\CourcesAsset::register($this);
+$min_price = $courseObj->minimumPrice;
 ?>
 <nav aria-label="breadcrumb">
     <div class="container">
@@ -59,7 +60,14 @@ use backend\models\SchoolCourse;
                 </div>
                 <div class="mtlg">
                     <a href="#" class="button button-primary button-wide">Apply Now</a>
-                    <p class="mtsm text-large">Best Weekly Price : 140 USD <span class="line-through text-red">165 USD</span></p>
+                    <p class="mtsm text-large">
+                        Best Weekly Price : <?=  $min_price ?> <?= $schoolObj->currency->currency_code ?>
+                        <span class="line-through text-red">
+                             <?php
+                             echo \common\helpers\MyCurrencySwitcher::checkCurrency($courseObj->school->currency->currency_code ,$min_price ,false);
+                             ?>
+
+                        </span></p>
                 </div>
             </div>
 
@@ -72,7 +80,7 @@ use backend\models\SchoolCourse;
 
         <div class="ptlg pblg prlg pllg bg-white b-all text-large">
             <p>
-                Conversations can be a tricky business. Sometimes, decoding what is said with what is meant is difficult at best. However, communication is a necessary tool in todays world. And it’s not only speaking that can be difficult, but trying to interpret body language, and other language barriers are just a few of the obstacles barring effective communication. It’s often been the case were one party completely miscommunicates to another due to a misunderstanding between parties. 
+                <?= $courseObj->information ;?>
             </p>
         </div>
     </div>
