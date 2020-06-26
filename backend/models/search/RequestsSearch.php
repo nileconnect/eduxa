@@ -77,13 +77,13 @@ class RequestsSearch extends Requests
 
         if (!empty($this->period)) {
             if ($this->period == 1) { // month
-                $query->andFilterWhere(['between', 'created_at', date('Y-m-d',strtotime('today - 30 days')), date('Y-m-d',strtotime("+1 day"))]);
+                $query->andFilterWhere(['between', 'created_at', date('Y-m-d', strtotime('today - 30 days')), date('Y-m-d', strtotime("+1 day"))]);
             } elseif ($this->period == 2) {
-                $query->andFilterWhere(['between', 'created_at', date('Y-m-d',strtotime('today - 3 months')), date('Y-m-d',strtotime("+1 day"))]);
+                $query->andFilterWhere(['between', 'created_at', date('Y-m-d', strtotime('today - 3 months')), date('Y-m-d', strtotime("+1 day"))]);
             } elseif ($this->period == 3) {
-                $query->andFilterWhere(['between', 'created_at', date('Y-m-d',strtotime('today - 6 months')), date('Y-m-d',strtotime("+1 day"))]);
+                $query->andFilterWhere(['between', 'created_at', date('Y-m-d', strtotime('today - 6 months')), date('Y-m-d', strtotime("+1 day"))]);
             } elseif ($this->period == 4) {
-                $query->andFilterWhere(['between', 'created_at', date('Y-m-d',strtotime('today - 1 year')), date('Y-m-d',strtotime("+1 day"))]);
+                $query->andFilterWhere(['between', 'created_at', date('Y-m-d', strtotime('today - 1 year')), date('Y-m-d', strtotime("+1 day"))]);
             }
         } else {
             if ($this->created_at) {
