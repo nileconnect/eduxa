@@ -161,7 +161,7 @@ use backend\models\University;
              ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
 
          //  echo $this->unversity_logo;
-         echo $query->createCommand()->getRawSql();  die;
+       //  echo $query->createCommand()->getRawSql();  die;
          return $dataProvider;
      }
 }
