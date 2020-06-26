@@ -9,8 +9,20 @@ use yii\widgets\ActiveForm;
 /* @var $model backend\models\search\RequestsSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-<div class="form-requests-search" style="padding-left: 50px">
+<style>
+#requestssearch-period input[type=radio] {
+    opacity: 1;
+    height: 15px;
+    width: 15px;
+}
+.radio, .checkbox {
+    display: inline-block;
+}
+#requestssearch-period label{
+    padding-left: 30px;
+}
+</style>
+<div class="form-requests-search" >
 
     <?php $form = ActiveForm::begin([
         'action' => ['/reports/requests'],
@@ -18,20 +30,20 @@ use yii\widgets\ActiveForm;
     ]);?>
 
     <div class="row">
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-2 col-sm-12">
             <?=$form->field($model, 'request_by_role')->dropDownList(Requests::ListRequestBy(), ['prompt' => 'Select'])->label('User Type')?>
         </div>
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-2 col-sm-12">
             <?=$form->field($model, 'status')->dropDownList(Requests::ListStatus(), ['prompt' => 'Select'])?>
         </div>
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-2 col-sm-12">
             <?=$form->field($model, 'student_nationality_id')->textInput(['placeholder' => 'Nationality'])?>
         </div>
 
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-2 col-sm-12">
             <?=$form->field($model, 'model_name')->dropDownList(Requests::ListModelNames(), ['prompt' => 'Select'])?>
         </div>
-        <div class="col-md-8 col-sm-12" >
+        <div class="col-md-4 col-sm-12" >
             <?php
                 echo DatePicker::widget([
                     'model' => $model,
@@ -51,7 +63,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="row" >
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-12 col-sm-12">
             <?=$form->field($model, 'period')->radioList([
                 ''=>'All',
                 '1'=>'Month',
