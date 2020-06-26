@@ -209,15 +209,10 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
         </div>
     </section>
 
-    <?php
+ <?php
 }
 
 ?>
-
-
-
-
-
 
 <section class="section">
     <div class="container">
@@ -277,37 +272,57 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <div class="pllg prlg pblg ptlg">
                         <div class="select-wrapper" style="margin-bottom: 15px;">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-primary btnAcco" data-toggle="modal" data-target="#AccoModal">
                             Accommodation options
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
+                            <div class="modal fade" id="AccoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Accommodation options available:</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div v-for="acco in accomodtion">
+                                                <div class="row">
+                                                    <div class="col-md-12">    
+                                                        <p>
+                                                            {{acco.title}}
+                                                            <br>
+                                                            {{acco.cost_per_duration_unit}} USD {{acco.booking_cycle}}
+                                                            <br>
+                                                            Registeration fees {{acco.reg_fees}} USD
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <ul class="row">
+                                                    <li v-if="acco.room" class="col-md-6">
+                                                        <i class="fas fa-bed"></i> Room type: {{acco.room}}</li>
+                                                    <li v-if="acco.booking_cycle" class="col-md-6"><i class="far fa-calendar-alt"></i> Booking cycle: {{acco.booking_cycle}}</li>
+                                                    <li v-if="acco.facility" class="col-md-6"><i class="fas fa-bath"></i> facilities: {{acco.facility}}</li>
+                                                    <li v-if="acco.min_booking_duraion" class="col-md-6"><i class="far fa-calendar-check"></i> Min Booking Duration: {{acco.min_booking_duraion}}</li>
+                                                    <li v-if="acco.distance_from_school" class="col-md-6"><i class="far fa-clock"></i> Distance from school: {{acco.distance_from_school}}</li>
+                                                    <li v-if="acco.special_diet" class="col-md-6"><i class="fas fa-utensils"></i> Special diat: {{acco.special_diet}}</li>
+                                                </ul>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <a href="javascript:void(0)" v-on:click="selectAccommodation(acco.reg_fees,acco.title)" style="margin-bottom:20px" class="button button-primary btn-block text-large">Choose this option
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
 
-                            <select name="" id="" class="form-control" v-on:change="selectAccommodation($event)">
-                                <option>Accommodation options</option>
-
-                                <option v-for="(acco,$index) in accomodtion" :value="$index" >{{acco.title}}</option>
-                                
-                            </select>
+                           
                         </div>
                         <div class="select-wrapper">
                             <select name="" id="" class="form-control">
@@ -319,7 +334,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </div>
                         
                     </div>
-                    <table class="table text-large wide-cell" id="accoTable" style="display:none">
+                    <!-- <table class="table text-large wide-cell" id="accoTable" style="display:none">
                         <tbody>
                             <tr v-if="Selectedaccomodtion.reg_fees">
                                 <td><?= Yii::t('frontend' , 'Accommodation Registration Fees')?></td>
@@ -355,7 +370,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 <td><span class="text-primary">{{Selectedaccomodtion.cost_per_duration_unit}}</span></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                 </div>
 
             </div>
@@ -412,9 +427,9 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             </td>
                             <td><span class="text-primary" v-if="SelectedHealth">{{SelectedHealth}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
-                        <tr>
+                        <tr v-if="accomodtionFees">
                             <td><?= Yii::t('frontend' , 'Accommodation fees')?></td>
-                            <td><span class="text-primary" id="regFees" data-value="<?= $courseObj->registeration_fees; ?>"><?= $courseObj->registeration_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
+                            <td><span class="text-primary" id="regFees">{{accomodtionFees}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Registeration fees')?></td>
@@ -523,7 +538,6 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
     </div>
 </section>
-
 <section class="section">
     <div class="container">
         <h2 class="title text-center">Other courses in Language Academy </h2>

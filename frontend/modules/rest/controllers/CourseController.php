@@ -2,12 +2,12 @@
 
 namespace frontend\modules\rest\controllers;
 
-use api\helpers\ResponseHelper;
-use api\resources\User;
 use backend\models\base\UniversityPrograms;
 use backend\models\Requests;
 use backend\models\SchoolCourseStartDate;
+use common\models\User;
 use common\models\UserProfile;
+use frontend\modules\rest\helpers\ResponseHelper;
 use yii\rest\Controller;
 use yii\web\NotFoundHttpException;
 

@@ -106,6 +106,22 @@
     font-size: 18px;
 }
 
+.btnAcco {
+    background: #fff;
+    border: 1px solid #ced4da;
+    color: #495057;
+    width: 100%;
+    text-align: left;
+    border-radius: 0;
+    height: 42px;
+}
+
+.btnAcco:hover {
+    background: #fff;
+    border: 1px solid #ced4da;
+    color: #495057;
+}
+
 @media (max-width: 768px) {
     .majorsList li,
     .contList li {
