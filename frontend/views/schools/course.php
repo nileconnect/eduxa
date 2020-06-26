@@ -276,6 +276,32 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="bg-white shadow-sm b-all mtmd">
                     <div class="pllg prlg pblg ptlg">
                         <div class="select-wrapper" style="margin-bottom: 15px;">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Accommodation options
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
                             <select name="" id="" class="form-control" v-on:change="selectAccommodation($event)">
                                 <option>Accommodation options</option>
 
@@ -338,11 +364,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <tbody>
                         <tr>
                             <td>
-                                <div class="select-wrapper">
-                                    <select name="" id="" class="form-control">
-                                        <option>Course Type</option>                                        
-                                    </select>
-                                </div>
+                                Course Type
                             </td>
                             <td></td>
                         </tr>
@@ -421,31 +443,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     </div>
 </section>
 
-<section class="section">
-    <div class="container">
-        
-        <div class="universities universities-row">
 
-            <div class="item">
-                <header class="item-header">
-                    <figure>
-                        <img src="img/destinations/1.jpg" alt="">
-                    </figure>
-                    <div class="item-content">
-                        <div class="item-name">
-                            <span>Auburn - Alabama - USA</span>
-                        </div>
-                        <div class="item-body">
-                            Living in today’s metropolitan world of cellular phones, mobile computers and other high-tech gadgets is not just hectic but very impersonal. We make money and then invest our time and effort in making more money. 
-                        </div>
-                    </div>
-                </header>
-            </div>
-
-        </div>
-
-    </div>
-</section>
 
 
 <section class="section">
