@@ -3,8 +3,6 @@
 namespace backend\models\base;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
-use yii\behaviors\BlameableBehavior;
 
 /**
  * This is the base model class for table "school_course".

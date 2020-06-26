@@ -8,21 +8,12 @@ use backend\models\Country;
 use backend\models\Faq;
 use backend\models\Schools;
 use backend\models\search\SchoolCourseSearch;
-use backend\models\search\UniversityProgramsSearch;
-use backend\models\University;
 use backend\models\UniversityProgramMajors;
+use backend\models\University;
 use backend\models\UniversityProgStartdate;
-use cheatsheet\Time;
-use common\sitemap\UrlsIterator;
-use frontend\models\ContactForm;
 use Sitemaped\Element\Urlset\Urlset;
-use Sitemaped\Sitemap;
 use Yii;
-use yii\filters\PageCache;
-use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
 
 /**
  * Site controller
@@ -36,17 +27,17 @@ class SchoolsController extends FrontendController
     public function actionIndex()
     {
         $countries = Country::find()->where(['status'=>1 , 'top_destination'=>1])->all();
-        $schools = Schools::find()->where(['status'=>1 , 'featured'=>1])->all();
-
+        $listSchools = new SchoolCourseSearch();
+        $courses = $listSchools->listInFront();
         $searchModel = new SchoolCourseSearch();
-        return $this->render('index' ,['countries'=>$countries , 'schools'=>$schools ,'searchModel'=>$searchModel]);
+        return $this->render('index' ,['countries'=>$countries , 'courses'=>$courses ,'searchModel'=>$searchModel]);
     }
 
     public function actionSearch()
     {
         $searchModel = new SchoolCourseSearch();
+        $searchModel->status = University::STATUS_ON;
         $dataProvider = $searchModel->CustomSearch(Yii::$app->request->queryParams);
-
         return $this->render('search' ,[ 'searchModel'=>$searchModel,'dataProvider'=>$dataProvider]);
     }
 

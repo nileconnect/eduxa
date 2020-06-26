@@ -1,24 +1,17 @@
-
+<?php
+$this->title = 'Statistic';
+?>
 <div class="box box-default">
-    <div class="box-header with-border">
+    <!-- <div class="box-header with-border">
         <h3 class="box-title">Browser Usage</h3>
-
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
     </div>
-    <!-- /.box-header -->
     <div class="box-body">
         <div class="row">
             <div class="col-md-8">
                 <div class="chart-responsive">
                     <canvas id="pieChart" height="150"></canvas>
                 </div>
-                <!-- ./chart-responsive -->
             </div>
-            <!-- /.col -->
             <div class="col-md-4">
                 <ul class="chart-legend clearfix">
                     <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
@@ -29,11 +22,8 @@
                     <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
                 </ul>
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.box-body -->
     <div class="box-footer no-padding">
         <ul class="nav nav-pills nav-stacked">
             <li><a href="#">United States of America
@@ -43,7 +33,28 @@
             <li><a href="#">China
                     <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
         </ul>
+    </div> -->
+
+    <div class="box-header with-border">
+        <h3 class="box-title">Educational Institution Statistic</h3>
     </div>
-    <!-- /.footer -->
+    <table class="kv-grid-table table table-bordered table-striped kv-table-wrap">
+        <tr>
+            <td>no. of University</td>
+            <td><?= $universityCount ?></td>
+        </tr>
+        <tr>
+            <td>no. of Majors</td>
+            <td><?= $universityProgramMajorsCount ?></td>
+        </tr>
+        <tr>
+            <td>no. of Programs</td>
+            <td><?= $universityProgramsCount ?></td>
+        </tr>
+        <tr>
+            <td>no. of Schools</td>
+            <td><?= $schoolsCount ?></td>
+        </tr>
+    </table>
 </div>
 <!-- /.box -->

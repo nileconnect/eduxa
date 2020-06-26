@@ -2,48 +2,61 @@
 
 namespace backend\controllers;
 
-use backend\models\search\RequestsSearch;
-use common\models\User;
-use common\models\UserProfile;
 use Yii;
-use common\models\City;
-use backend\models\CompetitionPath;
-use common\models\District;
-use backend\models\Govenment;
+use common\models\User;
 use backend\models\School;
-use backend\models\SchoolsCompetition;
-use common\models\lookup\Country;
-use yii\db\Query;
-use yii\helpers\Json;
-use yii\web\Response;
+use backend\models\Schools;
+use backend\models\University;
+use backend\models\search\UserSearch;
+use backend\models\UniversityPrograms;
+use backend\models\search\RequestsSearch;
+use backend\models\UniversityProgramMajors;
 
 /**
  * SchoolsController implements the CRUD actions for Schools model.
  */
-class ReportsController extends   BackendController
+class ReportsController extends BackendController
 {
 
-    public function actionGeneral(){
+    public function actionGeneral()
+    {
+        $universityCount = University::find()->count();
+        $universityProgramMajorsCount = UniversityProgramMajors::find()->count();
+        $universityProgramsCount = UniversityPrograms::find()->count();
+        $schoolsCount = Schools::find()->count();
 
-       return  $this->render('general');
+        // users types count
+        $studentsCount = User::findByRole('user');
+        $referralPersonCount = User::findByRole('referralPerson');
+        $referralCompanyCount = User::findByRole('referralCompany');
+        // return $universityCount;
+        return $this->render('general',
+            compact('universityCount', 'universityProgramMajorsCount',
+                'universityProgramsCount', 'schoolsCount','studentsCount','referralPersonCount','referralCompanyCount'
+            )
+        );
     }
 
-    public function actionUsers(){
-
-        return  $this->render('users');
-    }
-
-
-    public function actionRequests(){
-
-        $searchModel = new RequestsSearch();
+    public function actionUsers()
+    {
+        $searchModel = new UserSearch();
+        $searchModel->report = true;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('requests', [
+        return $this->render('users', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
 
+    }
+
+    public function actionRequests()
+    {
+        $searchModel = new RequestsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('requests', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
 }

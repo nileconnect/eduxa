@@ -3,8 +3,8 @@
 namespace backend\models\base;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the base model class for table "requests".
@@ -47,17 +47,16 @@ class Requests extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
-
     /**
-    * This function helps \mootensai\relation\RelationTrait runs faster
-    * @return array relation names of this model
-    */
+     * This function helps \mootensai\relation\RelationTrait runs faster
+     * @return array relation names of this model
+     */
     public function relationNames()
     {
         return [
             'studentCountry',
             'studentCity',
-            'requester'
+            'requester',
         ];
     }
 
@@ -68,11 +67,11 @@ class Requests extends \yii\db\ActiveRecord
     {
         return [
             [['model_id', 'requester_id', 'status'], 'required'],
-            [['model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id', 'student_state_id','number_of_weeks'], 'integer'],
+            [['model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id', 'student_state_id', 'number_of_weeks'], 'integer'],
             [['request_notes', 'admin_notes', 'student_nationality_id'], 'string'],
             [['accomodation_option_cost'], 'number'],
             [['model_name', 'request_by_role', 'student_gender', 'status'], 'string', 'max' => 4],
-            [['student_first_name', 'student_last_name', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup', 'airport_pickup_cost', 'course_start_date', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'string', 'max' => 255]
+            [['student_first_name', 'student_last_name', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup', 'airport_pickup_cost', 'course_start_date', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'string', 'max' => 255],
         ];
     }
 
@@ -122,18 +121,18 @@ class Requests extends \yii\db\ActiveRecord
      */
     public function getModelObj()
     {
-        if($this->model_name == \backend\models\Requests::MODEL_NAME_PROGRAM){
+        if ($this->model_name == \backend\models\Requests::MODEL_NAME_PROGRAM) {
             return $this->hasOne(\backend\models\UniversityPrograms::className(), ['id' => 'model_id']);
-        }else{
+        } else {
             return $this->hasOne(\backend\models\SchoolCourse::className(), ['id' => 'model_id']);
         }
     }
 
     public function getModelParentObj()
     {
-        if($this->model_name == \backend\models\Requests::MODEL_NAME_PROGRAM){
+        if ($this->model_name == \backend\models\Requests::MODEL_NAME_PROGRAM) {
             return $this->hasOne(\backend\models\University::className(), ['id' => 'model_parent_id']);
-        }else{
+        } else {
             return $this->hasOne(\backend\models\Schools::className(), ['id' => 'model_parent_id']);
         }
     }
@@ -153,7 +152,7 @@ class Requests extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\Country::className(), ['id' => 'student_country_id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -161,7 +160,7 @@ class Requests extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\State::className(), ['id' => 'student_city_id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -181,7 +180,7 @@ class Requests extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\backend\models\UniversityPrograms::className(), ['id' => 'model_id']);
     }
-    
+
     /**
      * @inheritdoc
      * @return array mixed
@@ -202,7 +201,6 @@ class Requests extends \yii\db\ActiveRecord
             ],
         ];
     }
-
 
     /**
      * @inheritdoc
