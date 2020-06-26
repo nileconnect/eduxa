@@ -41,6 +41,7 @@ class BackendAsset extends AssetBundle
      */
     public $js = [
         'https://unpkg.com/ionicons@4.2.2/dist/ionicons.js',
+        'js/Chart.js',
         'js/app.js'
     ];
 
