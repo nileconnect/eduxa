@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="ml-auto col-sm-5">
-                    <figure><img src="<?= $countryObj->flag ?>" width="570px" height="450px" alt="" class="/img-responsive"></figure>
+                    <figure><img src="<?= $countryObj->flag ?>" width="570px" height="450px" alt="" class="img-responsive"></figure>
                 </div>
             </div>
         </div>

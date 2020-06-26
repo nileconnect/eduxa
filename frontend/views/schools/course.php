@@ -238,10 +238,14 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             </td>
                         </tr>
                         <tr>
-                            <td><?= Yii::t('frontend' , 'Time Of Course')?></td>
+                            <td><?= Yii::t('frontend' , 'Study Time')?></td>
                             <td>
                                 <div class="text-primary"><?= SchoolCourse::ListCourseTime()[$courseObj->time_of_course] ?></div>
                             </td>
+                        </tr>
+                        <tr>
+                            <td><?= Yii::t('frontend' , 'Max Students')?></td>
+                            <td><span class="text-primary"><?= $courseObj->min_no_of_students_per_class; ?></span></td>
                         </tr>
                         
                         <tr>
@@ -253,12 +257,9 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <td><?= Yii::t('frontend' , 'Lesson Duration')?></td>
                             <td><span class="text-primary"><?= $courseObj->lesson_duration; ?></span></td>
                         </tr>
+                        
                         <tr>
-                            <td><?= Yii::t('frontend' , 'Max No Of Students Per Class')?></td>
-                            <td><span class="text-primary"><?= $courseObj->min_no_of_students_per_class; ?></span></td>
-                        </tr>
-                        <tr>
-                            <td><?= Yii::t('frontend' , 'Avg No Of Students Per Class')?></td>
+                            <td><?= Yii::t('frontend' , 'Average Students')?></td>
                             <td><span class="text-primary"><?= $courseObj->avg_no_of_students_per_class; ?></span></td>
                         </tr>
                     </tbody>
@@ -266,11 +267,19 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 
                 <div class="bg-white shadow-sm b-all mtmd">
                     <div class="pllg prlg pblg ptlg">
-                        <div class="select-wrapper">
+                        <div class="select-wrapper" style="margin-bottom: 15px;">
                             <select name="" id="" class="form-control" v-on:change="selectAccommodation($event)">
                                 <option>Accommodation options</option>
 
                                 <option v-for="(acco,$index) in accomodtion" :value="$index" >{{acco.title}}</option>
+                                
+                            </select>
+                        </div>
+                        <div class="select-wrapper">
+                            <select name="" id="" class="form-control">
+                                <option>Accommodation weeks</option>
+
+                                <option></option>
                                 
                             </select>
                         </div>
@@ -319,7 +328,16 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
             <div class="col-sm-6">
                 <table class="table wide-cell text-large bg-white shadow-sm plmd prmd pbmd b-all">
                     <tbody>
-                        
+                        <tr>
+                            <td>
+                                <div class="select-wrapper">
+                                    <select name="" id="" class="form-control">
+                                        <option>Course Type</option>                                        
+                                    </select>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
                         <tr>
                             <td>
                                 <div class="select-wrapper">
@@ -364,7 +382,10 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             </td>
                             <td><span class="text-primary" v-if="SelectedHealth">{{SelectedHealth}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
-
+                        <tr>
+                            <td><?= Yii::t('frontend' , 'Accommodation fees')?></td>
+                            <td><span class="text-primary" id="regFees" data-value="<?= $courseObj->registeration_fees; ?>"><?= $courseObj->registeration_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
+                        </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Registeration fees')?></td>
                             <td><span class="text-primary" id="regFees" data-value="<?= $courseObj->registeration_fees; ?>"><?= $courseObj->registeration_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
