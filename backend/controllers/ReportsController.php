@@ -26,9 +26,9 @@ class ReportsController extends BackendController
         $schoolsCount = Schools::find()->count();
 
         // users types count
-        $studentsCount = User::findByRole('user');
-        $referralPersonCount = User::findByRole('referralPerson');
-        $referralCompanyCount = User::findByRole('referralCompany');
+        $studentsCount = count(User::findByRole('user'));
+        $referralPersonCount = count(User::findByRole('referralPerson'));
+        $referralCompanyCount = count(User::findByRole('referralCompany'));
         // return $universityCount;
         return $this->render('general',
             compact('universityCount', 'universityProgramMajorsCount',

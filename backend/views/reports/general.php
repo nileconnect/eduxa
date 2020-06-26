@@ -3,7 +3,7 @@ $this->title = 'Statistic';
 ?>
 <div class="box box-default">
     <div class="box-header with-border">
-        <h3 class="box-title">Browser Usage</h3>
+        <h3 class="box-title">Registerd Users</h3>
     </div>
     <div class="box-body">
         <div class="row">
@@ -14,17 +14,14 @@ $this->title = 'Statistic';
             </div>
             <div class="col-md-4">
                 <ul class="chart-legend clearfix">
-                    <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                    <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                    <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                    <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                    <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                    <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                    <li><i class="fa fa-circle-o text-red"></i> No. of Students</li>
+                    <li><i class="fa fa-circle-o text-green"></i> No. of Individual Referral</li>
+                    <li><i class="fa fa-circle-o text-yellow"></i> No. of Compoany Referral</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="box-footer no-padding">
+    <!-- <div class="box-footer no-padding">
         <ul class="nav nav-pills nav-stacked">
             <li><a href="#">United States of America
                     <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
@@ -33,7 +30,7 @@ $this->title = 'Statistic';
             <li><a href="#">China
                     <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
         </ul>
-    </div>
+    </div> -->
 
     <div class="box-header with-border">
         <h3 class="box-title">Educational Institution Statistic</h3>
@@ -72,40 +69,22 @@ $(function () {
     var pieChart       = new Chart(pieChartCanvas)
     var PieData        = [
       {
-        value    : 700,
+        value    : $studentsCount,
         color    : '#f56954',
         highlight: '#f56954',
-        label    : 'Chrome'
+        label    : 'No. of Students'
       },
       {
-        value    : 500,
+        value    : $referralPersonCount,
         color    : '#00a65a',
         highlight: '#00a65a',
-        label    : 'IE'
+        label    : 'No. of Individual Referral'
       },
       {
-        value    : 400,
+        value    : $referralCompanyCount,
         color    : '#f39c12',
         highlight: '#f39c12',
-        label    : 'FireFox'
-      },
-      {
-        value    : 600,
-        color    : '#00c0ef',
-        highlight: '#00c0ef',
-        label    : 'Safari'
-      },
-      {
-        value    : 300,
-        color    : '#3c8dbc',
-        highlight: '#3c8dbc',
-        label    : 'Opera'
-      },
-      {
-        value    : 100,
-        color    : '#d2d6de',
-        highlight: '#d2d6de',
-        label    : 'Navigator'
+        label    : 'No. of Compoany Referral'
       }
     ]
     var pieOptions     = {
