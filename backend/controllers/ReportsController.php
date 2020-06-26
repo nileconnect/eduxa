@@ -2,15 +2,16 @@
 
 namespace backend\controllers;
 
+use Yii;
+use common\models\User;
 use backend\models\School;
 use backend\models\Schools;
-use backend\models\search\RequestsSearch;
-use backend\models\search\UserSearch;
 use backend\models\University;
-use backend\models\UniversityProgramMajors;
+use backend\models\SchoolCourse;
+use backend\models\search\UserSearch;
 use backend\models\UniversityPrograms;
-use common\models\User;
-use Yii;
+use backend\models\search\RequestsSearch;
+use backend\models\UniversityProgramMajors;
 
 /**
  * SchoolsController implements the CRUD actions for Schools model.
