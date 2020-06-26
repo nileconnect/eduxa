@@ -2,20 +2,16 @@
 
 namespace backend\controllers;
 
-use backend\helpers\FileUploadHelper;
+use backend\models\Country;
+use backend\models\CountrySearch;
 use Intervention\Image\ImageManagerStatic;
-use lucasguo\import\components\Importer;
-use lucasguo\import\exceptions\InvalidFileException;
 use trntv\filekit\actions\DeleteAction;
 use trntv\filekit\actions\UploadAction;
 use Yii;
-use backend\models\Country;
-use backend\models\CountrySearch;
+use yii\filters\VerbFilter;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
  * CountryController implements the CRUD actions for Country model.
@@ -34,11 +30,11 @@ class CountryController extends BackendController
                     $file = $event->file;
                     $img = ImageManagerStatic::make($file->read())->fit(215, 215);
                     $file->put($img->encode());
-                }
+                },
             ],
             'avatar-delete' => [
-                'class' => DeleteAction::class
-            ]
+                'class' => DeleteAction::class,
+            ],
         ];
     }
 
@@ -69,15 +65,15 @@ class CountryController extends BackendController
         ]);
     }
 
-
-    public function actionUpdateItem(){
+    public function actionUpdateItem()
+    {
         if (Yii::$app->request->post('hasEditable')) {
             // instantiate your book model for saving
             $CountryId = Yii::$app->request->post('editableKey');
             $model = Country::findOne($CountryId);
 
             // store a default json response as desired by editable
-            $out = Json::encode(['output'=>'', 'message'=>'']);
+            $out = Json::encode(['output' => '', 'message' => '']);
 
             // fetch the first entry in posted data (there should only be one entry
             // anyway in this array for an editable submission)
@@ -101,25 +97,24 @@ class CountryController extends BackendController
                 // EditableColumn in the grid view. We evaluate here a
                 // check to see if buy_amount was posted for the Book model
                 if (isset($posted['top_destination'])) {
-                    $output =$posted['top_destination'] ? 'Yes':'No';
+                    $output = $posted['top_destination'] ? 'Yes' : 'No';
                 }
 
                 if (isset($posted['status'])) {
-                    $output =$posted['status'] ? 'Yes':'No';
+                    $output = $posted['status'] ? 'Yes' : 'No';
                 }
 
                 // similarly you can check if the name attribute was posted as well
                 // if (isset($posted['name'])) {
                 // $output = ''; // process as you need
                 // }
-                $out = Json::encode(['output'=>$output, 'message'=>'']);
+                $out = Json::encode(['output' => $output, 'message' => '']);
             }
             // return ajax json encoded response and exit
             //echo $out;
-            return $out ;
+            return $out;
         }
     }
-
 
     /**
      * Displays a single Country model.
@@ -188,7 +183,6 @@ class CountryController extends BackendController
         return $this->redirect(['index']);
     }
 
-    
     /**
      * Finds the Country model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -204,21 +198,23 @@ class CountryController extends BackendController
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
         }
     }
-    
+
     /**
-    * Action to load a tabular form grid
-    * for CountryAttachment
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
+     * Action to load a tabular form grid
+     * for CountryAttachment
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
     public function actionAddCountryAttachment()
     {
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('CountryAttachment');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add') {
                 $row[] = [];
+            }
+
             return $this->renderAjax('_formCountryAttachment', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));

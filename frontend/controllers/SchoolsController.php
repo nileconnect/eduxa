@@ -27,11 +27,8 @@ class SchoolsController extends FrontendController
     public function actionIndex()
     {
         $countries = Country::find()->where(['status'=>1 , 'top_destination'=>1])->all();
-        // $schools = Schools::find()->where(['status'=>1 , 'featured'=>1])->all();
-
         $listSchools = new SchoolCourseSearch();
         $courses = $listSchools->listInFront();
-        // return var_dump($courses[0]->school->title);
         $searchModel = new SchoolCourseSearch();
         return $this->render('index' ,['countries'=>$countries , 'courses'=>$courses ,'searchModel'=>$searchModel]);
     }
