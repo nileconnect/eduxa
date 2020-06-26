@@ -33,10 +33,8 @@ class ReportsController extends BackendController
 
     public function actionRequests()
     {
-        // return strtotime('today - 30 days');
         $searchModel = new RequestsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        // return var_dump($searchModel);
         return $this->render('requests', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
