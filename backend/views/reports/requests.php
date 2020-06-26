@@ -27,7 +27,6 @@ $this->registerJs($search);
 <?php
 $gridColumn = [
     // ['class' => 'yii\grid\SerialColumn'],
-
     ['attribute' => 'id',
         'value' => function ($model) {
             return \backend\models\Requests::ListRequestStartNo()[$model->request_by_role] . $model->id;
@@ -61,74 +60,50 @@ $gridColumn = [
         'value' => function ($model) {
             return \backend\models\Requests::ListRequestBy()[$model->request_by_role];
         },
-        'filter' => Html::activeDropDownList($searchModel, 'request_by_role', \backend\models\Requests::ListRequestBy(), ['class' => 'form-control', 'prompt' => 'Select']),
     ],
-
-    //  'student_id',
+    [
+        'label' => 'Start Date Of Study',
+        'attribute' => 'start_date_of_Study',
+        'value' => function ($model) {
+            return $model->modelObj->first_submission_date;
+        },
+    ],
+    [
+        'label' => 'Study Duration',
+        'attribute' => 'study_duration',
+        'value' => function ($model) {
+            return $model->modelObj->study_duration;
+        },
+    ],
     [
         'attribute' => 'requester_id',
         'label' => Yii::t('backend', 'Requester'),
         'value' => function ($model) {
             return $model->requester->username;
         },
-        'filterType' => GridView::FILTER_SELECT2,
-        'filter' => \yii\helpers\ArrayHelper::map(\common\models\User::find()->asArray()->all(), 'id', 'username'),
-        'filterWidgetOptions' => [
-            'pluginOptions' => ['allowClear' => true],
-        ],
-        'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid-requests-search-requester_id'],
     ],
-    // 'request_notes:ntext',
-    //   'admin_notes:ntext',
-
-    // 'student_gender',
-    //  'student_email:email',
-    //   'student_mobile',
+    [
+        'attribute' => 'student_nationality_id',
+        'label' => Yii::t('backend', 'Nationality'),
+        'value' => function ($model) {
+            if ($model->student_nationality_id) {return $model->student_nationality_id;} else {return null;}
+        },
+    ],
     [
         'attribute' => 'student_country_id',
-        'label' => Yii::t('backend', 'Student Country'),
+        'label' => Yii::t('backend', 'Country'),
         'value' => function ($model) {
             if ($model->studentCountry) {return $model->studentCountry->title;} else {return null;}
         },
-        'filterType' => GridView::FILTER_SELECT2,
-        'filter' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->asArray()->all(), 'id', 'title'),
-        'filterWidgetOptions' => [
-            'pluginOptions' => ['allowClear' => true],
-        ],
-        'filterInputOptions' => ['placeholder' => 'Country', 'id' => 'grid-requests-search-student_country_id'],
     ],
     [
         'attribute' => 'student_city_id',
-        'label' => Yii::t('backend', 'Student State'),
+        'label' => Yii::t('backend', 'State'),
         'value' => function ($model) {
             if ($model->studentCity) {return $model->studentCity->title;} else {return null;}
         },
-        'filterType' => GridView::FILTER_SELECT2,
-        'filter' => \yii\helpers\ArrayHelper::map(\backend\models\State::find()->asArray()->all(), 'id', 'title'),
-        'filterWidgetOptions' => [
-            'pluginOptions' => ['allowClear' => true],
-        ],
-        'filterInputOptions' => ['placeholder' => 'State', 'id' => 'grid-requests-search-student_city_id'],
     ],
 
-    [
-        'attribute' => 'student_nationality_id',
-        'value' => function ($model) {
-            if ($model->student_nationality_id) {return $model->studentNationality->title;} else {return null;}
-        },
-        'filterType' => GridView::FILTER_SELECT2,
-        'filter' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->asArray()->all(), 'id', 'title'),
-        'filterWidgetOptions' => [
-            'pluginOptions' => ['allowClear' => true],
-        ],
-        'filterInputOptions' => ['placeholder' => 'Nationality'],
-    ],
-    //  'accomodation_option',
-    //   'accomodation_option_cost',
-    //    'airport_pickup',
-    //    'airport_pickup_cost',
-    //    'course_start_date',
-    //     'number_of_weeks',
     [
         'attribute' => 'created_at',
         //  'format' => 'date'
@@ -139,15 +114,12 @@ $gridColumn = [
         'value' => function ($model) {
             return \backend\models\Requests::ListStatus()[$model->status];
         },
-        'filter' => Html::activeDropDownList($searchModel, 'status', \backend\models\Requests::ListStatus(), ['class' => 'form-control', 'prompt' => 'Select']),
     ],
-
-    [
-        'class' => '\kartik\grid\CheckboxColumn',
-        'rowSelectedClass' => GridView::TYPE_INFO,
-        'name' => 'Expedientes_Seleccionados',
-
-    ],
+    // [
+    //     'class' => '\kartik\grid\CheckboxColumn',
+    //     'rowSelectedClass' => GridView::TYPE_INFO,
+    //     'name' => 'Expedientes_Seleccionados',
+    // ],
     [
         'class' => 'yii\grid\ActionColumn', 'template' => '{view}',
     ],

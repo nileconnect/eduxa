@@ -21,11 +21,9 @@ class ReportsController extends BackendController
 
     public function actionUsers()
     {
-        // return date('Y-m-d',strtotime('today - 1 year'));
         $searchModel = new UserSearch();
         $searchModel->report = true;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        // return var_dump($searchModel);
         return $this->render('users', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -35,15 +33,13 @@ class ReportsController extends BackendController
 
     public function actionRequests()
     {
-
         $searchModel = new RequestsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        // return var_dump($searchModel);
         return $this->render('requests', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-
     }
 
 }
