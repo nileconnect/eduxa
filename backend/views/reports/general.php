@@ -1,62 +1,51 @@
 <?php
 $this->title = 'Statistic';
 ?>
-<div class="box box-default">
-    <div class="box-header with-border">
+<div class="row">
+    <div class="col-md-8 col-sm-12">
         <h3 class="box-title">Registerd Users</h3>
-    </div>
-    <div class="box-body">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="chart-responsive">
-                    <canvas id="pieChart" height="150"></canvas>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="chart-responsive">
+                        <canvas id="pieChart" height="150"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <ul class="chart-legend clearfix">
-                    <li><i class="fa fa-circle-o text-red"></i> No. of Students</li>
-                    <li><i class="fa fa-circle-o text-green"></i> No. of Individual Referral</li>
-                    <li><i class="fa fa-circle-o text-yellow"></i> No. of Compoany Referral</li>
-                </ul>
+                <div class="col-md-5">
+                    <ul class="chart-legend clearfix" style="margin-top: 70px;">
+                        <li><i class="fa fa-circle-o text-red"></i> No. of Students</li>
+                        <li><i class="fa fa-circle-o text-green"></i> No. of Individual Referral</li>
+                        <li><i class="fa fa-circle-o text-yellow"></i> No. of Compoany Referral</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <!-- <div class="box-footer no-padding">
-        <ul class="nav nav-pills nav-stacked">
-            <li><a href="#">United States of America
-                    <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
-            <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
-            </li>
-            <li><a href="#">China
-                    <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
-        </ul>
-    </div> -->
-
-    <div class="box-header with-border">
+    <div class="col-md-4 col-sm-12">
         <h3 class="box-title">Educational Institution Statistic</h3>
+        <table class="kv-grid-table table table-bordered table-striped kv-table-wrap">
+            <tr>
+                <td>no. of University</td>
+                <td><?= $universityCount ?></td>
+            </tr>
+            <tr>
+                <td>no. of Majors</td>
+                <td><?= $universityProgramMajorsCount ?></td>
+            </tr>
+            <tr>
+                <td>no. of Programs</td>
+                <td><?= $universityProgramsCount ?></td>
+            </tr>
+            <tr>
+                <td>no. of Schools</td>
+                <td><?= $schoolsCount ?></td>
+            </tr>
+            <tr>
+                <td>no. of Courses</td>
+                <td><?= $coursesCount ?></td>
+            </tr>
+        </table>
     </div>
-    <table class="kv-grid-table table table-bordered table-striped kv-table-wrap">
-        <tr>
-            <td>no. of University</td>
-            <td><?= $universityCount ?></td>
-        </tr>
-        <tr>
-            <td>no. of Majors</td>
-            <td><?= $universityProgramMajorsCount ?></td>
-        </tr>
-        <tr>
-            <td>no. of Programs</td>
-            <td><?= $universityProgramsCount ?></td>
-        </tr>
-        <tr>
-            <td>no. of Schools</td>
-            <td><?= $schoolsCount ?></td>
-        </tr>
-        <tr>
-            <td>no. of Courses</td>
-            <td><?= $coursesCount ?></td>
-        </tr>
-    </table>
 </div>
 <!-- /.box -->
 
