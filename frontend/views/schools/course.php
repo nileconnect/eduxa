@@ -4,6 +4,7 @@ use backend\models\SchoolCourse;
 
 \frontend\assets\CourcesAsset::register($this);
 $min_price = $courseObj->minimumPrice;
+$this->title =  $schoolObj->title .' - '. $courseObj->title ;
 ?>
 <nav aria-label="breadcrumb">
     <div class="container">
