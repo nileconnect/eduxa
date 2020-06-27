@@ -280,6 +280,29 @@ var app = new Vue({
         deleteStudent(index) {
             this.StudentsList.splice(index, 1)
         },
+        submitReferal() {
+            if (this.StudentsList == "") {
+                console.log("empty")
+            } else {
+                var data = {
+                    "slug": this.slug,
+                    'students': this.StudentsList
+                }
+                $.ajax({
+                    "url": Api + "referral/add-request",
+                    "method": "POST",
+                    "data": data,
+                    success: res => {
+                        console.log(res)
+                        if (res.success == true) {
+                            $(".successMsg").addClass("show")
+
+                        }
+                    }
+                });
+            }
+
+        }
     },
     computed: {
         total: function() {

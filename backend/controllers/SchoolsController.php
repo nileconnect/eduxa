@@ -3,12 +3,12 @@
 namespace backend\controllers;
 
 use backend\models\base\SchoolsV;
-use Yii;
 use backend\models\Schools;
 use backend\models\search\SchoolsSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * SchoolsController implements the CRUD actions for Schools model.
@@ -120,7 +120,6 @@ class SchoolsController extends BackendController
         }
     }
 
-
     public function actionMedia()
     {
         // $this->layout ='base';
@@ -136,25 +135,23 @@ class SchoolsController extends BackendController
                     'asc' => ['image_path' => SORT_ASC],
                     'desc' => ['image_path' => SORT_DESC],
                     'label' => 'Logo',
-                    'default' => SORT_ASC
+                    'default' => SORT_ASC,
                 ],
                 'imagesCount' => [
                     'asc' => ['imagesCount' => SORT_ASC],
                     'desc' => ['imagesCount' => SORT_DESC],
                     'label' => 'imagesCount',
-                    'default' => SORT_ASC
+                    'default' => SORT_ASC,
                 ],
 
                 'videosCount' => [
                     'asc' => ['videosCount' => SORT_ASC],
                     'desc' => ['videosCount' => SORT_DESC],
                     'label' => 'videosCount',
-                    'default' => SORT_ASC
+                    'default' => SORT_ASC,
                 ],
-            ]
+            ],
         ]);
-
-
 
         return $this->render('media', [
             'searchModel' => $searchModel,
@@ -163,66 +160,68 @@ class SchoolsController extends BackendController
     }
     public function actionUpdateLogo($id)
     {
-        $this->layout ='base';
+        $this->layout = 'base';
         $model = $this->findModel($id);
-        $saved= false;
+        $saved = false;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('alert', [
-                'type' =>'success',
-                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
-                'title' =>'',
+                'type' => 'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully'),
+                'title' => '',
             ]);
-            $saved= true;
+            $saved = true;
         }
         return $this->render('forms/logo', [
             'model' => $model,
-            'saved'=>$saved
+            'saved' => $saved,
         ]);
     }
 
     public function actionUpdatePictures($id)
     {
-        $this->layout ='base';
+        $this->layout = 'base';
         $model = $this->findModel($id);
-        $saved= false;
+        $saved = false;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('alert', [
-                'type' =>'success',
-                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
-                'title' =>'',
+                'type' => 'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully'),
+                'title' => '',
             ]);
-            $saved= true;
+            $saved = true;
         }
         return $this->render('forms/pictures', [
             'model' => $model,
-            'saved'=>$saved
+            'saved' => $saved,
         ]);
     }
 
     public function actionUpdateVideos($id)
     {
-        $this->layout ='base';
+        $this->layout = 'base';
 
         $model = SchoolsV::findOne($id);
-        if(! $model) throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
-        $saved= false;
+        if (!$model) {
+            throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        }
+
+        $saved = false;
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             Yii::$app->getSession()->setFlash('alert', [
-                'type' =>'success',
-                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
-                'title' =>'',
+                'type' => 'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully'),
+                'title' => '',
             ]);
-            $saved= true;
+            $saved = true;
         }
         return $this->render('forms/videos', [
             'model' => $model,
-            'saved'=>$saved
+            'saved' => $saved,
         ]);
     }
-
 
     /**
      * Deletes an existing Schools model.
@@ -233,18 +232,17 @@ class SchoolsController extends BackendController
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        if($model->schoolCourses){
+        if ($model->schoolCourses) {
             Yii::$app->getSession()->setFlash('alert', [
-                'type' =>'danger',
-                'body' => \Yii::t('backend', 'You are not allowed to delete '. $model->title .' because it is has courses you need to delete first.') ,
-                'title' =>'',
+                'type' => 'danger',
+                'body' => \Yii::t('backend', 'You are not allowed to delete ' . $model->title . ' because it is has courses you need to delete first.'),
+                'title' => '',
             ]);
-        }else{
+        } else {
             $this->findModel($id)->deleteWithRelated();
         }
         return $this->redirect(['index']);
     }
-
 
     /**
      * Finds the Schools model based on its primary key value.
@@ -262,7 +260,6 @@ class SchoolsController extends BackendController
         }
     }
 
-
     /**
      * Action to load a tabular form grid
      * for SchoolAccomodation
@@ -278,8 +275,10 @@ class SchoolsController extends BackendController
             if (!empty($row)) {
                 $row = array_values($row);
             }
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add') {
                 $row[] = [];
+            }
+
             return $this->renderAjax('_formSchoolAccomodation', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
@@ -301,8 +300,10 @@ class SchoolsController extends BackendController
             if (!empty($row)) {
                 $row = array_values($row);
             }
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add') {
                 $row[] = [];
+            }
+
             return $this->renderAjax('_formSchoolAirportPickup', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
@@ -324,8 +325,10 @@ class SchoolsController extends BackendController
             if (!empty($row)) {
                 $row = array_values($row);
             }
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add') {
                 $row[] = [];
+            }
+
             return $this->renderAjax('_formSchoolCourse', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
@@ -347,8 +350,10 @@ class SchoolsController extends BackendController
             if (!empty($row)) {
                 $row = array_values($row);
             }
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add') {
                 $row[] = [];
+            }
+
             return $this->renderAjax('_formSchoolRating', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
@@ -370,8 +375,10 @@ class SchoolsController extends BackendController
             if (!empty($row)) {
                 $row = array_values($row);
             }
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add') {
                 $row[] = [];
+            }
+
             return $this->renderAjax('forms/_formSchoolVideos', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));

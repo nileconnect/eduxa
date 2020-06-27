@@ -51,7 +51,7 @@ $this->title = 'Statistic';
 
 
 
-<?php 
+<?php
 $js = <<<JS
 $(function () {
     //-------------
@@ -108,7 +108,7 @@ $(function () {
     // You can switch between pie and douhnut using the method below.
     pieChart.Doughnut(PieData, pieOptions)
 
-    
+
 })
 JS;
 $this->registerJs($js);

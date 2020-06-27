@@ -1,7 +1,9 @@
 <?php
 /* @var $this \yii\web\View */
+use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\widgets\Breadcrumbs;
+use backend\models\Newsletter;
 
 /* @var $content string */
 
@@ -78,12 +80,17 @@ if(Yii::$app->session->hasFlash('alert')){
                     </div>
                     <div class="col-sm-4 mtmd">
                         <h3>Newsletter</h3>
-                        <form action="" method="">
+                        <?php 
+                            $model = new Newsletter();
+                            $form = ActiveForm::begin([
+                                'action'=>'/site/newsletter'
+                            ]);
+                        ?>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter your e-mail address">
+                                <?= $form->field($model, 'email')->textInput(['class' => 'form-control', 'placeholder' => 'Enter your e-mail address']) ?>
                                 <button type="submit"><i class="far fa-paper-plane"></i></button>
                             </div>
-                        </form>
+                        <?php ActiveForm::end(); ?>
                     </div>
                 </div>
             </div>
