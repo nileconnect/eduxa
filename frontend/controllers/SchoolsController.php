@@ -64,7 +64,6 @@ class SchoolsController extends FrontendController
         if(!$courseObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
 
         $schoolObj = $courseObj->school;
-
         return $this->render('course' , ['courseObj'=>$courseObj,'schoolObj'=>$schoolObj]);
     }
 
