@@ -37,7 +37,7 @@ var app = new Vue({
             stateId: "",
             stateTitle: "",
             lang: $("#courcesApp").attr("data-lang"),
-            slug: $("#courcesApp").attr("data-slug"),
+            slug: $("#courcesApp").attr("data-CourseSlug"),
             firstName: "",
             lastName: "",
             gender: "",
