@@ -310,7 +310,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                                 </ul>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <a href="javascript:void(0)" v-on:click="selectAccommodation(acco.reg_fees,acco.title)" style="margin-bottom:20px" class="button button-primary btn-block text-large">Choose this option
+                                                        <a href="javascript:void(0)" v-on:click="selectAccommodation(acco.reg_fees,acco.title,acco.id)" style="margin-bottom:20px" class="button button-primary btn-block text-large">Choose this option
                                                         </a>
                                                     </div>
                                                 </div>
@@ -386,7 +386,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         <tr>
                             <td>
                                 <div class="select-wrapper">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="" class="form-control"  @change="Selectdate($event)">
                                         <option>Start Date</option>
                                         <option v-for="date in StartDates" :value="date.id">{{date.course_date}}</option>
                                         

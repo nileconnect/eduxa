@@ -204,6 +204,7 @@ var app = new Vue({
             } else {
                 var data = {
                     "slug": this.slug,
+                    "type": "programe",
                     'students': this.StudentsList
                 }
                 $.ajax({

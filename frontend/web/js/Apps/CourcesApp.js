@@ -17,7 +17,11 @@ var app = new Vue({
             regFees: $("#regFees").attr("data-value"),
             bookFees: $("#bookFees").attr("data-value"),
             totals: "",
-
+            SelectedDate: "",
+            selectedaccoID: "",
+            selectedCourseDuration: "",
+            selectedAirportID: "",
+            selectedHealthIns: false,
             //Add Student
             Countries: [],
             selectedCountry: null,
@@ -88,21 +92,24 @@ var app = new Vue({
 
     },
     methods: {
-        selectAccommodation(fees, title) {
+        selectAccommodation(fees, title, id) {
             // var index = id
             //this.Selectedaccomodtion = this.accomodtion[index]
             //$("#accoTable").show()
             this.accomodtionFees = fees
+            this.selectedaccoID = id
             $(".btnAcco").html(title)
             $('#AccoModal').modal('hide')
 
         },
         SelectAirport(event) {
             this.SelectedAirport = this.airports[event.target.value]
+            this.selectedAirportID = this.SelectedAirport.id
         },
         //Get duration-cost
         GetCourseDurations(event) {
             //http://eduxa.localhost/rest/course/duration-cost?filter[course_id]=2&filter[no_of_weeks]=3&filter[lang]=ar
+            this.selectedCourseDuration = event.target.value
             $.ajax({
                 "url": Api + "course/duration-cost?filter[course_id]=" + this.CourseID + "&filter[no_of_weeks]=" + event.target.value + "&filter[lang]=" + this.lang,
                 "method": "GET",
@@ -117,6 +124,7 @@ var app = new Vue({
             if (event.srcElement.checked) {
                 // console.log(event.target.value)
                 this.SelectedHealth = event.target.value
+                this.selectedHealthIns = true
             } else {
                 this.SelectedHealth = ""
             }
@@ -152,7 +160,10 @@ var app = new Vue({
             this.stateId = this.selectedState.id
             this.stateTitle = this.selectedState.title
         },
-
+        Selectdate(event) {
+            this.SelectedDate = event.target.value
+            console.log(this.SelectedDate)
+        },
 
         addStudent() {
 
@@ -286,7 +297,13 @@ var app = new Vue({
             } else {
                 var data = {
                     "slug": this.slug,
-                    'students': this.StudentsList
+                    "type": "course",
+                    'students': this.StudentsList,
+                    'start_date': this.SelectedDate,
+                    'Accommodation_option': this.selectedaccoID,
+                    'course_duration': this.selectedCourseDuration,
+                    'Airport': this.selectedAirportID,
+                    'health_insurance': this.selectedHealthIns
                 }
                 $.ajax({
                     "url": Api + "referral/add-request",
