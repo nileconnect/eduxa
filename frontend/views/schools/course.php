@@ -15,7 +15,9 @@ $min_price = $courseObj->minimumPrice;
     </div>
 </nav>
 
-<div id="courcesApp" data-lang="<?php echo Yii::$app->language ; ?>" data-SchoolId="<?php echo $courseObj->school_id ; ?>" data-CourseID="<?php echo $courseObj->id; ?>">
+<div id="courcesApp" data-lang="<?php echo Yii::$app->language ; ?>" data-SchoolId="<?php echo $courseObj->school_id ; ?>" data-CourseID="<?php echo $courseObj->id; ?>" 
+data-CourseSlug="<?php echo $courseObj->slug; ?>"
+>
 
 <section class="section">
     <div class="container">
