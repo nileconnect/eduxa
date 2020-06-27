@@ -97,7 +97,7 @@ class ReferralController extends Controller
 
     public function actionAddStudentCourseRequest()
     {
-        if (!\Yii::$app->user->identity->getId()) {
+        if (Yii::$app->user->isGuest) {
             return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed a']);
         }
 
