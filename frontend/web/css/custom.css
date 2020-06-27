@@ -122,6 +122,10 @@
     color: #495057;
 }
 
+.footer .form-group button {
+    top: 55px;
+}
+
 @media (max-width: 768px) {
     .majorsList li,
     .contList li {
