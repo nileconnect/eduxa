@@ -215,7 +215,6 @@ var app = new Vue({
                         console.log(res)
                         if (res.success == true) {
                             $(".successMsg").addClass("show")
-
                         }
                     }
                 });

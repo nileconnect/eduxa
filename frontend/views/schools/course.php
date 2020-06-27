@@ -94,7 +94,9 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
     <section class="section">
         <div class="container">
-
+            <div class="alert alert-danger" id="studentError" style="display:none">
+                <p><?= Yii::t('frontend' , 'Please, Add students information.')?><p>
+            </div>
             <h3 class="text-primary"><i class="far fa-user"></i> <?= Yii::t('frontend' , 'Student Information')?></h3>
 
             <div class="ptxlg pbxlg plxlg prxlg bg-white shadow-sm mtmd">
@@ -453,6 +455,8 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
                 <div class="mtlg">
                     <a href="javascript:void(0)" class="button button-primary btn-block text-large" @click="submitReferal()"><?= Yii::t('frontend' , 'Apply Now')?></a>
+                    <a href="javascript:void(0)" class="button button-primary btn-block text-large" @click="submitStudent()"><?= Yii::t('frontend' , 'Apply Now')?></a>
+
                 </div>
             </div>
         </div>
@@ -593,4 +597,12 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     </div>
 </section>
 
+</div>
+
+
+<div class="successMsg">
+    <img src="/img/success.png">
+    <h3><?= Yii::t('frontend','Your Request Success')   ?></h3>
+    <p><?= Yii::t('frontend','Your Request Successfully Submited, Please check your profile.')   ?></p>
+    <a class="button button-primary" href="/referral-dashboard/requests"><?= Yii::t('frontend','Referral Program')   ?></a>
 </div>
