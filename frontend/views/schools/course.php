@@ -59,7 +59,7 @@ $min_price = $courseObj->minimumPrice;
                     <?= $schoolObj->details ?>
                 </div>
                 <div class="mtlg">
-                    <a href="#" class="button button-primary button-wide">Apply Now</a>
+                    <a href="#applyDiv" class="button button-primary button-wide">Apply Now</a>
                     <p class="mtsm text-large">
                         Best Weekly Price : <?=  $min_price ?> <?= $schoolObj->currency->currency_code ?>
                         <span class="line-through text-red">
@@ -214,7 +214,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
 ?>
 
-<section class="section">
+<section class="section" id="applyDiv">
     <div class="container">
         <div class="row">
             <div class="col-sm-6 ">
@@ -450,7 +450,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 </table>
 
                 <div class="mtlg">
-                    <a href="#" class="button button-primary btn-block text-large"><?= Yii::t('frontend' , 'Apply Now')?></a>
+                    <a href="javascript:void(0)" class="button button-primary btn-block text-large" @click="submitReferal()"><?= Yii::t('frontend' , 'Apply Now')?></a>
                 </div>
             </div>
         </div>

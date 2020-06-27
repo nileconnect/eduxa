@@ -14,7 +14,9 @@ $this->title = $model->title;
             <div class="col-sm-12 mbmd">
                 <h3 class="title title-sm"><?php echo $model->title ?></h3>
             </div>
-            <?php echo $model->body ?>
+            <div class="col-sm-12 mbmd">
+                <?php echo $model->body ?>
+            </div>
         </div>
     </div>
 </section>
