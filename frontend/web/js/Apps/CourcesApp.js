@@ -17,7 +17,7 @@ var app = new Vue({
             regFees: $("#regFees").attr("data-value"),
             bookFees: $("#bookFees").attr("data-value"),
             totals: "",
-
+            SelectedDate: "",
             //Add Student
             Countries: [],
             selectedCountry: null,
@@ -152,7 +152,10 @@ var app = new Vue({
             this.stateId = this.selectedState.id
             this.stateTitle = this.selectedState.title
         },
-
+        Selectdate(event) {
+            this.SelectedDate = event.target.value
+            console.log(this.SelectedDate)
+        },
 
         addStudent() {
 
@@ -286,7 +289,16 @@ var app = new Vue({
             } else {
                 var data = {
                     "slug": this.slug,
-                    'students': this.StudentsList
+                    "type": "course",
+                    'students': this.StudentsList,
+                    'start_date': this.SelectedDate,
+
+
+                    'Accommodation_option': this.StudentsList,
+
+                    'course_duration': this.CourseDurations,
+                    'Airport': this.SelectedAirport,
+                    'health_insurance': this.SelectedHealth
                 }
                 $.ajax({
                     "url": Api + "referral/add-request",

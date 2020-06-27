@@ -386,7 +386,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         <tr>
                             <td>
                                 <div class="select-wrapper">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="" class="form-control"  @change="Selectdate($event)">
                                         <option>Start Date</option>
                                         <option v-for="date in StartDates" :value="date.id">{{date.course_date}}</option>
                                         
