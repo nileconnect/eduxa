@@ -73,11 +73,11 @@ class ReferralController extends Controller
                 $requestObj->status = Requests::STATUS_PENDING;
 
                 if($requestType = Requests::MODEL_NAME_COURSE){
-                    $requestObj->course_start_date = $param['course_start_date'];
-                    $requestObj->accomodation_option = $param['accomodation_option'];
-                    $requestObj->airport_pickup = $param['airport_pickup'];
-                    $requestObj->number_of_weeks = $param['number_of_weeks'];
-                    $requestObj->health_insurance = $param['health_insurance'];
+                    $requestObj->course_start_date = $params['course_start_date'];
+                    $requestObj->accomodation_option = $params['accomodation_option'];
+                    $requestObj->airport_pickup = $params['airport_pickup'];
+                    $requestObj->number_of_weeks = $params['number_of_weeks'];
+                    $requestObj->health_insurance = $params['health_insurance'];
                 }
 
                 if (!$requestObj->save()) {
