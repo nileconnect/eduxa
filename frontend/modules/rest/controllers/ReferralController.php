@@ -71,6 +71,15 @@ class ReferralController extends Controller
                 $requestObj->student_mobile = $param['mobile'];
                 $requestObj->student_nationality_id = $param['nationality'];
                 $requestObj->status = Requests::STATUS_PENDING;
+
+                if($requestType = Requests::MODEL_NAME_COURSE){
+                    $requestObj->course_start_date = $param['course_start_date'];
+                    $requestObj->accomodation_option = $param['accomodation_option'];
+                    $requestObj->airport_pickup = $param['airport_pickup'];
+                    $requestObj->number_of_weeks = $param['number_of_weeks'];
+                    $requestObj->health_insurance = $param['health_insurance'];
+                }
+
                 if (!$requestObj->save()) {
                     return ResponseHelper::sendFailedResponse(['MESSAGE' => $requestObj->errors]);
                 }
