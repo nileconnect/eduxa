@@ -65,7 +65,7 @@ $gridColumn = [
         'label' => 'Start Date Of Study',
         'attribute' => 'start_date_of_Study',
         'value' => function ($model) {
-            return $model->modelObj->first_submission_date;
+            return $model->modelObj && isset($model->modelObj->first_submission_date)? $model->modelObj->first_submission_date : ' ';
         },
     ],
     [
