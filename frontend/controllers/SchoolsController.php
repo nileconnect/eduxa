@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use backend\models\base\SchoolCourse;
+use backend\models\SchoolCourse;
 use backend\models\base\UniversityPrograms;
 use backend\models\Country;
 use backend\models\Faq;

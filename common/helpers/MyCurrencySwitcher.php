@@ -16,13 +16,18 @@ class MyCurrencySwitcher {
     }
 
 
-    public static function checkCurrency($code , $amount){
+    public static function checkCurrency($code , $amount,$formatted=true){
 
         if($code == Yii::$app->session->get('_currency')){
             return ;
         }else{
            $value= MyCurrencySwitcher::Convert($code,Yii::$app->session->get('_currency'),$amount);
-            return ' <div><span class="converted-price">'.$value.'</span><span class="currency">'.Yii::$app->session->get('_currency').'</span></div>';
+           if($formatted){
+               return ' <div><span class="converted-price">'.$value.'</span><span class="currency">'.Yii::$app->session->get('_currency').'</span></div>';
+           }else{
+               return $value.' '.Yii::$app->session->get('_currency');
+
+           }
         }
 
     }

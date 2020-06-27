@@ -3,6 +3,7 @@ use \common\models\User;
 use backend\models\SchoolCourse;
 
 \frontend\assets\CourcesAsset::register($this);
+$min_price = $courseObj->minimumPrice;
 ?>
 <nav aria-label="breadcrumb">
     <div class="container">
@@ -59,7 +60,14 @@ use backend\models\SchoolCourse;
                 </div>
                 <div class="mtlg">
                     <a href="#" class="button button-primary button-wide">Apply Now</a>
-                    <p class="mtsm text-large">Best Weekly Price : 140 USD <span class="line-through text-red">165 USD</span></p>
+                    <p class="mtsm text-large">
+                        Best Weekly Price : <?=  $min_price ?> <?= $schoolObj->currency->currency_code ?>
+                        <span class="line-through text-red">
+                             <?php
+                             echo \common\helpers\MyCurrencySwitcher::checkCurrency($courseObj->school->currency->currency_code ,$min_price ,false);
+                             ?>
+
+                        </span></p>
                 </div>
             </div>
 
@@ -72,7 +80,7 @@ use backend\models\SchoolCourse;
 
         <div class="ptlg pblg prlg pllg bg-white b-all text-large">
             <p>
-                Conversations can be a tricky business. Sometimes, decoding what is said with what is meant is difficult at best. However, communication is a necessary tool in todays world. And it’s not only speaking that can be difficult, but trying to interpret body language, and other language barriers are just a few of the obstacles barring effective communication. It’s often been the case were one party completely miscommunicates to another due to a misunderstanding between parties. 
+                <?= $courseObj->information ;?>
             </p>
         </div>
     </div>
@@ -201,15 +209,10 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
         </div>
     </section>
 
-    <?php
+ <?php
 }
 
 ?>
-
-
-
-
-
 
 <section class="section">
     <div class="container">
@@ -268,12 +271,58 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="bg-white shadow-sm b-all mtmd">
                     <div class="pllg prlg pblg ptlg">
                         <div class="select-wrapper" style="margin-bottom: 15px;">
-                            <select name="" id="" class="form-control" v-on:change="selectAccommodation($event)">
-                                <option>Accommodation options</option>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary btnAcco" data-toggle="modal" data-target="#AccoModal">
+                            Accommodation options
+                            </button>
 
-                                <option v-for="(acco,$index) in accomodtion" :value="$index" >{{acco.title}}</option>
-                                
-                            </select>
+                            <!-- Modal -->
+                            <div class="modal fade" id="AccoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Accommodation options available:</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div v-for="acco in accomodtion">
+                                                <div class="row">
+                                                    <div class="col-md-12">    
+                                                        <p>
+                                                            {{acco.title}}
+                                                            <br>
+                                                            {{acco.cost_per_duration_unit}} USD {{acco.booking_cycle}}
+                                                            <br>
+                                                            Registeration fees {{acco.reg_fees}} USD
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <ul class="row">
+                                                    <li v-if="acco.room" class="col-md-6">
+                                                        <i class="fas fa-bed"></i> Room type: {{acco.room}}</li>
+                                                    <li v-if="acco.booking_cycle" class="col-md-6"><i class="far fa-calendar-alt"></i> Booking cycle: {{acco.booking_cycle}}</li>
+                                                    <li v-if="acco.facility" class="col-md-6"><i class="fas fa-bath"></i> facilities: {{acco.facility}}</li>
+                                                    <li v-if="acco.min_booking_duraion" class="col-md-6"><i class="far fa-calendar-check"></i> Min Booking Duration: {{acco.min_booking_duraion}}</li>
+                                                    <li v-if="acco.distance_from_school" class="col-md-6"><i class="far fa-clock"></i> Distance from school: {{acco.distance_from_school}}</li>
+                                                    <li v-if="acco.special_diet" class="col-md-6"><i class="fas fa-utensils"></i> Special diat: {{acco.special_diet}}</li>
+                                                </ul>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <a href="javascript:void(0)" v-on:click="selectAccommodation(acco.reg_fees,acco.title)" style="margin-bottom:20px" class="button button-primary btn-block text-large">Choose this option
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
                         </div>
                         <div class="select-wrapper">
                             <select name="" id="" class="form-control">
@@ -285,7 +334,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </div>
                         
                     </div>
-                    <table class="table text-large wide-cell" id="accoTable" style="display:none">
+                    <!-- <table class="table text-large wide-cell" id="accoTable" style="display:none">
                         <tbody>
                             <tr v-if="Selectedaccomodtion.reg_fees">
                                 <td><?= Yii::t('frontend' , 'Accommodation Registration Fees')?></td>
@@ -321,7 +370,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 <td><span class="text-primary">{{Selectedaccomodtion.cost_per_duration_unit}}</span></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                 </div>
 
             </div>
@@ -330,11 +379,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <tbody>
                         <tr>
                             <td>
-                                <div class="select-wrapper">
-                                    <select name="" id="" class="form-control">
-                                        <option>Course Type</option>                                        
-                                    </select>
-                                </div>
+                                Course Type
                             </td>
                             <td></td>
                         </tr>
@@ -382,9 +427,9 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             </td>
                             <td><span class="text-primary" v-if="SelectedHealth">{{SelectedHealth}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
-                        <tr>
+                        <tr v-if="accomodtionFees">
                             <td><?= Yii::t('frontend' , 'Accommodation fees')?></td>
-                            <td><span class="text-primary" id="regFees" data-value="<?= $courseObj->registeration_fees; ?>"><?= $courseObj->registeration_fees; ?> <?= $schoolObj->currency->currency_code?></span></td>
+                            <td><span class="text-primary" id="regFees">{{accomodtionFees}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Registeration fees')?></td>
@@ -413,31 +458,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     </div>
 </section>
 
-<section class="section">
-    <div class="container">
-        
-        <div class="universities universities-row">
 
-            <div class="item">
-                <header class="item-header">
-                    <figure>
-                        <img src="img/destinations/1.jpg" alt="">
-                    </figure>
-                    <div class="item-content">
-                        <div class="item-name">
-                            <span>Auburn - Alabama - USA</span>
-                        </div>
-                        <div class="item-body">
-                            Living in today’s metropolitan world of cellular phones, mobile computers and other high-tech gadgets is not just hectic but very impersonal. We make money and then invest our time and effort in making more money. 
-                        </div>
-                    </div>
-                </header>
-            </div>
-
-        </div>
-
-    </div>
-</section>
 
 
 <section class="section">
@@ -517,7 +538,6 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
     </div>
 </section>
-
 <section class="section">
     <div class="container">
         <h2 class="title text-center">Other courses in Language Academy </h2>

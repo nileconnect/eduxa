@@ -88,12 +88,13 @@ var app = new Vue({
 
     },
     methods: {
-        selectAccommodation(event) {
-            var index = event.target.value
-            this.Selectedaccomodtion = this.accomodtion[index]
-            $("#accoTable").show()
-            this.accomodtionFees = this.Selectedaccomodtion.cost_per_duration_unit
-            console.log(this.accomodtionFees)
+        selectAccommodation(fees, title) {
+            // var index = id
+            //this.Selectedaccomodtion = this.accomodtion[index]
+            //$("#accoTable").show()
+            this.accomodtionFees = fees
+            $(".btnAcco").html(title)
+            $('#AccoModal').modal('hide')
 
         },
         SelectAirport(event) {
