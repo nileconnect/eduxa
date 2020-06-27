@@ -62,7 +62,11 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                     <?= $schoolObj->details ?>
                 </div>
                 <div class="mtlg">
+                    <?php if(!Yii::$app->user->isGuest) :?>
                     <a href="#applyDiv" class="button button-primary button-wide">Apply Now</a>
+                    <?php else :?>
+                        <a href="/login?return=/school/course/<?= $courseObj->slug ?>" class="button button-primary button-wide">Apply Now</a>
+                    <?php endif;?>
                     <p class="mtsm text-large">
                         Best Weekly Price : <?=  $min_price ?> <?= $schoolObj->currency->currency_code ?>
                         <span class="line-through text-red">
@@ -459,9 +463,12 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
                     ?>
                     <a href="javascript:void(0)" class="button button-primary btn-block text-large" @click="submitReferal()"><?= Yii::t('frontend' , 'Apply Now')?></a>
-                <?php }else{
-                    ?>
+                <?php }else{ ?>
+                    <?php if(!Yii::$app->user->isGuest) :?>
                     <a href="javascript:void(0)" class="button button-primary btn-block text-large" @click="submitStudent()"><?= Yii::t('frontend' , 'Apply Now')?></a>
+                    <?php else:?>
+                        <a href="/login?return=/school/course/<?= $courseObj->slug ?>" class="button button-primary btn-block text-large" ><?= Yii::t('frontend' , 'Apply Now')?></a>
+                    <?php endif;?>
                 <?php } ?>
                 </div>
             </div>
