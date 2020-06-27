@@ -2,20 +2,21 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use cheatsheet\Time;
-use common\commands\SendEmailCommand;
-use common\helpers\MyCurrencySwitcher;
+use yii\helpers\Url;
+use yii\web\Response;
+use Sitemaped\Sitemap;
+use yii\web\Controller;
+use yii\filters\PageCache;
+use backend\models\Newsletter;
 use common\sitemap\UrlsIterator;
 use frontend\models\ContactForm;
-use imanilchaudhari\CurrencyConverter\CurrencyConverter;
 use Sitemaped\Element\Urlset\Urlset;
-use Sitemaped\Sitemap;
-use Yii;
-use yii\filters\PageCache;
-use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
-use yii\web\Response;
+use common\commands\SendEmailCommand;
+use common\helpers\MyCurrencySwitcher;
+use imanilchaudhari\CurrencyConverter\CurrencyConverter;
 
 /**
  * Site controller
@@ -152,5 +153,18 @@ class SiteController extends FrontendController
         }
 
         return $content;
+    }
+
+    public function actionNewsletter()
+    {
+        $model = new Newsletter();
+
+        if($model->load(Yii::$app->request->post()) and $model->save()){
+            Yii::$app->getSession()->setFlash('alert', [
+                'body' => Yii::t('frontend', 'Thank you for subscription.'),
+                'options' => ['class' => 'alert-success']
+            ]);
+        }
+        return $this->redirect(Yii::$app->request->referrer);
     }
 }
