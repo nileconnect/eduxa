@@ -122,17 +122,17 @@ class ReferralController extends Controller
             $requestObj->model_id = $programObj->id;
             $requestObj->model_parent_id = $parent;
             $requestObj->request_by_role = \common\models\User::GetRequesterRole($profile->user_id);
-            $requestObj->student_id = \Yii::$app->user->identity->getId();
+            $requestObj->student_id = $user->id;
             $requestObj->requester_id = $profile->user_id;
-            $requestObj->student_first_name = $params['firstName'];
-            $requestObj->student_last_name = $params['lastName'];
-            $requestObj->student_gender = $params['gender'] == "male" ? UserProfile::GENDER_MALE : UserProfile::GENDER_FEMALE;
-            $requestObj->student_email = $params['email'];
-            $requestObj->student_country_id = $params['countryId'];
-            $requestObj->student_city_id = $params['cityId'];
-            $requestObj->student_state_id = $params['stateId'];
-            $requestObj->student_mobile = $params['mobile'];
-            $requestObj->student_nationality_id = $params['nationality'];
+            $requestObj->student_first_name = $profile->firstname;
+            $requestObj->student_last_name = $profile->lastname;
+            $requestObj->student_gender = $profile->gender;
+            $requestObj->student_email = $user->email;
+            $requestObj->student_country_id = $profile->country_id;
+            $requestObj->student_city_id = $profile->city_id;
+            $requestObj->student_state_id = $profile->state_id;
+            $requestObj->student_mobile = $profile->mobile;
+            $requestObj->student_nationality_id = $profile->nationality;
             $requestObj->status = Requests::STATUS_PENDING;
 
             $requestObj->course_start_date = $params['course_start_date'];
