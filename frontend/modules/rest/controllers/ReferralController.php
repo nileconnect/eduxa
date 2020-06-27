@@ -2,8 +2,8 @@
 
 namespace frontend\modules\rest\controllers;
 
-use api\helpers\ResponseHelper;
-use api\resources\User;
+use frontend\modules\rest\helpers\ResponseHelper;
+use frontend\modules\rest\resources\User;
 use backend\models\base\UniversityPrograms;
 use backend\models\Requests;
 use common\models\UserProfile;
