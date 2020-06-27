@@ -4,6 +4,7 @@ namespace frontend\modules\rest\controllers;
 
 use backend\models\base\UniversityPrograms;
 use backend\models\Requests;
+use backend\models\SchoolCourse;
 use common\models\UserProfile;
 use frontend\modules\rest\helpers\ResponseHelper;
 use frontend\modules\rest\resources\User;
@@ -25,21 +26,36 @@ class ReferralController extends Controller
         $params = \Yii::$app->request->post(); // json_decode(file_get_contents("php://input") ,true);
         if ($params) { // logged in and valid role
             $students = $params['students'];
-            if ($params['slug']) {
-                $programObj = UniversityPrograms::find()->where(['slug' => $params['slug']])->one();
-                if (!$programObj) {
+            if ($params['type'] == 'program') {
+                if ($params['slug']) {
+                    $programObj = UniversityPrograms::find()->where(['slug' => $params['slug']])->one();
+                    $requestType = Requests::MODEL_NAME_PROGRAM;
+                    if (!$programObj) {
+                        return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed']);
+                    }
+
+                } else {
                     return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed']);
                 }
-
             } else {
-                return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed']);
+                if ($params['course']) {
+                    $programObj = SchoolCourse::find()->where(['slug' => $params['slug']])->one();
+                    $requestType = Requests::MODEL_NAME_COURSE;
+                    if (!$programObj) {
+                        return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed']);
+                    }
+
+                } else {
+                    return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed']);
+                }
             }
+
             foreach ($students as $param) {
                 //    echo $param['firstName'] . ' '. $param['lastName'] . ' '. $param['gender'] . ' '. $param['countryId'] . ' '
                 //                        . $param['stateId'] . ' '. $param['cityId'] . ' '. $param['email'] . ' '. $param['mobile'] . ' '. $param['nationality'] . '<br/> ';
 
                 $requestObj = new Requests();
-                $requestObj->model_name = Requests::MODEL_NAME_PROGRAM;
+                $requestObj->model_name = $requestType;
                 $requestObj->model_id = $programObj->id;
                 $requestObj->model_parent_id = $programObj->university->id;
                 $requestObj->request_by_role = \common\models\User::GetRequesterRole($profile->user_id);
