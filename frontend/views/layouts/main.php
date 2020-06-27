@@ -81,17 +81,12 @@ if(Yii::$app->session->hasFlash('alert')){
                     <div class="col-sm-4 mtmd">
                         <h3>Newsletter</h3>
                         <?php 
+                            $form = ActiveForm::begin();
                             $model = new Newsletter();
                             if($model->load(Yii::$app->request->post()) and $model->save()){
-                                Yii::$app->getSession()->setFlash('alert', [
-                                    'type' =>'warning',
-                                    'body' => \Yii::t('frontend', 'Thank you for subscription.') ,
-                                    'title' =>'',
-                                ]);
+                                echo "Saved";
+                                $model = new Newsletter();
                             }
-                            $form = ActiveForm::begin([
-                                'action'=>'/site/newsletter'
-                            ]);
                         ?>
                             <div class="form-group">
                                 <?= $form->field($model, 'email')->textInput(['class' => 'form-control', 'placeholder' => 'Enter your e-mail address']) ?>

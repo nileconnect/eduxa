@@ -35,8 +35,8 @@ class ReferralController extends Controller
                 return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed']);
             }
             foreach ($students as $param) {
-//                echo $param['firstName'] . ' '. $param['lastName'] . ' '. $param['gender'] . ' '. $param['countryId'] . ' '
-                //                    . $param['stateId'] . ' '. $param['cityId'] . ' '. $param['email'] . ' '. $param['mobile'] . ' '. $param['nationality'] . '<br/> ';
+                //    echo $param['firstName'] . ' '. $param['lastName'] . ' '. $param['gender'] . ' '. $param['countryId'] . ' '
+                //                        . $param['stateId'] . ' '. $param['cityId'] . ' '. $param['email'] . ' '. $param['mobile'] . ' '. $param['nationality'] . '<br/> ';
 
                 $requestObj = new Requests();
                 $requestObj->model_name = Requests::MODEL_NAME_PROGRAM;
@@ -120,7 +120,7 @@ class ReferralController extends Controller
 
     }
 
-// prant accept child add from trainer to be done
+    // prant accept child add from trainer to be done
     public function actionAcceptChildAssign()
     {
         $params = \Yii::$app->request->post();
