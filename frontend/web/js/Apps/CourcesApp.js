@@ -322,33 +322,33 @@ var app = new Vue({
 
         },
         submitStudent() {
-            if (this.StudentsList == "") {
-                //  console.log("empty")
-                $("#studentError").show()
-                document.getElementById('studentError').scrollIntoView();
-            } else {
-                var data = {
-                    "slug": this.slug,
-                    "type": "course",
-                    // 'students': this.StudentsList,
-                    'course_start_date': this.SelectedDate,
-                    'accomodation_option': this.selectedaccoID,
-                    'number_of_weeks': this.selectedCourseDuration,
-                    'airport_pickup': this.selectedAirportID,
-                    'health_insurance': this.selectedHealthIns
-                }
-                $.ajax({
-                    "url": Api + "referral/add-student-course-request",
-                    "method": "POST",
-                    "data": data,
-                    success: res => {
-                        // console.log(res)
-                        if (res.success == true) {
-                            $(".successMsg").addClass("show")
-                        }
-                    }
-                });
+            // if (this.StudentsList == "") {
+            //     //  console.log("empty")
+            //     $("#studentError").show()
+            //     document.getElementById('studentError').scrollIntoView();
+            // } else {
+            var data = {
+                "slug": this.slug,
+                "type": "course",
+                // 'students': this.StudentsList,
+                'course_start_date': this.SelectedDate,
+                'accomodation_option': this.selectedaccoID,
+                'number_of_weeks': this.selectedCourseDuration,
+                'airport_pickup': this.selectedAirportID,
+                'health_insurance': this.selectedHealthIns
             }
+            $.ajax({
+                "url": Api + "referral/add-student-course-request",
+                "method": "POST",
+                "data": data,
+                success: res => {
+                    // console.log(res)
+                    if (res.success == true) {
+                        $(".successMsg").addClass("show")
+                    }
+                }
+            });
+            // }
 
         }
     },

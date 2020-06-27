@@ -454,9 +454,14 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 </table>
 
                 <div class="mtlg">
+                <?php
+                if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
+                    ?>
                     <a href="javascript:void(0)" class="button button-primary btn-block text-large" @click="submitReferal()"><?= Yii::t('frontend' , 'Apply Now')?></a>
+                <?php }else{
+                    ?>
                     <a href="javascript:void(0)" class="button button-primary btn-block text-large" @click="submitStudent()"><?= Yii::t('frontend' , 'Apply Now')?></a>
-
+                <?php } ?>
                 </div>
             </div>
         </div>
