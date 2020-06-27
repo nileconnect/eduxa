@@ -609,5 +609,14 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     <img src="/img/success.png">
     <h3><?= Yii::t('frontend','Your Request Success')   ?></h3>
     <p><?= Yii::t('frontend','Your Request Successfully Submited, Please check your profile.')   ?></p>
+    <?php
+                if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
+                    ?>
     <a class="button button-primary" href="/referral-dashboard/requests"><?= Yii::t('frontend','Referral Program')   ?></a>
+
+    <?php }else{
+                    ?>
+    <a class="button button-primary" href="/dashboard"><?= Yii::t('frontend','My Eduxa')   ?></a>
+
+<?php } ?>     
 </div>
