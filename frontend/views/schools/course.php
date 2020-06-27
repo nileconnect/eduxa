@@ -402,7 +402,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
+                                <input type="number" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
                                 
                             </td>
                             <td ><span class="text-primary" v-if="CourseDurations">{{CourseDurations}} <?= $schoolObj->currency->currency_code?></span></td>
