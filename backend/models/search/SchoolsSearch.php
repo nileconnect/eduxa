@@ -2,20 +2,20 @@
 
 namespace backend\models\search;
 
-use Yii;
+use backend\models\Schools;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Schools;
+use yii\db\Query;
 
 /**
  * backend\models\search\SchoolsSearch represents the model behind the search form about `backend\models\Schools`.
  */
- class SchoolsSearch extends Schools
+class SchoolsSearch extends Schools
 {
 
-     public $school_logo;
-     public $imagesCount;
-     public $videosCount;
+    public $school_logo;
+    public $imagesCount;
+    public $videosCount;
     /**
      * @inheritdoc
      */
@@ -25,7 +25,7 @@ use backend\models\Schools;
             [['id', 'country_id', 'city_id', 'min_age', 'max_students_per_class', 'avg_students_per_class', 'no_of_ratings', 'created_by', 'updated_by'], 'integer'],
             [['title', 'details', 'featured', 'location', 'lat', 'lng', 'image_base_url', 'image_path', 'has_health_insurance', 'status', 'created_at', 'updated_at'], 'safe'],
             [['accomodation_fees', 'registeration_fees', 'study_books_fees', 'discount', 'total_rating', 'accomodation_reservation_fees', 'health_insurance_cost'], 'number'],
-            [['school_logo','imagesCount','videosCount'] , 'safe']
+            [['school_logo', 'imagesCount', 'videosCount'], 'safe'],
         ];
     }
 
@@ -51,7 +51,7 @@ use backend\models\Schools;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['id' => SORT_DESC]],
+            'sort' => ['defaultOrder' => ['id' => SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -97,57 +97,54 @@ use backend\models\Schools;
         return $dataProvider;
     }
 
-     public function mediaSearch($params)
-     {
-         $query = Schools::find();
-         $query ->select([
-             '{{schools}}.*', // select all customer fields
-             'COUNT({{school_photos}}.id)  AS imagesCount', // calculate orders count
-             'COUNT({{school_videos}}.id) AS videosCount', // calculate orders count
-         ]);
+    public function mediaSearch($params)
+    {
 
-         $query->joinWith('schoolPhotos');
-         $query->joinWith('schoolVideos');
-         $query->groupBy('{{schools}}.id');
+        $query = Schools::find()->select(['schools.*','imagesCount','videosCount'])->from('schools');
 
+        $subPhotoQuery = (new Query())->select('school_id, COUNT(*) AS imagesCount ')->from('school_photos');
+        $subPhotoQuery->groupBy('school_id');
 
-         $dataProvider = new ActiveDataProvider([
-             'query' => $query,
-         ]);
+        $subVedioQuery = (new Query())->select('school_id, COUNT(*) AS videosCount ')->from('school_videos');
+        $subVedioQuery->groupBy('school_id');
 
-         $this->load($params);
+        $query->leftJoin(['photos' => $subPhotoQuery], 'schools.id = photos.school_id');
+        $query->leftJoin(['videos' => $subVedioQuery], 'schools.id = videos.school_id');
 
-         if (!$this->validate()) {
-             // uncomment the following line if you do not want to return any records when validation fails
-             // $query->where('0=1');
-             // return $dataProvider;
-         }
+        // return var_dump($subPhotoQuery->createCommand()->sql,
+        //     $subVedioQuery->createCommand()->sql,
+        //     $query->createCommand()->sql
+        // );
 
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
-         if($this->school_logo == 1){
-             $query->andWhere(['not', ['image_path' => null]]);
+        $this->load($params);
 
-         }else if($this->school_logo == 2 ){
-             $query->andWhere(['is', 'image_path', null]);
+        if ($this->school_logo == 1) {
+            $query->andWhere(['not', ['image_path' => null]]);
 
-         }else{}
+        } else if ($this->school_logo == 2) {
+            $query->andWhere(['is', 'image_path', null]);
 
-         if (!empty($this->imagesCount)) {
-             $query->andFilterHaving([
-                 'imagesCount' => $this->imagesCount,
-             ]);
-         }
+        }
 
-         if (!empty($this->videosCount)) {
-             $query->andFilterHaving([
-                 'videosCount' => $this->videosCount,
-             ]);
-         }
+        if (!empty($this->imagesCount)) {
+            $query->andFilterHaving([
+                'imagesCount' => $this->imagesCount,
+            ]);
+        }
+
+        if (!empty($this->videosCount)) {
+            $query->andFilterHaving([
+                'videosCount' => $this->videosCount,
+            ]);
+        }
 
         $query->andFilterWhere(['like', 'schools.title', trim($this->title)]);
 
-         //  echo $this->unversity_logo;
-         // echo $query->createCommand()->getRawSql();  die;
-         return $dataProvider;
-     }
+        // echo $query->createCommand()->getRawSql();die;
+        return $dataProvider;
+    }
 }

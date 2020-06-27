@@ -38,23 +38,23 @@ $this->title = 'Statistic';
     <table class="kv-grid-table table table-bordered table-striped kv-table-wrap">
         <tr>
             <td>no. of University</td>
-            <td><?= $universityCount ?></td>
+            <td><?=$universityCount?></td>
         </tr>
         <tr>
             <td>no. of Majors</td>
-            <td><?= $universityProgramMajorsCount ?></td>
+            <td><?=$universityProgramMajorsCount?></td>
         </tr>
         <tr>
             <td>no. of Programs</td>
-            <td><?= $universityProgramsCount ?></td>
+            <td><?=$universityProgramsCount?></td>
         </tr>
         <tr>
             <td>no. of Schools</td>
-            <td><?= $schoolsCount ?></td>
+            <td><?=$schoolsCount?></td>
         </tr>
         <tr>
             <td>no. of Courses</td>
-            <td><?= $coursesCount ?></td>
+            <td><?=$coursesCount?></td>
         </tr>
     </table>
 </div>
@@ -62,7 +62,7 @@ $this->title = 'Statistic';
 
 
 
-<?php 
+<?php
 $js = <<<JS
 $(function () {
     //-------------
@@ -119,7 +119,7 @@ $(function () {
     // You can switch between pie and douhnut using the method below.
     pieChart.Doughnut(PieData, pieOptions)
 
-    
+
 })
 JS;
 $this->registerJs($js);
