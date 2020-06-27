@@ -72,7 +72,7 @@ $gridColumn = [
         'label' => 'Study Duration',
         'attribute' => 'study_duration',
         'value' => function ($model) {
-            return $model->modelObj->study_duration;
+            return $model->modelObj && isset($model->modelObj->study_duration) ? $model->modelObj->study_duration :'';
         },
     ],
     [
