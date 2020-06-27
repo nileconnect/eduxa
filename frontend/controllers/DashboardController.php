@@ -84,13 +84,14 @@ class DashboardController extends FrontendController
     public function actionEducation()
     {
         $user =  Yii::$app->user->identity;
+        $this->view->title = \Yii::t('frontend','Education Info');
 
         return $this->render('education',['user'=>$user]);
     }
     public function actionRequests($slug=null)
     {
         $profile =Yii::$app->user->identity->userProfile ;
-
+        $this->view->title = \Yii::t('frontend','My Requests');
         if($slug){
             $programObj= UniversityPrograms::find()->where(['slug'=>$slug])->one();
             if(!$programObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));

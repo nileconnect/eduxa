@@ -31,22 +31,22 @@ class ReferralController extends Controller
                     $programObj = UniversityPrograms::find()->where(['slug' => $params['slug']])->one();
                     $requestType = Requests::MODEL_NAME_PROGRAM;
                     if (!$programObj) {
-                        return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed']);
+                        return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed d']);
                     }
 
                 } else {
-                    return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed']);
+                    return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed c']);
                 }
             } else {
-                if ($params['course']) {
+                if ($params['type'] == 'course') {
                     $programObj = SchoolCourse::find()->where(['slug' => $params['slug']])->one();
                     $requestType = Requests::MODEL_NAME_COURSE;
                     if (!$programObj) {
-                        return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed']);
+                        return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed b']);
                     }
 
                 } else {
-                    return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed']);
+                    return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed a']);
                 }
             }
 
