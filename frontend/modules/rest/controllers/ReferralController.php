@@ -29,6 +29,7 @@ class ReferralController extends Controller
             if ($params['type'] == 'program') {
                 if ($params['slug']) {
                     $programObj = UniversityPrograms::find()->where(['slug' => $params['slug']])->one();
+                    $parent = $programObj->university->id;
                     $requestType = Requests::MODEL_NAME_PROGRAM;
                     if (!$programObj) {
                         return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed d']);
@@ -40,6 +41,7 @@ class ReferralController extends Controller
             } else {
                 if ($params['type'] == 'course') {
                     $programObj = SchoolCourse::find()->where(['slug' => $params['slug']])->one();
+                    $parent = $programObj->school->id;
                     $requestType = Requests::MODEL_NAME_COURSE;
                     if (!$programObj) {
                         return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed b']);
@@ -57,7 +59,7 @@ class ReferralController extends Controller
                 $requestObj = new Requests();
                 $requestObj->model_name = $requestType;
                 $requestObj->model_id = $programObj->id;
-                $requestObj->model_parent_id = $programObj->university->id;
+                $requestObj->model_parent_id = $parent;
                 $requestObj->request_by_role = \common\models\User::GetRequesterRole($profile->user_id);
                 $requestObj->student_id = '';
                 $requestObj->requester_id = $profile->user_id;
@@ -72,12 +74,12 @@ class ReferralController extends Controller
                 $requestObj->student_nationality_id = $param['nationality'];
                 $requestObj->status = Requests::STATUS_PENDING;
 
-                if($requestType = Requests::MODEL_NAME_COURSE){
-                    $requestObj->course_start_date = $param['course_start_date'];
-                    $requestObj->accomodation_option = $param['accomodation_option'];
-                    $requestObj->airport_pickup = $param['airport_pickup'];
-                    $requestObj->number_of_weeks = $param['number_of_weeks'];
-                    $requestObj->health_insurance = $param['health_insurance'];
+                if($requestType == Requests::MODEL_NAME_COURSE){
+                    $requestObj->course_start_date = $params['course_start_date'];
+                    $requestObj->accomodation_option = $params['accomodation_option'];
+                    $requestObj->airport_pickup = $params['airport_pickup'];
+                    $requestObj->number_of_weeks = $params['number_of_weeks'];
+                    $requestObj->health_insurance = $params['health_insurance'] ? 1 : 0;
                 }
 
                 if (!$requestObj->save()) {
