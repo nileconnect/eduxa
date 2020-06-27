@@ -37,7 +37,7 @@ var app = new Vue({
             stateId: "",
             stateTitle: "",
             lang: $("#courcesApp").attr("data-lang"),
-            slug: $("#courcesApp").attr("data-slug"),
+            slug: $("#courcesApp").attr("data-CourseSlug"),
             firstName: "",
             lastName: "",
             gender: "",
@@ -299,10 +299,10 @@ var app = new Vue({
                     "slug": this.slug,
                     "type": "course",
                     'students': this.StudentsList,
-                    'start_date': this.SelectedDate,
-                    'Accommodation_option': this.selectedaccoID,
-                    'course_duration': this.selectedCourseDuration,
-                    'Airport': this.selectedAirportID,
+                    'course_start_date': this.SelectedDate,
+                    'accomodation_option': this.selectedaccoID,
+                    'number_of_weeks': this.selectedCourseDuration,
+                    'airport_pickup': this.selectedAirportID,
                     'health_insurance': this.selectedHealthIns
                 }
                 $.ajax({
