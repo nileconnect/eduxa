@@ -318,7 +318,12 @@ echo Menu::widget([
         //                ],
         //            ],
         //        ],
-
+        [
+            'label' => Yii::t('backend', 'Newsletter'),
+            'url' => ['/newsletter/index'],
+            'icon' => '<i class="fa fa-file-o"></i>',
+            'active' => (Yii::$app->controller->id == 'newsletter'),
+        ],
         [
             'label' => Yii::t('backend', 'Settings'),
             'url' => ['/system/key-storage/index'],
