@@ -82,6 +82,13 @@ if(Yii::$app->session->hasFlash('alert')){
                         <h3>Newsletter</h3>
                         <?php 
                             $model = new Newsletter();
+                            if($model->load(Yii::$app->request->post()) and $model->save()){
+                                Yii::$app->getSession()->setFlash('alert', [
+                                    'type' =>'warning',
+                                    'body' => \Yii::t('frontend', 'Thank you for subscription.') ,
+                                    'title' =>'',
+                                ]);
+                            }
                             $form = ActiveForm::begin([
                                 'action'=>'/site/newsletter'
                             ]);
