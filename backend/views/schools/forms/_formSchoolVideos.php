@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 $dataProvider = new ArrayDataProvider([
     'allModels' => $row,
     'pagination' => [
-        'pageSize' => -1
+        'pageSize' => 3
     ]
 ]);
 echo TabularForm::widget([
