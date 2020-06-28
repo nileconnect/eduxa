@@ -24,7 +24,7 @@
                     <?php
                     if($requests){
                         foreach ($requests as $request) {
-                            if($request->model_name = Requests::MODEL_NAME_PROGRAM){
+                            if($request->model_name == Requests::MODEL_NAME_PROGRAM){
                                 $program =$request->modelObj;
                                 $university =$request->modelParentObj;
                                 ?>

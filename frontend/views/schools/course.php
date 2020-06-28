@@ -6,6 +6,22 @@ use backend\models\SchoolCourse;
 $min_price = $courseObj->minimumPrice;
 $this->title =  $schoolObj->title .' - '. $courseObj->title ;
 ?>
+
+<style>
+.nav-pills .nav-item .nav-link{
+    border-top: 4px solid #EEEEEE;
+    border-bottom:0;
+}
+.nav-pills {
+    border-bottom: 0;
+    border-top: 4px solid #EEEEEE;
+}
+.nav-pills .nav-item {
+    position: relative;
+    bottom: 0;
+    top: -4px;
+}
+</style>
 <nav aria-label="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">
@@ -27,14 +43,7 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                
 
                 <div class="topTabs">
-                    <ul id="myTab" role="tablist" class="nav nav-pills">
-                        <li class="nav-item">
-                            <a id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true" class="nav-link active">Images</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false" class="nav-link">Videos</a>
-                        </li>
-                    </ul>
+                   
                     <div id="myTabContent" class="tab-content">
                         <div id="tabImages" role="tabpanel" aria-labelledby="images-tab" class="tab-pane fade active show">
                             
@@ -64,42 +73,32 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                             
                         </div>
                         <div id="tabVideos" role="tabpanel" aria-labelledby="videos-tab" class="tab-pane fade">
-                            <div class="row">
-                                <div id="vedioCarosal" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner">
-                                   
-
-                                        <?php
-                                        if($schoolObj->schoolVideos){
-                                            foreach ($schoolObj->schoolVideos as $schoolVideo) {
-                                                ?>
-                                                <div class="carousel-item <?=$firstslid?>">
-                                                    <div class="embed-responsive embed-responsive-16by9">
-                                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($schoolVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                                            
-                                                    </div>                                                            
-                                                
+                            <div class="row" style="margin-top:20px">
+                                <?php
+                                    if($schoolObj->schoolVideos){
+                                        foreach ($schoolObj->schoolVideos as $schoolVideo) {
+                                            ?>
+                                            <div class="col-sm-6 mbsm">
+                                                <div class="embed-responsive embed-responsive-16by9">
+                                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($schoolVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                        
                                                 </div>
-                                                <?
-                                            }
+                                            </div>
+                                            <?
                                         }
-                                        ?>
-
-                                        
-                                    </div>
-                                    <a class="carousel-control-prev" href="#vedioCarosal" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#vedioCarosal" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
-                    
+                    <ul id="myTab" role="tablist" class="nav nav-pills">
+                        <li class="nav-item">
+                            <a id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true" class="nav-link active">Images</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false" class="nav-link">Videos</a>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
@@ -289,14 +288,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <td><?= Yii::t('frontend' , 'Minimum age')?></td>
                             <td><span class="text-primary"><?= $courseObj->min_age; ?> Years</span></td>
                         </tr>
-                        <!-- <tr>
-                            <td><?= Yii::t('frontend' , 'Maximum Age')?></td>
-                            <td><span class="text-primary">250 Meters Away</span></td>
-                        </tr> -->
-                        <tr>
-                            <td><?= Yii::t('frontend' , 'Beginning of study')?></td>
-                            <td><span class="text-primary">250 Meters Away</span></td>
-                        </tr>
+                      
                         
                         <tr>
                             <td><?= Yii::t('frontend' , 'Required Level')?></td>
@@ -374,7 +366,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                                 </ul>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <a href="javascript:void(0)" v-on:click="selectAccommodation(acco.reg_fees,acco.title,acco.id)" style="margin-bottom:20px" class="button button-primary btn-block text-large">Choose this option
+                                                        <a href="javascript:void(0)" v-on:click="selectAccommodation(acco)" style="margin-bottom:20px" class="button button-primary btn-block text-large">Choose this option
                                                         </a>
                                                     </div>
                                                 </div>
@@ -389,10 +381,10 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                            
                         </div>
                         <div class="select-wrapper">
-                            <select name="" id="" class="form-control">
-                                <option>Accommodation weeks</option>
+                            <select name="" id="" class="form-control"  @change="Selectperiod($event)">
+                                <option>Accommodation period</option>
 
-                                <option></option>
+                                <option v-for="period in accoperiods" :value="period">{{period}}</option>
                                 
                             </select>
                         </div>
@@ -471,7 +463,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2" class="bg-primary text-center"><h3><?= Yii::t('frontend' , 'Total')?>: {{ total }} <?= $schoolObj->currency->currency_code?></h3></td>
+                            <td colspan="2" class="bg-primary text-center"><h3><?= Yii::t('frontend' , 'Total')?>: {{total}} <?= $schoolObj->currency->currency_code?></h3></td>
 
                         </tr>
                     </tfoot>
@@ -503,13 +495,9 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     <div class="container">
 
         <div class="row">
-            <div class="col-sm-6">
-                <div class="university-tabs">
-                    
-                </div>
-            </div>
+            
 
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div>
                     <h2 class="title title-sm title-black"><?php echo Yii::t('common','Location on Map'); ?></h2>
                     <div>

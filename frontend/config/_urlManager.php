@@ -41,6 +41,7 @@ return [
         //dashboard
         ['pattern' => 'dashboard/requests/<slug>', 'route' => 'dashboard/requests'],
         ['pattern' => 'dashboard/cancel-request/<slug>', 'route' => 'dashboard/cancel-request'],
+        ['pattern' => 'dashboard/cancel-course-request/<slug>', 'route' => 'dashboard/cancel-course-request'],
 
 
         ['pattern' => 'referral-dashboard/cancel-request/<slug>', 'route' => 'referral-dashboard/cancel-request'],

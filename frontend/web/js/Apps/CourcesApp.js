@@ -16,7 +16,6 @@ var app = new Vue({
             CourseID: $("#courcesApp").attr("data-CourseID"),
             regFees: $("#regFees").attr("data-value"),
             bookFees: $("#bookFees").attr("data-value"),
-            totals: "",
             SelectedDate: "",
             selectedaccoID: "",
             selectedCourseDuration: "",
@@ -46,6 +45,10 @@ var app = new Vue({
             nationality: "",
             emailReg: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
             regex: new RegExp(/^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/),
+            accoperiods: [],
+            Selectedperiod: "",
+            // totals: Number($("#regFees").attr("data-value")) + Number($("#bookFees").attr("data-value"))
+            //+ Number(this.bookFees) + Number(this.SelectedHealth) + Number(this.SelectedAirport.cost) + Number(this.CourseDurations) + Number(this.accomodtionFees)
 
         }
 
@@ -92,15 +95,36 @@ var app = new Vue({
 
     },
     methods: {
-        selectAccommodation(fees, title, id) {
-            // var index = id
-            //this.Selectedaccomodtion = this.accomodtion[index]
-            //$("#accoTable").show()
-            this.accomodtionFees = fees
-            this.selectedaccoID = id
-            $(".btnAcco").html(title)
+        selectAccommodation(acco) {
+            this.accomodtionFees = acco.reg_fees
+            this.selectedaccoID = acco.id
+            $(".btnAcco").html(acco.title)
             $('#AccoModal').modal('hide')
 
+            if (acco.booking_cycle == "Weekly") {
+                this.accoperiods = []
+                for (i = acco.min_booking_duraion; i < 53; i++) {
+                    this.accoperiods.push(i)
+                }
+            } else {
+                this.accoperiods = []
+                for (i = acco.min_booking_duraion; i < 13; i++) {
+                    this.accoperiods.push(i)
+                }
+            }
+
+        },
+        Selectperiod(event) {
+            this.Selectedperiod = event.target.value
+
+            $.ajax({
+                "url": Api + "course/accommodation-cost?filter[accommodation_id]=" + this.selectedaccoID + "&filter[period]=" + this.Selectedperiod + "&filter[lang]=" + this.lang,
+                "method": "GET",
+                success: res => {
+                    this.accomodtionFees = res.data.cost
+
+                }
+            });
         },
         SelectAirport(event) {
             this.SelectedAirport = this.airports[event.target.value]

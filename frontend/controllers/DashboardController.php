@@ -89,54 +89,11 @@ class DashboardController extends FrontendController
 
         return $this->render('education',['user'=>$user]);
     }
-    public function actionRequests($slug=null)
+    public function actionRequests()
     {
         $profile =Yii::$app->user->identity->userProfile ;
         $this->view->title = \Yii::t('frontend','My Requests');
-        if($slug){
-            $programObj= UniversityPrograms::find()->where(['slug'=>$slug])->one();
-            if(!$programObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
-            //check for old requests
-            $requestObj = Requests::find()->where(['model_name'=>Requests::MODEL_NAME_PROGRAM , 'model_id'=>$programObj->id ,'requester_id'=>$profile->user_id])->one();
-            if($requestObj){
-                Yii::$app->getSession()->setFlash('alert', [
-                    'type' =>'warning',
-                    'body' => \Yii::t('frontend', 'You have applied on this program before') ,
-                    'title' =>'',
-                ]);
-            }else{
-                //apply foo the program
-                $requestObj =new Requests();
-                $requestObj->model_name = Requests::MODEL_NAME_PROGRAM;
-                $requestObj->model_id = $programObj->id ;
-                $requestObj->model_parent_id = $programObj->university->id;
-                $requestObj->request_by_role = Requests::REQUEST_BY_STUDENT;
-                $requestObj->student_id = $profile->user_id;
-                $requestObj->requester_id = $profile->user_id;
-                $requestObj->student_first_name = $profile->firstname;
-                $requestObj->student_last_name = $profile->lastname;
-                $requestObj->student_gender = $profile->gender ;
-                $requestObj->student_email = $profile->user->email;
-                $requestObj->student_country_id = $profile->country_id;
-                $requestObj->student_city_id = $profile->city_id;
-                $requestObj->student_state_id = $profile->state_id;
-                $requestObj->student_mobile = $profile->mobile;
-                $requestObj->student_nationality_id = $profile->nationality;
-                $requestObj->status = Requests::STATUS_PENDING;
-                if($requestObj->save()){
-                    Yii::$app->getSession()->setFlash('alert', [
-                        'type' =>'success',
-                        'body' => \Yii::t('frontend', 'You have applied on the program Successfully') ,
-                        'title' =>'',
-                    ]);
-                }else{
-                    var_dump($requestObj->errors);
-                }
-            }
-
-        }
         $requests = $profile->requests;
-
         return $this->render('requests',['requests'=>$requests]);
     }
 
