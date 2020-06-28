@@ -47,6 +47,7 @@ var app = new Vue({
             regex: new RegExp(/^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/),
             accoperiods: [],
             Selectedperiod: "",
+            week: "",
             // totals: Number($("#regFees").attr("data-value")) + Number($("#bookFees").attr("data-value"))
             //+ Number(this.bookFees) + Number(this.SelectedHealth) + Number(this.SelectedAirport.cost) + Number(this.CourseDurations) + Number(this.accomodtionFees)
 
@@ -102,11 +103,24 @@ var app = new Vue({
             $('#AccoModal').modal('hide')
 
             if (acco.booking_cycle == "Weekly") {
+                if (this.lang == "en") {
+                    this.week = "weeks"
+                } else {
+                    this.week = "اسابيع"
+                }
+
+
                 this.accoperiods = []
                 for (i = acco.min_booking_duraion; i < 53; i++) {
                     this.accoperiods.push(i)
                 }
             } else {
+
+                if (this.lang == "en") {
+                    this.week = "months"
+                } else {
+                    this.week = "شهور"
+                }
                 this.accoperiods = []
                 for (i = acco.min_booking_duraion; i < 13; i++) {
                     this.accoperiods.push(i)

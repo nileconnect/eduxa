@@ -384,7 +384,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <select name="" id="" class="form-control"  @change="Selectperiod($event)">
                                 <option>Accommodation period</option>
 
-                                <option v-for="period in accoperiods" :value="period">{{period}}</option>
+                                <option v-for="period in accoperiods" :value="period">{{period}} {{week}}</option>
                                 
                             </select>
                         </div>
@@ -418,6 +418,8 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
                         <tr>
                             <td>
+                                <label>Course Duration (30 session)</label>
+                                <label>Course Duration (5 weeks)</label>
                                 <input type="number" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
                                 <p class="invalid-feedback durationerror">Select course duration first</p>
                             </td>
