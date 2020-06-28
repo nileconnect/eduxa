@@ -20,7 +20,7 @@ return [
     ''=>'',
     ''=>'',
     ''=>'',
-    ''=>'',
+    'Other courses in'=>'كورسات اخرى متوفره فى ',
     //search schools
     'Schools matched your search results'=>'',
     ''=>'',

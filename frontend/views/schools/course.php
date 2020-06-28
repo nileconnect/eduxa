@@ -343,43 +343,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </div>
                         
                     </div>
-                    <!-- <table class="table text-large wide-cell" id="accoTable" style="display:none">
-                        <tbody>
-                            <tr v-if="Selectedaccomodtion.reg_fees">
-                                <td><?= Yii::t('frontend' , 'Accommodation Registration Fees')?></td>
-                                <td><span class="text-primary">{{Selectedaccomodtion.reg_fees}}</span></td>
-                            </tr>
-                            <tr v-if="Selectedaccomodtion.facility">
-                                <td><?= Yii::t('frontend' , 'Facilities')?></td>
-                                <td><span class="text-primary">{{Selectedaccomodtion.facility}}</span></td>
-                            </tr>
-                            <tr v-if="Selectedaccomodtion.room">
-                                <td><?= Yii::t('frontend' , 'Room Category')?></td>
-                                <td><span class="text-primary">{{Selectedaccomodtion.room}}</span></td>
-                            </tr>
-                            <tr v-if="Selectedaccomodtion.special_diet">
-                                <td><?= Yii::t('frontend' , 'Special diet')?></td>
-                                <td><span class="text-primary">{{Selectedaccomodtion.special_diet}}</span></td>
-                            </tr>
-                            <tr v-if="Selectedaccomodtion.booking_cycle">
-                                <td><?= Yii::t('frontend' , 'Booking Cycle')?></td>
-                                <td><span class="text-primary">{{Selectedaccomodtion.booking_cycle}}</span></td>
-                            </tr>
-                            <tr v-if="Selectedaccomodtion.min_booking_duraion">
-                                <td><?= Yii::t('frontend' , 'Minimum Booking duration')?></td>
-                                <td><span class="text-primary">{{Selectedaccomodtion.min_booking_duraion}}</span></td>
-                            </tr>
-                            
-                            <tr v-if="Selectedaccomodtion.distance_from_school">
-                                <td><?= Yii::t('frontend' , 'Distance from school (Minutes)')?></td>
-                                <td><span class="text-primary">{{Selectedaccomodtion.distance_from_school}}</span></td>
-                            </tr>
-                            <tr v-if="Selectedaccomodtion.cost_per_duration_unit">
-                                <td><?= Yii::t('frontend' , 'Cost per Duration')?></td>
-                                <td><span class="text-primary">{{Selectedaccomodtion.cost_per_duration_unit}}</span></td>
-                            </tr>
-                        </tbody>
-                    </table> -->
+
                 </div>
 
             </div>
@@ -559,52 +523,14 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 </section>
 <section class="section">
     <div class="container">
-        <h2 class="title text-center">Other courses in Language Academy </h2>
+        <h2 class="title text-center"><?= Yii::t('frontend','Other courses in'); ?>  <?= $courseObj->school->title?> </h2>
 
         <div class="universities universities-row">
-
-           
-
-            <div class="item">
-                <header class="item-header">
-                    <figure>
-                        <span class="cut-off">25%</span>
-                        <img src="img/destinations/4.jpg" alt="">
-                    </figure>
-                    <div class="item-content">
-                        <div class="item-name">
-                            <span>Language Academy - General English</span>
-                            <div class="rating">
-                                
-                            </div>
-                        </div>
-                        <div class="item-location"><img src="img/flags/fr.png" alt=""> Auburn - Alabama - USA</div>
-                        <div class="item-body">
-                            Living in today’s metropolitan world of cellular phones, mobile computers and other high-tech gadgets is not just hectic but very impersonal. We make money and then invest our time and effort in making more money. 
-                        </div>
-                    </div>
-                </header>
-                <footer class="item-footer">
-                    <div>
-                        <div class="item-label">Hours/week</div>
-                        <div>19 hrs</div>
-                    </div>
-                    <div>
-                        <div class="item-label">Study Time</div>
-                        <div>Morning</div>
-                    </div>
-                    <div>
-                        <div class="item-label">Best price</div>
-                        <div><span class="original-price">150</span><span class="sale-on">27.00</span> <span class="currency">USD</span></div>
-                        <div><span class="converted-price">2500</span> <span class="sale-on">27.00</span> <span class="currency">LE</span></div>
-                    </div>
-                    <div>
-                        <a href="#" class="button btn-block button-primary">Additional Info</a>
-                    </div>
-                </footer>
-            </div>
-
-           
+            <?php
+            foreach ($courseObj->school->schoolCourses as $coursData) {
+                echo $this->render('_schoolWithOneCourse', ['course' => $coursData]);
+            }
+            ?>
         </div>
 
     </div>

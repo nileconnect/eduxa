@@ -33,6 +33,17 @@ class SchoolsController extends FrontendController
         return $this->render('index' ,['countries'=>$countries , 'courses'=>$courses ,'searchModel'=>$searchModel]);
     }
 
+    public function actionCourse($slug){
+        $courseObj= SchoolCourse::find()->where(['slug'=>$slug])->one();
+        if(!$courseObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+
+        $schoolObj = $courseObj->school;
+        return $this->render('course' , ['courseObj'=>$courseObj,'schoolObj'=>$schoolObj]);
+    }
+
+
+
+
     public function actionSearch()
     {
         $searchModel = new SchoolCourseSearch();
@@ -59,13 +70,6 @@ class SchoolsController extends FrontendController
         return $this->render('view' ,['schoolObj'=>$schoolObj ]);
     }
 
-    public function actionCourse($slug){
-        $courseObj= SchoolCourse::find()->where(['slug'=>$slug])->one();
-        if(!$courseObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
-
-        $schoolObj = $courseObj->school;
-        return $this->render('course' , ['courseObj'=>$courseObj,'schoolObj'=>$schoolObj]);
-    }
 
     public function actionProgramApply($slug){
          $programObj= UniversityPrograms::find()->where(['slug'=>$slug])->one();
