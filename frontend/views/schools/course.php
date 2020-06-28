@@ -407,10 +407,11 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <td>
                                 <div class="select-wrapper">
                                     <select name="" id="" class="form-control"  @change="Selectdate($event)">
-                                        <option>Start Date</option>
+                                        <option value="0">Start Date</option>
                                         <option v-for="date in StartDates" :value="date.id">{{date.course_date}}</option>
                                         
                                     </select>
+                                    <p class="invalid-feedback selectdateerror">Select start date first</p>
                                 </div>
                             </td>
                             <td></td>
@@ -418,7 +419,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         <tr>
                             <td>
                                 <input type="number" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
-                                
+                                <p class="invalid-feedback durationerror">Select course duration first</p>
                             </td>
                             <td ><span class="text-primary" v-if="CourseDurations">{{CourseDurations}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
