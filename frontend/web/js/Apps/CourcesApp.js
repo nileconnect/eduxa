@@ -338,7 +338,7 @@ var app = new Vue({
                 'health_insurance': this.selectedHealthIns
             }
             $.ajax({
-                "url": Api + "referral/add-student-course-request",
+                "url": Api + "student/course-request",
                 "method": "POST",
                 "data": data,
                 success: res => {
