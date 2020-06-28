@@ -74,8 +74,8 @@ class Country extends BaseCountry
     public function rules()
     {
         return [
-            [['title', 'code','intro','details'], 'required'], // , 'on' => self::SCENARIO_IMPORT
-            // [['title', 'code','image','attachments','intro','details'], 'required'],
+            [['title', 'code','intro','details'], 'required', 'on' => self::SCENARIO_IMPORT],
+            [['title', 'code','image','attachments','intro','details'], 'required','on'=>'normal'],
             [['title', 'code'], 'string', 'max' => 50,'min'=>2],
             [['intro'], 'string', 'max' => 5000,'min'=>2],
             [['details'], 'string', 'max' => 2000,'min'=>2],

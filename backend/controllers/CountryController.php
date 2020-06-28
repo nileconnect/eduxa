@@ -141,6 +141,7 @@ class CountryController extends BackendController
     public function actionCreate()
     {
         $model = new Country();
+        $model->scenario = 'normal';
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -160,7 +161,7 @@ class CountryController extends BackendController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->scenario = 'normal';
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

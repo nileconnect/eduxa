@@ -19,7 +19,7 @@ class SchoolAirportPickup extends BaseSchoolAirportPickup
 	    [
             [['school_id', 'title', 'cost'], 'required'],
             [['school_id'], 'integer'],
-            [['cost'], 'number'],
+            [['cost'], 'number','min'=>0,'max'=>100000],
             [['title'], 'string', 'max' => 30 ,'min'=>2],
             [['service_type'], 'string', 'max' => 4]
         ]);
