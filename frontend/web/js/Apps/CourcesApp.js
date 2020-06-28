@@ -116,15 +116,12 @@ var app = new Vue({
         },
         Selectperiod(event) {
             this.Selectedperiod = event.target.value
-            console.log(this.Selectedperiod)
-                // course/accommodation-cost
 
             $.ajax({
                 "url": Api + "course/accommodation-cost?filter[accommodation_id]=" + this.selectedaccoID + "&filter[period]=" + this.Selectedperiod + "&filter[lang]=" + this.lang,
                 "method": "GET",
                 success: res => {
-                    console.log(res)
-                        //this.CourseDurations = res.data.cost
+                    this.accomodtionFees = res.data.cost
 
                 }
             });

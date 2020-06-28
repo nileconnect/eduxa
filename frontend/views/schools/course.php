@@ -495,52 +495,9 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     <div class="container">
 
         <div class="row">
-            <div class="col-sm-6">
-                <div class="university-tabs">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true"><?php echo Yii::t('common','Images'); ?></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false"><?php echo Yii::t('common','Videos'); ?></a>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="tabImages" role="tabpanel" aria-labelledby="images-tab">
-                            <div class="row">
+            
 
-                                <?php
-                                $firstslid= 'active';
-                                foreach ($schoolObj->schoolPhotos as $schoolPhoto) {
-                                    ?>
-                                    <div class="col-sm-6">
-                                        <figure class="img">
-                                            <a class="img-galley" href="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" data-lightbox="img-gallery-set"
-                                               data-title="Click the right half of the image to move forward.">
-                                                <img src="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" alt="<?= $schoolObj->title ?>">
-                                            </a>
-                                        </figure>
-                                    </div>
-                                    <?
-                                    $firstslid='';
-                                }
-                                ?>
-
-
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tabVideos" role="tabpanel" aria-labelledby="videos-tab">
-                            <div class="row">
-                               
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div>
                     <h2 class="title title-sm title-black"><?php echo Yii::t('common','Location on Map'); ?></h2>
                     <div>
