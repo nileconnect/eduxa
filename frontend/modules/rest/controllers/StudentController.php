@@ -60,6 +60,7 @@ class StudentController extends Controller
                 $requestObj->status = Requests::STATUS_PENDING;
                 $requestObj->course_start_date = $params['course_start_date'];
                 $requestObj->accomodation_option = $params['accomodation_option'];
+                $requestObj->accomodation_period = $params['accomodation_period'];
                 $requestObj->airport_pickup = $params['airport_pickup'];
                 $requestObj->number_of_weeks = $params['number_of_weeks'];
                 $requestObj->health_insurance = $params['health_insurance'] ? 1 : 0;
