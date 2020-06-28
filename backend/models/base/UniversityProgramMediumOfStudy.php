@@ -99,4 +99,12 @@ class UniversityProgramMediumOfStudy extends \yii\db\ActiveRecord
     {
         return new \backend\models\activequery\UniversityProgramMediumOfStudyQuery(get_called_class());
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUniversityPrograms()
+    {
+        return $this->hasMany(\backend\models\UniversityPrograms::className(), ['medium_of_study' => 'id']);
+    }
 }

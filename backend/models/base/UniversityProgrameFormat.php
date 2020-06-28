@@ -101,4 +101,12 @@ class UniversityProgrameFormat extends \yii\db\ActiveRecord
     {
         return new \backend\models\activequery\UniversityProgrameFormatQuery(get_called_class());
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUniversityPrograms()
+    {
+        return $this->hasMany(\backend\models\UniversityPrograms::className(), ['program_format' => 'id']);
+    }
 }
