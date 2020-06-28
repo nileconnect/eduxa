@@ -24,29 +24,84 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
     <div class="container">
         <div class="row">
             <div class="col-sm-5">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <?php
-                        $firstslid= 'active';
-                        foreach ($schoolObj->schoolPhotos as $schoolPhoto) {
-                            ?>
-                            <div class="carousel-item <?=$firstslid?>">
-                                <img class="d-block w-100" src="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" alt="<?= $schoolObj->title ?>">
+               
+
+                <div class="topTabs">
+                    <ul id="myTab" role="tablist" class="nav nav-pills">
+                        <li class="nav-item">
+                            <a id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true" class="nav-link active">Images</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false" class="nav-link">Videos</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div id="tabImages" role="tabpanel" aria-labelledby="images-tab" class="tab-pane fade active show">
+                            
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <?php
+                                    $firstslid= 'active';
+                                    foreach ($schoolObj->schoolPhotos as $schoolPhoto) {
+                                        ?>
+                                        <div class="carousel-item <?=$firstslid?>">
+                                            <img class="d-block w-100" src="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" alt="<?= $schoolObj->title ?>">
+                                        </div>
+                                        <?
+                                        $firstslid='';
+                                    }
+                                    ?>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
-                            <?
-                            $firstslid='';
-                        }
-                        ?>
+                            
+                        </div>
+                        <div id="tabVideos" role="tabpanel" aria-labelledby="videos-tab" class="tab-pane fade">
+                            <div class="row">
+                                <div id="vedioCarosal" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                   
+
+                                        <?php
+                                        if($schoolObj->schoolVideos){
+                                            foreach ($schoolObj->schoolVideos as $schoolVideo) {
+                                                ?>
+                                                <div class="carousel-item <?=$firstslid?>">
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($schoolVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                            
+                                                    </div>                                                            
+                                                
+                                                </div>
+                                                <?
+                                            }
+                                        }
+                                        ?>
+
+                                        
+                                    </div>
+                                    <a class="carousel-control-prev" href="#vedioCarosal" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#vedioCarosal" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                    
                 </div>
+
             </div>
             <div class="col-sm-7">
                 <h2 class="text-primary"><?= $schoolObj->title ?> - <?= $courseObj->title ?></h2>
@@ -450,59 +505,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
         <div class="row">
             <div class="col-sm-6">
                 <div class="university-tabs">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true"><?php echo Yii::t('common','Images'); ?></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false"><?php echo Yii::t('common','Videos'); ?></a>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="tabImages" role="tabpanel" aria-labelledby="images-tab">
-                            <div class="row">
-
-                                <?php
-                                $firstslid= 'active';
-                                foreach ($schoolObj->schoolPhotos as $schoolPhoto) {
-                                    ?>
-                                    <div class="col-sm-6">
-                                        <figure class="img">
-                                            <a class="img-galley" href="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" data-lightbox="img-gallery-set"
-                                               data-title="Click the right half of the image to move forward.">
-                                                <img src="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" alt="<?= $schoolObj->title ?>">
-                                            </a>
-                                        </figure>
-                                    </div>
-                                    <?
-                                    $firstslid='';
-                                }
-                                ?>
-
-
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tabVideos" role="tabpanel" aria-labelledby="videos-tab">
-                            <div class="row">
-                                <?php
-                                if($schoolObj->schoolVideos){
-                                    foreach ($schoolObj->schoolVideos as $schoolVideo) {
-                                        ?>
-                                        <div class="col-sm-6 mbsm">
-                                            <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($schoolVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                                    
-                                            </div>
-                                        </div>
-                                        <?
-                                    }
-                                }
-                                ?>
-
-
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
 
