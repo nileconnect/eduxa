@@ -19,6 +19,9 @@ use yii\bootstrap\ActiveForm;
 .radio, .checkbox {
     display: inline-block;
 }
+.input-daterange{
+    margin-top:0px !important; 
+}
 </style>
 
 <div class="form-users-search">
@@ -48,6 +51,8 @@ use yii\bootstrap\ActiveForm;
 
         <div class="col-md-6 col-sm-12" >
             <?php
+            
+                echo '<label class="control-label" for="creation_from_date" style="font-weight: 900;color: #848484;">Date Period</label>';
                 echo DatePicker::widget([
                     'model' => $model,
                     'attribute' => 'creation_from_date',
@@ -81,7 +86,7 @@ use yii\bootstrap\ActiveForm;
 
     <div class="form-group">
         <?php echo Html::submitButton(Yii::t('backend', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?php //echo Html::resetButton(Yii::t('backend', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <a class="btn btn-default" href="/reports/users"> <?=Yii::t('backend', 'Reset')?> </a>
     </div>
 
     <?php ActiveForm::end() ?>

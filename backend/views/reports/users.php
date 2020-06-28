@@ -206,10 +206,11 @@ if (in_array($searchModel->user_role, ['referralCompany', 'referralPerson'])) {
 }
 
 // Renders a export dropdown menu
-echo ExportMenu::widget([
+
+echo "<div style='float:right'>" . ExportMenu::widget([
     'dataProvider' => $dataProvider,
     'columns' => $gridColumns,
-]);
+]). "</div>";
 
 echo GridView::widget([
     'dataProvider' => $dataProvider,

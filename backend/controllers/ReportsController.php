@@ -46,6 +46,10 @@ class ReportsController extends BackendController
     {
         $searchModel = new UserSearch();
         $searchModel->report = true;
+
+        if(empty($searchModel->user_role)){
+            $searchModel->user_role = 'user';
+        }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('users', [
             'searchModel' => $searchModel,
