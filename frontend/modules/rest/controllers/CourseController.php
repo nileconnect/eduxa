@@ -94,5 +94,18 @@ class CourseController  extends  Controller
 
     }
 
+    public function actionAccommodationCost(){
+        $params= \Yii::$app->request->get();
+        if($params['filter']['lang']){
+            \Yii::$app->language = $params['filter']['lang'] ;
+        }
+        $accomodation_id =  $params['filter']['accommodation_id'];
+        $period =  $params['filter']['period'];
+        if(!$accomodation_id or !$period )  return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
+
+        return ResponseHelper::sendSuccessResponse(['cost'=>50]);
+
+    }
+
 
 }
