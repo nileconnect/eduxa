@@ -104,6 +104,9 @@ class SignInController extends \yii\web\Controller
             return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            if(isset($_GET['return'])){
+                return $this->redirect($_GET['return']);
+            }
             return $this->goBack();
         }
 

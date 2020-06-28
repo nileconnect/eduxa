@@ -4,6 +4,7 @@ use backend\models\SchoolCourse;
 
 \frontend\assets\CourcesAsset::register($this);
 $min_price = $courseObj->minimumPrice;
+$this->title =  $schoolObj->title .' - '. $courseObj->title ;
 ?>
 <nav aria-label="breadcrumb">
     <div class="container">
@@ -61,7 +62,11 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                     <?= $schoolObj->details ?>
                 </div>
                 <div class="mtlg">
+                    <?php if(!Yii::$app->user->isGuest) :?>
                     <a href="#applyDiv" class="button button-primary button-wide">Apply Now</a>
+                    <?php else :?>
+                        <a href="/login?return=/school/course/<?= $courseObj->slug ?>" class="button button-primary button-wide">Apply Now</a>
+                    <?php endif;?>
                     <p class="mtsm text-large">
                         Best Weekly Price : <?=  $min_price ?> <?= $schoolObj->currency->currency_code ?>
                         <span class="line-through text-red">
@@ -94,7 +99,9 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
     <section class="section">
         <div class="container">
-
+            <div class="alert alert-danger" id="studentError" style="display:none">
+                <p><?= Yii::t('frontend' , 'Please, Add students information.')?><p>
+            </div>
             <h3 class="text-primary"><i class="far fa-user"></i> <?= Yii::t('frontend' , 'Student Information')?></h3>
 
             <div class="ptxlg pbxlg plxlg prxlg bg-white shadow-sm mtmd">
@@ -399,7 +406,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
+                                <input type="number" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
                                 
                             </td>
                             <td ><span class="text-primary" v-if="CourseDurations">{{CourseDurations}} <?= $schoolObj->currency->currency_code?></span></td>
@@ -452,7 +459,17 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 </table>
 
                 <div class="mtlg">
+                <?php
+                if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
+                    ?>
                     <a href="javascript:void(0)" class="button button-primary btn-block text-large" @click="submitReferal()"><?= Yii::t('frontend' , 'Apply Now')?></a>
+                <?php }else{ ?>
+                    <?php if(!Yii::$app->user->isGuest) :?>
+                    <a href="javascript:void(0)" class="button button-primary btn-block text-large" @click="submitStudent()"><?= Yii::t('frontend' , 'Apply Now')?></a>
+                    <?php else:?>
+                        <a href="/login?return=/school/course/<?= $courseObj->slug ?>" class="button button-primary btn-block text-large" ><?= Yii::t('frontend' , 'Apply Now')?></a>
+                    <?php endif;?>
+                <?php } ?>
                 </div>
             </div>
         </div>
@@ -593,4 +610,21 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     </div>
 </section>
 
+</div>
+
+
+<div class="successMsg">
+    <img src="/img/success.png">
+    <h3><?= Yii::t('frontend','Your Request Success')   ?></h3>
+    <p><?= Yii::t('frontend','Your Request Successfully Submited, Please check your profile.')   ?></p>
+    <?php
+                if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
+                    ?>
+    <a class="button button-primary" href="/referral-dashboard/requests"><?= Yii::t('frontend','Referral Program')   ?></a>
+
+    <?php }else{
+                    ?>
+    <a class="button button-primary" href="/dashboard"><?= Yii::t('frontend','My Eduxa')   ?></a>
+
+<?php } ?>     
 </div>

@@ -95,6 +95,63 @@ class ReferralController extends Controller
 
     }
 
+    public function actionAddStudentCourseRequest()
+    {
+        if (\Yii::$app->user->isGuest) {
+            return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed a']);
+        }
+
+        $user = User::findOne(['id' => \Yii::$app->user->identity->getId()]);
+        if (!User::IsRole($user->id, User::ROLE_USER)) {
+            return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed b']);
+        }
+
+        $profile = $user->userProfile;
+        $params = \Yii::$app->request->post(); // json_decode(file_get_contents("php://input") ,true);
+        if ($params) { // logged in and valid role
+            $programObj = SchoolCourse::find()->where(['slug' => $params['slug']])->one();
+            $parent = $programObj->school->id;
+            $requestType = Requests::MODEL_NAME_COURSE;
+            
+            if (!$programObj) {
+                return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Not allowed c']);
+            }
+
+            $requestObj = new Requests();
+            $requestObj->model_name = $requestType;
+            $requestObj->model_id = $programObj->id;
+            $requestObj->model_parent_id = $parent;
+            $requestObj->request_by_role = \common\models\User::GetRequesterRole($profile->user_id);
+            $requestObj->student_id = $user->id;
+            $requestObj->requester_id = $profile->user_id;
+            $requestObj->student_first_name = $profile->firstname;
+            $requestObj->student_last_name = $profile->lastname;
+            $requestObj->student_gender = $profile->gender;
+            $requestObj->student_email = $user->email;
+            $requestObj->student_country_id = $profile->country_id;
+            $requestObj->student_city_id = $profile->city_id;
+            $requestObj->student_state_id = $profile->state_id;
+            $requestObj->student_mobile = $profile->mobile;
+            $requestObj->student_nationality_id = $profile->nationality;
+            $requestObj->status = Requests::STATUS_PENDING;
+
+            $requestObj->course_start_date = $params['course_start_date'];
+            $requestObj->accomodation_option = $params['accomodation_option'];
+            $requestObj->airport_pickup = $params['airport_pickup'];
+            $requestObj->number_of_weeks = $params['number_of_weeks'];
+            $requestObj->health_insurance = $params['health_insurance'] ? 1 : 0;
+
+            if (!$requestObj->save()) {
+                return ResponseHelper::sendFailedResponse(['MESSAGE' => $requestObj->errors]);
+            }
+            return ResponseHelper::sendSuccessResponse();
+        } else {
+            return ResponseHelper::sendFailedResponse(['MESSAGE' => 'Missing Data']);
+
+        }
+
+    }
+
     public function actionDecline()
     {
         $params = \Yii::$app->request->post();
