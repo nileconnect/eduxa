@@ -401,7 +401,11 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <td>
                                 Course Type
                             </td>
-                            <td></td>
+                            <td>
+                                <?php
+                                echo $courseObj->schoolCourseType->title ;
+                                ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -418,8 +422,20 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
                         <tr>
                             <td>
-                                <label>Course Duration (30 session)</label>
-                                <label>Course Duration (5 weeks)</label>
+                                <?php
+                                if($courseObj->cost_type == SchoolCourse::COST_PER_WEEK ){
+                                    ?>
+                                    <label>Course Duration By weeks</label>
+                                    <?
+                                }else{
+                                    ?>
+                                    <label>Course Duration by session</label>
+                                    <?
+                                }
+                                ?>
+
+
+
                                 <input type="number" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
                                 <p class="invalid-feedback durationerror">Select course duration first</p>
                             </td>

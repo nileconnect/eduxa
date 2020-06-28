@@ -81,6 +81,7 @@ class Requests extends BaseRequests
             [['health_insurance'],'safe'],
             [['student_first_name', 'student_last_name', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup',
                 'airport_pickup_cost', 'course_start_date', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'string', 'max' => 255],
+            [['accomodation_period','number_of_sessions','total'],'safe']
         ];
     }
 
