@@ -103,7 +103,7 @@ class UniversityNextToController extends BackendController
         if($model->university){
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'danger',
-                'body' => \Yii::t('backend', 'You can not be allowed to deleting '. $model->title .' because it is
+                'body' => \Yii::t('backend', 'You are not  allowed to delete '. $model->title .' because it is
                 related to university.') ,
                 'title' =>'',
             ]);
