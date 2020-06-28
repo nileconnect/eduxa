@@ -303,7 +303,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 if(Yii::$app->user->isGuest || (!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ) ) {
                     ?>
                     <div class="mtlg">
-                        <a href="/dashboard/requests/<?= $programObj->slug ?>" class="button btn-block button-wide button-primary text-large"><?= Yii::t('frontend','Submit') ?></a>
+                        <a href="javascript:void(0)" class="button btn-block button-wide button-primary text-large" @click="submitStudent()"><?= Yii::t('frontend','Submit') ?></a>
                     </div>
                     <?
                 }

@@ -220,6 +220,29 @@ var app = new Vue({
                 });
             }
 
+        },
+        submitStudent() {
+            // if (this.StudentsList == "") {
+            //     //  console.log("empty")
+            //     $("#studentError").show()
+            //     document.getElementById('studentError').scrollIntoView();
+            // } else {
+            var data = {
+                "slug": this.slug,
+            }
+            $.ajax({
+                "url": Api + "student/program-request",
+                "method": "POST",
+                "data": data,
+                success: res => {
+                    // console.log(res)
+                    if (res.success == true) {
+                        $(".successMsg").addClass("show")
+                    }
+                }
+            });
+            // }
+
         }
     }
 })
