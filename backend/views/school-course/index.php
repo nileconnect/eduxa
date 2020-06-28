@@ -89,7 +89,7 @@ echo newerton\fancybox3\FancyBox::widget([
         'status:boolean',
        // 'required_attendance_duraion',
         [
-            'class' => 'yii\grid\ActionColumn','template'=>'{view} {update}'
+            'class' => 'yii\grid\ActionColumn','template'=>'{view} {update} {delete}'
         ],
     ]; 
     ?>

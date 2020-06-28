@@ -148,11 +148,11 @@ class SchoolCourseController extends BackendController
     public function actionDelete($id)
     {
         //check if it has requests
-        $requests = Requests::find()->where(['item_name'=>Requests::MODEL_NAME_COURSE , 'model_id'=>$id])->all();
+        $requests = Requests::find()->where(['model_name'=>Requests::MODEL_NAME_COURSE , 'model_id'=>$id])->all();
         if(count($requests)){
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'danger',
-                'body' => \Yii::t('backend', 'Can not delete this Course as some students applied on it') ,
+                'body' => \Yii::t('backend', 'you can not delete this Course as some students applied on it') ,
                 'title' =>'',
             ]);
         }else{
