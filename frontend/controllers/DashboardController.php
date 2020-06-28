@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use backend\models\base\SchoolCourse;
 use backend\models\base\UniversityPrograms;
 use backend\models\Requests;
 use backend\models\StudentCertificate;
@@ -158,12 +159,38 @@ class DashboardController extends FrontendController
             }else{
                 Yii::$app->getSession()->setFlash('alert', [
                     'type' =>'warning',
-                    'body' => \Yii::t('frontend', 'You can no cancel this  request') ,
+                    'body' => \Yii::t('frontend', 'You can not cancel this  request') ,
                     'title' =>'',
                 ]);
             }
         }
        return $this->redirect(['/dashboard/requests']);
+    }
+    public function actionCancelCourseRequest($slug=null)
+    {
+        $profile =Yii::$app->user->identity->userProfile ;
+
+        if($slug){
+            $SchoolCourseObj= SchoolCourse::find()->where(['slug'=>$slug])->one();
+            if(!$SchoolCourseObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+            //check for old requests
+            $requestObj = Requests::find()->where(['model_name'=>Requests::MODEL_NAME_COURSE , 'model_id'=>$SchoolCourseObj->id ,'requester_id'=>$profile->user_id])->one();
+            if($requestObj && $requestObj->status == Requests::STATUS_PENDING){
+                $requestObj->delete();
+                Yii::$app->getSession()->setFlash('alert', [
+                    'type' =>'warning',
+                    'body' => \Yii::t('frontend', 'You have Canceled your request') ,
+                    'title' =>'',
+                ]);
+            }else{
+                Yii::$app->getSession()->setFlash('alert', [
+                    'type' =>'warning',
+                    'body' => \Yii::t('frontend', 'You can not cancel this  request') ,
+                    'title' =>'',
+                ]);
+            }
+        }
+        return $this->redirect(['/dashboard/requests']);
     }
 
     // Modals Functions
