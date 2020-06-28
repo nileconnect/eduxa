@@ -41,7 +41,7 @@ class Schools extends BaseSchools
     public function rules()
     {
         return [
-            [['title','country_id', 'city_id', 'state_id','currency_id','lat','lng'], 'required'],
+            [['title','country_id', 'city_id', 'state_id','currency_id','lat','lng','next_to','details','detailed_address'], 'required'],
             [['country_id', 'city_id', 'state_id','min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings',
                 'currency_id','next_to'], 'integer'],
             [['details','slug'], 'string'],

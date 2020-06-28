@@ -95,7 +95,7 @@ echo TabularForm::widget([
         ],
 
         'cost_per_duration_unit' => ['type' => TabularForm::INPUT_TEXT , 'label'=>'Cost per Duration',
-            'options'=>['type' => 'number' ,'step'=>'number']
+            'options'=>['type' => 'number' ,'step'=>'number','style'=>'min-width: 100px;']
         ],
         'del' => [
             'type' => 'raw',

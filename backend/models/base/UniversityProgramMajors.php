@@ -74,4 +74,6 @@ class UniversityProgramMajors extends \yii\db\ActiveRecord
     {
         return new \backend\models\activequery\UniversityProgramMajorsQuery(get_called_class());
     }
+
+    
 }

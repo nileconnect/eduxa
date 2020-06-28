@@ -1,11 +1,12 @@
 <?php
 
-use common\models\User;
-use common\models\UserProfile;
-use yii\bootstrap\ActiveForm;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use common\models\User;
+use yii\helpers\ArrayHelper;
+use yii\bootstrap\ActiveForm;
+use common\models\UserProfile;
 use trntv\filekit\widget\Upload;
+use kartik\password\PasswordInput;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\UserForm */
@@ -50,6 +51,8 @@ if($saved == true){
                 <?php $form = ActiveForm::begin([
                         'action'=>'/university/manager?id='.$id
                 ]) ?>
+
+                <?= $form->errorSummary($model) ?>
                 <?php echo $form->field($profile, 'picture')->widget(Upload::class, [
                             'url'=>['avatar-upload']
                         ]) ?>
@@ -59,8 +62,10 @@ if($saved == true){
                             <div class="col-sm-3">
                                 <?php echo $form->field($model, 'email') ?>
                             </div>
-                            <div class="col-sm-3">
-                                <?php echo $form->field($model, 'password')->passwordInput() ?>
+                            <div class="col-sm-6">
+                                <?php 
+                                    echo $form->field($model, 'password')->widget(PasswordInput::classname());
+                                ?>
                             </div>
                             <div class="col-sm-3">
                                 <?php echo $form->field($profile, 'firstname') ?>

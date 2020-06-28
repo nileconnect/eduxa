@@ -2,12 +2,12 @@
 
 namespace backend\controllers;
 
-use Yii;
 use backend\models\UniversityProgrameConditionalAdmission;
+use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * UniversityProgrameConditionalAdmissionController implements the CRUD actions for UniversityProgrameConditionalAdmission model.
@@ -99,12 +99,19 @@ class UniversityProgrameConditionalAdmissionController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteWithRelated();
-
+        $model = $this->findModel($id);
+        if ($model->universityPrograms) {
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' => 'danger',
+                'body' => \Yii::t('backend', 'You are not allowed to delete ' . $model->title . ' because it is related to university programs.'),
+                'title' => '',
+            ]);
+        } else {
+            $this->findModel($id)->deleteWithRelated();
+        }
         return $this->redirect(['index']);
     }
 
-    
     /**
      * Finds the UniversityProgrameConditionalAdmission model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

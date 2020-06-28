@@ -2,11 +2,12 @@
 
 namespace backend\models;
 
-use common\models\User;
 use Yii;
-use yii\base\Exception;
 use yii\base\Model;
+use common\models\User;
+use yii\base\Exception;
 use yii\helpers\ArrayHelper;
+use kartik\password\StrengthValidator;
 
 /**
  * Create user form
@@ -45,8 +46,9 @@ class UserForm extends Model
                 }
             }],
 
-            ['password', 'required', 'on' => 'create'],
-            ['password', 'string', 'min' => 8 ,'max'=>15],
+            // ['password', 'required', 'on' => 'create'],
+            [['password'], StrengthValidator::className(), 'preset'=>'normal'],
+            // ['password', 'string', 'min' => 8 ,'max'=>15],
 
             [['status'], 'integer'],
             ['roles', 'string'],

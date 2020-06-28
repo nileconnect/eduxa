@@ -88,4 +88,12 @@ class UniversityLangOfStudy extends \yii\db\ActiveRecord
     {
         return new \backend\models\activequery\UniversityLangOfStudyQuery(get_called_class());
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUniversityPrograms()
+    {
+        return $this->hasMany(\backend\models\UniversityPrograms::className(), ['lang_of_study' => 'id']);
+    }
 }

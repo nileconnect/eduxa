@@ -17,12 +17,14 @@ class SchoolRating extends BaseSchoolRating
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['school_id', 'rating'], 'required'],
+            [['school_id','comment', 'rating'], 'required'],
             [['school_id', 'user_id', 'created_by', 'updated_by'], 'integer'],
             [['comment'], 'string'],
             [['rating'], 'number'],
-            [['name', 'created_at', 'updated_at'], 'string', 'max' => 255],
- [['status'], 'integer']
+            [['name'], 'string', 'max' => 30 ,'min'=>2],
+            [['comment'], 'string', 'max' => 500 ,'min'=>2],
+            [['created_at', 'updated_at'], 'string', 'max' => 255],
+            [['status'], 'integer']
         ]);
     }
 	
