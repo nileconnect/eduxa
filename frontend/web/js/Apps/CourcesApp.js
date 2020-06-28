@@ -46,6 +46,7 @@ var app = new Vue({
             emailReg: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
             regex: new RegExp(/^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/),
             accoperiods: [],
+            Selectedperiod: "",
             // totals: Number($("#regFees").attr("data-value")) + Number($("#bookFees").attr("data-value"))
             //+ Number(this.bookFees) + Number(this.SelectedHealth) + Number(this.SelectedAirport.cost) + Number(this.CourseDurations) + Number(this.accomodtionFees)
 
@@ -95,18 +96,10 @@ var app = new Vue({
     },
     methods: {
         selectAccommodation(acco) {
-            // var index = id
-            //this.Selectedaccomodtion = this.accomodtion[index]
-            //$("#accoTable").show()
             this.accomodtionFees = acco.reg_fees
             this.selectedaccoID = acco.id
             $(".btnAcco").html(acco.title)
             $('#AccoModal').modal('hide')
-
-            // this.accoperiods
-
-            console.log(acco.min_booking_duraion)
-            console.log(acco.booking_cycle)
 
             if (acco.booking_cycle == "Weekly") {
                 this.accoperiods = []
@@ -120,6 +113,21 @@ var app = new Vue({
                 }
             }
 
+        },
+        Selectperiod(event) {
+            this.Selectedperiod = event.target.value
+            console.log(this.Selectedperiod)
+                // course/accommodation-cost
+
+            $.ajax({
+                "url": Api + "course/accommodation-cost?filter[accommodation_id]=" + this.selectedaccoID + "&filter[period]=" + this.Selectedperiod + "&filter[lang]=" + this.lang,
+                "method": "GET",
+                success: res => {
+                    console.log(res)
+                        //this.CourseDurations = res.data.cost
+
+                }
+            });
         },
         SelectAirport(event) {
             this.SelectedAirport = this.airports[event.target.value]

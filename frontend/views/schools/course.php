@@ -381,7 +381,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                            
                         </div>
                         <div class="select-wrapper">
-                            <select name="" id="" class="form-control">
+                            <select name="" id="" class="form-control"  @change="Selectperiod($event)">
                                 <option>Accommodation period</option>
 
                                 <option v-for="period in accoperiods" :value="period">{{period}}</option>
