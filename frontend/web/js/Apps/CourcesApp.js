@@ -331,6 +331,7 @@ var app = new Vue({
                         'students': this.StudentsList,
                         'course_start_date': this.SelectedDate,
                         'accomodation_option': this.selectedaccoID,
+                        'accomodation_period': this.selectedCourseDuration,
                         'number_of_weeks': this.selectedCourseDuration,
                         'airport_pickup': this.selectedAirportID,
                         'health_insurance': this.selectedHealthIns
