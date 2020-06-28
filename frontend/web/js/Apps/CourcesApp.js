@@ -47,6 +47,7 @@ var app = new Vue({
             regex: new RegExp(/^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/),
             accoperiods: [],
             Selectedperiod: "",
+            week: "",
             // totals: Number($("#regFees").attr("data-value")) + Number($("#bookFees").attr("data-value"))
             //+ Number(this.bookFees) + Number(this.SelectedHealth) + Number(this.SelectedAirport.cost) + Number(this.CourseDurations) + Number(this.accomodtionFees)
 
@@ -102,11 +103,24 @@ var app = new Vue({
             $('#AccoModal').modal('hide')
 
             if (acco.booking_cycle == "Weekly") {
+                if (this.lang == "en") {
+                    this.week = "weeks"
+                } else {
+                    this.week = "اسابيع"
+                }
+
+
                 this.accoperiods = []
                 for (i = acco.min_booking_duraion; i < 53; i++) {
                     this.accoperiods.push(i)
                 }
             } else {
+
+                if (this.lang == "en") {
+                    this.week = "months"
+                } else {
+                    this.week = "شهور"
+                }
                 this.accoperiods = []
                 for (i = acco.min_booking_duraion; i < 13; i++) {
                     this.accoperiods.push(i)
@@ -146,7 +160,6 @@ var app = new Vue({
         //Get Health Insurance
         GetHealth(event) {
             if (event.srcElement.checked) {
-                // console.log(event.target.value)
                 this.SelectedHealth = event.target.value
                 this.selectedHealthIns = true
             } else {
@@ -156,7 +169,6 @@ var app = new Vue({
         },
         //After Select Country get its Cities
         SelectCountry() {
-            // console.log(this.selectedCountry.id)
             this.countryId = this.selectedCountry.id
             this.countryTitle = this.selectedCountry.title
             $.ajax({
@@ -186,7 +198,6 @@ var app = new Vue({
         },
         Selectdate(event) {
             this.SelectedDate = event.target.value
-            console.log(this.SelectedDate)
         },
 
         addStudent() {
@@ -222,7 +233,6 @@ var app = new Vue({
                     $("#FormAlert").html("Please select gender")
                 }
             } else if (this.email === "" || !this.emailReg.test(this.email)) {
-                console.log("here")
                 if (!$("#FormAlert").hasClass("alert-danger")) {
                     $("#FormAlert").addClass("alert-danger")
                     $("#FormAlert").show()
@@ -316,27 +326,71 @@ var app = new Vue({
             this.StudentsList.splice(index, 1)
         },
         submitReferal() {
-            if (this.StudentsList == "") {
-                //  console.log("empty")
-                $("#studentError").show()
-                document.getElementById('studentError').scrollIntoView();
+            if (this.SelectedDate == 0) {
+
+                $(".selectdateerror").show()
+
+            } else if (!this.selectedCourseDuration) {
+                $(".durationerror").show()
+
             } else {
+
+                if (this.StudentsList == "") {
+                    $("#studentError").show()
+                    document.getElementById('studentError').scrollIntoView();
+                } else {
+                    var data = {
+                        "slug": this.slug,
+                        "type": "course",
+                        'students': this.StudentsList,
+                        'course_start_date': this.SelectedDate,
+                        'accomodation_option': this.selectedaccoID,
+                        'accomodation_period': this.Selectedperiod,
+                        'number_of_weeks': this.selectedCourseDuration,
+                        'airport_pickup': this.selectedAirportID,
+                        'health_insurance': this.selectedHealthIns
+                    }
+                    $.ajax({
+                        "url": Api + "referral/add-request",
+                        "method": "POST",
+                        "data": data,
+                        success: res => {
+                            if (res.success == true) {
+                                $(".successMsg").addClass("show")
+                            }
+                        }
+                    });
+                }
+            }
+
+        },
+        submitStudent() {
+            if (this.SelectedDate == 0) {
+
+                $(".selectdateerror").show()
+
+            } else if (!this.selectedCourseDuration) {
+                $(".durationerror").show()
+
+            } else {
+                $(".selectdateerror").hide()
+                $(".durationerror").hide()
                 var data = {
                     "slug": this.slug,
                     "type": "course",
-                    'students': this.StudentsList,
+                    // 'students': this.StudentsList,
                     'course_start_date': this.SelectedDate,
                     'accomodation_option': this.selectedaccoID,
+                    'accomodation_period': this.Selectedperiod,
                     'number_of_weeks': this.selectedCourseDuration,
                     'airport_pickup': this.selectedAirportID,
                     'health_insurance': this.selectedHealthIns
                 }
                 $.ajax({
-                    "url": Api + "referral/add-request",
+                    "url": Api + "student/course-request",
                     "method": "POST",
                     "data": data,
                     success: res => {
-                        // console.log(res)
                         if (res.success == true) {
                             $(".successMsg").addClass("show")
                         }
@@ -344,41 +398,21 @@ var app = new Vue({
                 });
             }
 
-        },
-        submitStudent() {
-            // if (this.StudentsList == "") {
-            //     //  console.log("empty")
-            //     $("#studentError").show()
-            //     document.getElementById('studentError').scrollIntoView();
-            // } else {
-            var data = {
-                "slug": this.slug,
-                "type": "course",
-                // 'students': this.StudentsList,
-                'course_start_date': this.SelectedDate,
-                'accomodation_option': this.selectedaccoID,
-                'number_of_weeks': this.selectedCourseDuration,
-                'airport_pickup': this.selectedAirportID,
-                'health_insurance': this.selectedHealthIns
-            }
-            $.ajax({
-                "url": Api + "student/course-request",
-                "method": "POST",
-                "data": data,
-                success: res => {
-                    // console.log(res)
-                    if (res.success == true) {
-                        $(".successMsg").addClass("show")
-                    }
-                }
-            });
-            // }
+
 
         }
     },
     computed: {
         total: function() {
-            return Number(this.regFees) + Number(this.bookFees) + Number(this.SelectedHealth) + Number(this.SelectedAirport.cost) + Number(this.CourseDurations) + Number(this.accomodtionFees);
+            var airportcost = 0
+            if (Number(this.SelectedAirport.cost)) {
+                airportcost = Number(this.SelectedAirport.cost)
+            }
+            return Number(this.regFees) + Number(this.bookFees) + Number(this.SelectedHealth) + Number(this.CourseDurations) + Number(this.accomodtionFees) + airportcost
+
+            //+ 
+
+            //   ;
 
         }
 
