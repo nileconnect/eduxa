@@ -52,7 +52,14 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
+                $checkUserVerifiyEmail = User::find()
+                    ->where(['status'=>1])->andWhere(['or', ['username' => $this->identity], ['email' => $this->identity]])
+                    ->one();
+                if($checkUserVerifiyEmail){
+                    $this->addError('password', Yii::t('frontend', 'You Should Verify Email First.'));
+                }else{
+                    $this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
+                }
             }
         }
     }
@@ -64,7 +71,7 @@ class LoginForm extends Model
      */
     public function getUser()
     {
-        if ($this->user === false) {
+        if ($this->user === false) {   
             $this->user = User::find()
                 ->active()
                 ->andWhere(['or', ['username' => $this->identity], ['email' => $this->identity]])
