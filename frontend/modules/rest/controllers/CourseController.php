@@ -4,7 +4,11 @@ namespace frontend\modules\rest\controllers;
 
 use backend\models\base\UniversityPrograms;
 use backend\models\Requests;
+use backend\models\SchoolAccomodation;
+use backend\models\SchoolCourse;
+use backend\models\SchoolCourseSessionCost;
 use backend\models\SchoolCourseStartDate;
+use backend\models\SchoolCourseWeekCost;
 use common\models\User;
 use common\models\UserProfile;
 use frontend\modules\rest\helpers\ResponseHelper;
@@ -35,7 +39,23 @@ class CourseController  extends  Controller
         $no_of_weeks =  $params['filter']['no_of_weeks'];
         if(!$course_id or !$no_of_weeks )  return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
 
-        return ResponseHelper::sendSuccessResponse(['cost'=>555]);
+        $courseObj= SchoolCourse::find()->where(['id'=>$course_id])->one();
+        if(!$courseObj )  return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
+        if($courseObj->cost_type == SchoolCourse::COST_PER_WEEK){
+            //get cost per week
+            $costObj = SchoolCourseWeekCost::find()->where('school_course_id ='.$courseObj->id.' and  min_no_of_weeks <= '.$no_of_weeks.' and max_no_of_weeks >='.$no_of_weeks)->one();
+            if(!$costObj)  return ResponseHelper::sendSuccessResponse(['cost'=>0]);
+            $cost=$costObj->cost ;
+        }
+        if($courseObj->cost_type == SchoolCourse::COST_PER_SESSION){
+            //get cost per week
+            $costObj = SchoolCourseSessionCost::find()->where('school_course_id ='.$courseObj->id.' and  no_of_sessions <= '.$no_of_weeks.' and max_no_of_sessions >='.$no_of_weeks)->one();
+            if(!$costObj)  return ResponseHelper::sendSuccessResponse(['cost'=>0]);
+            $cost=$costObj->session_cost ;
+        }
+        $total_cost = number_format($cost*$no_of_weeks );
+
+        return ResponseHelper::sendSuccessResponse(['cost'=>$total_cost]);
 
     }
 
@@ -102,8 +122,11 @@ class CourseController  extends  Controller
         $accomodation_id =  $params['filter']['accommodation_id'];
         $period =  $params['filter']['period'];
         if(!$accomodation_id or !$period )  return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
+        $accomodationObj = SchoolAccomodation::find()->where(['id'=>$accomodation_id])->one();
+        if(!$accomodationObj) return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
 
-        return ResponseHelper::sendSuccessResponse(['cost'=>50]);
+        $cost = number_format($accomodationObj->cost_per_duration_unit  * $period);
+        return ResponseHelper::sendSuccessResponse(['cost'=>$cost]);
 
     }
 

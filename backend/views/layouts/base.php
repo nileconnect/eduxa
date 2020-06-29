@@ -51,5 +51,12 @@ $this->params['body-class'] = $this->params['body-class'] ?? null;
     <?php $this->endBody() ?>
     
 <?php echo Html::endTag('body') ?>
+
+<script>
+$('#fileupload')
+    // .on('fileuploadadd', function (e, data) { console.log('fileuploadadd') })
+    // .on('fileuploadadded', function (e, data) { console.log('fileuploadadded') })
+    .on('fileuploadchunkfail', function (e, data) { console.log('fileuploadchunkfail')})
+</script>
 </html>
 <?php $this->endPage() ?>

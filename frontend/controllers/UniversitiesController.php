@@ -49,8 +49,12 @@ class UniversitiesController extends FrontendController
     public function actionCountry($slug){
         $countryObj= Country::find()->where(['code'=>$slug])->one();
         if(!$countryObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+        
         $universities = University::find()->where(['status'=>1 , 'recommended'=>1])->all();
-        return $this->render('country' ,['countryObj'=>$countryObj , 'universities'=>$universities]);
+        $countries = Country::find()->where(['status'=>1 , 'top_destination'=>1])->all();
+        $searchModel = new UniversityProgramsSearch();
+
+        return $this->render('country' ,['countryObj'=>$countryObj , 'universities'=>$universities,'countries'=>$countries,'searchModel'=>$searchModel]);
     }
 
     public function actionView($slug){

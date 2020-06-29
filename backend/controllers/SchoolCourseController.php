@@ -135,8 +135,14 @@ class SchoolCourseController extends BackendController
                     $item->save(false);
 
                 }
+                if($item->no_of_sessions){
+                    $item->max_no_of_sessions =  floor(52/$item->weeks_per_session);
+                    $item->save(false);
+                }
             }
+
         }
+
     }
 
     /**
