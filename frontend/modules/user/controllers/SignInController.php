@@ -158,12 +158,11 @@ class SignInController extends \yii\web\Controller
             $user = $model->signup();
             if ($user) {
                 if ($model->shouldBeActivated()) {
-                    Yii::$app->getSession()->setFlash('alert', [
+                    Yii::$app->getSession()->setFlash('alert-create-account-successfully', [
                         'body' => Yii::t(
                             'frontend',
                             'Your account has been successfully created. Check your email for further instructions.'
                         ),
-                        'options' => ['class' => 'alert-success']
                     ]);
                 } else {
                     Yii::$app->getUser()->login($user);

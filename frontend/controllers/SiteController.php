@@ -78,6 +78,13 @@ class SiteController extends FrontendController
         \Yii::$app->view->title= $title;
 
         $this->layout = 'landingLayout';
+
+        Yii::$app->getSession()->setFlash('alert-create-account-successfully', [
+            'body' => Yii::t(
+                'frontend',
+                'Your account has been successfully created. Check your email for further instructions.'
+            ),
+        ]);
         return $this->render('index');
     }
 
