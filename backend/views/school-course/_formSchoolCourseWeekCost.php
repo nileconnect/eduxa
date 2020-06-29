@@ -25,18 +25,18 @@ echo TabularForm::widget([
         'min_no_of_weeks' => ['type' => TabularForm::INPUT_TEXT],
         'max_no_of_weeks' => ['type' => TabularForm::INPUT_TEXT],
         'cost' => ['label'=>'Price Per Week', 'type' => TabularForm::INPUT_TEXT],
-        'status' => [
-            'type' => TabularForm::INPUT_WIDGET,
-            'widgetClass' => \kartik\widgets\Select2::className(),
-            'options' => [
-                'data' =>[
-                    '1'=>'Active',
-                    '0'=> 'Not active',
-                ],
-                //'options' => ['placeholder' => 'Select'],
-            ],
-            'columnOptions' => ['width' => '200px']
-        ],
+//        'status' => [
+//            'type' => TabularForm::INPUT_WIDGET,
+//            'widgetClass' => \kartik\widgets\Select2::className(),
+//            'options' => [
+//                'data' =>[
+//                    '1'=>'Active',
+//                    '0'=> 'Not active',
+//                ],
+//                //'options' => ['placeholder' => 'Select'],
+//            ],
+//            'columnOptions' => ['width' => '200px']
+//        ],
         'del' => [
             'type' => 'raw',
             'label' => '',
