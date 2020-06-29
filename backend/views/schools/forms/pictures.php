@@ -39,6 +39,7 @@ if($saved){
                     'sortable' => true,
                     'maxFileSize' => 10000000, // 10 MiB
                     'maxNumberOfFiles' => 6,
+                    'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(jpe?g|png)$/i'), 
                 ]);
             ?>
 
