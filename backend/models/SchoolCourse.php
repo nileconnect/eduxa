@@ -124,7 +124,12 @@ class SchoolCourse extends BaseSchoolCourse
 
     public function getMinimumPrice(){
         $price=0;
-        $price = SchoolCourseWeekCost::find()->where(['school_course_id'=>$this->id])->min('cost');
+        if($this->cost_type == self::COST_PER_WEEK){
+            $price = SchoolCourseWeekCost::find()->where(['school_course_id'=>$this->id])->min('cost');
+        }
+        if($this->cost_type == self::COST_PER_SESSION){
+            $price = SchoolCourseSessionCost::find()->where(['school_course_id'=>$this->id])->min('week_cost');
+        }
         return $price;
     }
 
