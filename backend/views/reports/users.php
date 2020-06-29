@@ -207,11 +207,6 @@ if (in_array($searchModel->user_role, ['referralCompany', 'referralPerson'])) {
 
 // Renders a export dropdown menu
 
-echo "<div style='float:right'>" . ExportMenu::widget([
-    'dataProvider' => $dataProvider,
-    'columns' => $gridColumns,
-]). "</div>";
-
 echo GridView::widget([
     'dataProvider' => $dataProvider,
     // 'filterModel' => $searchModel,
@@ -219,6 +214,29 @@ echo GridView::widget([
         'class' => 'grid-view ',
     ],
     'columns' => $gridColumns,
+    'pjax' => true,
+    'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-requests']],
+    'panel' => [
+        'type' => GridView::TYPE_PRIMARY,
+        'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
+    ],
+    // your toolbar can include the additional full export menu
+    'toolbar' => [
+        // '{export}',
+        ExportMenu::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => $gridColumns,
+            'target' => ExportMenu::TARGET_BLANK,
+            'fontAwesome' => true,
+            // 'dropdownOptions' => [
+            //     'label' => 'Full',
+            //     'class' => 'btn btn-default',
+            //     'itemsBefore' => [
+            //         '<li class="dropdown-header">Export All Data</li>',
+            //     ],
+            // ],
+        ]),
+    ],
 ]);?>
 
 </div>
