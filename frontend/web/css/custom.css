@@ -126,6 +126,20 @@
     top: 55px;
 }
 
+.nav-pills .nav-item .nav-link {
+    /* font-size: 1rem; */
+}
+
+
+/* .auth-form .help-block {
+    color: crimson;
+    height: 50px !important;
+} */
+
+.auth-content .auth-info {
+    min-height: 1550px;
+}
+
 @media (max-width: 768px) {
     .majorsList li,
     .contList li {
