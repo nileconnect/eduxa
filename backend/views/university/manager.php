@@ -35,7 +35,7 @@ if($saved == true){
 <div class="content-header">
     <div class="row mb-2">
         <div class="col-md-6">
-            <h1 class="m-0 text-dark"><?php echo Yii::t('common', 'Organization Admin') ?></h1>
+            
         </div>
 
         <!-- /.col -->
@@ -48,6 +48,11 @@ if($saved == true){
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 class="m-0 text-dark"><?php echo Yii::t('common', 'Organization Admin') ?></h1>
+                    </div>
+                </div>
                 <?php $form = ActiveForm::begin([
                         'action'=>'/university/manager?id='.$id
                 ]) ?>
@@ -57,48 +62,43 @@ if($saved == true){
                             'url'=>['avatar-upload']
                         ]) ?>
                 <div class="row">
-
-
-                            <div class="col-sm-3">
-                                <?php echo $form->field($model, 'email') ?>
-                            </div>
-                            <div class="col-sm-6">
-                                <?php 
-                                    echo $form->field($model, 'password')->widget(PasswordInput::classname());
-                                ?>
-                            </div>
-                            <div class="col-sm-3">
-                                <?php echo $form->field($profile, 'firstname') ?>
-                            </div>
-                            <div class="col-sm-3">
-                                <?php echo $form->field($profile, 'lastname') ?>
-                            </div>
-
-
-
+                    <div class="col-sm-4">
+                        <?php echo $form->field($model, 'email') ?>
+                    </div>
+                    <div class="col-sm-8">
+                        <?php 
+                            echo $form->field($model, 'password')->widget(PasswordInput::classname());
+                        ?>
+                    </div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-4">
+                        <?php echo $form->field($profile, 'firstname') ?>
+                    </div>
+                    <div class="col-sm-4">
+                        <?php echo $form->field($profile, 'lastname') ?>
+                    </div>
                     <div class="col-sm-4">
                         <?php echo $form->field($profile, 'gender')->dropDownlist([
                             UserProfile::GENDER_MALE => Yii::t('backend', 'Male'),
                             UserProfile::GENDER_FEMALE => Yii::t('backend', 'Female')
                         ]) ?>
                     </div>
-
+                </div>
+                <div class="row">
                     <div class="col-sm-4">
                         <?php echo $form->field($profile, 'mobile') ?>
                     </div>
-
-
                     <div class="col-sm-4">
                         <?php echo $form->field($model, 'status')->dropDownList(User::statuses()) ?>
+                    </div>
+                    <div class="col-sm-4">
+                        <?php echo Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn btn-primary','style'=>'margin-top: 31px;width: 150px;', 'name' => 'signup-button']) ?>
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
-                        <?php echo Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-                    </div>
+                    
                 </div>
                 <?php ActiveForm::end() ?>
             </div>

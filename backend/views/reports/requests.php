@@ -178,19 +178,19 @@ echo GridView::widget([
     ],
     // your toolbar can include the additional full export menu
     'toolbar' => [
-        '{export}',
+        // '{export}',
         ExportMenu::widget([
             'dataProvider' => $dataProvider,
             'columns' => $gridColumnExport,
             'target' => ExportMenu::TARGET_BLANK,
             'fontAwesome' => true,
-            'dropdownOptions' => [
-                'label' => 'Full',
-                'class' => 'btn btn-default',
-                'itemsBefore' => [
-                    '<li class="dropdown-header">Export All Data</li>',
-                ],
-            ],
+            // 'dropdownOptions' => [
+            //     'label' => 'Full',
+            //     'class' => 'btn btn-default',
+            //     'itemsBefore' => [
+            //         '<li class="dropdown-header">Export All Data</li>',
+            //     ],
+            // ],
         ]),
     ],
 ]);

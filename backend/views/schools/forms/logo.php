@@ -55,8 +55,12 @@ if($saved){
             <?php echo $form->field($model, 'logo')->widget(
                 Upload::class,
                 [
+                    'id'=> 'fileupload',
                     'url' => ['/file/storage/upload'],
                     'maxFileSize' => 5000000, // 5 MiB
+                    'clientOptions'=>[
+                        'fail' => new JsExpression('function(e, data) { console.log("a") }'),
+                    ],
                     'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(jpe?g|png)$/i'), 
                 ]);
             ?>

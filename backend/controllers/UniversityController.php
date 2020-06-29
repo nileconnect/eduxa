@@ -123,17 +123,22 @@ class UniversityController extends BackendController
         $this->layout ='base';
         $model = $this->findModel($id);
         $saved= false;
-
+        $message ='';
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->getSession()->setFlash('alert', [
-                'type' =>'success',
-                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
-                'title' =>'',
-            ]);
-            $saved= true;
+            if(!empty($model->image_base_url)){
+                Yii::$app->getSession()->setFlash('alert', [
+                    'type' =>'success',
+                    'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
+                    'title' =>'',
+                ]);
+                $saved= true;
+            }else{
+                $message = 'message';
+            }
         }
         return $this->render('forms/logo', [
             'model' => $model,
+            'message'=> $message,
             'saved'=>$saved
         ]);
     }

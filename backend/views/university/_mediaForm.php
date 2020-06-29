@@ -40,6 +40,8 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
                     [
                         'url' => ['/file/storage/upload'],
                         'maxFileSize' => 5000000, // 5 MiB
+                        'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(jpe?g|png)$/i'), 
+
                     ]);
                 ?>
                 <br/>
@@ -57,6 +59,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             'sortable' => true,
             'maxFileSize' => 10000000, // 10 MiB
             'maxNumberOfFiles' => 10,
+            'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(jpe?g|png)$/i'), 
         ]);
     ?>
 
