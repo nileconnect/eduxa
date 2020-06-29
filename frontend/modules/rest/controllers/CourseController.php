@@ -49,7 +49,7 @@ class CourseController  extends  Controller
         }
         if($courseObj->cost_type == SchoolCourse::COST_PER_SESSION){
             //get cost per week
-            $costObj = SchoolCourseSessionCost::find()->where('school_course_id ='.$courseObj->id.' and  no_of_sessions <= '.$no_of_weeks.' and max_no_of_sessions >='.$no_of_weeks)->one();
+            $costObj = SchoolCourseSessionCost::find()->where('school_course_id ='.$courseObj->id)->one();
             if(!$costObj)  return ResponseHelper::sendSuccessResponse(['cost'=>0]);
             $cost=$costObj->session_cost ;
         }
