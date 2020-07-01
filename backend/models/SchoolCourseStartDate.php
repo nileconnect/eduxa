@@ -19,10 +19,17 @@ class SchoolCourseStartDate extends BaseSchoolCourseStartDate
 	    [
             [['school_course_id', 'course_date'], 'required'],
             [['school_course_id'], 'integer'],
-            [['course_date'], 'string', 'max' => 255],
-            ['course_date','compare', 'compareValue' => date('Y-m-d'), 'operator' => '>=', 
-                'enableClientValidation' =>true],
+            ['course_date','compareDates','on'=>'create'],
         ];
+    }
+
+    public function compareDates()
+    {
+        $date = strtotime($this->course_date);
+        $now_date = time();
+        if (!$this->hasErrors() && $now_date > $date) {
+            $this->addError('course_date', 'Course start date is not valid.');
+        }
     }
 	
 }
