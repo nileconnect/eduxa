@@ -1,4 +1,6 @@
 <?php
+
+use backend\models\SchoolCourseSessionCost;
 use \common\models\User;
 use backend\models\SchoolCourse;
 
@@ -428,8 +430,9 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                     <label>Course Duration By weeks</label>
                                     <?
                                 }else{
+                                    $costObj = SchoolCourseSessionCost::find()->where('school_course_id ='.$courseObj->id)->one();
                                     ?>
-                                    <label>Course Duration by session</label>
+                                    <label>Course Duration by session (each <?= $costObj->weeks_per_session ?> weeks)</label>
                                     <?
                                 }
                                 ?>
