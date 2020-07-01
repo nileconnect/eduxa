@@ -290,7 +290,10 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <td><?= Yii::t('frontend' , 'Minimum age')?></td>
                             <td><span class="text-primary"><?= $courseObj->min_age; ?> Years</span></td>
                         </tr>
-                      
+                        <tr>
+                            <td><?= Yii::t('frontend' , 'Begining of study')?></td>
+                            <td><span class="text-primary"><?= $courseObj->min_age; ?> Years</span></td>
+                        </tr>
                         
                         <tr>
                             <td><?= Yii::t('frontend' , 'Required Level')?></td>
@@ -434,11 +437,12 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                     $costObj = SchoolCourseSessionCost::find()->where('school_course_id ='.$courseObj->id)->one();
                                     ?>
                                     <label>Course Duration by session (each <?= $costObj->weeks_per_session ?> weeks)</label>
-                                    <select class="form-control">
+                                    <select class="form-control"  @change="GetCourseDurations($event)">
+                                        <option>Course Duration by session</option>
                                         <?php
                                         for($i=$costObj->no_of_sessions ;$i<= $costObj->max_no_of_sessions ; $i++){
                                             ?>
-                                            <option> <?= $i?></option>
+                                            <option value="<?= $i?>"> <?= $i?></option>
                                             <?
                                         }
                                         ?>

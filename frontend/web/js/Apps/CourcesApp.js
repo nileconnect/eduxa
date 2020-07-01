@@ -408,11 +408,11 @@ var app = new Vue({
             if (Number(this.SelectedAirport.cost)) {
                 airportcost = Number(this.SelectedAirport.cost)
             }
+            // +this.regFees + +this.bookFees + +this.SelectedHealth + +this.CourseDurations + +parseInt(this.accomodtionFees) + +airportcost
+
             return Number(this.regFees) + Number(this.bookFees) + Number(this.SelectedHealth) + Number(this.CourseDurations) + Number(this.accomodtionFees) + airportcost
+                //
 
-            //+ 
-
-            //   ;
 
         }
 
