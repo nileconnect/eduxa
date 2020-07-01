@@ -314,7 +314,14 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 </div>
+<div class="successMsg">
+    <img src="/img/success.png">
+    <h3>Congratulations,</h3>
+    <p>Your Account Successfully Created, Please check your email inbox to activate your account.</p>
+        <a class="button button-primary" href="/">Home</a>
 
+     
+</div>
 
 <?php
 $script = <<< JS
