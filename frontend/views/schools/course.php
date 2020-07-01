@@ -435,7 +435,14 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                     ?>
                                     <label>Course Duration by session (each <?= $costObj->weeks_per_session ?> weeks)</label>
                                     <select class="form-control">
-                                        <option></option>
+                                        <?php
+                                        for($i=$costObj->no_of_sessions ;$i<= $costObj->max_no_of_sessions ; $i++){
+                                            ?>
+                                            <option> <?= $i?></option>
+                                            <?
+                                        }
+                                        ?>
+
                                     </select>
                                     <?
                                 }
