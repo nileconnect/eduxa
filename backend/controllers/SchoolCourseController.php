@@ -138,12 +138,12 @@ class SchoolCourseController extends BackendController
 
         if($model->schoolCourseSessionCosts){
             foreach ($model->schoolCourseSessionCosts as $item) {
-                if(!$item->week_cost){
-                    $item->week_cost= floor($item->session_cost/$item->session_cost);
+                if(!$item->week_cost && $item->session_cost){
+                    $item->week_cost= floor($item->session_cost/$item->weeks_per_session);
                     $item->save(false);
 
                 }
-                if($item->no_of_sessions){
+                if($item->no_of_sessions && $item->weeks_per_session){
                     $item->max_no_of_sessions =  floor(52/$item->weeks_per_session);
                     $item->save(false);
                 }
