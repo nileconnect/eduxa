@@ -337,7 +337,7 @@ class ImportController extends BackendController
                             $nextToObj= UniversityNextTo::find()->where(['title'=>strval($row[12])])->one();
                             if (!$nextToObj) {
                                 $nextToObj = new UniversityNextTo();
-                                $nextToObj->title = strval($row[9]);
+                                $nextToObj->title = strval($row[12]);
                                 $nextToObj->save();
                             }
                             return  $nextToObj->id ;
