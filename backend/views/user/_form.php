@@ -31,7 +31,7 @@ $model->roles =Yii::$app->session->get('UserRole');
                             <?php echo $form->field($model, 'email')->textInput() ?>
                         </div>
 
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-7 col-sm-12">
                             <?php //echo $form->field($model, 'password')->passwordInput() ?>
                            <?php  echo $form->field($model, 'password')->widget(PasswordInput::classname()); ?>
 
