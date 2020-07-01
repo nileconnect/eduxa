@@ -32,7 +32,7 @@ echo TabularForm::widget([
                 'pluginOptions' => [
                     'autoclose'=>true,
                     'format' => 'dd-mm-yyyy',
-                    'startDate'=> date('d-m-Y'),
+                    // 'startDate'=> date('d-m-Y'),
                     'todayHighlight' => true
                 ]
             ],
