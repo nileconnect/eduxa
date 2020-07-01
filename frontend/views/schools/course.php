@@ -292,7 +292,16 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Begining of study')?></td>
-                            <td><span class="text-primary"><?= $courseObj->min_age; ?> Years</span></td>
+                            <td>
+                                <?php
+                                foreach ($courseObj->schoolCourseStartDates as $schoolStatrDate) {
+                                    ?>
+                                    <span class="text-primary"><?= date( "j F , Y" , strtotime($schoolStatrDate->course_date)); ?></span><br/>
+                                    <?
+                                }
+                                ?>
+
+                            </td>
                         </tr>
                         
                         <tr>

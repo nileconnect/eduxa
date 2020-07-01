@@ -80,9 +80,9 @@ class ReferralSignupForm extends Model
                 }")
             ],
             ['password_confirm', 'compare', 'compareAttribute' => 'password', 'skipOnEmpty' => false],
-            [['no_of_students','expected_no_of_students','country_id','state_id','city_id'],'integer'],
+            [['expected_no_of_students','country_id','state_id','city_id'],'integer'],
 
-            [['mobile','telephone_no'],'number'],
+            [['mobile','no_of_students','telephone_no'],'number'],
             [['students_nationalities'],'string','max'=>255],
             [['job_title','company_name'],'string'],
             [['job_title','company_name','telephone_no'],'required' ,'on'=>'RefCompany'],
