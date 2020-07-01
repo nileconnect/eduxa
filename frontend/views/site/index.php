@@ -1,13 +1,10 @@
 
 <section class="slider">
-    <ul class="flaoted-socials">
-        <li><a href="#"><i class="fas fa-phone"></i></a></li>
-        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-        <li><a href=""><i class="fas fa-share-alt"></i></a></li>
-    </ul>
+
+    <?php
+    $this->beginContent('@frontend/views/layouts/_shareWidget.php');
+    $this->endContent() ;
+    ?>
     <div class="slides" data-slider="slick" data-slick='{"autoplay":true, "autoplaySpeed":3000, "fade":true, "arrows":false, "dots":true}'>
         <div class="slide slide--1" style="background-image:url('/img/slider/1.jpg')">
             <div class="container">
