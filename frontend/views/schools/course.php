@@ -440,7 +440,17 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 if($courseObj->cost_type == SchoolCourse::COST_PER_WEEK ){
                                     ?>
                                     <label>Course Duration By weeks</label>
-                                    <input type="number" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)">
+                                    <!-- <input type="number" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)"> -->
+                                    <select class="form-control"  @change="GetCourseDurations($event)">
+                                    <option>Course Duration By weeks</option>
+                                    <?php
+                                        for($i=1 ;$i<= 52 ; $i++){
+                                            ?>
+                                            <option value="<?= $i?>"> <?= $i?></option>
+                                            <?
+                                        }
+                                        ?>
+                                    </select>
                                     <?
                                 }else{
                                     $costObj = SchoolCourseSessionCost::find()->where('school_course_id ='.$courseObj->id)->one();
