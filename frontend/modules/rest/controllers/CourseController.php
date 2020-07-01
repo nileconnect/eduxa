@@ -53,7 +53,7 @@ class CourseController  extends  Controller
             if(!$costObj)  return ResponseHelper::sendSuccessResponse(['cost'=>0]);
             $cost=$costObj->session_cost ;
         }
-        $total_cost = number_format($cost*$no_of_weeks );
+        $total_cost = round($cost*$no_of_weeks );
 
         return ResponseHelper::sendSuccessResponse(['cost'=>$total_cost]);
 
@@ -125,7 +125,7 @@ class CourseController  extends  Controller
         $accomodationObj = SchoolAccomodation::find()->where(['id'=>$accomodation_id])->one();
         if(!$accomodationObj) return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
 
-        $cost = number_format($accomodationObj->cost_per_duration_unit  * $period);
+        $cost = round($accomodationObj->cost_per_duration_unit  * $period);
         return ResponseHelper::sendSuccessResponse(['cost'=>$cost]);
 
     }
