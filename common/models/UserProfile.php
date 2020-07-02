@@ -2,14 +2,14 @@
 
 namespace common\models;
 
-use Yii;
-use yii\db\ActiveRecord;
-use backend\models\State;
 use backend\models\Cities;
 use backend\models\Country;
 use backend\models\Schools;
+use backend\models\State;
 use backend\models\University;
 use trntv\filekit\behaviors\UploadBehavior;
+use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user_profile".
@@ -49,15 +49,17 @@ class UserProfile extends ActiveRecord
         return '{{%user_profile}}';
     }
 
-    public static function ListGender(){
+    public static function ListGender()
+    {
         return [
             UserProfile::GENDER_FEMALE => Yii::t('backend', 'Female'),
-            UserProfile::GENDER_MALE => Yii::t('backend', 'Male')
+            UserProfile::GENDER_MALE => Yii::t('backend', 'Male'),
 
         ];
     }
 
-    public static function ListFindUs(){
+    public static function ListFindUs()
+    {
         //Google, Facebook, Twitter,Instagram,print advertising,word of mouth.
         return [
             1 => Yii::t('common', 'Google'),
@@ -70,7 +72,8 @@ class UserProfile extends ActiveRecord
         ];
     }
 
-    public static function ListCommunicateChannels(){
+    public static function ListCommunicateChannels()
+    {
         return [
             1 => Yii::t('common', 'By Emails'),
             2 => Yii::t('common', 'By Mobile'),
@@ -89,8 +92,8 @@ class UserProfile extends ActiveRecord
                 'class' => UploadBehavior::class,
                 'attribute' => 'picture',
                 'pathAttribute' => 'avatar_path',
-                'baseUrlAttribute' => 'avatar_base_url'
-            ]
+                'baseUrlAttribute' => 'avatar_base_url',
+            ],
         ];
     }
 
@@ -100,22 +103,21 @@ class UserProfile extends ActiveRecord
     public function rules()
     {
         return [
-            [['firstname','lastname','mobile','country_id','city_id','state_id'
-            ], 'required' ],
+            [['firstname', 'lastname', 'mobile', 'country_id', 'city_id', 'state_id', 'gender'], 'required'],
             //'gender',
-            ['nationality','string', 'min' => 2, 'max' => 60],
-            [['firstname','lastname'],'string', 'min' => 2, 'max' => 15],
+            ['nationality', 'string', 'min' => 2, 'max' => 60],
+            [['firstname', 'lastname'], 'string', 'min' => 2, 'max' => 15],
 
             [['user_id'], 'required'],
-            [['user_id', 'gender','country_id','state_id','city_id','no_of_students','communtication_channel'], 'integer'],
-            [['gender'], 'in', 'range' => [NULL, self::GENDER_FEMALE, self::GENDER_MALE]],
-            [[ 'avatar_path', 'avatar_base_url','nationality','students_nationalities','job_title'], 'string', 'max' => 255],
-            ['locale', 'default', 'value' => Yii::$app->language =='en' ? 'en-US' : 'ar-AR'],
+            [['user_id', 'gender', 'country_id', 'state_id', 'city_id', 'no_of_students', 'communtication_channel'], 'integer'],
+            [['gender'], 'in', 'range' => [null, self::GENDER_FEMALE, self::GENDER_MALE]],
+            [['avatar_path', 'avatar_base_url', 'nationality', 'students_nationalities', 'job_title'], 'string', 'max' => 255],
+            ['locale', 'default', 'value' => Yii::$app->language == 'en' ? 'en-US' : 'ar-AR'],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
-            [['picture','city_id','interested_in_university','interested_in_schools','students_nationalities','communtication_channel'], 'safe'],
-            [['mobile','telephone_no'],'number'],
-            [['find_us_from','no_of_students','expected_no_of_students',],'integer'],
-            [['job_title','company_name'],'string'],
+            [['picture', 'city_id', 'interested_in_university', 'interested_in_schools', 'students_nationalities', 'communtication_channel'], 'safe'],
+            [['mobile', 'telephone_no'], 'number'],
+            [['find_us_from', 'no_of_students', 'expected_no_of_students'], 'integer'],
+            [['job_title', 'company_name'], 'string'],
 
         ];
     }
@@ -162,7 +164,6 @@ class UserProfile extends ActiveRecord
     {
         return $this->hasOne(Country::class, ['id' => 'nationality']);
     }
-
 
     public function getCountry()
     {
@@ -211,7 +212,7 @@ class UserProfile extends ActiveRecord
     public function getAvatar($default = '/img/avatars/default-avatar.png')
     {
         return $this->avatar_path
-            ? Yii::getAlias($this->avatar_base_url . '/' . $this->avatar_path)
-            : $default;
+        ? Yii::getAlias($this->avatar_base_url . '/' . $this->avatar_path)
+        : $default;
     }
 }
