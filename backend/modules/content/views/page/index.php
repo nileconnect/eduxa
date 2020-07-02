@@ -12,7 +12,7 @@ use yii\helpers\Html;
  * @var $model        common\models\Page
  */
 
-$this->title = Yii::t('backend', 'Pages');
+$this->title = Yii::t('backend', 'Static Pages');
 
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'raw',
         ],
         [
+            'header'=>'Description',
             'attribute' => 'slug',
         ],
 

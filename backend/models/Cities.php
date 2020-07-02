@@ -24,6 +24,7 @@ class Cities extends BaseCities
     {
         return array_replace_recursive(parent::rules(),
 	    [
+            [['title'], 'unique'],
             [['state_id', 'title'], 'required'],
             [['state_id', 'sort'], 'integer'],
             [['state_id', 'sort'], 'integer','on'=>'import'],

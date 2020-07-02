@@ -21,6 +21,9 @@ use yii\widgets\ActiveForm;
 #requestssearch-period label{
     padding-left: 30px;
 }
+.input-daterange{
+    margin-top:0px !important; 
+}
 </style>
 <div class="form-requests-search" >
 
@@ -45,6 +48,7 @@ use yii\widgets\ActiveForm;
         </div>
         <div class="col-md-4 col-sm-12" >
             <?php
+                echo '<label class="control-label" for="creation_from_date" style="font-weight: 900;color: #848484;">Date Period</label>';
                 echo DatePicker::widget([
                     'model' => $model,
                     'attribute' => 'creation_from_date',

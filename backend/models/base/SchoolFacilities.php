@@ -59,9 +59,9 @@ class SchoolFacilities extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSchool()
+    public function getSchoolAccomodation()
     {
-        return $this->hasOne(\backend\models\Schools::className(), ['id' => 'school_id']);
+        return $this->hasOne(\backend\models\SchoolAccomodation::className(), ['facility_id' => 'id']);
     }
     
     /**

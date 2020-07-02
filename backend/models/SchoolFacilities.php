@@ -15,13 +15,14 @@ class SchoolFacilities extends BaseSchoolFacilities
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
+        return
 	    [
             [['school_id'], 'integer'],
+            [['title'], 'unique'],
             [[ 'created_at', 'updated_at'], 'string', 'max' => 255],
             [['title'], 'string', 'max' => 30 ,'min'=>2],
 
-        ]);
+        ];
     }
 	
 }

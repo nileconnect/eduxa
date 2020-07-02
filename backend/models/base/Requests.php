@@ -105,7 +105,7 @@ class Requests extends \yii\db\ActiveRecord
             'student_mobile' => Yii::t('backend', 'Student Mobile'),
             'student_country_id' => Yii::t('backend', 'Student Country'),
             'student_city_id' => Yii::t('backend', 'Student State'),
-            'student_nationality_id' => Yii::t('backend', 'Student Nationality'),
+            'student_nationality_id' => Yii::t('backend', 'Nationality'),
             'accomodation_option' => Yii::t('backend', 'Accomodation Option'),
             'accomodation_option_cost' => Yii::t('backend', 'Accomodation Option Cost'),
             'airport_pickup' => Yii::t('backend', 'Airport Pickup'),

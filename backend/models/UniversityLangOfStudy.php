@@ -17,6 +17,7 @@ class UniversityLangOfStudy extends BaseUniversityLangOfStudy
     {
         return [
             [['title'], 'required'],
+            [['title'], 'unique'],
             [['created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'string', 'max' => 255],
             [['title'], 'string', 'max' => 30 ,'min'=>2],

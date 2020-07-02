@@ -22,8 +22,8 @@ class RequestsSearch extends Requests
     public function rules()
     {
         return [
-            [['id', 'model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id', 'student_nationality_id', 'number_of_weeks'], 'integer'],
-            [['model_name', 'request_by_role', 'request_notes', 'admin_notes', 'student_first_name', 'student_last_name', 'student_gender', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup', 'airport_pickup_cost', 'course_start_date', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'safe'],
+            [['id', 'model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id', 'number_of_weeks'], 'integer'],
+            [['model_name', 'request_by_role', 'request_notes', 'admin_notes', 'student_first_name', 'student_last_name', 'student_gender', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup', 'airport_pickup_cost', 'course_start_date', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by','student_nationality_id'], 'safe'],
             [['accomodation_option_cost'], 'number'],
             ['created_at', 'safe'],
             [['creation_from_date', 'creation_to_date', 'period'], 'safe'],

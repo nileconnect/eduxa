@@ -41,16 +41,17 @@ class Schools extends BaseSchools
     public function rules()
     {
         return [
+            [['title'], 'unique'],
             [['title','country_id', 'city_id', 'state_id','currency_id','lat','lng','next_to','details','detailed_address'], 'required'],
             [['country_id', 'city_id', 'state_id','min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings',
                 'currency_id','next_to'], 'integer'],
             [['details','slug'], 'string'],
             [['accomodation_fees', 'registeration_fees', 'study_books_fees',  'discount', 'total_rating'], 'number'],
             [['location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['title'], 'string', 'max' => 50],
-            [['details'], 'string', 'max' => 5000],
-            [['detailed_address'], 'string', 'max' => 2000],
-            [['title','details','detailed_address'], 'string', 'min' => 2],
+            [['title','title_ar'], 'string', 'max' => 50],
+            [['details','details_ar'], 'string', 'max' => 5000],
+            [['detailed_address','detailed_address_ar'], 'string', 'max' => 2000],
+            [['title','title_ar','details','details_ar','detailed_address','detailed_address_ar'], 'string', 'min' => 2],
             ['title_ar','safe','on'=>'import'],
             [['featured', 'status','title_ar','details_ar','detailed_address_ar'], 'safe'],
             [['logo','photos','no_of_ratings' ,'accomodation_reservation_fees','has_health_insurance','health_insurance_cost','detailed_address','currency_id','next_to'],'safe']

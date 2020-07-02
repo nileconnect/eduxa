@@ -2,7 +2,6 @@
 
 namespace backend\models;
 
-use Yii;
 use \backend\models\base\UniversityNextTo as BaseUniversityNextTo;
 
 /**
@@ -15,14 +14,15 @@ class UniversityNextTo extends BaseUniversityNextTo
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
-	    [
-//            [['university_id'], 'required'],
-//            [['university_id'], 'integer'],
-            [[ 'created_at', 'updated_at'], 'string', 'max' => 255],
-              [['title'], 'string', 'max' => 30 ,'min'=>2],
+        return
+            [
+            // [['university_id'], 'required'],
+            // [['university_id'], 'integer'],
+            [['created_at', 'updated_at'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 30, 'min' => 2],
+            [['title'], 'unique'],
 
-            ]);
+        ];
     }
-	
+
 }

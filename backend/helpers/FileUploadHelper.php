@@ -10,7 +10,7 @@ class FileUploadHelper extends Model
     public function rules()
     {
         return [
-            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'xlsx'],
+            ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'xlsx', 'wrongExtension' => 'Only {extensions} types are allowed for {attribute}.'],
         ];
     }
 }

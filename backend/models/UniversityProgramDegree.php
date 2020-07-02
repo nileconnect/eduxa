@@ -21,14 +21,15 @@ class UniversityProgramDegree extends BaseUniversityProgramDegree
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
+        return 
 	    [
+            [['title'], 'unique'],
             [['title'], 'required'],
             [['created_by', 'updated_by'], 'integer'],
             [[ 'created_at', 'updated_at'], 'string', 'max' => 255],
             [['title'], 'string', 'max' => 30,'min'=>2],
 
-        ]);
+        ];
     }
 
 

@@ -62,7 +62,7 @@ class SchoolNextTo extends \yii\db\ActiveRecord
      */
     public function getSchool()
     {
-        return $this->hasOne(\backend\models\Schools::className(), ['id' => 'school_id']);
+        return $this->hasOne(\backend\models\Schools::className(), ['next_to' => 'id']);
     }
     
     /**

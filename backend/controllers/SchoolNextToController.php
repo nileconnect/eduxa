@@ -99,8 +99,17 @@ class SchoolNextToController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteWithRelated();
-
+        $model = $this->findModel($id);
+        if($model->school){
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'danger',
+                'body' => \Yii::t('backend', 'You are not  allowed to delete '. $model->title .' because it is
+                related to school.') ,
+                'title' =>'',
+            ]);
+        }else{
+            $this->findModel($id)->delete();
+        }
         return $this->redirect(['index']);
     }
 

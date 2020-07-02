@@ -62,7 +62,7 @@ class UniversityNextTo extends \yii\db\ActiveRecord
      */
     public function getUniversity()
     {
-        return $this->hasOne(\backend\models\University::className(), ['id' => 'university_id']);
+        return $this->hasOne(\backend\models\University::className(), ['next_to' => 'id']);
     }
     
     /**

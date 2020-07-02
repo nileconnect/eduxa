@@ -24,10 +24,11 @@ class UniversityPrograms extends BaseUniversityPrograms
     public function rules()
     {
         return [
+            [['title'], 'unique'],
             [['university_id', 'title', 'major_id', 'degree_id','lang_of_study','medium_of_study','degree_id','field_id','high_school_transcript','bachelor_degree'
             ,'study_duration','study_duration_no','study_method','program_format','conditional_admissions','ielts','bank_statment','annual_cost','toefl','first_submission_date','last_submission_date'], 'required'],
 
-            [['title','high_school_transcript', 'bachelor_degree'], 'string', 'max' => 30,'min'=>2],
+            [['title','high_school_transcript', 'bachelor_degree','title_ar','high_school_transcript_ar','bachelor_degree_ar'], 'string', 'max' => 30,'min'=>2],
 
             [[ 'major_id', 'degree_id', 'field_id', 'country_id', 'city_id', 'created_by', 'updated_by',
                 'last_submission_date_active','medium_of_study','program_format','lang_of_study', 'study_method','conditional_admissions',  'study_duration',  'ielts'], 'integer'],

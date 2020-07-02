@@ -64,6 +64,7 @@ class SchoolCourse extends BaseSchoolCourse
     public function rules()
     {
         return [
+            [['title'], 'unique'],
             [['school_id', 'title','school_course_type_id','school_course_study_language_id','cost_type','status'
             ,'min_age','required_level','time_of_course','study_books_fees','registeration_fees','discount','lessons_per_week',
             'lesson_duration','max_no_of_students_per_class','information','requirments','avg_no_of_students_per_class'],
@@ -72,9 +73,9 @@ class SchoolCourse extends BaseSchoolCourse
                 'updated_by','pricing_method','school_course_type_id','school_course_study_language_id','cost_type'],
                 'integer'],
             [['information', 'requirments','slug'], 'string'],
-            [['title'], 'string', 'max' => 50, 'min'=>2],
+            [['title','title_ar'], 'string', 'max' => 50, 'min'=>2],
             [['lesson_duration'], 'string', 'max' => 50, 'min'=>1],
-            [['information','requirments'], 'string', 'max' => 5000, 'min'=>1],
+            [['information','requirments','information_ar','requirments_ar'], 'string', 'max' => 5000, 'min'=>1],
             
             ['min_age', 'compare', 'compareValue' => 999, 'operator' => '<=', 'type' => 'number'],
             [['min_age','study_books_fees','registeration_fees','discount','lessons_per_week','max_no_of_students_per_class',

@@ -468,7 +468,7 @@ return [
     'Recommended'=>'موصى به',
     'Newsletter'=>'النشرة الإخبارية',
     'You didn\'t upload a logo, so we will put the empty logo'=>'لم تقم بتحميل شعار ، لذلك سنضع الشعار الفارغ',
-    ''=>'',
+    'Nationality'=>'الجنسية',
     ''=>'',
     ''=>'',
     ''=>'',

@@ -343,6 +343,18 @@ class ImportController extends BackendController
                             return  $nextToObj->id ;
                         },
                     ],
+                    [
+                        'attribute' => 'status',
+                        'value' => function ($row) {
+                            return strval($row[13])=="Yes" ? 1 : 0;
+                        },
+                    ],
+                    [
+                        'attribute' => 'recommended',
+                        'value' => function ($row) {
+                            return strval($row[14])=="Yes" ? 1 : 0;
+                        },
+                    ],
 
                 //    [
                 //        'attribute' => 'country',
@@ -839,11 +851,22 @@ class ImportController extends BackendController
                             return  $nextToObj->id ;
                         },
                     ],
+                    [
+                        'attribute' => 'has_health_insurance',
+                        'value' => function ($row) {
+                            return strval($row[16])=="Yes" ? 1 : 0;
+                        },
+                    ],
+                    [
+                        'attribute' => 'health_insurance_cost',
+                        'value' => function ($row) {
+                            return strval($row[17]);
+                        },
+                    ],
                 ],
 
             ]);
 
-            // return var_dump($importer->getModels());
             if (!$importer->validate()) {
                 foreach ($importer->getErrors() as $rowNumber => $errors) {
                     $errors .="$rowNumber errors <br>" . implode('<br>', $errors);

@@ -19,12 +19,13 @@ class SchoolCourseType extends BaseSchoolCourseType
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
+        return 
 	    [
             [['title'], 'required'],
+            [['title'], 'unique'],
             [['created_by', 'updated_by'], 'integer'],
             [['title'], 'string', 'max' => 30,'min'=>2],
-        ]);
+        ];
     }
 
     public function behaviors()

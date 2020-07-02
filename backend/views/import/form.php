@@ -21,6 +21,12 @@ if($saved){
 }
 
 ?>
+<style>
+    .help-block{
+        display:block  !important;
+        width:100%;
+    }
+</style>
 <div class="row">
     <div class="col-md-12 text-center" style="padding-top:50px">
     <?php
@@ -52,7 +58,7 @@ if($saved){
         <?= $form->field($model, 'file')->fileInput() ?>
         
 
-        <div class="form-group">
+        <div class="form-group" style="margin-top:10px">
             <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end();
