@@ -167,7 +167,7 @@ class SignInController extends \yii\web\Controller
                 } else {
                     Yii::$app->getUser()->login($user);
                 }
-                return $this->goHome();
+                return $this->redirect('/signup');
             }
         }
 
