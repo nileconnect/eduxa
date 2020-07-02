@@ -71,7 +71,6 @@ if($saved){
             ?>
         </div>
     </div>
-
     <div class="form-group" style="text-align: center">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
