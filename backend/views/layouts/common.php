@@ -90,7 +90,7 @@ $bundle = BackendAsset::register($this);
                                 <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>"
                                      class="img-circle" alt="User Image"/>
                                 <p>
-                                    <?php echo Yii::$app->user->identity->username ?>
+                                    <?php echo Yii::$app->user->identity->userProfile->getFullname() ?>
                                     <small>
                                         <?php echo Yii::t('backend', 'Member since {0, date, short}', Yii::$app->user->identity->created_at) ?>
                                     </small>
@@ -102,6 +102,7 @@ $bundle = BackendAsset::register($this);
 <!--                                </div>-->
                                 <div class="pull-left">
                                     <?php echo Html::a(Yii::t('backend', 'Account'), ['/sign-in/account'], ['class' => 'btn btn-default']) ?>
+                                    <?php echo Html::a(Yii::t('backend', 'Profile'), ['/sign-in/profile'], ['class' => 'btn btn-default']) ?>
                                 </div>
                                 <div class="pull-right">
                                     <?php echo Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], ['class' => 'btn btn-default', 'data-method' => 'post']) ?>
@@ -124,7 +125,7 @@ $bundle = BackendAsset::register($this);
                     <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>" class="img-circle" />
                 </div>
                 <div class="pull-left info">
-                    <p><?php echo Yii::t('backend', 'Hello, {username}', ['username' => Yii::$app->user->identity->getPublicIdentity()]) ?></p>
+                    <p><?php echo Yii::t('backend', 'Hello, {username}', ['username' => Yii::$app->user->identity->userProfile->getFullname()]) ?></p>
                     <a href="<?php echo Url::to(['/sign-in/profile']) ?>">
                         <i class="fa fa-circle text-success"></i>
                         <?php echo Yii::$app->formatter->asDatetime(time()) ?>
@@ -137,7 +138,7 @@ $bundle = BackendAsset::register($this);
                     <!-- User profile text-->
                     <div class="profile-text"> 
                         <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                            <?php echo Yii::t('backend', 'Hello, {username}', ['username' => Yii::$app->user->identity->getPublicIdentity()]) ?>
+                            <?php echo Yii::t('backend', 'Hello, {username}', ['username' => Yii::$app->user->identity->userProfile->getFullname()]) ?>
                         </a> 
                         
                     </div>

@@ -5,6 +5,8 @@ $config = [
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage' => 'en-US',
     'language' => 'en-US',
+    'timeZone' => env('YII_ENV') == 'dev' ? 'Africa/Cairo' : 'Asia/Riyadh',
+    // 'timeZone' => 'Africa/Cairo',
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',

@@ -18,7 +18,7 @@ class StudentCertificate extends BaseStudentCertificate
         return array_replace_recursive(parent::rules(),
 	    [
             [['user_id', 'year','grade','university_or_school', 'country_id','certificate_name'], 'required'],
-            ['year', 'number' ,'min'=>1950, 'max'=>date('Y')],
+            ['year', 'date','format' => 'php:Y' ,'min'=>1950, 'max'=>date('Y')],
             [['user_id',  'country_id'], 'integer'],
             [[  'created_at', 'updated_at'], 'string', 'max' => 255],
             [['certificate_name','university_or_school'], 'string','min'=>2, 'max' => 30],

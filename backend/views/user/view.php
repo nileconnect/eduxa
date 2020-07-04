@@ -1,9 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 use common\models\User;
+use yii\widgets\DetailView;
 use yii\bootstrap\ActiveForm;
+use common\models\UserProfile;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
@@ -102,14 +103,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         'firstname',
                         'lastname',
-                        'mobile',
-
+                        [
+                            'attribute' => 'gender',
+                            'value' => function($model){
+                                return UserProfile::ListGender()[$model->gender] ;
+                            },
+                        ],
+                        [
+                            'attribute' => 'mobile',
+                            'visible'=>  !User::IsRole($model->id , User::ROLE_MANAGER),
+                        ],
                         [
                             'attribute' => 'country_id',
                             'value' => function($model){
                                 return $model->country_id ?  $model->country->title : '' ;
                             },
                             'format'=>'raw',
+                            'visible'=>  !User::IsRole($model->id , User::ROLE_MANAGER) and !User::IsRole($model->id , User::ROLE_UNIVERSITY_MANAGER),
+
                         ],
                         [
                             'attribute' => 'state_id',
@@ -117,6 +128,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return $model->state_id ?  $model->state->title : '' ;
                             },
                             'format'=>'raw',
+                            'visible'=>  !User::IsRole($model->id , User::ROLE_MANAGER) and !User::IsRole($model->id , User::ROLE_UNIVERSITY_MANAGER),
+
                         ],
 
                         [
@@ -125,6 +138,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return $model->city_id ?  $model->city->title : '' ;
                             },
                             'format'=>'raw',
+                            'visible'=>  !User::IsRole($model->id , User::ROLE_MANAGER) and !User::IsRole($model->id , User::ROLE_UNIVERSITY_MANAGER),
+
                         ],
 
                         [
@@ -133,16 +148,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return   \common\models\UserProfile::ListFindUs() [$model->find_us_from]  ;
                             },
                             'format'=>'raw',
-                            //'visible'=>,
+                            'visible'=>  !User::IsRole($model->id , User::ROLE_MANAGER) and !User::IsRole($model->id , User::ROLE_UNIVERSITY_MANAGER),
                         ],
-// ///////////////////////////////////////////////////
                         [
                             'attribute' => 'no_of_students',
                             'value' => function($model){
                                 return $model->no_of_students  ;
                             },
                             'format'=>'raw',
-                            'visible'=> ! User::IsRole($model->id , User::ROLE_USER),
+                            'visible'=> !User::IsRole($model->id , User::ROLE_MANAGER) and !User::IsRole($model->id , User::ROLE_USER) and !User::IsRole($model->id , User::ROLE_UNIVERSITY_MANAGER),
                         ],
 
                         [
@@ -151,7 +165,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return $model->expected_no_of_students  ;
                             },
                             'format'=>'raw',
-                            'visible'=> ! User::IsRole($model->id , User::ROLE_USER),
+                            'visible'=> !User::IsRole($model->id , User::ROLE_MANAGER) and !User::IsRole($model->id , User::ROLE_USER) and !User::IsRole($model->id , User::ROLE_UNIVERSITY_MANAGER),
                         ],
                         [
                             'attribute' => 'students_nationalities',
@@ -159,7 +173,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return $model->students_nationalities  ;
                             },
                             'format'=>'raw',
-                            'visible'=> ! User::IsRole($model->id , User::ROLE_USER),
+                            'visible'=> !User::IsRole($model->id , User::ROLE_MANAGER) and !User::IsRole($model->id , User::ROLE_USER) and !User::IsRole($model->id , User::ROLE_UNIVERSITY_MANAGER),
                         ],
 
 // ////////////////////////////////////
@@ -191,8 +205,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
 
 
-// ////////////////////////////////////
-
+                        // 
                         [
                             'label' => 'Interested in schools?',
                             'attribute' => 'interested_in_schools',

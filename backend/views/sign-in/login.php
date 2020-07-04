@@ -16,6 +16,9 @@ $this->params['body-class'] = 'login-page';
     background-repeat: no-repeat !important;
     background-size: cover !important;
     }
+    .help-block{
+        display: block !important;
+    }
 </style>
 <div class="login-box">
     <div class="login-logo">

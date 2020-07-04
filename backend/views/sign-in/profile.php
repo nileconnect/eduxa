@@ -14,18 +14,17 @@ $this->title = Yii::t('backend', 'Edit profile')
 <div class="user-profile-form">
 
     <?php $form = ActiveForm::begin() ?>
-
+    <?= $form->errorSummary($model); ?>
+    
     <?php echo $form->field($model, 'picture')->widget(\trntv\filekit\widget\Upload::class, [
         'url'=>['avatar-upload']
     ]) ?>
 
     <?php echo $form->field($model, 'firstname')->textInput(['maxlength' => 255]) ?>
 
-    <?php echo $form->field($model, 'middlename')->textInput(['maxlength' => 255]) ?>
-
     <?php echo $form->field($model, 'lastname')->textInput(['maxlength' => 255]) ?>
 
-    <?php echo $form->field($model, 'locale')->dropDownlist(Yii::$app->params['availableLocales']) ?>
+    <?php $form->field($model, 'locale')->dropDownlist(Yii::$app->params['availableLocales']) ?>
 
     <?php echo $form->field($model, 'gender')->dropDownlist([
         UserProfile::GENDER_FEMALE => Yii::t('backend', 'Female'),

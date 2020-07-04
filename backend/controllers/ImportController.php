@@ -118,7 +118,7 @@ class ImportController extends BackendController
                     $saved= true;
                     Yii::$app->getSession()->setFlash('alert', [
                         'type' =>'success',
-                        'body' => \Yii::t('hr', 'Data has been imported successfully') ,
+                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
                         'title' =>'',
                     ]);
                 }
@@ -214,7 +214,7 @@ class ImportController extends BackendController
                     $saved= true;
                     Yii::$app->getSession()->setFlash('alert', [
                         'type' =>'success',
-                        'body' => \Yii::t('hr', 'Data has been imported successfully') ,
+                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
                         'title' =>'',
                     ]);
                 }
@@ -409,7 +409,7 @@ class ImportController extends BackendController
                     $saved= true;
                     Yii::$app->getSession()->setFlash('alert', [
                        'type' =>'success',
-                       'body' => \Yii::t('hr', 'Data has been imported successfully') ,
+                       'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
                        'title' =>'',
                    ]);
                 }
@@ -418,7 +418,6 @@ class ImportController extends BackendController
         return $this->render('form', ['model'=>$model,
             'saved'=>$saved,
             'filename'=>'Universities.xlsx'
-
         ]);
     }
 
@@ -704,7 +703,7 @@ class ImportController extends BackendController
                 } else {
                     Yii::$app->getSession()->setFlash('alert', [
                         'type' =>'success',
-                        'body' => \Yii::t('hr', 'Data has been imported successfully') ,
+                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
                         'title' =>'',
                     ]);
                     $saved= true;
@@ -748,13 +747,23 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'status',
                         'value' => function ($row) {
-                            return strval($row[2])=="Yes" ? 1 : 0;
+                            if(strval($row[2])=="Yes" || strval($row[2])=="yes"){
+                                return 1;
+                            }elseif(strval($row[2])=="No" || strval($row[2])=="no"){
+                                return 0;
+                            }
+                            return 'NotValid';
                         },
                     ],
                     [
                         'attribute' => 'featured',
                         'value' => function ($row) {
-                            return strval($row[3])=="Yes" ? 1 : 0;
+                            if(strval($row[2])=="Yes" || strval($row[2])=="yes"){
+                                return 1;
+                            }elseif(strval($row[2])=="No" || strval($row[2])=="no"){
+                                return 0;
+                            }
+                            return 'NotValid';
                         },
                     ],
                     [
@@ -866,7 +875,7 @@ class ImportController extends BackendController
                 ],
 
             ]);
-
+            // return var_dump($importer->getModels());
             if (!$importer->validate()) {
                 foreach ($importer->getErrors() as $rowNumber => $errors) {
                     $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
@@ -887,7 +896,7 @@ class ImportController extends BackendController
                     $saved= true;
                     Yii::$app->getSession()->setFlash('alert', [
                        'type' =>'success',
-                       'body' => \Yii::t('hr', 'Data has been imported successfully') ,
+                       'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
                        'title' =>'',
                    ]);
                 }
@@ -967,22 +976,26 @@ class ImportController extends BackendController
                         'attribute' => 'required_level',
                         'value' => function ($row) {
                             $value = $row[6];
-                            if($value = 'Beginner'){
+                            if($value == 'Beginner' || $value == 'beginner'){
                                 return SchoolCourse::COURSE_TYPE_BEGINNER;
-                            }elseif ($value = 'Intermediate') {
+                            }elseif ($value == 'Intermediate' || $value == 'intermediate') {
                                 return SchoolCourse::COURSE_TYPE_INTERMEDIATE;
+                            }elseif ($value == 'Professional' || $value == 'professional') {
+                                return SchoolCourse::COURSE_TYPE_PROFESSIONAL;
                             }
-                            return SchoolCourse::COURSE_TYPE_PROFESSIONAL;
+                            return 'NotValid';
                         },
                     ],
                     [
                         'attribute' => 'time_of_course',
                         'value' => function ($row) {
                             $value = $row[7];
-                            if($value = 'Morning'){
+                            if($value == 'Morning' || $value == 'morning'){
                                 return SchoolCourse::COURSE_TIME_MORNING;
+                            }elseif($value == 'Evening' || $value == 'evening'){
+                                return SchoolCourse::COURSE_TIME_EVENING;
                             }
-                            return SchoolCourse::COURSE_TIME_EVENING;
+                            return 'NotValid';
                         },
                     ],
                     [
@@ -1082,7 +1095,7 @@ class ImportController extends BackendController
                     $saved= true;
                     Yii::$app->getSession()->setFlash('alert', [
                        'type' =>'success',
-                       'body' => \Yii::t('hr', 'Data has been imported successfully') ,
+                       'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
                        'title' =>'',
                    ]);
                 }

@@ -10,16 +10,6 @@ use kartik\depdrop\DepDrop;
 /* @var $model backend\models\University */
 /* @var $form yii\widgets\ActiveForm */
 
-if($saved){
-    $this->registerJs("$(function() {
-          parent.jQuery.fancybox.getInstance().close();
-           parent.location.reload();
-
-     });
-     
-       ");
-}
-
 ?>
 <style>
     .help-block{
@@ -66,3 +56,16 @@ if($saved){
     </div>
 </div>
 
+
+<?
+if($saved){
+    $this->registerJs("$(function() {
+        setTimeout(function(){
+            parent.jQuery.fancybox.getInstance().close();
+            parent.location.reload();
+         }, 5000);
+        });
+    ");
+    }
+    
+?>

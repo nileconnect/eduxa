@@ -8,15 +8,16 @@
 
 namespace backend\controllers;
 
-use backend\models\AccountForm;
-use backend\models\LoginForm;
-use Intervention\Image\ImageManagerStatic;
-use trntv\filekit\actions\DeleteAction;
-use trntv\filekit\actions\UploadAction;
 use Yii;
-use yii\filters\VerbFilter;
 use yii\imagine\Image;
 use yii\web\Controller;
+use yii\filters\VerbFilter;
+use common\models\MyProfile;
+use backend\models\LoginForm;
+use backend\models\AccountForm;
+use trntv\filekit\actions\DeleteAction;
+use trntv\filekit\actions\UploadAction;
+use Intervention\Image\ImageManagerStatic;
 
 class SignInController extends Controller
 {
@@ -80,7 +81,8 @@ class SignInController extends Controller
 
     public function actionProfile()
     {
-        $model = Yii::$app->user->identity->userProfile;
+        $user = Yii::$app->user->identity->userProfile;
+        $model = MyProfile::find()->where(['user_id'=>$user->user_id])->one();
         if ($model->load($_POST) && $model->save()) {
             Yii::$app->session->setFlash('alert', [
                 'options' => ['class' => 'alert-success'],
