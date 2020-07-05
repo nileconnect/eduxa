@@ -13,7 +13,7 @@ $this->title = Yii::t('backend', 'Edit account')
 
     <?php $form = ActiveForm::begin() ?>
 
-    <?php echo $form->field($model, 'username') ?>
+    <?php echo $form->field($model, 'username')->hiddenInput()->label(false) ?>
 
     <?php echo $form->field($model, 'email') ?>
 
