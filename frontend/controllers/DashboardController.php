@@ -156,35 +156,36 @@ class DashboardController extends FrontendController
         $this->layout='_clear';
         $saved= 0;
 
-
         $accountForm = new AccountForm();
         $accountForm->setUser(Yii::$app->user->identity);
 
-        $model = new MultiModel([
-            'models' => [
-                'account' => $accountForm,
-                'profile' => Yii::$app->user->identity->userProfile
-            ]
-        ]);
+        $profile = Yii::$app->user->identity->userProfile;
+        $profile->scenario = 'updateStudentProfileInFront';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $locale = $model->getModel('profile')->locale;
-           $saved= 1;
-            Yii::$app->getSession()->setFlash('alert', [
-                'type' =>'success',
-                'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
-                'title' =>'',
-            ]);
-
-
-            //   return $this->refresh();
-
+        if ($accountForm->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post())) {
+            if($profile->interested_in_university == 0 and $profile->interested_in_schools == 0){
+                $profile->interested_in_university = ''; 
+            }
+            $isValid = $accountForm->validate();
+            $isValid = $profile->validate() && $isValid;
+            if ($isValid) {
+                $accountForm->save(false);
+                $profile->save(false);
+                $saved= 1;
+                Yii::$app->getSession()->setFlash('alert', [
+                    'type' =>'success',
+                    'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
+                    'title' =>'',
+                ]);
+            }
         }
         return $this->render('forms/profile_data', [
-            'model' => $model,
+            'accountForm'=> $accountForm,
+            'profile'=> $profile,
             'saved'=>$saved
         ]);
     }
+
     public function  actionUpdateAvatar(){
         $this->layout='_clear';
         $saved= 0;

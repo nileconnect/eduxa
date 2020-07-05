@@ -2,10 +2,11 @@
 
 namespace frontend\modules\user\models;
 
-use common\models\User;
 use Yii;
 use yii\base\Model;
+use common\models\User;
 use yii\web\JsExpression;
+use kartik\password\StrengthValidator;
 
 /**
  * Account form
@@ -61,7 +62,8 @@ class AccountForm extends Model
                     $query->andWhere(['not', ['id' => Yii::$app->user->getId()]]);
                 }
             ],
-            ['password', 'string'],
+            [['password'], StrengthValidator::className(), 'preset'=>'normal'],
+            // ['password', 'string'],
             [
                 'password_confirm',
                 'required',

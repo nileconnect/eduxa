@@ -3,20 +3,19 @@
 namespace backend\models\search;
 
 use backend\models\University;
-use Yii;
+use backend\models\UniversityPrograms;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\UniversityPrograms;
 
 /**
  * backend\models\search\UniversityProgramsSearch represents the model behind the search form about `backend\models\UniversityPrograms`.
  */
- class UniversityProgramsSearch extends UniversityPrograms
+class UniversityProgramsSearch extends UniversityPrograms
 {
-    public $university_title ;
-    public $university_nextTo ;
-    public $university_total_rating ;
-
+    public $university_title;
+    public $recommended;
+    public $university_nextTo;
+    public $university_total_rating;
 
     /**
      * @inheritdoc
@@ -24,11 +23,11 @@ use backend\models\UniversityPrograms;
     public function rules()
     {
         return [
-            [['id', 'university_id', 'major_id', 'degree_id', 'field_id', 'country_id','state_id', 'city_id', 'created_by', 'updated_by','university_nextTo'], 'integer'],
+            [['id', 'university_id', 'major_id', 'degree_id', 'field_id', 'country_id', 'state_id', 'city_id', 'created_by', 'updated_by', 'university_nextTo'], 'integer'],
             [['title', 'study_start_date', 'study_duration', 'study_method', 'attendance_type', 'conditional_admissions', 'toefl',
                 'ielts', 'bank_statment', 'high_school_transcript', 'bachelor_degree', 'certificate', 'note1', 'note2', 'created_at', 'updated_at', 'program_type'], 'safe'],
-            [['annual_cost', 'total_rating','university_total_rating'], 'number'],
-            [['university_title','university_total_rating','university_nextTo'],'safe']
+            [['annual_cost', 'total_rating', 'university_total_rating', 'recommended'], 'number'],
+            [['university_title', 'university_total_rating', 'university_nextTo'], 'safe'],
         ];
     }
 
@@ -54,7 +53,7 @@ use backend\models\UniversityPrograms;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['id' => SORT_DESC]],
+            'sort' => ['defaultOrder' => ['id' => SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -62,7 +61,7 @@ use backend\models\UniversityPrograms;
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-          //  return $dataProvider;
+            //  return $dataProvider;
         }
 
         $query->andFilterWhere([
@@ -100,45 +99,44 @@ use backend\models\UniversityPrograms;
         return $dataProvider;
     }
 
-     public function CustomSearch($params)
-     {
-
+    public function CustomSearch($params)
+    {
         // $query = UniversityPrograms::find();
-         $query = University::find();
-         $query->innerJoinWith('universityPrograms', false);
+        $query = University::find();
+        $query->innerJoinWith('universityPrograms', false);
 
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
-         $dataProvider = new ActiveDataProvider([
-             'query' => $query,
-         ]);
+        $this->load($params);
 
-         $this->load($params);
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            //  return $dataProvider;
+        }
 
-         if (!$this->validate()) {
-             // uncomment the following line if you do not want to return any records when validation fails
-             // $query->where('0=1');
-             //  return $dataProvider;
-         }
+        $query->andFilterWhere([
+            'university.id' => $this->university_id,
+            'university.country_id' => $this->country_id,
+            'university.state_id' => $this->state_id,
+            'university.city_id' => $this->city_id,
+            'university.next_to' => $this->university_nextTo,
+            'university.recommended' => $this->recommended,
 
-         $query->andFilterWhere([
-             'university.id' => $this->university_id,
-             'university.country_id' => $this->country_id,
-             'university.state_id' => $this->state_id,
-             'university.city_id' => $this->city_id,
-             'university.next_to' => $this->university_nextTo,
+            'university_programs.degree_id' => $this->degree_id,
+            'university_programs.field_id' => $this->field_id,
+            'university_programs.major_id' => $this->major_id,
+        ]);
 
+        $query
+            ->andFilterWhere(['like', 'university.title', $this->university_title])
+            ->andFilterWhere(['=', 'university.total_rating', $this->university_total_rating])
+            ->orFilterWhere(['=', 'university.total_rating', ((int) $this->university_total_rating) + 0.5]);
 
-             'university_programs.degree_id' => $this->degree_id,
-             'university_programs.field_id' => $this->field_id,
-             'university_programs.major_id' => $this->major_id,
-         ]);
+        $query->groupBy(['university.id']);
 
-         $query
-             ->andFilterWhere(['like', 'university.title', $this->university_title])
-             ->andFilterWhere(['>=', 'university.total_rating', $this->university_total_rating]);
-
-         $query->groupBy(['university.id']);
-
-         return $dataProvider;
-     }
+        return $dataProvider;
+    }
 }

@@ -1,9 +1,8 @@
 <?php
 use \common\models\User;
-
-
 \frontend\assets\ProgramAsset::register($this);
 
+$this->title = $universityObj->title ." : ". $programObj->title; 
 ?>
 
 <nav aria-label="breadcrumb">
@@ -22,7 +21,7 @@ use \common\models\User;
         <div class="row">
 
             <div class="container">
-                <h3 class="text-primary"><?= $universityObj->title ?>: <?= $programObj->title ?> <span>(<?= $programObj->major->title ?>)</span></h3>
+                <h3 class="text-primary"><?= $universityObj->title ?>: <?= $programObj->title ?> <span>(<?= $programObj->degree->title ?>)</span></h3>
                 <h5>
                     <div class="rating fr">
                         <div class="jq_rating jq-stars" data-options='{"initialRating":<?= $universityObj->total_rating?:1 ?>, "readOnly":true, "starSize":19}'></div>

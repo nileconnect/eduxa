@@ -105,6 +105,13 @@ class UserProfile extends ActiveRecord
         return [
             [['firstname', 'lastname', 'gender'], 'required', 'on'=>'myProfile'],
             [['firstname', 'lastname', 'mobile', 'country_id', 'city_id', 'state_id', 'gender'], 'required'],
+            [['nationality','communtication_channel'], 'required', 'on'=>'updateStudentProfileInFront'],
+            [
+                'interested_in_university','required',
+                'message'=> 'you should choose University Education or Language School',
+                'when' => function($model) { return $model->interested_in_schools == 0 and $model->interested_in_university == 0  ; }
+                , 'on'=>'updateStudentProfileInFront'
+            ],
             //'gender',
             ['nationality', 'string', 'min' => 2, 'max' => 60],
             [['firstname', 'lastname'], 'string', 'min' => 2, 'max' => 15],

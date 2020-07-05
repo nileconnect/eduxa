@@ -39,7 +39,7 @@
 
                     <div class="item-label"><?= Yii::t('frontend','Programm Name') ?></div>
                     <div><?= $item->title ?></div>
-                    <div><small><?= $item->major->title ?>: <?= $item->study_duration_no ?> <?= \backend\models\University::listPeriods()[$item->study_duration] ?></small></div>
+                    <div><small><?= $item->degree->title ?>: <?= $item->study_duration_no ?> <?= \backend\models\University::listPeriods()[$item->study_duration] ?></small></div>
                 </div>
                 <div>
                     <div class="item-label"><?= Yii::t('frontend','Start Date') ?></div>

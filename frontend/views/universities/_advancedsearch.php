@@ -1,9 +1,12 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use yii\helpers\Html;
+use backend\models\State;
+use backend\models\Cities;
 use kartik\depdrop\DepDrop;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 
 /* @var $this yii\web\View */
@@ -100,7 +103,7 @@ use kartik\depdrop\DepDrop;
                 <?php
                 // Child # 1
                 echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->all(), 'id', 'title') : [''=>Yii::t('common','State')],
+                    'data' =>$model->country_id ?  ArrayHelper::map(State::find()->where(['country_id'=>$model->country_id])->all(), 'id', 'title') : [''=>Yii::t('common','State')],
                     'options'=>['id'=>'City-id'],
                     'pluginOptions'=>[
                         'depends'=>['CountryId'],
@@ -113,8 +116,14 @@ use kartik\depdrop\DepDrop;
             
                 <?php
                 // Child # 1
+                $data = [];
+                if($model->country_id){
+                    $oneState = State::find()->where(['country_id'=>$model->country_id])->one();
+                    $data = ArrayHelper::map(Cities::find()->where(['state_id'=>$oneState->id])->all(), 'id', 'title');
+                }
+                
                 echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->all(), 'id', 'title') : [''=>Yii::t('common','City')],
+                    'data' =>$model->country_id ?  $data : [''=>Yii::t('common','City')],
                     'options'=>['id'=>'subcat-id'],
                     'pluginOptions'=>[
                         'depends'=>['City-id'],
@@ -130,6 +139,17 @@ use kartik\depdrop\DepDrop;
                 <?= $form->field($model, 'university_nextTo')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityNextTo::find()->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('frontend', 'University next to')],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ])->label(false); ?>
+
+            </div>
+
+            <div class="form-group">
+                <?= $form->field($model, 'recommended')->widget(\kartik\widgets\Select2::classname(), [
+                    'data' =>['1'=>'Recommended','0'=>'Not Recommended'],
+                    'options' => ['placeholder' => Yii::t('frontend', 'Sort')],
                     'pluginOptions' => [
                         'allowClear' => true
                     ],

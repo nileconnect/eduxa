@@ -1,4 +1,6 @@
-
+<?php
+$this->title = "Universities";
+?>
 <div class="jumbotron jumbotron-img" >
     <div class="img-layer" style="background-image: url('/img/banners/banner1.jpg');"></div>
 </div>
