@@ -2,16 +2,17 @@
 
 namespace frontend\modules\user\models;
 
+use Yii;
+use yii\base\Model;
 use cheatsheet\Time;
-use common\commands\SendEmailCommand;
+use yii\helpers\Url;
 use common\models\User;
+use yii\base\Exception;
+use yii\web\JsExpression;
 use common\models\UserToken;
 use frontend\modules\user\Module;
-use Yii;
-use yii\base\Exception;
-use yii\base\Model;
-use yii\helpers\Url;
-use yii\web\JsExpression;
+use common\commands\SendEmailCommand;
+use kartik\password\StrengthValidator;
 
 /**
  * Signup form
@@ -71,8 +72,8 @@ class SignupForm extends Model
                 'targetClass' => '\common\models\User',
                 'message' => Yii::t('frontend', 'This email address has already been taken.')
             ],
-
-            [['password','password_confirm'], 'string', 'min' => 8 , 'max'=>15],
+            [['password'], StrengthValidator::className(), 'preset'=>'normal'],
+            [['password_confirm'], 'string', 'min' => 8 , 'max'=>15],
 
             [
                 'password_confirm',

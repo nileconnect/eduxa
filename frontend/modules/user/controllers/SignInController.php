@@ -61,7 +61,7 @@ class SignInController extends \yii\web\Controller
                 'rules' => [
                     [
                         'actions' => [
-                            'signup','referral-signup', 'login', 'login-by-pass', 'request-password-reset', 'reset-password', 'oauth', 'activation'
+                            'signup','referral-signup','referral-company', 'login', 'login-by-pass', 'request-password-reset', 'reset-password', 'oauth', 'activation'
                         ],
                         'allow' => true,
                         'roles' => ['?']
@@ -183,51 +183,52 @@ class SignInController extends \yii\web\Controller
     public function actionReferralSignup()
     {
         $model = new ReferralSignupForm();
-        $modelCompany = new ReferralSignupForm();
-        $modelCompany->scenario ='RefCompany';
-
-
 
         if ($model->load(Yii::$app->request->post()) &&  isset(Yii::$app->request->post()['signup-referral']) ) {
             $user = $model->signup();
             if ($user) {
                 if ($model->shouldBeActivated()) {
-                    Yii::$app->getSession()->setFlash('alert', [
+                    Yii::$app->getSession()->setFlash('alert-create-account-successfully', [
                         'body' => Yii::t(
                             'frontend',
                             'Your account has been successfully created. Check your email for further instructions.'
                         ),
-                        'options' => ['class' => 'alert-success']
                     ]);
                 } else {
                     Yii::$app->getUser()->login($user);
                 }
-                return $this->goHome();
+                return $this->redirect('/referral-signup');
             }
         }
+        return $this->render('referral-signup', [
+            'model' => $model,
+            'modelCompany'=>$modelCompany
+        ]);
+    }
+
+    public function actionReferralCompany()
+    {
+        $modelCompany = new ReferralSignupForm();
+        $modelCompany->scenario ='RefCompany';
 
         if ($modelCompany->load(Yii::$app->request->post()) && isset(Yii::$app->request->post()['signup-referral-company']) ) {
             $user = $modelCompany->signup(User::ROLE_REFERRAL_COMPANY);
             if ($user) {
                 if ($modelCompany->shouldBeActivated()) {
-                    Yii::$app->getSession()->setFlash('alert', [
+                    Yii::$app->getSession()->setFlash('alert-create-account-successfully', [
                         'body' => Yii::t(
                             'frontend',
                             'Your account has been successfully created. Check your email for further instructions.'
                         ),
-                        'options' => ['class' => 'alert-success']
                     ]);
                 } else {
                     Yii::$app->getUser()->login($user);
                 }
-                return $this->goHome();
+                return $this->redirect('/referral-company');
             }
         }
 
-      //  var_dump($modelCompany->errors); die;
-
-        return $this->render('referral-signup', [
-            'model' => $model,
+        return $this->render('referral-company', [
             'modelCompany'=>$modelCompany
         ]);
     }

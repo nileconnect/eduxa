@@ -1,11 +1,12 @@
 <?php
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
 
-use yii\widgets\ActiveForm;
 use yii\web\JsExpression;
 use kartik\depdrop\DepDrop;
+use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use kartik\password\PasswordInput;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
@@ -66,17 +67,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-6">
-                                <?php echo $form->field($model, 'password')->passwordInput(['placeholder'=>Yii::t('common','******************')])
-                                    ->label(Yii::t('common','Password') ,['class'=>'label-control']);?>
+                            <div class="col-sm-12">
+                                <?php  echo $form->field($model, 'password')->widget(PasswordInput::classname()); ?>
+                                <?php 
+                                    //$form->field($model, 'password')->passwordInput(['placeholder'=>Yii::t('common','******************')])
+                                    //->label(Yii::t('common','Password') ,['class'=>'label-control']);
+                                ?>
                             </div>
                             <div class="col-sm-6">
                                 <?php echo $form->field($model, 'password_confirm')->passwordInput(['placeholder'=>Yii::t('common','******************')])
                                     ->label(Yii::t('common','Confirm Password') ,['class'=>'label-control']);?>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-sm-6">
                                 <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
                                     'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->all(), 'id', 'title'),
@@ -86,6 +87,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ],
                                 ]); ?>
                             </div>
+                            
+                        </div>
+
+                        <div class="row">
+                            
                             <div class="col-sm-6">
                                 <?php
                                 // Child # 1
@@ -101,26 +107,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 ?>
                             </div>
+                            <div class="col-sm-6">
+                                <?php
+                                    echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
+                                        'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->all(), 'id', 'title') : [],
+                                        'options'=>['id'=>'subcat-id'],
+                                        'pluginOptions'=>[
+                                            'depends'=>['City-id'],
+                                            'placeholder'=>Yii::t('common', 'Select'),
+                                            'url'=>Url::to(['/helper/cities'])
+                                        ]
+                                    ]);
+                                ?>
+                            </div>
                         </div>
-                        <div class="row">
-                          <div class="col-sm-12">
-                        <?php
-                        // Child # 1
-                        echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                            'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->all(), 'id', 'title') : [],
-                            'options'=>['id'=>'subcat-id'],
-                            'pluginOptions'=>[
-                                'depends'=>['City-id'],
-                                'placeholder'=>Yii::t('common', 'Select'),
-                                'url'=>Url::to(['/helper/cities'])
-                            ]
-                        ]);
-
-                        ?>
-                        </div>
-                        </div>
-
-
                         <div class="row">
                             <div class="col-sm-6">
                                 <?php echo $form->field($model, 'mobile')->textInput(['placeholder'=>Yii::t('common','your phone number')])
