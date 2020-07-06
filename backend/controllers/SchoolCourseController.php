@@ -143,7 +143,8 @@ class SchoolCourseController extends BackendController
                     $item->save(false);
 
                 }
-                if($item->no_of_sessions && $item->weeks_per_session){
+                if(! $item->no_of_sessions  ) $item->no_of_sessions  = 1;
+                if($item->weeks_per_session){
                     $item->max_no_of_sessions =  floor(52/$item->weeks_per_session);
                     $item->save(false);
                 }
