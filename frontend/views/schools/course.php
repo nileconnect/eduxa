@@ -318,7 +318,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Max Students')?></td>
-                            <td><span class="text-primary"><?= $courseObj->min_no_of_students_per_class; ?></span></td>
+                            <td><span class="text-primary"><?= $courseObj->max_no_of_students_per_class; ?></span></td>
                         </tr>
                         
                         <tr>
