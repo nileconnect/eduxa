@@ -25,9 +25,9 @@ class BackendController extends \yii\web\Controller
     }
     public function init()
     {
-
         MultiLanguageHelper::catchLanguage();
-        //\Yii::$app->language= 'en-US';
+        \Yii::$app->language= 'en';
+
 
         if(\Yii::$app->user->can('universityManager')){
 
@@ -45,6 +45,8 @@ class BackendController extends \yii\web\Controller
 
         parent::init();
     }
+
+
 
 
 
