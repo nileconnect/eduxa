@@ -37,7 +37,8 @@ echo TabularForm::widget([
             'columnOptions' => ['width' => '200px']
         ],
 
-        'no_of_sessions' => ['type' => TabularForm::INPUT_TEXT , 'options'=>['placeholder'=>'if empty/will be calculated after save' ]],
+        'no_of_sessions' => ['type' => TabularForm::INPUT_TEXT , 'options'=>['placeholder'=>'min no of session to book' ]],
+        'max_no_of_sessions' => ['type' => TabularForm::INPUT_TEXT , 'options'=>['placeholder'=>'if empty/will be calculated after save' ]],
         'session_cost' => ['label'=>'Price/Session','type' => TabularForm::INPUT_TEXT],
         'week_cost' => ['label'=>'Price/Week', 'type' => TabularForm::INPUT_TEXT ,'options'=>['placeholder'=>'if empty/will be calculated']],
 //        'status' => [
