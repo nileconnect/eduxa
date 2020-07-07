@@ -93,12 +93,35 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => Yii::t('backend', 'Student Nationality'),
         ],
 
-        'accomodation_option',
-        'accomodation_option_cost',
-        'airport_pickup',
-        'airport_pickup_cost',
-        'course_start_date',
-        'number_of_weeks',
+        [
+            'attribute' => 'accomodation_option',
+            'visible'=> $model->model_name == 0,
+        ],
+
+        [
+            'attribute' => 'accomodation_option_cost',
+            'visible'=> $model->model_name == 0,
+        ],
+
+        [
+            'attribute' => 'airport_pickup',
+            'visible'=> $model->model_name == 0,
+        ],
+
+        [
+            'attribute' => 'airport_pickup_cost',
+            'visible'=> $model->model_name == 0,
+        ],
+
+        [
+            'attribute' => 'course_start_date',
+            'visible'=> $model->model_name == 0,
+        ],
+
+        [
+            'attribute' => 'number_of_weeks.title',
+            'visible'=> $model->model_name == 0,
+        ],
 
     ];
     echo DetailView::widget([

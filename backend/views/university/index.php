@@ -100,6 +100,10 @@ echo newerton\fancybox3\FancyBox::widget([
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
+        'exportConfig'=>[
+            GridView::CSV => [],
+            GridView::EXCEL => [],
+        ],
         // your toolbar can include the additional full export menu
         'toolbar' => [
             '{export}',
@@ -114,6 +118,12 @@ echo newerton\fancybox3\FancyBox::widget([
                     'itemsBefore' => [
                         '<li class="dropdown-header">Export All Data</li>',
                     ],
+                ],
+                'exportConfig' => [
+                    ExportMenu::FORMAT_EXCEL => false,
+                    ExportMenu::FORMAT_TEXT => false,
+                    ExportMenu::FORMAT_PDF => false,
+                    ExportMenu::FORMAT_HTML => false,
                 ],
             ]) ,
         ],

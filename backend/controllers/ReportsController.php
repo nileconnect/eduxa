@@ -2,16 +2,17 @@
 
 namespace backend\controllers;
 
-use backend\models\School;
-use backend\models\SchoolCourse;
-use backend\models\Schools;
-use backend\models\search\RequestsSearch;
-use backend\models\search\UserSearch;
-use backend\models\University;
-use backend\models\UniversityProgramMajors;
-use backend\models\UniversityPrograms;
-use common\models\User;
 use Yii;
+use common\models\User;
+use backend\models\School;
+use backend\models\Schools;
+use backend\models\Newsletter;
+use backend\models\University;
+use backend\models\SchoolCourse;
+use backend\models\search\UserSearch;
+use backend\models\UniversityPrograms;
+use backend\models\search\RequestsSearch;
+use backend\models\UniversityProgramMajors;
 
 /**
  * SchoolsController implements the CRUD actions for Schools model.
@@ -30,6 +31,7 @@ class ReportsController extends BackendController
         $universityProgramsCount = UniversityPrograms::find()->count();
         $schoolsCount = Schools::find()->count();
         $coursesCount = SchoolCourse::find()->count();
+        $newslettersCount = Newsletter::find()->count();
         // users types count
         $studentsCount = count(User::findByRole('user'));
         $referralPersonCount = count(User::findByRole('referralPerson'));
@@ -37,7 +39,7 @@ class ReportsController extends BackendController
         // return $universityCount;
         return $this->render('general',
             compact('universityCount', 'universityProgramMajorsCount', 'universityProgramsCount',
-                'schoolsCount', 'studentsCount', 'referralPersonCount', 'referralCompanyCount', 'coursesCount'
+                'schoolsCount', 'studentsCount', 'referralPersonCount', 'referralCompanyCount', 'coursesCount','newslettersCount'
             )
         );
     }

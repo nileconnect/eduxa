@@ -122,7 +122,7 @@ class UniversityProgramsController extends BackendController
         $model->country_id = $universityObj->country_id;
         $model->city_id = $universityObj->city_id;
         $model->state_id = $universityObj->state_id;
-
+        // return var_dump(Yii::$app->request->post());
         $modelStartDates->load(Yii::$app->request->post());
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll() and $modelStartDates->validate()) {
             if(!$modelStartDates->save()){

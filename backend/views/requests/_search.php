@@ -9,6 +9,11 @@ use kartik\date\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<style>
+.table thead th a, .table th a{
+    margin-left : 0px;
+}
+</style>
 <div class="form-requests-search" style="padding-left: 50px">
 
     <?php $form = ActiveForm::begin([
@@ -32,8 +37,15 @@ use kartik\date\DatePicker;
                 'type' => DatePicker::TYPE_RANGE,
                 'form' => $form,
                 'pluginOptions' => [
+                    'orientation' => 'bottom right',
                     'format' => 'yyyy-mm-dd',
                     'autoclose' => true,
+                ],
+                'options'=>[
+                    'autocomplete'=>"off",
+                ],
+                'options2'=>[
+                    'autocomplete'=>"off",
                 ]
             ]);
 
@@ -115,3 +127,4 @@ use kartik\date\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
+

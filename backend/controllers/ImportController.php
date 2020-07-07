@@ -548,7 +548,7 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'first_submission_date_active',
                         'value' => function ($row) {
-                            return strval($row[10])=="Yes" ? 1 : 0;
+                            return strtolower(strval($row[10])) =="yes" ? 1 : 0;
                         },
                     ],
                     [
@@ -560,7 +560,7 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'last_submission_date_active',
                         'value' => function ($row) {
-                            return strval($row[12])=="Yes" ? 1 : 0;
+                            return strtolower(strval($row[12])) =="yes" ? 1 : 0;
                         },
                     ],
                     [

@@ -57,6 +57,10 @@ $this->registerJs($search);
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
+        'exportConfig'=>[
+            GridView::CSV => [],
+            GridView::EXCEL => [],
+        ],
         // your toolbar can include the additional full export menu
         'toolbar' => [
             '{export}',
@@ -64,6 +68,12 @@ $this->registerJs($search);
                 'dataProvider' => $dataProvider,
                 'columns' => $gridColumn,
                 'target' => ExportMenu::TARGET_BLANK,
+                'exportConfig' => [
+                    ExportMenu::FORMAT_EXCEL => false,
+                    ExportMenu::FORMAT_TEXT => false,
+                    ExportMenu::FORMAT_PDF => false,
+                    ExportMenu::FORMAT_HTML => false,
+                 ],
                 'fontAwesome' => true,
                 'dropdownOptions' => [
                     'label' => 'Full',

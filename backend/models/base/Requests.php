@@ -3,6 +3,7 @@
 namespace backend\models\base;
 
 use Yii;
+use backend\models\Cities;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
@@ -158,7 +159,11 @@ class Requests extends \yii\db\ActiveRecord
      */
     public function getStudentCity()
     {
-        return $this->hasOne(\backend\models\State::className(), ['id' => 'student_city_id']);
+        return $this->hasOne(\backend\models\State::className(), ['id' => 'student_state_id']);
+    }
+    public function getCity()
+    {
+        return $this->hasOne(\backend\models\Cities::className(), ['id' => 'student_city_id']);
     }
 
     /**

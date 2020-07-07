@@ -13,9 +13,9 @@ $this->title = 'Statistic';
                 </div>
                 <div class="col-md-5">
                     <ul class="chart-legend clearfix" style="margin-top: 70px;">
-                        <li><i class="fa fa-circle-o text-red"></i> No. of Students</li>
-                        <li><i class="fa fa-circle-o text-green"></i> No. of Individual Referral</li>
-                        <li><i class="fa fa-circle-o text-yellow"></i> No. of Compoany Referral</li>
+                        <li><i class="fa fa-circle-o text-red"></i> No. of Students (<?= $studentsCount ?>)</li>
+                        <li><i class="fa fa-circle-o text-green"></i> No. of Individual Referral (<?= $referralPersonCount ?>)</li>
+                        <li><i class="fa fa-circle-o text-yellow"></i> No. of Compoany Referral (<?= $referralCompanyCount ?>)</li>
                     </ul>
                 </div>
             </div>
@@ -44,6 +44,11 @@ $this->title = 'Statistic';
                 <td>no. of Courses</td>
                 <td><?= $coursesCount ?></td>
             </tr>
+            <tr>
+                <td>No. of Subscribers to newsletters</td>
+                <td><?= $newslettersCount ?></td>
+            </tr>
+
         </table>
     </div>
 </div>

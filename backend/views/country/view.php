@@ -74,7 +74,7 @@ if($providerCountryAttachment->totalCount){
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'Country Attachment')),
         ],
-        'export' => false,
+        
         'columns' => $gridColumnCountryAttachment
     ]);
 }

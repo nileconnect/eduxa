@@ -92,7 +92,7 @@ if($providerUniversityPrograms->totalCount){
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'University Programs')),
         ],
-        'export' => false,
+        
         'columns' => $gridColumnUniversityPrograms
     ]);
 }

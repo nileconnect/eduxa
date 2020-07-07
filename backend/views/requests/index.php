@@ -5,8 +5,11 @@
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
-use kartik\export\ExportMenu;
 use kartik\grid\GridView;
+use kartik\export\ExportMenu;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Color;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 
 $this->title = Yii::t('backend', 'Requests');
 $this->params['breadcrumbs'][] = $this->title;
@@ -77,7 +80,13 @@ $gridColumn = [
             return $model->requester->username;
         },
         'filterType' => GridView::FILTER_SELECT2,
-        'filter' => \yii\helpers\ArrayHelper::map(\common\models\User::find()->asArray()->all(), 'id', 'username'),
+        'filter' => \yii\helpers\ArrayHelper::map(
+            \common\models\User::find()->join('LEFT JOIN', '{{%rbac_auth_assignment}}', '{{%rbac_auth_assignment}}.user_id = {{%user}}.id')
+            ->andFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'user'])
+            ->orFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'referralPerson'])
+            ->orFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'referralCompany'])
+            ->asArray()->all()
+            , 'id', 'username'),
         'filterWidgetOptions' => [
             'pluginOptions' => ['allowClear' => true],
         ],
@@ -126,10 +135,12 @@ $gridColumn = [
     [
         'attribute' => 'student_nationality_id',
         'value' => function($model){
-            if ($model->student_nationality_id)
-            {return $model->studentNationality->title;}
-            else
-            {return NULL;}
+            if (isset($model->studentNationality))
+            {
+                return $model->studentNationality->title;
+            }else{
+                return $model->student_nationality_id;
+            }
         },
         'filterType' => GridView::FILTER_SELECT2,
         'filter' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->asArray()->all(), 'id', 'title'),
@@ -205,6 +216,10 @@ echo GridView::widget([
         'type' => GridView::TYPE_PRIMARY,
         'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
     ],
+    'exportConfig'=>[
+        GridView::CSV => [],
+        GridView::EXCEL => [],
+    ],
     // your toolbar can include the additional full export menu
     'toolbar' => [
         '{export}',
@@ -212,6 +227,12 @@ echo GridView::widget([
             'dataProvider' => $dataProvider,
             'columns' => $gridColumnExport,
             'target' => ExportMenu::TARGET_BLANK,
+            'exportConfig' => [
+                ExportMenu::FORMAT_EXCEL => false,
+                ExportMenu::FORMAT_TEXT => false,
+                ExportMenu::FORMAT_PDF => false,
+                ExportMenu::FORMAT_HTML => false,
+             ],
             'fontAwesome' => true,
             'dropdownOptions' => [
                 'label' => 'Full',

@@ -114,7 +114,7 @@ $gridColumn = [
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => $gridColumn,
-    'export' => false,
+    
     'pjax' => true,
     'toggleData' => false,
     'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-invoice']],

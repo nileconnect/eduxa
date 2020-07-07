@@ -31,7 +31,7 @@ class UniversityPrograms extends BaseUniversityPrograms
             [['title','high_school_transcript', 'bachelor_degree','title_ar','high_school_transcript_ar','bachelor_degree_ar'], 'string', 'max' => 30,'min'=>2],
 
             [[ 'major_id', 'degree_id', 'field_id', 'country_id', 'city_id', 'created_by', 'updated_by',
-                'last_submission_date_active','medium_of_study','program_format','lang_of_study', 'study_method','conditional_admissions',  'study_duration',  'ielts'], 'integer'],
+                'last_submission_date_active','first_submission_date_active','medium_of_study','program_format','lang_of_study', 'study_method','conditional_admissions',  'study_duration',  'ielts'], 'integer'],
             [['annual_cost', 'total_rating','annual_cost','bank_statment','toefl','study_duration_no'], 'number'],
             [['note1', 'note2','slug'], 'string'],
             [[ 'study_start_date','attendance_type',

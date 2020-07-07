@@ -176,6 +176,10 @@ echo GridView::widget([
         'type' => GridView::TYPE_PRIMARY,
         'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
     ],
+    'exportConfig'=>[
+        GridView::CSV => [],
+        GridView::EXCEL => [],
+    ],
     // your toolbar can include the additional full export menu
     'toolbar' => [
         // '{export}',
@@ -184,13 +188,12 @@ echo GridView::widget([
             'columns' => $gridColumnExport,
             'target' => ExportMenu::TARGET_BLANK,
             'fontAwesome' => true,
-            // 'dropdownOptions' => [
-            //     'label' => 'Full',
-            //     'class' => 'btn btn-default',
-            //     'itemsBefore' => [
-            //         '<li class="dropdown-header">Export All Data</li>',
-            //     ],
-            // ],
+            'exportConfig' => [
+                ExportMenu::FORMAT_EXCEL => false,
+                ExportMenu::FORMAT_TEXT => false,
+                ExportMenu::FORMAT_PDF => false,
+                ExportMenu::FORMAT_HTML => false,
+             ],
         ]),
     ],
 ]);

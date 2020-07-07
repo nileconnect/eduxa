@@ -121,7 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'type' => GridView::TYPE_PRIMARY,
                     'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'School Airport Pickup')),
                 ],
-                'export' => false,
+                
                 'columns' => $gridColumnSchoolAirportPickup
             ]);
         }
@@ -160,7 +160,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    'type' => GridView::TYPE_PRIMARY,
 //                    'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'School Course')),
 //                ],
-//                'export' => false,
+//                
 //                'columns' => $gridColumnSchoolCourse
 //            ]);
 //        }
@@ -198,7 +198,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'type' => GridView::TYPE_PRIMARY,
                     'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'School Accomodation')),
                 ],
-                'export' => false,
+                
                 'columns' => $gridColumnSchoolAccomodation
             ]);
         }
@@ -226,7 +226,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'type' => GridView::TYPE_PRIMARY,
                     'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'School Rating')),
                 ],
-                'export' => false,
+                
                 'columns' => $gridColumnSchoolRating
             ]);
         }
@@ -257,7 +257,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'type' => GridView::TYPE_PRIMARY,
                 'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('backend', 'School Videos')),
             ],
-            'export' => false,
+            
             'columns' => $gridColumnSchoolVideos
         ]);
     }
