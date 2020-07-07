@@ -18,7 +18,7 @@
 
 <section class="section">
     <div class="container">
-        <h2 class="title title-black title-sm">Why study in <?= $countryObj->title ?>?</h2>
+        <h2 class="title title-black title-sm"><?= Yii::t('frontend' , 'Why study in')?> <?= $countryObj->title ?>?</h2>
 
         <div class="ptlg pblg prlg pllg bg-white b-all text-large">
             <?= $countryObj->details ?>
@@ -30,7 +30,7 @@
 <section class="section">
     <div class="container">
 
-        <h2 class="title title-sm title-black">Frequently asked questions</h2>
+        <h2 class="title title-sm title-black"><?= Yii::t('frontend' , 'Frequently asked questions')?></h2>
 
         <div class="accordion" id="accordionExample">
         <?php
