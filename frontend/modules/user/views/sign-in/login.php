@@ -9,6 +9,19 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('frontend', 'Login');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<style>
+@media (max-width: 768px) {
+    .loginBtn{
+        width:100%
+    }
+    form{
+        width: 100%;
+    }
+    .fr{
+        float:right
+    }
+}
+</style>
 <div class="auth-content">
     <div class="auth-info" style="background-image: url('/img/auth.jpg');">
      <?php
@@ -22,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="auth-form">
         <div class="container">
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-md-9">
                     <h2 class="title"><?= Yii::t('common','Sign in') ?></h2>
 
                     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
@@ -41,17 +54,20 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                         <div class="form-group">
-                            <a href="/reset-password" class="fr"><?= Yii::t('common','Forget your password?') ?></a>
-                            <div class="form-check">
-                                <?php echo $form->field($model, 'rememberMe')->checkbox() ?>
+                            
+                                <div class="form-check " style="    display: inline-block;margin-top:0 !important">
+                                    <?php echo $form->field($model, 'rememberMe')->checkbox() ?>
 
-                            </div>
+                                </div>
+                            
+                                <a href="/reset-password" class="fr" ><?= Yii::t('common','Forget password?') ?></a>
+                           
                         </div>
-                        <div class="form-group mtxlg">
-                            <button type="submit" class="button button-primary button-wide text-large"><?= Yii::t('common','Login') ?></button>
+                        <div class="form-group">
+                            <button type="submit" class="button button-primary button-wide text-large loginBtn"><?= Yii::t('common','Login') ?></button>
                         </div>
                         <div class="form-group mtmd">
-                            <div class="text-large"><?= Yii::t('common','Don’t have an account?') ?> <a href="/signup"><?= Yii::t('common','Create an Account Now!') ?></a></div>
+                            <div class="text-large"><?= Yii::t('common','Don’t have an account?') ?> <a href="/signup"><?= Yii::t('common','Sign up') ?></a></div>
                         </div>
                     <?php ActiveForm::end(); ?>
                 </div>

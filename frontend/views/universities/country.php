@@ -44,7 +44,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1 class="text-primary">Why study in <?= $countryObj->title ?>?</h1>
+                    <h1 class="text-primary"><?= Yii::t('frontend' , 'Why study in')?> <?= $countryObj->title ?>?</h1>
                     <div class="mtlg">
                         <?= $countryObj->details ?>
                     </div>
@@ -58,7 +58,7 @@
 
     <section class="section  mtlg">
         <div class="container">
-            <h1 class="title text-center">Recommended options by our advisors</h1>
+            <h1 class="title text-center"><?= Yii::t('frontend' , 'Recommended options by our advisors')?></h1>
 
             <div class="universities universities-column" data-slider="slick" data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplay": true, "responsive": [{"breakpoint": 768, "settings": { "slidesToShow": 1 }}, {"breakpoint": 480,"settings": {"slidesToShow": 1} }]}'>
                 <?php
@@ -81,7 +81,7 @@
                                     <div class="item-body">
                                         <?= substr($university->description,0,250).'..' ; ?>
                                     </div>
-                                    <div class="mtmd"><a href="/university/<?= $university->slug?>">Read More <i class="fas fa-angle-double-right"></i></a></div>
+                                    <div class="mtmd"><a href="/university/<?= $university->slug?>"><?= Yii::t('frontend' , 'Read More')?> <i class="fas fa-angle-double-right"></i></a></div>
                                 </div>
                             </header>
                         </div>
@@ -93,7 +93,7 @@
             </div>
 
             <div class="mtxlg text-center">
-                <a href="/universities" class="button button-primary button-wide">All Universities</a>
+                <a href="/universities" class="button button-primary button-wide"><?= Yii::t('frontend' , 'All Universities')?></a>
             </div>
         </div>
     </section>

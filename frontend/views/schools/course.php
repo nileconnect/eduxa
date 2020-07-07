@@ -95,10 +95,10 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                     </div>
                     <ul id="myTab" role="tablist" class="nav nav-pills">
                         <li class="nav-item">
-                            <a id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true" class="nav-link active">Images</a>
+                            <a id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true" class="nav-link active"><?= Yii::t('frontend' , 'Images')?></a>
                         </li> 
                         <li class="nav-item">
-                            <a id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false" class="nav-link">Videos</a>
+                            <a id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false" class="nav-link"><?= Yii::t('frontend' , 'Videos')?></a>
                         </li>
                     </ul>
                 </div>
@@ -119,12 +119,12 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                 </div>
                 <div class="mtlg">
                     <?php if(!Yii::$app->user->isGuest) :?>
-                    <a href="#applyDiv" class="button button-primary button-wide">Apply Now</a>
+                    <a href="#applyDiv" class="button button-primary button-wide"><?= Yii::t('frontend' , 'Apply Now')?></a>
                     <?php else :?>
-                        <a href="/login?return=/school/course/<?= $courseObj->slug ?>" class="button button-primary button-wide">Apply Now</a>
+                        <a href="/login?return=/school/course/<?= $courseObj->slug ?>" class="button button-primary button-wide"><?= Yii::t('frontend' , 'Apply Now')?></a>
                     <?php endif;?>
                     <p class="mtsm text-large">
-                        Best Weekly Price : <?=  $min_price ?> <?= $schoolObj->currency->currency_code ?>
+                    <?= Yii::t('frontend' , 'Best Weekly Price')?> : <?=  $min_price ?> <?= $schoolObj->currency->currency_code ?>
                         <span class="line-through text-red">
                              <?php
                              echo \common\helpers\MyCurrencySwitcher::checkCurrency($courseObj->school->currency->currency_code ,$min_price ,false);
@@ -139,7 +139,7 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
 </section>
 <section class="section">
     <div class="container">
-        <h2 class="title title-black title-sm">Course type</h2>
+        <h2 class="title title-black title-sm"><?= Yii::t('frontend' , 'Course type')?></h2>
 
         <div class="ptlg pblg prlg pllg bg-white b-all text-large">
             <p>
@@ -343,7 +343,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         <div class="select-wrapper" style="margin-bottom: 15px;">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btnAcco" data-toggle="modal" data-target="#AccoModal">
-                            Accommodation options
+                            <?= Yii::t('frontend' , 'Accommodation options')?>
                             </button>
 
                             <!-- Modal -->
@@ -351,7 +351,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Accommodation options available:</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel"><?= Yii::t('frontend' , 'Accommodation options available')?>:</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
@@ -396,7 +396,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </div>
                         <div class="select-wrapper">
                             <select name="" id="" class="form-control"  @change="Selectperiod($event)">
-                                <option>Accommodation period</option>
+                                <option><?= Yii::t('frontend' , 'Accommodation period')?></option>
 
                                 <option v-for="period in accoperiods" :value="period">{{period}} {{week}}</option>
                                 
@@ -413,7 +413,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <tbody>
                         <tr>
                             <td>
-                                Course Type
+                            <?= Yii::t('frontend' , 'Course type')?>
                             </td>
                             <td>
                                 <?php
@@ -425,11 +425,11 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <td>
                                 <div class="select-wrapper">
                                     <select name="" id="" class="form-control"  @change="Selectdate($event)">
-                                        <option value="0">Start Date</option>
+                                        <option value="0"><?= Yii::t('frontend' , 'Start Date')?></option>
                                         <option v-for="date in StartDates" :value="date.id">{{date.course_date}}</option>
                                         
                                     </select>
-                                    <p class="invalid-feedback selectdateerror">Select start date first</p>
+                                    <p class="invalid-feedback selectdateerror"><?= Yii::t('frontend' , 'Select start date first')?></p>
                                 </div>
                             </td>
                             <td></td>
@@ -439,10 +439,10 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 <?php
                                 if($courseObj->cost_type == SchoolCourse::COST_PER_WEEK ){
                                     ?>
-                                    <label>Course Duration By weeks</label>
+                                    <label><?= Yii::t('frontend' , 'Course Duration By weeks')?></label>
                                     <!-- <input type="number" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)"> -->
                                     <select class="form-control"  @change="GetCourseDurations($event)">
-                                    <option>Course Duration By weeks</option>
+                                    <option><?= Yii::t('frontend' , 'Course Duration By weeks')?></option>
                                     <?php
                                         for($i=1 ;$i<= 52 ; $i++){
                                             ?>
@@ -455,9 +455,9 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 }else{
                                     $costObj = SchoolCourseSessionCost::find()->where('school_course_id ='.$courseObj->id)->one();
                                     ?>
-                                    <label>Course Duration by session (each <?= $costObj->weeks_per_session ?> weeks)</label>
+                                    <label><?= Yii::t('frontend' , 'Course Duration by session (each')?> <?= $costObj->weeks_per_session ?> <?= Yii::t('frontend' , 'weeks)')?></label>
                                     <select class="form-control"  @change="GetCourseDurations($event)">
-                                        <option>Course Duration by session</option>
+                                        <option><?= Yii::t('frontend' , 'Course Duration by session')?></option>
                                         <?php
                                         for($i=$costObj->no_of_sessions ;$i<= $costObj->max_no_of_sessions ; $i++){
                                             ?>
@@ -475,7 +475,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
 
 
-                                <p class="invalid-feedback durationerror">Select course duration first</p>
+                                <p class="invalid-feedback durationerror"><?= Yii::t('frontend' , 'Select course duration first')?></p>
                             </td>
                             <td ><span class="text-primary" v-if="CourseDurations">{{CourseDurations}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
@@ -483,7 +483,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <td>
                                 <div class="select-wrapper">
                                     <select name="" id="" class="form-control" @change="SelectAirport($event)">
-                                        <option>Airport pickup</option>
+                                        <option><?= Yii::t('frontend' , 'Airport pickup')?></option>
                                         <option v-for="(airport,$index) in airports" :value="$index">{{airport.title}} - {{airport.service_type}}</option>
                                         
                                     </select>
@@ -497,7 +497,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="<?= $schoolObj->health_insurance_cost ?>" id="defaultCheck1" @change="GetHealth($event)">
                                     <label class="form-check-label" for="defaultCheck1">
-                                        Health Insurence
+                                    <?= Yii::t('frontend' , 'Health Insurence')?>
                                     </label>
                                 </div>
                                 
