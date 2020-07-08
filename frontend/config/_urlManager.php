@@ -9,7 +9,11 @@ return [
     'rules' => [
         // Pages
         ['pattern' => 'page/<slug>', 'route' => 'page/view'],
+        ['pattern' => 'how-we-work', 'route' => 'page/how-we-work'],
         ['pattern' => 'about', 'route' => 'page/about'],
+        ['pattern' => 'contact', 'route' => 'page/contact'],
+        ['pattern' => 'terms', 'route' => 'page/terms'],
+        ['pattern' => 'privacy', 'route' => 'page/privacy'],
 
 
 

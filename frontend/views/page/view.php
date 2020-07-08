@@ -14,19 +14,6 @@ $this->title = $model->title;
     </div>
 </nav>
 
-
-<!-- <section class="section">
-    <div class="container">
-        <div class="row mbxlg">
-            <div class="col-sm-12 mbmd">
-                <h3 class="title title-sm"><?php echo $model->title ?></h3>
-            </div>
-            <div class="col-sm-12 mbmd">
-                
-            </div>
-        </div>
-    </div>
-</section> -->
-
-
-<?php echo $model->body ?>
+<main class="content">
+    <?php echo $model->body ?>
+</main>
