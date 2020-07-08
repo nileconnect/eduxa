@@ -135,19 +135,8 @@ $gridColumn = [
     [
         'attribute' => 'student_nationality_id',
         'value' => function($model){
-            if (isset($model->studentNationality))
-            {
-                return $model->studentNationality->title;
-            }else{
-                return $model->student_nationality_id;
-            }
+            return $model->student_nationality_id;
         },
-        'filterType' => GridView::FILTER_SELECT2,
-        'filter' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->asArray()->all(), 'id', 'title'),
-        'filterWidgetOptions' => [
-            'pluginOptions' => ['allowClear' => true],
-        ],
-        'filterInputOptions' => ['placeholder' => 'Nationality']
     ],
     //  'accomodation_option',
     //   'accomodation_option_cost',
