@@ -17,7 +17,7 @@ use yii\helpers\Html;
 
 <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-<?php echo $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+<?php echo $form->field($model, 'slug')->hiddenInput()->label(false) ?>
 
 <?php echo $form->field($model, 'body')->widget(
     \yii\imperavi\Widget::class,
@@ -32,9 +32,9 @@ use yii\helpers\Html;
     ]
 ) ?>
 
-<?php echo $form->field($model, 'view')->textInput(['maxlength' => true]) ?>
+<?php //echo $form->field($model, 'view')->textInput(['maxlength' => true]) ?>
 
-<?php echo $form->field($model, 'status')->checkbox() ?>
+<?php //echo $form->field($model, 'status')->checkbox() ?>
 
 <div class="form-group">
     <?php echo Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

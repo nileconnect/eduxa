@@ -33,17 +33,17 @@ $this->params['breadcrumbs'][] = $this->title;
             },
             'format' => 'raw',
         ],
-        [
-            'header'=>'Description',
-            'attribute' => 'slug',
-        ],
+//        [
+//            'header'=>'Description',
+//            'attribute' => 'slug',
+//        ],
 
-        [
-            'class' => EnumColumn::class,
-            'attribute' => 'status',
-            'enum' => Page::statuses(),
-            'filter' => Page::statuses(),
-        ],
+//        [
+//            'class' => EnumColumn::class,
+//            'attribute' => 'status',
+//            'enum' => Page::statuses(),
+//            'filter' => Page::statuses(),
+//        ],
         [
             'class' => 'yii\grid\ActionColumn',
             'template' => '{update}',
