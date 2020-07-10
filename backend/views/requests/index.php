@@ -214,7 +214,7 @@ echo GridView::widget([
         '{export}',
         ExportMenu::widget([
             'dataProvider' => $dataProvider,
-            'columns' => $gridColumnExport,
+            'columns' => $gridColumn,
             'target' => ExportMenu::TARGET_BLANK,
             'exportConfig' => [
                 ExportMenu::FORMAT_EXCEL => false,

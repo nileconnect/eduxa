@@ -2,49 +2,45 @@
 
 namespace backend\controllers;
 
-use backend\helpers\FileUploadHelper;
-use backend\models\Country;
-use backend\models\Currency;
+use Yii;
+use yii\web\Controller;
 use backend\models\State;
-use backend\models\University;
+use yii\web\UploadedFile;
+use backend\models\Cities;
+use backend\models\Country;
 use backend\models\Schools;
+use backend\models\Currency;
+use backend\models\University;
 use backend\models\SchoolCourse;
-use backend\models\SchoolCourseType;  
-use backend\models\SchoolCourseStudyLanguage;
-use backend\models\UniversityLangOfStudy;
-use backend\models\UniversityNextTo;
 use backend\models\SchoolNextTo;
-use backend\models\UniversityProgramDegree;
-use backend\models\UniversityProgrameConditionalAdmission;
-use backend\models\UniversityProgrameFormat;
-use backend\models\UniversityProgrameIlets;
-use backend\models\UniversityProgrameMethodOfStudy;
-use backend\models\UniversityProgramField;
-use backend\models\UniversityProgramMajors;
-use backend\models\UniversityProgramMediumOfStudy;
+use backend\models\SchoolCourseType;
+use backend\models\UniversityNextTo;
+use backend\helpers\FileUploadHelper;
 use backend\models\UniversityPrograms;
 use lucasguo\import\components\Importer;
-use lucasguo\import\exceptions\InvalidFileException;
-use Yii;
-use backend\models\Cities;
-use backend\models\search\CitiesSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+use backend\models\UniversityLangOfStudy;
+use backend\models\UniversityProgramField;
+use backend\models\UniversityProgramDegree;
+use backend\models\UniversityProgrameIlets;
+use backend\models\UniversityProgramMajors;
+use backend\models\UniversityProgStartdate;
+use backend\models\UniversityProgrameFormat;
+use backend\models\SchoolCourseStudyLanguage;
+use backend\models\UniversityProgramMediumOfStudy;
+use backend\models\UniversityProgrameMethodOfStudy;
+use backend\models\UniversityProgrameConditionalAdmission;
 
 /**
  * CitiesController implements the CRUD actions for Cities model.
  */
 class ImportController extends BackendController
 {
-    public $layout ='base';
-
+    public $layout = 'base';
 
     public function actionStatesCities()
     {
         $errors = '';
-        $saved= false;
+        $saved = false;
         $model = new FileUploadHelper();
         if ($model->load(Yii::$app->request->post())) {
             $uploadFile = UploadedFile::getInstance($model, 'file');
@@ -64,9 +60,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'state_id',
                         'value' => function ($row) {
-                            $country= Country::find()->where(['code'=>strval($row[0])])->one();
+                            $country = Country::find()->where(['code' => strval($row[0])])->one();
                             if ($country) {
-                                $stateObj= State::find()->where(['title'=>strval($row[1]) ,'country_id'=>$country->id])->one();
+                                $stateObj = State::find()->where(['title' => strval($row[1]), 'country_id' => $country->id])->one();
                                 if (!$stateObj) {
                                     $stateObj = new State();
                                     $stateObj->title = strval($row[1]);
@@ -100,41 +96,41 @@ class ImportController extends BackendController
 
             if (!$importer->validate()) {
                 foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
+                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
                 }
                 Yii::$app->getSession()->setFlash('alert', [
-                    'type' =>'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  '.$errors) ,
-                    'title' =>'',
+                    'type' => 'warning',
+                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                    'title' => '',
                 ]);
             } else {
-                if (! $importer->save()) {
+                if (!$importer->save()) {
                     Yii::$app->getSession()->setFlash('alert', [
-                        'type' =>'success',
-                        'body' => \Yii::t('hr', 'please check the attached file for errors ') ,
-                        'title' =>'',
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'please check the attached file for errors '),
+                        'title' => '',
                     ]);
                 } else {
-                    $saved= true;
+                    $saved = true;
                     Yii::$app->getSession()->setFlash('alert', [
-                        'type' =>'success',
-                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
-                        'title' =>'',
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( ' . count($importer->getModels()) . ' )'),
+                        'title' => '',
                     ]);
                 }
             }
         }
 
-        return $this->render('form', ['model'=>$model,
-            'saved'=>$saved,
-            'filename'=>'State-Cities.xlsx'
+        return $this->render('form', ['model' => $model,
+            'saved' => $saved,
+            'filename' => 'State-Cities.xlsx',
         ]);
     }
 
     public function actionCountries()
     {
         $errors = '';
-        $saved= false;
+        $saved = false;
         $model = new FileUploadHelper();
         if ($model->load(Yii::$app->request->post())) {
             $uploadFile = UploadedFile::getInstance($model, 'file');
@@ -196,43 +192,42 @@ class ImportController extends BackendController
             // return var_dump( $importer->getModels());
             if (!$importer->validate()) {
                 foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
+                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
                 }
                 Yii::$app->getSession()->setFlash('alert', [
-                    'type' =>'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  '.$errors) ,
-                    'title' =>'',
+                    'type' => 'warning',
+                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                    'title' => '',
                 ]);
             } else {
-                if (! $importer->save()) {
+                if (!$importer->save()) {
                     Yii::$app->getSession()->setFlash('alert', [
-                        'type' =>'success',
-                        'body' => \Yii::t('hr', 'please check the attached file for errors ') ,
-                        'title' =>'',
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'please check the attached file for errors '),
+                        'title' => '',
                     ]);
                 } else {
-                    $saved= true;
+                    $saved = true;
                     Yii::$app->getSession()->setFlash('alert', [
-                        'type' =>'success',
-                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
-                        'title' =>'',
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( ' . count($importer->getModels()) . ' )'),
+                        'title' => '',
                     ]);
                 }
             }
         }
 
-        return $this->render('form', ['model'=>$model,
-            'saved'=>$saved,
-            'filename'=>'Countries.xlsx'
+        return $this->render('form', ['model' => $model,
+            'saved' => $saved,
+            'filename' => 'Countries.xlsx',
 
         ]);
     }
 
-
     public function actionUniversities()
     {
         $errors = '';
-        $saved= false;
+        $saved = false;
         $model = new FileUploadHelper();
         if ($model->load(Yii::$app->request->post())) {
             $uploadFile = UploadedFile::getInstance($model, 'file');
@@ -258,9 +253,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'country_id',
                         'value' => function ($row) {
-                            $countryObj= Country::find()->where(['code'=>strval($row[2])])->one();
+                            $countryObj = Country::find()->where(['code' => strval($row[2])])->one();
                             if ($countryObj) {
-                                return  $countryObj->id ;
+                                return $countryObj->id;
                             }
                             return '';
                         },
@@ -268,9 +263,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'state_id',
                         'value' => function ($row) {
-                            $stateObj= State::find()->where(['title'=>strval($row[3])])->one();
+                            $stateObj = State::find()->where(['title' => strval($row[3])])->one();
                             if ($stateObj) {
-                                return  $stateObj->id ;
+                                return $stateObj->id;
                             }
                             return '';
                         },
@@ -278,9 +273,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'city_id',
                         'value' => function ($row) {
-                            $cityObj= Cities::find()->where(['title'=>strval($row[4])])->one();
+                            $cityObj = Cities::find()->where(['title' => strval($row[4])])->one();
                             if ($cityObj) {
-                                return  $cityObj->id ;
+                                return $cityObj->id;
                             }
                             return '';
                         },
@@ -311,9 +306,9 @@ class ImportController extends BackendController
                     ],
                     [
                         'attribute' => 'lat',
-                            'value' => function ($row) {
-                                return strval($row[9]);
-                            },
+                        'value' => function ($row) {
+                            return strval($row[9]);
+                        },
                     ],
                     [
                         'attribute' => 'lng',
@@ -324,9 +319,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'currency_id',
                         'value' => function ($row) {
-                            $currencyObj= Currency::find()->where(['currency_code'=>strval($row[11])])->one();
+                            $currencyObj = Currency::find()->where(['currency_code' => strval($row[11])])->one();
                             if ($currencyObj) {
-                                return  $currencyObj->id ;
+                                return $currencyObj->id;
                             }
                             return '';
                         },
@@ -334,55 +329,55 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'next_to',
                         'value' => function ($row) {
-                            $nextToObj= UniversityNextTo::find()->where(['title'=>strval($row[12])])->one();
+                            $nextToObj = UniversityNextTo::find()->where(['title' => strval($row[12])])->one();
                             if (!$nextToObj) {
                                 $nextToObj = new UniversityNextTo();
                                 $nextToObj->title = strval($row[12]);
                                 $nextToObj->save();
                             }
-                            return  $nextToObj->id ;
+                            return $nextToObj->id;
                         },
                     ],
                     [
                         'attribute' => 'status',
                         'value' => function ($row) {
-                            return strval($row[13])=="Yes" ? 1 : 0;
+                            return strval($row[13]) == "Yes" ? 1 : 0;
                         },
                     ],
                     [
                         'attribute' => 'recommended',
                         'value' => function ($row) {
-                            return strval($row[14])=="Yes" ? 1 : 0;
+                            return strval($row[14]) == "Yes" ? 1 : 0;
                         },
                     ],
 
-                //    [
-                //        'attribute' => 'country',
-                //        'value' => function ($row) {
-                //            return strval($row[4]);
-                //        },
-                //    ],
+                    //    [
+                    //        'attribute' => 'country',
+                    //        'value' => function ($row) {
+                    //            return strval($row[4]);
+                    //        },
+                    //    ],
 
-                //    [
-                //        'attribute' => 'photos',
-                //        'value' => function ($row) {
-                //            $photos = [];
-                //            foreach (StringHelper::explode(strval($row[11]), ',', true, true) as $photo) {
-                //                if (filter_var($photo, FILTER_VALIDATE_URL)) {
-                //                    $file = @file_get_contents($photo);
-                //                    if ($file) {
-                //                        $filename = md5($file) . '.jpg';
-                //                        file_put_contents(Yii::getAlias("@webroot/gallery/$filename"), $file);
-                //                        $photos[] = $filename;
-                //                    }
-                //                } else {
-                //                    $photos[] = $photo;
-                //                }
-                //            }
+                    //    [
+                    //        'attribute' => 'photos',
+                    //        'value' => function ($row) {
+                    //            $photos = [];
+                    //            foreach (StringHelper::explode(strval($row[11]), ',', true, true) as $photo) {
+                    //                if (filter_var($photo, FILTER_VALIDATE_URL)) {
+                    //                    $file = @file_get_contents($photo);
+                    //                    if ($file) {
+                    //                        $filename = md5($file) . '.jpg';
+                    //                        file_put_contents(Yii::getAlias("@webroot/gallery/$filename"), $file);
+                    //                        $photos[] = $filename;
+                    //                    }
+                    //                } else {
+                    //                    $photos[] = $photo;
+                    //                }
+                    //            }
 
-                //            return implode(',', $photos);
-                //        }
-                //    ],
+                    //            return implode(',', $photos);
+                    //        }
+                    //    ],
 
                 ],
 
@@ -391,33 +386,33 @@ class ImportController extends BackendController
             // return var_dump($importer->getModels());
             if (!$importer->validate()) {
                 foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
+                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
                 }
                 Yii::$app->getSession()->setFlash('alert', [
-                    'type' =>'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  '.$errors) ,
-                    'title' =>'',
+                    'type' => 'warning',
+                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                    'title' => '',
                 ]);
             } else {
-                if (! $importer->save()) {
+                if (!$importer->save()) {
                     Yii::$app->getSession()->setFlash('alert', [
-                       'type' =>'success',
-                       'body' => \Yii::t('hr', 'please check the attached file for errors ') ,
-                       'title' =>'',
-                   ]);
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'please check the attached file for errors '),
+                        'title' => '',
+                    ]);
                 } else {
-                    $saved= true;
+                    $saved = true;
                     Yii::$app->getSession()->setFlash('alert', [
-                       'type' =>'success',
-                       'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
-                       'title' =>'',
-                   ]);
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( ' . count($importer->getModels()) . ' )'),
+                        'title' => '',
+                    ]);
                 }
             }
         }
-        return $this->render('form', ['model'=>$model,
-            'saved'=>$saved,
-            'filename'=>'Universities.xlsx'
+        return $this->render('form', ['model' => $model,
+            'saved' => $saved,
+            'filename' => 'Universities.xlsx',
         ]);
     }
 
@@ -427,7 +422,7 @@ class ImportController extends BackendController
             Yii::$app->session->set('universityId', $_REQUEST['university_id']);
         }
         $errors = '';
-        $saved= false;
+        $saved = false;
         $model = new FileUploadHelper();
         if ($model->load(Yii::$app->request->post())) {
             $uploadFile = UploadedFile::getInstance($model, 'file');
@@ -459,62 +454,62 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'lang_of_study',
                         'value' => function ($row) {
-                            $langObj= UniversityLangOfStudy::find()->where(['title'=>strval($row[2])])->one();
+                            $langObj = UniversityLangOfStudy::find()->where(['title' => strval($row[2])])->one();
                             if (!$langObj) {
                                 $langObj = new UniversityLangOfStudy();
                                 $langObj->title = strval($row[2]);
                                 $langObj->save();
                             }
-                            return  $langObj->id ;
+                            return $langObj->id;
                         },
                     ],
                     [
                         'attribute' => 'major_id',
                         'value' => function ($row) {
-                            $majorObj= UniversityProgramMajors::find()->where(['title'=>strval($row[3])])->one();
+                            $majorObj = UniversityProgramMajors::find()->where(['title' => strval($row[3])])->one();
                             if (!$majorObj) {
                                 $majorObj = new UniversityProgramMajors();
                                 $majorObj->title = strval($row[3]);
                                 $majorObj->save();
                             }
-                            return  $majorObj->id ;
+                            return $majorObj->id;
                         },
                     ],
                     [
                         'attribute' => 'medium_of_study',
                         'value' => function ($row) {
-                            $medumObj= UniversityProgramMediumOfStudy::find()->where(['title'=>strval($row[4])])->one();
+                            $medumObj = UniversityProgramMediumOfStudy::find()->where(['title' => strval($row[4])])->one();
                             if (!$medumObj) {
                                 $medumObj = new UniversityProgramMediumOfStudy();
                                 $medumObj->title = strval($row[4]);
                                 $medumObj->save();
                             }
-                            return  $medumObj->id ;
+                            return $medumObj->id;
                         },
                     ],
                     [
                         'attribute' => 'degree_id',
                         'value' => function ($row) {
-                            $degreeObj= UniversityProgramDegree::find()->where(['title'=>strval($row[5])])->one();
+                            $degreeObj = UniversityProgramDegree::find()->where(['title' => strval($row[5])])->one();
                             if (!$degreeObj) {
                                 $degreeObj = new UniversityProgramDegree();
                                 $degreeObj->title = strval($row[5]);
                                 $degreeObj->save();
                             }
-                            return  $degreeObj->id ;
+                            return $degreeObj->id;
                         },
                     ],
 
                     [
                         'attribute' => 'field_id',
                         'value' => function ($row) {
-                            $fieldObj= UniversityProgramField::find()->where(['title'=>strval($row[6])])->one();
+                            $fieldObj = UniversityProgramField::find()->where(['title' => strval($row[6])])->one();
                             if (!$fieldObj) {
                                 $fieldObj = new UniversityProgramField();
                                 $fieldObj->title = strval($row[6]);
                                 $fieldObj->save();
                             }
-                            return  $fieldObj->id ;
+                            return $fieldObj->id;
                         },
                     ],
 
@@ -524,17 +519,17 @@ class ImportController extends BackendController
                             return strval($row[7]);
                         },
                     ],
-                     [
+                    [
                         'attribute' => 'study_duration',
                         'value' => function ($row) {
                             if (strval($row[8]) == 'Day') {
-                                return  1 ;
+                                return 1;
                             }
                             if (strval($row[8]) == 'Week') {
-                                return  2 ;
+                                return 2;
                             }
                             if (strval($row[8]) == 'Month') {
-                                return  3 ;
+                                return 3;
                             }
                             return '';
                         },
@@ -548,7 +543,7 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'first_submission_date_active',
                         'value' => function ($row) {
-                            return strtolower(strval($row[10])) =="yes" ? 1 : 0;
+                            return strtolower(strval($row[10])) == "yes" ? 1 : 0;
                         },
                     ],
                     [
@@ -560,58 +555,57 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'last_submission_date_active',
                         'value' => function ($row) {
-                            return strtolower(strval($row[12])) =="yes" ? 1 : 0;
+                            return strtolower(strval($row[12])) == "yes" ? 1 : 0;
                         },
                     ],
                     [
                         'attribute' => 'study_method',
                         'value' => function ($row) {
-                            $studyObj= UniversityProgrameMethodOfStudy::find()->where(['title'=>strval($row[13])])->one();
+                            $studyObj = UniversityProgrameMethodOfStudy::find()->where(['title' => strval($row[13])])->one();
                             if (!$studyObj) {
                                 $studyObj = new UniversityProgrameMethodOfStudy();
                                 $studyObj->title = strval($row[13]);
                                 $studyObj->save();
                             }
-                            return  $studyObj->id ;
+                            return $studyObj->id;
                         },
                     ],
                     [
                         'attribute' => 'program_format',
                         'value' => function ($row) {
-                            $progformatObj= UniversityProgrameFormat::find()->where(['title'=>strval($row[14])])->one();
+                            $progformatObj = UniversityProgrameFormat::find()->where(['title' => strval($row[14])])->one();
                             if (!$progformatObj) {
                                 $progformatObj = new UniversityProgrameFormat();
                                 $progformatObj->title = strval($row[14]);
                                 $progformatObj->save();
                             }
-                            return  $progformatObj->id ;
+                            return $progformatObj->id;
                         },
                     ],
 
                     [
                         'attribute' => 'conditional_admissions',
                         'value' => function ($row) {
-                            $admissionObj= UniversityProgrameConditionalAdmission::find()->where(['title'=>strval($row[15])])->one();
+                            $admissionObj = UniversityProgrameConditionalAdmission::find()->where(['title' => strval($row[15])])->one();
                             if (!$admissionObj) {
                                 $admissionObj = new UniversityProgrameConditionalAdmission();
                                 $admissionObj->title = strval($row[15]);
                                 $admissionObj->save();
                             }
-                            return  $admissionObj->id ;
+                            return $admissionObj->id;
                         },
                     ],
-
 
                     [
                         'attribute' => 'ielts',
                         'value' => function ($row) {
-                            $iletsObj= UniversityProgrameIlets::find()->where(['title'=>strval($row[16])])->one();
+                            $iletsObj = UniversityProgrameIlets::find()->where(['title' => strval($row[16])])->one();
                             if (!$iletsObj) {
                                 $iletsObj = new UniversityProgrameIlets();
                                 $iletsObj->title = strval($row[16]);
                                 $iletsObj->save();
                             }
-                            return  $iletsObj->id ;
+                            return $iletsObj->id;
                         },
                     ],
 
@@ -681,47 +675,108 @@ class ImportController extends BackendController
                             return strval($row[27]);
                         },
                     ],
+                    [
+                        'attribute' => 'dates',
+                        'value' => function ($row) {
+                            return strval($row[28]);
+                        },
+                    ],
+
                 ],
             ]);
-
             if (!$importer->validate()) {
                 foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
+                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
                 }
                 Yii::$app->getSession()->setFlash('alert', [
-                    'type' =>'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  '.$errors) ,
-                    'title' =>'',
+                    'type' => 'warning',
+                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                    'title' => '',
                 ]);
             } else {
-                if (! $importer->save()) {
+                if (!$importer->save()) {
+
                     Yii::$app->getSession()->setFlash('alert', [
-                        'type' =>'error',
-                        'body' => \Yii::t('hr', 'please check the attached file for errors ') ,
-                        'title' =>'',
+                        'type' => 'error',
+                        'body' => \Yii::t('hr', 'please check the attached file for errors '),
+                        'title' => '',
                     ]);
                 } else {
+                    $savedPrograms = $importer->getModels();
+                    foreach ($savedPrograms as $program) {
+                        $this->checkDates($program);
+                    }
+
                     Yii::$app->getSession()->setFlash('alert', [
-                        'type' =>'success',
-                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
-                        'title' =>'',
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( ' . count($importer->getModels()) . ' )'),
+                        'title' => '',
                     ]);
-                    $saved= true;
+                    $saved = true;
                 }
             }
         }
 
-        return $this->render('form', ['model'=>$model,
-            'saved'=>$saved,
-            'filename'=>'Universitie-Programs.xlsx'
+        return $this->render('form', ['model' => $model,
+            'saved' => $saved,
+            'filename' => 'Universitie-Programs.xlsx',
 
         ]);
+    }
+
+    public function checkDates($program)
+    {
+        $startData = new UniversityProgStartdate();
+        $startData->university_prog_id = $program->id;
+
+        $dates = array_map(function($value){
+            return ucfirst(strtolower($value));
+        }, explode(',', $program->dates));
+
+        if (in_array('Jan', $dates)) {
+            $startData->m_1 = 1; 
+        }
+        if (in_array('Feb', $dates)) {
+            $startData->m_2 = 1; 
+        }
+        if (in_array('Mar', $dates)) {
+            $startData->m_3 = 1; 
+        }
+        if (in_array('Apr', $dates)) {
+            $startData->m_4 = 1; 
+        }
+        if (in_array('May', $dates)) {
+            $startData->m_5 = 1; 
+        }
+        if (in_array('Jun', $dates)) {
+            $startData->m_6 = 1; 
+        }
+        if (in_array('Jul', $dates)) {
+            $startData->m_7 = 1; 
+        }
+        if (in_array('Aug', $dates)) {
+            $startData->m_8 = 1; 
+        }
+        if (in_array('Sept', $dates) || in_array('Sep', $dates)) {
+            $startData->m_9 = 1; 
+        }
+        if (in_array('Oct', $dates)) {
+            $startData->m_10 = 1; 
+        }
+        if (in_array('Nov', $dates)) {
+            $startData->m_11 = 1; 
+        }
+        if (in_array('Dec', $dates)) {
+            $startData->m_12 = 1; 
+        }
+        $startData->save(false);
+        // return var_dump($dates,$startData,$startData->save(false),$startData->errors);
     }
 
     public function actionSchools()
     {
         $errors = '';
-        $saved= false;
+        $saved = false;
         $model = new FileUploadHelper();
         if ($model->load(Yii::$app->request->post())) {
             $uploadFile = UploadedFile::getInstance($model, 'file');
@@ -747,9 +802,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'status',
                         'value' => function ($row) {
-                            if(strval($row[2])=="Yes" || strval($row[2])=="yes"){
+                            if (strval($row[2]) == "Yes" || strval($row[2]) == "yes") {
                                 return 1;
-                            }elseif(strval($row[2])=="No" || strval($row[2])=="no"){
+                            } elseif (strval($row[2]) == "No" || strval($row[2]) == "no") {
                                 return 0;
                             }
                             return 'NotValid';
@@ -758,9 +813,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'featured',
                         'value' => function ($row) {
-                            if(strval($row[2])=="Yes" || strval($row[2])=="yes"){
+                            if (strval($row[2]) == "Yes" || strval($row[2]) == "yes") {
                                 return 1;
-                            }elseif(strval($row[2])=="No" || strval($row[2])=="no"){
+                            } elseif (strval($row[2]) == "No" || strval($row[2]) == "no") {
                                 return 0;
                             }
                             return 'NotValid';
@@ -769,9 +824,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'country_id',
                         'value' => function ($row) {
-                            $countryObj= Country::find()->where(['code'=>strval($row[4])])->one();
+                            $countryObj = Country::find()->where(['code' => strval($row[4])])->one();
                             if ($countryObj) {
-                                return  $countryObj->id ;
+                                return $countryObj->id;
                             }
                             return '';
                         },
@@ -779,9 +834,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'state_id',
                         'value' => function ($row) {
-                            $stateObj= State::find()->where(['title'=>strval($row[5])])->one();
+                            $stateObj = State::find()->where(['title' => strval($row[5])])->one();
                             if ($stateObj) {
-                                return  $stateObj->id ;
+                                return $stateObj->id;
                             }
                             return '';
                         },
@@ -789,9 +844,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'city_id',
                         'value' => function ($row) {
-                            $cityObj= Cities::find()->where(['title'=>strval($row[6])])->one();
+                            $cityObj = Cities::find()->where(['title' => strval($row[6])])->one();
                             if ($cityObj) {
-                                return  $cityObj->id ;
+                                return $cityObj->id;
                             }
                             return '';
                         },
@@ -822,15 +877,15 @@ class ImportController extends BackendController
                     ],
                     [
                         'attribute' => 'location',
-                            'value' => function ($row) {
-                                return strval($row[11]);
-                            },
+                        'value' => function ($row) {
+                            return strval($row[11]);
+                        },
                     ],
                     [
                         'attribute' => 'lat',
-                            'value' => function ($row) {
-                                return strval($row[12]);
-                            },
+                        'value' => function ($row) {
+                            return strval($row[12]);
+                        },
                     ],
                     [
                         'attribute' => 'lng',
@@ -841,9 +896,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'currency_id',
                         'value' => function ($row) {
-                            $currencyObj= Currency::find()->where(['currency_code'=>strval($row[14])])->one();
+                            $currencyObj = Currency::find()->where(['currency_code' => strval($row[14])])->one();
                             if ($currencyObj) {
-                                return  $currencyObj->id ;
+                                return $currencyObj->id;
                             }
                             return '';
                         },
@@ -851,19 +906,19 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'next_to',
                         'value' => function ($row) {
-                            $nextToObj= SchoolNextTo::find()->where(['title'=>strval($row[15])])->one();
+                            $nextToObj = SchoolNextTo::find()->where(['title' => strval($row[15])])->one();
                             if (!$nextToObj) {
                                 $nextToObj = new SchoolNextTo();
                                 $nextToObj->title = strval($row[15]);
                                 $nextToObj->save();
                             }
-                            return  $nextToObj->id ;
+                            return $nextToObj->id;
                         },
                     ],
                     [
                         'attribute' => 'has_health_insurance',
                         'value' => function ($row) {
-                            return strval($row[16])=="Yes" ? 1 : 0;
+                            return strval($row[16]) == "Yes" ? 1 : 0;
                         },
                     ],
                     [
@@ -878,40 +933,40 @@ class ImportController extends BackendController
             // return var_dump($importer->getModels());
             if (!$importer->validate()) {
                 foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
+                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
                 }
                 Yii::$app->getSession()->setFlash('alert', [
-                    'type' =>'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  '.$errors) ,
-                    'title' =>'',
+                    'type' => 'warning',
+                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                    'title' => '',
                 ]);
             } else {
-                if (! $importer->save()) {
+                if (!$importer->save()) {
                     Yii::$app->getSession()->setFlash('alert', [
-                       'type' =>'success',
-                       'body' => \Yii::t('hr', 'please check the attached file for errors ') ,
-                       'title' =>'',
-                   ]);
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'please check the attached file for errors '),
+                        'title' => '',
+                    ]);
                 } else {
-                    $saved= true;
+                    $saved = true;
                     Yii::$app->getSession()->setFlash('alert', [
-                       'type' =>'success',
-                       'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
-                       'title' =>'',
-                   ]);
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( ' . count($importer->getModels()) . ' )'),
+                        'title' => '',
+                    ]);
                 }
             }
         }
-        return $this->render('form', ['model'=>$model,
-            'saved'=>$saved,
-            'filename'=>'Schools.xlsx'
+        return $this->render('form', ['model' => $model,
+            'saved' => $saved,
+            'filename' => 'Schools.xlsx',
         ]);
     }
 
     public function actionSchoolsCourses()
     {
         $errors = '';
-        $saved= false;
+        $saved = false;
         $model = new FileUploadHelper();
         if ($model->load(Yii::$app->request->post())) {
             $uploadFile = UploadedFile::getInstance($model, 'file');
@@ -943,15 +998,15 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'status',
                         'value' => function ($row) {
-                            return strval($row[2])=="Yes" ? 1 : 0;
+                            return strval($row[2]) == "Yes" ? 1 : 0;
                         },
                     ],
                     [
                         'attribute' => 'school_course_type_id',
                         'value' => function ($row) {
-                            $typeObj= SchoolCourseType::find()->where(['title'=>strval($row[3])])->one();
+                            $typeObj = SchoolCourseType::find()->where(['title' => strval($row[3])])->one();
                             if ($typeObj) {
-                                return  $typeObj->id ;
+                                return $typeObj->id;
                             }
                             return '';
                         },
@@ -959,9 +1014,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'school_course_study_language_id',
                         'value' => function ($row) {
-                            $langObj= SchoolCourseStudyLanguage::find()->where(['title'=>strval($row[4])])->one();
+                            $langObj = SchoolCourseStudyLanguage::find()->where(['title' => strval($row[4])])->one();
                             if ($langObj) {
-                                return  $langObj->id ;
+                                return $langObj->id;
                             }
                             return '';
                         },
@@ -976,11 +1031,11 @@ class ImportController extends BackendController
                         'attribute' => 'required_level',
                         'value' => function ($row) {
                             $value = $row[6];
-                            if($value == 'Beginner' || $value == 'beginner'){
+                            if ($value == 'Beginner' || $value == 'beginner') {
                                 return SchoolCourse::COURSE_TYPE_BEGINNER;
-                            }elseif ($value == 'Intermediate' || $value == 'intermediate') {
+                            } elseif ($value == 'Intermediate' || $value == 'intermediate') {
                                 return SchoolCourse::COURSE_TYPE_INTERMEDIATE;
-                            }elseif ($value == 'Professional' || $value == 'professional') {
+                            } elseif ($value == 'Professional' || $value == 'professional') {
                                 return SchoolCourse::COURSE_TYPE_PROFESSIONAL;
                             }
                             return 'NotValid';
@@ -990,9 +1045,9 @@ class ImportController extends BackendController
                         'attribute' => 'time_of_course',
                         'value' => function ($row) {
                             $value = $row[7];
-                            if($value == 'Morning' || $value == 'morning'){
+                            if ($value == 'Morning' || $value == 'morning') {
                                 return SchoolCourse::COURSE_TIME_MORNING;
-                            }elseif($value == 'Evening' || $value == 'evening'){
+                            } elseif ($value == 'Evening' || $value == 'evening') {
                                 return SchoolCourse::COURSE_TIME_EVENING;
                             }
                             return 'NotValid';
@@ -1067,7 +1122,7 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'cost_type',
                         'value' => function ($row) {
-                            return strval($row[19])=="Yes" ? 2 : 1;
+                            return strval($row[19]) == "Yes" ? 2 : 1;
                         },
                     ],
                 ],
@@ -1077,33 +1132,33 @@ class ImportController extends BackendController
             // return var_dump($importer->getModels());
             if (!$importer->validate()) {
                 foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .="$rowNumber errors <br>" . implode('<br>', $errors);
+                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
                 }
                 Yii::$app->getSession()->setFlash('alert', [
-                    'type' =>'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  '.$errors) ,
-                    'title' =>'',
+                    'type' => 'warning',
+                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                    'title' => '',
                 ]);
             } else {
-                if (! $importer->save()) {
+                if (!$importer->save()) {
                     Yii::$app->getSession()->setFlash('alert', [
-                       'type' =>'success',
-                       'body' => \Yii::t('hr', 'please check the attached file for errors ') ,
-                       'title' =>'',
-                   ]);
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'please check the attached file for errors '),
+                        'title' => '',
+                    ]);
                 } else {
-                    $saved= true;
+                    $saved = true;
                     Yii::$app->getSession()->setFlash('alert', [
-                       'type' =>'success',
-                       'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( '. count($importer->getModels()) .' )') ,
-                       'title' =>'',
-                   ]);
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( ' . count($importer->getModels()) . ' )'),
+                        'title' => '',
+                    ]);
                 }
             }
         }
-        return $this->render('form', ['model'=>$model,
-            'saved'=>$saved,
-            'filename'=>'SchoolCourse.xlsx'
+        return $this->render('form', ['model' => $model,
+            'saved' => $saved,
+            'filename' => 'SchoolCourse.xlsx',
         ]);
     }
 }
