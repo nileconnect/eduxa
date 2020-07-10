@@ -25,7 +25,7 @@ class UniversityPrograms extends BaseUniversityPrograms
     public function rules()
     {
         return [
-            // [['title'], 'unique'],
+            [['title'], 'unique'],
             [['university_id', 'title', 'major_id', 'degree_id','lang_of_study','medium_of_study','degree_id','field_id','high_school_transcript','bachelor_degree'
             ,'study_duration','study_duration_no','study_method','program_format','conditional_admissions','ielts','bank_statment','annual_cost','toefl','first_submission_date','last_submission_date'], 'required'],
 
