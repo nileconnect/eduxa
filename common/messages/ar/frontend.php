@@ -353,7 +353,7 @@ return [
     'Accommodation fees' => 'رسوم الإقامة',
     'Accommodation options' => 'خيارات الأقامة',
     'Accommodation period' => 'مدة الأقامة',
-    '' => '',
+    'Request Status Uptedted' => 'تحديث حالة الطلب',
     '' => '',
     '' => '',
     '' => '',

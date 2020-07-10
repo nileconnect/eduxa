@@ -2,10 +2,12 @@
 
 namespace backend\models;
 
-use common\models\User;
 use Yii;
+use common\models\User;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
 
 /**
  * This is the model class for table "faq".
@@ -24,19 +26,19 @@ use yii\behaviors\TimestampBehavior;
  */
 class Faq extends \yii\db\ActiveRecord
 {
-    const STATUS_NOT_PUBLISHED =0;
-    const STATUS_PUBLISHED =1;
-    const CAT_TYP_GENERAL =1;
+    use MultiLanguageTrait;
 
+    const STATUS_NOT_PUBLISHED = 0;
+    const STATUS_PUBLISHED = 1;
+    const CAT_TYP_GENERAL = 1;
 
     public static function getStatusList()
     {
         return [
             self::STATUS_PUBLISHED => Yii::t('app', 'Published'),
-            self::STATUS_NOT_PUBLISHED =>Yii::t('app', 'Not Published'),
+            self::STATUS_NOT_PUBLISHED => Yii::t('app', 'Not Published'),
         ];
     }
-
 
     /**
      * {@inheritdoc}
@@ -46,23 +48,33 @@ class Faq extends \yii\db\ActiveRecord
         return 'faq';
     }
 
-
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
 
-          'blameable' => [
-                                  'class' =>BlameableBehavior::className(),
-                        ],
+            'blameable' => [
+                'class' => BlameableBehavior::className(),
+            ],
 
-                [
-                    'class' => TimestampBehavior::className(),
-                    //'createdAtAttribute' => 'create_time',
-                    //'updatedAtAttribute' => 'update_time',
-                    'value' => date("Y-m-d H:i:s"),
+            [
+                'class' => TimestampBehavior::className(),
+                //'createdAtAttribute' => 'create_time',
+                //'updatedAtAttribute' => 'update_time',
+                'value' => date("Y-m-d H:i:s"),
+            ],
+            'mlBehavior' => [
+                'class' => MultiLanguageBehavior::className(),
+                'mlConfig' => [
+                    'db_table' => 'translations_with_text',
+                    'attributes' => ['answer', 'question'],
+                    'admin_routes' => [
+                        'faq/update',
+                        'faq/index',
+                    ],
                 ],
+            ],
         ];
     }
-
 
     /**
      * {@inheritdoc}
@@ -72,12 +84,12 @@ class Faq extends \yii\db\ActiveRecord
         return [
             [['country_id', 'question'], 'required'],
             ['status', 'default', 'value' => 0],
-            [['answer', 'question'], 'string', 'max' => 500,'min'=>2],
-            ['answer' , 'required','on'=>'AdminChange'],
+            [['answer', 'question'], 'string', 'max' => 500, 'min' => 2],
+            ['answer', 'required', 'on' => 'AdminChange'],
             [['country_id', 'status', 'created_by', 'updated_by'], 'integer'],
             [['answer'], 'string'],
-            [['created_at', 'updated_at','note'], 'string', 'max' => 255],
-           // [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => FaqCat::className(), 'targetAttribute' => ['country_id' => 'id']],
+            [['created_at', 'updated_at', 'note'], 'string', 'max' => 255],
+            // [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => FaqCat::className(), 'targetAttribute' => ['country_id' => 'id']],
         ];
     }
 
@@ -108,11 +120,13 @@ class Faq extends \yii\db\ActiveRecord
         return $this->hasOne(Country::className(), ['id' => 'country_id']);
     }
 
-    public function getCreatedBy() {
+    public function getCreatedBy()
+    {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 
-    public function getUpdatedBy() {
+    public function getUpdatedBy()
+    {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 

@@ -2,12 +2,13 @@
 
 namespace backend\controllers;
 
-use Yii;
 use backend\models\Requests;
 use backend\models\search\RequestsSearch;
+use common\commands\SendEmailCommand;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * RequestsController implements the CRUD actions for Requests model.
@@ -33,22 +34,32 @@ class RequestsController extends Controller
     public function actionIndex()
     {
 
-        if(Yii::$app->request->post()){
-            $action=Yii::$app->request->post('action');
-            $selection=(array)Yii::$app->request->post('Expedientes_Seleccionados');//typecasting
-                foreach($selection as $id){
-                    $e=Requests::findOne((int)$id);//make a typecasting
-                    $e->status = $action ;
-                    $e->save(false);
-                }
+        if (Yii::$app->request->post()) {
+            $action = Yii::$app->request->post('action');
+            $selection = (array) Yii::$app->request->post('Expedientes_Seleccionados'); //typecasting
+            foreach ($selection as $id) {
+                $request = Requests::findOne((int) $id); //make a typecasting
+                $request->status = $action;
+                $request->save(false);
+                Yii::$app->commandBus->handle(new SendEmailCommand(
+                    [
+                        'subject' => Yii::t('frontend', 'Request Status Uptedted'),
+                        'view' => 'sendRequestStatusChanged',
+                        'to' => $request->student_email,
+                        // 'to' => 'm.3laa.95@gmail.com',
+                        'params' => [
+                            'data' => $request,
+                        ],
+                    ]
+                ));
+            }
 
             Yii::$app->getSession()->setFlash('alert', [
-                'type' =>'success',
-                'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
-                'title' =>'',
+                'type' => 'success',
+                'body' => \Yii::t('hr', 'Data has been updated Successfully'),
+                'title' => '',
             ]);
         }
-
 
         $searchModel = new RequestsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -72,7 +83,7 @@ class RequestsController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-            return $this->render('view', [
+        return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -126,14 +137,15 @@ class RequestsController extends Controller
 
         return $this->redirect(['index']);
     }
-    
+
     /**
-     * 
+     *
      * Export Requests information into PDF format.
      * @param integer $id
      * @return mixed
      */
-    public function actionPdf($id) {
+    public function actionPdf($id)
+    {
         $model = $this->findModel($id);
 
         $content = $this->renderAjax('_pdf', [
@@ -152,13 +164,12 @@ class RequestsController extends Controller
             'methods' => [
                 'SetHeader' => [\Yii::$app->name],
                 'SetFooter' => ['{PAGENO}'],
-            ]
+            ],
         ]);
 
         return $pdf->render();
     }
 
-    
     /**
      * Finds the Requests model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

@@ -2,22 +2,23 @@
 
 namespace backend\controllers;
 
-use Yii;
 use backend\models\Faq;
 use backend\models\search\FaqSearch;
+use Yii;
 use yii\filters\AccessControl;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 
 /**
  * FaqController implements the CRUD actions for Faq model.
  */
-class FaqController  extends BackendController
+class FaqController extends BackendController
 {
     /**
      * {@inheritdoc}
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -25,7 +26,7 @@ class FaqController  extends BackendController
                     [
                         'allow' => true,
                         'roles' => ['admin', 'superAdmin'],
-                    ]
+                    ],
 
                 ], // rules
             ], // access
@@ -44,12 +45,12 @@ class FaqController  extends BackendController
      */
     public function actionIndex()
     {
-        if(isset($_REQUEST['countryId'])){
-            Yii::$app->session->set('countryId',$_REQUEST['countryId']);
+        if (isset($_REQUEST['countryId'])) {
+            Yii::$app->session->set('countryId', $_REQUEST['countryId']);
         }
 
         $searchModel = new FaqSearch();
-        $searchModel->country_id =  Yii::$app->session->get('countryId');
+        $searchModel->country_id = Yii::$app->session->get('countryId');
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -79,8 +80,8 @@ class FaqController  extends BackendController
     public function actionCreate()
     {
         $model = new Faq();
-        $model->country_id =  Yii::$app->session->get('countryId');
-        $model->scenario ='AdminChange';
+        $model->country_id = Yii::$app->session->get('countryId');
+        $model->scenario = 'AdminChange';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
