@@ -95,14 +95,14 @@ class ImportController extends BackendController
             ]);
 
             if (!$importer->validate()) {
-                foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
-                }
-                Yii::$app->getSession()->setFlash('alert', [
-                    'type' => 'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
-                    'title' => '',
-                ]);
+                // foreach ($importer->getErrors() as $rowNumber => $errors) {
+                //     $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
+                // }
+                // // Yii::$app->getSession()->setFlash('alert', [
+                // //     'type' => 'warning',
+                // //     'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                // //     'title' => '',
+                // // ]);
             } else {
                 if (!$importer->save()) {
                     Yii::$app->getSession()->setFlash('alert', [
@@ -122,6 +122,7 @@ class ImportController extends BackendController
         }
 
         return $this->render('form', ['model' => $model,
+            'importer'=>$importer,
             'saved' => $saved,
             'filename' => 'State-Cities.xlsx',
         ]);
@@ -191,14 +192,14 @@ class ImportController extends BackendController
             ]);
             // return var_dump( $importer->getModels());
             if (!$importer->validate()) {
-                foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
-                }
-                Yii::$app->getSession()->setFlash('alert', [
-                    'type' => 'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
-                    'title' => '',
-                ]);
+                // foreach ($importer->getErrors() as $rowNumber => $errors) {
+                //     $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
+                // }
+                // // Yii::$app->getSession()->setFlash('alert', [
+                // //     'type' => 'warning',
+                // //     'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                // //     'title' => '',
+                // // ]);
             } else {
                 if (!$importer->save()) {
                     Yii::$app->getSession()->setFlash('alert', [
@@ -218,6 +219,7 @@ class ImportController extends BackendController
         }
 
         return $this->render('form', ['model' => $model,
+            'importer'=>$importer,
             'saved' => $saved,
             'filename' => 'Countries.xlsx',
 
@@ -385,14 +387,14 @@ class ImportController extends BackendController
 
             // return var_dump($importer->getModels());
             if (!$importer->validate()) {
-                foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
-                }
-                Yii::$app->getSession()->setFlash('alert', [
-                    'type' => 'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
-                    'title' => '',
-                ]);
+                // foreach ($importer->getErrors() as $rowNumber => $errors) {
+                //     $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
+                // }
+                // // Yii::$app->getSession()->setFlash('alert', [
+                // //     'type' => 'warning',
+                // //     'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                // //     'title' => '',
+                // // ]);
             } else {
                 if (!$importer->save()) {
                     Yii::$app->getSession()->setFlash('alert', [
@@ -411,6 +413,7 @@ class ImportController extends BackendController
             }
         }
         return $this->render('form', ['model' => $model,
+            'importer'=>$importer,
             'saved' => $saved,
             'filename' => 'Universities.xlsx',
         ]);
@@ -685,14 +688,14 @@ class ImportController extends BackendController
                 ],
             ]);
             if (!$importer->validate()) {
-                foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
-                }
-                Yii::$app->getSession()->setFlash('alert', [
-                    'type' => 'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
-                    'title' => '',
-                ]);
+                // foreach ($importer->getErrors() as $rowNumber => $errors) {
+                //     $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
+                // }
+                // // Yii::$app->getSession()->setFlash('alert', [
+                // //     'type' => 'warning',
+                // //     'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                // //     'title' => '',
+                // // ]);
             } else {
                 if (!$importer->save()) {
 
@@ -718,6 +721,7 @@ class ImportController extends BackendController
         }
 
         return $this->render('form', ['model' => $model,
+            'importer'=>$importer,
             'saved' => $saved,
             'filename' => 'Universitie-Programs.xlsx',
 
@@ -730,7 +734,7 @@ class ImportController extends BackendController
         $startData->university_prog_id = $program->id;
 
         $dates = array_map(function($value){
-            return ucfirst(strtolower($value));
+            return ucfirst(strtolower(trim($value)));
         }, explode(',', $program->dates));
 
         if (in_array('Jan', $dates)) {
@@ -813,9 +817,9 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'featured',
                         'value' => function ($row) {
-                            if (strval($row[2]) == "Yes" || strval($row[2]) == "yes") {
+                            if (strval($row[3]) == "Yes" || strval($row[3]) == "yes") {
                                 return 1;
-                            } elseif (strval($row[2]) == "No" || strval($row[2]) == "no") {
+                            } elseif (strval($row[3]) == "No" || strval($row[3]) == "no") {
                                 return 0;
                             }
                             return 'NotValid';
@@ -875,28 +879,28 @@ class ImportController extends BackendController
                             return strval($row[10]);
                         },
                     ],
+                    // [
+                    //     'attribute' => 'location',
+                    //     'value' => function ($row) {
+                    //         return strval($row[11]);
+                    //     },
+                    // ],
                     [
-                        'attribute' => 'location',
+                        'attribute' => 'lat',
                         'value' => function ($row) {
                             return strval($row[11]);
                         },
                     ],
                     [
-                        'attribute' => 'lat',
+                        'attribute' => 'lng',
                         'value' => function ($row) {
                             return strval($row[12]);
                         },
                     ],
                     [
-                        'attribute' => 'lng',
-                        'value' => function ($row) {
-                            return strval($row[13]);
-                        },
-                    ],
-                    [
                         'attribute' => 'currency_id',
                         'value' => function ($row) {
-                            $currencyObj = Currency::find()->where(['currency_code' => strval($row[14])])->one();
+                            $currencyObj = Currency::find()->where(['currency_code' => strval($row[13])])->one();
                             if ($currencyObj) {
                                 return $currencyObj->id;
                             }
@@ -906,10 +910,10 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'next_to',
                         'value' => function ($row) {
-                            $nextToObj = SchoolNextTo::find()->where(['title' => strval($row[15])])->one();
+                            $nextToObj = SchoolNextTo::find()->where(['title' => strval($row[14])])->one();
                             if (!$nextToObj) {
                                 $nextToObj = new SchoolNextTo();
-                                $nextToObj->title = strval($row[15]);
+                                $nextToObj->title = strval($row[14]);
                                 $nextToObj->save();
                             }
                             return $nextToObj->id;
@@ -918,13 +922,13 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'has_health_insurance',
                         'value' => function ($row) {
-                            return strval($row[16]) == "Yes" ? 1 : 0;
+                            return strval($row[15]) == "Yes" ? 1 : 0;
                         },
                     ],
                     [
                         'attribute' => 'health_insurance_cost',
                         'value' => function ($row) {
-                            return strval($row[17]);
+                            return strval($row[16]);
                         },
                     ],
                 ],
@@ -932,14 +936,14 @@ class ImportController extends BackendController
             ]);
             // return var_dump($importer->getModels());
             if (!$importer->validate()) {
-                foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
-                }
-                Yii::$app->getSession()->setFlash('alert', [
-                    'type' => 'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
-                    'title' => '',
-                ]);
+                // foreach ($importer->getErrors() as $rowNumber => $errors) {
+                //     $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
+                // }
+                // // Yii::$app->getSession()->setFlash('alert', [
+                // //     'type' => 'warning',
+                // //     'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                // //     'title' => '',
+                // // ]);
             } else {
                 if (!$importer->save()) {
                     Yii::$app->getSession()->setFlash('alert', [
@@ -958,6 +962,7 @@ class ImportController extends BackendController
             }
         }
         return $this->render('form', ['model' => $model,
+            'importer'=>$importer,
             'saved' => $saved,
             'filename' => 'Schools.xlsx',
         ]);
@@ -1131,14 +1136,14 @@ class ImportController extends BackendController
 
             // return var_dump($importer->getModels());
             if (!$importer->validate()) {
-                foreach ($importer->getErrors() as $rowNumber => $errors) {
-                    $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
-                }
-                Yii::$app->getSession()->setFlash('alert', [
-                    'type' => 'warning',
-                    'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
-                    'title' => '',
-                ]);
+                // foreach ($importer->getErrors() as $rowNumber => $errors) {
+                //     $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
+                // }
+                // // Yii::$app->getSession()->setFlash('alert', [
+                // //     'type' => 'warning',
+                // //     'body' => \Yii::t('hr', 'please check the attached file for errors -  ' . $errors),
+                // //     'title' => '',
+                // // ]);
             } else {
                 if (!$importer->save()) {
                     Yii::$app->getSession()->setFlash('alert', [
@@ -1157,6 +1162,7 @@ class ImportController extends BackendController
             }
         }
         return $this->render('form', ['model' => $model,
+            'importer'=>$importer,
             'saved' => $saved,
             'filename' => 'SchoolCourse.xlsx',
         ]);

@@ -14,6 +14,12 @@ use yii\helpers\ArrayHelper;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<style>
+.form-control:disabled, .form-control[readonly] {
+    background-color: white;
+    opacity: 1;
+}
+</style>
 
 <div class="search-form after-jumbotron">
     <div class="container">
@@ -103,7 +109,7 @@ use yii\helpers\ArrayHelper;
                 <?php
                 // Child # 1
                 echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  ArrayHelper::map(State::find()->where(['country_id'=>$model->country_id])->all(), 'id', 'title') : [''=>Yii::t('common','State')],
+                    'data' =>$model->country_id ?  [''=>Yii::t('common', 'Select State..')] + ArrayHelper::map(State::find()->where(['country_id'=>$model->country_id])->all(), 'id', 'title') : [''=>Yii::t('common','Select State..')],
                     'options'=>['id'=>'City-id'],
                     'pluginOptions'=>[
                         'depends'=>['CountryId'],
@@ -119,15 +125,14 @@ use yii\helpers\ArrayHelper;
                 $data = [];
                 if($model->country_id){
                     $oneState = State::find()->where(['country_id'=>$model->country_id])->one();
-                    $data = ArrayHelper::map(Cities::find()->where(['state_id'=>$oneState->id])->all(), 'id', 'title');
+                    $data = [''=>Yii::t('common', 'Select City..')] + ArrayHelper::map(Cities::find()->where(['state_id'=>$oneState->id])->all(), 'id', 'title');
                 }
                 
                 echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                    'data' =>$model->country_id ?  $data : [''=>Yii::t('common','City')],
-                    'options'=>['id'=>'subcat-id'],
+                    'data' => $model->country_id ?  $data : [''=>Yii::t('common','Select City..')],
+                    'options'=>['id'=>'subcat-id','placeholder' => Yii::t('common', 'Select City..')],
                     'pluginOptions'=>[
                         'depends'=>['City-id'],
-                        'placeholder'=>Yii::t('common', 'City'),
                         'url'=>Url::to(['/helper/cities'])
                     ]
                 ])->label(false); 

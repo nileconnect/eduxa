@@ -37,6 +37,13 @@ use kartik\depdrop\DepDrop;
             ]
         ]);
     }
+    if($importer):
+        foreach ($importer->getErrors() as $rowNumber => $errors) {
+            echo "<div class='alert alert-danger' role='alert'>
+            row ". ($rowNumber+1) ." errors <br>" . implode('<br>', $errors) ."
+            </div>";
+        }
+    endif;
     ?>
     <div><span>Download Sample File:</span> <a target="_blank" href="/samples/<?= $filename?>">Download</a></div>
 

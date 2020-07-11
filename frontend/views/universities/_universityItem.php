@@ -43,7 +43,7 @@
                 </div>
                 <div>
                     <div class="item-label"><?= Yii::t('frontend','Start Date') ?></div>
-                    <div><?= $item->first_submission_date ?></div>
+                    <div><?= date('d-M-Y', strtotime($item->first_submission_date)) ?></div>
                 </div>
                 <div>
                     <div class="item-label"><?= Yii::t('frontend','Annual Cost') ?></div>

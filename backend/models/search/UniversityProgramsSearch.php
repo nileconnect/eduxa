@@ -130,13 +130,20 @@ class UniversityProgramsSearch extends UniversityPrograms
             'university_programs.major_id' => $this->major_id,
         ]);
 
-        $query
-            ->andFilterWhere(['like', 'university.title', $this->university_title])
-            ->andFilterWhere(['=', 'university.total_rating', $this->university_total_rating])
-            ->orFilterWhere(['=', 'university.total_rating', ((int) $this->university_total_rating) + 0.5]);
+        $query->andFilterWhere(['like', 'university.title', $this->university_title]);
+        if($this->university_total_rating > 0){
+            if($this->university_total_rating == 1){
+                $query->andFilterWhere(['=', 'university.total_rating', $this->university_total_rating]);
+                $query->orFilterWhere(['=', 'university.total_rating', ((int) $this->university_total_rating) + 0.5]);
+                $query->orWhere('university.total_rating IS NULL');
+            }else{
+                $query->andFilterWhere(['=', 'university.total_rating', $this->university_total_rating]);
+                $query->orFilterWhere(['=', 'university.total_rating', ((int) $this->university_total_rating) + 0.5]);
+            }
+        }    
 
         $query->groupBy(['university.id']);
-
+        // return var_dump($query->createCommand()->sql);
         return $dataProvider;
     }
 }
