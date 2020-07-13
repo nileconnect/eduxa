@@ -46,6 +46,7 @@ INSERT INTO `page` VALUES (\'106\', \'privacy-ar\', \'سياسة الخصوصي�
 INSERT INTO `page` VALUES (\'107\', \'terms-ar\', \'الشروط والاحكام\', \'test\', null, \'1\', null, \'1594247255\');
 INSERT INTO `page` VALUES (\'108\', \'how-we-work-ar\', \'كيف  نعمل\', \'<p>test</p>\', null, \'1\', null, \'1594247262\');
 INSERT INTO `page` VALUES (\'109\', \'about-us\', \'عنا\', \'	<section class=\"section\">\r\n		<div class=\"container\"> test test \r\n		</div>\r\n	</section>\', null, \'1\', null, \'1594249372\');
+
 ');
 
     }

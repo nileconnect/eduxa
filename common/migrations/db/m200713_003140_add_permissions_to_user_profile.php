@@ -14,7 +14,7 @@ class m200713_003140_add_permissions_to_user_profile extends Migration
     {
         $this->execute("
             ALTER TABLE `user`
-                ADD COLUMN `permissions`  varchar(255) NULL AFTER `email_verified`;
+                ADD COLUMN `permissions`  varchar(255) NULL AFTER `email`;
         ");
     }
 
