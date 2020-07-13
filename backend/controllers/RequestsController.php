@@ -15,6 +15,12 @@ use yii\web\NotFoundHttpException;
  */
 class RequestsController extends Controller
 {
+
+    public function beforeAction($action)
+    {
+        return Yii::$app->user->identity->checkPermmissions('requests')?: $this->redirect('/') ;
+    }
+
     public function behaviors()
     {
         return [

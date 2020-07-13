@@ -21,6 +21,11 @@ use yii\filters\VerbFilter;
  */
 class UniversityController extends BackendController
 {
+    public function beforeAction($action)
+    {
+        return Yii::$app->user->identity->checkPermmissions('universities')?: $this->redirect('/') ;
+    }
+
     public function behaviors()
     {
         return [

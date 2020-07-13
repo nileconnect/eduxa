@@ -17,6 +17,11 @@ class KeyStorageController extends Controller
 {
     use FormAjaxValidationTrait;
 
+    public function beforeAction($action)
+    {
+        return Yii::$app->user->identity->checkPermmissions('settings')?: $this->redirect('/') ;
+    }
+
     /** @inheritdoc */
     public function behaviors()
     {

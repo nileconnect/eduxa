@@ -22,6 +22,11 @@ use yii\web\NotFoundHttpException;
  */
 class UserController extends BackendController
 {
+    public function beforeAction($action)
+    {
+        return Yii::$app->user->identity->checkPermmissions('users')?: $this->redirect('/') ;
+    }
+
     public function behaviors()
     {
         return [
@@ -97,10 +102,11 @@ class UserController extends BackendController
     public function actionView($id)
     {
         $model = User::find()->where(['id'=>$id])->one();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
+            $model->permissions = $model->permission ? implode(',',$model->permission) : '';
+            $model->save();
         }
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

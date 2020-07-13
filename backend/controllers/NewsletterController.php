@@ -14,6 +14,11 @@ use yii\filters\VerbFilter;
  */
 class NewsletterController extends Controller
 {
+    public function beforeAction($action)
+    {
+        return Yii::$app->user->identity->checkPermmissions('newsletter')?: $this->redirect('/') ;
+    }
+
     public function behaviors()
     {
         return [

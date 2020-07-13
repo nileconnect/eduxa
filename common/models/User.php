@@ -51,6 +51,7 @@ class User extends ActiveRecord implements IdentityInterface
     const EVENT_AFTER_SIGNUP = 'afterSignup';
     const EVENT_AFTER_LOGIN = 'afterLogin';
 
+    public $permission;
     /**
      * @inheritdoc
      */
@@ -164,6 +165,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            ['permission','safe'],
             [['username', 'email'], 'unique'],
             ['status', 'default', 'value' => self::STATUS_NOT_ACTIVE],
             ['status', 'in', 'range' => array_keys(self::statuses())],
@@ -197,6 +199,7 @@ class User extends ActiveRecord implements IdentityInterface
             'created_at' => Yii::t('common', 'Created at'),
             'updated_at' => Yii::t('common', 'Updated at'),
             'logged_at' => Yii::t('common', 'Last login'),
+            'permissions'=> Yii::t('common', 'Permissions'),
         ];
     }
 
@@ -409,6 +412,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function getStudentTestResults()
     {
         return $this->hasMany(\backend\models\StudentTestResults::className(), ['user_id' => 'id']);
+    }
+
+    public function checkPermmissions($value)
+    {
+        
+        return in_array($value,explode(',', $this->permissions)) || User::IsRole( Yii::$app->user->identity->id , User::ROLE_ADMINISTRATOR) ;
     }
 
 }

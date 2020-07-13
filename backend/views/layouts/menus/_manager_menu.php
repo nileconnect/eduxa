@@ -1,5 +1,6 @@
 <?php
 
+use common\models\User;
 use backend\widgets\Menu;
 
 echo Menu::widget([
@@ -18,8 +19,7 @@ echo Menu::widget([
             'url' => '#',
             'icon' => '<i class="fa fa-users"></i>',
             'options' => ['class' => 'treeview'],
-            // 'visible' => (Yii::$app->user->can('administrator')  ),
-
+            'visible' => Yii::$app->user->identity->checkPermmissions('users') ,
             'items' => [
 
                 [
@@ -70,6 +70,7 @@ echo Menu::widget([
             'url' => '#',
             'icon' => '<i class="fa fa-university"></i>',
             'options' => ['class' => 'treeview'],
+            'visible' => Yii::$app->user->identity->checkPermmissions('universities') ,
             'items' => [
 
                 [
@@ -165,6 +166,7 @@ echo Menu::widget([
             'url' => '#',
             'icon' => '<i class="fa fa-building-o"></i>',
             'options' => ['class' => 'treeview'],
+            'visible' => Yii::$app->user->identity->checkPermmissions('schools') ,
             'items' => [
 
                 [
@@ -238,6 +240,8 @@ echo Menu::widget([
             'icon' => '<i class="fa fa-tv"></i>',
             'url' => ['/requests'],
             'active' => (Yii::$app->controller->id == 'requests'),
+            'visible' => Yii::$app->user->identity->checkPermmissions('requests') ,
+
             //'visible' => (Yii::$app->user->can('administrator')  ),
         ],
 
@@ -246,8 +250,7 @@ echo Menu::widget([
             'url' => '#',
             'icon' => '<i class="fa fa-building-o"></i>',
             'options' => ['class' => 'treeview'],
-            // 'visible' => (Yii::$app->user->can('administrator')  ),
-
+            'visible' => Yii::$app->user->identity->checkPermmissions('reports') and (Yii::$app->user->can('administrator')),
             'items' => [
                 [
                     'label' => Yii::t('backend', 'General statistics'),
@@ -283,6 +286,8 @@ echo Menu::widget([
             'url' => ['/country/index'],
             'icon' => '<i class="fa fa-globe"></i>',
             'active' => Yii::$app->controller->id === 'country',
+            'visible' => Yii::$app->user->identity->checkPermmissions('countries') ,
+
         ],
 
         [
@@ -291,7 +296,7 @@ echo Menu::widget([
             'icon' => '<i class="fa fa-file-o"></i>',
             'active' => Yii::$app->controller->id === 'page',
             'visible' => (Yii::$app->user->can('administrator')),
-
+            'visible' => Yii::$app->user->identity->checkPermmissions('static_pages') ,
         ],
 
     //    [
@@ -323,12 +328,16 @@ echo Menu::widget([
             'url' => ['/newsletter/index'],
             'icon' => '<i class="fa fa-file-o"></i>',
             'active' => (Yii::$app->controller->id == 'newsletter'),
+            'visible' => Yii::$app->user->identity->checkPermmissions('newsletter') ,
+
         ],
         [
             'label' => Yii::t('backend', 'Settings'),
             'url' => ['/system/key-storage/index'],
             'icon' => '<i class="fa fa-cogs"></i>',
             'active' => (Yii::$app->controller->id == 'key-storage'),
+            'visible' => Yii::$app->user->identity->checkPermmissions('settings') ,
+
         ],
 
     //    [

@@ -15,6 +15,11 @@ use yii\web\NotFoundHttpException;
  */
 class SchoolsController extends BackendController
 {
+    public function beforeAction($action)
+    {
+        return Yii::$app->user->identity->checkPermmissions('schools')?: $this->redirect('/') ;
+    }
+
     public function behaviors()
     {
         return [

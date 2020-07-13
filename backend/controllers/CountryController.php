@@ -19,6 +19,11 @@ use yii\web\NotFoundHttpException;
 class CountryController extends BackendController
 {
 
+    public function beforeAction($action)
+    {
+        return Yii::$app->user->identity->checkPermmissions('countries')?: $this->redirect('/') ;
+    }
+
     public function actions()
     {
         return [

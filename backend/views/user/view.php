@@ -48,6 +48,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 </a>
             </li>
             <?php
+            if( User::IsRole( Yii::$app->user->identity->id , User::ROLE_ADMINISTRATOR)): ?>
+                <li>
+                    <a href="#tab_3-3" data-toggle="tab" aria-expanded="false">
+                        <?php echo Yii::t('common', 'Permissions') ?>
+                    </a>
+                </li>
+            <?php endif;?>
+            <?php
             if( User::IsRole($model->id , User::ROLE_USER)){
                 ?>
 
@@ -176,8 +184,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'visible'=> !User::IsRole($model->id , User::ROLE_MANAGER) and !User::IsRole($model->id , User::ROLE_USER) and !User::IsRole($model->id , User::ROLE_UNIVERSITY_MANAGER),
                         ],
 
-// ////////////////////////////////////
-
+                        // //////////
                         [
                             'attribute' => 'job_title',
                             'value' => function($model){
@@ -238,7 +245,76 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]) ?>
             </div>
-
+            
+            <div class="tab-pane" id="tab_3-3">
+                <?php $form = ActiveForm::begin() ?>
+                <table id="w1" class="table table-striped table-bordered detail-view">
+                    <tbody>
+                        <tr>
+                            <th>Users</th>
+                            <td>
+                                <input type="hidden" name="User[]" value="1"/>
+                                <input type="checkbox" name="User[permission][]" value="users" <?= $model->checkPermmissions('users') ? 'checked': '' ?> />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Manage Universities</th>
+                            <td>
+                                <input type="hidden" name="User[]" value="1"/>
+                                <input type="checkbox" name="User[permission][]" value="universities" <?= $model->checkPermmissions('universities') ? 'checked': '' ?> />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Manage Schools</th>
+                            <td>
+                                <input type="checkbox" name="User[permission][]" value="schools" <?= $model->checkPermmissions('schools') ? 'checked': '' ?> />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Manage Requests</th>
+                            <td>
+                                <input type="checkbox" name="User[permission][]" value="requests" <?= $model->checkPermmissions('requests') ? 'checked': '' ?> />
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                            <th>Reports</th>
+                            <td>
+                                <input type="checkbox" name="User[permission][]" value="reports" <?= $model->checkPermmissions('reports') ? 'checked': '' ?> />
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <th>Countries</th>
+                            <td>
+                                <input type="checkbox" name="User[permission][]" value="countries" <?= $model->checkPermmissions('countries') ? 'checked': '' ?> />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Static pages</th>
+                            <td>
+                                <input type="checkbox" name="User[permission][]" value="static_pages" <?= $model->checkPermmissions('static_pages') ? 'checked': '' ?> />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Newsletter</th>
+                            <td>
+                                <input type="checkbox" name="User[permission][]" value="newsletter" <?= $model->checkPermmissions('newsletter') ? 'checked': '' ?> />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Settings</th>
+                            <td>
+                                <input type="checkbox" name="User[permission][]" value="settings" <?= $model->checkPermmissions('settings') ? 'checked': '' ?> />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <?php echo Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <?php ActiveForm::end() ?>
+            </div>
             <div class="tab-pane" id="tab_4-4">
 
                 <?php

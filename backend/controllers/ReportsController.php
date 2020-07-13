@@ -19,6 +19,11 @@ use backend\models\UniversityProgramMajors;
  */
 class ReportsController extends BackendController
 {
+    public function beforeAction($action)
+    {
+        return Yii::$app->user->identity->checkPermmissions('reports')?: $this->redirect('/') ;
+    }
+
     /**
      * General Statistic
      *

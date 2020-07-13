@@ -14,6 +14,11 @@ class PageController extends Controller
 {
     use FormAjaxValidationTrait;
 
+    public function beforeAction($action)
+    {
+        return Yii::$app->user->identity->checkPermmissions('static_pages')?: $this->redirect('/') ;
+    }
+
     /** @inheritdoc */
     public function behaviors()
     {
