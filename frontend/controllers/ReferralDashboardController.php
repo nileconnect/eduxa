@@ -80,8 +80,7 @@ class ReferralDashboardController extends FrontendController
     public function actionRequests()
     {
         $profile =Yii::$app->user->identity->userProfile ;
-        $requests = $profile->requests;
-
+        $requests = $profile->availableRequests;
         return $this->render('requests',['requests'=>$requests]);
     }
 
@@ -124,8 +123,8 @@ class ReferralDashboardController extends FrontendController
         $saved= 0;
 
         $profile =  Yii::$app->user->identity->userProfile;
-
-        if ($profile->load(Yii::$app->request->post()) && $profile->save()) {
+        $profile->gender = 1;
+        if ($profile->load(Yii::$app->request->post()) and $profile->save()) {
             $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',

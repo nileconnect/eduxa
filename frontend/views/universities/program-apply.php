@@ -4,7 +4,11 @@ use \common\models\User;
 
 $this->title = $universityObj->title ." : ". $programObj->title; 
 ?>
-
+<style>
+select option[data-default] {
+  color: #888 !important;
+}
+</style>
 <nav aria-label="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">
@@ -43,11 +47,26 @@ $this->title = $universityObj->title ." : ". $programObj->title;
                 <?
                 }else if(!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ){
                     ?>
-                    <div class="mtxlg">
-                        <a href="/dashboard/requests/<?= $programObj->slug ?>" class="button button-wide button-primary"><?= Yii::t('frontend','Apply Now') ?></a>
-                    </div>
 
-                    <?
+                    <?php
+                        if(Yii::$app->user->isGuest || (!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ) ) {
+                    ?>
+                        <div class="mtlg">
+                            <a href="javascript:void(0)" class="button button-wide button-primary" @click="submitStudent()"><?= Yii::t('frontend','Apply Now') ?></a>
+                        </div>
+                    <?php
+                        }
+                        if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ) {
+                    ?>
+                            <div class="mtlg">
+                                <a href="javascript:void(0)" class="button button-wide button-primary" @click="submitReferal()">
+                                <?= Yii::t('frontend','Apply Now')?>
+                                </a>
+                            </div>
+                    <?php
+                        }
+                    ?>
+                <?
                 }
                 ?>
 
@@ -90,7 +109,8 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         <div class="form-group">
                             <label for="gender" class="label-control"><?= Yii::t('frontend','Gender')?></label>
                             <div class="select-wrapper">
-                                <select name="" id="gender" class="form-control"  v-model="gender">
+                                <select name="" id="gender" class="form-control" v-model="gender">
+                                    <option value="" selected data-default><?= Yii::t('frontend','Gender')?></option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                 </select>
@@ -115,7 +135,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="country" class="label-control"><?= Yii::t('frontend','Country')?></label>
-                            <v-select v-model="selectedCountry"  label="title" :options="Countries" @input="SelectCountry"
+                            <v-select v-model="selectedCountry"  label="title" placeholder="<?= Yii::t('frontend','Country')?>" :options="Countries" @input="SelectCountry"
                             >
                             </v-select>
                         </div>
@@ -126,7 +146,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="city" class="label-control"><?= Yii::t('common','City')?></label>
-                            <v-select v-model="selectedCity"  label="title" :options="Cities" @input="SelectCity"
+                            <v-select v-model="selectedCity"  label="title" placeholder="<?= Yii::t('frontend','City')?>" :options="Cities" @input="SelectCity"
                             >
                             </v-select>
                         </div>
@@ -134,7 +154,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="city" class="label-control"><?= Yii::t('common','State')?></label>
-                            <v-select v-model="selectedState"  label="title" :options="States" @input="SelectState"
+                            <v-select v-model="selectedState"  label="title" placeholder="<?= Yii::t('frontend','State')?>" :options="States" @input="SelectState"
                             >
                             </v-select>
                         </div>
@@ -299,25 +319,22 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 </table>
 
                 <?php
-                if(Yii::$app->user->isGuest || (!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ) ) {
-                    ?>
+                    if(Yii::$app->user->isGuest || (!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ) ) {
+                ?>
                     <div class="mtlg">
                         <a href="javascript:void(0)" class="button btn-block button-wide button-primary text-large" @click="submitStudent()"><?= Yii::t('frontend','Submit') ?></a>
                     </div>
-                    <?
-                }
-
-                if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ) {
+                <?php
+                    }
+                    if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ) {
                 ?>
-                    <div class="mtlg">
-                        <a href="javascript:void(0)" class="button btn-block button-wide button-primary text-large" @click="submitReferal()">
-                        <?= Yii::t('frontend','Submit')?>
-                        </a>
-                    </div>
-
-
-                    <?
-                }
+                        <div class="mtlg">
+                            <a href="javascript:void(0)" class="button btn-block button-wide button-primary text-large" @click="submitReferal()">
+                            <?= Yii::t('frontend','Submit')?>
+                            </a>
+                        </div>
+                <?php
+                    }
                 ?>
 
 

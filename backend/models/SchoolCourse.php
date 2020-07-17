@@ -78,8 +78,9 @@ class SchoolCourse extends BaseSchoolCourse
             [['information','requirments','information_ar','requirments_ar'], 'string', 'max' => 5000, 'min'=>1],
             
             ['min_age', 'compare', 'compareValue' => 999, 'operator' => '<=', 'type' => 'number'],
-            [['min_age','study_books_fees','registeration_fees','discount','lessons_per_week','max_no_of_students_per_class',
+            [['min_age','study_books_fees','registeration_fees','lessons_per_week','max_no_of_students_per_class',
                 'avg_no_of_students_per_class'],'number','min'=>1],
+            [['discount'],'number','min'=>0,'max'=>100],
             ['title_ar','safe','on'=>self::SCENARIO_IMPORT],
             ['status','number'],
             ['required_level','in', 'range' => [self::COURSE_TYPE_BEGINNER,self::COURSE_TYPE_INTERMEDIATE,self::COURSE_TYPE_PROFESSIONAL],'on'=>'import'],

@@ -93,7 +93,7 @@ class DashboardController extends FrontendController
     {
         $profile =Yii::$app->user->identity->userProfile ;
         $this->view->title = \Yii::t('frontend','My Requests');
-        $requests = $profile->requests;
+        $requests = $profile->availableRequests;
         return $this->render('requests',['requests'=>$requests]);
     }
 

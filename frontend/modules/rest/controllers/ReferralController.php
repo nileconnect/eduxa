@@ -26,7 +26,7 @@ class ReferralController extends Controller
         $params = \Yii::$app->request->post(); // json_decode(file_get_contents("php://input") ,true);
         if ($params) { // logged in and valid role
             $students = $params['students'];
-            if ($params['type'] == 'program') {
+            if ($params['type'] == 'programe') {
                 if ($params['slug']) {
                     $programObj = UniversityPrograms::find()->where(['slug' => $params['slug']])->one();
                     $parent = $programObj->university->id;

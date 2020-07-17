@@ -5,7 +5,13 @@ use \common\models\User;
 use backend\models\SchoolCourse;
 
 \frontend\assets\CourcesAsset::register($this);
-$min_price = $courseObj->minimumPrice;
+$original_price = 0;
+if($courseObj->discount){
+    $original_price = $courseObj->minimumPrice + ($courseObj->minimumPrice * ($courseObj->discount/100) );
+    $min_price = $courseObj->minimumPrice;
+}else{
+    $min_price = $courseObj->minimumPrice;
+}
 $this->title =  $schoolObj->title .' - '. $courseObj->title ;
 ?>
 
@@ -22,6 +28,9 @@ $this->title =  $schoolObj->title .' - '. $courseObj->title ;
     position: relative;
     bottom: 0;
     top: -4px;
+}
+select option[data-default] {
+  color: #888 !important;
 }
 </style>
 <nav aria-label="breadcrumb">
@@ -124,14 +133,26 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                         <a href="/login?return=/school/course/<?= $courseObj->slug ?>" class="button button-primary button-wide"><?= Yii::t('frontend' , 'Apply Now')?></a>
                     <?php endif;?>
                     <p class="mtsm text-large">
-                    <?= Yii::t('frontend' , 'Best Weekly Price')?> : <?=  $min_price ?> <?= $schoolObj->currency->currency_code ?>
-                        <span class=" text-red"> 
-                        <!-- line-through -->
-                             <?php
-                             echo \common\helpers\MyCurrencySwitcher::checkCurrency($courseObj->school->currency->currency_code ,$min_price ,false);
-                             ?>
-
+                    <div class="item-label"><?= Yii::t('frontend' , 'Best Weekly Price')?> :</div> 
+                    <div>
+                        <?php if($original_price):?>
+                            <?= $min_price ?>
+                            <?= $schoolObj->currency->currency_code ?>
+                            <span class="line-through text-red"> 
+                                <?=  $original_price ?> <?= $schoolObj->currency->currency_code ?>
+                            </span>
+                        <?php else:?>
+                            <?= $min_price ?>
+                            <?= $schoolObj->currency->currency_code ?>
+                        <?php endif;?>
+                    </div> 
+                    <div>
+                        <span class="converted-price">
+                            <?php
+                                echo \common\helpers\MyCurrencySwitcher::checkCurrency($courseObj->school->currency->currency_code ,$min_price ,false);
+                            ?>
                         </span>
+                    </div>
                     </p>
                 </div>
             </div>
@@ -141,7 +162,7 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
 </section>
 <section class="section">
     <div class="container">
-        <h2 class="title title-black title-sm"><?= Yii::t('frontend' , 'Course type')?></h2>
+        <h2 class="title title-black title-sm"><?= $courseObj->schoolCourseType->title?></h2>
 
         <div class="ptlg pblg prlg pllg bg-white b-all text-large">
             <p>
@@ -188,6 +209,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <label for="gender" class="label-control"><?= Yii::t('frontend','Gender')?></label>
                             <div class="select-wrapper">
                                 <select name="" id="gender" class="form-control"  v-model="gender">
+                                    <option value="" selected data-default><?= Yii::t('frontend','Gender')?></option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                 </select>
@@ -212,7 +234,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="country" class="label-control"><?= Yii::t('frontend','Country')?></label>
-                            <v-select v-model="selectedCountry"  label="title" :options="Countries" @input="SelectCountry"
+                            <v-select v-model="selectedCountry" placeholder="<?= Yii::t('frontend','Country')?>"  label="title" :options="Countries" @input="SelectCountry"
                             >
                             </v-select>
                         </div>
@@ -223,7 +245,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="city" class="label-control"><?= Yii::t('common','City')?></label>
-                            <v-select v-model="selectedCity"  label="title" :options="Cities" @input="SelectCity"
+                            <v-select v-model="selectedCity"  label="title" placeholder="<?= Yii::t('frontend','City')?>" :options="Cities" @input="SelectCity"
                             >
                             </v-select>
                         </div>
@@ -231,7 +253,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="city" class="label-control"><?= Yii::t('common','State')?></label>
-                            <v-select v-model="selectedState"  label="title" :options="States" @input="SelectState"
+                            <v-select v-model="selectedState"  label="title" placeholder="<?= Yii::t('frontend','State')?>" :options="States" @input="SelectState"
                             >
                             </v-select>
                         </div>
@@ -415,12 +437,14 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <tbody>
                         <tr>
                             <td>
-                            <?= Yii::t('frontend' , 'Course type')?>
+                                <?= Yii::t('frontend' , 'Courses')?>
                             </td>
                             <td>
-                                <?php
-                                echo $courseObj->schoolCourseType->title ;
-                                ?>
+                                <select name="course" class="form-control" onchange=" location.href = '/school/course/'+this.value" >
+                                <?php foreach($schoolObj->schoolCourses as $schoolCourse):?>
+                                    <option value="<?= $schoolCourse->slug ?>" <?php if($schoolCourse->id == $courseObj->id) echo "selected";?> > <?= $schoolCourse->title ?> </option>
+                                <?php endforeach;?>
+                                </select>
                             </td>
                         </tr>
                         <tr>

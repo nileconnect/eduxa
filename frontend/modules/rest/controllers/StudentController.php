@@ -39,7 +39,7 @@ class StudentController extends Controller
             //check if the sudent applied before on this course
             $requestObj = Requests::find()->where(['model_name'=>Requests::MODEL_NAME_COURSE , 'model_id'=>$programObj->id ,'requester_id'=>$profile->user_id])->one();
             if($requestObj){
-               
+                return ResponseHelper::sendFailedResponse(['MESSAGE' => 'you are registered before'],400);
             }else{
                 $requestObj = new Requests();
                 $requestObj->model_name = $requestType;
@@ -99,7 +99,7 @@ class StudentController extends Controller
             //check if the sudent applied before on this course
             $requestObj = Requests::find()->where(['model_name'=>Requests::MODEL_NAME_PROGRAM , 'model_id'=>$programObj->id ,'requester_id'=>$profile->user_id])->one();
             if($requestObj){
-
+                return ResponseHelper::sendFailedResponse(['MESSAGE' => 'you are registered before'],400);
             }else{
                 //apply foo the program
                 $requestObj =new Requests();

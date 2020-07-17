@@ -202,6 +202,11 @@ class UserProfile extends ActiveRecord
     {
         return $this->hasMany(\backend\models\Requests::className(), ['requester_id' => 'user_id']);
     }
+
+    public function getAvailableRequests()
+    {
+        return $this->hasMany(\backend\models\Requests::className(), ['requester_id' => 'user_id'])->andwhere(['!=','status',\backend\models\Requests::STATUS_CANCELED]);
+    }
     /**
      * @return null|string
      */
