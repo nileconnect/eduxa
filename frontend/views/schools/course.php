@@ -125,12 +125,14 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                     <?php endif;?>
                     <p class="mtsm text-large">
                     <?= Yii::t('frontend' , 'Best Weekly Price')?> : <?=  $min_price ?> <?= $schoolObj->currency->currency_code ?>
-                        <span class="line-through text-red">
+                        <span class=" text-red"> 
+                        <!-- line-through -->
                              <?php
                              echo \common\helpers\MyCurrencySwitcher::checkCurrency($courseObj->school->currency->currency_code ,$min_price ,false);
                              ?>
 
-                        </span></p>
+                        </span>
+                    </p>
                 </div>
             </div>
 
