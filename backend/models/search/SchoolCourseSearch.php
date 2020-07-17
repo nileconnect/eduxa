@@ -127,7 +127,16 @@ use yii\db\Expression;
                  ['like','schools.title',$this->title]]);
          }
 
-         $query ->andFilterWhere(['>=', 'schools.total_rating', $this->school_total_rating]);
+         if($this->school_total_rating > 0){
+            if($this->school_total_rating == 1){
+                $query->andFilterWhere(['=', 'schools.total_rating', $this->school_total_rating]);
+                $query->orFilterWhere(['=', 'schools.total_rating', ((int) $this->school_total_rating) + 0.5]);
+                $query->orWhere('schools.total_rating IS NULL');
+            }else{
+                $query->andFilterWhere(['=', 'schools.total_rating', $this->school_total_rating]);
+                $query->orFilterWhere(['=', 'schools.total_rating', ((int) $this->school_total_rating) + 0.5]);
+            }
+        }
 
         //  return var_dump($query->createCommand()->sql);
          return $dataProvider;
