@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </a>
             </li>
             <?php
-            if( User::IsRole( Yii::$app->user->identity->id , User::ROLE_ADMINISTRATOR)): ?>
+            if( User::IsRole( Yii::$app->user->identity->id , User::ROLE_ADMINISTRATOR) and User::IsRole( $model->id , User::ROLE_MANAGER)): ?>
                 <li>
                     <a href="#tab_3-3" data-toggle="tab" aria-expanded="false">
                         <?php echo Yii::t('common', 'Permissions') ?>
