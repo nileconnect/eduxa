@@ -44,7 +44,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1 class="text-primary"><?= Yii::t('frontend' , 'Why study in')?> <?= $countryObj->title ?>?</h1>
+                    <h1 class="text-primary"><?= Yii::t('frontend' , 'Why study in')?> <?= $countryObj->title ?>
+                    <?php if(isset($_SESSION['_language']) and $_SESSION['_language'] == 'ar'):?>
+                        ؟
+                    <?php else:?>
+                        ?
+                    <?php endif;?>
+                    </h1>
                     <div class="mtlg">
                         <?= $countryObj->details ?>
                     </div>

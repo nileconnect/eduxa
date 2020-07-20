@@ -354,7 +354,7 @@ return [
     'Accommodation options' => 'خيارات الأقامة',
     'Accommodation period' => 'مدة الأقامة',
     'Request Status Uptedted' => 'تحديث حالة الطلب',
-    '' => '',
+    'There is no user with such email.' => 'البريد الإلكتروني غير مسجل لدينا.',
     '' => '',
     '' => '',
     '' => '',

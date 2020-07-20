@@ -3,9 +3,10 @@
 namespace backend\models\search;
 
 use yii\base\Model;
-use yii\data\ActiveDataProvider;
-use backend\models\SchoolCourse;
 use yii\db\Expression;
+use backend\models\SchoolCourse;
+use yii\data\ActiveDataProvider;
+use backend\models\TranslationsWithText;
 
 /**
  * backend\models\search\SchoolCourseSearch represents the model behind the search form about `backend\models\SchoolCourse`.
@@ -95,7 +96,7 @@ use yii\db\Expression;
      public function CustomSearch($params)
      {
          $query = SchoolCourse::find();
-         $query->innerJoinWith('school', false);
+         $query->joinWith('school', false);
          $dataProvider = new ActiveDataProvider([
             'query' => $query,
          ]);
@@ -135,6 +136,28 @@ use yii\db\Expression;
             }else{
                 $query->andFilterWhere(['=', 'schools.total_rating', $this->school_total_rating]);
                 $query->orFilterWhere(['=', 'schools.total_rating', ((int) $this->school_total_rating) + 0.5]);
+            }
+        }
+
+        if($this->title){
+            $schoolIdsQuery = TranslationsWithText::find()->select('model_id')
+                ->where(['table_name'=>'schools','attribute'=>'title'])->andFilterWhere(['like', 'value', $this->title])
+                ->all();
+            if(!empty($schoolIdsQuery)){
+                $schoolIds = array_map(function($data){
+                    return $data['model_id'];
+                },$schoolIdsQuery);
+                $query->orFilterWhere(['IN', 'schools.id',$schoolIds]);
+            }
+
+            $schoolCourseIdsQuery = TranslationsWithText::find()->select('model_id')
+                ->where(['table_name'=>'school_course','attribute'=>'title'])->andFilterWhere(['like', 'value', $this->title])
+                ->all();
+            if(!empty($schoolCourseIdsQuery)){
+                $schoolCourseIds = array_map(function($data){
+                    return $data['model_id'];
+                },$schoolCourseIdsQuery);
+                $query->orFilterWhere(['IN', 'school_course.id',$schoolCourseIds]);
             }
         }
 

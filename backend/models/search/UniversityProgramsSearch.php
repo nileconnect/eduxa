@@ -2,10 +2,11 @@
 
 namespace backend\models\search;
 
-use backend\models\University;
-use backend\models\UniversityPrograms;
 use yii\base\Model;
+use backend\models\University;
 use yii\data\ActiveDataProvider;
+use backend\models\UniversityPrograms;
+use backend\models\TranslationsWithText;
 
 /**
  * backend\models\search\UniversityProgramsSearch represents the model behind the search form about `backend\models\UniversityPrograms`.
@@ -103,7 +104,7 @@ class UniversityProgramsSearch extends UniversityPrograms
     {
         // $query = UniversityPrograms::find();
         $query = University::find();
-        $query->innerJoinWith('universityPrograms', false);
+        $query->joinWith('universityPrograms', false);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -141,6 +142,18 @@ class UniversityProgramsSearch extends UniversityPrograms
                 $query->orFilterWhere(['=', 'university.total_rating', ((int) $this->university_total_rating) + 0.5]);
             }
         }    
+        
+        if($this->university_title){
+            $uniIdsQuery = TranslationsWithText::find()->select('model_id')
+                ->where(['table_name'=>'university','attribute'=>'title'])->andFilterWhere(['like', 'value', $this->university_title])
+                ->all();
+            if(!empty($uniIdsQuery)){
+                $uniIds = array_map(function($data){
+                    return $data['model_id'];
+                },$uniIdsQuery);
+                $query->orFilterWhere(['IN', 'university.id',$uniIds]);
+            }
+        }
 
         $query->groupBy(['university.id']);
         // return var_dump($query->createCommand()->sql);
