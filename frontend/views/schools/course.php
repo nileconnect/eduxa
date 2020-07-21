@@ -312,7 +312,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <tbody>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Minimum age')?></td>
-                            <td><span class="text-primary"><?= $courseObj->min_age; ?> Years</span></td>
+                            <td><span class="text-primary"><?= $courseObj->min_age; ?> <?= Yii::t('frontend','Years')?></span></td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('frontend' , 'Begining of study')?></td>
