@@ -19,6 +19,9 @@
 return [
     ''=>'',
     ''=>'',
+    'Month'=>'شهر',
+    'Week'=>'اسبوع',
+    'Day'=>'يوم',
     'Not Recommended'=>'غير موصى بها',
     'Recommended'=>'موصى بها',
     'Sort'=>'التريب',
