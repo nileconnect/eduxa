@@ -176,7 +176,7 @@ class DashboardController extends FrontendController
                 $saved= 1;
                 Yii::$app->getSession()->setFlash('alert', [
                     'type' =>'success',
-                    'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
+                    'body' => \Yii::t('frontend', 'Data has been updated Successfully') ,
                     'title' =>'',
                 ]);
             }
@@ -198,7 +198,7 @@ class DashboardController extends FrontendController
              $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
-                'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
+                'body' => \Yii::t('frontend', 'Data has been updated Successfully') ,
                 'title' =>'',
             ]);
         }
@@ -224,7 +224,7 @@ class DashboardController extends FrontendController
             $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
-                'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
+                'body' => \Yii::t('frontend', 'Data has been updated Successfully') ,
                 'title' =>'',
             ]);
         }
@@ -250,7 +250,7 @@ class DashboardController extends FrontendController
             $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
-                'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
+                'body' => \Yii::t('frontend', 'Data has been updated Successfully') ,
                 'title' =>'',
             ]);
         }

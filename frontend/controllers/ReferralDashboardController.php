@@ -105,7 +105,7 @@ class ReferralDashboardController extends FrontendController
             $locale = $model->getModel('profile')->locale;
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
-                'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
+                'body' => \Yii::t('frontend', 'Data has been updated Successfully') ,
                 'title' =>'',
             ]);
 
@@ -128,7 +128,7 @@ class ReferralDashboardController extends FrontendController
             $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
-                'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
+                'body' => \Yii::t('frontend', 'Data has been updated Successfully') ,
                 'title' =>'',
             ]);
         }

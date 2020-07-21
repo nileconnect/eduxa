@@ -144,8 +144,11 @@ class SignInController extends \yii\web\Controller
      */
     public function actionLogout()
     {
+        $lang= Yii::$app->language;
         Yii::$app->user->logout();
-        return $this->goHome();
+
+        return  $this->redirect('/site/index?_language='.$lang);
+       // return $this->goHome();
     }
 
     /**
