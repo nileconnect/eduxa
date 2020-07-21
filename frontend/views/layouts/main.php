@@ -60,26 +60,26 @@ if(Yii::$app->session->hasFlash('alert')){
                     <div class="col-sm-4">
                         <div class="row">
                             <div class="col-6 mtmd">
-                                <h3>Quick Links</h3>
+                                <h3><?= Yii::t('frontend', 'Quick Links'); ?></h3>
                                 <ul>
-                                    <li><a href="/universities">Universities</a></li>
-                                    <li><a href="/schools">Language Schools</a></li>
-                                    <li><a href="/how-we-work">How We Work</a></li>
-                                    <li><a href="/about">About Us</a></li>
+                                    <li><a href="/universities"><?= Yii::t('frontend', 'Universities'); ?></a></li>
+                                    <li><a href="/schools"><?= Yii::t('frontend', 'Language Schools'); ?></a></li>
+                                    <li><a href="/how-we-work"><?= Yii::t('frontend', 'How We Work'); ?></a></li>
+                                    <li><a href="/about"><?= Yii::t('frontend', 'About Us'); ?></a></li>
                                 </ul>
                             </div>
                             <div class="col-6 mtmd">
-                                <h3>Resources</h3>
+                                <h3><?= Yii::t('frontend', 'Resources'); ?></h3>
                                 <ul>
-                                    <li><a href="/contact">Contact</a></li>
-                                    <li><a href="/terms">Terms & Policy</a></li>
-                                    <li><a href="/privacy">Privacy</a></li>
+                                    <li><a href="/contact"><?= Yii::t('frontend', 'Contact'); ?></a></li>
+                                    <li><a href="/terms"><?= Yii::t('frontend', 'Terms & Policy'); ?></a></li>
+                                    <li><a href="/privacy"><?= Yii::t('frontend', 'Privacy'); ?></a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4 mtmd">
-                        <h3>Newsletter</h3>
+                        <h3><?= Yii::t('frontend', 'Newsletter'); ?></h3>
                         <?php 
                             $form = ActiveForm::begin();
                             $model = new Newsletter();
@@ -89,7 +89,7 @@ if(Yii::$app->session->hasFlash('alert')){
                             }
                         ?>
                             <div class="form-group">
-                                <?= $form->field($model, 'email')->textInput(['class' => 'form-control', 'placeholder' => 'Enter your e-mail address']) ?>
+                                <?= $form->field($model, 'email')->textInput(['class' => 'form-control', 'placeholder' => Yii::t('frontend', 'Enter your e-mail address')]) ?>
                                 <button type="submit"><i class="far fa-paper-plane"></i></button>
                             </div>
                         <?php ActiveForm::end(); ?>
@@ -98,7 +98,7 @@ if(Yii::$app->session->hasFlash('alert')){
             </div>
         </div>
         <div class="container">
-            <div class="copyright">© Copyrights <?= date('Y')?>. All rights reserved</div>
+            <div class="copyright"><?= Yii::t('frontend', '© Copyrights'); ?> <?= date('Y')?><?= Yii::t('frontend', '. All rights reserved'); ?></div>
         </div>
     </footer>
 
