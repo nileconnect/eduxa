@@ -99,7 +99,7 @@
             </div>
 
             <div class="mtxlg text-center">
-                <a href="/universities" class="button button-primary button-wide"><?= Yii::t('frontend' , 'All Universities')?></a>
+                <a href="/universities/search?UniversityProgramsSearch[country_id]=<?= $countryObj->id?>" class="button button-primary button-wide"><?= Yii::t('frontend' , 'All Universities')?></a>
             </div>
         </div>
     </section>

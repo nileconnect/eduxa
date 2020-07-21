@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use cheatsheet\Time;
 use yii\helpers\Url;
+use yii\web\Cookie;
 use yii\web\Response;
 use Sitemaped\Sitemap;
 use yii\web\Controller;

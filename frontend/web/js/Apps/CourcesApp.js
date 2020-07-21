@@ -96,12 +96,22 @@ var app = new Vue({
 
     },
     methods: {
+        cancelAccommo() {
+            this.selectedaccoID = ""
+            if (this.lang == "en") {
+                $(".btnAcco").html("Accommodation options")
+            } else {
+                $(".btnAcco").html("خيارات الأقامة")
+            }
+            $(".cancelAccommo").hide()
+        },
         selectAccommodation(acco) {
             this.accomodtionFees = acco.reg_fees
             this.selectedaccoID = acco.id
+
             $(".btnAcco").html(acco.title)
             $('#AccoModal').modal('hide')
-
+            $(".cancelAccommo").show()
             if (acco.booking_cycle == "Weekly") {
                 if (this.lang == "en") {
                     this.week = "weeks"
@@ -365,6 +375,11 @@ var app = new Vue({
 
         },
         submitStudent() {
+            if (this.selectedCourseDuration === "") {
+                $(".durationerror").show()
+                return;
+            }
+
             if (this.SelectedDate == 0) {
 
                 $(".selectdateerror").show()
@@ -394,6 +409,9 @@ var app = new Vue({
                         if (res.success == true) {
                             $(".successMsg").addClass("show")
                         }
+                    },
+                    error: res => {
+                        $(".successMsg.error").addClass("show")
                     }
                 });
             }

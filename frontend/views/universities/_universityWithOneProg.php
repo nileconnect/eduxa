@@ -30,11 +30,14 @@
                 <div class="item-label"><?= Yii::t('frontend','Programm Name') ?></div>
                 <div><?= $lastProg->title ?></div>
                 <!-- <div><small> Degree: <?= $lastProg->degree->title ?></small></div> -->
-                <div><small><?= $lastProg->degree->title ?>: <?= $lastProg->study_duration_no ?> <?= \backend\models\University::listPeriods()[$lastProg->study_duration] ?></small></div>
+                <div><small><?= $lastProg->degree->title ?>: <?= $lastProg->study_duration_no ?>
+                        <?= \backend\models\University::listPeriods()[$lastProg->study_duration] ?></small></div>
             </div>
             <div>
                 <div class="item-label"><?= Yii::t('frontend','Start Date') ?></div>
-                <div><?= date('d F Y', strtotime($lastProg->first_submission_date)) ?></div>
+                <div><?php
+                  echo  Yii::$app->language=='ar' ?  \common\helpers\TimeHelper::arabicDate($lastProg->first_submission_date)  : date('d F Y', strtotime($lastProg->first_submission_date)) ;
+                     ?></div>
             </div>
             <div>
                 <div class="item-label"><?= Yii::t('frontend','Annual Cost') ?></div>

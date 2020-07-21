@@ -5,7 +5,7 @@ $this->title =  $universityObj->title ." : " .$programObj->title ;
 <nav aria-label="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/"><?= Yii::t('frontend','Home')?></a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="/university/<?= $universityObj->slug?>"><?= $universityObj->title ?></a></li>
         </ol>
     </div>
@@ -91,7 +91,12 @@ $this->title =  $universityObj->title ." : " .$programObj->title ;
                         <tr>
                             <td><?= Yii::t('frontend','First Submission date') ?></td>
                             <td>
-                                <div><span class="text-primary"><?= $programObj->first_submission_date?></span></div>
+                                <div><span class="text-primary">
+                                        <?php
+
+                                        echo Yii::$app->language == 'ar' ?\common\helpers\TimeHelper::arabicDate($programObj->first_submission_date) : $programObj->first_submission_date;
+                                        ?>
+                                    </span></div>
                             </td>
                         </tr>
                         <?
@@ -103,7 +108,13 @@ $this->title =  $universityObj->title ." : " .$programObj->title ;
                         <tr>
                             <td><?= Yii::t('frontend','Last date for application') ?></td>
                             <td>
-                                <div><span class="text-primary"><?= $programObj->last_submission_date?></span></div>
+                                <div><span class="text-primary">
+                                        <?php
+
+                                      echo   Yii::$app->language == 'ar' ?\common\helpers\TimeHelper::arabicDate($programObj->last_submission_date) :$programObj->last_submission_date
+
+                                        ?>
+                                    </span></div>
                             </td>
                         </tr>
                         <?

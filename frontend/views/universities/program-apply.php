@@ -42,7 +42,7 @@ select option[data-default] {
                 if(Yii::$app->user->isGuest){
                     ?>
                       <div class="mtxlg">
-                        <a href="/login" class="button button-wide button-primary"><?= Yii::t('frontend','Apply Now') ?></a>
+                        <a href="/login" class="button button-wide button-primary" @click="submitStudent()"><?= Yii::t('frontend','Apply Now') ?></a>
                     </div>
                 <?
                 }else if(!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ){
@@ -111,8 +111,8 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <div class="select-wrapper">
                                 <select name="" id="gender" class="form-control" v-model="gender">
                                     <option value="" selected data-default><?= Yii::t('frontend','Gender')?></option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="male"><?= Yii::t('frontend','Male')?></option>
+                                    <option value="female"><?= Yii::t('frontend','Female')?></option>
                                 </select>
                             </div>
                         </div>
@@ -369,6 +369,22 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 <?php } ?>
 
 
+</div>
+
+<div class="successMsg error">
+    <img src="/img/success.png">
+    <h3><?= Yii::t('frontend','Your Request Submitted')   ?></h3>
+    <p><?= Yii::t('frontend','You are registered before, Please check your profile.')   ?></p>
+    <?php
+                if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
+                    ?>
+    <a class="button button-primary" href="/referral-dashboard/requests"><?= Yii::t('frontend','Referral Program')   ?></a>
+
+    <?php }else{
+                    ?>
+    <a class="button button-primary" href="/dashboard"><?= Yii::t('frontend','My Eduxa')   ?></a>
+
+<?php } ?>     
 </div>
 
 </div>
