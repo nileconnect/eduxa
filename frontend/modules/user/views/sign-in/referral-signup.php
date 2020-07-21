@@ -176,9 +176,9 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="successMsg <?php if(Yii::$app->session->hasFlash('alert-create-account-successfully')) echo 'show'; ?>">
     <img src="/img/success.png">
-    <h3>Congratulations,</h3>
-    <p>Your Account Successfully Created, Please check your email inbox to activate your account.</p>
-        <a class="button button-primary" href="/login">Home</a>
+    <h3><?= Yii::t('frontend', 'Congratulations'); ?>,</h3>
+    <p><?= Yii::t('frontend', 'Your Account Successfully Created, Please check your email inbox to activate your account.'); ?></p>
+        <a class="button button-primary" href="/login"><?= Yii::t('frontend', 'Home'); ?></a>
 </div>
 
 <?php
