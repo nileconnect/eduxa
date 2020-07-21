@@ -36,7 +36,7 @@ $this->endContent() ;
 							<span class="text-muted"><?= $profile->mobile ?></span>
 						</div>
                         <div class="text-large">
-                            <span><?php echo Yii::t('common', 'No. Of Previous Referrals'); ?> : </span>
+                            <span><?php echo Yii::t('frontend', 'No. Of Previous Referrals'); ?> : </span>
                             <span class="text-muted"><?=$profile->no_of_students?></span>
 
                         </div>
@@ -68,7 +68,7 @@ $this->endContent() ;
 						</div>
 
 						<div class="text-large">
-							<span><?php echo Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa'); ?> : </span>
+							<span><?php echo Yii::t('frontend', 'Expected No. Of Referrals To Apply For By Eduxa'); ?> : </span>
                             <span class="text-muted"><?=$profile->expected_no_of_students?></span>
 						</div>
 					</div>

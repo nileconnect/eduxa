@@ -16,7 +16,7 @@ use backend\models\SchoolCourse;
     <section class="section">
         <div class="container">
             <div class="mtlg">
-                <h2 class="title title-sm"><i class="fas fa-paste"></i> My Requests</h2>
+                <h2 class="title title-sm"><i class="fas fa-paste"></i> <?= Yii::t('frontend', 'My Requests'); ?></h2>
 
                 <div class="universities universities-row">
 
@@ -46,19 +46,19 @@ use backend\models\SchoolCourse;
                                                 <div class="col-sm-6">
                                                     <div class="mtsm">
                                                         <div>
-                                                            <span>Student Name : </span>
+                                                            <span><?= Yii::t('frontend', 'Student Name'); ?> : </span>
                                                             <span class="text-muted"><?= $request->student_first_name.' '.$request->student_last_name ?></span>
                                                         </div>
                                                         <div>
-                                                            <span>Major : </span>
+                                                            <span><?= Yii::t('frontend', 'Major'); ?> : </span>
                                                             <span class="text-muted"><?= $program->major->title ?></span>
                                                         </div>
                                                         <div>
-                                                            <span>Degree : </span>
+                                                            <span><?= Yii::t('frontend', 'Degree'); ?> : </span>
                                                             <span class="text-muted"><?= $program->degree->title ?></span>
                                                         </div>
                                                         <div>
-                                                            <span>Field : </span>
+                                                            <span><?= Yii::t('frontend', 'Field'); ?> : </span>
                                                             <span class="text-muted"><?= $program->field->title ?></span>
                                                         </div>
 
@@ -67,25 +67,25 @@ use backend\models\SchoolCourse;
                                                 <div class="col-sm-6">
                                                     <div class="mtsm">
                                                         <div>
-                                                            <span>Start Day : </span>
+                                                            <span><?= Yii::t('frontend', 'Start Day'); ?> : </span>
                                                             <span class="text-muted"><?= $program->first_submission_date?></span>
                                                         </div>
                                                         <div>
-                                                            <span>Reservation Duration : </span>
+                                                            <span><?= Yii::t('frontend', 'Reservation Duration'); ?> : </span>
                                                             <span class="text-muted">
                                                                 <?= $program->study_duration_no ?>
                                                                 <?= \backend\models\University::listPeriods()[$program->study_duration] ?></span>
                                                         </div>
                                                         <div>
-                                                            <span>Country : </span>
+                                                            <span><?= Yii::t('frontend', 'Country'); ?> : </span>
                                                             <span class="text-muted"><?= $university->country->title?></span>
                                                         </div>
                                                         <div>
-                                                            <span>State : </span>
+                                                            <span><?= Yii::t('frontend', 'State'); ?> : </span>
                                                             <span class="text-muted"><?= $university->state->title?></span>
                                                         </div>
                                                         <div>
-                                                            <span>City : </span>
+                                                            <span><?= Yii::t('frontend', 'City'); ?> : </span>
                                                             <span class="text-muted"><?= $university->city->title?></span>
                                                         </div>
                                                     </div>
@@ -95,7 +95,7 @@ use backend\models\SchoolCourse;
                                                 if($request->status == Requests::STATUS_PENDING){
                                                     ?>
                                                     <div class="col-sm-12">
-                                                        <a href="/referral-dashboard/cancel-request/<?= $program->slug ?>" class="button button-wide button-primary pull-right" >Cancel</a>
+                                                        <a href="/referral-dashboard/cancel-request/<?= $program->slug ?>" class="button button-wide button-primary pull-right" ><?= Yii::t('frontend', 'Cancel'); ?></a>
                                                     </div>
                                                     <?
                                                 }
@@ -129,25 +129,25 @@ use backend\models\SchoolCourse;
                                                 <div class="col-sm-6">
                                                     <div class="mtsm">
                                                         <div>
-                                                            <span>Course Type : </span>
+                                                            <span><?= Yii::t('frontend', 'Course Type'); ?> : </span>
                                                             <span class="text-muted"><?= $course->schoolCourseType->title?></span>
                                                         </div>
                                                         <div>
-                                                            <span>Study Language : </span>
+                                                            <span><?= Yii::t('frontend', 'Study Language'); ?> : </span>
                                                             <span class="text-muted">
                                                                 <?= $course->schoolCourseStudyLanguage->title ?>
                                                             </span>
                                                         </div>
                                                         <div>
-                                                            <span>Country : </span>
+                                                            <span><?= Yii::t('frontend', 'Country'); ?> : </span>
                                                             <span class="text-muted"><?= $school->country->title?></span>
                                                         </div>
                                                         <div>
-                                                            <span>State : </span>
+                                                            <span><?= Yii::t('frontend', 'State'); ?> : </span>
                                                             <span class="text-muted"><?= $school->state->title?></span>
                                                         </div>
                                                         <div>
-                                                            <span>City : </span>
+                                                            <span><?= Yii::t('frontend', 'City'); ?> : </span>
                                                             <span class="text-muted"><?= $school->city->title?></span>
                                                         </div>
                                                     </div>
@@ -172,7 +172,7 @@ use backend\models\SchoolCourse;
                                                 if($request->status == Requests::STATUS_PENDING){
                                                     ?>
                                                     <div class="col-sm-12">
-                                                        <a href="/dashboard/cancel-course-request/<?= $course->slug ?>" class="button button-wide button-primary pull-right" >Cancel</a>
+                                                        <a href="/dashboard/cancel-course-request/<?= $course->slug ?>" class="button button-wide button-primary pull-right" ><?= Yii::t('frontend', 'Cancel'); ?></a>
                                                     </div>
                                                     <?
                                                 }

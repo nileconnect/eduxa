@@ -98,11 +98,17 @@ var app = new Vue({
     methods: {
         cancelAccommo() {
             this.selectedaccoID = ""
+            if (this.lang == "en") {
+                $(".btnAcco").html("Accommodation options")
+            } else {
+                $(".btnAcco").html("خيارات الأقامة")
+            }
             $(".cancelAccommo").hide()
         },
         selectAccommodation(acco) {
             this.accomodtionFees = acco.reg_fees
             this.selectedaccoID = acco.id
+
             $(".btnAcco").html(acco.title)
             $('#AccoModal').modal('hide')
             $(".cancelAccommo").show()

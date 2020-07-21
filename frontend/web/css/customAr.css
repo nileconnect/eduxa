@@ -47,3 +47,11 @@ h6 {
 .fr {
     float: left !important
 }
+
+.btnAcco {
+    text-align: right;
+}
+
+.kv-score {
+    left: 22px;
+}
