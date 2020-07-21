@@ -19,7 +19,7 @@
 return [
     ''=>'',
     ''=>'',
-    'Years'=>'سنوات',
+    'Years'=>'سنه',
     'Your Account Successfully Created, Please check your email inbox to activate your account.'=>'تم انشاء حسابك بنجاح يرجى مراجعه البريد الالكترونى لتفعيل الحساب',
     'Congratulations'=>'تهنئة',
     'Thank you for subscription.'=>'شكرا لك على المتابعة',

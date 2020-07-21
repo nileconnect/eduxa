@@ -319,8 +319,13 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <td>
                                 <?php
                                 foreach ($courseObj->schoolCourseStartDates as $schoolStatrDate) {
+                                    if(Yii::$app->language == 'ar') {
+                                        $date = \common\helpers\TimeHelper::arabicDate($schoolStatrDate->course_date);
+                                    }else{
+                                        $date = date( "j F , Y" , strtotime($schoolStatrDate->course_date));
+                                    }
                                     ?>
-                                    <span class="text-primary"><?= date( "j F , Y" , strtotime($schoolStatrDate->course_date)); ?></span><br/>
+                                    <span class="text-primary"><?= $date; ?></span><br/>
                                     <?
                                 }
                                 ?>
