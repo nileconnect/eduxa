@@ -96,12 +96,16 @@ var app = new Vue({
 
     },
     methods: {
+        cancelAccommo() {
+            this.selectedaccoID = ""
+            $(".cancelAccommo").hide()
+        },
         selectAccommodation(acco) {
             this.accomodtionFees = acco.reg_fees
             this.selectedaccoID = acco.id
             $(".btnAcco").html(acco.title)
             $('#AccoModal').modal('hide')
-
+            $(".cancelAccommo").show()
             if (acco.booking_cycle == "Weekly") {
                 if (this.lang == "en") {
                     this.week = "weeks"

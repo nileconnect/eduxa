@@ -369,6 +369,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <button type="button" class="btn btn-primary btnAcco" data-toggle="modal" data-target="#AccoModal">
                             <?= Yii::t('frontend' , 'Accommodation options')?>
                             </button>
+                            <i class="fas fa-times cancelAccommo" @click="cancelAccommo()" style="position: absolute;right: -18px;top: 13px;display:none"></i>
 
                             <!-- Modal -->
                             <div class="modal fade" id="AccoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
