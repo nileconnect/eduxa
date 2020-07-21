@@ -239,6 +239,9 @@ var app = new Vue({
                     if (res.success == true) {
                         $(".successMsg").addClass("show")
                     }
+                },
+                error: res => {
+                    $(".successMsg.error").addClass("show")
                 }
             });
             // }

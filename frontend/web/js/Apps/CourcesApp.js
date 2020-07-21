@@ -365,6 +365,11 @@ var app = new Vue({
 
         },
         submitStudent() {
+            if (this.selectedCourseDuration === "") {
+                $(".durationerror").show()
+                return;
+            }
+
             if (this.SelectedDate == 0) {
 
                 $(".selectdateerror").show()
@@ -394,6 +399,9 @@ var app = new Vue({
                         if (res.success == true) {
                             $(".successMsg").addClass("show")
                         }
+                    },
+                    error: res => {
+                        $(".successMsg.error").addClass("show")
                     }
                 });
             }

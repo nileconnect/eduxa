@@ -210,8 +210,8 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <div class="select-wrapper">
                                 <select name="" id="gender" class="form-control"  v-model="gender">
                                     <option value="" selected data-default><?= Yii::t('frontend','Gender')?></option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="male"><?= Yii::t('frontend','Male')?></option>
+                                    <option value="female"><?= Yii::t('frontend','Female')?></option>
                                 </select>
                             </div>
                         </div>
@@ -389,22 +389,22 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                                             <br>
                                                             {{acco.cost_per_duration_unit}} USD {{acco.booking_cycle}}
                                                             <br>
-                                                            Registeration fees {{acco.reg_fees}} USD
+                                                            <?= Yii::t('frontend' , 'Registeration fees')?> {{acco.reg_fees}} USD
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <ul class="row">
                                                     <li v-if="acco.room" class="col-md-6">
-                                                        <i class="fas fa-bed"></i> Room type: {{acco.room}}</li>
-                                                    <li v-if="acco.booking_cycle" class="col-md-6"><i class="far fa-calendar-alt"></i> Booking cycle: {{acco.booking_cycle}}</li>
-                                                    <li v-if="acco.facility" class="col-md-6"><i class="fas fa-bath"></i> facilities: {{acco.facility}}</li>
-                                                    <li v-if="acco.min_booking_duraion" class="col-md-6"><i class="far fa-calendar-check"></i> Min Booking Duration: {{acco.min_booking_duraion}}</li>
-                                                    <li v-if="acco.distance_from_school" class="col-md-6"><i class="far fa-clock"></i> Distance from school: {{acco.distance_from_school}}</li>
-                                                    <li v-if="acco.special_diet" class="col-md-6"><i class="fas fa-utensils"></i> Special diat: {{acco.special_diet}}</li>
+                                                        <i class="fas fa-bed"></i> <?= Yii::t('frontend' , 'Room type')?>: {{acco.room}}</li>
+                                                    <li v-if="acco.booking_cycle" class="col-md-6"><i class="far fa-calendar-alt"></i> <?= Yii::t('frontend' , 'Booking cycle')?>: {{acco.booking_cycle}}</li>
+                                                    <li v-if="acco.facility" class="col-md-6"><i class="fas fa-bath"></i> <?= Yii::t('frontend' , 'facilities')?>: {{acco.facility}}</li>
+                                                    <li v-if="acco.min_booking_duraion" class="col-md-6"><i class="far fa-calendar-check"></i> <?= Yii::t('frontend' , 'Min Booking Duration')?>: {{acco.min_booking_duraion}}</li>
+                                                    <li v-if="acco.distance_from_school" class="col-md-6"><i class="far fa-clock"></i> <?= Yii::t('frontend' , 'Distance from school')?>: {{acco.distance_from_school}}</li>
+                                                    <li v-if="acco.special_diet" class="col-md-6"><i class="fas fa-utensils"></i> <?= Yii::t('frontend' , 'Special diat')?>: {{acco.special_diet}}</li>
                                                 </ul>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <a href="javascript:void(0)" v-on:click="selectAccommodation(acco)" style="margin-bottom:20px" class="button button-primary btn-block text-large">Choose this option
+                                                        <a href="javascript:void(0)" v-on:click="selectAccommodation(acco)" style="margin-bottom:20px" class="button button-primary btn-block text-large"><?= Yii::t('frontend' , 'Choose this option')?>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -617,6 +617,22 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     <img src="/img/success.png">
     <h3><?= Yii::t('frontend','Your Request Success')   ?></h3>
     <p><?= Yii::t('frontend','Your Request Successfully Submited, Please check your profile.')   ?></p>
+    <?php
+                if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
+                    ?>
+    <a class="button button-primary" href="/referral-dashboard/requests"><?= Yii::t('frontend','Referral Program')   ?></a>
+
+    <?php }else{
+                    ?>
+    <a class="button button-primary" href="/dashboard"><?= Yii::t('frontend','My Eduxa')   ?></a>
+
+<?php } ?>     
+</div>
+
+<div class="successMsg error">
+    <img src="/img/success.png">
+    <h3><?= Yii::t('frontend','Your Request Submitted')   ?></h3>
+    <p><?= Yii::t('frontend','You are registered before, Please check your profile.')   ?></p>
     <?php
                 if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
                     ?>
