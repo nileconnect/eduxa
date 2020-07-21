@@ -170,7 +170,7 @@ return [
     'By Whatsapp or SMS' => 'واتس او رسائل قصيره',
     'By Mobile' => 'موبايل',
     'By Emails' => 'بريد الكترونى',
-    'City' => 'المدينه',
+    'City' => 'المدينة',
     'State'=>'العاصمة',
     'Country'=>'الدولة',
     'Confirm Password'=>'تأكيد كلمة المرور',
