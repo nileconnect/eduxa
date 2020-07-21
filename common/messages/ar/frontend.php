@@ -21,6 +21,11 @@ return [
     ''=>'',
     ''=>'',
     ''=>'',
+    ''=>'',
+    'Thank you for subscription.'=>'شكرا لك على المتابعة',
+    'Data has been updated Successfully'=>'تم تحديث البيانات بنجاح',
+    'You can not cancel this  request'=>'لا يمكن الغاء هذا الطلب',
+    'You have Canceled your request'=>'تم الغاء الطلب بنجاح',
     'My Requests'=>'طلباتى',
     'Other courses in'=>'كورسات اخرى متوفره فى ',
     //search schools
