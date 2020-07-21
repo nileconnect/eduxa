@@ -19,6 +19,11 @@
 return [
     ''=>'',
     ''=>'',
+    'Not Recommended'=>'غير موصى بها',
+    'Recommended'=>'موصى بها',
+    'Sort'=>'التريب',
+    'Study Language'=>'لغة الدراسة',
+    'Course Type'=>'نوع الكورس',
     'Years'=>'سنه',
     'Your Account Successfully Created, Please check your email inbox to activate your account.'=>'تم انشاء حسابك بنجاح يرجى مراجعه البريد الالكترونى لتفعيل الحساب',
     'Congratulations'=>'تهنئة',

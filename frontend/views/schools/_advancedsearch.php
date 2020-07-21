@@ -150,7 +150,7 @@ use backend\models\SchoolCourse;
 
             <div class="form-group">
                 <?= $form->field($model, 'featured')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' =>['1'=>'Recommended','0'=>'Not Recommended'],
+                    'data' =>['1'=>Yii::t('frontend','Recommended'),'0'=> Yii::t('frontend','Not Recommended')],
                     'options' => ['placeholder' => Yii::t('frontend', 'Sort')],
                     'pluginOptions' => [
                         'allowClear' => true
