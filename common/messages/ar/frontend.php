@@ -383,7 +383,7 @@ return [
     'You are registered before, Please check your profile.' => 'لقد تم إرسال طلبك من قبل يرجي مراجعة صفحتك الشخصية',
     'Start Day' => 'تاريخ البدأ',
     'Reservation Duration' => 'مدة الحجز',
-    'City' => 'المدينة',
+    'City' => 'العاصمة',
     'Cancel' => 'إلغاء',
     'Your Profile is' => 'نسبة الإكتمال',
     'complete' => ' ',
