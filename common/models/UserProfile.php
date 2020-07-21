@@ -104,6 +104,7 @@ class UserProfile extends ActiveRecord
     {
         return [
             [['firstname', 'lastname', 'gender'], 'required', 'on'=>'myProfile'],
+            [['firstname' ,'lastname','nationality'], 'match', 'pattern' => "/^[a-z]\w*$/i"],
             [['firstname', 'lastname', 'mobile', 'country_id', 'city_id', 'state_id', 'gender'], 'required'],
             [['nationality','communtication_channel'], 'required', 'on'=>'updateStudentProfileInFront'],
             [
@@ -122,7 +123,7 @@ class UserProfile extends ActiveRecord
             [['avatar_path', 'avatar_base_url', 'nationality', 'students_nationalities', 'job_title'], 'string', 'max' => 255],
             ['locale', 'default', 'value' => Yii::$app->language == 'en' ? 'en-US' : 'ar-AR'],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
-            [['picture', 'city_id', 'interested_in_university', 'interested_in_schools', 'students_nationalities', 'communtication_channel'], 'safe'],
+            [['picture', 'city_id', 'interested_in_university', 'interested_in_schools', 'students_nationalities', 'communtication_channel','profile_percentage'], 'safe'],
             [['mobile', 'telephone_no'], 'number'],
             [['find_us_from', 'no_of_students', 'expected_no_of_students'], 'integer'],
             [['job_title', 'company_name'], 'string'],

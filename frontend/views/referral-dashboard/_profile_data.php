@@ -17,6 +17,12 @@ echo newerton\fancybox3\FancyBox::widget([
     ],
 ]);
 
+if($profile->profile_percentage == 60){
+    $profile_percentage = 90;
+}else{
+    $profile_percentage = 100;
+}
+
 
 ?>
 <section class="section bg-white">
@@ -41,9 +47,9 @@ echo newerton\fancybox3\FancyBox::widget([
             <div class="profile_info_complation">
                 <div class="profile_complete_progress">
                     <div class="progress">
-                        <div class="progress-bar progress-bar-yellow" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                        <div class="progress-bar progress-bar-yellow" role="progressbar" style="width: <?= $profile_percentage ?>%;" aria-valuenow="<?= $profile_percentage ?>" aria-valuemin="0" aria-valuemax="100"><?= $profile_percentage ?>%</div>
                     </div>
-                    <div class="text-right mrsm text-muted"><small><?php echo Yii::t('frontend','Your Profile is'); ?> 40% <?php echo Yii::t('frontend','complete'); ?></small></div>
+                    <div class="text-right mrsm text-muted"><small><?php echo Yii::t('frontend','Your Profile is'); ?> <?= $profile_percentage ?>% <?php echo Yii::t('frontend','complete'); ?></small></div>
                 </div>
                 <div class="edit_profile_complation">
                     <!--                        <a href="" data-toggle="modal" data-target="#EditprofileModal"><i class="fas fa-edit"></i></a>-->

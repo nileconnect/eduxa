@@ -12,6 +12,7 @@ echo Menu::widget([
         [
             'label' => Yii::t('backend', 'Main'),
             'options' => ['class' => 'header'],
+            'visible' => Yii::$app->user->identity->checkPermmissions('users') ,
         ],
 
         [
@@ -233,6 +234,7 @@ echo Menu::widget([
         [
             'label' => Yii::t('backend', 'Requests'),
             'options' => ['class' => 'header'],
+            'visible' => Yii::$app->user->identity->checkPermmissions('requests') ,
         ],
 
         [

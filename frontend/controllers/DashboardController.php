@@ -77,11 +77,12 @@ class DashboardController extends FrontendController
         \Yii::$app->view->title= $title;
 
 
-        $user =Yii::$app->user->identity ;
-        $profile =Yii::$app->user->identity->userProfile ;
+        $user = Yii::$app->user->identity ;
+        $profile = Yii::$app->user->identity->userProfile ;
 
         return $this->render('index',compact('profile','user'));
     }
+
     public function actionEducation()
     {
         $user =  Yii::$app->user->identity;
@@ -89,6 +90,7 @@ class DashboardController extends FrontendController
 
         return $this->render('education',['user'=>$user]);
     }
+
     public function actionRequests()
     {
         $profile =Yii::$app->user->identity->userProfile ;
@@ -123,6 +125,7 @@ class DashboardController extends FrontendController
         }
        return $this->redirect(['/dashboard/requests']);
     }
+
     public function actionCancelCourseRequest($slug=null)
     {
         $profile =Yii::$app->user->identity->userProfile ;
@@ -195,7 +198,16 @@ class DashboardController extends FrontendController
         $profile =  Yii::$app->user->identity->userProfile;
 
         if ($profile->load(Yii::$app->request->post()) && $profile->save()) {
-             $saved= 1;
+
+            if(Yii::$app->user->identity->studentCertificates || Yii::$app->user->identity->studentTestResults){
+                $profile->profile_percentage = 100;
+                $profile->save(false);
+            }else{
+                $profile->profile_percentage = 70;
+                $profile->save(false);
+            }
+
+            $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
                 'body' => \Yii::t('accounting', 'Data has been updated Successfully') ,
@@ -221,6 +233,16 @@ class DashboardController extends FrontendController
         }
         $model->user_id = $user->id ;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $profile = Yii::$app->user->identity->userProfile ;
+            if($profile->avatar_path){
+                $profile->profile_percentage = 100;
+                $profile->save(false);
+            }else{
+                $profile->profile_percentage = 90;
+                $profile->save(false);
+            }
+
             $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
@@ -247,6 +269,16 @@ class DashboardController extends FrontendController
         }
         $model->user_id = $user->id ;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $profile = Yii::$app->user->identity->userProfile ;
+            if($profile->avatar_path){
+                $profile->profile_percentage = 100;
+                $profile->save(false);
+            }else{
+                $profile->profile_percentage = 90;
+                $profile->save(false);
+            }
+
             $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',

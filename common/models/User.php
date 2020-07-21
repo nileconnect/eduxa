@@ -38,6 +38,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_NOT_ACTIVE = 1;
     const STATUS_ACTIVE = 2;
     const STATUS_DELETED = 3;
+    const STATUS_EMAIL_NOT_ACTIVE = 4;
 
     const ROLE_MANAGER = 'manager';
     const ROLE_ADMINISTRATOR = 'administrator';
@@ -182,6 +183,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             self::STATUS_ACTIVE => Yii::t('common', 'Active'),
             self::STATUS_NOT_ACTIVE => Yii::t('common', 'Not Active'),
+            self::STATUS_EMAIL_NOT_ACTIVE => Yii::t('common', 'Wait Email Active'),
            // self::STATUS_DELETED => Yii::t('common', 'Deleted')
         ];
     }
@@ -418,6 +420,11 @@ class User extends ActiveRecord implements IdentityInterface
     {
         
         return in_array($value,explode(',', $this->permissions)) || User::IsRole( Yii::$app->user->identity->id , User::ROLE_ADMINISTRATOR) ;
+    }
+
+    public function checkPermmissionsInUpdate($value)
+    {
+        return in_array($value,explode(',', $this->permissions));
     }
 
 }

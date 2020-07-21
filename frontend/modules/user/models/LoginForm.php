@@ -53,7 +53,7 @@ class LoginForm extends Model
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
                 $checkUserVerifiyEmail = User::find()
-                    ->where(['status'=>1])->andWhere(['or', ['username' => $this->identity], ['email' => $this->identity]])
+                    ->where(['status'=>User::STATUS_EMAIL_NOT_ACTIVE])->andWhere(['or', ['username' => $this->identity], ['email' => $this->identity]])
                     ->one();
                 if($checkUserVerifiyEmail){
                     $this->addError('password', Yii::t('frontend', 'You Should Verify Email First.'));

@@ -54,14 +54,12 @@ class ReferralSignupForm extends Model
     public function rules()
     {
         return [
-            [['firstname','lastname','email','mobile','find_us_from','password','password_confirm',
-                'country_id','city_id','state_id'
+            [['firstname','lastname','email','mobile','password','password_confirm',
+                'country_id','city_id','state_id','no_of_students','expected_no_of_students','students_nationalities','find_us_from'
             ], 'required'],
-
             [ ['firstname' ,'lastname'], 'string', 'min' => 2, 'max' => 15],
-
+            [['firstname' ,'lastname','students_nationalities'], 'match', 'pattern' => "/^[a-z]\w*$/i"],
             ['email', 'filter', 'filter' => 'trim'],
-            [['firstname','lastname','email','mobile','find_us_from','no_of_students','expected_no_of_students','students_nationalities'], 'required'],
             ['email', 'email'],
             ['email', 'unique',
                 'targetClass' => '\common\models\User',
@@ -86,7 +84,7 @@ class ReferralSignupForm extends Model
 
             [['mobile','no_of_students','telephone_no'],'number'],
             [['students_nationalities'],'string','max'=>255],
-            [['job_title','company_name'],'string'],
+            [['job_title','company_name','students_nationalities'],'string','max'=>30,'min'=>2],
             [['job_title','company_name','telephone_no'],'required' ,'on'=>'RefCompany'],
         ];
     }
@@ -128,7 +126,7 @@ class ReferralSignupForm extends Model
             $shouldBeActivated = $this->shouldBeActivated();
             $user = new User();
             $user->email = $user->username = $this->email;
-            $user->status = $shouldBeActivated ? User::STATUS_NOT_ACTIVE : User::STATUS_ACTIVE;
+            $user->status = $shouldBeActivated ? User::STATUS_EMAIL_NOT_ACTIVE : User::STATUS_ACTIVE;
             $user->setPassword($this->password);
             if (!$user->save()) {
                 throw new Exception("User couldn't be  saved");

@@ -104,7 +104,7 @@ class UserController extends BackendController
         $model = User::find()->where(['id'=>$id])->one();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->permissions = $model->permission ? implode(',',$model->permission) : '';
-            $model->save();
+            $model->save(false);
         }
 
         return $this->render('view', [

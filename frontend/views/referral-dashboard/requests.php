@@ -1,6 +1,7 @@
 <?php
 use backend\models\Requests;
 use backend\models\SchoolCourse;
+$this->title = 'Requests';
 ?>
 <main class="content">
 

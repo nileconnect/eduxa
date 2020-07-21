@@ -65,7 +65,7 @@ class SignupForm extends Model
                 ], 'required'],
             ['nationality','string', 'min' => 2, 'max' => 60],
             [ ['firstname' ,'lastname'], 'string', 'min' => 2, 'max' => 15],
-
+            [['firstname' ,'lastname','nationality'], 'match', 'pattern' => "/^[a-z]\w*$/i"],
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'email'],
             ['email', 'unique',
@@ -90,7 +90,18 @@ class SignupForm extends Model
 
             ['mobile','number'],
             [['interested_in_university','interested_in_schools'],'integer'],
+            [
+                'interested_in_university',
+                'checkChoseInterested',
+            ],
         ];
+    }
+
+    public function checkChoseInterested(){
+        if($this->interested_in_university == 0 and $this->interested_in_schools == 0){
+            $this->addError('interested_in_university',\Yii::t('common','at least you should select University Education
+            or Language School'));
+        }
     }
 
     /**
@@ -132,7 +143,7 @@ class SignupForm extends Model
             $shouldBeActivated = $this->shouldBeActivated();
             $user = new User();
             $user->email = $user->username = $this->email;
-            $user->status = $shouldBeActivated ? User::STATUS_NOT_ACTIVE : User::STATUS_ACTIVE;
+            $user->status = $shouldBeActivated ? User::STATUS_EMAIL_NOT_ACTIVE : User::STATUS_ACTIVE;
             $user->setPassword($this->password);
             if (!$user->save()) {
                 var_dump($user->errors);die;
@@ -163,6 +174,7 @@ class SignupForm extends Model
                     'subject' => Yii::t('frontend', 'Activation email'),
                     'view' => 'activation',
                     'to' => $this->email,
+                    // 'to' => 'm.3laa.95@gmail.com',
                     'params' => [
                         'url' => Url::to(['/user/sign-in/activation', 'token' => $token->token], true)
                     ]

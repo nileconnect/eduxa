@@ -187,7 +187,9 @@ return [
     '--How--' => '--كيف--',
     'Sign up' => 'حساب جديد',
     'Permissions' => 'الصلاحيات',
-    '' => '',
+    'at least you should select University Education
+    or Language School' => 'يجب عليك اختيار التعليم الجامعي
+    أو مدرسة لغات',
     '' => '',
     '' => '',
     '' => '',

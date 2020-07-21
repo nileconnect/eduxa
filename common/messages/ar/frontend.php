@@ -355,7 +355,7 @@ return [
     'Accommodation period' => 'مدة الأقامة',
     'Request Status Uptedted' => 'تحديث حالة الطلب',
     'There is no user with such email.' => 'البريد الإلكتروني غير مسجل لدينا.',
-    '' => '',
+    'You Should Verify Email First.' => 'يجب عليك التحقق من البريد الإلكتروني أولاً.',
     '' => '',
     '' => '',
     '' => '',

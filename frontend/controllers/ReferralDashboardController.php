@@ -125,6 +125,9 @@ class ReferralDashboardController extends FrontendController
         $profile =  Yii::$app->user->identity->userProfile;
         $profile->gender = 1;
         if ($profile->load(Yii::$app->request->post()) and $profile->save()) {
+            $profile->profile_percentage = 100;
+            $profile->save(false);
+
             $saved= 1;
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',

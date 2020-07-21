@@ -254,56 +254,56 @@ $this->params['breadcrumbs'][] = $this->title;
                             <th>Users</th>
                             <td>
                                 <input type="hidden" name="User[]" value="1"/>
-                                <input type="checkbox" name="User[permission][]" value="users" <?= $model->checkPermmissions('users') ? 'checked': '' ?> />
+                                <input type="checkbox" name="User[permission][]" value="users" <?= $model->checkPermmissionsInUpdate('users') ? 'checked': '' ?> />
                             </td>
                         </tr>
                         <tr>
                             <th>Manage Universities</th>
                             <td>
                                 <input type="hidden" name="User[]" value="1"/>
-                                <input type="checkbox" name="User[permission][]" value="universities" <?= $model->checkPermmissions('universities') ? 'checked': '' ?> />
+                                <input type="checkbox" name="User[permission][]" value="universities" <?= $model->checkPermmissionsInUpdate('universities') ? 'checked': '' ?> />
                             </td>
                         </tr>
                         <tr>
                             <th>Manage Schools</th>
                             <td>
-                                <input type="checkbox" name="User[permission][]" value="schools" <?= $model->checkPermmissions('schools') ? 'checked': '' ?> />
+                                <input type="checkbox" name="User[permission][]" value="schools" <?= $model->checkPermmissionsInUpdate('schools') ? 'checked': '' ?> />
                             </td>
                         </tr>
                         <tr>
                             <th>Manage Requests</th>
                             <td>
-                                <input type="checkbox" name="User[permission][]" value="requests" <?= $model->checkPermmissions('requests') ? 'checked': '' ?> />
+                                <input type="checkbox" name="User[permission][]" value="requests" <?= $model->checkPermmissionsInUpdate('requests') ? 'checked': '' ?> />
                             </td>
                         </tr>
-                        <!-- <tr>
+                        <tr>
                             <th>Reports</th>
                             <td>
-                                <input type="checkbox" name="User[permission][]" value="reports" <?= $model->checkPermmissions('reports') ? 'checked': '' ?> />
+                                <input type="checkbox" name="User[permission][]" value="reports" <?= $model->checkPermmissionsInUpdate('reports') ? 'checked': '' ?> />
                             </td>
-                        </tr> -->
+                        </tr>
                         <tr>
                             <th>Countries</th>
                             <td>
-                                <input type="checkbox" name="User[permission][]" value="countries" <?= $model->checkPermmissions('countries') ? 'checked': '' ?> />
+                                <input type="checkbox" name="User[permission][]" value="countries" <?= $model->checkPermmissionsInUpdate('countries') ? 'checked': '' ?> />
                             </td>
                         </tr>
                         <tr>
                             <th>Static pages</th>
                             <td>
-                                <input type="checkbox" name="User[permission][]" value="static_pages" <?= $model->checkPermmissions('static_pages') ? 'checked': '' ?> />
+                                <input type="checkbox" name="User[permission][]" value="static_pages" <?= $model->checkPermmissionsInUpdate('static_pages') ? 'checked': '' ?> />
                             </td>
                         </tr>
                         <tr>
                             <th>Newsletter</th>
                             <td>
-                                <input type="checkbox" name="User[permission][]" value="newsletter" <?= $model->checkPermmissions('newsletter') ? 'checked': '' ?> />
+                                <input type="checkbox" name="User[permission][]" value="newsletter" <?= $model->checkPermmissionsInUpdate('newsletter') ? 'checked': '' ?> />
                             </td>
                         </tr>
                         <tr>
                             <th>Settings</th>
                             <td>
-                                <input type="checkbox" name="User[permission][]" value="settings" <?= $model->checkPermmissions('settings') ? 'checked': '' ?> />
+                                <input type="checkbox" name="User[permission][]" value="settings" <?= $model->checkPermmissionsInUpdate('settings') ? 'checked': '' ?> />
                             </td>
                         </tr>
                         <tr>
