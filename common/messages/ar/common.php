@@ -28,8 +28,8 @@ return [
      ''=>'',
      ''=>'',
      ''=>'',
-     ''=>'',
-     ''=>'',
+     'Select State..'=>'اختر العاصمة',
+     'Select City..'=>'اختر المدينة',
      'Last name'=>'اسم العائلة',
      'First name'=>'الاسم الاول',
      'Best way to commuincation?'=>'افضل طريقه للتواصل ؟',
@@ -37,7 +37,7 @@ return [
     // request status
      'Canceled'=>'تم الغاء الطلب',
      'Finished'=>'تم الانتهاء من الطلب',
-     'Approved'=>'تمت الموافقة',
+     'ApproveاصSelect State..مd'=>'تمت الموافقة',
      'Under Process'=>'تحت لمراجعه',
      'Pending'=>'فى الانتظار',
      ''=>'',
@@ -190,9 +190,9 @@ return [
     'at least you should select University Education
     or Language School' => 'يجب عليك اختيار التعليم الجامعي
     أو مدرسة لغات',
-    '' => '',
-    '' => '',
-    '' => '',
+    'No. Of Previous Referrals' => 'عدد الإحالات السابقة',
+    'Nationality Of Referrals' => 'جنسية الإحالات',
+    'Expected No. Of Referrals To Apply For By Eduxa' => 'عدد الطلاب المتوقع للتقديم من قبل Eduxa',
     '' => '',
 
 

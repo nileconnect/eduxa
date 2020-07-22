@@ -47,7 +47,12 @@ class UserForm extends Model
             }],
 
             // ['password', 'required', 'on' => 'create'],
-            [['password'], StrengthValidator::className(), 'preset'=>'normal'],
+            [['password'], StrengthValidator::className(), 'preset'=>'normal',
+                'minError'=> \Yii::t('backend','password should contain at least 8 characters'),
+                'lowerError'=> \Yii::t('backend','password should contain at least one lower case character'),
+                'upperError'=> \Yii::t('backend','password should contain at least one uppercase character'),
+                'digitError'=> \Yii::t('backend','password should contain at least one numeric  character'),
+            ],
             // ['password', 'string', 'min' => 8 ,'max'=>15],
 
             [['status'], 'integer'],

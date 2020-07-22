@@ -62,7 +62,12 @@ class AccountForm extends Model
                     $query->andWhere(['not', ['id' => Yii::$app->user->getId()]]);
                 }
             ],
-            [['password'], StrengthValidator::className(), 'preset'=>'normal'],
+            [['password'], StrengthValidator::className(), 'preset'=>'normal',
+                'minError'=> \Yii::t('backend','password should contain at least 8 characters'),
+                'lowerError'=> \Yii::t('backend','password should contain at least one lower case character'),
+                'upperError'=> \Yii::t('backend','password should contain at least one uppercase character'),
+                'digitError'=> \Yii::t('backend','password should contain at least one numeric  character'),
+            ],
             // ['password', 'string'],
             [
                 'password_confirm',

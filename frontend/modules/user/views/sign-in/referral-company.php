@@ -163,7 +163,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-                                <?php echo $form->field($modelCompany, 'expected_no_of_students')->textInput(['placeholder'=>Yii::t('common','Expected No. Of Students To Apply For By Eduxa')])
+                                <?php echo $form->field($modelCompany, 'expected_no_of_students')->textInput(['placeholder'=>Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa')])
                                     ->label(Yii::t('frontend','Expected No. Of Students To Apply For By Eduxa') ,['class'=>'label-control']);
                                 ?>
 
@@ -189,12 +189,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-</div>
-<div class="successMsg <?php if(Yii::$app->session->hasFlash('alert-create-account-successfully')) echo 'show'; ?>">
-    <img src="/img/success.png">
-    <h3>Congratulations,</h3>
-    <p>Your Account Successfully Created, Please check your email inbox to activate your account.</p>
-    <a class="button button-primary" href="/login">Home</a>
 </div>
 
 <?php

@@ -150,8 +150,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ?>
 
 
-                                <?php echo $form->field($model, 'expected_no_of_students')->textInput(['placeholder'=>Yii::t('common','Expected No. Of Students To Apply For By Eduxa')])
-                                    ->label(Yii::t('frontend','Expected No. Of Students To Apply For By Eduxa') ,['class'=>'label-control']);
+                                <?php echo $form->field($model, 'expected_no_of_students')->textInput(['placeholder'=>Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa')])
+                                    ->label(Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa') ,['class'=>'label-control']);
                                 ?>
 
 
@@ -173,12 +173,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-</div>
-<div class="successMsg <?php if(Yii::$app->session->hasFlash('alert-create-account-referral-successfully')) echo 'show'; ?>">
-    <img src="/img/success.png">
-    <h3><?=  Yii::t('frontend','Congratulations') ?>,</h3>
-    <p><?= Yii::t('frontend','Your Account Successfully Created, Please check your email inbox to activate your account.')?></p>
-        <a class="button button-primary" href="/login"><?= Yii::t('frontend','Home')?></a>
 </div>
 
 <?php

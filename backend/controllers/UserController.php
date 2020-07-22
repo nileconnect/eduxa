@@ -2,20 +2,21 @@
 
 namespace backend\controllers;
 
-use backend\models\search\UserSearch;
-use backend\models\StudentModel;
-use backend\models\UserForm;
+use Yii;
 use common\models\User;
-use common\models\UserProfile;
+use yii\web\Controller;
+use yii\filters\VerbFilter;
+use backend\models\UserForm;
 use common\models\UserToken;
-use Intervention\Image\ImageManagerStatic;
+use yii\helpers\ArrayHelper;
+use common\models\UserProfile;
+use backend\models\StudentModel;
+use yii\web\NotFoundHttpException;
+use backend\models\search\UserSearch;
+use common\commands\SendEmailCommand;
 use trntv\filekit\actions\DeleteAction;
 use trntv\filekit\actions\UploadAction;
-use Yii;
-use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use Intervention\Image\ImageManagerStatic;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -102,9 +103,21 @@ class UserController extends BackendController
     public function actionView($id)
     {
         $model = User::find()->where(['id'=>$id])->one();
+        $status = $model->status;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->permissions = $model->permission ? implode(',',$model->permission) : '';
             $model->save(false);
+
+            if($model->status != $status and $model->status == 2 and ( User::UserRoleName(User::ROLE_REFERRAL_COMPANY) || User::UserRoleName(User::ROLE_REFERRAL_PERSON) ) ){
+                Yii::$app->commandBus->handle(new SendEmailCommand([
+                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
+                    'view' => 'accountApproval',
+                    'to' => $model->email,
+                    'params' => [
+                        'name' => $model->userProfile->fullName,
+                    ],
+                ]));
+            }
         }
 
         return $this->render('view', [
