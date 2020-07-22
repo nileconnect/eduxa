@@ -1,0 +1,1 @@
+Welecome <?= $name ?>, your account is being verified by our team and it takes from 24 - 48 hours.

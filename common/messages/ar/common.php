@@ -190,9 +190,9 @@ return [
     'at least you should select University Education
     or Language School' => 'يجب عليك اختيار التعليم الجامعي
     أو مدرسة لغات',
-    '' => '',
-    '' => '',
-    '' => '',
+    'No. Of Previous Referrals' => 'عدد الإحالات السابقة',
+    'Nationality Of Referrals' => 'جنسية الإحالات',
+    'Expected No. Of Referrals To Apply For By Eduxa' => 'عدد الطلاب المتوقع للتقديم من قبل Eduxa',
     '' => '',
 
 

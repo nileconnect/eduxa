@@ -61,7 +61,7 @@ class SignInController extends \yii\web\Controller
                 'rules' => [
                     [
                         'actions' => [
-                            'signup','referral-signup','referral-company', 'login', 'login-by-pass', 'request-password-reset', 'reset-password', 'oauth', 'activation'
+                            'success','signup','referral-signup','referral-company', 'login', 'login-by-pass', 'request-password-reset', 'reset-password', 'oauth', 'activation'
                         ],
                         'allow' => true,
                         'roles' => ['?']
@@ -187,20 +187,20 @@ class SignInController extends \yii\web\Controller
     {
         $model = new ReferralSignupForm();
 
-        if ($model->load(Yii::$app->request->post()) &&  isset(Yii::$app->request->post()['signup-referral']) ) {
+        if ($model->load(Yii::$app->request->post())) {
             $user = $model->signup();
             if ($user) {
                 if ($model->shouldBeActivated()) {
                     Yii::$app->getSession()->setFlash('alert-create-account-referral-successfully', [
                         'body' => Yii::t(
                             'frontend',
-                            'Your account has been successfully created. Check your email for further instructions.'
+                            'your account will be verified by our team'
                         ),
                     ]);
                 } else {
                     Yii::$app->getUser()->login($user);
                 }
-                return $this->redirect('/referral-signup');
+                return $this->redirect('/success');
             }
         }
         return $this->render('referral-signup', [
@@ -214,26 +214,29 @@ class SignInController extends \yii\web\Controller
         $modelCompany = new ReferralSignupForm();
         $modelCompany->scenario ='RefCompany';
 
-        if ($modelCompany->load(Yii::$app->request->post()) && isset(Yii::$app->request->post()['signup-referral-company']) ) {
+        if ($modelCompany->load(Yii::$app->request->post())) {
             $user = $modelCompany->signup(User::ROLE_REFERRAL_COMPANY);
             if ($user) {
                 if ($modelCompany->shouldBeActivated()) {
-                    Yii::$app->getSession()->setFlash('alert-create-account-referral-successfully   ', [
+                    Yii::$app->getSession()->setFlash('alert-create-account-referral-successfully', [
                         'body' => Yii::t(
                             'frontend',
-                            'Your account has been successfully created. Check your email for further instructions.'
+                            'your account will be verified by our team'
                         ),
                     ]);
                 } else {
                     Yii::$app->getUser()->login($user);
                 }
-                return $this->redirect('/referral-company');
+                return $this->redirect('/success');
             }
         }
-
         return $this->render('referral-company', [
             'modelCompany'=>$modelCompany
         ]);
+    }
+
+    public function actionSuccess(){
+        return $this->render('success');
     }
 
     /**

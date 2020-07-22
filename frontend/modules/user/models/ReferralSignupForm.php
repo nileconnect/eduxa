@@ -66,7 +66,12 @@ class ReferralSignupForm extends Model
                 'message' => Yii::t('frontend', 'This email address has already been taken.')
             ],
 
-            [['password'], StrengthValidator::className(), 'preset'=>'normal'],
+            [['password'], StrengthValidator::className(), 'preset'=>'normal',
+                'minError'=> \Yii::t('backend','password should contain at least 8 characters'),
+                'lowerError'=> \Yii::t('backend','password should contain at least one lower case character'),
+                'upperError'=> \Yii::t('backend','password should contain at least one uppercase character'),
+                'digitError'=> \Yii::t('backend','password should contain at least one numeric  character'),
+            ],
             [['password_confirm'], 'string', 'min' => 8 , 'max'=>15],
 
             [
@@ -126,7 +131,7 @@ class ReferralSignupForm extends Model
             $shouldBeActivated = $this->shouldBeActivated();
             $user = new User();
             $user->email = $user->username = $this->email;
-            $user->status = $shouldBeActivated ? User::STATUS_EMAIL_NOT_ACTIVE : User::STATUS_ACTIVE;
+            $user->status = User::STATUS_NOT_ACTIVE;
             $user->setPassword($this->password);
             if (!$user->save()) {
                 throw new Exception("User couldn't be  saved");
@@ -149,9 +154,6 @@ class ReferralSignupForm extends Model
             $profileData['job_title']=$this->job_title;
             $profileData['company_name']=$this->company_name;
 
-
-
-
             $user->afterSignup($profileData,$role);
             if ($shouldBeActivated) {
                 $token = UserToken::create(
@@ -160,12 +162,20 @@ class ReferralSignupForm extends Model
                     Time::SECONDS_IN_A_DAY
                 );
                 Yii::$app->commandBus->handle(new SendEmailCommand([
-                    'subject' => Yii::t('frontend', 'Activation email'),
-                    'view' => 'activation',
+                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
+                    'view' => 'createAccountWithNeedApproval',
                     'to' => $this->email,
                     'params' => [
-                        'url' => Url::to(['/user/sign-in/activation', 'token' => $token->token], true)
-                    ]
+                        'name' => $this->firstname,
+                    ],
+                ]));
+                Yii::$app->commandBus->handle(new SendEmailCommand([
+                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
+                    'view' => 'newUserCreated',
+                    'to' => \Yii::$app->params['adminEmail'],
+                    'params' => [
+                        'name' => $this->firstname,
+                    ],
                 ]));
             }
             return $user;

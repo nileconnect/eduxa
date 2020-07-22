@@ -20,6 +20,7 @@ return [
         // Articles
         ['pattern' => 'referral-signup', 'route' => 'user/sign-in/referral-signup'],
         ['pattern' => 'referral-company', 'route' => 'user/sign-in/referral-company'],
+        ['pattern' => 'success', 'route' => 'user/sign-in/success'],
 
         ['pattern' => 'login', 'route' => 'user/sign-in/login'],
         ['pattern' => 'signup', 'route' => 'user/sign-in/signup'],

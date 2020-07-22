@@ -353,7 +353,10 @@ return [
     'Created At' => 'انشئ فى',
     'Created at' => 'تم التحديث فى',
     'Deleted' => 'حذفت',
-
+    'password should contain at least 8 characters'=>'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل',
+    'password should contain at least one lower case character'=>'يجب أن تحتوي كلمة المرور على حرف صغير على الأقل',
+    'password should contain at least one uppercase character'=> 'يجب أن تحتوي كلمة المرور على حرف كبير على الأقل',
+    'password should contain at least one numeric  character'=>'يجب أن تحتوي كلمة المرور على حرف رقمي واحد على الأقل',
     'Street Name' => 'اسم الشارع',
     'School Notes' => 'ملاحظات المدرسة',
     'Latitude' => 'خط العرض',
