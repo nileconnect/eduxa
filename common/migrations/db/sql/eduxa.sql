@@ -1384,7 +1384,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'superadmin', 'JT1eK6y0yLH-1fhfOngyBPqiVAa7XGib', '$2y$13$X8tncshyucy6v7a.Ohu7OOhvEsSJu0t1sSxudcti8wmCbAPyL8zLe', '$2y$13$X8tncshyucy6v7a.Ohu7OOhvEsSJu0t1sSxudcti8wmCbAPyL8zLe', null, null, 'superadmin@eduxa.com', '', '2', '1564754241', '1593862724', '1595442415');
+INSERT INTO `user` VALUES ('1', 'superadmin', 'JT1eK6y0yLH-1fhfOngyBPqiVAa7XGib', 'imVvtMIkAUfJCfgssqtm_azOQevNGcEcFM-luddd', '$2y$13$X8tncshyucy6v7a.Ohu7OOhvEsSJu0t1sSxudcti8wmCbAPyL8zLe', null, null, 'superadmin@eduxa.com', '', '2', '1564754241', '1593862724', '1595442415');
 INSERT INTO `user` VALUES ('2', 'manager', 'mdK-I48T0qQQaXzrK-e6wwCeqBx4_lEi', 'imVvtMIkAUfJCfgssqtm_azOQevNGcEcFM-luntt', '$2y$13$4roOV2yb/CxZFX10lUa.u.GgJAEo2CAQPHlD8ocoTYOhzlNyVxyIa', null, null, 'manager@example.com', null, '1', '1564754242', '1593863214', '1567592996');
 INSERT INTO `user` VALUES ('3', 'user@example.com', 'LtEF_PINuXO8tCFA10yaZAd9Yn6QvB3S', '9_FesaK3MUAqFs5SVz77IQrlGfi5ICVefCkJyY7G', '$2y$13$NIAQ1KWuw2lZsCIDCqjr2e2OZpjQ8iKosBS1qdGeqXL9beuF5FFfi', null, null, 'user@example.com', null, '2', '1564754243', '1579565901', null);
 
