@@ -815,8 +815,6 @@ CREATE TABLE `system_db_migration` (
 -- ----------------------------
 -- Records of system_db_migration
 -- ----------------------------
-INSERT INTO `system_db_migration` VALUES ('m191005_230918_initProject', '1572029827');
-
 -- ----------------------------
 -- Table structure for `system_log`
 -- ----------------------------
