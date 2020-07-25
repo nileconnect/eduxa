@@ -51,11 +51,11 @@ class RequestsController extends Controller
                     [
                         'subject' => Yii::t('frontend', 'Request Status Uptedted'),
                         'view' => 'sendRequestStatusChanged',
-                        'to' => $request->student_email,
+                        'to' => $request->requester->email,
                         // 'to' => 'm.3laa.95@gmail.com',
                         'params' => [
                             'data' => $request,
-                        ],
+                        ], 
                     ]
                 ));
             }
