@@ -72,6 +72,7 @@ class UniversityProgramsController extends BackendController
     public function actionCreate()
     {
         $model = new UniversityPrograms();
+        $model->scenario = 'create';
         $modelStartDates = new UniversityProgStartdate();
         $model->university_id = Yii::$app->session->get('universityId');
         $universityObj = University::find()->where(['id'=>$model->university_id])->one();
