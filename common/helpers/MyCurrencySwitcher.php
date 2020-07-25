@@ -21,7 +21,6 @@ class MyCurrencySwitcher {
         if($code == Yii::$app->session->get('_currency')){
             return ;
         }else{
-            return $code;
            $value= MyCurrencySwitcher::Convert($code,Yii::$app->session->get('_currency'),$amount);
            if($formatted){
                return ' <div><span class="converted-price">'.$value.'</span><span class="currency">'.Yii::$app->session->get('_currency').'</span></div>';
