@@ -140,6 +140,10 @@
     min-height: 1550px;
 }
 
+.universities-row .item-footer>div {
+    width: 25%;
+}
+
 @media (max-width: 768px) {
     .majorsList li,
     .contList li {
