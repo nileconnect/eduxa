@@ -195,13 +195,13 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="firstName" class="label-control"><?= Yii::t('frontend','First Name')?></label>
-                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write first name')?>" id="firstName" v-model="firstName">
+                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write first name')?>" id="firstName" v-model="firstName" minlength="2" maxlength="15">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="lastName" class="label-control"><?= Yii::t('frontend','Last Name')?></label>
-                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write last name')?>" id="lastName" v-model="lastName">
+                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write last name')?>" id="lastName" v-model="lastName" minlength="2" maxlength="15">
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -228,7 +228,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="mobile" class="label-control"><?= Yii::t('frontend','Mobile Number')?></label>
-                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write your mobile number')?>" id="mobile"  v-model="mobile">
+                            <input type="number" class="form-control" name="" placeholder="<?= Yii::t('frontend','write your mobile number')?>" id="mobile"  v-model="mobile">
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -261,7 +261,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="nationality" class="label-control"><?= Yii::t('frontend','Nationality')?></label>
-                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','Nationality')?>" id="nationality"  v-model="nationality">
+                            <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','Nationality')?>" id="nationality"  v-model="nationality"  minlength="2" maxlength="15">
                         </div>
                     </div>
                 </div>

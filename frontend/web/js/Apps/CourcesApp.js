@@ -212,23 +212,23 @@ var app = new Vue({
 
         addStudent() {
 
-            if (this.firstName === "") {
+            if (this.firstName.length < 2 && this.firstName.length < 15) {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
                     $("#FormAlert").addClass("alert-danger")
                     $("#FormAlert").show()
                 }
                 if (this.lang === "ar") {
-                    $("#FormAlert").html("يجب ادخال الاسم الأول")
+                    $("#FormAlert").html("الأسم الاول يجب الا يقل عن حرفين")
                 } else {
                     $("#FormAlert").html("Please enter your first name")
                 }
-            } else if (this.lastName === "") {
+            } else if (this.lastName.length < 2 && this.lastName.length < 15) {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
                     $("#FormAlert").addClass("alert-danger")
                     $("#FormAlert").show()
                 }
                 if (this.lang === "ar") {
-                    $("#FormAlert").html("يجب ادخال الاسم العيلة")
+                    $("#FormAlert").html("الأسم العائلة يجب الا يقل عن حرفين")
                 } else {
                     $("#FormAlert").html("Please enter your last name")
                 }
@@ -292,13 +292,13 @@ var app = new Vue({
                 } else {
                     $("#FormAlert").html("Please enter mobile number")
                 }
-            } else if (this.nationality === "") {
+            } else if (this.nationality.length < 2 && this.nationality.length < 15) {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
                     $("#FormAlert").addClass("alert-danger")
                     $("#FormAlert").show()
                 }
                 if (this.lang === "ar") {
-                    $("#FormAlert").html("يجب ادخال الجنسية")
+                    $("#FormAlert").html("الجنسية يجب الا يقل عن حرفين")
                 } else {
                     $("#FormAlert").html("Please enter nationality")
                 }
