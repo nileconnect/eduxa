@@ -164,6 +164,10 @@ var app = new Vue({
                 success: res => {
                     this.CourseDurations = res.data.cost
 
+                },
+                error: res => {
+                    this.CourseDurations = ""
+                    this.selectedCourseDuration = ""
                 }
             });
         },

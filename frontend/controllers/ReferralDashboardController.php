@@ -152,7 +152,9 @@ class ReferralDashboardController extends FrontendController
             //check for old requests
             $requestObj = Requests::find()->where(['model_name'=>Requests::MODEL_NAME_PROGRAM , 'model_id'=>$programObj->id ,'requester_id'=>$profile->user_id])->one();
             if($requestObj && $requestObj->status == Requests::STATUS_PENDING){
-                $requestObj->delete();
+                $requestObj->status = Requests::STATUS_CANCELED;
+                $requestObj->save(false);
+                // $requestObj->delete();
                 Yii::$app->getSession()->setFlash('alert', [
                     'type' =>'warning',
                     'body' => \Yii::t('frontend', 'You have Canceled your request') ,
