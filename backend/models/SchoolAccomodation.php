@@ -32,7 +32,10 @@ class SchoolAccomodation extends BaseSchoolAccomodation
     }
 
     public  static function  BookingCycleList(){
-        return [\backend\models\Schools::BOOKING_WEEKLY =>'Weekly', \backend\models\Schools::BOOKING_MONTHLY=> 'Monthly'];
+        return [
+            \backend\models\Schools::BOOKING_WEEKLY =>  Yii::t('frontend','Weekly'),
+            \backend\models\Schools::BOOKING_MONTHLY=>  Yii::t('frontend','Monthly')
+        ];
     }
 
 
