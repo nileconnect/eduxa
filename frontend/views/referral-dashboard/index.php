@@ -46,7 +46,7 @@ $this->endContent() ;
                             ?>
 
                             <div class="text-large">
-                                <span><?php echo Yii::t('frontend','telephone_no'); ?> : </span>
+                                <span><?php echo Yii::t('frontend','Telephone Number'); ?> : </span>
                                 <span class="text-muted"><?= $profile ->telephone_no?></span>
                             </div>
                             <?
