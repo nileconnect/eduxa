@@ -72,6 +72,7 @@ class SchoolCourseController extends BackendController
     public function actionCreate()
     {
         $model = new SchoolCourse();
+        $model->scenario  = 'create';
         $model->school_id = Yii::$app->session->get('schoolId');
         $schoolObj= Schools::find()->where(['id'=>Yii::$app->session->get('schoolId')])->one();
 

@@ -64,7 +64,8 @@ class SchoolCourse extends BaseSchoolCourse
     public function rules()
     {
         return [
-            [['title'], 'unique'],
+            ['title', 'unique', 'targetAttribute' => ['title','school_id'],'on'=>'import','message'=>'course name has already been taken'],
+            [['title'], 'unique','on'=>'create'],
             [['school_id', 'title','school_course_type_id','school_course_study_language_id','cost_type','status'
             ,'min_age','required_level','time_of_course','study_books_fees','registeration_fees','discount','lessons_per_week',
             'lesson_duration','max_no_of_students_per_class','information','requirments','avg_no_of_students_per_class'],

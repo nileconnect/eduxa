@@ -149,12 +149,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             <label for="" id="" class="label-control"><?= Yii::t('frontend', 'What are you interested in?'); ?> </label>
                             <div class="form-check-group">
 
-                                <div class="form-check">
+                                <div class="form-check" style="display:block">
                                     <?php
                                     echo $form->field($model ,'interested_in_university')->checkbox();
                                     ?>
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check" style="display:block">
                                     <?php  echo $form->field($model ,'interested_in_schools')->checkbox(); ?>
 
                                 </div>
