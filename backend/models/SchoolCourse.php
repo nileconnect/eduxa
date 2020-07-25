@@ -97,6 +97,7 @@ class SchoolCourse extends BaseSchoolCourse
             [
                 'class' => SluggableBehavior::class,
                 'attribute' => 'title',
+                'ensureUnique'=>true,
                 'immutable' => true,
             ],
             'timestamp' => [

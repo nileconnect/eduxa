@@ -91,6 +91,7 @@ class Schools extends BaseSchools
             [
                 'class' => SluggableBehavior::class,
                 'attribute' => 'title',
+                'ensureUnique'=>true,
                 'immutable' => true,
             ],
             [
