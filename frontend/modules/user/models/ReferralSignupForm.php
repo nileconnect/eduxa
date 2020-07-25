@@ -58,7 +58,7 @@ class ReferralSignupForm extends Model
                 'country_id','city_id','state_id','no_of_students','expected_no_of_students','students_nationalities','find_us_from'
             ], 'required'],
             [ ['firstname' ,'lastname'], 'string', 'min' => 2, 'max' => 15],
-            [['firstname' ,'lastname','students_nationalities'], 'match', 'pattern' => "/^[a-z]\w*$/i"],
+            [['firstname' ,'lastname','nationality'], 'match', 'pattern' => "/^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$/i"],
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'email'],
             ['email', 'unique',

@@ -60,14 +60,14 @@ $this->endContent() ;
 
                             <?php if($profile->interested_in_university){
                                 ?>
-                                <span class="text-muted">University Education</span> ,
+                                <span class="text-muted"> <?php echo Yii::t('common','University Education'); ?></span> ,
 
                                 <?
                             }
                             ?>
                             <?php if($profile->interested_in_schools){
                                 ?>
-                                <span class="text-muted">Language School</span>
+                                <span class="text-muted"> <?php echo Yii::t('common','Language School'); ?> </span>
 
                                 <?
                             }

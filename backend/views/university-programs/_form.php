@@ -159,7 +159,7 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
                 </div>
 
                 <div class="col-md-6 col-sm-12">
-                    <?= $form->field($model, 'study_duration')->dropDownList(['1'=>'Day' , '2'=>'Week' , '3'=>'Month'])  ?>
+                    <?= $form->field($model, 'study_duration')->dropDownList(['1'=>'Day' , '2'=>'Week' , '3'=>'Month','4'=>'Year'])  ?>
                 </div>
             </div>
 

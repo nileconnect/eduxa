@@ -65,7 +65,7 @@ class SignupForm extends Model
                 ], 'required'],
             ['nationality','string', 'min' => 2, 'max' => 60],
             [ ['firstname' ,'lastname'], 'string', 'min' => 2, 'max' => 15],
-            [['firstname' ,'lastname','nationality'], 'match', 'pattern' => "/^[a-z]\w*$/i"],
+            [['firstname' ,'lastname','nationality'], 'match', 'pattern' => "/^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$/i"],
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'email'],
             ['email', 'unique',
