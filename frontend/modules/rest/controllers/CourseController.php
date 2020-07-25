@@ -125,7 +125,7 @@ class CourseController  extends  Controller
         $accomodationObj = SchoolAccomodation::find()->where(['id'=>$accomodation_id])->one();
         if(!$accomodationObj) return ResponseHelper::sendFailedResponse(['MESSAGE'=> 'Not allowed']);
 
-        $cost = round($accomodationObj->cost_per_duration_unit  * $period);
+        $cost = round(($accomodationObj->cost_per_duration_unit  * $period) + $accomodationObj->fees );
         return ResponseHelper::sendSuccessResponse(['cost'=>$cost]);
 
     }
