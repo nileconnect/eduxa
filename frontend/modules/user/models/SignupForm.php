@@ -104,7 +104,7 @@ class SignupForm extends Model
 
     public function checkChoseInterested(){
         if($this->interested_in_university == 0 and $this->interested_in_schools == 0){
-            $this->addError('interested_in_university',\Yii::t('common','at least you should select University Education
+            $this->addError('interested_in_schools',\Yii::t('common','at least you should select University Education
             or Language School'));
         }
     }
