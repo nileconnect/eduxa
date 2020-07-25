@@ -403,7 +403,7 @@ return [
     'No. Of Previous Referrals' => 'عدد الإحالات السابقة',
     'your account will be verified by our team' => 'سيتم التحقق من حسابك من قبل فريقنا',
     'Your Account Successfully Created, and we will be verified your account by our team.' => 'تم إنشاء حسابك بنجاح ، وسوف نتحقق من حسابك من قبل فريقنا.',
-    '' => '',
+    'telephone_no' => 'رقم الجوال',
     '' => '',
     '' => '',
     
