@@ -26,7 +26,9 @@ class CourcesAsset extends AssetBundle
      * @var array
      */
     public $css = [
-        'https://unpkg.com/vue-select@latest/dist/vue-select.css'
+        'https://unpkg.com/vue-select@latest/dist/vue-select.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css',
     ];
 
     /**
@@ -35,6 +37,8 @@ class CourcesAsset extends AssetBundle
     public $js = [
        'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',
        'https://unpkg.com/vue-select@3.0.0',
+       'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js',
+    //    'js/Apps/VideoCaro.js',
        'js/Apps/Api.js',
        'js/Apps/CourcesApp.js'
     ];

@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\University;
+use yii\db\Query;
 
 /**
  * backend\models\search\UniversitySearch represents the model behind the search form about `backend\models\University`.
@@ -95,17 +96,94 @@ use backend\models\University;
 
      public function mediaSearch($params)
      {
-         $query = University::find();
-         $query ->select([
-             '{{university}}.*', // select all customer fields
-             'COUNT({{university_photos}}.id)  AS imagesCount', // calculate photos count
-             'COUNT({{university_videos}}.id) AS videosCount', // calculate videos count
-         ]);
+//         $query = University::find();
+//         $query ->select([
+//             '{{university}}.*', // select all customer fields
+//             'COUNT({{university_photos}}.id)  AS imagesCount', // calculate photos count
+//             'COUNT({{university_videos}}.id) AS videosCount', // calculate videos count
+//         ]);
+//
+//         $query->joinWith('universityPhotos');
+//         $query->joinWith('universityVideos');
+//         $query->groupBy('{{university}}.id');
+//
+//
+//         $dataProvider = new ActiveDataProvider([
+//             'query' => $query,
+//         ]);
+//
+//         $this->load($params);
+//
+//         if (!$this->validate()) {
+//             // uncomment the following line if you do not want to return any records when validation fails
+//             // $query->where('0=1');
+//            // return $dataProvider;
+//         }
+//
+//
+//         $query->andFilterWhere([
+//             'id' => $this->id,
+//             'total_rating' => $this->total_rating,
+//             'responsible_id' => $this->responsible_id,
+//             'no_of_ratings' => $this->no_of_ratings,
+//             'created_by' => $this->created_by,
+//             'updated_by' => $this->updated_by,
+//         ]);
+//
+//         if($this->unversity_logo == 1){
+//             $query->andWhere(['not', ['image_path' => null]]);
+//
+//         }else if($this->unversity_logo == 2 ){
+//             $query->andWhere(['is', 'image_path', null]);
+//
+//         }else{}
+//
+//         if (!empty($this->imagesCount)) {
+//             $query->andFilterHaving([
+//                 'imagesCount' => $this->imagesCount,
+//             ]);
+//         }
+//
+//         if (!empty($this->videosCount)) {
+//             $query->andFilterHaving([
+//                 'videosCount' => $this->videosCount,
+//             ]);
+//         }
+//
+//
+//         $query->andFilterWhere(['like', 'title', $this->title])
+//             ->andFilterWhere(['like', 'description', $this->description])
+//             ->andFilterWhere(['like', 'detailed_address', $this->detailed_address])
+//             ->andFilterWhere(['like', 'location', $this->location])
+//             ->andFilterWhere(['like', 'lat', $this->lat])
+//             ->andFilterWhere(['like', 'lng', $this->lng])
+//             ->andFilterWhere(['like', 'recommended', $this->recommended])
+//             ->andFilterWhere(['like', 'created_at', $this->created_at])
+//             ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
+//
+//         //  echo $this->unversity_logo;
+//       //  echo $query->createCommand()->getRawSql();  die;
+//         return $dataProvider;
 
-         $query->joinWith('universityPhotos');
-         $query->joinWith('universityVideos');
-         $query->groupBy('{{university}}.id');
 
+
+
+
+         $query = University::find()->select(['university.*','imagesCount','videosCount'])->from('university');
+
+         $subPhotoQuery = (new Query())->select('university_id, COUNT(*) AS imagesCount ')->from('university_photos');
+         $subPhotoQuery->groupBy('university_id');
+
+         $subVedioQuery = (new Query())->select('university_id, COUNT(*) AS videosCount ')->from('university_videos');
+         $subVedioQuery->groupBy('university_id');
+
+         $query->leftJoin(['photos' => $subPhotoQuery], 'university.id = photos.university_id');
+         $query->leftJoin(['videos' => $subVedioQuery], 'university.id = videos.university_id');
+
+         // return var_dump($subPhotoQuery->createCommand()->sql,
+         //     $subVedioQuery->createCommand()->sql,
+         //     $query->createCommand()->sql
+         // );
 
          $dataProvider = new ActiveDataProvider([
              'query' => $query,
@@ -113,29 +191,13 @@ use backend\models\University;
 
          $this->load($params);
 
-         if (!$this->validate()) {
-             // uncomment the following line if you do not want to return any records when validation fails
-             // $query->where('0=1');
-            // return $dataProvider;
-         }
-
-
-         $query->andFilterWhere([
-             'id' => $this->id,
-             'total_rating' => $this->total_rating,
-             'responsible_id' => $this->responsible_id,
-             'no_of_ratings' => $this->no_of_ratings,
-             'created_by' => $this->created_by,
-             'updated_by' => $this->updated_by,
-         ]);
-
-         if($this->unversity_logo == 1){
+         if ($this->unversity_logo == 1) {
              $query->andWhere(['not', ['image_path' => null]]);
 
-         }else if($this->unversity_logo == 2 ){
+         } else if ($this->unversity_logo == 2) {
              $query->andWhere(['is', 'image_path', null]);
 
-         }else{}
+         }
 
          if (!empty($this->imagesCount)) {
              $query->andFilterHaving([
@@ -149,19 +211,22 @@ use backend\models\University;
              ]);
          }
 
+         $query->andFilterWhere(['like', 'university.title', trim($this->title)]);
 
-         $query->andFilterWhere(['like', 'title', $this->title])
-             ->andFilterWhere(['like', 'description', $this->description])
-             ->andFilterWhere(['like', 'detailed_address', $this->detailed_address])
-             ->andFilterWhere(['like', 'location', $this->location])
-             ->andFilterWhere(['like', 'lat', $this->lat])
-             ->andFilterWhere(['like', 'lng', $this->lng])
-             ->andFilterWhere(['like', 'recommended', $this->recommended])
-             ->andFilterWhere(['like', 'created_at', $this->created_at])
-             ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
-
-         //  echo $this->unversity_logo;
-       //  echo $query->createCommand()->getRawSql();  die;
+         // echo $query->createCommand()->getRawSql();die;
          return $dataProvider;
+
+
+
+
+
+
+
+
+
+
+
+
+
      }
 }

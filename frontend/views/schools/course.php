@@ -32,6 +32,13 @@ $this->title =  $schoolObj->title .' - '. $courseObj->title ;
 select option[data-default] {
   color: #888 !important;
 }
+.embed-responsive {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+}
 </style>
 <nav aria-label="breadcrumb">
     <div class="container">
@@ -85,20 +92,50 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                         </div>
                         <div id="tabVideos" role="tabpanel" aria-labelledby="videos-tab" class="tab-pane fade">
                             <div class="row" style="margin-top:20px">
+
+                                
+                            <div id="VideoCaro" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    
                                 <?php
                                     if($schoolObj->schoolVideos){
+                                        $firstslid= 'active';
                                         foreach ($schoolObj->schoolVideos as $schoolVideo) {
                                             ?>
-                                            <div class="col-sm-6 mbsm">
-                                                <div class="embed-responsive embed-responsive-16by9">
-                                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($schoolVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                                        
+                                            
+                                            <div class="carousel-item <?=$firstslid?>">
+                                                <div class="embed-responsive-16by9 video-fluid">
+                                                    <iframe width="445" height="300" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($schoolVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                                 </div>
+                                                
                                             </div>
+                                            
                                             <?
+                                             $firstslid='';
                                         }
                                     }
                                 ?>
+
+
+
+                                </div>
+                                <a class="carousel-control-prev" href="#VideoCaro" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#VideoCaro" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+
+
+                            
+
+
+
+
+                                
                             </div>
                         </div>
                     </div>
