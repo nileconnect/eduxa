@@ -94,8 +94,12 @@ var app = new Vue({
         });
 
 
+
+
+
     },
     methods: {
+
         cancelAccommo() {
             this.selectedaccoID = ""
             if (this.lang == "en") {
