@@ -18,8 +18,12 @@
 
 <section class="section">
     <div class="container">
-        <h2 class="title title-black title-sm"><?= Yii::t('frontend' , 'Why study in?')?> <?= $countryObj->title ?>
-        
+        <h2 class="title title-black title-sm"><?= Yii::t('frontend' , 'Why study in')?> <?= $countryObj->title ?>
+        <?php if(isset($_SESSION['_language']) and $_SESSION['_language'] == 'ar'):?>
+            ؟
+        <?php else:?>
+            ?
+        <?php endif;?>
         
         </h2>
 
