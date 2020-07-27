@@ -412,6 +412,7 @@ return [
     'Telephone Number' => 'رقم الجوال',
     'TOEFL' => 'توفل',
     'IELTS' => 'إيلتس',
+    'your account has been deactivated.'=>'الحساب الخاص بك غير مفعل',
     
     
 ];

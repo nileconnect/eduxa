@@ -18,6 +18,7 @@ $this->title = Yii::t('backend', 'Dashboard');
 
     <!-- Info boxes -->
     <div class="row">
+        <?php if(Yii::$app->user->identity->checkPermmissions('users')): ?>
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box info-white">
@@ -34,14 +35,15 @@ $this->title = Yii::t('backend', 'Dashboard');
             <!-- /.info-box -->
         </div>
         <!-- /.col -->
+        <?php endif;?>
 
+        <?php if(Yii::$app->user->identity->checkPermmissions('users')): ?>
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box info-white">
-      <span class="info-box-icon bg-black"
-      ><ion-icon name="people"></ion-icon
-          ></span>
-
+                <span class="info-box-icon bg-black"
+                ><ion-icon name="people"></ion-icon
+                    ></span>
                 <div class="info-box-content">
                     <a href="/user/index?user_role=referralPerson">
                     <span class="info-box-text">Referral Persons
@@ -62,12 +64,14 @@ $this->title = Yii::t('backend', 'Dashboard');
             <!-- /.info-box -->
         </div>
         <!-- /.col -->
+        <?php endif;?>
 
+
+        <?php if(Yii::$app->user->identity->checkPermmissions('users')): ?>
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box info-white">
-      <span class="info-box-icon bg-blue"><ion-icon name="people"></ion-icon></span>
-
+                <span class="info-box-icon bg-blue"><ion-icon name="people"></ion-icon></span>
                 <div class="info-box-content">
                     <a href="/user/index?user_role=referralCompany">
 
@@ -89,17 +93,18 @@ $this->title = Yii::t('backend', 'Dashboard');
             <!-- /.info-box -->
         </div>
         <!-- /.col -->
+        <?php endif;?>
 
         <!-- fix for small devices only -->
         <div class="clearfix visible-sm-block"></div>
 
+        <?php if(Yii::$app->user->identity->checkPermmissions('users')): ?>
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box info-white">
-      <span class="info-box-icon bg-yellow"
-      ><ion-icon name="people"></ion-icon
-          ></span>
-
+                <span class="info-box-icon bg-yellow"
+                ><ion-icon name="people"></ion-icon
+                    ></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Students</span>
                     <span class="info-box-number"><?= User::CountUsers(User::ROLE_USER)?></span>
@@ -109,6 +114,7 @@ $this->title = Yii::t('backend', 'Dashboard');
             <!-- /.info-box -->
         </div>
         <!-- /.col -->
+        <?php endif;?>
 
 
 
@@ -117,6 +123,7 @@ $this->title = Yii::t('backend', 'Dashboard');
 
 
     <div class="row">
+        <?php if(Yii::$app->user->identity->checkPermmissions('requests')): ?>
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box info-white">
                 <span class="info-box-icon bg-green"><i class="fa fa-tv"></i></span>
@@ -129,6 +136,7 @@ $this->title = Yii::t('backend', 'Dashboard');
             </div>
             <!-- /.info-box -->
         </div>
+        <?php endif;?>
     </div>
 
     <!-- /.row -->

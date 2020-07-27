@@ -61,9 +61,9 @@ class LoginForm extends Model
                 if($checkUserVerifiyEmail){
                     $this->addError('password', Yii::t('frontend', 'You Should Verify Email First.'));
                 }if($checkUserNotActive){
-                    $this->addError('password', Yii::t('frontend', 'Your account is being reviewed'));
+                    $this->addError('password', Yii::t('frontend', 'your account has been deactivated.'));
                 }else{
-                    $this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
+                    $this->addError('password', Yii::t('frontend', 'Your account is being reviewed'));
                 }
             }
         }
