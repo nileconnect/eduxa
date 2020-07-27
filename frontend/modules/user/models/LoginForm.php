@@ -52,15 +52,19 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
+                $checkUser = User::find()->andWhere(['or', ['username' => $this->identity], ['email' => $this->identity]])
+                    ->one();
                 $checkUserVerifiyEmail = User::find()
                     ->where(['status'=>User::STATUS_EMAIL_NOT_ACTIVE])->andWhere(['or', ['username' => $this->identity], ['email' => $this->identity]])
                     ->one();
                 $checkUserNotActive = User::find()
                     ->where(['status'=>User::STATUS_NOT_ACTIVE])->andWhere(['or', ['username' => $this->identity], ['email' => $this->identity]])
                     ->one();
-                if($checkUserVerifiyEmail){
+                if(!$checkUser){
+                    $this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
+                }elseif($checkUserVerifiyEmail){
                     $this->addError('password', Yii::t('frontend', 'You Should Verify Email First.'));
-                }if($checkUserNotActive){
+                }elseif($checkUserNotActive){
                     $this->addError('password', Yii::t('frontend', 'your account has been deactivated.'));
                 }else{
                     $this->addError('password', Yii::t('frontend', 'Your account is being reviewed'));
