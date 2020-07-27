@@ -30,12 +30,17 @@ if($saved){
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
+
     <div class="col-md-4">
         <div class="well">
+
+            <div class="alert alert-info">for better view please upload images not smaller than 600px * 600px </div>
+
+
             <?php echo $form->field($model, 'photos')->widget(
                 Upload::class,
                 [
-                    'url' => ['/file/storage/upload'],
+                    'url' => ['/university/media-upload'],
                     'sortable' => true,
                     'maxFileSize' => 10000000, // 10 MiB
                     'maxNumberOfFiles' => 6,

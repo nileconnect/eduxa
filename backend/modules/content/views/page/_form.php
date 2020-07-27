@@ -19,18 +19,20 @@ use yii\helpers\Html;
 
 <?php echo $form->field($model, 'slug')->hiddenInput()->label(false) ?>
 
-<?php echo $form->field($model, 'body')->widget(
-    \yii\imperavi\Widget::class,
-    [
-        'plugins' => ['fullscreen', 'fontcolor', 'video'],
-        'options' => [
-            'minHeight' => 400,
-            'maxHeight' => 400,
-            'buttonSource' => true,
-            'imageUpload' => Yii::$app->urlManager->createUrl(['/file/storage/upload-imperavi']),
-        ],
-    ]
-) ?>
+<?php echo $form->field($model, 'body')->textarea(['rows' => 20])->label('Page Content - HTML only') ?>
+<!---->
+<?php //echo $form->field($model, 'body')->widget(
+//    \yii\imperavi\Widget::class,
+//    [
+//        'plugins' => ['fullscreen', 'fontcolor', 'video'],
+//        'options' => [
+//            'minHeight' => 400,
+//            'maxHeight' => 400,
+//            'buttonSource' => true,
+//            'imageUpload' => Yii::$app->urlManager->createUrl(['/file/storage/upload-imperavi']),
+//        ],
+//    ]
+//) ?>
 
 <?php //echo $form->field($model, 'view')->textInput(['maxlength' => true]) ?>
 

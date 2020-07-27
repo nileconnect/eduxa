@@ -25,7 +25,14 @@
                 <?= $university->country->title .' - '.$university->state->title .' - '. $university->city->title  ?>
             </div>
             <div class="item-body">
-                <?= $university->description ; ?>
+                <?= substr($university->description ,0,350) ; ?>
+                <?php
+                if(strlen($university->description) > 350 ){
+                    echo  "<a href='/university/$university->slug'> ".Yii::t('frontend','.. more info')."</a>";
+                }
+
+                ?>
+
             </div>
         </div>
     </header>

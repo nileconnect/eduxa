@@ -301,7 +301,10 @@ class University extends \yii\db\ActiveRecord
 
     public static function listPeriods(){
 
-        return  ['1'=>Yii::t('frontend','Day') , '2'=>Yii::t('frontend','Week') , '3'=>Yii::t('frontend','Month')];
+        return  ['1'=>Yii::t('frontend','Day') , '2'=>Yii::t('frontend','Week') , '3'=>Yii::t('frontend','Month')
+
+            , '4'=>Yii::t('frontend','Year')
+        ];
     }
 
 }
