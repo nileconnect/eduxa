@@ -83,7 +83,9 @@ echo newerton\fancybox3\FancyBox::widget([
                 return  $str .'<br/>' ;
             },
             'format'=>'raw',
-            'contentOptions'=>[ 'style'=>'width: 400px']
+           'filter' => Html::activeDropDownList($searchModel, 'imagesCount', [1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6], ['class' => 'form-control',
+            'prompt' => Yii::t('backend', 'Select .. ')]),
+           'contentOptions' => ['style' => 'width: 400px'],
         ],
 
 
@@ -102,7 +104,9 @@ echo newerton\fancybox3\FancyBox::widget([
                 return  $str2.'<br/>
                     ' ;
             },
-            'format'=>'raw'
+            'format'=>'raw',
+            'filter' => Html::activeDropDownList($searchModel, 'videosCount', [1 => 1, 2 => 2, 3 => 3], ['class' => 'form-control',
+                'prompt' => Yii::t('backend', 'Select .. ')]),
         ],
 
 
