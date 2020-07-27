@@ -46,6 +46,7 @@ class Schools extends BaseSchools
             [['country_id', 'city_id', 'state_id','min_age', 'max_students_per_class', 'avg_students_per_class',  'created_by', 'updated_by','no_of_ratings',
                 'currency_id','next_to'], 'integer'],
             [['details','slug'], 'string'],
+            [['country_id', 'city_id', 'state_id'],'checkValidAddress'],
             [['accomodation_fees', 'registeration_fees', 'study_books_fees',  'discount', 'total_rating'], 'number'],
             [['location', 'lat', 'lng', 'image_base_url', 'image_path',  'created_at', 'updated_at'], 'string', 'max' => 255],
             [['title','title_ar'], 'string', 'max' => 50],
@@ -57,6 +58,21 @@ class Schools extends BaseSchools
             [['featured', 'status','title_ar','details_ar','detailed_address_ar'], 'safe'],
             [['logo','photos','no_of_ratings' ,'accomodation_reservation_fees','has_health_insurance','health_insurance_cost','detailed_address','currency_id','next_to'],'safe']
         ] ;
+    }
+    
+    public function checkValidAddress(){
+        if($this->country_id == 0){
+            $this->addError('country_id', Yii::t('backend','Contury is invalid'));
+        }
+
+        if($this->city_id == 0){
+            $this->addError('city_id', Yii::t('backend','City is invalid'));
+
+        }
+
+        if($this->state_id == 0){
+            $this->addError('state_id', Yii::t('backend','State is invalid'));
+        }
     }
 
 

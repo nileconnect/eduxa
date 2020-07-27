@@ -259,7 +259,7 @@ class ImportController extends BackendController
                             if ($countryObj) {
                                 return $countryObj->id;
                             }
-                            return '';
+                            return 0;
                         },
                     ],
                     [
@@ -269,7 +269,7 @@ class ImportController extends BackendController
                             if ($stateObj) {
                                 return $stateObj->id;
                             }
-                            return '';
+                            return 0;
                         },
                     ],
                     [
@@ -279,7 +279,7 @@ class ImportController extends BackendController
                             if ($cityObj) {
                                 return $cityObj->id;
                             }
-                            return '';
+                            return 0;
                         },
                     ],
                     [
@@ -832,7 +832,7 @@ class ImportController extends BackendController
                             if ($countryObj) {
                                 return $countryObj->id;
                             }
-                            return '';
+                            return 0;
                         },
                     ],
                     [
@@ -842,7 +842,7 @@ class ImportController extends BackendController
                             if ($stateObj) {
                                 return $stateObj->id;
                             }
-                            return '';
+                            return 0;
                         },
                     ],
                     [
@@ -852,7 +852,7 @@ class ImportController extends BackendController
                             if ($cityObj) {
                                 return $cityObj->id;
                             }
-                            return '';
+                            return 0;
                         },
                     ],
                     [

@@ -74,6 +74,7 @@ class University extends \yii\db\ActiveRecord
         return [
             [['title'], 'unique'],
             [['currency_id','title','next_to','title','country_id','city_id','state_id','description','detailed_address'],'required'],
+            [['country_id', 'city_id', 'state_id'],'checkValidAddress'],
             [['title','title_ar'], 'string', 'max' => 50 ,'min'=>2],
             [['description','description_ar'], 'string', 'max' => 5000 ,'min'=>2],
             [['detailed_address','detailed_address_ar'], 'string', 'max' => 2000 ,'min'=>2],
@@ -86,6 +87,21 @@ class University extends \yii\db\ActiveRecord
             [['next_to','currency_id'],'integer'],
             [['next_to','currency_id'],'integer','on'=>'import']
         ];
+    }
+
+    public function checkValidAddress(){
+        if($this->country_id == 0){
+            $this->addError('country_id', Yii::t('backend','Contury is invalid'));
+        }
+
+        if($this->city_id == 0){
+            $this->addError('city_id', Yii::t('backend','City is invalid'));
+
+        }
+
+        if($this->state_id == 0){
+            $this->addError('state_id', Yii::t('backend','State is invalid'));
+        }
     }
 
     public static function LisStatusList(){
