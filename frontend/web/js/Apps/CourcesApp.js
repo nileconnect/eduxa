@@ -104,6 +104,7 @@ var app = new Vue({
                 $(".btnAcco").html("خيارات الأقامة")
             }
             $(".cancelAccommo").hide()
+            this.accomodtionFees = ""
         },
         selectAccommodation(acco) {
             this.accomodtionFees = acco.reg_fees
@@ -224,7 +225,7 @@ var app = new Vue({
                 if (this.lang === "ar") {
                     $("#FormAlert").html("الأسم الاول يجب الا يقل عن حرفين")
                 } else {
-                    $("#FormAlert").html("Please enter your first name")
+                    $("#FormAlert").html("First name must not be less than two letters.")
                 }
             } else if (this.lastName.length < 2 && this.lastName.length < 15) {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
@@ -234,7 +235,7 @@ var app = new Vue({
                 if (this.lang === "ar") {
                     $("#FormAlert").html("الأسم العائلة يجب الا يقل عن حرفين")
                 } else {
-                    $("#FormAlert").html("Please enter your last name")
+                    $("#FormAlert").html("Last name must not be less than two letters.")
                 }
             } else if (this.gender === "") {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
@@ -244,7 +245,7 @@ var app = new Vue({
                 if (this.lang === "ar") {
                     $("#FormAlert").html("يجب اختيار النوع")
                 } else {
-                    $("#FormAlert").html("Please select gender")
+                    $("#FormAlert").html("Please select gender.")
                 }
             } else if (this.email === "" || !this.emailReg.test(this.email)) {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
@@ -254,7 +255,7 @@ var app = new Vue({
                 if (this.lang === "ar") {
                     $("#FormAlert").html("يجب ادخال البريد الإلكتروني بشكل صحيح")
                 } else {
-                    $("#FormAlert").html("Please enter a valid email address")
+                    $("#FormAlert").html("Please enter a valid email address.")
                 }
             } else if (this.countryId === "") {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
@@ -264,7 +265,7 @@ var app = new Vue({
                 if (this.lang === "ar") {
                     $("#FormAlert").html("يجب اختيار الدولة")
                 } else {
-                    $("#FormAlert").html("Please select country")
+                    $("#FormAlert").html("Please select country.")
                 }
             } else if (this.cityId === "") {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
@@ -274,7 +275,7 @@ var app = new Vue({
                 if (this.lang === "ar") {
                     $("#FormAlert").html("يجب اختيار المدينة")
                 } else {
-                    $("#FormAlert").html("Please select city")
+                    $("#FormAlert").html("Please select city.")
                 }
             } else if (this.stateId === "") {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
@@ -284,7 +285,7 @@ var app = new Vue({
                 if (this.lang === "ar") {
                     $("#FormAlert").html("يجب اختيار الحي")
                 } else {
-                    $("#FormAlert").html("Please select state")
+                    $("#FormAlert").html("Please select state.")
                 }
             } else if (this.mobile === "") {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
@@ -294,7 +295,7 @@ var app = new Vue({
                 if (this.lang === "ar") {
                     $("#FormAlert").html("يجب ادخال رقم الهاتف")
                 } else {
-                    $("#FormAlert").html("Please enter mobile number")
+                    $("#FormAlert").html("Please enter mobile number.")
                 }
             } else if (this.nationality.length < 2 && this.nationality.length < 15) {
                 if (!$("#FormAlert").hasClass("alert-danger")) {
@@ -304,10 +305,11 @@ var app = new Vue({
                 if (this.lang === "ar") {
                     $("#FormAlert").html("الجنسية يجب الا يقل عن حرفين")
                 } else {
-                    $("#FormAlert").html("Please enter nationality")
+                    $("#FormAlert").html("Nationality must not be less than two letters.")
                 }
             } else {
-                //Set Student Data
+                $("#FormAlert").hide()
+                    //Set Student Data
                 var student = {
                     "firstName": this.firstName,
                     "lastName": this.lastName,
@@ -370,7 +372,7 @@ var app = new Vue({
                         "data": data,
                         success: res => {
                             if (res.success == true) {
-                                $(".successMsg").addClass("show")
+                                $("#successMsg").addClass("show")
                             }
                         }
                     });
@@ -411,11 +413,11 @@ var app = new Vue({
                     "data": data,
                     success: res => {
                         if (res.success == true) {
-                            $(".successMsg").addClass("show")
+                            $("#successMsg").addClass("show")
                         }
                     },
                     error: res => {
-                        $(".successMsg.error").addClass("show")
+                        $("#errorMsg").addClass("show")
                     }
                 });
             }

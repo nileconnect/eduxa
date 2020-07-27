@@ -134,10 +134,11 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                     <?php endif;?>
                     <p class="mtsm text-large">
                     <div class="item-label"><?= Yii::t('frontend' , 'Best Weekly Price')?> :</div> 
-                    <div>
+                    <div class="bestprice">
                         <?php if($original_price):?>
-                            <?= $min_price ?>
-                            <?= $schoolObj->currency->currency_code ?>
+                            <span class=""> 
+                                <?= $min_price ?> <?= $schoolObj->currency->currency_code ?>
+                            </span>
                             <span class="line-through text-red"> 
                                 <?=  $original_price ?> <?= $schoolObj->currency->currency_code ?>
                             </span>

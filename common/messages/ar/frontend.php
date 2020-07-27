@@ -352,6 +352,7 @@ return [
     'Other courses in Language Academy' => 'دورات أخري في مدارس اللغات',
     'Frequently asked questions' => 'أسئلة مكررة',
     'Why study in' => 'لماذا الدراسة في',
+    'Why study in?' => 'لماذا الدراسة في؟',
     'All Universities' => 'كل الجامعات',
     'Read More' => 'المزيد',
     'Best Weekly Price' => 'أفضل سعر أسبوعي',
@@ -408,8 +409,8 @@ return [
     'your account will be verified by our team' => 'سيتم التحقق من حسابك من قبل فريقنا',
     'Your Account Successfully Created, and we will be verified your account by our team.' => 'تم إنشاء حسابك بنجاح ، وسوف نتحقق من حسابك من قبل فريقنا.',
     'Telephone Number' => 'رقم الجوال',
-    '' => '',
-    '' => '',
+    'TOEFL' => 'توفل',
+    'IELTS' => 'إيلتس',
     
     
 ];

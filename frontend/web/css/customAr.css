@@ -59,3 +59,8 @@ h6 {
 .kv-scorebar {
     left: 17px;
 }
+
+.bestprice {
+    direction: ltr;
+    text-align: right;
+}

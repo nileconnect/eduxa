@@ -289,11 +289,11 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         <td><span class="text-primary"><?= $programObj->studyLang->title ; ?></span></td>
                     </tr>
                     <tr>
-                        <td>TOEFL</td>
+                        <td><?= Yii::t('frontend','TOEFL') ?></td>
                         <td><span class="text-primary"><?=  $programObj->toefl?></span></td>
                     </tr>
                     <tr>
-                        <td>IELTS</td>
+                        <td><?= Yii::t('frontend','IELTS') ?></td>
                         <td><span class="text-primary"><?=  $programObj->progIelts->title ?></span></td>
                     </tr>
                     <tr>
@@ -352,7 +352,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 </section>
 
 
-<div class="successMsg">
+<div class="successMsg" id="successMsg">
     <img src="/img/success.png">
     <h3><?= Yii::t('frontend','Your Request Success')   ?></h3>
     <p><?= Yii::t('frontend','Your Request Successfully Submited, Please check your profile.')   ?></p>
@@ -371,7 +371,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
 </div>
 
-<div class="successMsg error">
+<div class="successMsg " id="errorMsg">
     <img src="/img/success.png">
     <h3><?= Yii::t('frontend','Your Request Submitted')   ?></h3>
     <p><?= Yii::t('frontend','You are registered before, Please check your profile.')   ?></p>
