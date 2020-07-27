@@ -43,8 +43,19 @@ $this->title = Yii::t('backend', 'Dashboard');
           ></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">Referral Persons</span>
-                    <span class="info-box-number"><?= User::CountUsers(User::ROLE_REFERRAL_PERSON)?></span>
+                    <a href="/user/index?user_role=referralPerson">
+                    <span class="info-box-text">Referral Persons
+                    <?php
+                    $count = User::CountUsers(User::ROLE_REFERRAL_PERSON , ' user.status='.User::STATUS_NOT_ACTIVE);
+                    if($count){
+                        echo '<span style="color: green">(pending - '.$count.' )</span>';
+                    }
+                    ?>
+                    </span>
+                    <span class="info-box-number"><?= User::CountUsers(User::ROLE_REFERRAL_PERSON)?>
+                    </span>
+                    </a>
+
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -55,13 +66,23 @@ $this->title = Yii::t('backend', 'Dashboard');
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box info-white">
-      <span class="info-box-icon bg-blue"
-      ><ion-icon name="people"></ion-icon
-          ></span>
+      <span class="info-box-icon bg-blue"><ion-icon name="people"></ion-icon></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">Referral Company</span>
+                    <a href="/user/index?user_role=referralCompany">
+
+                    <span class="info-box-text">Referral Company
+                    <?php
+                    $count = User::CountUsers(User::ROLE_REFERRAL_COMPANY , ' user.status='.User::STATUS_NOT_ACTIVE);
+                    if($count){
+                        echo '<span style="color: green">(pending - '.$count.' )</span>';
+                    }
+                    ?>
+
+                    </span>
                     <span class="info-box-number"><?= User::CountUsers(User::ROLE_REFERRAL_COMPANY)?></span>
+
+                    </a>
                 </div>
                 <!-- /.info-box-content -->
             </div>
