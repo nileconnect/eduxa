@@ -42,7 +42,16 @@ if(Yii::$app->session->hasFlash('alert')){
                     <div class="col-sm-4 mtmd">
                         <div class="logo"><h1><a href="/"><img src="/img/logo-white.svg" alt="eduxa"></a></h1></div>
                         <p>
-                            I was always somebody who felt quite sorry for myself, what I had not got compared to my friends, how much of a struggle my life seemed to be compared to others. I was caught up in a web of negativity
+
+                            <?php
+                            if(Yii::$app->language == 'ar'){
+                                echo \common\models\Page::find()->where(['slug'=>'footer-content'])->one()->body;
+                            }else{
+                                echo \common\models\Page::find()->where(['slug'=>'footer-content-ar'])->one()->body;
+
+                            }
+
+                            ?>
                         </p>
                         <ul class="socials">
                             <?php
