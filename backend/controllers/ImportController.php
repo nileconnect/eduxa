@@ -525,14 +525,17 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'study_duration',
                         'value' => function ($row) {
-                            if (strval($row[8]) == 'Day') {
+                            if (strtolower(strval($row[8])) == 'Day' || strtolower(strval($row[8])) == 'Days') {
                                 return 1;
                             }
-                            if (strval($row[8]) == 'Week') {
+                            if (strtolower(strval($row[8])) == 'Week') {
                                 return 2;
                             }
-                            if (strval($row[8]) == 'Month') {
+                            if (strtolower(strval($row[8])) == 'Month' || strtolower(strval($row[8])) == 'Months') {
                                 return 3;
+                            }
+                            if (strtolower(strval($row[8])) == 'Year') {
+                                return 4;
                             }
                             return '';
                         },

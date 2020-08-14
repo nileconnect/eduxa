@@ -38,8 +38,8 @@
     </header>
 
     <?php
-    if($university->universityLatestProgramsList){
-        foreach ($university->universityLatestProgramsList as $item) {
+    if($university->getUniversityLatestProgramsList(3,$_GET['UniversityProgramsSearch']['degree_id'])){
+        foreach ($university->getUniversityLatestProgramsList(3,$_GET['UniversityProgramsSearch']['degree_id']) as $item) {
             ?>
             <footer class="item-footer">
                 <div>

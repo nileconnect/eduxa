@@ -110,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="col-sm-6">
                                 <?php
                                     echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
-                                        'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->city_id])->all(), 'id', 'title') : [],
+                                        'data' =>$model->state_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->state_id])->all(), 'id', 'title') : [],
                                         'options'=>['id'=>'subcat-id'],
                                         'pluginOptions'=>[
                                             'depends'=>['City-id'],

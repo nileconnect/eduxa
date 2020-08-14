@@ -43,30 +43,30 @@ use yii\helpers\ArrayHelper;
         <div class="form-group-row">
             <div class="form-group">
                 <?= $form->field($model, 'degree_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramDegree::find()->orderBy('id')->all(), 'id', 'title'),
+                    'data' => ['0'=> Yii::t('common','All Degrees')] + \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramDegree::find()->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('frontend', 'Degree Level')],
                     'pluginOptions' => [
-                        'allowClear' => true,
+                        'allowClear' => false,
                         'class'=>'select-wrapper'
                     ],
                 ])->label(false); ?>
             </div>
             <div class="form-group">
                 <?= $form->field($model, 'field_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramField::find()->orderBy('id')->all(), 'id', 'title'),
+                    'data' => ['0'=> Yii::t('common','All Fields')] + \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramField::find()->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('frontend', 'Field')],
                     'pluginOptions' => [
-                        'allowClear' => true,
+                        'allowClear' => false,
                         'class'=>'select-wrapper'
                     ],
                 ])->label(false); ?>
             </div>
             <div class="form-group">
                 <?= $form->field($model, 'major_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMajors::find()->orderBy('id')->all(), 'id', 'title'),
+                    'data' => ['0'=> Yii::t('common','All Majors')] + \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMajors::find()->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('frontend', 'Major')],
                     'pluginOptions' => [
-                        'allowClear' => true
+                        'allowClear' => false
                     ],
                 ])->label(false); ?>
             </div>

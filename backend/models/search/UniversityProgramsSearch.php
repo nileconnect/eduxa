@@ -126,10 +126,28 @@ class UniversityProgramsSearch extends UniversityPrograms
             'university.next_to' => $this->university_nextTo,
             'university.recommended' => $this->recommended,
 
-            'university_programs.degree_id' => $this->degree_id,
-            'university_programs.field_id' => $this->field_id,
-            'university_programs.major_id' => $this->major_id,
+            // 'university_programs.degree_id' => $this->degree_id,
+            // 'university_programs.field_id' => $this->field_id,
+            // 'university_programs.major_id' => $this->major_id,
         ]);
+
+        if ($this->major_id) {
+            $query->andFilterWhere([
+                'university_programs.major_id' => $this->major_id,
+            ]);
+
+        }
+        if ($this->field_id) {
+            $query->andFilterWhere([
+                'university_programs.field_id' => $this->field_id,
+            ]);
+
+        }
+        if ($this->degree_id) {
+            $query->andFilterWhere([
+                'university_programs.degree_id' => $this->major_id,
+            ]);
+        }
 
         $query->andFilterWhere(['like', 'university.title', $this->university_title]);
         if($this->university_total_rating > 0){

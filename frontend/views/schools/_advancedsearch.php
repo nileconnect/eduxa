@@ -53,10 +53,10 @@ use backend\models\SchoolCourse;
             </div>
             <div class="form-group">
                 <?= $form->field($model, 'school_course_type_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\SchoolCourseType::find()->orderBy('id')->all(), 'id', 'title'),
+                    'data' => ['0'=>Yii::t('common','All Course Types')] + \yii\helpers\ArrayHelper::map(\backend\models\SchoolCourseType::find()->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('frontend', 'Course Type')],
                     'pluginOptions' => [
-                        'allowClear' => true
+                        'allowClear' => false
                     ],
                 ])->label(false); ?>
             </div>

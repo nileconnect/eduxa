@@ -36,14 +36,14 @@ select option[data-default] {
                     </div>
                 </h5>
                 <div class="mtlg">
-                    <?= $universityObj->description ?>
+                    <? $universityObj->description ?>
                 </div>
                 <?php
                 if(Yii::$app->user->isGuest){
                     ?>
-                      <div class="mtxlg">
+                      <!-- <div class="mtxlg">
                         <a href="/login" class="button button-wide button-primary" @click="submitStudent()"><?= Yii::t('frontend','Apply Now') ?></a>
-                    </div>
+                    </div> -->
                 <?
                 }else if(!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ){
                     ?>
@@ -51,16 +51,16 @@ select option[data-default] {
                     <?php
                         if(Yii::$app->user->isGuest || (!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ) ) {
                     ?>
-                        <div class="mtlg">
+                        <!-- <div class="mtlg">
                             <a href="javascript:void(0)" class="button button-wide button-primary" @click="submitStudent()"><?= Yii::t('frontend','Apply Now') ?></a>
-                        </div>
+                        </div> -->
                     <?php
                         }
                         if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ) {
                     ?>
                             <div class="mtlg">
                                 <a href="javascript:void(0)" class="button button-wide button-primary" @click="submitReferal()">
-                                <?= Yii::t('frontend','Apply Now')?>
+                                <? Yii::t('frontend','Apply Now')?>
                                 </a>
                             </div>
                     <?php
@@ -321,7 +321,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     if(Yii::$app->user->isGuest) {
                 ?>
                     <div class="mtlg">
-                        <a href="/login" class="button btn-block button-wide button-primary text-large"><?= Yii::t('frontend','Submit') ?></a>
+                        <a href="/login?return=/program-apply/<?= $programObj->slug ?>" class="button btn-block button-wide button-primary text-large"><?= Yii::t('frontend','Submit') ?></a>
                     </div>
                 <?php
                     }else if((!Yii::$app->user->isGuest && User::IsRole(Yii::$app->user->id , User::ROLE_USER) ) ) {
