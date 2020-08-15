@@ -2,6 +2,31 @@
 
 $this->title =  $universityObj->title ." : " .$programObj->title ;
 ?>
+<style>
+.nav-pills .nav-item .nav-link{
+    border-top: 4px solid #EEEEEE;
+    border-bottom:0;
+}
+.nav-pills {
+    border-bottom: 0;
+    border-top: 4px solid #EEEEEE;
+}
+.nav-pills .nav-item {
+    position: relative;
+    bottom: 0;
+    top: -4px;
+}
+select option[data-default] {
+  color: #888 !important;
+}
+.embed-responsive {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+}
+</style>
 <nav aria-label="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">
@@ -16,29 +41,102 @@ $this->title =  $universityObj->title ." : " .$programObj->title ;
     <div class="container">
         <div class="row">
             <div class="col-sm-5">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <?php
-                        $firstslid= 'active';
-                        foreach ($universityObj->universityPhotos as $universityPhoto) {
-                            ?>
-                            <div class="carousel-item <?=$firstslid?>">
-                                <img class="d-block w-100" src="<?= $universityPhoto->base_url.$universityPhoto->path?>" alt="<?= $universityObj->title ?>">
+
+            <div class="topTabs">
+                   
+                    <div id="myTabContent" class="tab-content">
+                        <div id="tabImages" role="tabpanel" aria-labelledby="images-tab" class="tab-pane fade active show">
+                            
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+
+                               
+
+
+                                    <?php
+                                    $firstslid= 'active';
+                                    foreach ($universityObj->universityPhotos as $universityPhoto) {
+                                        ?>
+                                        <div class="carousel-item <?=$firstslid?>">
+                                            <img class="d-block w-100" src="<?= $universityPhoto->base_url.$universityPhoto->path?>" alt="<?= $universityObj->title ?>">
+                                        </div>
+                                        <?
+                                        $firstslid='';
+                                    }
+                                    ?>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
-                            <?
-                            $firstslid='';
-                        }
-                        ?>
+                            
+                        </div>
+                        <div id="tabVideos" role="tabpanel" aria-labelledby="videos-tab" class="tab-pane fade">
+                            <div class="row" style="margin-top:20px">
+
+                                
+                            <div id="VideoCaro" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    
+                                <?php
+                                    if($universityObj->universityVideos){
+                                        $firstslid= 'active';
+                                        foreach ($universityObj->universityVideos as $universityVideo) {
+                                            ?>
+                                            
+                                            <div class="carousel-item <?=$firstslid?>">
+                                                <div class="embed-responsive-16by9 video-fluid">
+                                                    <iframe width="445" height="300" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($universityVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                            <?
+                                             $firstslid='';
+                                        }
+                                    }
+                                ?>
+
+
+
+                                </div>
+                                <a class="carousel-control-prev" href="#VideoCaro" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#VideoCaro" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+
+
+                            
+
+
+
+
+                                
+                            </div>
+                        </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                    <ul id="myTab" role="tablist" class="nav nav-pills">
+                        <li class="nav-item">
+                            <a id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true" class="nav-link active"><?= Yii::t('frontend' , 'Images')?></a>
+                        </li> 
+                        <li class="nav-item">
+                            <a id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false" class="nav-link"><?= Yii::t('frontend' , 'Videos')?></a>
+                        </li>
+                    </ul>
                 </div>
+
+
+               
             </div>
             <div class="col-sm-7">
                 <h3 class="text-primary"><?= $universityObj->title ?>: <?= $programObj->title ?> <span>(<?= $programObj->degree->title ?>)</span></h3>

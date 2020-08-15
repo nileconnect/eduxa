@@ -376,7 +376,8 @@ var app = new Vue({
                         "data": data,
                         success: res => {
                             if (res.success == true) {
-                                $("#successMsg").addClass("show")
+                                console.log("here success")
+                                $(".successMsg").addClass("show")
                             }
                         }
                     });

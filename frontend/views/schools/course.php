@@ -657,7 +657,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 </div>
 
 
-<div class="successMsg">
+<div class="successMsg" id="successMsg">
     <img src="/img/success.png">
     <h3><?= Yii::t('frontend','Your Request Success')   ?></h3>
     <p><?= Yii::t('frontend','Your Request Successfully Submited, Please check your profile.')   ?></p>
@@ -673,7 +673,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 <?php } ?>     
 </div>
 
-<div class="successMsg error">
+<div class="successMsg error" id="errorMsg">
     <img src="/img/success.png">
     <h3><?= Yii::t('frontend','Your Request Submitted')   ?></h3>
     <p><?= Yii::t('frontend','You are registered before, Please check your profile.')   ?></p>

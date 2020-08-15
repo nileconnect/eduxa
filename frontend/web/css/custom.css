@@ -142,11 +142,16 @@
 
 .universities-row .item-footer>div {
     width: 25%;
+    
 }
 
 @media (max-width: 768px) {
     .majorsList li,
     .contList li {
         width: 100%;
+    }
+    .universities-row .item-footer>div {
+        width: 100%;
+        
     }
 }
