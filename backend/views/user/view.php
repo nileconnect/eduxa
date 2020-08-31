@@ -28,8 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <?php ActiveForm::end() ?>
-<div class="user-view">
 
+<div class="user-view">
+<img src="">
     <p>
         <?php  // echo Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 <!--        --><?php //echo Html::a(Yii::t('backend', 'Delete'), ['delete', 'id' => $model->id], [

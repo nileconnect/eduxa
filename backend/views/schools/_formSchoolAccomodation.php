@@ -61,7 +61,7 @@ echo TabularForm::widget([
         ],
 
         'special_diet' => ['type' => TabularForm::INPUT_TEXT , 'label'=>'Special diet',
-            'options'=>['type' => 'number' ,'step'=>'number']
+           // 'options'=>['type' => 'number' ,'step'=>'number']
         ],
 
         // 'room_size' => ['type' => TabularForm::INPUT_TEXT],
