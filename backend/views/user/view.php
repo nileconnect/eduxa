@@ -30,7 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php ActiveForm::end() ?>
 
 <div class="user-view">
-<img src="">
+    <?php
+    if($model->userProfile->avatar_path){
+        ?>
+        <img src="<?= $model->userProfile->avatar?>" width="100px" height="100px">
+
+        <?
+    }
+
+    ?>
     <p>
         <?php  // echo Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 <!--        --><?php //echo Html::a(Yii::t('backend', 'Delete'), ['delete', 'id' => $model->id], [

@@ -211,7 +211,6 @@ class DashboardController extends FrontendController
         $profile =  Yii::$app->user->identity->userProfile;
 
         if ($profile->load(Yii::$app->request->post()) && $profile->save()) {
-
             if(Yii::$app->user->identity->studentCertificates || Yii::$app->user->identity->studentTestResults){
                 $profile->profile_percentage = 100;
                 $profile->save(false);
