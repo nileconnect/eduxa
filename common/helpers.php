@@ -88,3 +88,15 @@ function MyYoutubeVideoID( $data )
     preg_match( "/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/", $data, $matches);
     return isset($matches[2]) ? $matches[2] : false;
 }
+
+function My_client_browser_lang( $default= "en" ){
+    if( isset( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ){
+        $langs = explode( ',', $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
+        foreach ( $langs as $value) {
+            $getlang = substr( $value, 0,2 );
+            return $getlang == 'ar' ? 'ar':'en';
+        }
+    }
+//Return default.
+    return $default;
+}

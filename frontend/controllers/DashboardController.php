@@ -72,7 +72,7 @@ class DashboardController extends FrontendController
      */
     public function actionIndex()
     {
-        $seotitle=$title= 'Eduxa - User Profile';
+        $seotitle=$title= 'Eduxa - Profile';
         $this->AllTags($seotitle);
         \Yii::$app->view->title= $title;
 
@@ -85,7 +85,7 @@ class DashboardController extends FrontendController
 
     public function actionEducation()
     {
-        $seotitle=$title= 'Eduxa - User Profile';
+        $seotitle=$title= 'Eduxa - Profile';
         $this->AllTags($seotitle);
         \Yii::$app->view->title= $title;
 
@@ -97,7 +97,7 @@ class DashboardController extends FrontendController
 
     public function actionRequests()
     {
-        $seotitle=$title= 'Eduxa - User Profile';
+        $seotitle=$title= 'Eduxa - Profile';
         $this->AllTags($seotitle);
         \Yii::$app->view->title= $title;
 
@@ -167,7 +167,7 @@ class DashboardController extends FrontendController
 
     public function  actionUpdateProfile(){
 
-        $seotitle=$title= 'Eduxa - User Profile';
+        $seotitle=$title= 'Eduxa - Profile';
         $this->AllTags($seotitle);
         \Yii::$app->view->title= $title;
 

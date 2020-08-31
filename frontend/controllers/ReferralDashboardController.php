@@ -72,6 +72,10 @@ class ReferralDashboardController extends FrontendController
      */
     public function actionIndex()
     {
+        $seotitle=$title= 'Eduxa - Profile';
+        $this->AllTags($seotitle);
+        \Yii::$app->view->title= $title;
+
         $user =Yii::$app->user->identity ;
         $profile =Yii::$app->user->identity->userProfile ;
 
@@ -79,6 +83,10 @@ class ReferralDashboardController extends FrontendController
     }
     public function actionRequests()
     {
+        $seotitle=$title= 'Eduxa - Profile';
+        $this->AllTags($seotitle);
+        \Yii::$app->view->title= $title;
+
         $profile =Yii::$app->user->identity->userProfile ;
         $requests = $profile->availableRequests;
         return $this->render('requests',['requests'=>$requests]);
@@ -87,6 +95,11 @@ class ReferralDashboardController extends FrontendController
     // Modals Functions
 
     public function  actionUpdateProfile(){
+
+        $seotitle=$title= 'Eduxa - Profile';
+        $this->AllTags($seotitle);
+        \Yii::$app->view->title= $title;
+
         $this->layout='_clear';
         $saved= 0;
 
