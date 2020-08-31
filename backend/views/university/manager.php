@@ -50,7 +50,7 @@ if($saved == true){
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h1 class="m-0 text-dark"><?php echo Yii::t('common', 'Organization Admin') ?></h1>
+                        <h1 class="m-0 text-dark"><?php echo Yii::t('common', 'University Manager') ?></h1>
                     </div>
                 </div>
                 <?php $form = ActiveForm::begin([

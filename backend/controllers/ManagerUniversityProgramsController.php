@@ -136,7 +136,7 @@ class ManagerUniversityProgramsController extends BackendController
                 'title' =>'',
             ]);
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['manager-view']);
         } else {
             return $this->render('///university-programs/update', [
                 'model' => $model,
