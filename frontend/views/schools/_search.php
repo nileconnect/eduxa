@@ -32,7 +32,7 @@ use yii\helpers\Url;
                     <input type="text" class="form-control" placeholder="<?= Yii::t('frontend','Search') ?> " name="SchoolCourseSearch[title]">
                 </div>
             </div>
-            <div class="form-group-row">
+            <div class="form-group-row"  id="searchfilters">
                 <div class="form-group">
                     <?= $form->field($model, 'school_course_type_id')->widget(\kartik\widgets\Select2::classname(), [
                         'data' => ['0'=>Yii::t('common','All Course Types')]+\yii\helpers\ArrayHelper::map(\backend\models\SchoolCourseType::find()->orderBy('id')->all(), 'id', 'title'),
@@ -86,9 +86,14 @@ use yii\helpers\Url;
                         ])->label(false); 
                     ?>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="searchBtnDesktop">
                     <button type="submit" class="button btn-block button-accent"><?= Yii::t('frontend','Search') ?></button>
                 </div>
+            </div>
+            <div class="form-group" id="searchBtnMob">
+                <button type="submit" class="button btn-block button-accent" ><?= Yii::t('frontend','Search') ?></button>
+                <a href="javascript:void(0)" class="button btn-block button-accent" onclick="showfilters()"><?= Yii::t('frontend','Filters') ?></a>
+
             </div>
         <?php ActiveForm::end(); ?>
     </div>

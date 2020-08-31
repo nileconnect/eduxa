@@ -42,6 +42,8 @@ if($saved){
     <?php $form = ActiveForm::begin(); ?>
      <div class="col-md-4">
         <div class="well">
+        <div class="alert alert-info"><?= Yii::t('common','for better view please upload images not smaller than 600px * 600px ')?></div>
+
             <?php echo $form->field($profile, 'picture')->widget(
                 Upload::class,
                 [

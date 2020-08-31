@@ -64,3 +64,7 @@ h6 {
     direction: ltr;
     text-align: right;
 }
+
+#AccoModal i{
+    margin: 0 0 0 10px
+}
