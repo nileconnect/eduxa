@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\base\University;
+use backend\models\UniversityProgStartdate;
 use Yii;
 use backend\models\UniversityPrograms;
 use backend\models\search\UniversityProgramsSearch;
@@ -70,12 +71,31 @@ class ManagerUniversityProgramsController extends BackendController
     {
         $model = new UniversityPrograms();
         $model->university_id = Yii::$app->session->get('universityId');
+        $universityObj = University::find()->where(['id'=>$model->university_id])->one();
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+        $modelStartDates = new UniversityProgStartdate();
+        $model->country_id = $universityObj->country_id;
+        $model->city_id = $universityObj->city_id;
+        $model->state_id = $universityObj->state_id;
+
+        $modelStartDates->load(Yii::$app->request->post());
+
+
+        if ($model->loadAll(Yii::$app->request->post()) && $modelStartDates->validate() &&  $model->saveAll()) {
+            $modelStartDates->university_prog_id = $model->id;
+            $modelStartDates->save(false);
+
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('backend', 'Data has been saved Successfully') ,
+                'title' =>'',
+            ]);
+
             return $this->redirect(['index']);
         } else {
             return $this->render('///university-programs/create', [
                 'model' => $model,
+                'modelStartDates'=>$modelStartDates
             ]);
         }
     }
