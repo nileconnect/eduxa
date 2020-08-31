@@ -144,6 +144,35 @@
     width: 25%;
     
 }
+.pagination li {
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    line-height: 30px;
+    margin: 1px;
+}
+.pagination li.active {
+    background: #204183;
+    color: #fff;
+}
+.pagination li.active a{
+    background: #204183;
+    color: #fff;
+}
+.pagination li a:hover {
+    text-decoration: none;
+}
+.pagination li:hover {
+    background:#313131;
+}
+
+#AccoModal i{
+    margin: 0 10px 0 0
+}
+#searchBtnMob{
+    display: none;
+}
+
 
 @media (max-width: 768px) {
     .majorsList li,
@@ -153,5 +182,17 @@
     .universities-row .item-footer>div {
         width: 100%;
         
+    }
+    .universities .item .item-header figure {
+        background: #fff;
+    }
+    #searchfilters,#searchfilters2,#searchBtnDesktop{
+        display: none;
+    }
+    #searchfilters.show,#searchfilters2.show{
+        display: block;
+    }
+    #searchBtnMob{
+        display: block;
     }
 }

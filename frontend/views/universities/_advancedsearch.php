@@ -40,7 +40,7 @@ use yii\helpers\ArrayHelper;
 <!--                <input type="text" class="form-control" placeholder="Search" name="UniversityProgramsSearch[university_title]">-->
             </div>
         </div>
-        <div class="form-group-row">
+        <div class="form-group-row" id="searchfilters">
             <div class="form-group">
                 <?= $form->field($model, 'degree_id')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => ['0'=> Yii::t('common','All Degrees')] + \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramDegree::find()->orderBy('id')->all(), 'id', 'title'),
@@ -94,7 +94,7 @@ use yii\helpers\ArrayHelper;
 
 
         </div>
-        <div class="form-group-row">
+        <div class="form-group-row" id="searchfilters2">
 
             <div class="form-group">
                 <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
@@ -162,11 +162,17 @@ use yii\helpers\ArrayHelper;
 
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="searchBtnDesktop">
                 <button type="submit" class="button btn-block button-accent"><?= Yii::t('frontend','Search') ?></button>
-            </div><form action="" method="" class="inline mtmd shadow-sm">
+            </div>
+            
 
         </div>
+        <div class="form-group" id="searchBtnMob">
+                <button type="submit" class="button btn-block button-accent" ><?= Yii::t('frontend','Search') ?></button>
+                <a href="javascript:void(0)" class="button btn-block button-accent" onclick="showfilters()"><?= Yii::t('frontend','Filters') ?></a>
+
+            </div>
         <?php ActiveForm::end(); ?>
     </div>
 </div>

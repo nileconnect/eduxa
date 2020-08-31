@@ -246,7 +246,7 @@ select option[data-default] {
             </div>
 
             <div class="col-sm-6 mbxlg">
-                <h2 class="title title-sm title-black">.</h2>
+                <h2 class="title title-sm title-black">&nbsp;</h2>
                 <table class="table bg-white b-all shadow-sm">
                     <tr>
                         <td><?= Yii::t('frontend','Study duration') ?></td>
