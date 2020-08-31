@@ -571,7 +571,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="<?= $schoolObj->health_insurance_cost ?>" id="defaultCheck1" @change="GetHealth($event)">
                                     <label class="form-check-label" for="defaultCheck1">
-                                    <?= Yii::t('frontend' , 'Health Insurence')?>
+                                    <?= Yii::t('frontend' , 'Health Insurance')?>
                                     </label>
                                 </div>
                                 

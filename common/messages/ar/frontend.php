@@ -369,6 +369,7 @@ return [
     'Select course duration first' => 'أختر مدة الكورس',
     'Airport pickup' => 'النقل من المطار    ',
     'Health Insurence' => 'تأمين صحي',
+    'Health Insurance' => 'تأمين صحي',
     'Accommodation fees' => 'رسوم الإقامة',
     'Accommodation options' => 'خيارات الأقامة',
     'Accommodation period' => 'مدة الأقامة',
