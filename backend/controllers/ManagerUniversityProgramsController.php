@@ -110,12 +110,38 @@ class ManagerUniversityProgramsController extends BackendController
     {
         $model = $this->findModel($id);
         $model->university_id = Yii::$app->session->get('universityId');
+        $modelStartDates= UniversityProgStartdate::find()->where(['university_prog_id'=>$id])->one();
+        if(! $modelStartDates){
+            $modelStartDates = new UniversityProgStartdate();
+            $modelStartDates->university_prog_id = $id;
+            $modelStartDates->save(false);
+        }
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+
+        $model->university_id = Yii::$app->session->get('universityId');
+        $universityObj = University::find()->where(['id'=>$model->university_id])->one();
+        $model->country_id = $universityObj->country_id;
+        $model->city_id = $universityObj->city_id;
+        $model->state_id = $universityObj->state_id;
+        // return var_dump(Yii::$app->request->post());
+        $modelStartDates->load(Yii::$app->request->post());
+        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll() and $modelStartDates->validate()) {
+            if(!$modelStartDates->save()){
+                var_dump($modelStartDates->errors); die;
+            }
+
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'success',
+                'body' => \Yii::t('backend', 'Data has been saved Successfully') ,
+                'title' =>'',
+            ]);
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('///university-programs/update', [
                 'model' => $model,
+                'modelStartDates'=>$modelStartDates
+
             ]);
         }
     }

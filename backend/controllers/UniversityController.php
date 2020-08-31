@@ -23,7 +23,12 @@ class UniversityController extends BackendController
 {
     public function beforeAction($action)
     {
-        return Yii::$app->user->identity->checkPermmissions('universities')?: $this->redirect('/') ;
+        if(\Yii::$app->user->can('universityManager') ){
+            return true ;
+
+        }else{
+            return Yii::$app->user->identity->checkPermmissions('universities')?: $this->redirect('/') ;
+        }
     }
 
     public function behaviors()
