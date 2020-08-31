@@ -125,7 +125,7 @@ class SignupForm extends Model
             'gender' => Yii::t('common', 'Gender'),
             'nationality' => Yii::t('common', 'Nationality'),
             'communtication_channel' => Yii::t('common', 'Best way to commuincation?'),
-            'find_us_from' => Yii::t('common', 'How did you found us?'),
+            'find_us_from' => Yii::t('common', 'How did you Find us?'),
             'expected_no_of_students' => Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa'),
             'city_id' => Yii::t('common', 'City'),
             'country_id' => Yii::t('common', 'Country'),

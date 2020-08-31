@@ -85,6 +85,10 @@ class DashboardController extends FrontendController
 
     public function actionEducation()
     {
+        $seotitle=$title= 'Eduxa - User Profile';
+        $this->AllTags($seotitle);
+        \Yii::$app->view->title= $title;
+
         $user =  Yii::$app->user->identity;
         $this->view->title = \Yii::t('frontend','Education Info');
 
@@ -93,6 +97,10 @@ class DashboardController extends FrontendController
 
     public function actionRequests()
     {
+        $seotitle=$title= 'Eduxa - User Profile';
+        $this->AllTags($seotitle);
+        \Yii::$app->view->title= $title;
+
         $profile =Yii::$app->user->identity->userProfile ;
         $this->view->title = \Yii::t('frontend','My Requests');
         $requests = $profile->availableRequests;
@@ -158,6 +166,11 @@ class DashboardController extends FrontendController
     // Modals Functions
 
     public function  actionUpdateProfile(){
+
+        $seotitle=$title= 'Eduxa - User Profile';
+        $this->AllTags($seotitle);
+        \Yii::$app->view->title= $title;
+
         $this->layout='_clear';
         $saved= 0;
 

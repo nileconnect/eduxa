@@ -137,8 +137,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ?>
                                     </div>
                                     <div class="col-sm-6">
-                                        <?php echo $form->field($model, 'students_nationalities')->textInput(['placeholder'=>Yii::t('common','Nationality Of Referrals')])
-                                            ->label(Yii::t('frontend','Nationality Of Referrals') ,['class'=>'label-control']);
+                                        <?php echo $form->field($model, 'students_nationalities')->textInput(['placeholder'=>Yii::t('common','Nationality Of Referral')])
+                                            ->label(Yii::t('frontend','Nationality Of Referral') ,['class'=>'label-control']);
                                         ?>
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php
                                 echo $form->field($model ,'find_us_from')->dropDownList(\common\models\UserProfile::ListFindUs() ,
                                     ['prompt'=>Yii::t('common','Select')])
-                                    ->label(Yii::t('common','How did you found us?') ,['class'=>'label-control']);
+                                    ->label(Yii::t('common','How did you find us?') ,['class'=>'label-control']);
                                 ?>
 
 

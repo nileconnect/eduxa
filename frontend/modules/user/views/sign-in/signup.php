@@ -136,7 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php
                         echo $form->field($model ,'find_us_from')->dropDownList(\common\models\UserProfile::ListFindUs() ,
                             ['prompt'=>Yii::t('common','--where--')])
-                            ->label(Yii::t('frontend','How did you found us?') ,['class'=>'label-control']);
+                            ->label(Yii::t('frontend','How did you find us?') ,['class'=>'label-control']);
                         ?>
 
                     <?php

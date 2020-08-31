@@ -158,7 +158,7 @@ class UserProfile extends ActiveRecord
             'no_of_students' => Yii::t('common', 'No. Of Previous Referrals'),
             'interested_in_university' => Yii::t('common', 'University Education'),
             'interested_in_schools' => Yii::t('common', 'Language School'),
-            'students_nationalities' => Yii::t('common', 'Nationality Of Referrals'),
+            'students_nationalities' => Yii::t('common', 'Nationality Of Referral'),
         ];
     }
 

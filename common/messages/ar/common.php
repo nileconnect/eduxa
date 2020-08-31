@@ -33,7 +33,7 @@ return [
     'Last name' => 'اسم العائلة',
     'First name' => 'الاسم الاول',
     'Best way to commuincation?' => 'افضل طريقه للتواصل ؟',
-    'How did you found us?' => 'كيف وصلت الينا ؟',
+    'How did you find us?' => 'كيف وصلت الينا ؟',
     // request status
     'Canceled' => 'تم الغاء الطلب',
     'Finished' => 'تم الانتهاء من الطلب',
@@ -191,7 +191,7 @@ return [
     or Language School' => 'يجب عليك اختيار التعليم الجامعي
     أو مدرسة لغات',
     'No. Of Previous Referrals' => 'عدد الإحالات السابقة',
-    'Nationality Of Referrals' => 'جنسية الإحالات',
+    'Nationality Of Referral' => 'جنسية الإحالات',
     'Expected No. Of Referrals To Apply For By Eduxa' => 'عدد الطلاب المتوقع للتقديم من قبل Eduxa',
     'All Degrees' => 'جميع الدرجات العلمية',
     'All Fields' => 'جميع المجالات',

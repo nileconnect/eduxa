@@ -26,6 +26,10 @@ class SchoolsController extends FrontendController
      */
     public function actionIndex()
     {
+        $seotitle=$title= 'Schools';
+        $this->AllTags($seotitle);
+        \Yii::$app->view->title= $title;
+
         $countries = Country::find()->where(['status'=>1 , 'top_destination'=>1])->all();
         $listSchools = new SchoolCourseSearch();
         $courses = $listSchools->listInFront();

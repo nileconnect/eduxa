@@ -70,7 +70,7 @@ class LoginForm extends Model
                     return  false;
                 }
                 if($checkUserNotActive){
-                    $this->addError('password', Yii::t('frontend', 'your account has been deactivated.'));
+                    $this->addError('password', Yii::t('frontend', 'Account not verified.'));
                     return  false;
                 }
 
