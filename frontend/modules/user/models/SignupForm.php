@@ -90,7 +90,8 @@ class SignupForm extends Model
                     return $('#signupform-password').val().length > 0;
                 }")
             ],
-            ['password_confirm', 'compare', 'compareAttribute' => 'password', 'skipOnEmpty' => false],
+            ['password_confirm', 'compare', 'compareAttribute' => 'password', 'skipOnEmpty' => false ,
+                'message'=>\Yii::t('common','Your password doesn’t match the above text')],
 
 
             ['mobile','number'],

@@ -65,7 +65,7 @@
                         if($universityMajors){
                             foreach ($universityMajors as $major) {
                                 ?>
-                                <li>- <?= $major->title ?> </li>
+                        <li>- <a href="/universities/major?id=<?= $universityObj->id ?>&major_id=<?= $major->id ?>"><?= $major->title ?> </a></li>
 
                                 <?
                             }

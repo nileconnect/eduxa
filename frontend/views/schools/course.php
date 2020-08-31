@@ -561,6 +561,10 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             </td>
                             <td><span class="text-primary" v-if="SelectedAirport.cost">{{SelectedAirport.cost}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
+
+                       <?php
+                       if($schoolObj->has_health_insurance ){
+                       ?>
                         <tr>
                             <td>
                                 
@@ -574,6 +578,10 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             </td>
                             <td><span class="text-primary" v-if="SelectedHealth">{{SelectedHealth}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
+                        <? } ?>
+
+
+
                         <tr v-if="accomodtionFees">
                             <td><?= Yii::t('frontend' , 'Accommodation fees')?></td>
                             <td><span class="text-primary" id="accomodtionFees">{{accomodtionFees}} <?= $schoolObj->currency->currency_code?></span></td>

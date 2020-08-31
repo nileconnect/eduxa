@@ -27,7 +27,7 @@ return [
     '' => '',
     '' => '',
     '' => '',
-    '' => '',
+    'Your password doesn’t match the above text' => 'كلمه المرورغير متطابقه',
     'Select State..' => 'اختر العاصمة',
     'Select City..' => 'اختر المدينة',
     'Last name' => 'اسم العائلة',

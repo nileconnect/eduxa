@@ -46,6 +46,17 @@ class UniversitiesController extends FrontendController
     }
 
 
+    public function actionMajor($id,$major_id){
+        $universityObj = University::find()->where(['status'=>1 , 'id'=>$id])->one();
+        $major = UniversityProgramMajors::find()->where(['status'=>1 , 'id'=>$major_id])->one();
+
+        if(!$major  or !$universityObj )  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
+
+        $programs = \backend\models\UniversityPrograms::find()->where(['university_id'=>$id , 'major_id'=> $major_id])->all();
+
+        return $this->render('major' ,compact('universityObj','major','programs'));
+    }
+
     public function actionCountry($slug){
         $countryObj= Country::find()->where(['code'=>$slug])->one();
         if(!$countryObj)  throw new NotFoundHttpException(Yii::t('backend', 'The requested page does not exist.'));
