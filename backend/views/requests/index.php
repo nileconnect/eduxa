@@ -18,6 +18,15 @@ $search = "$('.search-button').click(function(){
 	return false;
 });";
 $this->registerJs($search);
+
+$requesterFilter = \yii\helpers\ArrayHelper::map(
+    \common\models\User::find()->join('LEFT JOIN', '{{%rbac_auth_assignment}}', '{{%rbac_auth_assignment}}.user_id = {{%user}}.id')
+        ->andFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'user'])
+        ->orFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'referralPerson'])
+        ->orFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'referralCompany'])
+        ->asArray()->all()
+    , 'id', 'username') ;
+
 ?>
 <div class="requests-index">
     <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>

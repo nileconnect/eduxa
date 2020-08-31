@@ -87,12 +87,23 @@ echo Menu::widget([
                     'url' => ['/university/media'],
                     'active' => (Yii::$app->controller->id == 'university' && Yii::$app->controller->action->id == 'media'),
                 ],
+
                 [
-                    'label' => Yii::t('backend', 'University Next To'),
-                    'icon' => '<i class="fa fa-university"></i>',
-                    'url' => ['/university-next-to'],
-                    'active' => (Yii::$app->controller->id == 'university-next-to'),
+                    'label' => Yii::t('backend', 'University Lookups'),
+                    'url' => '#',
+                    'icon' => '<i class="fa fa-mortar-board"></i>',
+                    'options' => ['class' => 'treeview'],
+                    'items' => [
+                        [
+                            'label' => Yii::t('backend', 'University Next To'),
+                            'icon' => '<i class="fa fa-university"></i>',
+                            'url' => ['/university-next-to'],
+                            'active' => (Yii::$app->controller->id == 'university-next-to'),
+                        ],
+                    ],
                 ],
+
+
                 [
                     'label' => Yii::t('backend', 'Programs Lookups'),
                     'url' => '#',
@@ -184,23 +195,33 @@ echo Menu::widget([
                 ],
 
                 [
-                    'label' => Yii::t('backend', 'Schools room category'),
-                    'icon' => '<i class="fa fa-building-o"></i>',
-                    'url' => ['/school-room-category'],
-                    'active' => (Yii::$app->controller->id == 'school-room-category'),
+                    'label' => Yii::t('backend', 'School Lookups'),
+                    'url' => '#',
+                    'icon' => '<i class="fa fa-mortar-board"></i>',
+                    'options' => ['class' => 'treeview'],
+                    'items' => [
+                        [
+                            'label' => Yii::t('backend', 'Schools room category'),
+                            'icon' => '<i class="fa fa-building-o"></i>',
+                            'url' => ['/school-room-category'],
+                            'active' => (Yii::$app->controller->id == 'school-room-category'),
+                        ],
+                        [
+                            'label' => Yii::t('backend', 'Schools Next To'),
+                            'icon' => '<i class="fa fa-building-o"></i>',
+                            'url' => ['/school-next-to'],
+                            'active' => (Yii::$app->controller->id == 'school-next-to'),
+                        ],
+                        [
+                            'label' => Yii::t('backend', 'Schools facilities'),
+                            'icon' => '<i class="fa fa-building-o"></i>',
+                            'url' => ['/school-facilities'],
+                            'active' => (Yii::$app->controller->id == 'school-facilities'),
+                        ],
+                    ],
                 ],
-                [
-                    'label' => Yii::t('backend', 'Schools Next To'),
-                    'icon' => '<i class="fa fa-building-o"></i>',
-                    'url' => ['/school-next-to'],
-                    'active' => (Yii::$app->controller->id == 'school-next-to'),
-                ],
-                [
-                    'label' => Yii::t('backend', 'Schools facilities'),
-                    'icon' => '<i class="fa fa-building-o"></i>',
-                    'url' => ['/school-facilities'],
-                    'active' => (Yii::$app->controller->id == 'school-facilities'),
-                ],
+
+
 
 //                [
                 //                    'label' => Yii::t('backend', 'school Course Tyes'),
@@ -209,7 +230,7 @@ echo Menu::widget([
                 //                    'active' => (Yii::$app->controller->id == 'schools-course-types'),
                 //                ],
                 [
-                    'label' => Yii::t('backend', 'School Lookups'),
+                    'label' => Yii::t('backend', 'Course Lookups'),
                     'url' => '#',
                     'icon' => '<i class="fa fa-mortar-board"></i>',
                     'options' => ['class' => 'treeview'],
