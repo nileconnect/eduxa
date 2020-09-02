@@ -35,20 +35,58 @@ if($saved){
             <?php echo $form->field($model, 'test_name')->textInput(['placeholder'=>Yii::t('frontend','Test Name')])
                 ->label(Yii::t('frontend','Test Name') ,['class'=>'label-control']); ?>
         </div>
+
         <div class="col-sm-6">
-            <?php echo $form->field($model, 'test_date')->textInput(['placeholder'=>Yii::t('frontend','Test Date')])
-                ->label(Yii::t('frontend','Test Date') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($model, 'score')->textInput(['placeholder'=>Yii::t('frontend','Score')])
+                ->label(Yii::t('frontend','Score') ,['class'=>'label-control']); ?>
         </div>
+<!--        <div class="col-sm-6">-->
+<!----><?php ////echo $form->field($model, 'test_date')->textInput(['placeholder'=>Yii::t('frontend','Test Date')])
+////                ->label(Yii::t('frontend','Test Date') ,['class'=>'label-control']); ?>
+<!--        -->
+<!---->
+<!--        </div>-->
+
 
 
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
-                <?php echo $form->field($model, 'score')->textInput(['placeholder'=>Yii::t('frontend','Score')])
-                    ->label(Yii::t('frontend','Score') ,['class'=>'label-control']); ?>
-        </div>
+        <div class="col-sm-12">
 
+            <div class="form-group field-studenttestresults-score required">
+                <label class="label-control" for="studenttestresults-score"><?= Yii::t('frontend','Test Date') ?></label>
+                <?= $form->field($model, 'test_date')->widget(\yii\jui\DatePicker::className(), [
+                    'dateFormat' => 'php:d-m-Y',
+                    'clientOptions' => [
+
+                        'changeMonth' => false,
+                        'changeYear' => true,
+                        'showButtonPanel' => true,
+                        // 'dateFormat' => 'yyyy',
+                        'yearRange' => '1950:'.date('Y')
+                    ],
+                ])->label(false);
+                ?>
+            </div>
+
+
+
+        <?php
+//        echo $form->field($model, 'test_date')->widget(\yii\jui\DatePicker::classname(), [
+//
+//            'clientOptions' => [
+//
+//                'changeMonth' => false,
+//                'changeYear' => true,
+//                'showButtonPanel' => true,
+//               // 'dateFormat' => 'yyyy',
+//                'yearRange' => '1990:2020'
+//            ],
+//        ])->label(false);
+
+        ?>
+        </div>
     </div>
 
 
