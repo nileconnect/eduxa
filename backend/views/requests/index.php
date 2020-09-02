@@ -19,14 +19,6 @@ $search = "$('.search-button').click(function(){
 });";
 $this->registerJs($search);
 
-$requesterFilter = \yii\helpers\ArrayHelper::map(
-    \common\models\User::find()->join('LEFT JOIN', '{{%rbac_auth_assignment}}', '{{%rbac_auth_assignment}}.user_id = {{%user}}.id')
-        ->andFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'user'])
-        ->orFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'referralPerson'])
-        ->orFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'referralCompany'])
-        ->asArray()->all()
-    , 'id', 'username') ;
-
 ?>
 <div class="requests-index">
     <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -89,12 +81,16 @@ $gridColumn = [
             return $model->requester->username;
         },
         'filterType' => GridView::FILTER_SELECT2,
-        'filter' => \yii\helpers\ArrayHelper::map(
+        'filter' => $searchModel->request_by_role >=0  ? \yii\helpers\ArrayHelper::map(
             \common\models\User::find()->join('LEFT JOIN', '{{%rbac_auth_assignment}}', '{{%rbac_auth_assignment}}.user_id = {{%user}}.id')
-            ->andFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'user'])
-            ->orFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'referralPerson'])
-            ->orFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'referralCompany'])
-            ->asArray()->all()
+                ->andFilterWhere(['{{%rbac_auth_assignment}}.item_name' =>\backend\models\Requests::ListRequestByUSerRole()[$searchModel->request_by_role]])
+                ->asArray()->all()
+            , 'id', 'username') : \yii\helpers\ArrayHelper::map(
+            \common\models\User::find()->join('LEFT JOIN', '{{%rbac_auth_assignment}}', '{{%rbac_auth_assignment}}.user_id = {{%user}}.id')
+                ->andFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'user'])
+                ->orFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'referralPerson'])
+                ->orFilterWhere(['{{%rbac_auth_assignment}}.item_name' => 'referralCompany'])
+                ->asArray()->all()
             , 'id', 'username'),
         'filterWidgetOptions' => [
             'pluginOptions' => ['allowClear' => true],

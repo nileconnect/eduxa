@@ -15,7 +15,7 @@ class RequestsSearch extends Requests
     public $creation_from_date;
     public $creation_to_date;
     public $period;
-
+    public $roleArray ;
     /**
      * @inheritdoc
      */

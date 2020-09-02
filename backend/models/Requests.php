@@ -54,6 +54,16 @@ class Requests extends BaseRequests
         ];
     }
 
+    public static function ListRequestByUSerRole()
+    {
+        return [
+            self::REQUEST_BY_STUDENT => 'user',
+            self::REQUEST_BY_REFERRAL_COMPANY => 'referralCompany',
+            self::REQUEST_BY_REFERRAL_PERSON => 'referralPerson',
+
+        ];
+    }
+
     public static function ListModelNames()
     {
         return [
