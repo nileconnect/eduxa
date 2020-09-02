@@ -22,7 +22,7 @@ class StudentCertificate extends BaseStudentCertificate
             [['user_id',  'country_id'], 'integer'],
             [[  'created_at', 'updated_at'], 'string', 'max' => 255],
             [['certificate_name','university_or_school'], 'string','min'=>2, 'max' => 30],
-            [['grade'], 'string','min'=>1, 'max' => 3],
+            [['grade'], 'string','min'=>1, 'max' => 255],
         ]);
     }
 }
