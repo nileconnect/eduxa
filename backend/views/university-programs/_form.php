@@ -91,13 +91,13 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
         ]); ?>
         </div>
         <div class="col-md-6 col-sm-12">
-            <?= $form->field($model, 'medium_of_study')->widget(\kartik\widgets\Select2::classname(), [
-                'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMediumOfStudy::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
-                'options' => ['placeholder' => Yii::t('backend', 'Choose Medium of study')],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]); ?>
+<!--            --><?//= $form->field($model, 'medium_of_study')->widget(\kartik\widgets\Select2::classname(), [
+//                'data' => \yii\helpers\ArrayHelper::map(\backend\models\UniversityProgramMediumOfStudy::find()->orderBy('id')->asArray()->all(), 'id', 'title'),
+//                'options' => ['placeholder' => Yii::t('backend', 'Choose Medium of study')],
+//                'pluginOptions' => [
+//                    'allowClear' => true
+//                ],
+//            ]); ?>
         </div>
     </div>
 

@@ -478,25 +478,25 @@ class ImportController extends BackendController
                             return $majorObj->id;
                         },
                     ],
-                    [
-                        'attribute' => 'medium_of_study',
-                        'value' => function ($row) {
-                            $medumObj = UniversityProgramMediumOfStudy::find()->where(['title' => strval($row[4])])->one();
-                            if (!$medumObj) {
-                                $medumObj = new UniversityProgramMediumOfStudy();
-                                $medumObj->title = strval($row[4]);
-                                $medumObj->save();
-                            }
-                            return $medumObj->id;
-                        },
-                    ],
+//                    [
+//                        'attribute' => 'medium_of_study',
+//                        'value' => function ($row) {
+//                            $medumObj = UniversityProgramMediumOfStudy::find()->where(['title' => strval($row[4])])->one();
+//                            if (!$medumObj) {
+//                                $medumObj = new UniversityProgramMediumOfStudy();
+//                                $medumObj->title = strval($row[4]);
+//                                $medumObj->save();
+//                            }
+//                            return $medumObj->id;
+//                        },
+//                    ],
                     [
                         'attribute' => 'degree_id',
                         'value' => function ($row) {
-                            $degreeObj = UniversityProgramDegree::find()->where(['title' => strval($row[5])])->one();
+                            $degreeObj = UniversityProgramDegree::find()->where(['title' => strval($row[4])])->one();
                             if (!$degreeObj) {
                                 $degreeObj = new UniversityProgramDegree();
-                                $degreeObj->title = strval($row[5]);
+                                $degreeObj->title = strval($row[4]);
                                 $degreeObj->save();
                             }
                             return $degreeObj->id;
@@ -506,10 +506,10 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'field_id',
                         'value' => function ($row) {
-                            $fieldObj = UniversityProgramField::find()->where(['title' => strval($row[6])])->one();
+                            $fieldObj = UniversityProgramField::find()->where(['title' => strval($row[5])])->one();
                             if (!$fieldObj) {
                                 $fieldObj = new UniversityProgramField();
-                                $fieldObj->title = strval($row[6]);
+                                $fieldObj->title = strval($row[5]);
                                 $fieldObj->save();
                             }
                             return $fieldObj->id;
@@ -519,22 +519,22 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'study_duration_no',
                         'value' => function ($row) {
-                            return strval($row[7]);
+                            return strval($row[6]);
                         },
                     ],
                     [
                         'attribute' => 'study_duration',
                         'value' => function ($row) {
-                            if (strtolower(strval($row[8])) == 'Day' || strtolower(strval($row[8])) == 'Days') {
+                            if (strtolower(strval($row[7])) == 'Day' || strtolower(strval($row[7])) == 'Days') {
                                 return 1;
                             }
-                            if (strtolower(strval($row[8])) == 'Week') {
+                            if (strtolower(strval($row[7])) == 'Week') {
                                 return 2;
                             }
-                            if (strtolower(strval($row[8])) == 'Month' || strtolower(strval($row[8])) == 'Months') {
+                            if (strtolower(strval($row[7])) == 'Month' || strtolower(strval($row[7])) == 'Months') {
                                 return 3;
                             }
-                            if (strtolower(strval($row[8])) == 'Year') {
+                            if (strtolower(strval($row[7])) == 'Year') {
                                 return 4;
                             }
                             return '';
@@ -543,34 +543,34 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'first_submission_date',
                         'value' => function ($row) {
-                            return strval($row[9]);
+                            return strval($row[8]);
                         },
                     ],
                     [
                         'attribute' => 'first_submission_date_active',
                         'value' => function ($row) {
-                            return strtolower(strval($row[10])) == "yes" ? 1 : 0;
+                            return strtolower(strval($row[9])) == "yes" ? 1 : 0;
                         },
                     ],
                     [
                         'attribute' => 'last_submission_date',
                         'value' => function ($row) {
-                            return strval($row[11]);
+                            return strval($row[10]);
                         },
                     ],
                     [
                         'attribute' => 'last_submission_date_active',
                         'value' => function ($row) {
-                            return strtolower(strval($row[12])) == "yes" ? 1 : 0;
+                            return strtolower(strval($row[11])) == "yes" ? 1 : 0;
                         },
                     ],
                     [
                         'attribute' => 'study_method',
                         'value' => function ($row) {
-                            $studyObj = UniversityProgrameMethodOfStudy::find()->where(['title' => strval($row[13])])->one();
+                            $studyObj = UniversityProgrameMethodOfStudy::find()->where(['title' => strval($row[12])])->one();
                             if (!$studyObj) {
                                 $studyObj = new UniversityProgrameMethodOfStudy();
-                                $studyObj->title = strval($row[13]);
+                                $studyObj->title = strval($row[12]);
                                 $studyObj->save();
                             }
                             return $studyObj->id;
@@ -579,10 +579,10 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'program_format',
                         'value' => function ($row) {
-                            $progformatObj = UniversityProgrameFormat::find()->where(['title' => strval($row[14])])->one();
+                            $progformatObj = UniversityProgrameFormat::find()->where(['title' => strval($row[13])])->one();
                             if (!$progformatObj) {
                                 $progformatObj = new UniversityProgrameFormat();
-                                $progformatObj->title = strval($row[14]);
+                                $progformatObj->title = strval($row[13]);
                                 $progformatObj->save();
                             }
                             return $progformatObj->id;
@@ -592,10 +592,10 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'conditional_admissions',
                         'value' => function ($row) {
-                            $admissionObj = UniversityProgrameConditionalAdmission::find()->where(['title' => strval($row[15])])->one();
+                            $admissionObj = UniversityProgrameConditionalAdmission::find()->where(['title' => strval($row[14])])->one();
                             if (!$admissionObj) {
                                 $admissionObj = new UniversityProgrameConditionalAdmission();
-                                $admissionObj->title = strval($row[15]);
+                                $admissionObj->title = strval($row[14]);
                                 $admissionObj->save();
                             }
                             return $admissionObj->id;
@@ -605,10 +605,10 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'ielts',
                         'value' => function ($row) {
-                            $iletsObj = UniversityProgrameIlets::find()->where(['title' => strval($row[16])])->one();
+                            $iletsObj = UniversityProgrameIlets::find()->where(['title' => strval($row[15])])->one();
                             if (!$iletsObj) {
                                 $iletsObj = new UniversityProgrameIlets();
-                                $iletsObj->title = strval($row[16]);
+                                $iletsObj->title = strval($row[15]);
                                 $iletsObj->save();
                             }
                             return $iletsObj->id;
@@ -618,73 +618,73 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'bank_statment',
                         'value' => function ($row) {
-                            return strval($row[17]);
+                            return strval($row[16]);
                         },
                     ],
                     [
                         'attribute' => 'annual_cost',
                         'value' => function ($row) {
-                            return strval($row[18]);
+                            return strval($row[17]);
                         },
                     ],
                     [
                         'attribute' => 'toefl',
                         'value' => function ($row) {
-                            return strval($row[19]);
+                            return strval($row[18]);
                         },
                     ],
                     [
                         'attribute' => 'high_school_transcript',
                         'value' => function ($row) {
-                            return strval($row[20]);
+                            return strval($row[19]);
                         },
                     ],
                     [
                         'attribute' => 'high_school_transcript_ar',
                         'value' => function ($row) {
-                            return strval($row[21]);
+                            return strval($row[20]);
                         },
                     ],
                     [
                         'attribute' => 'bachelor_degree',
                         'value' => function ($row) {
-                            return strval($row[22]);
+                            return strval($row[21]);
                         },
                     ],
                     [
                         'attribute' => 'bachelor_degree_ar',
                         'value' => function ($row) {
-                            return strval($row[23]);
+                            return strval($row[22]);
                         },
                     ],
                     [
                         'attribute' => 'note1',
                         'value' => function ($row) {
-                            return strval($row[24]);
+                            return strval($row[23]);
                         },
                     ],
                     [
                         'attribute' => 'note1_ar',
                         'value' => function ($row) {
-                            return strval($row[25]);
+                            return strval($row[24]);
                         },
                     ],
                     [
                         'attribute' => 'note2',
                         'value' => function ($row) {
-                            return strval($row[26]);
+                            return strval($row[25]);
                         },
                     ],
                     [
                         'attribute' => 'note2_ar',
                         'value' => function ($row) {
-                            return strval($row[27]);
+                            return strval($row[26]);
                         },
                     ],
                     [
                         'attribute' => 'dates',
                         'value' => function ($row) {
-                            return strval($row[28]);
+                            return strval($row[27]);
                         },
                     ],
 

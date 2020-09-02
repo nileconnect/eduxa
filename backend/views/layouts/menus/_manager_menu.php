@@ -128,13 +128,13 @@ echo Menu::widget([
                             'url' => ['/university-program-field'],
                             'active' => (Yii::$app->controller->id == 'university-program-field'),
                         ],
-
-                        [
-                            'label' => Yii::t('backend', 'Medium of study'),
-                            'icon' => '<i class="fa fa-mortar-board"></i>',
-                            'url' => ['/university-program-medium-of-study'],
-                            'active' => (Yii::$app->controller->id == 'university-program-medium-of-study'),
-                        ],
+//
+//                        [
+//                            'label' => Yii::t('backend', 'Medium of study'),
+//                            'icon' => '<i class="fa fa-mortar-board"></i>',
+//                            'url' => ['/university-program-medium-of-study'],
+//                            'active' => (Yii::$app->controller->id == 'university-program-medium-of-study'),
+//                        ],
 
                         [
                             'label' => Yii::t('backend', 'Language of study'),
