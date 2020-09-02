@@ -7,14 +7,14 @@ use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-$this->title = Yii::t('backend', 'University Lang Of Study');
+$this->title = Yii::t('backend', 'Medium of instructions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="university-lang-of-study-index">
 
 
     <p>
-        <?= Html::a(Yii::t('backend', 'Create University Lang Of Study'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('backend', 'Create Medium of instructions'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php 
     $gridColumn = [

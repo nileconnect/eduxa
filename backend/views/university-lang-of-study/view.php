@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 /* @var $model backend\models\UniversityLangOfStudy */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'University Lang Of Study'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'University Medium of instructions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="university-lang-of-study-view">

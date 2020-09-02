@@ -137,7 +137,7 @@ echo Menu::widget([
 //                        ],
 
                         [
-                            'label' => Yii::t('backend', 'Language of study'),
+                            'label' => Yii::t('backend', 'Medium of instructions'),
                             'icon' => '<i class="fa fa-mortar-board"></i>',
                             'url' => ['/university-lang-of-study'],
                             'active' => (Yii::$app->controller->id == 'university-lang-of-study'),

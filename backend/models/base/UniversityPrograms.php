@@ -107,7 +107,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
             'certificate' => Yii::t('backend', 'Certificate'),
             'note1' => Yii::t('backend', 'Note1'),
             'note2' => Yii::t('backend', 'Note2'),
-            'lang_of_study' => Yii::t('backend', 'Language of study'),
+            'lang_of_study' => Yii::t('backend', 'Medium of instructions'),
             'total_rating' => Yii::t('backend', 'Total Rating'),
             'program_type' => Yii::t('backend', 'Program Type'),
             'first_submission_date' => Yii::t('backend', 'First submission date'),
