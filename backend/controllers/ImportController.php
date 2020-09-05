@@ -787,6 +787,9 @@ class ImportController extends BackendController
         if ($model->load(Yii::$app->request->post())) {
             $uploadFile = UploadedFile::getInstance($model, 'file');
 
+            $connection = \Yii::$app->db;
+            $transaction = $connection->beginTransaction();
+
             $importer = new \Gevman\Yii2Excel\Importer([
                 'filePath' => $uploadFile->tempName,
                 'activeRecord' => Schools::class,
@@ -936,8 +939,10 @@ class ImportController extends BackendController
                 ],
 
             ]);
+
             // return var_dump($importer->getModels());
             if (!$importer->validate()) {
+                $transaction->rollback();
                 // foreach ($importer->getErrors() as $rowNumber => $errors) {
                 //     $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
                 // }
@@ -948,12 +953,14 @@ class ImportController extends BackendController
                 // // ]);
             } else {
                 if (!$importer->save()) {
+                    $transaction->rollback();
                     Yii::$app->getSession()->setFlash('alert', [
                         'type' => 'success',
                         'body' => \Yii::t('hr', 'please check the attached file for errors '),
                         'title' => '',
                     ]);
                 } else {
+                    $transaction->commit();
                     $saved = true;
                     Yii::$app->getSession()->setFlash('alert', [
                         'type' => 'success',
