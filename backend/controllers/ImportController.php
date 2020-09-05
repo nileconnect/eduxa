@@ -2,33 +2,32 @@
 
 namespace backend\controllers;
 
-use Yii;
-use yii\web\Controller;
-use backend\models\State;
-use yii\web\UploadedFile;
+use backend\helpers\FileUploadHelper;
 use backend\models\Cities;
 use backend\models\Country;
-use backend\models\Schools;
 use backend\models\Currency;
-use backend\models\University;
 use backend\models\SchoolCourse;
-use backend\models\SchoolNextTo;
-use backend\models\SchoolCourseType;
-use backend\models\UniversityNextTo;
-use backend\helpers\FileUploadHelper;
-use backend\models\UniversityPrograms;
-use lucasguo\import\components\Importer;
-use backend\models\UniversityLangOfStudy;
-use backend\models\UniversityProgramField;
-use backend\models\UniversityProgramDegree;
-use backend\models\UniversityProgrameIlets;
-use backend\models\UniversityProgramMajors;
-use backend\models\UniversityProgStartdate;
-use backend\models\UniversityProgrameFormat;
 use backend\models\SchoolCourseStudyLanguage;
-use backend\models\UniversityProgramMediumOfStudy;
-use backend\models\UniversityProgrameMethodOfStudy;
+use backend\models\SchoolCourseType;
+use backend\models\SchoolNextTo;
+use backend\models\Schools;
+use backend\models\State;
+use backend\models\University;
+use backend\models\UniversityLangOfStudy;
+use backend\models\UniversityNextTo;
+use backend\models\UniversityProgramDegree;
 use backend\models\UniversityProgrameConditionalAdmission;
+use backend\models\UniversityProgrameFormat;
+use backend\models\UniversityProgrameIlets;
+use backend\models\UniversityProgrameMethodOfStudy;
+use backend\models\UniversityProgramField;
+use backend\models\UniversityProgramMajors;
+use backend\models\UniversityPrograms;
+use backend\models\UniversityProgStartdate;
+use lucasguo\import\components\Importer;
+use Yii;
+use yii\web\Controller;
+use yii\web\UploadedFile;
 
 /**
  * CitiesController implements the CRUD actions for Cities model.
@@ -122,7 +121,7 @@ class ImportController extends BackendController
         }
 
         return $this->render('form', ['model' => $model,
-            'importer'=>$importer,
+            'importer' => $importer,
             'saved' => $saved,
             'filename' => 'State-Cities.xlsx',
         ]);
@@ -219,7 +218,7 @@ class ImportController extends BackendController
         }
 
         return $this->render('form', ['model' => $model,
-            'importer'=>$importer,
+            'importer' => $importer,
             'saved' => $saved,
             'filename' => 'Countries.xlsx',
 
@@ -413,7 +412,7 @@ class ImportController extends BackendController
             }
         }
         return $this->render('form', ['model' => $model,
-            'importer'=>$importer,
+            'importer' => $importer,
             'saved' => $saved,
             'filename' => 'Universities.xlsx',
         ]);
@@ -479,17 +478,17 @@ class ImportController extends BackendController
                         },
                     ],
 //                    [
-//                        'attribute' => 'medium_of_study',
-//                        'value' => function ($row) {
-//                            $medumObj = UniversityProgramMediumOfStudy::find()->where(['title' => strval($row[4])])->one();
-//                            if (!$medumObj) {
-//                                $medumObj = new UniversityProgramMediumOfStudy();
-//                                $medumObj->title = strval($row[4]);
-//                                $medumObj->save();
-//                            }
-//                            return $medumObj->id;
-//                        },
-//                    ],
+                    //                        'attribute' => 'medium_of_study',
+                    //                        'value' => function ($row) {
+                    //                            $medumObj = UniversityProgramMediumOfStudy::find()->where(['title' => strval($row[4])])->one();
+                    //                            if (!$medumObj) {
+                    //                                $medumObj = new UniversityProgramMediumOfStudy();
+                    //                                $medumObj->title = strval($row[4]);
+                    //                                $medumObj->save();
+                    //                            }
+                    //                            return $medumObj->id;
+                    //                        },
+                    //                    ],
                     [
                         'attribute' => 'degree_id',
                         'value' => function ($row) {
@@ -724,7 +723,7 @@ class ImportController extends BackendController
         }
 
         return $this->render('form', ['model' => $model,
-            'importer'=>$importer,
+            'importer' => $importer,
             'saved' => $saved,
             'filename' => 'Universitie-Programs.xlsx',
 
@@ -736,45 +735,45 @@ class ImportController extends BackendController
         $startData = new UniversityProgStartdate();
         $startData->university_prog_id = $program->id;
 
-        $dates = array_map(function($value){
+        $dates = array_map(function ($value) {
             return ucfirst(strtolower(trim($value)));
         }, explode(',', $program->dates));
 
         if (in_array('Jan', $dates)) {
-            $startData->m_1 = 1; 
+            $startData->m_1 = 1;
         }
         if (in_array('Feb', $dates)) {
-            $startData->m_2 = 1; 
+            $startData->m_2 = 1;
         }
         if (in_array('Mar', $dates)) {
-            $startData->m_3 = 1; 
+            $startData->m_3 = 1;
         }
         if (in_array('Apr', $dates)) {
-            $startData->m_4 = 1; 
+            $startData->m_4 = 1;
         }
         if (in_array('May', $dates)) {
-            $startData->m_5 = 1; 
+            $startData->m_5 = 1;
         }
         if (in_array('Jun', $dates)) {
-            $startData->m_6 = 1; 
+            $startData->m_6 = 1;
         }
         if (in_array('Jul', $dates)) {
-            $startData->m_7 = 1; 
+            $startData->m_7 = 1;
         }
         if (in_array('Aug', $dates)) {
-            $startData->m_8 = 1; 
+            $startData->m_8 = 1;
         }
         if (in_array('Sept', $dates) || in_array('Sep', $dates)) {
-            $startData->m_9 = 1; 
+            $startData->m_9 = 1;
         }
         if (in_array('Oct', $dates)) {
-            $startData->m_10 = 1; 
+            $startData->m_10 = 1;
         }
         if (in_array('Nov', $dates)) {
-            $startData->m_11 = 1; 
+            $startData->m_11 = 1;
         }
         if (in_array('Dec', $dates)) {
-            $startData->m_12 = 1; 
+            $startData->m_12 = 1;
         }
         $startData->save(false);
         // return var_dump($dates,$startData,$startData->save(false),$startData->errors);
@@ -965,7 +964,7 @@ class ImportController extends BackendController
             }
         }
         return $this->render('form', ['model' => $model,
-            'importer'=>$importer,
+            'importer' => $importer,
             'saved' => $saved,
             'filename' => 'Schools.xlsx',
         ]);
@@ -1016,7 +1015,10 @@ class ImportController extends BackendController
                             if ($typeObj) {
                                 return $typeObj->id;
                             }
-                            return '';
+                            $typeObj = new SchoolCourseType();
+                            $typeObj->title = strval($row[3]);
+                            $typeObj->save(false);
+                            return $typeObj->id;
                         },
                     ],
                     [
@@ -1026,7 +1028,10 @@ class ImportController extends BackendController
                             if ($langObj) {
                                 return $langObj->id;
                             }
-                            return '';
+                            $langObj = new SchoolCourseStudyLanguage();
+                            $langObj->title = strval($row[4]);
+                            $langObj->save(false);
+                            return $langObj->id;
                         },
                     ],
                     [
@@ -1165,7 +1170,7 @@ class ImportController extends BackendController
             }
         }
         return $this->render('form', ['model' => $model,
-            'importer'=>$importer,
+            'importer' => $importer,
             'saved' => $saved,
             'filename' => 'SchoolCourse.xlsx',
         ]);
