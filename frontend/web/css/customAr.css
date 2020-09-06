@@ -68,3 +68,23 @@ h6 {
 #AccoModal i{
     margin: 0 0 0 10px
 }
+
+
+body .password-wrapper .strength-lines {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    right: 13px;
+    width: calc(100% - 50px);
+    height: 6px;
+    z-index: 3;
+}
+
+body .password-wrapper .icon-wrapper {
+    position: absolute;
+    cursor: pointer;
+    right: auto;
+    top: 41px;
+    color: #a09f9f;
+    left: 25px;
+}

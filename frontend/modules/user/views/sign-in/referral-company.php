@@ -91,7 +91,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <?php  echo $form->field($modelCompany, 'password')->widget(PasswordInput::classname()); ?>
+                                        <?php // echo $form->field($modelCompany, 'password')->widget(PasswordInput::classname()); ?>
+                                    </div>
+                                    <div class="col-sm-12 password-wrapper">
+                                        <?php //echo $form->field($model, 'password') ?>
+                                        <?php 
+                                            echo $form->field($modelCompany, 'password')->passwordInput(['placeholder'=>Yii::t('common','******************')])
+                                            ->label(Yii::t('common','Password') ,['class'=>'label-control','id'=>'password-field']);
+                                        ?>
+
+                                        <div class="icon-wrapper">
+                                            <span toggle="#password-field" class="field-icon toggle-password"><i class="fas fa-eye"></i></span>
+                                        </div>
+
+                                        <div class="strength-lines">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        </div>
+                                        
                                     </div>
                                     <div class="col-sm-6">
                                         <?php echo $form->field($modelCompany, 'password_confirm')->passwordInput(['placeholder'=>Yii::t('common','********')])
@@ -214,6 +232,78 @@ $(document).ready(() => {
 JS;
 $this->registerJs($script);
 ?>
-<script>
 
-</script>
+
+
+
+<?php 
+$js = <<<JS
+$(document).ready(function() {
+	
+	// hide/show password
+	$(".icon-wrapper").click(function() {
+		$(".toggle-password i").toggleClass(".fas fa-eye-slash");
+		var input = $("#referralsignupform-password");
+		if (input.attr("type") == "password") {
+			input.attr("type", "text");
+		} else {
+			input.attr("type", "password");
+		}
+	});
+
+	// strength validation on keyup-event
+	$("#referralsignupform-password").on("keyup", function() {
+        
+		var val = $(this).val(),
+			color = testPasswordStrength(val);
+
+		styleStrengthLine(color, val);
+	});
+
+	// check password strength
+	function testPasswordStrength(value) {
+        console.log("here")
+		var strongRegex = new RegExp(
+      '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[=/\()%ยง!@#$%^&*])(?=.{8,})'
+			),
+			mediumRegex = new RegExp(
+				'^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
+			);
+
+		if (strongRegex.test(value)) {
+			return "green";
+		} else if (mediumRegex.test(value)) {
+			return "orange";
+		} else {
+			return "red";
+		}
+	}
+
+	function styleStrengthLine(color, value) {
+		$(".line")
+			.removeClass("bg-red bg-orange bg-green")
+			.addClass("bg-transparent");
+		
+		if (value) {
+			
+			if (color === "red") {
+				$(".line:nth-child(1)")
+					.removeClass("bg-transparent")
+					.addClass("bg-red");
+			} else if (color === "orange") {
+				$(".line:not(:last-of-type)")
+					.removeClass("bg-transparent")
+					.addClass("bg-orange");
+			} else if (color === "green") {
+				$(".line")
+					.removeClass("bg-transparent")
+					.addClass("bg-green");
+			}
+		}
+	}
+
+});
+
+JS;
+$this->registerJs($js);
+?>

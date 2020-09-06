@@ -173,7 +173,84 @@
     display: none;
 }
 
+/*/////////Password strength////////////*/
 
+
+
+.bg-transparent {
+    background-color: transparent !important;
+  }
+  
+  .bg-red {
+    background-color: #e74c3c !important;
+  }
+  
+  .bg-orange {
+    background-color: #e67e22 !important;
+  }
+  
+  .bg-green {
+    background-color: #2ecc71 !important;
+  }
+  body .password-wrapper .input {
+    border: none;
+    padding: 10px 15px;
+    font: small-caption;
+    font-size: 18px;
+    font-size: 1.8rem;
+    width: calc(100% - 50px);
+    color: #34495e;
+    outline: none;
+    line-height: 1.5;
+  }
+  body .password-wrapper .icon-wrapper {
+      position: absolute;
+      cursor: pointer;
+      right: 25px;
+      top: 38px;
+      color: #a09f9f;
+  }
+  body .password-wrapper .icon-wrapper .ion-eye,
+  body .password-wrapper .icon-wrapper .ion-more {
+    font-size: 26px;
+    font-size: 2.6rem;
+    position: absolute;
+    top: 11px;
+    right: 12px;
+    color: #ccc;
+    transition: color 0.25s ease-out;
+  }
+  
+  body .password-wrapper .strength-lines {
+      position: absolute;
+      top: 32px;
+      left: 13px;
+      right: 0;
+      width: calc(100% - 50px);
+      height: 6px;
+      z-index: 3;
+  }
+  body .password-wrapper .strength-lines .line {
+    position: absolute;
+    background-color: transparent;
+    height: 6px;
+    border-radius: 2px;
+    transition: background-color 0.25s ease-in;
+  }
+  body .password-wrapper .strength-lines .line:not(:first-of-type):not(:last-of-type) {
+    left: 33%;
+    right: 33%;
+  }
+  body .password-wrapper .strength-lines .line:first-of-type {
+    left: 4px;
+    right: 68%;
+  }
+  body .password-wrapper .strength-lines .line:last-of-type {
+    left: 68%;
+    right: 4px;
+  }
+
+  
 @media (max-width: 768px) {
     .majorsList li,
     .contList li {
