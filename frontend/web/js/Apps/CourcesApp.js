@@ -194,26 +194,41 @@ var app = new Vue({
                 "url": Api + "states?filter[country_id]=" + this.selectedCountry.id + "&filter[lang]=" + this.lang,
                 "method": "GET",
                 success: res => {
-                    this.Cities = res.items
+                    this.States = res.items
                 }
             });
         },
         //After Select City get its States
+        // SelectCity() {
+        //     this.cityId = this.selectedCity.id
+        //     this.cityTitle = this.selectedCity.title
+        //     $.ajax({
+        //         "url": Api + "cities?filter[state_id]=" + this.selectedCity.id + "&filter[lang]=" + this.lang,
+        //         "method": "GET",
+        //         success: res => {
+        //             this.States = res.items
+        //         }
+        //     });
+
+        // },
+        // SelectState() {
+        //     this.stateId = this.selectedState.id
+        //     this.stateTitle = this.selectedState.title
+        // },
         SelectCity() {
             this.cityId = this.selectedCity.id
             this.cityTitle = this.selectedCity.title
-            $.ajax({
-                "url": Api + "cities?filter[state_id]=" + this.selectedCity.id + "&filter[lang]=" + this.lang,
-                "method": "GET",
-                success: res => {
-                    this.States = res.items
-                }
-            });
-
         },
         SelectState() {
             this.stateId = this.selectedState.id
             this.stateTitle = this.selectedState.title
+            $.ajax({
+                "url": Api + "cities?filter[state_id]=" + this.selectedState.id + "&filter[lang]=" + this.lang,
+                "method": "GET",
+                success: res => {
+                    this.Cities = res.items
+                }
+            });
         },
         Selectdate(event) {
             this.SelectedDate = event.target.value

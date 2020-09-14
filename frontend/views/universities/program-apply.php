@@ -145,16 +145,16 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="row mtsm">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="city" class="label-control"><?= Yii::t('common','City')?></label>
-                            <v-select v-model="selectedCity"  label="title" placeholder="<?= Yii::t('frontend','City')?>" :options="Cities" @input="SelectCity"
+                            <label for="city" class="label-control"><?= Yii::t('common','State')?></label>
+                            <v-select id="city" v-model="selectedState"  label="title" placeholder="<?= Yii::t('frontend','State')?>" :options="States" @input="SelectState"
                             >
                             </v-select>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="city" class="label-control"><?= Yii::t('common','State')?></label>
-                            <v-select v-model="selectedState"  label="title" placeholder="<?= Yii::t('frontend','State')?>" :options="States" @input="SelectState"
+                            <label for="State" class="label-control"><?= Yii::t('common','City')?></label>
+                            <v-select id="State" v-model="selectedCity"  label="title" placeholder="<?= Yii::t('frontend','City')?>" :options="Cities" @input="SelectCity"
                             >
                             </v-select>
                         </div>
@@ -189,8 +189,9 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="col-sm-6">
                     <div class="text-large"><?= Yii::t('frontend','Email')?>:&nbsp;&nbsp; <span class="text-muted"><a href="mailto:mr.ahmedsaeed1@gmail.com">{{stud.email}}</a></span></div>
                     <div class="text-large"><?= Yii::t('common','Country')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.countryTitle}}</span></div>
-                    <div class="text-large"><?= Yii::t('common','City')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.cityTitle}}</span></div>
                     <div class="text-large"><?= Yii::t('common','State')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.stateTitle}}</span></div>
+
+                    <div class="text-large"><?= Yii::t('common','City')?>:&nbsp;&nbsp; <span class="text-muted">{{stud.cityTitle}}</span></div>
                 </div>
                 <a href="javascript:void(0)" class="deleteStudent" @click="deleteStudent(index)"><i class="far fa-times-circle"></i></a>
             </div>

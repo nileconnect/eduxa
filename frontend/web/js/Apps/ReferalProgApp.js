@@ -49,7 +49,7 @@ var app = new Vue({
                 "url": Api + "states?filter[country_id]=" + this.selectedCountry.id + "&filter[lang]=" + this.lang,
                 "method": "GET",
                 success: res => {
-                    this.Cities = res.items
+                    this.States = res.items
                 }
             });
         },
@@ -57,18 +57,17 @@ var app = new Vue({
         SelectCity() {
             this.cityId = this.selectedCity.id
             this.cityTitle = this.selectedCity.title
-            $.ajax({
-                "url": Api + "cities?filter[state_id]=" + this.selectedCity.id + "&filter[lang]=" + this.lang,
-                "method": "GET",
-                success: res => {
-                    this.States = res.items
-                }
-            });
-
         },
         SelectState() {
             this.stateId = this.selectedState.id
             this.stateTitle = this.selectedState.title
+            $.ajax({
+                "url": Api + "cities?filter[state_id]=" + this.selectedState.id + "&filter[lang]=" + this.lang,
+                "method": "GET",
+                success: res => {
+                    this.Cities = res.items
+                }
+            });
         },
 
 
@@ -172,8 +171,8 @@ var app = new Vue({
                     "lastName": this.lastName,
                     "gender": this.gender,
                     "countryId": this.countryId,
-                    "stateId": this.cityId,
-                    "cityId": this.stateId,
+                    "stateId": this.stateId,
+                    "cityId": this.cityId,
                     "countryTitle": this.countryTitle,
                     "stateTitle": this.stateTitle,
                     "cityTitle": this.cityTitle,
@@ -181,6 +180,7 @@ var app = new Vue({
                     "mobile": this.mobile,
                     "nationality": this.nationality
                 }
+                console.log(student)
                 this.StudentsList.push(student)
 
                 //Reset Form
