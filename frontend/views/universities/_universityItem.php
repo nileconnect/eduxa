@@ -4,7 +4,7 @@
 ?>
 
 <?php
-if($university->UniversityPrograms ){
+if($university->universityPrograms ){
     ?>
 
 
