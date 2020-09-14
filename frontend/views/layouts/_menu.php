@@ -20,7 +20,7 @@
               <li class="nav-item <?php if(Yii::$app->controller->id == 'user/sign-in'  && Yii::$app->controller->action->id == 'referral-signup') echo 'active';?>">
                   <a class="button button-primary" href="/referral-signup"><?= Yii::t('frontend','Referral Program') ?></a>
               </li>
-              
+
             <li class="nav-item <?php if(Yii::$app->controller->id == 'user/sign-in'  && Yii::$app->controller->action->id == 'login') echo 'active';?> ">
                 <a class="button button-primary" href="/login"><?= Yii::t('frontend','My Eduxa') ?></a>
             </li>
