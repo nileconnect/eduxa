@@ -19,7 +19,7 @@
 return [
     ''=>'',
     ''=>'',
-    ''=>'',
+    'Test date should not be greater than current date'=>'تاريخ الاختبار لا يسمح ان يكون فى المستقبل',
     'Account not verified.'=>'الحساب غير مفعل',
     'Monthly'=>'شهرى',
     'Weekly'=>'اسبوعى',

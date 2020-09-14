@@ -28,7 +28,27 @@ class StudentTestResults extends BaseStudentTestResults
 
             [['test_name'], 'string','min'=>2, 'max' => 30],
 
+            ['test_date', 'compareDates'],
+
+
         ]);
+    }
+
+
+    public function compareDates()
+
+    {
+
+        $testDate = strtotime($this->test_date);
+
+        $currentDat = strtotime(date("Y/m/d"));
+
+        if (!$this->hasErrors() && $testDate > $currentDat) {
+
+            $this->addError('test_date', Yii::t('frontend','Test date should not be greater than current date'));
+
+        }
+
     }
 	
 }

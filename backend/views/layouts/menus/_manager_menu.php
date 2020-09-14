@@ -294,7 +294,7 @@ echo Menu::widget([
                     'icon' => '<i class="fa fa-building-o"></i>',
                     'url' => ['/reports/requests'],
                     'active' => (Yii::$app->controller->id == 'reports' && Yii::$app->controller->action->id == 'requests'),
-                    // 'visible' => (Yii::$app->user->can('administrator')),
+                    'visible' => Yii::$app->user->identity->checkPermmissions('requests'),
                 ],
 
             ],
