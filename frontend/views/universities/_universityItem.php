@@ -4,7 +4,7 @@
 ?>
 
 <?php
-if($university->getUniversityLatestProgramsList(1) > 0 ){
+if($university->UniversityPrograms ){
     ?>
 
 
