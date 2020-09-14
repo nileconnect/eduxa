@@ -145,7 +145,7 @@ class UniversityProgramsSearch extends UniversityPrograms
         }
         if ($this->degree_id) {
             $query->andFilterWhere([
-                'university_programs.degree_id' => $this->major_id,
+                'university_programs.degree_id' => $this->degree_id,
             ]);
         }
 
