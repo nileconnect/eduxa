@@ -32,6 +32,11 @@ use yii\helpers\Url;
                     <input type="text" class="form-control" placeholder="<?= Yii::t('frontend','Search') ?> " name="SchoolCourseSearch[title]">
                 </div>
             </div>
+            <div class="form-group" id="searchBtnMob">
+                <button type="submit" class="button btn-block button-accent" ><?= Yii::t('frontend','Search') ?></button>
+                <a href="javascript:void(0)" class="button btn-block button-accent" onclick="showfilters()"><?= Yii::t('frontend','Filters') ?></a>
+
+            </div>
             <div class="form-group-row"  id="searchfilters">
                 <div class="form-group">
                     <?= $form->field($model, 'school_course_type_id')->widget(\kartik\widgets\Select2::classname(), [
@@ -89,12 +94,11 @@ use yii\helpers\Url;
                 <div class="form-group" id="searchBtnDesktop">
                     <button type="submit" class="button btn-block button-accent"><?= Yii::t('frontend','Search') ?></button>
                 </div>
+                <div class="form-group" id="updateSearchMob">
+                    <button type="submit" class="button btn-block button-accent"><?= Yii::t('frontend','Update Search') ?></button>
+                </div>
             </div>
-            <div class="form-group" id="searchBtnMob">
-                <button type="submit" class="button btn-block button-accent" ><?= Yii::t('frontend','Search') ?></button>
-                <a href="javascript:void(0)" class="button btn-block button-accent" onclick="showfilters()"><?= Yii::t('frontend','Filters') ?></a>
-
-            </div>
+            
         <?php ActiveForm::end(); ?>
     </div>
 </div>

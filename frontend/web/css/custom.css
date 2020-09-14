@@ -250,7 +250,14 @@
     right: 4px;
   }
 
-  
+  #searchBtnMob .button{
+    width: 49% !important;
+    display: inline-block !important;
+    margin: 0;
+  }
+  #updateSearchMob{
+      display: none;
+  }
 @media (max-width: 768px) {
     .majorsList li,
     .contList li {
@@ -270,6 +277,9 @@
         display: block;
     }
     #searchBtnMob{
+        display: block;
+    }
+    #updateSearchMob{
         display: block;
     }
 }

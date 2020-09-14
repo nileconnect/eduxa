@@ -414,6 +414,7 @@ return [
     'TOEFL' => 'توفل',
     'IELTS' => 'إيلتس',
     'your account has been deactivated.'=>'الحساب الخاص بك غير مفعل',
+    'Update Search'=>'تحديث البحث'
     
     
 ];
