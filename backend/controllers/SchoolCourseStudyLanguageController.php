@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\SchoolCourse;
 use Yii;
 use backend\models\SchoolCourseStudyLanguage;
 use backend\models\search\SchoolCourseStudyLanguageSearch;
@@ -99,9 +100,21 @@ class SchoolCourseStudyLanguageController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteWithRelated();
+        $model = $this->findModel($id);
+        $coursesCount = SchoolCourse::find()->where(['school_course_study_language_id'=>$id])->count();
 
+        if($coursesCount > 0){
+            Yii::$app->getSession()->setFlash('alert', [
+                'type' =>'danger',
+                'body' => \Yii::t('backend', 'You are not  allowed to delete '. $model->title .' because it is
+                related to school.') ,
+                'title' =>'',
+            ]);
+        }else{
+            $this->findModel($id)->deleteWithRelated();
+        }
         return $this->redirect(['index']);
+
     }
 
     

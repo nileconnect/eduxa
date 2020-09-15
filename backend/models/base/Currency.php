@@ -24,16 +24,7 @@ class Currency extends \yii\db\ActiveRecord
     use \mootensai\relation\RelationTrait;
 
 
-    /**
-    * This function helps \mootensai\relation\RelationTrait runs faster
-    * @return array relation names of this model
-    */
-    public function relationNames()
-    {
-        return [
-            ''
-        ];
-    }
+
 
     /**
      * @inheritdoc
