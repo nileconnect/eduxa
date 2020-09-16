@@ -31,12 +31,12 @@ if($saved){
     ?>
     <div class="row">
         <div class="col-sm-6">
-            <?php echo $form->field($model->getModel('profile'), 'firstname')->textInput(['placeholder'=>Yii::t('common','First Name')])
-                ->label(Yii::t('common','First Name') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($model->getModel('profile'), 'firstname')->textInput(['placeholder'=>Yii::t('common','First Name(s)')])
+                ->label(Yii::t('common','First Name(s)') ,['class'=>'label-control']); ?>
         </div>
         <div class="col-sm-6">
-            <?php echo $form->field($model->getModel('profile'), 'lastname')->textInput(['placeholder'=>Yii::t('common','Last Name')])
-                ->label(Yii::t('common','Last Name') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($model->getModel('profile'), 'lastname')->textInput(['placeholder'=>Yii::t('common','Family Name')])
+                ->label(Yii::t('common','Family Name') ,['class'=>'label-control']); ?>
         </div>
     </div>
 

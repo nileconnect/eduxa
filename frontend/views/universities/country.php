@@ -64,7 +64,7 @@
 
     <section class="section  mtlg">
         <div class="container">
-            <h1 class="title text-center"><?= Yii::t('frontend' , 'Recommended options by our advisors')?></h1>
+            <h1 class="title text-center"><?= Yii::t('frontend' , 'Recommended by Eduxa')?></h1>
 
             <div class="universities universities-column" data-slider="slick" data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplay": true, "responsive": [{"breakpoint": 768, "settings": { "slidesToShow": 1 }}, {"breakpoint": 480,"settings": {"slidesToShow": 1} }]}'>
                 <?php

@@ -3,7 +3,7 @@
 
         <div class="row mbxlg">
             <div class="col-sm-8 mbmd">
-                <h3 class="title title-sm">About Us</h3>
+                <h3 class="title title-sm">About Eduxa</h3>
                 <div class="text-large">
                     Differentiate and you stand out in a crowded marketplace. Present your uniqueness and emphasize your rare attributes in your sales copy and promotions and you’ll capture the imagination and interest of those you want to reach. In a world of copycats, it pays to be an original. It’s usually the creator of a new concept who gets the most mileage from it. Innovative entrepreneurs often become market leaders while competitors keep doing things the same old way. who gets the most mileage from it. Innovative entrepreneurs often become market leaders.
                 </div>

@@ -3,7 +3,7 @@
 
         <ul class="nav nav-pills regular border-white">
             <li class="nav-item">
-                <a class="nav-link <?php if(Yii::$app->controller->action->id == 'index') echo 'active';?>" href="/dashboard"><?php echo Yii::t('frontend','Profile Info'); ?></a>
+                <a class="nav-link <?php if(Yii::$app->controller->action->id == 'index') echo 'active';?>" href="/dashboard"><?php echo Yii::t('frontend','My Profile'); ?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php if(Yii::$app->controller->action->id == 'education') echo 'active';?> " href="/dashboard/education"><?php echo Yii::t('frontend','Education Info'); ?></a>

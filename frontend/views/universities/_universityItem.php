@@ -47,7 +47,7 @@ if($university->universityPrograms ){
                 <footer class="item-footer">
                     <div>
 
-                        <div class="item-label"><?= Yii::t('frontend','Programm Name') ?></div>
+                        <div class="item-label"><?= Yii::t('frontend','Program Name') ?></div>
                         <div><?= $item->title ?></div>
                         <div><small><?= $item->degree->title ?>: <?= $item->study_duration_no ?> <?= \backend\models\University::listPeriods()[$item->study_duration] ?></small></div>
                     </div>

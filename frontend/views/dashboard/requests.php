@@ -149,7 +149,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="mtsm">
                                                         <div>
-                                                            <span><?= Yii::t('frontend' , 'Required Level')?> : </span>
+                                                            <span><?= Yii::t('frontend' , 'Minimum Entry Level')?> : </span>
                                                             <span class="text-muted"><?=  SchoolCourse::ListLevels()[$course->required_level] ?></span>
                                                         </div>
                                                         <div>

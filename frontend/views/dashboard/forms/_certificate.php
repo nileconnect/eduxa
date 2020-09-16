@@ -36,8 +36,8 @@ if($saved){
                 ->label(Yii::t('frontend','Certificate Name') ,['class'=>'label-control']); ?>
         </div>
         <div class="col-sm-6">
-            <?php echo $form->field($model, 'year')->textInput(['placeholder'=>Yii::t('frontend','Year Of Graduation')])
-                ->label(Yii::t('frontend','Year Of Graduation') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($model, 'year')->textInput(['placeholder'=>Yii::t('frontend','Year of Graduation')])
+                ->label(Yii::t('frontend','Year of Graduation') ,['class'=>'label-control']); ?>
         </div>
 
 

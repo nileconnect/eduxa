@@ -13,7 +13,7 @@ $this->endContent() ;
 		<div class="container">
 
 			<div class="mtlg">
-				<h2 class="title title-sm"><i class="far fa-user"></i> <?php echo Yii::t('frontend','Profile Summery'); ?></h2>
+				<h2 class="title title-sm"><i class="far fa-user"></i> <?php echo Yii::t('frontend','My Personal Info.'); ?></h2>
 				
 				<div class="row bg-white shadow-sm ptlg prlg pllg pblg">
 					<div class="col-sm-6">
@@ -52,11 +52,11 @@ $this->endContent() ;
 							<span class="text-muted"><?= $profile->city->title?></span>
 						</div>
 						<div class="text-large">
-							<span><?php echo Yii::t('common','Best way of communication'); ?> : </span>
+							<span><?php echo Yii::t('common','Best way to reach me'); ?> : </span>
 							<span class="text-muted"><?= \common\models\UserProfile::ListCommunicateChannels()[$profile->communtication_channel]?></span>
 						</div>
 						<div class="text-large">
-							<span><?php echo Yii::t('common','Intersted In'); ?> : </span>
+							<span><?php echo Yii::t('common','I'm Intersted In'); ?> : </span>
 
                             <?php if($profile->interested_in_university){
                                 ?>

@@ -43,7 +43,7 @@ if($countries){
 
 <section class="section  mtlg">
     <div class="container">
-        <h1 class="title text-center"><?= Yii::t('frontend','Recommended options by our advisors') ?></h1>
+        <h1 class="title text-center"><?= Yii::t('frontend','Recommended by Eduxa') ?></h1>
 
         <div class="universities universities-row">
             <?php

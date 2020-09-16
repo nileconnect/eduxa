@@ -167,7 +167,7 @@ select option[data-default] {
 
         <div class="row">
             <div class="col-sm-6 mbxlg">
-                <h2 class="title title-sm title-black"><?= Yii::t('frontend','Program requirements') ?></h2>
+                <h2 class="title title-sm title-black"><?= Yii::t('frontend','Program Requirements') ?></h2>
                 <table class="table wide-cell text-large bg-white b-all shadow-sm">
                     <tbody>
                     <tr>
@@ -187,7 +187,7 @@ select option[data-default] {
                     if($programObj->first_submission_date_active){
                         ?>
                         <tr>
-                            <td><?= Yii::t('frontend','First Submission date') ?></td>
+                            <td><?= Yii::t('frontend','Application Start Date') ?></td>
                             <td>
                                 <div><span class="text-primary">
                                         <?php
@@ -204,7 +204,7 @@ select option[data-default] {
                     if($programObj->last_submission_date){
                         ?>
                         <tr>
-                            <td><?= Yii::t('frontend','Last date for application') ?></td>
+                            <td><?= Yii::t('frontend','Application Deadline') ?></td>
                             <td>
                                 <div><span class="text-primary">
                                         <?php
@@ -226,11 +226,11 @@ select option[data-default] {
 
 
                     <tr>
-                        <td><?= Yii::t('frontend','Study method') ?></td>
+                        <td><?= Yii::t('frontend','Study Method') ?></td>
                         <td><span class="text-primary"><?= $programObj->methodOfStudy->title?></span></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','Program format') ?></td>
+                        <td><?= Yii::t('frontend','Program Format') ?></td>
                         <td><span class="text-primary"><?= $programObj->formatOfProg->title?></span></td>
                     </tr>
                     <tr>
@@ -238,7 +238,7 @@ select option[data-default] {
                         <td><span class="text-primary"><?= $programObj->annual_cost?> <span><?= $universityObj->currency->currency_code?></span></span></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','Conditional admission') ?></td>
+                        <td><?= Yii::t('frontend','Conditional Admission') ?></td>
                         <td><span class="text-primary"><?= $programObj->conditionalAdm->title ?></span></td>
                     </tr>
                     </tbody>
@@ -249,11 +249,11 @@ select option[data-default] {
                 <h2 class="title title-sm title-black">&nbsp;</h2>
                 <table class="table bg-white b-all shadow-sm">
                     <tr>
-                        <td><?= Yii::t('frontend','Study duration') ?></td>
+                        <td><?= Yii::t('frontend','Study Duration') ?></td>
                         <td><span class="text-primary"><?= $programObj->study_duration_no ?> </span><span><?= \backend\models\University::listPeriods()[$programObj->study_duration] ?></span></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','Study language') ?></td>
+                        <td><?= Yii::t('frontend','Study Language') ?></td>
                         <td><span class="text-primary"><?= $programObj->studyLang->title ; ?></span></td>
                     </tr>
                     <tr>
@@ -265,15 +265,15 @@ select option[data-default] {
                         <td><span class="text-primary"><?=  $programObj->progIelts->title ?></span></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','Bank statment') ?></td>
+                        <td><?= Yii::t('frontend','Bank Certificate') ?></td>
                         <td><span class="text-primary"><?= $programObj->bank_statment?>  <?= $universityObj->currency->currency_code ?></span></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','High school transcript') ?></td>
+                        <td><?= Yii::t('frontend','High School Transcript') ?></td>
                         <td><span class="text-primary"><?= $programObj->high_school_transcript ?></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','Bachelor degree certificate') ?></td>
+                        <td><?= Yii::t('frontend','Bachelor Degree Certificate') ?></td>
                         <td><span class="text-primary"><?= $programObj->bachelor_degree ?></span></td>
                     </tr>
                     <tr>
@@ -301,7 +301,7 @@ if($programsInSameMajor){
 ?>
 <section class="section  mtlg">
     <div class="container">
-        <h1 class="title text-center"><?= Yii::t('frontend','Programs in the same major') ?></h1>
+        <h1 class="title text-center"><?= Yii::t('frontend','Similar Programs') ?></h1>
 
         <div class="universities universities-row">
             <?php

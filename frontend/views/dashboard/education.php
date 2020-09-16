@@ -35,7 +35,7 @@
 
                             <div class="col-sm-6">
                                 <div class="text-large">
-                                    <span><?php echo Yii::t('frontend','Year Of Graduation'); ?> :</span>
+                                    <span><?php echo Yii::t('frontend','Year of Graduation'); ?> :</span>
                                     <span class="text-muted"><?= $userCertificate->year?></span>
                                 </div>
                                 <div class="text-large">

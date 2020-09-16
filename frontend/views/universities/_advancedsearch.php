@@ -25,7 +25,7 @@ use yii\helpers\ArrayHelper;
     <div class="container">
         <div class="text-white">
             <h2><?= Yii::t('frontend','Are you interested in studying abroad?') ?></h2>
-            <h5><?= Yii::t('frontend','Find, Review and Apply to the best universities in the world') ?></h5>
+            <h5><?= Yii::t('frontend','Search & Apply to best universities in the world') ?></h5>
         </div>
         <?php $form = ActiveForm::begin([
             'action' => ['/universities/search'],

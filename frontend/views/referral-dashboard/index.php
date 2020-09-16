@@ -13,7 +13,7 @@ $this->endContent() ;
 		<div class="container">
 
 			<div class="mtlg">
-				<h2 class="title title-sm"><i class="far fa-user"></i> <?php echo Yii::t('frontend','Profile Summery'); ?></h2>
+				<h2 class="title title-sm"><i class="far fa-user"></i> <?php echo Yii::t('frontend','My Personal Info.'); ?></h2>
 				
 				<div class="row bg-white shadow-sm ptlg prlg pllg pblg">
 					<div class="col-sm-6">
@@ -36,7 +36,7 @@ $this->endContent() ;
 							<span class="text-muted"><?= $profile->mobile ?></span>
 						</div>
                         <div class="text-large">
-                            <span><?php echo Yii::t('frontend', 'No. Of Previous Referrals'); ?> : </span>
+                            <span><?php echo Yii::t('frontend', 'Number of students served before'); ?> : </span>
                             <span class="text-muted"><?=$profile->no_of_students?></span>
 
                         </div>
@@ -68,7 +68,7 @@ $this->endContent() ;
 						</div>
 
 						<div class="text-large">
-							<span><?php echo Yii::t('frontend', 'Expected No. Of Referrals To Apply For By Eduxa'); ?> : </span>
+							<span><?php echo Yii::t('frontend', 'Expected number of students to refer to Eduxa'); ?> : </span>
                             <span class="text-muted"><?=$profile->expected_no_of_students?></span>
 						</div>
 					</div>

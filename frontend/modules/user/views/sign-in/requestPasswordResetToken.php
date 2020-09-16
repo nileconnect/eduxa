@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model \frontend\modules\user\models\PasswordResetRequestForm */
 
-$this->title =  Yii::t('frontend', 'Request password reset');
+$this->title =  Yii::t('frontend', 'Reset your password');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
      <?php
      $this->beginContent('@frontend/views/layouts/_shareWidget.php');
      $this->endContent() ;
-     $this->beginContent('@frontend/views/layouts/_whyChoosUs.php');
+     $this->beginContent('@frontend/views/layouts/_whyChoosUslogin.php');
      $this->endContent() ;
      ?>
 

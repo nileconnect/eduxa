@@ -73,14 +73,14 @@ if(Yii::$app->session->hasFlash('alert')){
                                 <ul>
                                     <li><a href="/universities"><?= Yii::t('frontend', 'Universities'); ?></a></li>
                                     <li><a href="/schools"><?= Yii::t('frontend', 'Language Schools'); ?></a></li>
-                                    <li><a href="/how-we-work"><?= Yii::t('frontend', 'How We Work'); ?></a></li>
-                                    <li><a href="/about"><?= Yii::t('frontend', 'About Us'); ?></a></li>
+                                    <li><a href="/how-we-work"><?= Yii::t('frontend', 'How Eduxa works?'); ?></a></li>
+                                    <li><a href="/about"><?= Yii::t('frontend', 'About Eduxa'); ?></a></li>
                                 </ul>
                             </div>
                             <div class="col-6 mtmd">
                                 <h3><?= Yii::t('frontend', 'Resources'); ?></h3>
                                 <ul>
-                                    <li><a href="/contact"><?= Yii::t('frontend', 'Contact'); ?></a></li>
+                                    <li><a href="/contact"><?= Yii::t('frontend', 'Contact us'); ?></a></li>
                                     <li><a href="/terms"><?= Yii::t('frontend', 'Terms & Policy'); ?></a></li>
                                     <li><a href="/privacy"><?= Yii::t('frontend', 'Privacy'); ?></a></li>
                                 </ul>

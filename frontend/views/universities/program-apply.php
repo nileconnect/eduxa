@@ -82,7 +82,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     <section class="section" >
         <div class="container">
 
-            <h3 class="text-primary"><i class="far fa-user"></i> <?= Yii::t('frontend','Student Information')?></h3>
+            <h3 class="text-primary"><i class="far fa-user"></i> <?= Yii::t('frontend','Student Info')?></h3>
 
             <div class="ptxlg pbxlg plxlg prxlg bg-white shadow-sm mtmd">
                 
@@ -95,13 +95,13 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="firstName" class="label-control"><?= Yii::t('frontend','First Name')?></label>
+                            <label for="firstName" class="label-control"><?= Yii::t('frontend','First Name(s)')?></label>
                             <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write first name')?>" id="firstName" v-model="firstName" minlength="2" maxlength="15">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="lastName" class="label-control"><?= Yii::t('frontend','Last Name')?></label>
+                            <label for="lastName" class="label-control"><?= Yii::t('frontend','Family Name')?></label>
                             <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write last name')?>" id="lastName" v-model="lastName" minlength="2" maxlength="15">
                         </div>
                     </div>
@@ -211,7 +211,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
         <div class="row">
             <div class="col-sm-6 mbxlg">
-                <h2 class="title title-sm title-black"><?= Yii::t('frontend','Program requirements') ?></h2>
+                <h2 class="title title-sm title-black"><?= Yii::t('frontend','Program Requirements') ?></h2>
                 <table class="table wide-cell text-large bg-white b-all shadow-sm">
                     <tbody>
                     <tr>
@@ -231,7 +231,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     if($programObj->first_submission_date_active){
                         ?>
                         <tr>
-                            <td><?= Yii::t('frontend','First Submission date') ?></td>
+                            <td><?= Yii::t('frontend','Application Start Date') ?></td>
                             <td>
                                 <div><span class="text-primary"><?= $programObj->first_submission_date?></span></div>
                             </td>
@@ -243,7 +243,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     if($programObj->last_submission_date){
                         ?>
                         <tr>
-                            <td><?= Yii::t('frontend','Last date for application') ?></td>
+                            <td><?= Yii::t('frontend','Application Deadline') ?></td>
                             <td>
                                 <div><span class="text-primary"><?= $programObj->last_submission_date?></span></div>
                             </td>
@@ -259,11 +259,11 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
 
                     <tr>
-                        <td><?= Yii::t('frontend','Study method') ?></td>
+                        <td><?= Yii::t('frontend','Study Method') ?></td>
                         <td><span class="text-primary"><?= $programObj->methodOfStudy->title?></span></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','Program format') ?></td>
+                        <td><?= Yii::t('frontend','Program Format') ?></td>
                         <td><span class="text-primary"><?= $programObj->formatOfProg->title?></span></td>
                     </tr>
                     <tr>
@@ -271,7 +271,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         <td><span class="text-primary"><?= $programObj->annual_cost?> <span><?= $universityObj->currency->currency_code?></span></span></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','Conditional admission') ?></td>
+                        <td><?= Yii::t('frontend','Conditional Admission') ?></td>
                         <td><span class="text-primary"><?= $programObj->conditionalAdm->title ?></span></td>
                     </tr>
                     </tbody>
@@ -282,11 +282,11 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <h2 class="title title-sm title-black">.</h2>
                 <table class="table bg-white b-all shadow-sm">
                     <tr>
-                        <td><?= Yii::t('frontend','Study duration') ?></td>
+                        <td><?= Yii::t('frontend','Study Duration') ?></td>
                         <td><span class="text-primary"><?= $programObj->study_duration_no ?> </span><span><?= \backend\models\University::listPeriods()[$programObj->study_duration] ?></span></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','Study language') ?></td>
+                        <td><?= Yii::t('frontend','Study Language') ?></td>
                         <td><span class="text-primary"><?= $programObj->studyLang->title ; ?></span></td>
                     </tr>
                     <tr>
@@ -298,15 +298,15 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         <td><span class="text-primary"><?=  $programObj->progIelts->title ?></span></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','Bank statment') ?></td>
+                        <td><?= Yii::t('frontend','Bank Certificate') ?></td>
                         <td><span class="text-primary"><?= $programObj->bank_statment?>  <?= $universityObj->currency->currency_code ?></span></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','High school transcript') ?></td>
+                        <td><?= Yii::t('frontend','High School Transcript') ?></td>
                         <td><span class="text-primary"><?= $programObj->high_school_transcript ?></td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('frontend','Bachelor degree certificate') ?></td>
+                        <td><?= Yii::t('frontend','Bachelor Degree Certificate') ?></td>
                         <td><span class="text-primary"><?= $programObj->bachelor_degree ?></span></td>
                     </tr>
                     <tr>
@@ -374,8 +374,8 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
 <div class="successMsg " id="errorMsg">
     <img src="/img/success.png">
-    <h3><?= Yii::t('frontend','Your Request Submitted')   ?></h3>
-    <p><?= Yii::t('frontend','You are registered before, Please check your profile.')   ?></p>
+    <h3><?= Yii::t('frontend','Request Sent')   ?></h3>
+    <p><?= Yii::t('frontend','You request has been submitted before, please check your Eduxa profile.')   ?></p>
     <?php
                 if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
                     ?>

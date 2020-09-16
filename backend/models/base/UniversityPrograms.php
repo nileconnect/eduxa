@@ -110,8 +110,8 @@ class UniversityPrograms extends \yii\db\ActiveRecord
             'lang_of_study' => Yii::t('backend', 'Medium of instructions'),
             'total_rating' => Yii::t('backend', 'Total Rating'),
             'program_type' => Yii::t('backend', 'Program Type'),
-            'first_submission_date' => Yii::t('backend', 'First submission date'),
-            'last_submission_date' => Yii::t('backend', 'Last date for application'),
+            'first_submission_date' => Yii::t('backend', 'Application Start Date'),
+            'last_submission_date' => Yii::t('backend', 'Application Deadline'),
 
         ];
     }

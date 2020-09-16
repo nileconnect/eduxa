@@ -85,7 +85,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
     <section class="section">
         <div class="container">
 
-            <h3 class="text-primary"><i class="far fa-user"></i> <?= Yii::t('frontend' , 'Student Information')?></h3>
+            <h3 class="text-primary"><i class="far fa-user"></i> <?= Yii::t('frontend' , 'Student Info')?></h3>
 
             <div class="ptxlg pbxlg plxlg prxlg bg-white shadow-sm mtmd">
                 
@@ -98,13 +98,13 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="firstName" class="label-control"><?= Yii::t('frontend','First Name')?></label>
+                            <label for="firstName" class="label-control"><?= Yii::t('frontend','First Name(s)')?></label>
                             <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write first name')?>" id="firstName" v-model="firstName">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="lastName" class="label-control"><?= Yii::t('frontend','Last Name')?></label>
+                            <label for="lastName" class="label-control"><?= Yii::t('frontend','Family Name')?></label>
                             <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write last name')?>" id="lastName" v-model="lastName">
                         </div>
                     </div>
@@ -232,7 +232,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
                         
                         <tr>
-                            <td><?= Yii::t('frontend' , 'Required Level')?></td>
+                            <td><?= Yii::t('frontend' , 'Minimum Entry Level')?></td>
                             <td>
                                 <div class="text-primary"><?=  SchoolCourse::ListLevels()[$courseObj->required_level] ?></div>
                             </td>

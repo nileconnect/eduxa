@@ -258,6 +258,10 @@
   #updateSearchMob{
       display: none;
   }
+
+  .universities .item .item-footer .item-label{
+    text-transform: capitalize !important; 
+  }
 @media (max-width: 768px) {
     .majorsList li,
     .contList li {

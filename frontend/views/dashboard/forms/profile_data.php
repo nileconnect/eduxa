@@ -31,12 +31,12 @@ if($saved){
     ?>
     <div class="row">
         <div class="col-sm-6">
-            <?php echo $form->field($profile, 'firstname')->textInput(['placeholder'=>Yii::t('common','First Name')])
-                ->label(Yii::t('common','First Name') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($profile, 'firstname')->textInput(['placeholder'=>Yii::t('common','First Name(s)')])
+                ->label(Yii::t('common','First Name(s)') ,['class'=>'label-control']); ?>
         </div>
         <div class="col-sm-6">
-            <?php echo $form->field($profile, 'lastname')->textInput(['placeholder'=>Yii::t('common','Last Name')])
-                ->label(Yii::t('common','Last Name') ,['class'=>'label-control']); ?>
+            <?php echo $form->field($profile, 'lastname')->textInput(['placeholder'=>Yii::t('common','Family Name')])
+                ->label(Yii::t('common','Family Name') ,['class'=>'label-control']); ?>
         </div>
     </div>
 
@@ -108,11 +108,11 @@ if($saved){
     <?php
     echo $form->field($profile ,'communtication_channel')->dropDownList(\common\models\UserProfile::ListCommunicateChannels() ,
         ['prompt'=>Yii::t('common','Select')])
-        ->label(Yii::t('frontend','Best way to commuincation?') ,['class'=>'label-control']);
+        ->label(Yii::t('frontend','Best way to reach me') ,['class'=>'label-control']);
     ?>
 
     <div class="form-group">
-        <label for="" id="" class="label-control"><?= Yii::t('frontend', 'What are you interested in?'); ?> </label>
+        <label for="" id="" class="label-control"><?= Yii::t('frontend', "I'm interested in"); ?> </label>
         <div class="form-check-group">
 
             <div class="form-check">

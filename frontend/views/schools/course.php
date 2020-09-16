@@ -219,7 +219,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
             <div class="alert alert-danger" id="studentError" style="display:none">
                 <p><?= Yii::t('frontend' , 'Please, Add students information.')?><p>
             </div>
-            <h3 class="text-primary"><i class="far fa-user"></i> <?= Yii::t('frontend' , 'Student Information')?></h3>
+            <h3 class="text-primary"><i class="far fa-user"></i> <?= Yii::t('frontend' , 'Student Info')?></h3>
 
             <div class="ptxlg pbxlg plxlg prxlg bg-white shadow-sm mtmd">
                 
@@ -232,13 +232,13 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="firstName" class="label-control"><?= Yii::t('frontend','First Name')?></label>
+                            <label for="firstName" class="label-control"><?= Yii::t('frontend','First Name(s)')?></label>
                             <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write first name')?>" id="firstName" v-model="firstName" minlength="2" maxlength="15">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="lastName" class="label-control"><?= Yii::t('frontend','Last Name')?></label>
+                            <label for="lastName" class="label-control"><?= Yii::t('frontend','Family Name')?></label>
                             <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write last name')?>" id="lastName" v-model="lastName" minlength="2" maxlength="15">
                         </div>
                     </div>
@@ -354,7 +354,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <td><span class="text-primary"><?= $courseObj->min_age; ?> <?= Yii::t('frontend','Years')?></span></td>
                         </tr>
                         <tr>
-                            <td><?= Yii::t('frontend' , 'Begining of study')?></td>
+                            <td><?= Yii::t('frontend' , 'Course Start Date')?></td>
                             <td>
                                 <?php
                                 foreach ($courseObj->schoolCourseStartDates as $schoolStatrDate) {
@@ -373,7 +373,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
                         
                         <tr>
-                            <td><?= Yii::t('frontend' , 'Required Level')?></td>
+                            <td><?= Yii::t('frontend' , 'Minimum Entry Level')?></td>
                             <td>
                                 <div class="text-primary"><?=  SchoolCourse::ListLevels()[$courseObj->required_level] ?></div>
                             </td>
@@ -385,7 +385,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             </td>
                         </tr>
                         <tr>
-                            <td><?= Yii::t('frontend' , 'Max Students')?></td>
+                            <td><?= Yii::t('frontend' , 'Max Students/Class')?></td>
                             <td><span class="text-primary"><?= $courseObj->max_no_of_students_per_class; ?></span></td>
                         </tr>
                         
@@ -400,7 +400,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
                         
                         <tr>
-                            <td><?= Yii::t('frontend' , 'Average Students')?></td>
+                            <td><?= Yii::t('frontend' , 'Average Students/Class')?></td>
                             <td><span class="text-primary"><?= $courseObj->avg_no_of_students_per_class; ?></span></td>
                         </tr>
                     </tbody>
@@ -510,10 +510,10 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 <?php
                                 if($courseObj->cost_type == SchoolCourse::COST_PER_WEEK ){
                                     ?>
-                                    <label><?= Yii::t('frontend' , 'Course Duration By weeks')?></label>
+                                    <label><?= Yii::t('frontend' , 'Course Duration (weeks)')?></label>
                                     <!-- <input type="number" class="form-control" placeholder="Course Duration" @change="GetCourseDurations($event)"> -->
                                     <select class="form-control"  @change="GetCourseDurations($event)">
-                                    <option><?= Yii::t('frontend' , 'Course Duration By weeks')?></option>
+                                    <option><?= Yii::t('frontend' , 'Course Duration (weeks)')?></option>
                                     <?php
                                         for($i=1 ;$i<= 52 ; $i++){
                                             ?>
@@ -684,8 +684,8 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
 
 <div class="successMsg error" id="errorMsg">
     <img src="/img/success.png">
-    <h3><?= Yii::t('frontend','Your Request Submitted')   ?></h3>
-    <p><?= Yii::t('frontend','You are registered before, Please check your profile.')   ?></p>
+    <h3><?= Yii::t('frontend','Request Sent')   ?></h3>
+    <p><?= Yii::t('frontend','You request has been submitted before, please check your Eduxa profile.')   ?></p>
     <?php
                 if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_COMPANY) || User::IsRole(Yii::$app->user->id , User::ROLE_REFERRAL_PERSON) )  ){
                     ?>

@@ -33,7 +33,7 @@
         ?>
         <footer class="item-footer">
             <div>
-                <div class="item-label"><?= Yii::t('frontend','Programm Name') ?></div>
+                <div class="item-label"><?= Yii::t('frontend','Program Name') ?></div>
                 <div><?= $lastProg->title ?></div>
                 <!-- <div><small> Degree: <?= $lastProg->degree->title ?></small></div> -->
                 <div><small><?= $lastProg->degree->title ?>: <?= $lastProg->study_duration_no ?>

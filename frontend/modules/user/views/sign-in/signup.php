@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         $this->beginContent('@frontend/views/layouts/_shareWidget.php');
         $this->endContent() ;
-        $this->beginContent('@frontend/views/layouts/_whyChoosUs.php');
+        $this->beginContent('@frontend/views/layouts/_whyChoosUslogin.php');
         $this->endContent() ;
         ?>
     </div>
@@ -41,11 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-sm-6">
                                 <?php echo $form->field($model, 'firstname')->textInput(['placeholder'=>Yii::t('common','your first name')])
-                                ->label(Yii::t('common','First Name') ,['class'=>'label-control']); ?>
+                                ->label(Yii::t('common','First Name(s)') ,['class'=>'label-control']); ?>
                             </div>
                             <div class="col-sm-6">
                                 <?php echo $form->field($model, 'lastname')->textInput(['placeholder'=>Yii::t('common','your last name')])
-                                    ->label(Yii::t('common','Last Name') ,['class'=>'label-control']); ?>
+                                    ->label(Yii::t('common','Family Name') ,['class'=>'label-control']); ?>
                             </div>
                         </div>
 
@@ -147,17 +147,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php
                         echo $form->field($model ,'find_us_from')->dropDownList(\common\models\UserProfile::ListFindUs() ,
                             ['prompt'=>Yii::t('common','--where--')])
-                            ->label(Yii::t('frontend','How did you find us?') ,['class'=>'label-control']);
+                            ->label(Yii::t('frontend','How did you know about Eduxa?') ,['class'=>'label-control']);
                         ?>
 
                     <?php
                         echo $form->field($model ,'communtication_channel')->dropDownList(\common\models\UserProfile::ListCommunicateChannels() ,
                             ['prompt'=>Yii::t('common','--How--')])
-                            ->label(Yii::t('frontend','Best way to commuincation?') ,['class'=>'label-control']);
+                            ->label(Yii::t('frontend','Best way to reach me') ,['class'=>'label-control']);
                         ?>
 
                         <div class="form-group">
-                            <label for="" id="" class="label-control"><?= Yii::t('frontend', 'What are you interested in?'); ?> </label>
+                            <label for="" id="" class="label-control"><?= Yii::t('frontend', "I'm interested in"); ?> </label>
                             <div class="form-check-group">
 
                                 <div class="form-check" style="display:block">

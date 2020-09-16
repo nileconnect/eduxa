@@ -35,10 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <ul class="nav nav-pills" id="myTab">
                             <li class="nav-item">
-                                <a class="nav-link " id="sign-individual-tab" href="/referral-signup" role="tab" aria-controls="undergraduate" aria-selected="true"><i class="fas fa-user"></i> <?= Yii::t('frontend', 'individual referral'); ?></a>
+                                <a class="nav-link " id="sign-individual-tab" href="/referral-signup" role="tab" aria-controls="undergraduate" aria-selected="true"><i class="fas fa-user"></i> <?= Yii::t('frontend', 'Referral (Individual)'); ?></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" id="company-referral-tab" href="/referral-company" role="tab" aria-controls="graduate" aria-selected="true"><i class="fas fa-users"></i> <?= Yii::t('frontend', 'Company referral'); ?></a>
+                                <a class="nav-link active" id="company-referral-tab" href="/referral-company" role="tab" aria-controls="graduate" aria-selected="true"><i class="fas fa-users"></i> <?= Yii::t('frontend', 'Referral (Company)'); ?></a>
                             </li>
                         </ul>
 
@@ -48,12 +48,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <?php echo $form->field($modelCompany, 'firstname')->textInput(['placeholder'=>Yii::t('common','First Name')])
-                                            ->label(Yii::t('common','First Name') ,['class'=>'label-control']); ?>
+                                        <?php echo $form->field($modelCompany, 'firstname')->textInput(['placeholder'=>Yii::t('common','First Name(s)')])
+                                            ->label(Yii::t('common','First Name(s)') ,['class'=>'label-control']); ?>
                                     </div>
                                     <div class="col-sm-6">
-                                        <?php echo $form->field($modelCompany, 'lastname')->textInput(['placeholder'=>Yii::t('common','Last Name')])
-                                            ->label(Yii::t('common','Last Name') ,['class'=>'label-control']); ?>
+                                        <?php echo $form->field($modelCompany, 'lastname')->textInput(['placeholder'=>Yii::t('common','Family Name')])
+                                            ->label(Yii::t('common','Family Name') ,['class'=>'label-control']); ?>
                                     </div>
                                 </div>
 
@@ -162,13 +162,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <?php echo $form->field($modelCompany, 'no_of_students')->textInput(['placeholder'=>Yii::t('common','No. Of Previous Referrals')])
-                                            ->label(Yii::t('frontend','No. Of Previous Referrals') ,['class'=>'label-control']);
+                                        <?php echo $form->field($modelCompany, 'no_of_students')->textInput(['placeholder'=>Yii::t('common','Number of students served before')])
+                                            ->label(Yii::t('frontend','Number of students served before') ,['class'=>'label-control']);
                                         ?>
                                     </div>
                                     <div class="col-sm-6">
-                                        <?php echo $form->field($modelCompany, 'students_nationalities')->textInput(['placeholder'=>Yii::t('common','Nationality Of Referral')])
-                                            ->label(Yii::t('frontend','Nationality Of Referral') ,['class'=>'label-control']);
+                                        <?php echo $form->field($modelCompany, 'students_nationalities')->textInput(['placeholder'=>Yii::t('common','Nationality of served students')])
+                                            ->label(Yii::t('frontend','Nationality of served students') ,['class'=>'label-control']);
                                         ?>
                                     </div>
                                 </div>
@@ -176,12 +176,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php
                                 echo $form->field($modelCompany ,'find_us_from')->dropDownList(\common\models\UserProfile::ListFindUs() ,
                                     ['prompt'=>Yii::t('common','Select')])
-                                    ->label(Yii::t('common','How did you find us?') ,['class'=>'label-control']);
+                                    ->label(Yii::t('common','How did you know about Eduxa?') ,['class'=>'label-control']);
                                 ?>
 
 
 
-                                <?php echo $form->field($modelCompany, 'expected_no_of_students')->textInput(['placeholder'=>Yii::t('common', 'Expected No. Of Referrals To Apply For By Eduxa')])
+                                <?php echo $form->field($modelCompany, 'expected_no_of_students')->textInput(['placeholder'=>Yii::t('common', 'Expected number of students to refer to Eduxa')])
                                     ->label(Yii::t('frontend','Expected No. Of Students To Apply For By Eduxa') ,['class'=>'label-control']);
                                 ?>
 

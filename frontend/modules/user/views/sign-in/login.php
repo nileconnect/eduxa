@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
      <?php
      $this->beginContent('@frontend/views/layouts/_shareWidget.php');
      $this->endContent() ;
-     $this->beginContent('@frontend/views/layouts/_whyChoosUs.php');
+     $this->beginContent('@frontend/views/layouts/_whyChoosUslogin.php');
      $this->endContent() ;
      ?>
 

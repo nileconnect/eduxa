@@ -12,7 +12,7 @@
                 <a class="nav-link" href="/schools"><?= Yii::t('frontend','Language Schools') ?></a>
             </li>
             <li class="nav-item <?php if(Yii::$app->controller->id == 'pages' && Yii::$app->controller->action->id == 'about' ) echo 'active';?> ">
-                <a class="nav-link" href="/about"><?= Yii::t('frontend','About Us') ?></a>
+                <a class="nav-link" href="/about"><?= Yii::t('frontend','About Eduxa') ?></a>
             </li>
 
           <?php

@@ -16,7 +16,7 @@ use backend\models\SchoolCourse;
     <div class="container">
         <div class="text-white">
             <h2><?= Yii::t('frontend','Are you interested in studying abroad?') ?></h2>
-            <h5><?= Yii::t('frontend','Find, Review and Apply to the best schools in the world') ?></h5>
+            <h5><?= Yii::t('frontend','Search & Apply to best schools in the world') ?></h5>
         </div>
         <?php $form = ActiveForm::begin([
             'action' => ['/schools/search'],
@@ -49,7 +49,7 @@ use backend\models\SchoolCourse;
             <div class="form-group">
                 <?= $form->field($model, 'required_level')->widget(\kartik\widgets\Select2::classname(), [
                     'data' => SchoolCourse::ListLevels(),
-                    'options' => ['placeholder' => Yii::t('frontend', 'Required Level')],
+                    'options' => ['placeholder' => Yii::t('frontend', 'Minimum Entry Level')],
                     'pluginOptions' => [
                         'allowClear' => true,
                         'class'=>'select-wrapper'
