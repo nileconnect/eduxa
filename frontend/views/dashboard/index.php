@@ -56,7 +56,7 @@ $this->endContent() ;
 							<span class="text-muted"><?= \common\models\UserProfile::ListCommunicateChannels()[$profile->communtication_channel]?></span>
 						</div>
 						<div class="text-large">
-							<span><?php echo Yii::t('common','I'm Intersted In'); ?> : </span>
+							<span><?php echo Yii::t('common',"I'm Intersted In"); ?> : </span>
 
                             <?php if($profile->interested_in_university){
                                 ?>
