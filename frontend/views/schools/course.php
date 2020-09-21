@@ -353,24 +353,23 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                             <td><?= Yii::t('frontend' , 'Minimum age')?></td>
                             <td><span class="text-primary"><?= $courseObj->min_age; ?> <?= Yii::t('frontend','Years')?></span></td>
                         </tr>
-                        <tr>
-                            <td><?= Yii::t('frontend' , 'Course Start Date')?></td>
-                            <td>
-                                <?php
-                                foreach ($courseObj->schoolCourseStartDates as $schoolStatrDate) {
-                                    if(Yii::$app->language == 'ar') {
-                                        $date = \common\helpers\TimeHelper::arabicDate($schoolStatrDate->course_date);
-                                    }else{
-                                        $date = date( "j F , Y" , strtotime($schoolStatrDate->course_date));
-                                    }
-                                    ?>
-                                    <span class="text-primary"><?= $date; ?></span><br/>
-                                    <?
-                                }
-                                ?>
 
-                            </td>
-                        </tr>
+                        <?php
+
+                        if($courseObj->begining_of_study){
+                            ?>
+                            <tr>
+                                <td><?= Yii::t('frontend' , 'Beginning of Study')?></td>
+                                <td>
+                                    <span class="text-primary"><?= $courseObj->begining_of_study ; ?></span><br/>
+
+
+                                </td>
+                            </tr>
+                            <?
+                        }
+                        ?>
+
                         
                         <tr>
                             <td><?= Yii::t('frontend' , 'Minimum Entry Level')?></td>
