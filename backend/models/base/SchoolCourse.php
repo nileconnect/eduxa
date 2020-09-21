@@ -88,6 +88,7 @@ class SchoolCourse extends \yii\db\ActiveRecord
             'school_course_study_language_id'=> Yii::t('backend', 'Study Language'),
             'cost_type'=> Yii::t('backend', 'Cost Type'),
             'begining_of_study'=> Yii::t('backend', 'Beginning of Study'),
+            'health_insurance'=> Yii::t('backend', 'Health Insurance'),
         ];
     }
     

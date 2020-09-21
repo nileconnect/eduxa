@@ -475,7 +475,7 @@ return [
     'Contury is invalid'=>'ادخل بلد صحيحة',
     'City is invalid'=>' ادخل مدينة صحيحة',
     'State is invalid'=>' ادخل ولاية صحيحة',
-    ''=>'',
+    'Health Insurance'=>'تأمين صحي',
     ''=>'',
     ''=>'',
     ''=>'',

@@ -77,6 +77,7 @@ class SchoolCourse extends BaseSchoolCourse
             [['title','title_ar'], 'string', 'max' => 50, 'min'=>2],
             [['lesson_duration'], 'string', 'max' => 50, 'min'=>1],
             [['information','requirments','information_ar','requirments_ar'], 'string', 'max' => 5000, 'min'=>1],
+            [['health_insurance'], 'number', 'max' => 5000, 'min'=>0],
             
             ['min_age', 'compare', 'compareValue' => 999, 'operator' => '<=', 'type' => 'number'],
             [['min_age','study_books_fees','registeration_fees','lessons_per_week','max_no_of_students_per_class',
@@ -86,7 +87,7 @@ class SchoolCourse extends BaseSchoolCourse
             ['status','number'],
             ['required_level','in', 'range' => [self::COURSE_TYPE_BEGINNER,self::COURSE_TYPE_INTERMEDIATE,self::COURSE_TYPE_PROFESSIONAL],'on'=>'import'],
             ['time_of_course','in', 'range' => [self::COURSE_TIME_MORNING,self::COURSE_TIME_EVENING],'on'=>'import'],
-            [['information','requirments','study_books_fees','title_ar','information_ar','requirments_ar','begining_of_study'],'safe']
+            [['information','requirments','study_books_fees','title_ar','information_ar','requirments_ar','begining_of_study','health_insurance'],'safe']
         ];
     }
 

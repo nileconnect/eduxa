@@ -89,14 +89,13 @@ echo newerton\fancybox3\FancyBox::widget([
         'status:boolean',
        // 'required_attendance_duraion',
         [
-            'label'=>'Courses',
+            'label'=> Yii::t('common','Course Dates'),
             'format'=>'raw',
             'value' => function ($model) {
                 return '<a  class="btn btn-success"
                 data-fancybox="" data-type="iframe"   data-options="{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "900px" , "height" : "400px" }}}"
                    href="/import/school-course-dates?school_id='.$model->id.'"
                 >'. Yii::t('common','Course Dates') .'</a>';
-
             }
         ],
         [

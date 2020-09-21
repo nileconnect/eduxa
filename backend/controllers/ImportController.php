@@ -1214,6 +1214,12 @@ class ImportController extends BackendController
                             return strval($row[19]) == "Yes" ? 2 : 1;
                         },
                     ],
+                    [
+                        'attribute' => 'health_insurance',
+                        'value' => function ($row) {
+                            return strval($row[20]) ?: 0;
+                        },
+                    ],
                 ],
 
             ]);

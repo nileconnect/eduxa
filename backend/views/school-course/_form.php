@@ -167,10 +167,19 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
               <?= $form->field($model, 'discount')->textInput(['placeholder' => 'Discount']) ?>
             </div>
         </div>
+
+    
+
     </div>
 
 
     <div class="row">
+
+        <div class="col-md-6 col-sm-12">
+            <div class="well" style="height: 150px;">
+              <?= $form->field($model, 'health_insurance')->textInput(['placeholder' => Yii::t('backend','Health Insurance')]) ?>
+            </div>
+        </div>
         <div class="col-md-6 col-sm-12">
             <?= $form->field($model, 'lessons_per_week')->textInput(['placeholder' => 'Lessons Per Week']) ?>
         </div>
