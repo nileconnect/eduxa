@@ -73,7 +73,7 @@ class SchoolCourse extends BaseSchoolCourse
             [['school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'min_age', 'created_by',
                 'updated_by','pricing_method','school_course_type_id','school_course_study_language_id','cost_type'],
                 'integer'],
-            [['information', 'requirments','slug'], 'string'],
+            [['information', 'requirments','slug','begining_of_study'], 'string'],
             [['title','title_ar'], 'string', 'max' => 50, 'min'=>2],
             [['lesson_duration'], 'string', 'max' => 50, 'min'=>1],
             [['information','requirments','information_ar','requirments_ar'], 'string', 'max' => 5000, 'min'=>1],
@@ -86,7 +86,7 @@ class SchoolCourse extends BaseSchoolCourse
             ['status','number'],
             ['required_level','in', 'range' => [self::COURSE_TYPE_BEGINNER,self::COURSE_TYPE_INTERMEDIATE,self::COURSE_TYPE_PROFESSIONAL],'on'=>'import'],
             ['time_of_course','in', 'range' => [self::COURSE_TIME_MORNING,self::COURSE_TIME_EVENING],'on'=>'import'],
-            [['information','requirments','study_books_fees','title_ar','information_ar','requirments_ar'],'safe']
+            [['information','requirments','study_books_fees','title_ar','information_ar','requirments_ar','begining_of_study'],'safe']
         ];
     }
 

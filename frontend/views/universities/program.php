@@ -264,10 +264,14 @@ select option[data-default] {
                         <td><?= Yii::t('frontend','IELTS') ?></td>
                         <td><span class="text-primary"><?=  $programObj->progIelts->title ?></span></td>
                     </tr>
+                   <?php
+                   if($programObj->bank_statment_active){
+                   ?>
                     <tr>
                         <td><?= Yii::t('frontend','Bank Certificate') ?></td>
                         <td><span class="text-primary"><?= $programObj->bank_statment?>  <?= $universityObj->currency->currency_code ?></span></td>
                     </tr>
+                       <?  } ?>
                     <tr>
                         <td><?= Yii::t('frontend','High School Transcript') ?></td>
                         <td><span class="text-primary"><?= $programObj->high_school_transcript ?></td>

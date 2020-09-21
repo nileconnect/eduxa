@@ -68,7 +68,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             <?= $form->field($model, 'status')->dropDownList(\backend\models\University::LisStatusList(),[ 'prompt' => 'Select ..'])?>
         </div>
         
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-4 col-sm-12">
     
             <?= $form->field($model, 'school_course_type_id')->widget(\kartik\widgets\Select2::classname(), [
                 'data' =>
@@ -81,7 +81,7 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
             ]); ?>
         </div>
         
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-4 col-sm-12">
     
             <?= $form->field($model, 'school_course_study_language_id')->widget(\kartik\widgets\Select2::classname(), [
                 'data' =>
@@ -92,6 +92,10 @@ use \common\helpers\multiLang\MyMultiLanguageActiveField;
                     'allowClear' => true
                 ],
             ]); ?>
+        </div>
+        <div class="col-md-4 col-sm-12">
+
+            <?= $form->field($model, 'begining_of_study')->textInput(); ?>
         </div>
     </div>
 

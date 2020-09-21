@@ -40,7 +40,7 @@ class UniversityPrograms extends BaseUniversityPrograms
             [[ 'study_start_date','attendance_type',
                  'certificate', 'created_at', 'updated_at'], 'string', 'max' => 255],
             [['program_type','last_submission_date','first_submission_date','lang_of_study','university_id','title_ar','high_school_transcript_ar'
-            ,'bachelor_degree_ar','note1_ar','note2_ar','dates','medium_of_study'], 'safe'],
+            ,'bachelor_degree_ar','note1_ar','note2_ar','dates','medium_of_study','bank_statment_active'], 'safe'],
             ['last_submission_date','safe','on'=>'import'],
             [['first_submission_date','last_submission_date'], 'date', 'format' => 'php:Y-m-d'],
             ['first_submission_date','compare', 'compareValue' => date('Y-m-d'), 'operator' => '>=', 
