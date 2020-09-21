@@ -43,7 +43,7 @@ return [
     '' => '',
     'Location on Map' => 'المكان على الخريطة',
     'Videos' => 'الفيديوهات',
-    'Photoes' => 'الصور',
+    'Photos' => 'الصور',
     'Edit' => 'تعديل',
     "I'm Intersted In" => 'أنا مهتم بـ',
     'Best way to reach me' => 'أفضل طريقة للتواصل معي',

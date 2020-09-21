@@ -127,7 +127,7 @@ select option[data-default] {
                     </div>
                     <ul id="myTab" role="tablist" class="nav nav-pills">
                         <li class="nav-item">
-                            <a id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true" class="nav-link active"><?= Yii::t('frontend' , 'Images')?></a>
+                            <a id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true" class="nav-link active"><?= Yii::t('frontend' , 'Photos')?></a>
                         </li> 
                         <li class="nav-item">
                             <a id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false" class="nav-link"><?= Yii::t('frontend' , 'Videos')?></a>

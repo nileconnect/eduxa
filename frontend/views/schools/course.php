@@ -141,7 +141,7 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                     </div>
                     <ul id="myTab" role="tablist" class="nav nav-pills">
                         <li class="nav-item">
-                            <a id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true" class="nav-link active"><?= Yii::t('frontend' , 'Images')?></a>
+                            <a id="images-tab" data-toggle="tab" href="#tabImages" role="tab" aria-controls="images" aria-selected="true" class="nav-link active"><?= Yii::t('frontend' , 'Photos')?></a>
                         </li> 
                         <li class="nav-item">
                             <a id="videos-tab" data-toggle="tab" href="#tabVideos" role="tab" aria-controls="videos" aria-selected="false" class="nav-link"><?= Yii::t('frontend' , 'Videos')?></a>
@@ -238,7 +238,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="lastName" class="label-control"><?= Yii::t('frontend','Family Name')?></label>
+                            <label for="lastName" class="label-control"><?= Yii::t('common','Family Name')?></label>
                             <input type="text" class="form-control" name="" placeholder="<?= Yii::t('frontend','write last name')?>" id="lastName" v-model="lastName" minlength="2" maxlength="15">
                         </div>
                     </div>
