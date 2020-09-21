@@ -2,32 +2,33 @@
 
 namespace backend\controllers;
 
-use backend\helpers\FileUploadHelper;
-use backend\models\Cities;
-use backend\models\Country;
-use backend\models\Currency;
-use backend\models\SchoolCourse;
-use backend\models\SchoolCourseStudyLanguage;
-use backend\models\SchoolCourseType;
-use backend\models\SchoolNextTo;
-use backend\models\Schools;
-use backend\models\State;
-use backend\models\University;
-use backend\models\UniversityLangOfStudy;
-use backend\models\UniversityNextTo;
-use backend\models\UniversityProgramDegree;
-use backend\models\UniversityProgrameConditionalAdmission;
-use backend\models\UniversityProgrameFormat;
-use backend\models\UniversityProgrameIlets;
-use backend\models\UniversityProgrameMethodOfStudy;
-use backend\models\UniversityProgramField;
-use backend\models\UniversityProgramMajors;
-use backend\models\UniversityPrograms;
-use backend\models\UniversityProgStartdate;
-use lucasguo\import\components\Importer;
 use Yii;
 use yii\web\Controller;
+use backend\models\State;
 use yii\web\UploadedFile;
+use backend\models\Cities;
+use backend\models\Country;
+use backend\models\Schools;
+use backend\models\Currency;
+use backend\models\University;
+use backend\models\SchoolCourse;
+use backend\models\SchoolNextTo;
+use backend\models\SchoolCourseType;
+use backend\models\UniversityNextTo;
+use backend\helpers\FileUploadHelper;
+use backend\models\UniversityPrograms;
+use lucasguo\import\components\Importer;
+use backend\models\SchoolCourseStartDate;
+use backend\models\UniversityLangOfStudy;
+use backend\models\UniversityProgramField;
+use backend\models\UniversityProgramDegree;
+use backend\models\UniversityProgrameIlets;
+use backend\models\UniversityProgramMajors;
+use backend\models\UniversityProgStartdate;
+use backend\models\UniversityProgrameFormat;
+use backend\models\SchoolCourseStudyLanguage;
+use backend\models\UniversityProgrameMethodOfStudy;
+use backend\models\UniversityProgrameConditionalAdmission;
 
 /**
  * CitiesController implements the CRUD actions for Cities model.
@@ -784,6 +785,67 @@ class ImportController extends BackendController
         }
         $startData->save(false);
         // return var_dump($dates,$startData,$startData->save(false),$startData->errors);
+    }
+
+    public function actionSchoolCourseDates($school_id)
+    {
+        $errors = '';
+        $saved = false;
+        $model = new FileUploadHelper();
+        if ($model->load(Yii::$app->request->post())) {
+            $uploadFile = UploadedFile::getInstance($model, 'file');
+
+            $connection = \Yii::$app->db;
+            $transaction = $connection->beginTransaction();
+
+            $importer = new \Gevman\Yii2Excel\Importer([
+                'filePath' => $uploadFile->tempName,
+                'activeRecord' => SchoolCourseStartDate::class,
+                // 'scenario' => SchoolCourseStartDate::SCENARIO_IMPORT,
+                'skipFirstRow' => true,
+                'fields' => [
+                    [
+                        'attribute'=>'school_course_id',
+                        'value' => function ($row) use($school_id) {
+                            return $school_id;
+                        },
+                    ],
+                    [
+                        'attribute' => 'course_date',
+                        'value' => function ($row) {
+                            return strval($row[0]);
+                        },
+                    ],
+                ],
+
+            ]);
+
+            if (!$importer->validate()) {
+                $transaction->rollback();
+            } else {
+                if (!$importer->save()) {
+                    $transaction->rollback();
+                    Yii::$app->getSession()->setFlash('alert', [
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'please check the attached file for errors '),
+                        'title' => '',
+                    ]);
+                } else {
+                    $transaction->commit();
+                    $saved = true;
+                    Yii::$app->getSession()->setFlash('alert', [
+                        'type' => 'success',
+                        'body' => \Yii::t('hr', 'Data has been imported successfully, count imported ( ' . count($importer->getModels()) . ' )'),
+                        'title' => '',
+                    ]);
+                }
+            }
+        }
+        return $this->render('form', ['model' => $model,
+            'importer' => $importer,
+            'saved' => $saved,
+            'filename' => 'SchoolCourseDates.xlsx',
+        ]);
     }
 
     public function actionSchools()

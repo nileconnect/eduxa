@@ -196,4 +196,5 @@ return [
     'All Majors' => 'جميع التخصصات',
     'All Course Types' => 'جميع انواع الكورسات',
     'for better view please upload images not smaller than 600px * 600px '=>'لعرض أفضل ، يرجى تحميل الصور التي لا تقل عن 600 بكسل * 600 بكسل    ',
+    'Course Dates'=>'تواريخ الكورس',
 ];
