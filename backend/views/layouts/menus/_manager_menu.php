@@ -253,9 +253,9 @@ echo Menu::widget([
         ],
 
         [
-            'label' => Yii::t('backend', 'Requests'),
+            'label' => Yii::$app->user->identity->checkPermmissions('requests') ? Yii::t('backend', 'Requests') : Yii::t('backend', 'Reports') ,
             'options' => ['class' => 'header'],
-            'visible' => Yii::$app->user->identity->checkPermmissions('requests') ,
+            'visible' => Yii::$app->user->identity->checkPermmissions('requests') || Yii::$app->user->identity->checkPermmissions('reports'),
         ],
 
         [
