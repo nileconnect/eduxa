@@ -11,6 +11,7 @@ var app = new Vue({
             SelectedAirport: {},
             CourseDurations: "",
             SelectedHealth: "",
+            calcHealthIns:'',
             lang: $("#courcesApp").attr("data-lang"),
             SchoolID: $("#courcesApp").attr("data-SchoolId"),
             CourseID: $("#courcesApp").attr("data-CourseID"),
@@ -175,14 +176,22 @@ var app = new Vue({
                     this.selectedCourseDuration = ""
                 }
             });
+
+            if(this.SelectedHealth){
+               
+                this.calcHealthIns = this.SelectedHealth*this.selectedCourseDuration
+            }
         },
         //Get Health Insurance
         GetHealth(event) {
             if (event.srcElement.checked) {
                 this.SelectedHealth = event.target.value
                 this.selectedHealthIns = true
+                this.calcHealthIns = this.SelectedHealth*this.selectedCourseDuration
+
             } else {
                 this.SelectedHealth = ""
+                this.calcHealthIns=""
             }
 
         },
@@ -454,7 +463,7 @@ var app = new Vue({
             }
             // +this.regFees + +this.bookFees + +this.SelectedHealth + +this.CourseDurations + +parseInt(this.accomodtionFees) + +airportcost
 
-            return Number(this.regFees) + Number(this.bookFees) + Number(this.SelectedHealth) + Number(this.CourseDurations) + Number(this.accomodtionFees) + airportcost
+            return Number(this.regFees) + Number(this.bookFees) + Number(this.calcHealthIns) + Number(this.CourseDurations) + Number(this.accomodtionFees) + airportcost
                 //
 
 

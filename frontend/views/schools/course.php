@@ -576,7 +576,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                                 </div>
                                 
                             </td>
-                            <td><span class="text-primary" v-if="SelectedHealth">{{SelectedHealth}} <?= $schoolObj->currency->currency_code?></span></td>
+                            <td><span class="text-primary" v-if="calcHealthIns">{{calcHealthIns}} <?= $schoolObj->currency->currency_code?></span></td>
                         </tr>
                         <? } ?>
 

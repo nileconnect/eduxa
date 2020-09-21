@@ -91,16 +91,19 @@ $this->title = 'Requests';
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <div class="col-sm-12">
                                                 <?php
                                                 if($request->status == Requests::STATUS_PENDING){
                                                     ?>
-                                                    <div class="col-sm-12">
+                                                    
                                                         <a href="/referral-dashboard/cancel-request/<?= $program->slug ?>" class="button button-wide button-primary pull-right" ><?= Yii::t('frontend', 'Cancel'); ?></a>
-                                                    </div>
+                                                    
                                                     <?
                                                 }
                                                 ?>
+                                                        <a href="" class="button button-wide button-default pull-right" style="    margin: 0 10px;" ><?= Yii::t('common', 'Request Notes'); ?></a>
+
+                                                </div>
 
                                             </div>
                                         </div>
@@ -169,16 +172,20 @@ $this->title = 'Requests';
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php
-                                                if($request->status == Requests::STATUS_PENDING){
+                                                <div class="col-sm-12">
+                                                    <?php
+                                                    if($request->status == Requests::STATUS_PENDING){
+                                                        ?>
+                                                        
+                                                            <a href="/dashboard/cancel-course-request/<?= $course->slug ?>" class="button button-wide button-primary pull-right" ><?= Yii::t('frontend', 'Cancel'); ?></a>
+                                                        
+                                                        <?
+                                                    }
                                                     ?>
-                                                    <div class="col-sm-12">
-                                                        <a href="/dashboard/cancel-course-request/<?= $course->slug ?>" class="button button-wide button-primary pull-right" ><?= Yii::t('frontend', 'Cancel'); ?></a>
-                                                    </div>
-                                                    <?
-                                                }
-                                                ?>
 
+                                                    <a href="" class="button button-wide button-default pull-right" style="    margin: 0 10px;" ><?= Yii::t('common', 'Request Notes'); ?></a>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </header>

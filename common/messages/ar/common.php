@@ -26,7 +26,7 @@ return [
     '' => '',
     '' => '',
     '' => '',
-    '' => '',
+    'Request Notes' => 'ملاحظات الطلب',
     'Your password doesn’t match the above text' => 'كلمه المرورغير متطابقه',
     'Select State..' => 'اختر العاصمة',
     'Select City..' => 'اختر المدينة',
