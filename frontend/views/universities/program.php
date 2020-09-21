@@ -42,7 +42,7 @@ select option[data-default] {
         <div class="row">
             <div class="col-sm-5">
 
-            <div class="topTabs">
+                <div class="topTabs">
                    
                     <div id="myTabContent" class="tab-content">
                         <div id="tabImages" role="tabpanel" aria-labelledby="images-tab" class="tab-pane fade active show">
@@ -322,3 +322,21 @@ if($programsInSameMajor){
     </div>
 </section>
 <?php } ?>
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div>
+                    <h2 class="title title-sm title-black"><?php echo Yii::t('common','Location on Map'); ?></h2>
+                    <div>
+                        <div class="map-wrapper">
+                            <iframe src="https://maps.google.com/maps?q=<?= $universityObj->lat?>,<?= $universityObj->lng?>&hl=es;z=14&amp;output=embed"
+                                    width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
