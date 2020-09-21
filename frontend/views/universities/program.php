@@ -58,7 +58,7 @@ select option[data-default] {
                                     foreach ($universityObj->universityPhotos as $universityPhoto) {
                                         ?>
                                         <div class="carousel-item <?=$firstslid?>">
-                                            <img class="d-block w-100" src="<?= $universityPhoto->base_url.$universityPhoto->path?>" alt="<?= $universityObj->title ?>">
+                                            <img class="d-block w-100" width="445" height="300" src="<?= $universityPhoto->base_url.$universityPhoto->path?>" alt="<?= $universityObj->title ?>">
                                         </div>
                                         <?
                                         $firstslid='';

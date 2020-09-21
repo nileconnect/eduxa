@@ -72,7 +72,7 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                                     foreach ($schoolObj->schoolPhotos as $schoolPhoto) {
                                         ?>
                                         <div class="carousel-item <?=$firstslid?>">
-                                            <img class="d-block w-100" src="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" alt="<?= $schoolObj->title ?>">
+                                            <img class="d-block w-100" width="445" height="300" src="<?= $schoolPhoto->base_url.$schoolPhoto->path?>" alt="<?= $schoolObj->title ?>">
                                         </div>
                                         <?
                                         $firstslid='';
