@@ -621,69 +621,76 @@ class ImportController extends BackendController
                         },
                     ],
                     [
-                        'attribute' => 'annual_cost',
+                        'attribute' => 'bank_statment_active',
                         'value' => function ($row) {
-                            return strval($row[17]);
+                            return strtolower(strval($row[17])) == "yes" ? 1 : 0;
                         },
                     ],
+
                     [
-                        'attribute' => 'toefl',
+                        'attribute' => 'annual_cost',
                         'value' => function ($row) {
                             return strval($row[18]);
                         },
                     ],
                     [
-                        'attribute' => 'high_school_transcript',
+                        'attribute' => 'toefl',
                         'value' => function ($row) {
                             return strval($row[19]);
                         },
                     ],
                     [
-                        'attribute' => 'high_school_transcript_ar',
+                        'attribute' => 'high_school_transcript',
                         'value' => function ($row) {
                             return strval($row[20]);
                         },
                     ],
                     [
-                        'attribute' => 'bachelor_degree',
+                        'attribute' => 'high_school_transcript_ar',
                         'value' => function ($row) {
                             return strval($row[21]);
                         },
                     ],
                     [
-                        'attribute' => 'bachelor_degree_ar',
+                        'attribute' => 'bachelor_degree',
                         'value' => function ($row) {
                             return strval($row[22]);
                         },
                     ],
                     [
-                        'attribute' => 'note1',
+                        'attribute' => 'bachelor_degree_ar',
                         'value' => function ($row) {
                             return strval($row[23]);
                         },
                     ],
                     [
-                        'attribute' => 'note1_ar',
+                        'attribute' => 'note1',
                         'value' => function ($row) {
                             return strval($row[24]);
                         },
                     ],
                     [
-                        'attribute' => 'note2',
+                        'attribute' => 'note1_ar',
                         'value' => function ($row) {
                             return strval($row[25]);
                         },
                     ],
                     [
-                        'attribute' => 'note2_ar',
+                        'attribute' => 'note2',
                         'value' => function ($row) {
                             return strval($row[26]);
                         },
                     ],
                     [
-                        'attribute' => 'dates',
+                        'attribute' => 'note2_ar',
                         'value' => function ($row) {
                             return strval($row[27]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'dates',
+                        'value' => function ($row) {
+                            return strval($row[28]);
                         },
                     ],
 

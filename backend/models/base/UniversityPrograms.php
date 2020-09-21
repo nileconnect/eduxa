@@ -102,6 +102,7 @@ class UniversityPrograms extends \yii\db\ActiveRecord
             'toefl' => Yii::t('backend', 'TOEFL (IBT)'),
             'ielts' => Yii::t('backend', 'Ielts'),
             'bank_statment' => Yii::t('backend', 'Bank Statment'),
+            'bank_statment_active' => Yii::t('backend', 'Active'),
             'high_school_transcript' => Yii::t('backend', 'High School Transcript'),
             'bachelor_degree' => Yii::t('backend', 'Bachelor Degree Certificate'),
             'certificate' => Yii::t('backend', 'Certificate'),

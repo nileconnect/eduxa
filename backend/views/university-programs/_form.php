@@ -280,30 +280,47 @@ use common\helpers\multiLang\MyMultiLanguageActiveField;
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-sm-12">
+
+
+        <div class="col-md-6 col-sm-12 ">
             <div class="well">
-            <?php
-            echo $form->field($model, 'bank_statment')->widget(\kartik\number\NumberControl::classname(), [
-                'maskedInputOptions' => [
-                   // 'prefix' => $model->university->currency->currency_code,
-                    'suffix' => ' '. $model->university->currency->currency_code,
-                    'allowMinus' => false
-                ],
-                'options' =>  [
-                    'type' => 'text',
-                    'label'=>'<label>Saved Value: </label>',
-                    'class' => 'kv-saved',
-                    'readonly' => true,
-                    'tabindex' => 1000
-                ],
-                'displayOptions' => ['class' => 'form-control kv-monospace'],
-                'saveInputContainer' => ['class' => 'kv-saved-cont']
-            ]);
 
-            ?>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <?php
+                        echo $form->field($model, 'bank_statment')->widget(\kartik\number\NumberControl::classname(), [
+                            'maskedInputOptions' => [
+                                // 'prefix' => $model->university->currency->currency_code,
+                                'suffix' => ' '. $model->university->currency->currency_code,
+                                'allowMinus' => false
+                            ],
+                            'options' =>  [
+                                'type' => 'text',
+                                'label'=>'<label>Saved Value: </label>',
+                                'class' => 'kv-saved',
+                                'readonly' => true,
+                                'tabindex' => 1000
+                            ],
+                            'displayOptions' => ['class' => 'form-control kv-monospace'],
+                            'saveInputContainer' => ['class' => 'kv-saved-cont']
+                        ]);
+
+                        ?>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <?php
+                        echo $form->field($model, 'bank_statment_active')->checkbox(['label'=>'Active']);
+
+                        ?>
+                    </div>
+                </div>
+
+
             </div>
-
         </div>
+
+
+
 
         <div class="col-md-6 col-sm-12">
             <div class="well">
