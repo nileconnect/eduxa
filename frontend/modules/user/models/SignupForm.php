@@ -2,6 +2,8 @@
 
 namespace frontend\modules\user\models;
 
+use borales\extensions\phoneInput\PhoneInputBehavior;
+use borales\extensions\phoneInput\PhoneInputValidator;
 use Yii;
 use yii\base\Model;
 use cheatsheet\Time;
@@ -45,7 +47,8 @@ class SignupForm extends Model
     public $communtication_channel;
     public $interested_in_schools;
     public $interested_in_university;
-
+    public $country_code;
+    public $phone;
     /**
      * @inheritdoc
      */
@@ -94,12 +97,15 @@ class SignupForm extends Model
                 'message'=>\Yii::t('common','Your password doesn’t match the above text')],
 
 
-            ['mobile','number'],
             [['interested_in_university','interested_in_schools'],'integer'],
             [
                 'interested_in_university',
                 'checkChoseInterested',
             ],
+            [['mobile'], 'string'],
+            [['mobile'], PhoneInputValidator::className()],
+            ['country_code','safe']
+
         ];
     }
 
@@ -109,6 +115,17 @@ class SignupForm extends Model
             or Language School'));
         }
     }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => PhoneInputBehavior::className(),
+                'countryCodeAttribute' => 'country_code',
+            ],
+        ];
+    }
+
 
     /**
      * @return array
@@ -180,7 +197,6 @@ class SignupForm extends Model
                     'subject' => Yii::t('frontend', 'Activation email'),
                     'view' => 'activation',
                     'to' => $this->email,
-                    // 'to' => 'm.3laa.95@gmail.com',
                     'params' => [
                         'url' => Url::to(['/user/sign-in/activation', 'token' => $token->token], true)
                     ]
