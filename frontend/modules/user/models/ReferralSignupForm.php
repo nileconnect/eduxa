@@ -183,22 +183,22 @@ class ReferralSignupForm extends Model
                     UserToken::TYPE_ACTIVATION,
                     Time::SECONDS_IN_A_DAY
                 );
-//                Yii::$app->commandBus->handle(new SendEmailCommand([
-//                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
-//                    'view' => 'createAccountWithNeedApproval',
-//                    'to' => $this->email,
-//                    'params' => [
-//                        'name' => $this->firstname,
-//                    ],
-//                ]));
-//                Yii::$app->commandBus->handle(new SendEmailCommand([
-//                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
-//                    'view' => 'newUserCreated',
-//                    'to' => \Yii::$app->params['adminEmail'],
-//                    'params' => [
-//                        'name' => $this->firstname,
-//                    ],
-//                ]));
+                Yii::$app->commandBus->handle(new SendEmailCommand([
+                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
+                    'view' => 'createAccountWithNeedApproval',
+                    'to' => $this->email,
+                    'params' => [
+                        'name' => $this->firstname,
+                    ],
+                ]));
+                Yii::$app->commandBus->handle(new SendEmailCommand([
+                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
+                    'view' => 'newUserCreated',
+                    'to' => \Yii::$app->params['adminEmail'],
+                    'params' => [
+                        'name' => $this->firstname,
+                    ],
+                ]));
             }
             return $user;
         }
