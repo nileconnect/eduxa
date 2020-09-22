@@ -66,7 +66,7 @@ class LoginForm extends Model
                 }
 
                 if($checkUserVerifiyEmail){
-                    $this->addError('password', Yii::t('frontend', 'You Should Verify Email First.'));
+                    $this->addError('password', Yii::t('frontend', 'You Should Verify Email First.'.'<a href="/login?resend='. $this->identity.'">'.Yii::t('fronend','Resend verification Email').'</a>'));
                     return  false;
                 }
                 if($checkUserNotActive){

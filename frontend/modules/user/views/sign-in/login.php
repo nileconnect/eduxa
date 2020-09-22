@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="form-group">
                             <div>
                                 <span><i class="fas fa-unlock-alt"></i></span>
-                                <?php echo $form->field($model, 'password')->passwordInput(['placeholder'=>Yii::t('common','****************')])
+                                <?php echo $form->field($model, 'password',['errorOptions' => ['encode' => false] ])->passwordInput(['placeholder'=>Yii::t('common','****************')])
                                 ->label(Yii::t('common','Password') ,['class'=>'label-control']);?>
                             </div>
                         </div>

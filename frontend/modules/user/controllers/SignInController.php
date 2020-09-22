@@ -2,6 +2,7 @@
 
 namespace frontend\modules\user\controllers;
 
+use cheatsheet\Time;
 use common\commands\SendEmailCommand;
 use common\models\User;
 use common\models\UserToken;
@@ -18,6 +19,7 @@ use yii\base\InvalidArgumentException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -95,8 +97,41 @@ class SignInController extends \yii\web\Controller
     /**
      * @return array|string|Response
      */
-    public function actionLogin()
+    public function actionLogin($resend=null)
     {
+        if($resend){
+            // resend email
+           $user=  User::find()
+                ->where(['or', ['username' => $resend], ['email' => $resend]])
+                ->one();
+           if($user){
+               $no_of_tokens = UserToken::find()->where(['user_id'=>$user->id , 'type'=>UserToken::TYPE_ACTIVATION])->count();
+               if($no_of_tokens < 5){
+                   $token = UserToken::create(
+                       $user->id,
+                       UserToken::TYPE_ACTIVATION,
+                       Time::SECONDS_IN_A_DAY
+                   );
+                   Yii::$app->commandBus->handle(new SendEmailCommand([
+                       'subject' => Yii::t('frontend', 'Activation email'),
+                       'view' => 'activation',
+                       'to' => $user->email,
+                       'params' => [
+                           'url' => Url::to(['/user/sign-in/activation', 'token' => $token->token], true)
+                       ]
+                   ]));
+               }
+
+               Yii::$app->getSession()->setFlash('alert', [
+                   'type' =>'success',
+                   'body' => \Yii::t('frontend', 'Please check your email to verify your account') ,
+                   'title' =>'',
+               ]);
+           }
+
+            return $this->redirect('login');
+        }
+
         $model = new LoginForm();
         if (Yii::$app->request->isAjax) {
             $model->load($_POST);
@@ -167,6 +202,13 @@ class SignInController extends \yii\web\Controller
                             'Your account has been successfully created. Check your email for further instructions.'
                         ),
                     ]);
+
+                    Yii::$app->getSession()->setFlash('alert', [
+                        'type' =>'success',
+                        'body' => \Yii::t('frontend', 'Your account has been successfully created. Check your email for further instructions.') ,
+                        'title' =>'',
+                    ]);
+
                 } else {
                     Yii::$app->getUser()->login($user);
                 }
@@ -197,6 +239,13 @@ class SignInController extends \yii\web\Controller
                             'your account will be verified by our team'
                         ),
                     ]);
+
+                    Yii::$app->getSession()->setFlash('alert', [
+                        'type' =>'success',
+                        'body' => \Yii::t('frontend', 'your account will be verified by our team') ,
+                        'title' =>'',
+                    ]);
+
                 } else {
                     Yii::$app->getUser()->login($user);
                 }
@@ -224,6 +273,13 @@ class SignInController extends \yii\web\Controller
                             'your account will be verified by our team'
                         ),
                     ]);
+
+                    Yii::$app->getSession()->setFlash('alert', [
+                        'type' =>'warning',
+                        'body' => \Yii::t('frontend', 'your account will be verified by our team') ,
+                        'title' =>'',
+                    ]);
+
                 } else {
                     Yii::$app->getUser()->login($user);
                 }

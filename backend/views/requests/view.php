@@ -18,9 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-3">
                 <?= $form->field($model, 'status')->dropDownList(\backend\models\Requests::ListStatus()) ?>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <?= $form->field($model, 'admin_notes')->textarea(['rows' => 6]) ?>
             </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'user_notes')->textarea(['rows' => 6]) ?>
+        </div>
         <div class="col-md-6">
               <div class="form-group">
                     <?= Html::submitButton('Save Changes', ['class' => 'btn btn-primary']) ?>

@@ -299,6 +299,26 @@ select option[data-default] {
 
     </div>
 </section>
+
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div>
+                    <h2 class="title title-sm title-black"><?php echo Yii::t('common','Location on Map'); ?></h2>
+                    <div>
+                        <div class="map-wrapper">
+                            <iframe src="https://maps.google.com/maps?q=<?= $universityObj->lat?>,<?= $universityObj->lng?>&hl=es;z=14&amp;output=embed"
+                                    width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <?php
 
 if($programsInSameMajor){
@@ -322,21 +342,3 @@ if($programsInSameMajor){
     </div>
 </section>
 <?php } ?>
-
-<section class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div>
-                    <h2 class="title title-sm title-black"><?php echo Yii::t('common','Location on Map'); ?></h2>
-                    <div>
-                        <div class="map-wrapper">
-                            <iframe src="https://maps.google.com/maps?q=<?= $universityObj->lat?>,<?= $universityObj->lng?>&hl=es;z=14&amp;output=embed"
-                                    width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>

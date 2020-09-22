@@ -85,15 +85,47 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-sm-12">
                                                 <?php
                                                 if($request->status == Requests::STATUS_PENDING){
                                                   ?>
-                                                    <div class="col-sm-12">
+
                                                         <a href="/dashboard/cancel-request/<?= $program->slug ?>" class="button button-wide button-primary pull-right" ><?= Yii::t('frontend','Cancel')   ?></a>
+
+
+                                                    <?
+                                                }
+                                                if($request->user_notes){
+                                                    ?>
+                                                    <a  class="button button-wide button-default pull-right" style=" margin: 0 10px;"  data-toggle="modal"
+                                                        data-target="#exampleModal_<?= $request->id?>">
+                                                        <?= Yii::t('common', 'Request Notes'); ?>
+                                                    </a>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal_<?= $request->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel"><?= Yii::t('common', 'Request Notes'); ?></h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <?= $request->user_notes?>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= Yii::t('frontend','Close')?></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <?
                                                 }
                                                 ?>
+
+                                                    </div>
 
                                             </div>
                                         </div>
@@ -162,15 +194,52 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-sm-12">
                                                 <?php
                                                 if($request->status == Requests::STATUS_PENDING){
                                                     ?>
-                                                    <div class="col-sm-12">
+
                                                         <a href="/dashboard/cancel-course-request/<?= $course->slug ?>" class="button button-wide button-primary pull-right" ><?= Yii::t('frontend','Cancel')   ?></a>
+
+                                                    <?
+                                                }
+                                                if($request->user_notes){
+                                                    ?>
+                                                    <a  class="button button-wide button-default pull-right" style=" margin: 0 10px;"  data-toggle="modal"
+                                                        data-target="#exampleModal_<?= $request->id?>">
+                                                        Launch demo modal
+                                                    </a>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal_<?= $request->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel"><?= Yii::t('common', 'Request Notes'); ?></h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <?= $request->user_notes?>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <?
                                                 }
+
                                                 ?>
+
+
+
+
+
+                                                </div>
+
 
                                             </div>
                                         </div>

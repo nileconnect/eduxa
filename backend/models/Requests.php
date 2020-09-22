@@ -86,7 +86,7 @@ class Requests extends BaseRequests
             [['model_id', 'requester_id', 'status'], 'required'],
             [['model_id', 'model_parent_id', 'student_id', 'requester_id', 'student_country_id', 'student_city_id',
                 'request_by_role', 'number_of_weeks', 'status', 'model_name', 'student_gender', 'student_state_id'], 'integer'],
-            [['request_notes', 'student_nationality_id', 'admin_notes'], 'string'],
+            [['request_notes', 'student_nationality_id', 'admin_notes','user_notes'], 'string'],
             [['accomodation_option_cost'], 'number'],
             [['health_insurance'],'safe'],
             [['student_first_name', 'student_last_name', 'student_email', 'student_mobile', 'accomodation_option', 'airport_pickup',

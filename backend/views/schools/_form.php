@@ -189,12 +189,12 @@ use yii\helpers\Url;
                 echo $form->field($model, 'currency_id')->dropDownList($CurrencyArr, [ 'prompt' => 'Select Currency ']);
                 echo $form->field($model, 'next_to')->dropDownList($NextToArr, [ 'prompt' => 'Select Next To ']);
 
-                echo $form->field($model, 'has_health_insurance')->checkbox(['id' => 'insuranceIDChekc'])
+             //   echo $form->field($model, 'has_health_insurance')->checkbox(['id' => 'insuranceIDChekc'])
 
                 ?>
-                <div class="col-md-6 col-sm-12 autoUpdate" style="display: <?= $model->has_health_insurance? "block":"none" ?>">
-                    <?= $form->field($model, 'health_insurance_cost')->textInput(['placeholder' => 'Health Insurance Cost']) ?>
-                </div>
+<!--                <div class="col-md-6 col-sm-12 autoUpdate" style="display: --><?//= $model->has_health_insurance? "block":"none" ?><!--">-->
+<!--                    --><?//= $form->field($model, 'health_insurance_cost')->textInput(['placeholder' => 'Health Insurance Cost']) ?>
+<!--                </div>-->
 
             </div>
         </div>

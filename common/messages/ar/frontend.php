@@ -18,6 +18,13 @@
  */
 return [
     ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    'Close'=>'اغلق',
+    'Resend verification Email'=>'ارسال ايميل التفعيل مره اخرى',
+    'Please check your email to verify your account'=>'يرجى مراجعه بريدك الالكترونى لتفعيل حسابك',
     'Beginning of Study'=>'بداية الدراسة',
     'Test date should not be greater than current date'=>'تاريخ الاختبار لا يسمح ان يكون فى المستقبل',
     'Account not verified.'=>'الحساب غير مفعل',

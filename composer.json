@@ -69,7 +69,8 @@
     "kartik-v/yii2-editable": "@dev",
     "imanilchaudhari/yii2-currency-converter": "*",
     "gevman/yii2-excel-import": "*",
-    "kartik-v/yii2-password": "dev-master"
+    "kartik-v/yii2-password": "dev-master",
+    "borales/yii2-phone-input": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",
