@@ -265,6 +265,9 @@
   .button-default {
     color: #0a0a0a;
 }
+.iti__country-list{
+    z-index: 100 !important;
+}
 @media (max-width: 768px) {
     .majorsList li,
     .contList li {

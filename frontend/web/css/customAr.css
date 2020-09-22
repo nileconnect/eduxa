@@ -88,3 +88,23 @@ body .password-wrapper .icon-wrapper {
     color: #a09f9f;
     left: 25px;
 }
+.iti__flag-box, .iti__country-name {
+    margin-right: 6px;
+    float: right !important;
+}
+.iti__country-list{
+    z-index: 100 !important;
+}
+.iti--allow-dropdown .iti__flag-container, .iti--separate-dial-code .iti__flag-container {
+    right: 0;
+    left: auto;
+}
+.iti--allow-dropdown input, .iti--allow-dropdown input[type=text], .iti--allow-dropdown input[type=tel], .iti--separate-dial-code input, .iti--separate-dial-code input[type=text], .iti--separate-dial-code input[type=tel] {
+    padding-right: 52px;
+    padding-left: 6px;
+    margin-left: 0;
+}
+.iti__arrow {
+    margin-left: 0;
+    margin-right: 6px;
+}
