@@ -13,6 +13,8 @@ use common\models\UserToken;
 use frontend\modules\user\Module;
 use common\commands\SendEmailCommand;
 use kartik\password\StrengthValidator;
+use borales\extensions\phoneInput\PhoneInputValidator;
+use borales\extensions\phoneInput\PhoneInputBehavior;
 
 /**
  * Signup form
@@ -48,6 +50,8 @@ class ReferralSignupForm extends Model
     public $telephone_no;
     public $company_name;
     public $nationality;
+    public $country_code;
+    public $phone;
 
     /**
      * @inheritdoc
@@ -88,10 +92,26 @@ class ReferralSignupForm extends Model
             ['password_confirm', 'compare', 'compareAttribute' => 'password', 'skipOnEmpty' => false],
             [['expected_no_of_students','country_id','state_id','city_id'],'integer'],
 
-            [['mobile','no_of_students','telephone_no'],'number'],
+            [['no_of_students','telephone_no'],'number'],
             [['students_nationalities'],'string','max'=>255],
             [['job_title','company_name','students_nationalities'],'string','max'=>30,'min'=>2],
             [['job_title','company_name','telephone_no'],'required' ,'on'=>'RefCompany'],
+
+            [['mobile'], 'string'],
+            [['mobile'], PhoneInputValidator::className()],
+
+
+
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => PhoneInputBehavior::className(),
+                'countryCodeAttribute' => 'country_code',
+            ],
         ];
     }
 
@@ -140,6 +160,7 @@ class ReferralSignupForm extends Model
             $profileData['firstname']=$this->firstname;
             $profileData['lastname']=$this->lastname;
             $profileData['mobile']=$this->mobile;
+            $profileData['country_code']=$this->country_code;
 
             $profileData['country_id']=$this->country_id;
             $profileData['state_id']=$this->state_id;
@@ -162,22 +183,22 @@ class ReferralSignupForm extends Model
                     UserToken::TYPE_ACTIVATION,
                     Time::SECONDS_IN_A_DAY
                 );
-                Yii::$app->commandBus->handle(new SendEmailCommand([
-                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
-                    'view' => 'createAccountWithNeedApproval',
-                    'to' => $this->email,
-                    'params' => [
-                        'name' => $this->firstname,
-                    ],
-                ]));
-                Yii::$app->commandBus->handle(new SendEmailCommand([
-                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
-                    'view' => 'newUserCreated',
-                    'to' => \Yii::$app->params['adminEmail'],
-                    'params' => [
-                        'name' => $this->firstname,
-                    ],
-                ]));
+//                Yii::$app->commandBus->handle(new SendEmailCommand([
+//                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
+//                    'view' => 'createAccountWithNeedApproval',
+//                    'to' => $this->email,
+//                    'params' => [
+//                        'name' => $this->firstname,
+//                    ],
+//                ]));
+//                Yii::$app->commandBus->handle(new SendEmailCommand([
+//                    'subject' => Yii::t('frontend', 'Account Created Successfully.'),
+//                    'view' => 'newUserCreated',
+//                    'to' => \Yii::$app->params['adminEmail'],
+//                    'params' => [
+//                        'name' => $this->firstname,
+//                    ],
+//                ]));
             }
             return $user;
         }

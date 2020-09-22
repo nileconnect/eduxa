@@ -62,8 +62,20 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <?php echo $form->field($model, 'mobile')->textInput(['placeholder'=>Yii::t('common','Mobile Number')])
-                                                ->label(Yii::t('common','Mobile Number') ,['class'=>'label-control']);
+
+                                            <?php
+
+                                            echo $form->field($model, 'mobile')->widget(\borales\extensions\phoneInput\PhoneInput::className(), [
+                                                'jsOptions' => [
+                                                    'preferredCountries' => ['sa', 'us', 'eg'],
+                                                ]
+                                            ]);
+
+                                            ?>
+
+                                            <?php
+//                                            echo $form->field($model, 'mobile')->textInput(['placeholder'=>Yii::t('common','Mobile Number')])
+//                                                ->label(Yii::t('common','Mobile Number') ,['class'=>'label-control']);
                                             ?>
                                         </div>
                                     </div>
