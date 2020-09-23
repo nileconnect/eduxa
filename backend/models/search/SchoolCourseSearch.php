@@ -17,6 +17,7 @@ class SchoolCourseSearch extends SchoolCourse
     public $state_id;
     public $city_id;
     public $featured;
+    public $sorting;
     public $school_total_rating;
     public $school_nextTo;
     public $school_course_type_id;
@@ -29,7 +30,7 @@ class SchoolCourseSearch extends SchoolCourse
         return [
             [['id', 'school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by',
                 'country_id', 'state_id',
-                'city_id', 'school_total_rating', 'school_nextTo', 'school_course_study_language_id', 'school_course_type_id', 'featured'], 'integer'],
+                'city_id', 'school_total_rating', 'school_nextTo', 'school_course_study_language_id', 'school_course_type_id', 'featured','sorting'], 'integer'],
             [['title', 'information', 'requirments', 'required_level', 'time_of_course', 'created_at', 'updated_at', 'status'], 'safe'],
             [['registeration_fees', 'discount'], 'number'],
         ];
@@ -165,6 +166,88 @@ class SchoolCourseSearch extends SchoolCourse
         }
 
         //  return var_dump($query->createCommand()->sql);
+        return $dataProvider;
+    }
+
+    public function CustomSearchWithSortingByPrice($params)
+    {
+        $query = SchoolCourse::find();
+        $query->joinWith('school', false);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+        }
+
+        $query->andFilterWhere([
+            'schools.id' => $this->school_id,
+            'schools.country_id' => $this->country_id,
+            'schools.state_id' => $this->state_id,
+            'schools.city_id' => $this->city_id,
+            'schools.next_to' => $this->school_nextTo,
+            'schools.featured' => $this->featured,
+            'schools.status' => $this->status,
+
+            'school_course.status' => $this->status,
+            'school_course.school_course_study_language_id' => $this->school_course_study_language_id,
+            'school_course.required_level' => $this->required_level,
+            'school_course.time_of_course' => $this->time_of_course,
+        ]);
+        if ($this->school_course_type_id) {
+            $query->andFilterWhere([
+                'school_course.school_course_type_id' => $this->school_course_type_id,
+            ]);
+        }
+
+        if ($this->title) {
+            $query->andFilterWhere(['or',
+                ['like', 'school_course.title', $this->title],
+                ['like', 'schools.title', $this->title]]);
+        }
+
+        if ($this->school_total_rating > 0) {
+            if ($this->school_total_rating == 1) {
+                $query->andFilterWhere(['=', 'schools.total_rating', $this->school_total_rating]);
+                $query->orFilterWhere(['=', 'schools.total_rating', ((int) $this->school_total_rating) + 0.5]);
+                $query->orWhere('schools.total_rating IS NULL');
+            } else {
+                $query->andFilterWhere(['=', 'schools.total_rating', $this->school_total_rating]);
+                $query->orFilterWhere(['=', 'schools.total_rating', ((int) $this->school_total_rating) + 0.5]);
+            }
+        }
+
+        if ($this->title) {
+            $schoolIdsQuery = TranslationsWithText::find()->select('model_id')
+                ->where(['table_name' => 'schools', 'attribute' => 'title'])->andFilterWhere(['like', 'value', $this->title])
+                ->all();
+            if (!empty($schoolIdsQuery)) {
+                $schoolIds = array_map(function ($data) {
+                    return $data['model_id'];
+                }, $schoolIdsQuery);
+                $query->orFilterWhere(['IN', 'schools.id', $schoolIds]);
+            }
+
+            $schoolCourseIdsQuery = TranslationsWithText::find()->select('model_id')
+                ->where(['table_name' => 'school_course', 'attribute' => 'title'])->andFilterWhere(['like', 'value', $this->title])
+                ->all();
+            if (!empty($schoolCourseIdsQuery)) {
+                $schoolCourseIds = array_map(function ($data) {
+                    return $data['model_id'];
+                }, $schoolCourseIdsQuery);
+                $query->orFilterWhere(['IN', 'school_course.id', $schoolCourseIds]);
+            }
+        }
+
+        if ($this->sorting == 2) {
+            $query->orderBy('registeration_fees ASC');
+        } else if ($this->sorting == 3) {
+            $query->orderBy('registeration_fees DESC');
+        }
+
+        //  return var_dump($query->createCommand()->getRawSql());
         return $dataProvider;
     }
 

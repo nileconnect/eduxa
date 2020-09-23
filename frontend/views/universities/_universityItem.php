@@ -18,7 +18,7 @@ if($program->university->universityPrograms ){
             </figure>
             <div class="item-content">
                 <div class="item-name">
-                    <a href="/university/<?= $program->university->slug?>">  <span><?= $program->university->title ?></span></a>
+                    <a href="/university/<?= $program->university->slug?>">  <span><?= $program->university->title ?> - <?= $program->title ?> </span></a>
                     <div class="rating">
                         <div class="jq_rating jq-stars" data-options='{"initialRating":<?= $program->university->total_rating?:1 ?>, "readOnly":true, "starSize":19}'></div>
                         <span class="text-muted">(<?= $program->university->no_of_ratings?:1 ?>)</span>

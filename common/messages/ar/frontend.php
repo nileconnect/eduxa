@@ -430,8 +430,8 @@ return [
     'Best way to reach me' => 'أفضل طريقة للتواصل معي',
     'How did you know about Eduxa?' => 'كيف عرفت عن إديوكسا؟',
 
-    '' => '',
-    '' => '',
+    'Price Ascending' => 'السعر من الأقل الي الأعلى',
+    'Price Descending' => 'السعر من الأعلى الي الأقل',
     '' => '',
     '' => '',
     '' => '',
