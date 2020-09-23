@@ -158,8 +158,8 @@ use yii\helpers\ArrayHelper;
             </div>
 
             <div class="form-group">
-                <?= $form->field($model, 'recommended')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' =>['1'=>'Recommended','0'=>'Not Recommended'],
+                <?= $form->field($model, 'sorting')->widget(\kartik\widgets\Select2::classname(), [
+                    'data' =>['1'=>'Recommended','0'=>'Not Recommended','2'=> 'Price Ascending','3'=>'Price descending'],
                     'options' => ['placeholder' => Yii::t('frontend', 'Sort')],
                     'pluginOptions' => [
                         'allowClear' => true

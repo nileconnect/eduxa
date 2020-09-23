@@ -2,11 +2,11 @@
 
 namespace backend\models\search;
 
-use yii\base\Model;
-use backend\models\University;
-use yii\data\ActiveDataProvider;
-use backend\models\UniversityPrograms;
 use backend\models\TranslationsWithText;
+use backend\models\University;
+use backend\models\UniversityPrograms;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
 
 /**
  * backend\models\search\UniversityProgramsSearch represents the model behind the search form about `backend\models\UniversityPrograms`.
@@ -14,7 +14,7 @@ use backend\models\TranslationsWithText;
 class UniversityProgramsSearch extends UniversityPrograms
 {
     public $university_title;
-    public $recommended;
+    public $sorting;
     public $university_nextTo;
     public $university_total_rating;
 
@@ -27,7 +27,7 @@ class UniversityProgramsSearch extends UniversityPrograms
             [['id', 'university_id', 'major_id', 'degree_id', 'field_id', 'country_id', 'state_id', 'city_id', 'created_by', 'updated_by', 'university_nextTo'], 'integer'],
             [['title', 'study_start_date', 'study_duration', 'study_method', 'attendance_type', 'conditional_admissions', 'toefl',
                 'ielts', 'bank_statment', 'high_school_transcript', 'bachelor_degree', 'certificate', 'note1', 'note2', 'created_at', 'updated_at', 'program_type'], 'safe'],
-            [['annual_cost', 'total_rating', 'university_total_rating', 'recommended'], 'number'],
+            [['annual_cost', 'total_rating', 'university_total_rating', 'sorting'], 'number'],
             [['university_title', 'university_total_rating', 'university_nextTo'], 'safe'],
         ];
     }
@@ -124,12 +124,21 @@ class UniversityProgramsSearch extends UniversityPrograms
             'university.state_id' => $this->state_id,
             'university.city_id' => $this->city_id,
             'university.next_to' => $this->university_nextTo,
-            'university.recommended' => $this->recommended,
 
             // 'university_programs.degree_id' => $this->degree_id,
             // 'university_programs.field_id' => $this->field_id,
             // 'university_programs.major_id' => $this->major_id,
         ]);
+
+        if ($this->sorting == 0) {
+            $query->andFilterWhere([
+                'university.recommended' => $this->sorting,
+            ]);
+        } else if ($this->sorting == 1) {
+            $query->andFilterWhere([
+                'university.recommended' => $this->sorting,
+            ]);
+        }
 
         if ($this->major_id) {
             $query->andFilterWhere([
@@ -150,31 +159,129 @@ class UniversityProgramsSearch extends UniversityPrograms
         }
 
         $query->andFilterWhere(['like', 'university.title', $this->university_title]);
-        if($this->university_total_rating > 0){
-            if($this->university_total_rating == 1){
+        if ($this->university_total_rating > 0) {
+            if ($this->university_total_rating == 1) {
                 $query->andFilterWhere(['=', 'university.total_rating', $this->university_total_rating]);
                 $query->orFilterWhere(['=', 'university.total_rating', ((int) $this->university_total_rating) + 0.5]);
                 $query->orWhere('university.total_rating IS NULL');
-            }else{
+            } else {
                 $query->andFilterWhere(['=', 'university.total_rating', $this->university_total_rating]);
                 $query->orFilterWhere(['=', 'university.total_rating', ((int) $this->university_total_rating) + 0.5]);
             }
-        }    
-        
-        if($this->university_title){
+        }
+
+        if ($this->university_title) {
             $uniIdsQuery = TranslationsWithText::find()->select('model_id')
-                ->where(['table_name'=>'university','attribute'=>'title'])->andFilterWhere(['like', 'value', $this->university_title])
+                ->where(['table_name' => 'university', 'attribute' => 'title'])->andFilterWhere(['like', 'value', $this->university_title])
                 ->all();
-            if(!empty($uniIdsQuery)){
-                $uniIds = array_map(function($data){
+            if (!empty($uniIdsQuery)) {
+                $uniIds = array_map(function ($data) {
                     return $data['model_id'];
-                },$uniIdsQuery);
-                $query->orFilterWhere(['IN', 'university.id',$uniIds]);
+                }, $uniIdsQuery);
+                $query->orFilterWhere(['IN', 'university.id', $uniIds]);
             }
         }
 
-        $query->groupBy(['university.id']);
+        if ($this->sorting == 2) {
+            $query->orderBy('university_programs.annual_cost ASC');
+        } else if ($this->sorting == 3) {
+            $query->orderBy('university_programs.annual_cost DESC');
+        }
+
+        // $query->groupBy(['university.id']);
         // return var_dump($query->createCommand()->sql);
+        return $dataProvider;
+    }
+
+    public function CustomSearchWithSortingByPrice($params)
+    {
+        $query = UniversityPrograms::find();
+        // $query = University::find();
+        $query->joinWith('university', false);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            //  return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'university.id' => $this->university_id,
+            'university.country_id' => $this->country_id,
+            'university.state_id' => $this->state_id,
+            'university.city_id' => $this->city_id,
+            'university.next_to' => $this->university_nextTo,
+
+            // 'university_programs.degree_id' => $this->degree_id,
+            // 'university_programs.field_id' => $this->field_id,
+            // 'university_programs.major_id' => $this->major_id,
+        ]);
+
+        if ($this->sorting == 0) {
+            $query->andFilterWhere([
+                'university.recommended' => $this->sorting,
+            ]);
+        } else if ($this->sorting == 1) {
+            $query->andFilterWhere([
+                'university.recommended' => $this->sorting,
+            ]);
+        }
+
+        if ($this->major_id) {
+            $query->andFilterWhere([
+                'university_programs.major_id' => $this->major_id,
+            ]);
+
+        }
+        if ($this->field_id) {
+            $query->andFilterWhere([
+                'university_programs.field_id' => $this->field_id,
+            ]);
+
+        }
+        if ($this->degree_id) {
+            $query->andFilterWhere([
+                'university_programs.degree_id' => $this->degree_id,
+            ]);
+        }
+
+        $query->andFilterWhere(['like', 'university.title', $this->university_title]);
+        if ($this->university_total_rating > 0) {
+            if ($this->university_total_rating == 1) {
+                $query->andFilterWhere(['=', 'university.total_rating', $this->university_total_rating]);
+                $query->orFilterWhere(['=', 'university.total_rating', ((int) $this->university_total_rating) + 0.5]);
+                $query->orWhere('university.total_rating IS NULL');
+            } else {
+                $query->andFilterWhere(['=', 'university.total_rating', $this->university_total_rating]);
+                $query->orFilterWhere(['=', 'university.total_rating', ((int) $this->university_total_rating) + 0.5]);
+            }
+        }
+
+        if ($this->university_title) {
+            $uniIdsQuery = TranslationsWithText::find()->select('model_id')
+                ->where(['table_name' => 'university', 'attribute' => 'title'])->andFilterWhere(['like', 'value', $this->university_title])
+                ->all();
+            if (!empty($uniIdsQuery)) {
+                $uniIds = array_map(function ($data) {
+                    return $data['model_id'];
+                }, $uniIdsQuery);
+                $query->orFilterWhere(['IN', 'university.id', $uniIds]);
+            }
+        }
+        if ($this->sorting == 2) {
+            $query->orderBy('university_programs.annual_cost ASC');
+        } else if ($this->sorting == 3) {
+            $query->orderBy('university_programs.annual_cost DESC');
+        }
+
+        // return var_dump($query->createCommand()->sql, $this->sorting);
+        // $query->groupBy(['university.id']);
         return $dataProvider;
     }
 }

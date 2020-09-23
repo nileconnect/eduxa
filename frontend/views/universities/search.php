@@ -24,7 +24,8 @@ $this->title = "Universities";
                 'layout' => '{items}',
                 'itemOptions' => ['class' => 'col l6 m12 s12'],
                 'itemView' => function ($model, $key, $index, $widget) use ($view) {
-                    return $this->render('_universityItem', ['university' => $model]);
+                    return $this->render('_universityItem', ['program' => $model]);
+                    // return $this->render('_universityItem', ['university' => $model]); // old
                 },
             ])
 
