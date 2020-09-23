@@ -525,16 +525,16 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'study_duration',
                         'value' => function ($row) {
-                            if (strtolower(strval($row[7])) == 'Day' || strtolower(strval($row[7])) == 'Days') {
+                            if (strtolower(strval($row[7])) == 'day' || strtolower(strval($row[7])) == 'days') {
                                 return 1;
                             }
-                            if (strtolower(strval($row[7])) == 'Week') {
+                            if (strtolower(strval($row[7])) == 'week') {
                                 return 2;
                             }
-                            if (strtolower(strval($row[7])) == 'Month' || strtolower(strval($row[7])) == 'Months') {
+                            if (strtolower(strval($row[7])) == 'month' || strtolower(strval($row[7])) == 'months') {
                                 return 3;
                             }
-                            if (strtolower(strval($row[7])) == 'Year') {
+                            if (strtolower(strval($row[7])) == 'year') {
                                 return 4;
                             }
                             return '';
@@ -697,6 +697,7 @@ class ImportController extends BackendController
 
                 ],
             ]);
+
             if (!$importer->validate()) {
                 // foreach ($importer->getErrors() as $rowNumber => $errors) {
                 //     $errors .= "$rowNumber errors <br>" . implode('<br>', $errors);
