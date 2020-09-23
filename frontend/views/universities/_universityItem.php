@@ -27,7 +27,7 @@ if($program->university->universityPrograms ){
                 <div class="item-location"><img src="<?=  $program->university->country->flag ?>" width="16px" height="12px" alt="">
                     <?= $program->university->country->title .' - '.$program->university->state->title .' - '. $program->university->city->title  ?>
                 </div>
-                <div class="item-body">
+                <div class="item-body hideMob">
                     <?= substr($program->university->description ,0,350) ; ?>
                     <?php
                     if(strlen($program->university->description) > 350 ){
