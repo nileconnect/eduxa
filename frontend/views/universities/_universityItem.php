@@ -31,7 +31,7 @@ if($program->university->universityPrograms ){
                     <?= substr($program->university->description ,0,350) ; ?>
                     <?php
                     if(strlen($program->university->description) > 350 ){
-                        echo  "<a href='/university/$program->university->slug'> ".Yii::t('frontend','.. more info')."</a>";
+                        echo  "<a href='/university/".$program->university->slug."'> ".Yii::t('frontend','.. more info')."</a>";
                     }
 
                     ?>
