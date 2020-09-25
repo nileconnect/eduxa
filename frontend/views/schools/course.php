@@ -563,7 +563,7 @@ if(!Yii::$app->user->isGuest && (User::IsRole(Yii::$app->user->id , User::ROLE_R
                         </tr>
 
                        <?php
-                       if($schoolObj->has_health_insurance ){
+                       if($courseObj->health_insurance ){
                        ?>
                         <tr>
                             <td>
