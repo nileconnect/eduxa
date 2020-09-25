@@ -177,8 +177,8 @@ class University extends \yii\db\ActiveRecord
         if (!parent::beforeSave($insert)) {
             return false;
         };
-        $cost = MyCurrencySwitcher::Convert($this->currency->currency_code,"USD",1);
-        $this->price_ratio = ( $cost / 100 );
+        $ratio = MyCurrencySwitcher::Convert($this->currency->currency_code,"USD",1);
+        $this->price_ratio = $ratio;
         return true;
     }
 

@@ -195,7 +195,7 @@ class UniversityProgramsSearch extends UniversityPrograms
 
     public function CustomSearchWithSortingByPrice($params)
     {
-        $query = UniversityPrograms::find()->select(' `university_programs`.*, ( ( price_ratio * 100 )  * annual_cost ) as new_cost ');
+        $query = UniversityPrograms::find()->select(' `university_programs`.*, ( price_ratio * annual_cost ) as new_cost ');
         // $query = University::find();
         $query->joinWith('university', false);
 

@@ -171,7 +171,8 @@ class SchoolCourseSearch extends SchoolCourse
 
     public function CustomSearchWithSortingByPrice($params)
     {
-        $query = SchoolCourse::find();
+        
+        $query = SchoolCourse::find()->select('  `school_course`.*, ( price_ratio * school_course.registeration_fees ) as new_cost ');
         $query->joinWith('school', false);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -242,9 +243,9 @@ class SchoolCourseSearch extends SchoolCourse
         }
 
         if ($this->sorting == 2) {
-            $query->orderBy('registeration_fees ASC');
+            $query->orderBy('new_cost ASC');
         } else if ($this->sorting == 3) {
-            $query->orderBy('registeration_fees DESC');
+            $query->orderBy('new_cost DESC');
         }
 
         //  return var_dump($query->createCommand()->getRawSql());
