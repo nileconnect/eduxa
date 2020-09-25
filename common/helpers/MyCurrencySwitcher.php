@@ -12,7 +12,7 @@ class MyCurrencySwitcher {
          if(YII_ENV_DEV) return 555 ;
 
         $converter = new MyCurrencyConverter();
-        return  number_format($converter->convert($from, $to ,$amount) , 4 );
+        return  number_format($converter->convert($from, $to ,$amount) , $decimal );
     }
 
 
