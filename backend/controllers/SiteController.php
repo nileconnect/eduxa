@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\base\University;
+use backend\models\Schools;
 use common\helpers\MyCurrencySwitcher;
 use Yii;
 
@@ -49,7 +50,7 @@ class SiteController extends BackendController
 
     public function actionUpdateU(){
 
-        $universities = University::find()->all();
+        $universities = Schools::find()->all();
         foreach ($universities as $university) {
             $ratio = MyCurrencySwitcher::Convert($university->currency->currency_code,"USD",1);
             $university->price_ratio = $ratio;
