@@ -52,7 +52,7 @@ class SiteController extends BackendController
         $universities = University::find()->all();
         foreach ($universities as $university) {
             $ratio = MyCurrencySwitcher::Convert($university->currency->currency_code,"USD",1);
-            $this->price_ratio = $ratio;
+            $university->price_ratio = $ratio;
             $university->save(false);
         }
 
