@@ -91,7 +91,7 @@ select option[data-default] {
                                             
                                             <div class="carousel-item <?=$firstslid?>">
                                                 <div class="embed-responsive-16by9 video-fluid">
-                                                    <iframe width="445" height="300" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($universityVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    <iframe width="100%" height="300"  src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($universityVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                                 </div>
                                                 
                                             </div>

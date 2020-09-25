@@ -268,8 +268,17 @@
 .iti__country-list{
     z-index: 100 !important;
 }
+.video-fluid{
+    width: 445px;
+}
+
+
+
 
 @media (max-width: 768px) {
+    .video-fluid{
+        width: 100%;
+    }
     .majorsList li,
     .contList li {
         width: 100%;

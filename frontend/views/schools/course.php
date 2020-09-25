@@ -91,7 +91,7 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                             
                         </div>
                         <div id="tabVideos" role="tabpanel" aria-labelledby="videos-tab" class="tab-pane fade">
-                            <div class="row" style="margin-top:20px">
+                            <div class="row">
 
                                 
                             <div id="VideoCaro" class="carousel slide" data-ride="carousel">
@@ -105,7 +105,7 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                                             
                                             <div class="carousel-item <?=$firstslid?>">
                                                 <div class="embed-responsive-16by9 video-fluid">
-                                                    <iframe width="445" height="300" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($schoolVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    <iframe width="100%" height="300" src="https://www.youtube.com/embed/<?= MyYoutubeVideoID($schoolVideo->base_url); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                                 </div>
                                                 
                                             </div>

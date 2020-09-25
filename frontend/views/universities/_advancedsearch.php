@@ -157,16 +157,7 @@ use yii\helpers\ArrayHelper;
 
             </div>
 
-            <div class="form-group">
-                <?= $form->field($model, 'sorting')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' =>['1'=>'Recommended','0'=>'Not Recommended','2'=> Yii::t('frontend','Price Ascending'),'3'=>  Yii::t('frontend','Price Descending')],
-                    'options' => ['placeholder' => Yii::t('frontend', 'Sort')],
-                    'pluginOptions' => [
-                        'allowClear' => true
-                    ],
-                ])->label(false); ?>
-
-            </div>
+            
 
             <div class="form-group" id="searchBtnDesktop">
                 <button type="submit" class="button btn-block button-accent"><?= Yii::t('frontend','Search') ?></button>
