@@ -9,10 +9,10 @@ class MyCurrencySwitcher {
 
     public static function Convert($from='USD' , $to= "EGP" ,$amount=1){
         //incase of localhost return static value
-        if(YII_ENV_DEV) return 555 ;
+        // if(YII_ENV_DEV) return 555 ;
 
         $converter = new MyCurrencyConverter();
-        return  number_format($converter->convert($from, $to ,$amount) , 1 );
+        return  number_format($converter->convert($from, $to ,$amount) , 4 );
     }
 
 
