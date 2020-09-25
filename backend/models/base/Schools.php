@@ -3,6 +3,7 @@
 namespace backend\models\base;
 
 use Yii;
+use common\helpers\MyCurrencySwitcher;
 
 /**
  * This is the base model class for table "schools".
@@ -111,6 +112,16 @@ class Schools extends \yii\db\ActiveRecord
             'status' => Yii::t('backend', 'Status'),
             'currency_id' => Yii::t('backend', 'Currency'),
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        };
+        $ratio = MyCurrencySwitcher::Convert($this->currency->currency_code,"USD",1);
+        $this->price_ratio = $ratio;
+        return true;
     }
 
     public function getCurrency()

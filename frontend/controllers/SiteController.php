@@ -44,7 +44,7 @@ class SiteController extends FrontendController
     public function actionCalc()
     {
 
-       echo  MyCurrencySwitcher::Convert('HTG','EUR',20);
+       echo  MyCurrencySwitcher::Convert('EUR','USD',1);
        die;
 
     }

@@ -2,13 +2,14 @@
 
 namespace backend\models\base;
 
-use trntv\filekit\behaviors\UploadBehavior;
-use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
-use webvimark\behaviors\multilanguage\MultiLanguageTrait;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
+use common\helpers\MyCurrencySwitcher;
+use trntv\filekit\behaviors\UploadBehavior;
+use webvimark\behaviors\multilanguage\MultiLanguageTrait;
+use webvimark\behaviors\multilanguage\MultiLanguageBehavior;
 
 /**
  * This is the base model class for table "university".
@@ -83,7 +84,7 @@ class University extends \yii\db\ActiveRecord
             [['total_rating'], 'number'],
             [['no_of_ratings', 'created_by', 'updated_by', 'status', 'responsible_id'], 'integer'],
             [['image_base_url', 'image_path', 'location', 'lat', 'lng', 'created_at', 'updated_at'], 'string', 'max' => 255],
-            [['logo', 'photos', 'country_id', 'city_id', 'state_id', 'recommended', 'title_ar', 'description_ar', 'detailed_address_ar'], 'safe'],
+            [['logo', 'photos', 'country_id', 'city_id', 'state_id', 'recommended', 'title_ar', 'description_ar', 'detailed_address_ar','price_ratio'], 'safe'],
             [['next_to', 'currency_id'], 'integer'],
             [['next_to', 'currency_id'], 'integer', 'on' => 'import'],
         ];
@@ -169,6 +170,16 @@ class University extends \yii\db\ActiveRecord
             ],
 
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        };
+        $ratio = MyCurrencySwitcher::Convert($this->currency->currency_code,"USD",1);
+        $this->price_ratio = $ratio;
+        return true;
     }
 
     public function CalcRating()

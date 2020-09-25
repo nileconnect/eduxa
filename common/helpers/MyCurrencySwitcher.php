@@ -7,12 +7,12 @@ use yii\web\Cookie;
 
 class MyCurrencySwitcher {
 
-    public static function Convert($from='USD' , $to= "EGP" ,$amount=1){
+    public static function Convert($from='USD' , $to= "EGP" ,$amount=1,$decimal = 4){
         //incase of localhost return static value
-        if(YII_ENV_DEV) return 555 ;
+         if(YII_ENV_DEV) return 555 ;
 
         $converter = new MyCurrencyConverter();
-        return  number_format($converter->convert($from, $to ,$amount) , 1 );
+        return  number_format($converter->convert($from, $to ,$amount) , $decimal );
     }
 
 
@@ -21,7 +21,7 @@ class MyCurrencySwitcher {
         if($code == Yii::$app->session->get('_currency')){
             return ;
         }else{
-           $value= MyCurrencySwitcher::Convert($code,Yii::$app->session->get('_currency'),$amount);
+           $value= MyCurrencySwitcher::Convert($code,Yii::$app->session->get('_currency'),$amount , 1);
            if($formatted){
                return ' <div><span class="converted-price">'.$value.'</span><span class="currency">'.Yii::$app->session->get('_currency').'</span></div>';
            }else{

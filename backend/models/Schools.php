@@ -55,7 +55,7 @@ class Schools extends BaseSchools
             [['title','title_ar','details','details_ar','detailed_address','detailed_address_ar'], 'string', 'min' => 2],
             ['title_ar','safe','on'=>'import'],
             [['status','featured'],'in', 'range' => ['1','0'],'on'=>'import'],
-            [['featured', 'status','title_ar','details_ar','detailed_address_ar'], 'safe'],
+            [['featured', 'status','title_ar','details_ar','detailed_address_ar','currency_code'], 'safe'],
             [['logo','photos','no_of_ratings' ,'accomodation_reservation_fees','has_health_insurance','health_insurance_cost','detailed_address','currency_id','next_to'],'safe']
         ] ;
     }
