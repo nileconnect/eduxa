@@ -21,7 +21,7 @@ return [
     ''=>'',
     ''=>'',
     ''=>'',
-    ''=>'',
+    'Your Email or password are not valid'=>'قد تكوت كلمه المرور او البريد الالكترونى غير صحيح',
     'Close'=>'اغلق',
     'Resend verification Email'=>'ارسال ايميل التفعيل مره اخرى',
     'Please check your email to verify your account'=>'يرجى مراجعه بريدك الالكترونى لتفعيل حسابك',

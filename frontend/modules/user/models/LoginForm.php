@@ -74,8 +74,8 @@ class LoginForm extends Model
                     return  false;
                 }
 
-                return  false;
-                //$this->addError('password', Yii::t('frontend', 'Your account is being reviewed'));
+               // return  false;
+                $this->addError('password', Yii::t('frontend', 'Your Email or password are not valid'));
             }
         }
     }
