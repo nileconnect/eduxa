@@ -17,6 +17,7 @@ class UniversityProgramsSearch extends UniversityPrograms
     public $sorting;
     public $university_nextTo;
     public $university_total_rating;
+    public $sortingw;
 
     /**
      * @inheritdoc

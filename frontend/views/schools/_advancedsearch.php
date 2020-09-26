@@ -19,6 +19,7 @@ use backend\models\SchoolCourse;
             <h5><?= Yii::t('frontend','Search & Apply to best schools in the world') ?></h5>
         </div>
         <?php $form = ActiveForm::begin([
+                'id'=>'SchoolCFor',
             'action' => ['/schools/search'],
             'method' => 'get',
             'class'=>'inline mtmd shadow-sm'
@@ -154,18 +155,21 @@ use backend\models\SchoolCourse;
 
             </div>
 
-            <div class="form-group">
-                <?= $form->field($model, 'sorting')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' =>['1'=>Yii::t('frontend','Recommended'),'0'=> Yii::t('frontend','Not Recommended') ,'2'=> Yii::t('frontend','Price Ascending'),'3'=> Yii::t('frontend','Price Descending') ],
-                    'options' => ['placeholder' => Yii::t('frontend', 'Sort')],
-                    'pluginOptions' => [
-                        'allowClear' => true
-                    ],
-                ])->label(false); ?>
+<!--            <div class="form-group">-->
+<!--                --><?//= $form->field($model, 'sorting')->widget(\kartik\widgets\Select2::classname(), [
+//                    'data' =>['1'=>Yii::t('frontend','Recommended'),'0'=> Yii::t('frontend','Not Recommended') ,'2'=> Yii::t('frontend','Price Ascending'),'3'=> Yii::t('frontend','Price Descending') ],
+//                    'options' => ['placeholder' => Yii::t('frontend', 'Sort')],
+//                    'pluginOptions' => [
+//                        'allowClear' => true
+//                    ],
+//                ])->label(false); ?>
+<!---->
+<!--            </div>-->
 
-            </div>
-          
-            
+            <input type="hidden" id="schoolcoursesearch-sorting" name="SchoolCourseSearch[sorting]">
+
+
+
 
             <div class="form-group" id="searchBtnDesktop">
                 <button type="submit" class="button btn-block button-accent"><?= Yii::t('frontend','Search') ?></button>

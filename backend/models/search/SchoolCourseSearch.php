@@ -22,6 +22,8 @@ class SchoolCourseSearch extends SchoolCourse
     public $school_nextTo;
     public $school_course_type_id;
     public $school_course_study_language_id;
+    public $sortingw;
+
     /**
      * @inheritdoc
      */
@@ -31,7 +33,7 @@ class SchoolCourseSearch extends SchoolCourse
             [['id', 'school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by',
                 'country_id', 'state_id',
                 'city_id', 'school_total_rating', 'school_nextTo', 'school_course_study_language_id', 'school_course_type_id', 'featured','sorting'], 'integer'],
-            [['title', 'information', 'requirments', 'required_level', 'time_of_course', 'created_at', 'updated_at', 'status'], 'safe'],
+            [['title', 'information', 'requirments', 'required_level', 'time_of_course', 'created_at', 'updated_at', 'status','sortingw'], 'safe'],
             [['registeration_fees', 'discount'], 'number'],
         ];
     }

@@ -1,5 +1,6 @@
 <?php
 use yii\widgets\ListView;
+use yii\widgets\ActiveForm;
 
 $this->title = "Universities";
 
@@ -15,18 +16,30 @@ $this->title = "Universities";
 <section class="section">
     <div class="container">
         <h2 class="title title-sm" style="color:#C5C5DA;"><?= $dataProvider->getTotalCount() ?> <?= Yii::t('frontend','University matched your search results') ?>
-        
-<!--        <div class="form-group">-->
-<!--            --><?//= $form->field($model, 'sorting')->widget(\kartik\widgets\Select2::classname(), [
-//                'data' =>['1'=>'Recommended','0'=>'Not Recommended','2'=> Yii::t('frontend','Price Ascending'),'3'=>  Yii::t('frontend','Price Descending')],
-//                'options' => ['placeholder' => Yii::t('frontend', 'Sort')],
-//                'pluginOptions' => [
-//                    'allowClear' => true
-//                ],
-//            ])->label(false); ?>
-<!---->
-<!--        </div>-->
 
+
+            <?php $form = ActiveForm::begin([
+                 'id'=>'dwdwdw',
+                'action' => ['/universities/search'],
+                'method' => 'get',
+                'class'=>'inline mtmd shadow-sm'
+            ]);
+            ?>
+        <div class="form-group">
+            <?= $form->field($searchModel, 'sortingw')->widget(\kartik\widgets\Select2::classname(), [
+                'data' =>['1'=>'Recommended','0'=>'Not Recommended','2'=> Yii::t('frontend','Price Ascending'),'3'=>  Yii::t('frontend','Price Descending')],
+                'options' => ['placeholder' => Yii::t('frontend', 'Sort')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+                'pluginEvents' => [
+                    'change' => 'function() { console.log("change!"+ $(this).val() );   $( "#universityprogramssearch-sorting" ).val ( $(this).val())  ;   $( "#UniversityFormSu" ).submit(); }',
+                ],
+            ])->label(false); ?>
+
+        </div>
+
+            <?php ActiveForm::end(); ?>
 
         </h2>
 

@@ -53,6 +53,8 @@ class SchoolsController extends FrontendController
         $searchModel = new SchoolCourseSearch();
         $searchModel->status = University::STATUS_ON;
         $dataProvider = $searchModel->CustomSearchWithSortingByPrice(Yii::$app->request->queryParams);
+        $searchModel->sortingw =$searchModel->sorting;
+
         return $this->render('search' ,[ 'searchModel'=>$searchModel,'dataProvider'=>$dataProvider]);
     }
 
