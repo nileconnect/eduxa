@@ -13,13 +13,21 @@ use yii\widgets\ActiveForm;
 
 <section class="section">
     <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
         <h2 class="title title-sm" style="color:#C5C5DA;">
             <?= $dataProvider->getTotalCount() ?> <?= Yii::t('frontend', 'Schools matched your search results') ?>
 
-            <?php $form = ActiveForm::begin([
+
+        </h2>
+</div>
+<div class="col-sm-6">
+    
+<?php $form = ActiveForm::begin([
+      'id'=>'dwdwdw',
                 'action' => [''],
                 'method' => 'get',
-                'class'=>'inline mtmd shadow-sm'
+                'class'=>'inline mtmd shadow-sm formsort'
             ]);
             ?>
             <div class="form-group">
@@ -37,8 +45,8 @@ use yii\widgets\ActiveForm;
             </div>
 
             <?php ActiveForm::end(); ?>
-
-        </h2>
+</div>
+</div>
 
         <div class="universities universities-row">
             <?php

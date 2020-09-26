@@ -273,9 +273,19 @@
 }
 
 
-
+#dwdwdw{
+    width: 200px;
+    float: right;
+}
 
 @media (max-width: 768px) {
+    .auth-content .auth-form .form-group>div {
+        width: 100%;
+    }
+    #dwdwdw{
+        width: 100%;
+        float: none;
+    }
     .video-fluid{
         width: 100%;
     }

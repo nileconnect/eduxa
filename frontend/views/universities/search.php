@@ -15,14 +15,17 @@ $this->title = "Universities";
 
 <section class="section">
     <div class="container">
-        <h2 class="title title-sm" style="color:#C5C5DA;"><?= $dataProvider->getTotalCount() ?> <?= Yii::t('frontend','University matched your search results') ?>
+        <div class="row">
+            <div class="col-sm-6">
+            <h2 class="title title-sm" style="color:#C5C5DA;"><?= $dataProvider->getTotalCount() ?> <?= Yii::t('frontend','University matched your search results') ?>
 
-
+            </div>
+            <div class="col-sm-6">
             <?php $form = ActiveForm::begin([
                  'id'=>'dwdwdw',
                 'action' => ['/universities/search'],
                 'method' => 'get',
-                'class'=>'inline mtmd shadow-sm'
+                'class'=>'inline mtmd shadow-sm formsort'
             ]);
             ?>
         <div class="form-group">
@@ -40,6 +43,11 @@ $this->title = "Universities";
         </div>
 
             <?php ActiveForm::end(); ?>
+            </div>
+        </div>
+
+
+           
 
         </h2>
 
