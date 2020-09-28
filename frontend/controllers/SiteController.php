@@ -43,7 +43,17 @@ class SiteController extends FrontendController
 
     public function actionCalc()
     {
+        //test emails
+        Yii::$app->commandBus->handle(new SendEmailCommand([
+            'subject' => Yii::t('frontend', 'Activation email'),
+            'view' => 'activation',
+            'to' => "mohamed.amer2050@gmail.com",
+            'params' => [
+                'url' => Url::to(['/user/sign-in/activation', 'token' => 'dmeuhfue fu ehfi'], true)
+            ]
+        ]));
 
+        die;
        echo  MyCurrencySwitcher::Convert('EUR','USD',1);
        die;
 
