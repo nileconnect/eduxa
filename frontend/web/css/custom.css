@@ -277,6 +277,10 @@
     width: 200px;
     float: right;
 }
+.header .header-strip .dropdown-menu {
+    max-height: 300px;
+    overflow: auto;
+}
 
 @media (max-width: 768px) {
     .auth-content .auth-form .form-group>div {
