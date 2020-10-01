@@ -207,7 +207,7 @@
                                                     ?>
                                                     <a  class="button button-wide button-default pull-right" style=" margin: 0 10px;"  data-toggle="modal"
                                                         data-target="#exampleModal_<?= $request->id?>">
-                                                        Launch demo modal
+                                                        <?= Yii::t('frontend','Request notes')?>
                                                     </a>
 
                                                     <!-- Modal -->
