@@ -11048,3 +11048,8 @@ $(function() {
 
 
 });
+
+
+var showfilters= function(){
+    $("#searchfilters,#searchfilters2").toggleClass("show")
+}

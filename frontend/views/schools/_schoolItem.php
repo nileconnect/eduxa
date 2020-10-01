@@ -21,7 +21,7 @@ use backend\models\SchoolCourse;
             <div class="item-location"><img src="<?=  $course->school->country->flag ?>" width="16px" height="12px" alt="">
                 <?= $course->school->country->title .' - '.$course->school->state->title .' - '. $course->school->city->title  ?>
             </div>
-            <div class="item-body">
+            <div class="item-body hideMob">
                 <?= $course->information ; ?>
             </div>
         </div>

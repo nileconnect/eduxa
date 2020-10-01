@@ -315,4 +315,11 @@
     .hideMob{
         display: none;
     }
+    .form-group.field-City-id,.form-group.field-subcat-id{
+        padding: 5px 10px;
+    }
+    .form-group.field-City-id .form-control,.form-group.field-subcat-id .form-control{
+        background-color: #ffffff;
+        color: #a2a2a2;
+    }
 }

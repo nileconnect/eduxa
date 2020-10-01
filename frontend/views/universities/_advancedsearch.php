@@ -37,7 +37,7 @@ use yii\helpers\ArrayHelper;
         <div class="form-group-row">
             <div class="form-group has-search">
                 <span class="fa fa-search form-control-feedback"></span>
-                <?= $form->field($model,'university_title')->textInput(['placeholder'=>Yii::t('frontend','Search')])->label(false)?>
+                <?= $form->field($model,'university_title')->textInput(['placeholder'=>Yii::t('frontend','Search for university or program')])->label(false)?>
 <!--                <input type="text" class="form-control" placeholder="Search" name="UniversityProgramsSearch[university_title]">-->
             </div>
         </div>

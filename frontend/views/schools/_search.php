@@ -29,7 +29,7 @@ use yii\helpers\Url;
             <div class="form-group-row">
                 <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" class="form-control" placeholder="<?= Yii::t('frontend','Search') ?> " name="SchoolCourseSearch[title]">
+                    <input type="text" class="form-control" placeholder="<?= Yii::t('frontend','Search for school or course') ?> " name="SchoolCourseSearch[title]">
                 </div>
             </div>
             <div class="form-group" id="searchBtnMob">

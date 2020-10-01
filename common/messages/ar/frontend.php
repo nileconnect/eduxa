@@ -432,8 +432,8 @@ return [
 
     'Price Ascending' => 'السعر من الأقل الي الأعلى',
     'Price Descending' => 'السعر من الأعلى الي الأقل',
-    '' => '',
-    '' => '',
+    'Search for university or program' => 'ابحث عن جامعة او برنامج',
+    'Search for school or course' => 'ابحث عن معهد لغة او كورس',
     '' => '',
     '' => '',
     '' => '',

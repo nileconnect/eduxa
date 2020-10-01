@@ -28,7 +28,7 @@ use backend\models\SchoolCourse;
         <div class="form-group-row">
             <div class="form-group has-search">
                 <span class="fa fa-search form-control-feedback"></span>
-                <?= $form->field($model,'title')->textInput(['placeholder'=>Yii::t('frontend','Search')])->label(false)?>
+                <?= $form->field($model,'title')->textInput(['placeholder'=>Yii::t('frontend','Search for school or course')])->label(false)?>
                 <!-- <input type="text" class="form-control" placeholder="<?= Yii::t('frontend','Search') ?> " name="SchoolCourseSearch[title]"> -->
             </div>
         </div>
