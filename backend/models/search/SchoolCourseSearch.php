@@ -187,9 +187,6 @@ class SchoolCourseSearch extends SchoolCourse
 
         $query->andFilterWhere([
             'schools.id' => $this->school_id,
-            'schools.country_id' => $this->country_id,
-            'schools.state_id' => $this->state_id,
-            'schools.city_id' => $this->city_id,
             'schools.next_to' => $this->school_nextTo,
             'schools.featured' => $this->featured,
             'schools.status' => $this->status,
@@ -199,6 +196,19 @@ class SchoolCourseSearch extends SchoolCourse
             'school_course.required_level' => $this->required_level,
             'school_course.time_of_course' => $this->time_of_course,
         ]);
+
+
+        if( $this->country_id > 0 ){
+            $query->andFilterWhere(['schools.country_id' => $this->country_id]);
+        }
+
+        if( $this->state_id > 0 ){
+            $query->andFilterWhere([ 'schools.state_id' => $this->state_id]);
+        }
+        if( $this->city_id > 0 ){
+            $query->andFilterWhere([ 'schools.city_id' => $this->city_id]);
+        }
+
         if ($this->school_course_type_id) {
             $query->andFilterWhere([
                 'school_course.school_course_type_id' => $this->school_course_type_id,

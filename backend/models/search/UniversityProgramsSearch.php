@@ -121,15 +121,24 @@ class UniversityProgramsSearch extends UniversityPrograms
 
         $query->andFilterWhere([
             'university.id' => $this->university_id,
-            'university.country_id' => $this->country_id,
-            'university.state_id' => $this->state_id,
-            'university.city_id' => $this->city_id,
             'university.next_to' => $this->university_nextTo,
 
             // 'university_programs.degree_id' => $this->degree_id,
             // 'university_programs.field_id' => $this->field_id,
             // 'university_programs.major_id' => $this->major_id,
         ]);
+
+        if( $this->country_id > 0 ){
+            $query->andFilterWhere([ 'university.country_id' => $this->country_id]);
+        }
+
+        if( $this->state_id > 0 ){
+            $query->andFilterWhere([ 'university.state_id' => $this->state_id]);
+        }
+        if( $this->city_id > 0 ){
+            $query->andFilterWhere([ 'university.city_id' => $this->city_id]);
+        }
+
 
         if ($this->sorting == 0) {
             $query->andFilterWhere([
@@ -214,15 +223,23 @@ class UniversityProgramsSearch extends UniversityPrograms
 
         $query->andFilterWhere([
             'university.id' => $this->university_id,
-            'university.country_id' => $this->country_id,
-            'university.state_id' => $this->state_id,
-            'university.city_id' => $this->city_id,
             'university.next_to' => $this->university_nextTo,
 
             // 'university_programs.degree_id' => $this->degree_id,
             // 'university_programs.field_id' => $this->field_id,
             // 'university_programs.major_id' => $this->major_id,
         ]);
+
+        if( $this->country_id > 0 ){
+            $query->andFilterWhere([ 'university.country_id' => $this->country_id]);
+        }
+
+        if( $this->state_id > 0 ){
+            $query->andFilterWhere([ 'university.state_id' => $this->state_id]);
+        }
+        if( $this->city_id > 0 ){
+            $query->andFilterWhere([ 'university.city_id' => $this->city_id]);
+        }
 
         if ($this->sorting == 0) {
             $query->andFilterWhere([

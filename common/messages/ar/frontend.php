@@ -19,7 +19,9 @@
 return [
     ''=>'',
     ''=>'',
-    ''=>'',
+    'All Countries'=>'كل الدول',
+    'All Cities'=>'كل المدن',
+    'All States'=>'كل العواصم',
     'Request notes'=>'ملاحظات الطلب',
     'Your Email or password are not valid'=>'قد تكوت كلمه المرور او البريد الالكترونى غير صحيح',
     'Close'=>'اغلق',
