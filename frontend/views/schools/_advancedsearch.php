@@ -85,11 +85,11 @@ use backend\models\SchoolCourse;
 
             <div class="form-group">
                 <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
-                    'data' => \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->all(), 'id', 'title'),
+                    'data' =>["0"=>Yii::t('frontend' , 'All Countries') ]  +   \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->all(), 'id', 'title'),
                     'options' => ['placeholder' => Yii::t('common', 'Country') ,'id'=>'CountryId'],
-                    'pluginOptions' => [
-                        'allowClear' => true
-                    ],
+//                    'pluginOptions' => [
+//                        'allowClear' => true
+//                    ],
                 ])->label(false); ?>
             </div>
             

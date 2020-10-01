@@ -212,7 +212,7 @@ class SignInController extends \yii\web\Controller
                 } else {
                     Yii::$app->getUser()->login($user);
                 }
-                return $this->redirect('/signup');
+                return $this->redirect('/login');
             }
         }
 
