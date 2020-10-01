@@ -609,7 +609,7 @@ class ImportController extends BackendController
                             if (!$iletsObj) {
                                 $iletsObj = new UniversityProgrameIlets();
                                 $iletsObj->title = strval($row[15]);
-                                $iletsObj->save();
+                                $iletsObj->save(false);
                             }
                             return $iletsObj->id;
                         },
