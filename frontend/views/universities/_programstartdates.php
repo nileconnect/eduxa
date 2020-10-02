@@ -7,40 +7,40 @@ if($programStartDates){
             <?php
 
             if($programStartDates->m_1){
-                echo '<div><span class="text-primary"> '. (Yii::$app->language=='ar'? 'يناير':'Jan' ).'</span></div>';
+                echo '<span class="text-primary"> '. (Yii::$app->language=='ar'? 'يناير':'Jan' ).'</span>,';
             }
             if($programStartDates->m_2){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'فبراير':'Feb' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'فبراير':'Feb' ).'</span>,';
             }
             if($programStartDates->m_3){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'مارس':'Mar' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'مارس':'Mar' ).'</span>,';
             }
             if($programStartDates->m_4){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'ابريل':'Apr' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'ابريل':'Apr' ).'</span>,';
             }
             if($programStartDates->m_5){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'مايو':'May' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'مايو':'May' ).'</span>,';
             }
             if($programStartDates->m_6){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'يونيه':'Jun' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'يونيه':'Jun' ).'</span>,';
             }
             if($programStartDates->m_7){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'يوليو':'Jul' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'يوليو':'Jul' ).'</span>,';
             }
             if($programStartDates->m_8){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'أعسطس':'Aug' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'أعسطس':'Aug' ).'</span>,';
             }
             if($programStartDates->m_9){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'سبتمبر':'Sept' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'سبتمبر':'Sept' ).'</span>,';
             }
             if($programStartDates->m_10){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'اكتوبر':'Oct' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'اكتوبر':'Oct' ).'</span>,';
             }
             if($programStartDates->m_11){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'نوفمبر':'Nov' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'نوفمبر':'Nov' ).'</span>,';
             }
             if($programStartDates->m_12){
-                echo '<div><span class="text-primary">'. (Yii::$app->language=='ar'? 'ديسمبر    ':'Dec' ).'</span></div>';
+                echo '<span class="text-primary">'. (Yii::$app->language=='ar'? 'ديسمبر    ':'Dec' ).'</span>';
             }
 
             ?>
