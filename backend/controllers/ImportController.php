@@ -913,21 +913,31 @@ class ImportController extends BackendController
                     [
                         'attribute' => 'state_id',
                         'value' => function ($row) {
-                            $stateObj = State::find()->where(['title' => strval($row[5])])->one();
-                            if ($stateObj) {
-                                return $stateObj->id;
+                            $temp = 0 ;
+                            $countryObj = Country::find()->where(['code' => strval($row[4])])->one();
+                            if ($countryObj) {
+                                // $countryObj->id;
+                                $stateObj = State::find()->where(['title' => strval($row[5]) ,'country_id'=>$countryObj->id ])->one();
+                                if ($stateObj) {
+                                    $temp =  $stateObj->id;
+                                }
                             }
-                            return 0;
+                            return $temp ;
                         },
                     ],
                     [
                         'attribute' => 'city_id',
                         'value' => function ($row) {
-                            $cityObj = Cities::find()->where(['title' => strval($row[6])])->one();
-                            if ($cityObj) {
-                                return $cityObj->id;
+                            $temp2=0;
+                            $countryObj = Country::find()->where(['code' => strval($row[4])])->one();
+                            if($countryObj){
+                                $stateObj = State::find()->where(['title' => strval($row[5]) ,'country_id'=>$countryObj->id ])->one();
+                                if($stateObj){
+                                    $cityObj = Cities::find()->where(['title' => strval($row[6]) , 'state_id'=>$stateObj->id ])->one();
+                                    $temp2 =$cityObj->id;
+                                }
                             }
-                            return 0;
+                            return $temp2;
                         },
                     ],
                     [
