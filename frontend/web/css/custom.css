@@ -322,9 +322,13 @@
     .hideMob{
         display: none;
     }
-    .form-group.field-City-id,.form-group.field-subcat-id{
+    #searchfilters2 .field-City-id,#searchfilters2 .field-subcat-id{
         padding: 5px 10px;
     }
+    #searchfilters .field-City-id,#searchfilters .field-subcat-id{
+        padding: 5px 10px;
+    }
+    
     .form-group.field-City-id .form-control,.form-group.field-subcat-id .form-control{
         background-color: #ffffff;
         color: #a2a2a2;
