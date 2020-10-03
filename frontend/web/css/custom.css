@@ -277,9 +277,7 @@
     width: 200px;
     float: right;
 }
-.header{
-    z-index: 200000000;
-}
+
 .header .header-strip .dropdown-menu {
     max-height: 300px;
     overflow: auto;
@@ -333,4 +331,9 @@
         background-color: #ffffff;
         color: #a2a2a2;
     }
+}
+
+
+.header{
+    z-index: 200000000;
 }
