@@ -56,7 +56,7 @@ use yii\helpers\Url;
                         ],
                     ])->label(false); ?>
                 </div>
-                <div class="form-group">
+                <div class="form-group languageform">
                     <?= $form->field($model, 'country_id')->widget(\kartik\widgets\Select2::classname(), [
                         'data' => ["0"=>Yii::t('frontend' , 'All Countries') ]  +  \yii\helpers\ArrayHelper::map(\backend\models\Country::find()->where(['status'=>1])->orderBy('id')->all(), 'id', 'title'),
                         'options' => ['placeholder' => Yii::t('common', 'Country') ,'id'=>'CountryId'],
@@ -65,7 +65,7 @@ use yii\helpers\Url;
 //                        ],
                     ])->label(false); ?>
                 </div>
-                <div class="form-group">
+                <div class="form-group languageform">
                     <?php
                         echo $form->field($model, 'state_id')->widget(DepDrop::classname(), [
                             'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\State::find()->where(['country_id'=>$model->country_id])->all(), 'id', 'title') : [''=>Yii::t('common','State')],
@@ -78,7 +78,7 @@ use yii\helpers\Url;
                         ])->label(false); 
                     ?>
                 </div>
-                <div class="form-group">
+                <div class="form-group languageform">
                     <?php
                         echo $form->field($model, 'city_id')->widget(DepDrop::classname(), [
                             'data' =>$model->country_id ?  \yii\helpers\ArrayHelper::map(\backend\models\Cities::find()->where(['state_id'=>$model->state_id])->all(), 'id', 'title') : [''=>Yii::t('common','City')],
