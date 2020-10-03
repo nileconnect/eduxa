@@ -277,6 +277,9 @@
     width: 200px;
     float: right;
 }
+.header{
+    z-index: 200000000;
+}
 .header .header-strip .dropdown-menu {
     max-height: 300px;
     overflow: auto;
