@@ -42,7 +42,8 @@ class MyCurrencySwitcher {
        // $availableCurrencies= \backend\models\Currency::find()->where(['status'=>1])->asArray()->all();
         $availableCurrencies = MyFrontCurrencies();
 
-        $ids = ArrayHelper::getColumn($availableCurrencies, 'currency_code');
+       // $ids = ArrayHelper::getColumn($availableCurrencies, 'currency_code');
+        $ids = $availableCurrencies;
 
         if ( isset($_GET['_currency']) && in_array($_GET['_currency'], $ids) ) // From URL
         {
