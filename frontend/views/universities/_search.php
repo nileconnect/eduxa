@@ -27,7 +27,7 @@ use yii\widgets\ActiveForm;
             <div class="form-group-row">
                 <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" class="form-control" placeholder="<?= Yii::t('frontend','Search for university or program') ?> " name="UniversityProgramsSearch[university_title]">
+                    <input type="text" class="form-control" placeholder="<?= Yii::t('frontend','Enter university name') ?> " name="UniversityProgramsSearch[university_title]">
                 </div>
             </div>
             <div class="form-group" id="searchBtnMob">

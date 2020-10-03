@@ -1,5 +1,8 @@
 <?php
-$currencies= \backend\models\Currency::findAll(['status'=>1]);
+//$currencies= \backend\models\ Currency::findAll(['status'=>1]);
+
+$currencies = MyFrontCurrencies();
+
 use common\helpers\MyCurrencySwitcher;
 ?>
 
@@ -8,7 +11,8 @@ use common\helpers\MyCurrencySwitcher;
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
         <?php
         foreach ($currencies as $currency) {
-            echo '<a class="dropdown-item" href="'.MyCurrencySwitcher::createMulticurrencyReturnUrl($currency->currency_code).'">'.$currency->currency_code.'</a>';
+            //echo '<a class="dropdown-item" href="'.MyCurrencySwitcher::createMulticurrencyReturnUrl($currency->currency_code).'">'.$currency->currency_code.'</a>';
+            echo '<a class="dropdown-item" href="'.MyCurrencySwitcher::createMulticurrencyReturnUrl($currency).'">'.$currency.'</a>';
         }
         ?>
     </div>

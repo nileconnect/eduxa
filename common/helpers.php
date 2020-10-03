@@ -100,3 +100,8 @@ function My_client_browser_lang( $default= "en" ){
 //Return default.
     return $default;
 }
+
+function MyFrontCurrencies(){
+    return ['DZD','BHD','EGP','EUR','IQD','JOD','KWD','LYD','MAD','OMR','QAR','SAR','SDG','SYP','TND','AED','GBP','USD','YER'];
+
+}

@@ -19,6 +19,9 @@
 return [
     ''=>'',
     ''=>'',
+    ''=>'',
+    'Enter university name'=>'أدخل اسم الجامعة',
+    'Enter school name'=>'أدخل اسم المدرسة',
     'All Countries'=>'كل الدول',
     'All Cities'=>'كل المدن',
     'All States'=>'كل العواصم',
