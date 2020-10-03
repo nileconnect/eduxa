@@ -1,7 +1,7 @@
 <?php
-$currencies= \backend\models\ Currency::findAll(['status'=>1]);
+//$currencies= \backend\models\ Currency::findAll(['status'=>1]);
 
-$currencies = ['DZD','BHD','EGP','EUR','IQD','JOD','KWD','LYD','MAD','OMR','QAR','SAR','SDG','SYP','TND','AED','GBP','USD','YER'];
+$currencies = MyFrontCurrencies();
 
 use common\helpers\MyCurrencySwitcher;
 ?>
