@@ -66,7 +66,7 @@ select option[data-default] {
                             <div class="row" style="margin-top:20px">
 
                                 
-                            <div id="VideoCaro" class="carousel slide" data-ride="carousel">
+                            <div id="VideoCaro" class="carousel slide" data-ride="carousel" style="width:  100% !important;">
                                 <div class="carousel-inner">
                                     
                                 <?php

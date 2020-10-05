@@ -94,7 +94,7 @@ data-CourseSlug="<?php echo $courseObj->slug; ?>"
                             <div class="row">
 
                                 
-                            <div id="VideoCaro" class="carousel slide" data-ride="carousel">
+                            <div id="VideoCaro" class="carousel slide" data-ride="carousel"  style="width:  100% !important;" >
                                 <div class="carousel-inner">
                                     
                                 <?php
