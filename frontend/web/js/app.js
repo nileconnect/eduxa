@@ -10973,3 +10973,12 @@ $(function() {
 var showfilters= function(){
     $("#searchfilters,#searchfilters2").toggleClass("show")
 }
+
+$('#VideoCaro .carousel-control-next-icon,.carousel-control-prev-icon').click(function(){
+        var $currentVideoSrc =  $('.carousel-item.active iframe').attr('src');
+        var $currentVideo = $('.carousel-item.active iframe');
+        setTimeout(function() {
+            $currentVideo.attr('src', $currentVideoSrc);
+        }, 500);
+        
+    });
