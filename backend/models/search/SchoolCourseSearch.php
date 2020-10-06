@@ -33,7 +33,7 @@ class SchoolCourseSearch extends SchoolCourse
             [['id', 'school_id', 'lessons_per_week', 'min_no_of_students_per_class', 'avg_no_of_students_per_class', 'min_age', 'created_by', 'updated_by',
                 'country_id', 'state_id',
                 'city_id', 'school_total_rating', 'school_nextTo', 'school_course_study_language_id', 'school_course_type_id', 'featured','sorting'], 'integer'],
-            [['title', 'information', 'requirments', 'required_level', 'time_of_course', 'created_at', 'updated_at', 'status','sortingw'], 'safe'],
+            [['title', 'information', 'requirments', 'required_level', 'time_of_course', 'created_at', 'updated_at', 'status','sortingw','min_price'], 'safe'],
             [['registeration_fees', 'discount'], 'number'],
         ];
     }
@@ -174,7 +174,7 @@ class SchoolCourseSearch extends SchoolCourse
     public function CustomSearchWithSortingByPrice($params)
     {
         
-        $query = SchoolCourse::find()->select('  `school_course`.*, ( price_ratio * school_course.registeration_fees ) as new_cost ');
+        $query = SchoolCourse::find()->select('  `school_course`.*, ( price_ratio * school_course.min_price ) as new_cost ');
         $query->joinWith('school', false);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

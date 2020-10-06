@@ -87,7 +87,7 @@ class SchoolCourse extends BaseSchoolCourse
             ['status','number'],
             ['required_level','in', 'range' => [self::COURSE_TYPE_BEGINNER,self::COURSE_TYPE_INTERMEDIATE,self::COURSE_TYPE_PROFESSIONAL],'on'=>'import'],
             ['time_of_course','in', 'range' => [self::COURSE_TIME_MORNING,self::COURSE_TIME_EVENING],'on'=>'import'],
-            [['information','requirments','study_books_fees','title_ar','information_ar','requirments_ar','begining_of_study','health_insurance'],'safe']
+            [['information','requirments','study_books_fees','title_ar','information_ar','requirments_ar','begining_of_study','health_insurance','min_price'],'safe']
         ];
     }
 

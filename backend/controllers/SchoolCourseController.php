@@ -77,6 +77,7 @@ class SchoolCourseController extends BackendController
         $schoolObj= Schools::find()->where(['id'=>Yii::$app->session->get('schoolId')])->one();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            $this->saveMinPrice($model);
 
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
@@ -95,6 +96,8 @@ class SchoolCourseController extends BackendController
             ]);
         }
     }
+
+
 
     /**
      * Updates an existing SchoolCourse model.
@@ -115,6 +118,8 @@ class SchoolCourseController extends BackendController
         }
         // return var_dump(Yii::$app->request->post());
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            $this->saveMinPrice($model);
+
             Yii::$app->getSession()->setFlash('alert', [
                 'type' =>'success',
                 'body' => \Yii::t('hr', 'Data has been updated Successfully') ,
@@ -134,6 +139,13 @@ class SchoolCourseController extends BackendController
         }
     }
 
+
+
+    public function saveMinPrice($model){
+        $model->min_price = $model->minimumPrice;
+        $model->save(false);
+        return true;
+    }
 
     public function CalcWeekCost($model){
 
