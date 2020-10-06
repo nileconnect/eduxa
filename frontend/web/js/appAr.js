@@ -11056,10 +11056,14 @@ var showfilters= function(){
 
 
 $('#VideoCaro .carousel-control-next-icon,.carousel-control-prev-icon').click(function(){
-        var $currentVideoSrc =  $('.carousel-item.active iframe').attr('src');
-        var $currentVideo = $('.carousel-item.active iframe');
-        setTimeout(function() {
-            $currentVideo.attr('src', $currentVideoSrc);
-        }, 500);
-        
-    });
+    var $currentVideoSrc =  $('.carousel-item.active iframe').attr('src');
+    var $currentVideo = $('.carousel-item.active iframe');
+    setTimeout(function() {
+        $currentVideo.attr('src', $currentVideoSrc);
+    }, 500);
+    
+});
+
+$('#VideoCaro').carousel({
+  interval: false,
+});
