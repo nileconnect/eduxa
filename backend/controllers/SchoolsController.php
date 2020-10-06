@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\base\SchoolsV;
+use backend\models\SchoolCourse;
 use backend\models\Schools;
 use backend\models\search\SchoolsSearch;
 use Yii;
@@ -247,6 +248,17 @@ class SchoolsController extends BackendController
             $this->findModel($id)->deleteWithRelated();
         }
         return $this->redirect(['index']);
+    }
+
+
+    public function actionCalP()
+    {
+        $models = SchoolCourse::find()->all();
+        foreach ($models as $model) {
+            $model->min_price = $model->minimumPrice;
+            $model->save(false);
+        }
+       return "done";
     }
 
     /**
