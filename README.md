@@ -1,22 +1,9 @@
-Under Development
-
-# Yii2-Starter
-
-Yii2 Strater kit based on some repositories on GitHub and some changes from my side to deliver a full working backend and restful template for yii2
-
-Based on Yii2 starter kit
-
-composer require
-
 ## Installation
-
-start docker instance
-
-- docker-compose up -d
-- docker exec -it eduxa-webserver /bin/bash
 - composer install
 - cp .env.dist .env 
 - php console/yii app/setup
+## To run migration
+ php console/yii migrate
 
 ## Demo
 
