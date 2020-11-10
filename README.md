@@ -1,4 +1,4 @@
-## Installation
+##  Installation
 - composer install
 - cp .env.dist .env 
 - php console/yii app/setup
